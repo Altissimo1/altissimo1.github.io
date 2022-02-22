@@ -5,48 +5,68 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Coastlands Spawns</title>
+	<title>Fieldlands Spawns</title>
 	<link href="Fieldlands-Styles.css" rel="stylesheet" />
+	
+	
 </head>
 
 <body>
 
+	<script>
+	var weather = "all-weather";
+	
+	var time = "morning";
+	
+	var ground= true;
+	var water= true;
+	var air= true;
+	var alpha= true;
+	var tree= false;
+	var ore= false;
+	
+	var pokemon = "all";
+	</script>
+
+	
+
 	<div id="weather-select">
 		<h2>Select a weather condition:</h2>
-		<label for="weather-all"> <input checked type="radio" name="weather" value="all" id="weather-all" onclick="toggleWeatherVisibility()">All/Any</label><br />
-		<label for="weather-sun"> <input type="radio" name="weather" value="sun" id="weather-sun" onclick="toggleWeatherVisibility()">Sun <img class="weather-icons" src="../resources/legends_arceus/weather_icons/sun.png" alt="sun" /></label> <br />
-		<label for="weather-rain"> <input type="radio" name="weather" value="rain" id="weather-rain" onclick="toggleWeatherVisibility()">Rain <img class="weather-icons" src="../resources/legends_arceus/weather_icons/rain.png" alt="rain" /></label> <br />
-		<label for="weather-cloudy"> <input type="radio" name="weather" value="cloudy" id="weather-cloudy" onclick="toggleWeatherVisibility()">Cloudy <img class="weather-icons" src="../resources/legends_arceus/weather_icons/cloudy.png" alt="cloudy" /></label><br />
-		<label for="weather-storm"> <input type="radio" name="weather" value="storm" id="weather-storm" onclick="toggleWeatherVisibility()">Thunderstorm <img class="weather-icons" src="../resources/legends_arceus/weather_icons/thunderstorm.png" alt="thunderstorm" /></label><br />
-		<label for="weather-drought"> <input type="radio" name="weather" value="drought" id="weather-drought" onclick="toggleWeatherVisibility()">Drought <img class="weather-icons" src="../resources/legends_arceus/weather_icons/drought.png" alt="drought" /></label><br />
-		<label for="weather-fog"> <input type="radio" name="weather" value="fog" id="weather-fog" onclick="toggleWeatherVisibility()">Fog <img class="weather-icons" src="../resources/legends_arceus/weather_icons/fog.png" alt="fog" /></label><br />
-		<label for="weather-snow"> <input type="radio" name="weather" value="snow" id="weather-snow" onclick="toggleWeatherVisibility()">Snow <img class="weather-icons" src="../resources/legends_arceus/weather_icons/snow.png" alt="snow" /></label><br />
-		<label for="weather-storm"> <input type="radio" name="weather" value="blizzard" id="weather-blizzard" onclick="toggleWeatherVisibility()">Snowstorm <img class="weather-icons" src="../resources/legends_arceus/weather_icons/snowstorm.png" alt="snowstorm" /></label><br />
+		<label for="weather-all"> <input checked type="radio" name="weather" value="all" id="weather-all" onclick="toggleWeatherVisibility('all-weather')">All/Any</label><br />
+		<label for="weather-sun"> <input type="radio" name="weather" value="sun" id="weather-sun" onclick="toggleWeatherVisibility('sun')">Sun <img class="weather-icons" src="../resources/legends_arceus/weather_icons/sun.png" alt="sun" /></label> <br />
+		<label for="weather-rain"> <input type="radio" name="weather" value="rain" id="weather-rain" onclick="toggleWeatherVisibility('rain')">Rain <img class="weather-icons" src="../resources/legends_arceus/weather_icons/rain.png" alt="rain" /></label> <br />
+		<label for="weather-cloudy"> <input type="radio" name="weather" value="cloudy" id="weather-cloudy" onclick="toggleWeatherVisibility('cloudy')">Cloudy <img class="weather-icons" src="../resources/legends_arceus/weather_icons/cloudy.png" alt="cloudy" /></label><br />
+		<label for="weather-storm"> <input type="radio" name="weather" value="storm" id="weather-storm" onclick="toggleWeatherVisibility('storm')">Thunderstorm <img class="weather-icons" src="../resources/legends_arceus/weather_icons/thunderstorm.png" alt="thunderstorm" /></label><br />
+		<label for="weather-drought"> <input type="radio" name="weather" value="drought" id="weather-drought" onclick="toggleWeatherVisibility('drought')">Drought <img class="weather-icons" src="../resources/legends_arceus/weather_icons/drought.png" alt="drought" /></label><br />
+		<label for="weather-fog"> <input type="radio" name="weather" value="fog" id="weather-fog" onclick="toggleWeatherVisibility('fog')">Fog <img class="weather-icons" src="../resources/legends_arceus/weather_icons/fog.png" alt="fog" /></label><br />
+		<label for="weather-snow"> <input type="radio" name="weather" value="snow" id="weather-snow" onclick="toggleWeatherVisibility('snow')">Snow <img class="weather-icons" src="../resources/legends_arceus/weather_icons/snow.png" alt="snow" /></label><br />
+		<label for="weather-storm"> <input type="radio" name="weather" value="blizzard" id="weather-blizzard" onclick="toggleWeatherVisibility('blizzard')">Snowstorm <img class="weather-icons" src="../resources/legends_arceus/weather_icons/snowstorm.png" alt="snowstorm" /></label><br />
 		
 	</div>
 	
+
 	<div id="time-select">
 		<h2>Select a time of day:</h2>
-		<label for="time-morning"> <input checked type="radio" name="time" value="morning" id="time-morning" onclick="toggleTimeVisibility()">Morning</label><br />
-		<label for="time-day"> <input type="radio" name="time" value="day" id="time-day" onclick="toggleTimeVisibility()">Day</label><br />
-		<label for="time-evening"> <input type="radio" name="time" value="evening" id="time-evening" onclick="toggleTimeVisibility()">Evening</label><br />
-		<label for="time-night"> <input type="radio" name="time" value="night" id="time-night" onclick="toggleTimeVisibility()">Night</label><br />
+		<label for="time-morning"> <input checked type="radio" name="time" value="morning" id="time-morning" onclick="toggleTimeVisibility("morning")">Morning</label><br />
+		<label for="time-day"> <input type="radio" name="time" value="day" id="time-day" onclick="toggleTimeVisibility("day")">Day</label><br />
+		<label for="time-evening"> <input type="radio" name="time" value="evening" id="time-evening" onclick="toggleTimeVisibility("evening")">Evening</label><br />
+		<label for="time-night"> <input type="radio" name="time" value="night" id="time-night" onclick="toggleTimeVisibility("night")">Night</label><br />
 	</div>
 	
 	<div id="filter-select">
 		<h2>Select filters to apply:</h2>
-		<label for="filter-ground"> <input checked type="checkbox" name="filter" value="ground" id="filter-ground" onclick="toggleFilterVisibility()">Ground</label>
-		<label for="filter-air"> <input checked type="checkbox" name="filter" value="air" id="filter-air" onclick="toggleFilterVisibility()">Air</label>
-		<label for="filter-water"> <input checked type="checkbox" name="filter" value="water" id="filter-water" onclick="toggleFilterVisibility()">Water</label><br /><br />
-		<label for="filter-tree"> <input type="checkbox" name="filter" value="tree" id="filter-tree" onclick="toggleFilterVisibility()">Shaking Trees</label>
-		<label for="filter-ore"> <input type="checkbox" name="filter" value="ore" id="filter-ore" onclick="toggleFilterVisibility()">Shaking Ores</label>
-		<label for="filter-alpha"> <input checked type="checkbox" name="filter" value="alpha" id="filter-alpha" onclick="toggleFilterVisibility()">Static Alphas</label>
+		<label for="filter-ground"> <input checked type="checkbox" name="filter" value="ground" id="filter-ground" onclick="toggleFilterVisibility("ground")">Ground</label>
+		<label for="filter-air"> <input checked type="checkbox" name="filter" value="air" id="filter-air" onclick="toggleFilterVisibility("air")">Air</label>
+		<label for="filter-water"> <input checked type="checkbox" name="filter" value="water" id="filter-water" onclick="toggleFilterVisibility("water")">Water</label><br /><br />
+		<label for="filter-tree"> <input type="checkbox" name="filter" value="tree" id="filter-tree" onclick="toggleFilterVisibility("tree")">Shaking Trees</label>
+		<label for="filter-ore"> <input type="checkbox" name="filter" value="ore" id="filter-ore" onclick="toggleFilterVisibility("ore")">Shaking Ores</label>
+		<label for="filter-alpha"> <input checked type="checkbox" name="filter" value="alpha" id="filter-alpha" onclick="toggleFilterVisibility("alpha")">Static Alphas</label>
 	</div>
 	
 	<div id="pokemon-select">
 		<h2>Select a Pokémon to show only spawn locations with that Pokémon:</h2>
 		
-		<select onchange="togglePokemonVisibility()" id="pokemon-dropdown">
+		<select onchange="togglePokemonVisibility(this.value)" id="pokemon-dropdown">
 			
 			<option value="all">-All/Any-</option>
 			<option value="bidoof">Bidoof</option>
@@ -117,6 +137,177 @@
 	
 		</select>
 	</div>
+	
+	
+	<div id="map-div">
+		<img id="map" src="../resources/legends_arceus/Fieldlands/Map.png" alt="Fieldlands_Map" />
+	
+		<!--
+			all-day: all daytime
+			night
+			all-time: all of time
+		
+			all-weather
+			sun
+			cloudy
+			rain
+			fog
+			drought
+			storm
+			blizzard
+			snow
+		
+			ground
+			air
+			water
+			tree
+			ore
+			alpha
+		
+			pokemon names
+		
+		-->
+		
+
+	
+		<div id="spawn-1">
+			<img id="spawn-1-day" class="pokemon all-day ground all-weather beautifly hide" src="../resources/legends_arceus/pokemon_icons/beautifly.png" />
+			<img id="spawn-1-night" class="pokemon night ground all-weather dustox hide" src="../resources/legends_arceus/pokemon_icons/dustox.png" />
+		</div>
+		
+		<script>
+		
+			updateImage();
+		
+			function toggleWeatherVisibility(id) {
+				weather = id;
+				updateImage();
+			}
+			
+			function toggleTimeVisibility(id) {
+				time = id;
+				updateImage();
+			}
+			
+			function toggleFilterVisibility(id) {
+			var filter = document.getElementByID(id);
+				switch (id) {
+					case "ground":
+						ground = filter.checked;
+						break;
+					case "air":
+						air = filter.checked;
+						break;
+					case "alpha":
+						alpha = filter.checked
+						break;
+					case "water":
+						water = filter.checked;
+						break;
+					case "tree":
+						tree = filter.checked;
+						break;
+					case "ore":
+						ore = filter.checked;
+						break;
+				}
+				
+				updateImage();
+			}
+			
+			function togglePokemonVisibility(id) {
+				pokemon = id;
+				updateImage();
+			}
+				
+			
+			
+			function updateImage() {
+			
+				var allw = false;
+				if (weather=="all-weather") {
+					allw = true;
+				}
+				
+				var allp = false;
+				if (pokemon=="all") {
+					allp = true;
+				}
+				
+				var weatherarray = [];
+				
+				var pokearray = document.getElementsByClassName("pokemon");
+				Array.from(pokearray).forEach((poke) => {
+					poke.classList.remove("show");
+					poke.classList.add("hide");
+					if (allw) {
+						weatherarray.push(poke);
+					} else if (!allw && poke.classList.contains(weather)) {
+						weatherarray.push(poke);
+					}
+				});
+				
+				var timearray = [];
+				
+				weatherarray.forEach((poke2) => {
+					if (poke2.classList.contains("all-time")) {
+						timearray.push(poke2);
+					} else if (poke2.classList.contains("all-day") && (time=="morning" || time=="day" || time=="evening")) {
+						timearray.push(poke2);
+					} else if (poke2.classList.contains(time)) {
+						timearray.push(poke2);
+					}
+				});
+				
+				var filterarray = [];
+				
+				timearray.forEach((poke3) => {
+					if (ground && poke3.classList.contains("ground")) {
+						filterarray.push(poke3);
+					}
+					if (water && poke3.classList.contains("water")) {
+						filterarray.push(poke3);
+					}
+					if (air && poke3.classList.contains("air")) {
+						filterarray.push(poke3);
+					}
+					if (alpha && poke3.classList.contains("alpha")) {
+						filterarray.push(poke3);
+					}
+					if (tree && poke3.classList.contains("tree")) {
+						filterarray.push(poke3);
+					}
+					if (ore && poke3.classList.contains("ore")) {
+						filterarray.push(poke3);
+					}
+				
+				});
+				
+				var pokearray = [];
+				filterarray.forEach((poke4) => {
+					if (allp) {
+						pokearray.push(poke4);
+					} else if (!allp && poke4.classList.contains(pokemon)) {
+						pokearray.push(poke4);
+					}
+				});
+				
+			
+				
+				pokearray.forEach((pokef) => {
+					pokef.classList.remove("hide");
+					pokef.classList.add("show");
+				});
+				
+				
+				
+				
+			}
+						
+		
+			
+					
+		</script>
 		
 	
 </body>
