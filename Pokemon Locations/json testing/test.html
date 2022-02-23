@@ -33,20 +33,24 @@
 			for (var i = 0; i < data.length; i++) {
 				var label = document.createElement("label");
 				label.value = data[i].value;
+				label.textContent = data[i].name;
 				var input = document.createElement("input");
 				input.checked = data[i].check;
-				input.type = "radio";
+				input.type= "radio";
 				input.name = "weather";
 				input.id = data[i].id;
 				input.onclick = "toggleWeatherVisibility(this.value)";
-				var image = document.createElement("img");
-				image.src = data[i].image;
-				image.alt = data[i].name;
-				image.class = "weather-icons";
-				input.appendChild(image);
+				if (i != 0) {
+					var image = document.createElement("img");
+					image.src= data[i].image;
+					image.alt = data[i].name;
+					image.class = "weather-icons";
+					label.appendChild(image);
+				}
 				label.appendChild(input);
 				mainContainer.appendChild(label);
 				mainContainer.appendChild(document.createElement("br"));
+			
 			}
 		}
 		
