@@ -16,6 +16,17 @@
 	
 	<script>
 		
+		fetch('people.json')
+            		.then(function (response) {
+                		return response.json();
+            		})
+            		.then(function (data) {
+                		appendData(data);
+            		})
+            		.catch(function (err) {
+                		console.log('error: ' + err);
+            		});
+		
 		function appendWeather(data) {
 			var mainContainer = document.getElementById("weather-select");
 			mainContainer.innerHTML = "<h2>Select a weather condition:</h2>";
@@ -34,6 +45,8 @@
 				mainContainer.appendChild(label);
 			}
 		}
+		
+	</script>
 				
 		
 		
