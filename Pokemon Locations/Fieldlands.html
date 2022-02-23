@@ -13,21 +13,6 @@
 
 <body>
 
-	<script>
-	var weather = "all-weather";
-	
-	var time = "morning";
-	
-	var ground= true;
-	var water= true;
-	var air= true;
-	var alpha= true;
-	var tree= false;
-	var ore= false;
-	
-	var pokemon = "all";
-	</script>
-
 	
 
 	<div id="weather-select">
@@ -55,12 +40,12 @@
 	
 	<div id="filter-select">
 		<h2>Select filters to apply:</h2>
-		<label for="filter-ground"> <input checked type="checkbox" name="filter" value="ground" id="filter-ground" onclick="toggleFilterVisibility('ground')">Ground</label>
-		<label for="filter-air"> <input checked type="checkbox" name="filter" value="air" id="filter-air" onclick="toggleFilterVisibility('air')">Air</label>
-		<label for="filter-water"> <input checked type="checkbox" name="filter" value="water" id="filter-water" onclick="toggleFilterVisibility('water')">Water</label><br /><br />
-		<label for="filter-tree"> <input type="checkbox" name="filter" value="tree" id="filter-tree" onclick="toggleFilterVisibility('tree')">Shaking Trees</label>
-		<label for="filter-ore"> <input type="checkbox" name="filter" value="ore" id="filter-ore" onclick="toggleFilterVisibility('ore')">Shaking Ores</label>
-		<label for="filter-alpha"> <input checked type="checkbox" name="filter" value="alpha" id="filter-alpha" onclick="toggleFilterVisibility('alpha')">Static Alphas</label>
+		<label for="filter-ground"> <input checked type="checkbox" name="filter" value="ground" id="filter-ground" onclick="toggleFilterVisibility('filter-ground')">Ground</label>
+		<label for="filter-air"> <input checked type="checkbox" name="filter" value="air" id="filter-air" onclick="toggleFilterVisibility('filter-air')">Air</label>
+		<label for="filter-water"> <input checked type="checkbox" name="filter" value="water" id="filter-water" onclick="toggleFilterVisibility('filter-water')">Water</label><br /><br />
+		<label for="filter-tree"> <input type="checkbox" name="filter" value="tree" id="filter-tree" onclick="toggleFilterVisibility('filter-tree')">Shaking Trees</label>
+		<label for="filter-ore"> <input type="checkbox" name="filter" value="ore" id="filter-ore" onclick="toggleFilterVisibility('filter-ore')">Shaking Ores</label>
+		<label for="filter-alpha"> <input checked type="checkbox" name="filter" value="alpha" id="filter-alpha" onclick="toggleFilterVisibility('filter-alpha')">Static Alphas</label>
 	</div>
 	
 	<div id="pokemon-select">
@@ -175,139 +160,9 @@
 			<img id="spawn-1-night" class="pokemon night ground all-weather dustox hide" src="../resources/legends_arceus/pokemon_icons/dustox.png" />
 		</div>
 		
-		<script>
-		
-			updateImage();
-		
-			function toggleWeatherVisibility(id) {
-				weather = id;
-				updateImage();
-			}
-			
-			function toggleTimeVisibility(id) {
-				time = id;
-				updateImage();
-			}
-			
-			function toggleFilterVisibility(id) {
-			var filter = document.getElementByID(id);
-				switch (id) {
-					case "ground":
-						ground = filter.checked;
-						break;
-					case "air":
-						air = filter.checked;
-						break;
-					case "alpha":
-						alpha = filter.checked
-						break;
-					case "water":
-						water = filter.checked;
-						break;
-					case "tree":
-						tree = filter.checked;
-						break;
-					case "ore":
-						ore = filter.checked;
-						break;
-				}
-				
-				updateImage();
-			}
-			
-			function togglePokemonVisibility(id) {
-				pokemon = id;
-				updateImage();
-			}
-				
-			
-			
-			function updateImage() {
-			
-				var allw = false;
-				if (weather=="all-weather") {
-					allw = true;
-				}
-				
-				var allp = false;
-				if (pokemon=="all") {
-					allp = true;
-				}
-				
-				var weatherarray = [];
-				
-				var pokearray = document.getElementsByClassName("pokemon");
-				Array.from(pokearray).forEach((poke) => {
-					poke.classList.remove("show");
-					poke.classList.add("hide");
-					if (allw) {
-						weatherarray.push(poke);
-					} else if (!allw && poke.classList.contains(weather)) {
-						weatherarray.push(poke);
-					}
-				});
-				
-				var timearray = [];
-				
-				weatherarray.forEach((poke2) => {
-					if (poke2.classList.contains("all-time")) {
-						timearray.push(poke2);
-					} else if (poke2.classList.contains("all-day") && (time=="morning" || time=="day" || time=="evening")) {
-						timearray.push(poke2);
-					} else if (poke2.classList.contains(time)) {
-						timearray.push(poke2);
-					}
-				});
-				
-				var filterarray = [];
-				
-				timearray.forEach((poke3) => {
-					if (ground && poke3.classList.contains("ground")) {
-						filterarray.push(poke3);
-					}
-					if (water && poke3.classList.contains("water")) {
-						filterarray.push(poke3);
-					}
-					if (air && poke3.classList.contains("air")) {
-						filterarray.push(poke3);
-					}
-					if (alpha && poke3.classList.contains("alpha")) {
-						filterarray.push(poke3);
-					}
-					if (tree && poke3.classList.contains("tree")) {
-						filterarray.push(poke3);
-					}
-					if (ore && poke3.classList.contains("ore")) {
-						filterarray.push(poke3);
-					}
-				
-				});
-				
-				var pokearray = [];
-				filterarray.forEach((poke4) => {
-					if (allp) {
-						pokearray.push(poke4);
-					} else if (!allp && poke4.classList.contains(pokemon)) {
-						pokearray.push(poke4);
-					}
-				});
-				
-			
-				
-				pokearray.forEach((pokef) => {
-					pokef.classList.remove("hide");
-					pokef.classList.add("show");
-				});
-				
-				
-				
-				
-			}
-						
-		
-			
-					
-		</script>
+	</div>
+	
+	<script type="text/javascript" src="render_image.js"></script>
 		
 	
 </body>
