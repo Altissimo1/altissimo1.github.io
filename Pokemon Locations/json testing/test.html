@@ -14,6 +14,8 @@
 
 	<div id="weather-select"></div>
 	
+	<div id="time-select"></div>
+	
 	<script>
 		
 		fetch('people.json')
@@ -52,6 +54,94 @@
 				mainContainer.appendChild(document.createElement("br"));
 			
 			}
+		}
+		
+		
+		fetch('time.json')
+            		.then(function (response) {
+                		return response.json();
+            		})
+            		.then(function (data) {
+                		appendTime(data);
+            		})
+            		.catch(function (err) {
+                		console.log('error: ' + err);
+            		});
+		
+		function appendTime(data) {
+			var mainContainer = document.getElementById("time-select");
+			mainContainer.innerHTML = "<h2>Select a time of day:</h2>";
+			for (var i = 0; i < data.length; i++) {
+				var label = document.createElement("label");
+				label.value = data[i].value;
+				label.textContent = data[i].name;
+				var input = document.createElement("input");
+				input.checked = data[i].check;
+				input.type= "radio";
+				input.name = "time";
+				input.id = data[i].id;
+				input.onclick = "toggleTimeVisibility(this.value)";
+				label.appendChild(input);
+				mainContainer.appendChild(label);
+				mainContainer.appendChild(document.createElement("br"));
+			
+			}
+		}
+		
+		fetch('filter.json')
+            		.then(function (response) {
+                		return response.json();
+            		})
+            		.then(function (data) {
+                		appendFilter(data);
+            		})
+            		.catch(function (err) {
+                		console.log('error: ' + err);
+            		});
+		
+		function appendFilter(data) {
+			var mainContainer = document.getElementById("filter-select");
+			mainContainer.innerHTML = "<h2>Select filters to apply:</h2>";
+			for (var i = 0; i < data.length; i++) {
+				var label = document.createElement("label");
+				label.value = data[i].value;
+				label.textContent = data[i].name;
+				var input = document.createElement("input");
+				input.checked = data[i].check;
+				input.type= "checkbox";
+				input.name = "filter";
+				input.id = data[i].id;
+				input.onclick = "toggleFilterVisibility(this.id)";
+				label.appendChild(input);
+				mainContainer.appendChild(label);
+			
+			}
+		}
+		
+		fetch('pokemon.json')
+            		.then(function (response) {
+                		return response.json();
+            		})
+            		.then(function (data) {
+                		appendPokemon(data);
+            		})
+            		.catch(function (err) {
+                		console.log('error: ' + err);
+            		});
+		
+		function appendPokemon(data) {
+			var mainContainer = document.getElementById("pokemon-select");
+			mainContainer.innerHTML = "<h2>Select a Pokémon to view only spawn points with that Pokémon:</h2>";
+			var select = document.createElement("select");
+			select.onchange = "togglePokemonVisibility(this.value)";
+			select.id = "pokemon-dropdown";
+			for (var i = 0; i < data.length; i++) {
+				var option = document.createElement("option");
+				option.value = data[i].id;
+				option.textContent = data[i].name;
+				select.appendChild(input);
+			}
+			mainContainer.appendChild(select);
 		}
 		
 	</script>
