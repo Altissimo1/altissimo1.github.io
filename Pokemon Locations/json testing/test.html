@@ -40,9 +40,14 @@
 				input.value = data[i].value;
 				input.id = data[i].id;
 				input.onclick = "toggleWeatherVisibility(this.value)";
-				input.innerHTML = data[i].name + "<img class='weather-icons' src='" + data[i].image + "' alt='" + data[i].name + "'";
+				var image = document.createElement("img");
+				image.src = data[i].image;
+				image.alt = data[i].name;
+				image.class = "weather-icons";
+				input.appendChild(image);
 				label.appendChild(input);
 				mainContainer.appendChild(label);
+				mainContainer.appendChild(document.createElement("br");
 			}
 		}
 		
