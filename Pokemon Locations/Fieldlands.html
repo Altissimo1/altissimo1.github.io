@@ -156,10 +156,10 @@
 
 	
 		<div id="spawn-1">
-			<img id="spawn-1-day" class="pokemon all-day ground all-weather beautifly hide" src="../resources/legends_arceus/pokemon_icons/beautifly.png" onclick="viewDiv()" onmouseover="viewLittle('beautifly')" />
-			<img id="spawn-1-night" class="pokemon night ground all-weather dustox hide" src="../resources/legends_arceus/pokemon_icons/dustox.png" onclick="viewDiv()" onmouseover="viewLittle('dustox')" />
-			<div id="short-spawn-1-day"><p>Beautifly: 100%</p></div>
-			<div id="short-spawn-1-night"><p>Dustox: 100%</p></div>
+			<img id="spawn-1-day" class="pokemon all-day ground all-weather beautifly hide" src="../resources/legends_arceus/pokemon_icons/beautifly.png" onclick="viewDiv()" onmouseover="viewLittle('beautifly', 'show')" onmouseout="viewLittle('beautifly', 'hide')"/>
+			<img id="spawn-1-night" class="pokemon night ground all-weather dustox hide" src="../resources/legends_arceus/pokemon_icons/dustox.png" onclick="viewDiv()" onmouseover="viewLittle('dustox', 'show')" onmouseout="viewLittle('dustox', 'hide')"/>
+			<div id="short-spawn-1-day" class="hide"><p>Beautifly: 100%</p></div>
+			<div id="short-spawn-1-night" class="hide"><p>Dustox: 100%</p></div>
 		
 		
 		</div>
@@ -200,6 +200,23 @@
 			document.getElementById("display-data").classList.add("show");
 			document.getElementById("display-data").classList.remove("hide");
 			}
+			
+			function viewLittle(id, action) {
+			var element;
+			if (id=="beautifly") {
+				element = document.getElementById("short-spawn-1-day");
+			} else {
+				element= document.getElementById("short-spawn-1-night");
+				}
+			if (action=="show") {
+				element.classList.add("show");
+				element.classList.remove("hide");
+			}
+			else {
+				element.classList.add("hide");
+				element.classList.remove("show");
+				}
+				}
 				
 		</script>
 				
