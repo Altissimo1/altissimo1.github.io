@@ -1,32 +1,44 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>JSON Test</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Fieldlands Spawns</title>
+	<link href="Fieldlands-Styles.css" rel="stylesheet" />
+	
 </head>
+
 <body>
-    <div id="myData"></div>
-    <script>
-        fetch('people.json')
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                appendData(data);
-            })
-            .catch(function (err) {
-                console.log('error: ' + err);
-            });
-        function appendData(data) {
-            var mainContainer = document.getElementById("myData");
-            for (var i = 0; i < data.length; i++) {
-                var div = document.createElement("div");
-                div.innerHTML = 'Name: ' + data[i].firstName + ' ' + data[i].lastName;
-                mainContainer.appendChild(div);
-            }
-        }
-    </script>
+
+	<div id="weather-select"></div>
+	
+	<script>
+		
+		function appendWeather(data) {
+			var mainContainer = document.getElementById("weather-select");
+			mainContainer.innerHTML = "<h2>Select a weather condition:</h2>";
+			for (var i = 0; i < data.length; i++) {
+				var label = document.createElement("label");
+				label.for = data[i].id;
+				var input = document.createElement("input");
+				input.checked = data[i].check;
+				input.type = "radio";
+				input.name = "weather";
+				input.value = data[i].value;
+				input.id = data[i].id;
+				input.onclick = "toggleWeatherVisibility(this.value)";
+				input.innerHTML = data[i].name + "<img class='weather-icons' src='" + data[i].image + "' alt='" + data[i].name + "'";
+				label.appendChild(input);
+				mainContainer.appendChild(label);
+			}
+		}
+				
+		
+		
+	
 </body>
+
 </html>
+		
