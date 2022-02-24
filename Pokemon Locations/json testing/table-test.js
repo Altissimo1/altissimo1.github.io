@@ -90,6 +90,7 @@ function updateImage() {
 			
 			for (var i = 0; i < data.length; i++) {
 				var group = data[i].groups;
+				var point = data[i].tag;
 				for (var j = 0; j < group.length; j++) {
 				
 					if (
@@ -118,6 +119,7 @@ function updateImage() {
 					var icon = document.createElement("img");
 					icon.src = group[j].icon;
 					icon.className = "testClass";
+					icon.id = point;
 					iconDisplayContainer.appendChild(icon);
 					
 					var displays = group[j].display;
