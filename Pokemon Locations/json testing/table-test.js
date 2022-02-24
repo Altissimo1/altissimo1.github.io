@@ -197,6 +197,7 @@ function showDetail(tag) {
 			}
 			else {
 				table.style.backgroundColor = "#b5c8e6";
+			}
 				
 			table.innerHTML += "<tr><th colspan='2'>" + point.full[i].heading + "</th></tr>";
 			table.innerHTML += "<tr><th>Pokémon</th><th>Spawn Rate</th></tr>";
