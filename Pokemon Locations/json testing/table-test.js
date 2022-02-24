@@ -128,8 +128,8 @@ function updateImage() {
 					var displays = group[j].display;
 						
 					var individualDisplay = document.createElement("div");
-					displayTest.style.top = group[j].displayTop;
-					displayTest.style.left = group[j].displayLeft;
+					individualDisplay.style.top = group[j].displayTop;
+					individualDisplay.style.left = group[j].displayLeft;
 					
 					for (var k = 0; k < displays.length; k++) {
 						individualDisplay.innerText += displays[k];
