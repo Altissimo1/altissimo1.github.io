@@ -15,12 +15,11 @@ function updateImage() {
 		
 		function appendIcons(data) {
       var container = document.getElementById("table-displays");
-      for (var i = 0; i < data.length; i++) {
-        var full = data[i].full;
-        for (var j = 0; j < full.length; j++) {
-          container.innerText += full[j].heading;
-        }
-      }
+	var test = parseInt("0");
+	var spawn = data[test].full;
+	for (var i = 0; i < spawn.length; i++) {
+		container.innerHTML += spawn[i].heading;
+	}
       
       
       
