@@ -184,7 +184,11 @@ function showDetail(tag) {
 	function appendTable(data, tag) {
 		var tableContainer = document.getElementById("table-displays");
 		
+		var displayTest = document.getElementById("display-test");
+		
 		var point = data[parseInt("tag")];
+		
+		displayTest.innerHTML = point.full;
 		
 		for (var i = 0; i < point.full.length; i++) {
 			var table = document.createElement("table");
