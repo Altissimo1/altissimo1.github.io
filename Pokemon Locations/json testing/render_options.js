@@ -12,6 +12,8 @@ fetch('weather.json')
 function appendWeather(data) {
 	var mainContainer = document.getElementById("weather-select");
 	mainContainer.innerHTML = "<h2>Select a weather condition:</h2>";
+	var weatherDiv = document.createElement("div");
+	weatherDiv.id = "weather-div";
 	
 	for (var i = 0; i < data.length; i++) {
 		
@@ -24,6 +26,7 @@ function appendWeather(data) {
 		input.type= "radio";
 		input.name = "weather";
 		input.id = data[i].id;
+		input.value = data[i].value;
 		input.setAttribute("onclick", "toggleWeatherVisibility(this.value)");
 		
 		if (i != 0) {
@@ -35,8 +38,9 @@ function appendWeather(data) {
 		}
 		
 		label.appendChild(input);
-		mainContainer.appendChild(label);
-		mainContainer.appendChild(document.createElement("br"));
+		weatherDiv.appendChild(label);
+		weatherDiv.appendChild(document.createElement("br"));
+		mainContainer.appendChild(weatherDiv);
 			
 	}
 }
@@ -66,6 +70,7 @@ function appendTime(data) {
 		input.type= "radio";
 		input.name = "time";
 		input.id = data[i].id;
+		input.value = data[i].value;
 		input.setAttribute("onclick", "toggleTimeVisibility(this.value)");
 		
 		label.appendChild(input);
@@ -129,8 +134,8 @@ function appendPokemon(data) {
 	mainContainer.innerHTML = "<h2>Select a Pokémon to view only spawn points with that Pokémon:</h2>";
 	
 	var selectel = document.createElement("select");
-	selectel.onchange = "togglePokemonVisibility(this.value)";
 	selectel.id = "pokemon-dropdown";
+	selectel.setAttribute("onchange", "togglePokemonVisibility(this.value)");
 	for (var i = 0; i < data.length; i++) {
 		var optionel = document.createElement("option");
 		optionel.value = data[i].id;
