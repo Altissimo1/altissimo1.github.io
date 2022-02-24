@@ -192,7 +192,7 @@ function showDetail(tag) {
 		
 		for (var i = 0; i < point.full.length; i++) {
 			var table = document.createElement("table");
-			if (point.full[i].heading.contains("Night")) {
+			if (point.full[i].heading.includes("Night")) {
 				table.style.backgroundColor = "#5b89d4";
 			}
 			else {
