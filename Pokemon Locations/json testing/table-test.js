@@ -150,16 +150,20 @@ function showDisplay(tag, subtag) {
 		var tagGroup = data[parseInt(tag)];
 		var subtagGroup = tagGroup[parseInt(subtag)];
 		var smallDisplayContainer = document.getElementById("small-displays");
-		var individualDisplay = document.createElement("div");
-		individualDisplay.style.top = subtagGroup.displayTop;
-		individualDisplay.style.left = subtagGroup.displayLeft;
+		smallDisplayContainer.style.top = subtagGroup.displayTop;
+		smallDisplayContainer.style.left = subtagGroup.displayLeft;
 		var displays = subtagGroup.display;
 		for (var i = 0; i < displays.length; i++) {
-			individualDisplay.innerText += displays[i];
-			individualDisplay.appendChild(document.createElement("br"));
+			smallDisplayContainer.innerText += displays[i];
+			smallDisplayContainer.appendChild(document.createElement("br"));
 		}
 						
-		smallDisplayContainer.appendChild(individualDisplay);
 	}
 }
 	
+function hideDisplay() {
+	var hide = document.getElementById("small-displays");
+	hide.innerHTML = "";
+}
+
+	    
