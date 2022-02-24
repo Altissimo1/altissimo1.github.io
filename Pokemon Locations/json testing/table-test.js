@@ -87,7 +87,6 @@ function updateImage() {
 			var iconDisplayContainer = document.getElementById("display-icons");
 			smallDisplayContainer.innerHTML = "";
 			iconDisplayContainer.innerHTML = "";
-			var displayTest = document.getElementById("display-test");
 			
 			for (var i = 0; i < data.length; i++) {
 				var group = data[i].groups;
@@ -121,14 +120,14 @@ function updateImage() {
 					icon.src = group[j].icon;
 					icon.className = "testClass";
 					icon.id = point;
-					displayTest.innerHTML += group[j].iconTop;
-					displayTest.innerHTML += group[j].iconLeft;
+					icon.style.top = group[j].iconTop;
+					icon.style.left = group[j].iconLeft;
 					iconDisplayContainer.appendChild(icon);
 					
 					var displays = group[j].display;
 					var individualDisplay = document.createElement("div");
-					displayTest.innerHTML += group[j].displayLeft;
-					displayTest.innerHTML += group[j].displayTop;
+					individualDisplay.style.top = group[j].displayTop;
+					individualDisplay.style.left = group[j].displayLeft;
 					for (var k = 0; k < displays.length; k++) {
 						individualDisplay.innerText += displays[k];
 						individualDisplay.appendChild(document.createElement("br"));
