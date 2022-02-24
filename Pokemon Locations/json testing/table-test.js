@@ -126,13 +126,16 @@ function updateImage() {
 					iconDisplayContainer.appendChild(icon);
 					
 					var displays = group[j].display;
+						
 					var individualDisplay = document.createElement("div");
-					displayTest.innerText += group[j].displayTop;
-					displayTest.innerText += group[j].displayLeft;
+					displayTest.style.top = group[j].displayTop;
+					displayTest.style.left = group[j].displayLeft;
+					
 					for (var k = 0; k < displays.length; k++) {
 						individualDisplay.innerText += displays[k];
 						individualDisplay.appendChild(document.createElement("br"));
 					}
+						
 					smallDisplayContainer.appendChild(individualDisplay);
 					
 					}
