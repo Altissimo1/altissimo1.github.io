@@ -135,6 +135,7 @@ function updateImage() {
 }
 
 function showDisplay(tag, subtag) {
+	fetch('table-test.json')
 	.then(function (response) {
 			return response.json();
 		})
