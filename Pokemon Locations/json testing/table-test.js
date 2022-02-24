@@ -147,7 +147,7 @@ function showDisplay(tag, subtag) {
 		var subtagGroup = tagGroup.groups[parseInt(subtag)];
 		var smallDisplayContainer = document.createElement("div");
 		smallDisplayContainer.id = "small-displays";
-		if (weather=="night") {
+		if (time=="night") {
 			smallDisplayContainer.style.backgroundColor = "#5b89d4";
 		}
 		else {
