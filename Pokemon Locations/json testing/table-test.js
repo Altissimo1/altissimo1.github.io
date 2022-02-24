@@ -147,6 +147,7 @@ function showDisplay(tag, subtag) {
 		});
 	
 	function appendDisplay(data, tag, subtag) {
+		var body = document.getElementById("body-div");
 		var tagGroup = data[parseInt(tag)];
 		var subtagGroup = tagGroup.groups[parseInt(subtag)];
 		var smallDisplayContainer = document.createElement("div");
@@ -158,6 +159,7 @@ function showDisplay(tag, subtag) {
 			smallDisplayContainer.innerText += displays[i];
 			smallDisplayContainer.appendChild(document.createElement("br"));
 		}
+		body.appendChild(smallDisplayContainer);
 						
 	}
 }
