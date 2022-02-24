@@ -120,13 +120,19 @@ function updateImage() {
 					icon.src = group[j].icon;
 					icon.className = "testClass";
 					icon.id = point;
+					icon.style.top = group.iconTop;
+					icon.style.left = group.iconLeft;
 					iconDisplayContainer.appendChild(icon);
 					
 					var displays = group[j].display;
+					var individualDisplay = document.createElement("div");
+					individualDisplay.style.left = group.displayLeft;
+					individualDisplay.style.top = group.displayTop;
 					for (var k = 0; k < displays.length; k++) {
-						smallDisplayContainer.innerText += displays[k];
-						smallDisplayContainer.appendChild(document.createElement("br"));
+						individualDisplay.innerText += displays[k];
+						individualDisplay.appendChild(document.createElement("br"));
 					}
+					smallDisplayContainer.appendChild(individualDisplay);
 					
 					}
 				}
