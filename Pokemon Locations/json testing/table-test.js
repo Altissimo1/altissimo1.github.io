@@ -149,7 +149,8 @@ function showDisplay(tag, subtag) {
 	function appendDisplay(data, tag, subtag) {
 		var tagGroup = data[parseInt(tag)];
 		var subtagGroup = tagGroup.groups[parseInt(subtag)];
-		var smallDisplayContainer = document.getElementById("small-displays");
+		var smallDisplayContainer = document.createElement("div");
+		smallDisplayContainer.id = "small-displays";
 		smallDisplayContainer.style.top = subtagGroup.displayTop;
 		smallDisplayContainer.style.left = subtagGroup.displayLeft;
 		var displays = subtagGroup.display;
@@ -162,8 +163,7 @@ function showDisplay(tag, subtag) {
 }
 	
 function hideDisplay() {
-	var hide = document.getElementById("small-displays");
-	hide.innerHTML = "";
+	document.getElementById("small-displays").remove();
 }
 
 	    
