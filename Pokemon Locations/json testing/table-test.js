@@ -169,3 +169,35 @@ function hideDisplay() {
 }
 
 	    
+function showDetail(tag) {
+	fetch('table-test.json')
+	.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			appendTable(data, tag);
+		})
+		.catch(function (err) {
+			console.log('error: ' + err);
+		});
+	
+	function appendTable(data, tag) {
+		var tableContainer = document.getElementById("table-displays");
+		
+		var point = data[parseInt("tag")];
+		
+		for (var i = 0; i < point.full.length; i++) {
+			var table = document.createElement("table");
+			table.innerHTML += "<tr><th colspan='2'>" + point.full[i].heading + "</th></tr>";
+			table.innerHTML += "<tr><th>Pokémon</th><th>Spawn Rate</th></tr>";
+			for (var j = 0; j < point.full[i].icon.length; j++) {
+				table.innerHTML += "<tr><td><img src='" + point.full[i].icon[j] + "'/></td>";
+				table.innerHTML += "<td>" + point.full[i].icon[j] + "</td></tr>";
+			}
+			tableContainer.append(table);
+		}
+	}
+}
+			
+			
+	
