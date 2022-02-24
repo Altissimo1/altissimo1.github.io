@@ -186,9 +186,8 @@ function showDetail(tag) {
 		
 		var displayTest = document.getElementById("display-test");
 		
-		var point = data[parseInt("tag")];
+		var point = data[parseInt(tag)];
 		
-		displayTest.innerHTML += point.full[0].icon;
 		
 		for (var i = 0; i < point.full.length; i++) {
 			var table = document.createElement("table");
