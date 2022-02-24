@@ -1,3 +1,5 @@
+updateImage();
+
 function updateImage() {
 	
 	fetch('table-test.json')
