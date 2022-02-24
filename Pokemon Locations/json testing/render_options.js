@@ -29,13 +29,11 @@ function appendWeather(data) {
 		input.value = data[i].value;
 		input.setAttribute("onclick", "toggleWeatherVisibility(this.value)");
 		
-		if (i != 0) {
-			var image = document.createElement("img");
-			image.src= data[i].image;
-			image.alt = data[i].name;
-			image.className = "weather-icons";
-			label.appendChild(image);
-		}
+		var image = document.createElement("img");
+		image.src= data[i].image;
+		image.alt = data[i].name;
+		image.className = "weather-icons";
+		label.appendChild(image);
 		
 		label.appendChild(input);
 		weatherDiv.appendChild(label);
