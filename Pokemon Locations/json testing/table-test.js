@@ -192,6 +192,12 @@ function showDetail(tag) {
 		
 		for (var i = 0; i < point.full.length; i++) {
 			var table = document.createElement("table");
+			if (point.full[i].heading.contains("Night")) {
+				table.style.backgroundColor = "#5b89d4";
+			}
+			else {
+				table.style.backgroundColor = "#b5c8e6";
+				
 			table.innerHTML += "<tr><th colspan='2'>" + point.full[i].heading + "</th></tr>";
 			table.innerHTML += "<tr><th>Pokémon</th><th>Spawn Rate</th></tr>";
 			for (var j = 0; j < point.full[i].icon.length; j++) {
