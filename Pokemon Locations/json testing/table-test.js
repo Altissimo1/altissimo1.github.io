@@ -116,9 +116,9 @@ function updateImage() {
 					
 					var icon = document.createElement("img");
 					icon.src = group[j].icon;
-					icon.setAttribute("onmouseover", "showDisplay(this.class, this.id)");
-					icon.setAttribute("onmouseout", "hideDisplay(this.class, this.id)");
-					icon.setAttribute("onclick", "showDetail(this.class)");
+					icon.setAttribute("onmouseover", "showDisplay(this.className, this.id)");
+					icon.setAttribute("onmouseout", "hideDisplay()");
+					icon.setAttribute("onclick", "showDetail(this.className)");
 					icon.className = point;
 					icon.id = group[j].subtag;
 					icon.style.top = group[j].iconTop;
