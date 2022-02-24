@@ -160,5 +160,6 @@ function showDisplay(tag, subtag) {
 		}
 						
 		smallDisplayContainer.appendChild(individualDisplay);
-		
+	}
+}
 	
