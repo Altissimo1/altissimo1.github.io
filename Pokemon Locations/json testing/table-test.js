@@ -116,10 +116,10 @@ function updateImage() {
 					
 					var icon = document.createElement("img");
 					icon.src = group[j].icon;
+					icon.className = point;
 					icon.setAttribute("onmouseover", "showDisplay(this.className, this.id)");
 					icon.setAttribute("onmouseout", "hideDisplay()");
 					icon.setAttribute("onclick", "showDetail(this.className)");
-					icon.className = point;
 					icon.id = group[j].subtag;
 					icon.style.top = group[j].iconTop;
 					icon.style.left = group[j].iconLeft;
@@ -140,7 +140,7 @@ function showDisplay(tag, subtag) {
 			return response.json();
 		})
 		.then(function (data) {
-			appendDisplay(data);
+			appendDisplay(data, tag, subtag);
 		})
 		.catch(function (err) {
 			console.log('error: ' + err);
