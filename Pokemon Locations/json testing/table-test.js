@@ -148,7 +148,7 @@ function showDisplay(tag, subtag) {
 	
 	function appendDisplay(data, tag, subtag) {
 		var tagGroup = data[parseInt(tag)];
-		var subtagGroup = tagGroup[parseInt(subtag)];
+		var subtagGroup = tagGroup.groups[parseInt(subtag)];
 		var smallDisplayContainer = document.getElementById("small-displays");
 		smallDisplayContainer.style.top = subtagGroup.displayTop;
 		smallDisplayContainer.style.left = subtagGroup.displayLeft;
