@@ -83,10 +83,7 @@ function updateImage() {
 		});
 		
 		function appendIcons(data) {
-			var smallDisplayContainer = document.getElementById("small-displays");
 			var iconDisplayContainer = document.getElementById("display-icons");
-			var displayTest = document.getElementById("display-test");
-			smallDisplayContainer.innerHTML = "";
 			iconDisplayContainer.innerHTML = "";
 			
 			for (var i = 0; i < data.length; i++) {
@@ -119,24 +116,14 @@ function updateImage() {
 					
 					var icon = document.createElement("img");
 					icon.src = group[j].icon;
-					icon.className = "testClass";
-					icon.id = point;
+					icon.setAttribute("onmouseover", "showDisplay(this.class, this.id)");
+					icon.setAttribute("onmouseout", "hideDisplay(this.class, this.id)");
+					icon.setAttribute("onclick", "showDetail(this.class)");
+					icon.className = point;
+					icon.id = group[j].subtag;
 					icon.style.top = group[j].iconTop;
 					icon.style.left = group[j].iconLeft;
 					iconDisplayContainer.appendChild(icon);
-					
-					var displays = group[j].display;
-						
-					var individualDisplay = document.createElement("div");
-					individualDisplay.style.top = group[j].displayTop;
-					individualDisplay.style.left = group[j].displayLeft;
-					
-					for (var k = 0; k < displays.length; k++) {
-						individualDisplay.innerText += displays[k];
-						individualDisplay.appendChild(document.createElement("br"));
-					}
-						
-					smallDisplayContainer.appendChild(individualDisplay);
 					
 					}
 				}
@@ -146,3 +133,31 @@ function updateImage() {
 	
 	
 }
+
+function showDisplay(tag, subtag) {
+	.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			appendDisplay(data);
+		})
+		.catch(function (err) {
+			console.log('error: ' + err);
+		});
+	
+	function appendDisplay(data, tag, subtag) {
+		var tagGroup = data[parseInt(tag)];
+		var subtagGroup = tagGroup[parseInt(subtag)];
+		var smallDisplayContainer = document.getElementById("small-displays");
+		var individualDisplay = document.createElement("div");
+		individualDisplay.style.top = subtagGroup.displayTop;
+		individualDisplay.style.left = subtagGroup.displayLeft;
+		var displays = subtagGroup.display;
+		for (var i = 0; i < displays.length; i++) {
+			individualDisplay.innerText += displays[i];
+			individualDisplay.appendChild(document.createElement("br"));
+		}
+						
+		smallDisplayContainer.appendChild(individualDisplay);
+		
+	
