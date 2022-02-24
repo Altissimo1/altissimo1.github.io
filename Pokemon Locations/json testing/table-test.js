@@ -1,4 +1,4 @@
-var weather = "all-weather";
+var weather = "sun";
 	
 var time = "morning";
 	
@@ -60,11 +60,6 @@ function togglePokemonVisibility(id) {
 	
 	
 function updateImage() {
-	
-	var allw = false;
-	if (weather=="all-weather") {
-		allw = true;
-	}
 				
 	var allp = false;
 	if (pokemon=="all") {
@@ -92,7 +87,7 @@ function updateImage() {
 				for (var j = 0; j < group.length; j++) {
 				
 					if (
-						(allw || (!allw && group[j].conditions.includes(weather)) || group[j].conditions.includes("all-weather"))
+						(group[j].conditions.includes(weather) || group[j].conditions.includes("all-weather"))
 			
 						&&
 			
