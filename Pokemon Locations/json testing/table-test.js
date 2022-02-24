@@ -85,6 +85,7 @@ function updateImage() {
 		function appendIcons(data) {
 			var smallDisplayContainer = document.getElementById("small-displays");
 			var iconDisplayContainer = document.getElementById("display-icons");
+			var displayTest = document.getElementById("display-test");
 			smallDisplayContainer.innerHTML = "";
 			iconDisplayContainer.innerHTML = "";
 			
@@ -126,8 +127,8 @@ function updateImage() {
 					
 					var displays = group[j].display;
 					var individualDisplay = document.createElement("div");
-					individualDisplay.style.top = group[j].displayTop;
-					individualDisplay.style.left = group[j].displayLeft;
+					displayTest.innerText += group[j].displayTop;
+					displayTest.innerText += group[j].displayLeft;
 					for (var k = 0; k < displays.length; k++) {
 						individualDisplay.innerText += displays[k];
 						individualDisplay.appendChild(document.createElement("br"));
