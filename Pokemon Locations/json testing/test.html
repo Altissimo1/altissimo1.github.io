@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Fieldlands Spawns</title>
+	<link href="Fieldlands.css" rel="stylesheet" />
+	
+</head>
+
+<body>
+
+	<div id="weather-select"></div>
+	
+	<div id="time-select"></div>
+	
+	<div id="filter-select"></div>
+	
+	<div id="pokemon-select"></div>
+	
+	<script type="text/javascript" src="render_options.js"></script>
+	
+	<div id="body-div">
+		<img id="map" src="../../resources/legends_arceus/Coastlands/Map.png">
+	</div>
+		
+	<script>
+		fetch('spawns_reference.json')
+			.then(function (response) {
+				return response.json();
+			})
+			.then(function (data) {
+				appendSpawn(data);
+			})
+			.catch(function (err) {
+				console.log('error: ' + err);
+			});
+		
+		function appendSpawn(data) {
+			var mainContainer = document.getElementById("body-div");
+			for (var i = 0; i < data.length; i++) {
+				var group = data[i].groups;
+				for (var j = 0; j < group.length; j++) {
+					var small = document.createElement("div");
+					small.className = "full-display";
+					var displays = group[j].display;
+					for (var k = 0; k < displays.length; k++) {
+						var label = document.createElement("label");
+						label.textContent = displays[k];
+						
+						small.appendChild(label);
+						small.appendChild(document.createElement("br"));
+					}
+					mainContainer.appendChild(small);
+				}
+			}
+		}
+		
+	</script>
+				
+			
+	
+		
+</body>
+
+</html>
+		
