@@ -1,6 +1,6 @@
 // Start with the weather selector.
 
-fetch('../json/weather.json')
+fetch('/json/weather.json')
     .then(function (response) {
         return response.json();
     })
@@ -48,7 +48,7 @@ fetch('../json/weather.json')
 	}
 		
 		
-fetch('../json/time.json')
+fetch('json/time.json')
     .then(function (response) {
         return response.json();
     })
@@ -82,7 +82,7 @@ fetch('../json/time.json')
 		}
 	}
 		
-fetch('../json/filter.json')
+fetch('/json/filter.json')
 	.then(function (response) {
         return response.json();
     })
@@ -119,7 +119,7 @@ fetch('../json/filter.json')
 		}
 	}
 		
-fetch('../json/pokemon.json')
+fetch('json/pokemon.json')
     .then(function (response) {
         return response.json();
     })
