@@ -163,7 +163,7 @@ function showDisplay(tag, subtag) {
 		
 	
 	function appendDisplay(data, tag, subtag) {
-		var body = document.getElementById("body-div");
+		var body = document.getElementById("map-div");
 		
 		// Get the tag and subtag from the icon calling the function and use them to locate the data for that spawn in the json.
 		
@@ -175,7 +175,7 @@ function showDisplay(tag, subtag) {
 		var smallDisplayContainer = document.createElement("div");
 		smallDisplayContainer.id = "small-displays";
 		if (time=="night") {
-			smallDisplayContainer.style.backgroundColor = "#5b89d4";
+			smallDisplayContainer.    style.backgroundColor = "#5b89d4";
 		}
 		else {
 			smallDisplayContainer.style.backgroundColor = "#b5c8e6";
@@ -190,7 +190,7 @@ function showDisplay(tag, subtag) {
 		
 		var displays = subtagGroup.display;
 		for (var i = 0; i < displays.length; i++) {
-			smallDisplayContainer.innerText += displays[i];
+			smallDisplayContainer.innerHTML += displays[i];
 			smallDisplayContainer.appendChild(document.createElement("br"));
 		}
 		
