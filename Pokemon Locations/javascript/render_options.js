@@ -17,10 +17,8 @@ fetch('json/weather.json')
 		mainContainer.innerHTML = "<h2>Select a weather condition:</h2>";
 		var weatherDiv = document.createElement("div");
 		weatherDiv.id = "weather-div";
-	
-		for (var i = 0; i < data.length; i++) {
-			
 		
+		for (var i = 0; i < data.length; i++) {
 			var label = document.createElement("label");
 			label.value = data[i].value;
 			label.textContent = data[i].name + " ";
@@ -32,7 +30,7 @@ fetch('json/weather.json')
 			input.id = data[i].id;
 			input.value = data[i].value;
 			input.setAttribute("onclick", "toggleWeatherVisibility(this.value)");
-		
+			
 			var item = document.createElement("img");
 			item.src= data[i].image;
 			item.alt = data[i].name;
@@ -41,10 +39,11 @@ fetch('json/weather.json')
 		
 			label.appendChild(input);
 			weatherDiv.appendChild(label);
-			weatherDiv.appendChild(document.createElement("br"));
-			mainContainer.appendChild(weatherDiv);
-			
+			weatherDiv.appendChild(document.createElement("br"));	
 		}
+		mainContainer.appendChild(weatherDiv);
+		
+		
 	}
 		
 		
