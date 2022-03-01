@@ -78,7 +78,7 @@ function updateImage() {
 		allp = true;
 	}
 	
-	// Load in the .json with all the spawn data for the Fieldlands.
+	// Load in the .json with all the spawn data for the fieldlands.
 	
 	fetch('json/fieldlands_spawns.json')
 		.then(function (response) {
