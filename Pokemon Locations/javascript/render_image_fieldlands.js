@@ -128,6 +128,7 @@ function updateImage() {
 							// Between the tag and subtag, you can locate any individual spawn in the json, which is used when displaying the divs associated
 							// with the icon.
 							icon.className = point;
+							icon.classList.add(group[j].iconClass);
 							icon.id = group[j].subtag;
 							
 							// Set hover and click functions for the icon.
