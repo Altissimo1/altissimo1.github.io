@@ -118,7 +118,7 @@ fetch('json/filter.json')
 		}
 	}
 		
-fetch('json/pokemon.json')
+fetch('json/fieldlands_pokemon.json')
     .then(function (response) {
         return response.json();
     })
