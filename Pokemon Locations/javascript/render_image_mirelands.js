@@ -164,7 +164,6 @@ function showDisplay(tag, subtag) {
 		
 	
 	function appendDisplay(data, tag, subtag) {
-		console.log("mouse on " + tag);
 		if (document.contains(document.getElementById("small-displays"))) {
 			document.getElementById("small-displays").remove();
 		}
