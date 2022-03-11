@@ -133,7 +133,7 @@ function updateImage() {
 							
 							// Set hover and click functions for the icon.
 							icon.setAttribute("onmouseover", "showDisplay(this.className, this.id)");
-							icon.setAttribute("onmouseout", "hideDisplay()");
+							icon.setAttribute("onmouseout", "hideDisplay(this.className)");
 							icon.setAttribute("onclick", "showDetail(this.className)");
 							
 							// Set the location of the icon.
@@ -164,6 +164,10 @@ function showDisplay(tag, subtag) {
 		
 	
 	function appendDisplay(data, tag, subtag) {
+		console.log("mouse on " + tag);
+		if (document.contains(document.getElementById("small-displays"))) {
+			document.getElementById("small-displays").remove();
+		}
 		var body = document.getElementById("map-div");
 		
 		// Get the tag and subtag from the icon calling the function and use them to locate the data for that spawn in the json.
@@ -204,7 +208,9 @@ function showDisplay(tag, subtag) {
 // To hide a display, simply remove the small-displays element.
 	
 function hideDisplay() {
-	document.getElementById("small-displays").remove();
+	if (document.contains(document.getElementById("small-displays"))) {
+		document.getElementById("small-displays").remove();
+	}
 }
 
 // Show detail is called whenever the icon is clicked.
