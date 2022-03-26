@@ -1,3 +1,5 @@
+"use strict";
+
 // Start with the weather selector.
 
 fetch('json/weather.json')
