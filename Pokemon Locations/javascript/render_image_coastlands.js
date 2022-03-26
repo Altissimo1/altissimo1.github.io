@@ -1,3 +1,5 @@
+"use strict";
+
 // Global variables corresponding to what filter options are checked when the page loads.
 
 var weather = "sun";
