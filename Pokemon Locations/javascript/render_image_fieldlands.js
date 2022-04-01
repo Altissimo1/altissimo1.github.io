@@ -15,6 +15,21 @@ var ore = false;
 	
 var pokemon = "all";
 
+var zoom = false;
+
+document.getElementById("enlarge").onclick = function() {
+	if (zoom) {
+		zoom = false;
+		document.getElementById("map-div").style.width = "58%";
+		document.getElementById("zoom").src = "../resources/legends_arceus/other_icons/zoom_plus.png";
+	} else {
+		zoom = true;
+		document.getElementById("map-div").style.width = "100%";
+		document.getElementById("zoom").src = "../resources/legends_arceus/other_icons/zoom_minus.png";
+	
+	}
+}
+
 // Calling updateImage() here will force the page to load the icons when first loaded.
 
 updateImage();

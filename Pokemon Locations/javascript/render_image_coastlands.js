@@ -15,6 +15,21 @@ var ore = false;
 	
 var pokemon = "all";
 
+var zoom = false;
+
+document.getElementById("enlarge").onclick = function() {
+	if (zoom) {
+		zoom = false;
+		document.getElementById("map-div").style.width = "58%";
+		document.getElementById("zoom").src = "../resources/legends_arceus/other_icons/zoom_plus.png";
+	} else {
+		zoom = true;
+		document.getElementById("map-div").style.width = "100%";
+		document.getElementById("zoom").src = "../resources/legends_arceus/other_icons/zoom_minus.png";
+	
+	}
+}
+
 // Calling updateImage() here will force the page to load the icons when first loaded.
 
 updateImage();
@@ -80,9 +95,9 @@ function updateImage() {
 		allp = true;
 	}
 	
-	// Load in the .json with all the spawn data for the coastlands.
+	// Load in the .json with all the spawn data for the Coastlands.
 	
-	fetch('json/coastlands_spawns.json')
+	fetch('json/Coastlands_spawns.json')
 		.then(function (response) {
 			return response.json();
 		})
@@ -153,7 +168,7 @@ function updateImage() {
 // This function will execute when the user hovers over an icon on the map.
 
 function showDisplay(tag, subtag) {
-	fetch('json/coastlands_spawns.json')
+	fetch('json/Coastlands_spawns.json')
 	.then(function (response) {
 			return response.json();
 		})
@@ -166,7 +181,6 @@ function showDisplay(tag, subtag) {
 		
 	
 	function appendDisplay(data, tag, subtag) {
-		console.log("mouse on " + tag);
 		if (document.contains(document.getElementById("small-displays"))) {
 			document.getElementById("small-displays").remove();
 		}
@@ -218,7 +232,7 @@ function hideDisplay() {
 // Show detail is called whenever the icon is clicked.
 	    
 function showDetail(tag) {
-	fetch('json/coastlands_spawns.json')
+	fetch('json/Coastlands_spawns.json')
 	.then(function (response) {
 			return response.json();
 		})
