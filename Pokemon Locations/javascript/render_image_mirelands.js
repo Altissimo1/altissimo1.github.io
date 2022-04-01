@@ -97,7 +97,7 @@ function updateImage() {
 	
 	// Load in the .json with all the spawn data for the Mirelands.
 	
-	fetch('json/Mirelands_spawns.json')
+	fetch('json/mirelands_spawns.json')
 		.then(function (response) {
 			return response.json();
 		})
@@ -168,7 +168,7 @@ function updateImage() {
 // This function will execute when the user hovers over an icon on the map.
 
 function showDisplay(tag, subtag) {
-	fetch('json/Mirelands_spawns.json')
+	fetch('json/mirelands_spawns.json')
 	.then(function (response) {
 			return response.json();
 		})
@@ -232,7 +232,7 @@ function hideDisplay() {
 // Show detail is called whenever the icon is clicked.
 	    
 function showDetail(tag) {
-	fetch('json/Mirelands_spawns.json')
+	fetch('json/mirelands_spawns.json')
 	.then(function (response) {
 			return response.json();
 		})
