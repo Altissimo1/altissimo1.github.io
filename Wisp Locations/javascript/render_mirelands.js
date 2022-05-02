@@ -86,11 +86,16 @@ function updateImage() {
 			for (var i = 0; i < data.length; i++) {
 				var type = data[i].type;
 				var point = data[i].tag;
+				var cookieName = "mirelands" + type + point;
+				var src = "../resources/legends_arceus/other_icons/Check.png";
 				if ((wisp && type=="wisp") || (unown && type=="unown") || (verse && type=="verse") || (dig && type=="dig")) {
+					if (getCookie(cookieName) != "set") {
+						src = data[i].icon;
+					}
 					var icon = document.createElement("img");
-					icon.src = data[i].icon;
+					icon.src = src;
 					icon.className = type;
-					icon.id = point
+					icon.id = point;
 					icon.setAttribute("onmouseover", "showDisplay(this.id)");
 					icon.setAttribute("onmouseout", "hideDisplay()");
 					icon.setAttribute("onclick", "swapIcon(this.id)");
@@ -165,12 +170,48 @@ function swapIcon(tag) {
 	
 	function swap(data, tag) {
 		var img = document.getElementById(tag);
-		
+		var type = data[parseInt(tag)].type;
+		var cookieName = "mirelands" + type + tag;
 		
 		if (img.getAttribute("src") != "../resources/legends_arceus/other_icons/Check.png") {
 			img.src = "../resources/legends_arceus/other_icons/Check.png";
+			setCookie(cookieName, false);
 		} else {
 			img.src = data[parseInt(tag)].icon;
+			setCookie(cookieName, true);
 		}
+	}
+}
+
+function setCookie(name, exp) {
+	if (exp) {
+		document.cookie = name + "=unset; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+	} else {
+		document.cookie = name + "=set; path=/";
+	}
+}
+	
+
+function getCookie(cname) {
+	let name = cname + "=";
+	let ca = document.cookie.split(";");
+	for (let i = 0; i < ca.length; i++) {
+		let c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
+}
+
+function checkCookie(cname) {
+	let cookie = getCookie(cname);
+	if (cookie == "" || cookie == null) {
+		return false;
+	} else {
+		return true;
 	}
 }
