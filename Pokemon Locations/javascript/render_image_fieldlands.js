@@ -244,6 +244,7 @@ function showDetail(tag) {
 		});
 	
 	function appendTable(data, tag) {
+		console.log(tag);
 		
 		// Clear any existing tables from the table display div.
 		
@@ -265,10 +266,22 @@ function showDetail(tag) {
 				table.style.backgroundColor = "#b5c8e6";
 			}
 				
-			table.innerHTML += "<tr><th colspan='2'>" + point.full[i].heading + "</th></tr>";
-			table.innerHTML += "<tr><th>Pokémon</th><th>Spawn Rate</th></tr>";
+			table.innerHTML += "<tr><th colspan='3'>" + point.full[i].heading + "</th></tr>";
+			table.innerHTML += "<tr><th>Pokémon</th><th>Spawn Rate</th><th>Levels</th></tr>";
+			var htmlBlock;
 			for (var j = 0; j < point.full[i].icon.length; j++) {
-				table.innerHTML += "<tr><td><img src='" + point.full[i].icon[j] + "'/></td><td>" + point.full[i].spawn[j] + "</td></tr>";
+				var levelOne = point.full[i].levels1[j];
+				var levelTwo = point.full[i].levels2[j];
+				
+				htmlBlock = "<tr><td><img src='" + point.full[i].icon[j] + "'/></td><td>" + point.full[i].spawn[j] + "</td><td class='levelCell'>" + levelOne;
+				if (!(levelOne === "" | levelTwo === "")) {
+					htmlBlock += "<br>";
+				}
+				if (levelTwo !== "") {
+					htmlBlock += "<img src='../resources/legends_arceus/other_icons/alpha.png' class='alpha'>";
+				}
+				htmlBlock += levelTwo + "</td></tr>";
+				table.innerHTML += htmlBlock;
 			}
 			tableContainer.append(table);
 		}
