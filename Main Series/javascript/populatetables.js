@@ -149,7 +149,7 @@ function readLevelEncounter(gameString, gameArray, data, type, spriteFolders) {
 	}
 	
 	$.each(data, function() {
-		combinedTableInnerText += "<tr><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + spriteFolders[spriteFolders.length -1] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>"  + this.level + "</td>";
+		combinedTableInnerText += "<tr><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteFolders.length -1] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>"  + this.level + "</td>";
 		
 		for (let i = 0; i < gameArray.length; i++) {
 			// add a cell for the game
@@ -167,7 +167,7 @@ function readLevelEncounter(gameString, gameArray, data, type, spriteFolders) {
 			}
 			
 			if (index > -1) {
-				individualTableStrings[i] += "<tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + spriteFolders[spriteIndex] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>" + this.level + "</td><td>" + this.notes + "</td></tr>";
+				individualTableStrings[i] += "<tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>" + this.level + "</td><td>" + this.notes + "</td></tr>";
 				combinedTableInnerText += " class='" + gameArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
 				fullColorBools[i] = !fullColorBools[i];
 			}
@@ -216,7 +216,7 @@ function readPurchase(gameString, gameArray, data, type, spriteFolders) {
 	}
 	
 	$.each(data, function() {
-		combinedTableInnerText += "<tr><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + spriteFolders[spriteFolders.length -1] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>"  + this.level + "</td>";
+		combinedTableInnerText += "<tr><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteFolders.length -1] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>"  + this.level + "</td>";
 		
 		for (let i = 0; i < gameArray.length; i++) {
 			// add a cell for the game
@@ -234,7 +234,7 @@ function readPurchase(gameString, gameArray, data, type, spriteFolders) {
 			
 			// If index != -1, then it is in in that game; add the text to individualTableStrings
 			if (index > -1) {
-				individualTableStrings[i] += "<tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + spriteFolders[spriteIndex] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>" + this.level + "</td><td>" + this.price + "</td></tr>";
+				individualTableStrings[i] += "<tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>" + this.level + "</td><td>" + this.price + "</td></tr>";
 				combinedTableInnerText += " class='" + gameArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
 				fullColorBools[index] = !fullColorBools[index];
 			}
@@ -284,7 +284,7 @@ function readTrade(gameString, gameArray, data, type, spriteFolders) {
 	}
 	
 	$.each(data, function() {
-		combinedTableInnerText += "<tr><td style='padding:1px;backgroud-color:white;'><div style='display:flex;flex-direction:flex-row; align-items:center;justify-content:center;'><img src='" + spriteFolders[spriteFolders.length - 1] + "/" + this.trade.replace("'", "") + ".png'></div></td><td>" + this.trade + "</td><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + spriteFolders[spriteFolders.length - 1] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td>";
+		combinedTableInnerText += "<tr><td style='padding:1px;backgroud-color:white;'><div style='display:flex;flex-direction:flex-row; align-items:center;justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteFolders.length - 1] + "/" + this.trade.replace("'", "") + ".png'></div></td><td>" + this.trade + "</td><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteFolders.length - 1] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td>";
 		
 		for (let i = 0; i < gameArray.length; i++) {
 			// add a cell for the game
@@ -302,7 +302,7 @@ function readTrade(gameString, gameArray, data, type, spriteFolders) {
 			
 			// If index != -1, then it is in in that game; add the text to individualTableStrings
 			if (index > -1) {
-				individualTableStrings[i] += "<tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + spriteFolders[spriteIndex] + "/" + this.trade.replace("'", "") + ".png'></div></td><td>" + this.trade + "</td><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + spriteFolders[spriteIndex] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>" + this.notes + "</td></tr>";
+				individualTableStrings[i] += "<tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + this.trade.replace("'", "") + ".png'></div></td><td>" + this.trade + "</td><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>" + this.notes + "</td></tr>";
 				combinedTableInnerText += " class='" + gameArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
 				fullColorBools[index] = !fullColorBools[index];
 			}
@@ -513,7 +513,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 		// SPECIFIC LOOPS:
 		for (let j = 0; j < splitGameArrays[i].length; j++) {
 			// Individual Full Table rows
-			individualFullTableInnerText += "<tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + spriteFolders[spriteIndex] + "/" + splitGameArrays[i][j].name.replace("'", "") + ".png'></div></td><td>" + splitGameArrays[i][j].name + "</td>";
+			individualFullTableInnerText += "<tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + splitGameArrays[i][j].name.replace("'", "") + ".png'></div></td><td>" + splitGameArrays[i][j].name + "</td>";
 			if (fish)
 				individualFullTableInnerText += "<td>" + splitGameArrays[i][j].rod + "</td>";
 			individualFullTableInnerText += "<td>" + splitGameArrays[i][j].level + "</td>";
@@ -575,7 +575,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 		// Iterate over name array; create table cells
 		for (let m = 0; m < cmpNameArray.length; m++) {
 			// Individual Compressed Table rows
-			individualCmpTableInnerText += "<tr class='" + gameArray[i].toLowerCase() + "-" + cmpColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + spriteFolders[spriteIndex] + "/" + cmpNameArray[m].replace("'", "") + ".png'></div></td><td>" + cmpNameArray[m] + "</td>";
+			individualCmpTableInnerText += "<tr class='" + gameArray[i].toLowerCase() + "-" + cmpColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + cmpNameArray[m].replace("'", "") + ".png'></div></td><td>" + cmpNameArray[m] + "</td>";
 			if (fish)
 				individualCmpTableInnerText += "<td>" + cmpRodArray[m] + "</td>";
 			individualCmpTableInnerText += "<td>";
@@ -688,7 +688,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 					combinedFullTableInnerText += "<tr><td>" + splitGameArrays[j][i].rate + "%</td><td>" + splitGameArrays[j][i].rod + "</td>";
 				// Add a cell for all Old and Good Rod. If Super Rod, only add a cell for RGB
 				if (splitGameArrays[j][i].rod != "Super" || j < 3)
-					combinedFullTableInnerText += "<td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + spriteFolders[spriteIndex] + "/" + splitGameArrays[j][i].name.replace("'", "") + ".png'></div></td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].name + "</td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].level + "</td>";
+					combinedFullTableInnerText += "<td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + splitGameArrays[j][i].name.replace("'", "") + ".png'></div></td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].name + "</td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].level + "</td>";
 				else if (splitGameArrays[j][i].rod == "Super" && j == 3)
 					combinedFullTableInnerText += "<td colspan='3'>N/A</td>";
 			}		
@@ -712,7 +712,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 				if (splitGameArrays[3][i].rod == "Super" && j < 3)
 					combinedFullTableInnerText += "<td colspan='3'>N/A</td>";
 				else if (splitGameArrays[3][i].rod == "Super" && j == 3)
-					combinedFullTableInnerText += "<td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + spriteFolders[spriteIndex] + "/" + splitGameArrays[j][i].name.replace("'", "") + ".png'></div></td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].name + "</td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].level + "</td>";
+					combinedFullTableInnerText += "<td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + splitGameArrays[j][i].name.replace("'", "") + ".png'></div></td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].name + "</td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].level + "</td>";
 				}
 			combinedFullTableInnerText += "</tr>";
 			combinedFullColorBool = !combinedFullColorBool;
@@ -736,7 +736,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 				}
 				// Only add a cell if splitGameArrays[i] isnt 0
 				if (splitGameArrays[j].length != 0)
-					combinedFullTableInnerText += "<td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + spriteFolders[spriteIndex] + "/" + splitGameArrays[j][i].name.replace("'", "") + ".png'></div></td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].name + "</td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].level + "</td>";
+					combinedFullTableInnerText += "<td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + splitGameArrays[j][i].name.replace("'", "") + ".png'></div></td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].name + "</td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].level + "</td>";
 			}
 			combinedFullTableInnerText += "</tr>";
 			combinedFullColorBool = !combinedFullColorBool;
@@ -746,7 +746,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 
 	// Combined Compressed Array logic
 	for (let m = 0; m < combinedCmpNameArray.length; m++) {
-		combinedCmpTableInnerText += "<tr><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + spriteFolders[spriteFolders.length - 1] + "/" + combinedCmpNameArray[m].replace("'", "") + ".png'></div></td><td>" + combinedCmpNameArray[m] + "</td>";
+		combinedCmpTableInnerText += "<tr><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteFolders.length - 1] + "/" + combinedCmpNameArray[m].replace("'", "") + ".png'></div></td><td>" + combinedCmpNameArray[m] + "</td>";
 		if (fish)
 			combinedCmpTableInnerText += "<td>" + combinedCmpRodArray[m] + "</td>";
 		for (let n = 0; n < gameArray.length; n++) {
