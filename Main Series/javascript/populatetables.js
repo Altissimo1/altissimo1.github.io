@@ -1,6 +1,11 @@
 $(function() {
+	// Get location name
+	let place = $("title").text();
+	place = place.toLowerCase();
+	place = place.replace(" ", "");
+	
 	// Get the json with the location's data.
-	$.getJSON("route12.json", function (data) {
+	$.getJSON("/json/" + place + ".json", function (data) {
 		let topButtonText = "";
 		let gameButtonText = "";
 		
