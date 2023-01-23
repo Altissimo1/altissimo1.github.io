@@ -5,7 +5,7 @@ $(function() {
 	place = place.replace(" ", "");
 	
 	// Get the json with the location's data.
-	$.getJSON("/json/" + place + ".json", function (data) {
+	$.getJSON("../json/" + place + ".json", function (data) {
 		let topButtonText = "";
 		let gameButtonText = "";
 		
