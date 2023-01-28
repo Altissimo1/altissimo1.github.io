@@ -3,7 +3,7 @@ $(function() {
 	fullPlaceTitle = fullPlaceTitle.replace(" ", ""); // Holds the title without spaces
 	let place = fullPlaceTitle.toLowerCase(); // Holds the lowercase title
 	
-	$.getJSON(place + ".json", function(data) {
+	$.getJSON("../json/" + place + ".json", function(data) {
 		
 		let topButtonText = "";
 		let gameButtonText = "";
