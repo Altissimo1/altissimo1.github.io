@@ -3,7 +3,7 @@ $(function() {
 	fullPlaceTitle = fullPlaceTitle.replace(" ", ""); // Holds the title without spaces
 	let place = fullPlaceTitle.toLowerCase(); // Holds the lowercase title
 	
-	$.getJSON("../json/" + place + ".json", function(data) {
+	$.getJSON(place + ".json", function(data) {
 		
 		let topButtonText = "";
 		let gameButtonText = "";
@@ -982,31 +982,44 @@ function parseGen(genString) {
 }
 	
 function simplifyLevels(levels) {
+	console.log(levels);
+	// Set an array to push simplified levels to
 	let simpleArray = [];
 	
+	// Get the first level
 	let firstValue = levels[0];
 	
+	// Initialize "sequence" to 1 because there is 1 level so far
 	let sequence = 1;
 	
+	// Declare empty combination string
 	let combinedString = "";
 	
+	// Start at the 2nd level in the array.
 	for (let i = 1; i < levels.length; i++) {
+		// If this level is one higher than the previous level, increment sequence
 		if (levels[i] - levels[i - 1] == 1) {
 			sequence++;
+			// If the sequence is 3 or greater, set a combined string combining the levels
 			if (sequence >= 3) {
 				combinedString = firstValue + "-" + levels[i];
 			}
 		}
-		else {
+		// If this level is not equal to previous level - 1, and the difference is not 0, there is a skip in levels
+		else if (!(levels[i] - levels[i - 1] == 0)) {
+			// If combined string exists, push it and then empty it
 			if (combinedString != "") {
 				simpleArray.push(combinedString);
-				combinedString = "";
-			} else {
+			}
+			// If combined string does not exist, but a sequence of 2 exists, add the previous two levels
+			else {
 				if (sequence == 2) {
 					simpleArray.push(levels[i - 2]);
 				}
 				simpleArray.push(levels[i - 1]);
 			}
+			// Empty combined string, reset sequence and first value
+			combinedString = "";
 			sequence = 1;
 			firstValue = levels[i];
 		}
