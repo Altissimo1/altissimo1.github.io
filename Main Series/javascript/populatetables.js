@@ -28,7 +28,7 @@ $(function() {
 					firstLocation = true;
 				else
 					firstLocation = false;
-				gameTextArray.push(readPokemon(this, parseGen(this), data, firstLocation, true, ""));
+				gameTextArray.push(readPokemonSingle(this, parseGen(this), data, firstLocation, true, ""));
 				topButtonText += populateTopButton(this, firstLocation, true);
 				gameButtonText += populateGameButtons(this, firstLocation, true);
 				if (data.hasOwnProperty("items"))
@@ -58,8 +58,7 @@ $(function() {
 				// Set up a string that contains the "additional" info indicating the sub-area designation
 				// Compare fullPlaceTitle and data[i].location
 				let index = fullPlaceTitle.length;
-				let subArea = data[i].location.substring(index);
-				
+				let subArea = data[i].location.substring(index);				
 				for (let j = 0; j < data[i].games.length; j++) {
 					if (i == 0)						
 						firstMultiLocation = true;
@@ -69,7 +68,8 @@ $(function() {
 						firstLocation = true;
 					else
 						firstLocation = false;
-					gameTextArray[j] += readPokemon(data[i].games[j], parseGen(data[i].games[j]), data[i], firstLocation, firstMultiLocation, subArea);
+					if (i == 0)
+						gameTextArray[j] += readPokemonMultiple(data[i].games[j], parseGen(data[i].games[j]), data, firstLocation, firstMultiLocation, fullPlaceTitle);
 					topButtonText += populateTopButton(data[i].games[j], firstLocation, firstMultiLocation);
 					gameButtonText += populateGameButtons(data[i].games[j], firstLocation, firstMultiLocation);
 					if (data[i].hasOwnProperty("items"))
@@ -155,7 +155,7 @@ $(function() {
 });
 
 // Reads all pokemon for the current generation and generates tables based on what is in the code.
-function readPokemon(gameString, gameArray, data, isFirst, isFirstMulti, subArea) {
+function readPokemonSingle(gameString, gameArray, data, isFirst, isFirstMulti, subArea) {
 	// Indices: 0 = walking, 2 = surfing, 3 = fishing, 4 = purchase, 5 = gift, 6 = trade, 7 = static
 	
 	let startDiv = "";
@@ -209,6 +209,82 @@ function readPokemon(gameString, gameArray, data, isFirst, isFirstMulti, subArea
 		return startDiv + "<p>No Pokémon in " + gameString + ".</p>";
 	else
 		return startDiv + innerText;
+}
+
+function readPokemonMultiple(gameString, gameArray, data, isFirst, isFirstMulti, title) {
+		
+	let walkingPokemon = [];
+	let fishingPokemon = [];
+	let surfingPokemon = [];
+	let tradePokemon = [];
+	let giftPokemon = [];
+	let purchasePokemon = [];
+	let staticPokemon = [];
+	let startDiv = "";
+			
+	for (let i = 0; i < data.length; i++) {
+		
+		let index = title.length;
+		let subArea = data[i].location.substring(index);
+	
+		if (isFirstMulti) {
+			startDiv += "<div id='pokemon-" + gameString.toLowerCase() + "' class='game-container'";
+			if (!isFirst)
+				startDiv += "style='display:none'";
+			startDiv += ">";
+		}
+			
+		let thisArray = gameArray;
+		if (gameString == "RGBY")
+			thisArray = ["Aka", "Midori", "Ao", "Ki"];
+		
+		// If location has no pokemon in any gen, display "No Pokémon"
+		if (!(data[i].hasOwnProperty('pokemon'))) {
+			startDiv += "<p>No Pokémon in " + gameString + ".</p>";
+			continue;
+		}
+			
+		let genHasPokemon = false;
+		$.each(data[i].pokemon, function() {
+			$.each(this, function() {
+				if (thisArray.some(game => this.games.includes(game))) {
+					genHasPokemon = true;
+				}
+			});
+		});
+		
+		// If location has no pokemon in any gen, display "No Pokémon"
+		if (!genHasPokemon) {
+			startDiv += "<p>No Pokémon in " + gameString + ".</p>";
+			continue;
+		}
+		
+		if (data[i].pokemon.hasOwnProperty('walking'))
+			walkingPokemon.push(readRateEncounter(gameString, thisArray, data[i].pokemon.walking, "walking", isFirstMulti, subArea));
+		if (data[i].pokemon.hasOwnProperty('surfing'))
+			surfingPokemon.push(readRateEncounter(gameString, thisArray, data[i].pokemon.surfing, "surfing", isFirstMulti, subArea));
+		if (data[i].pokemon.hasOwnProperty('fishing'))
+			fishingPokemon.push(readRateEncounter(gameString, thisArray, data[i].pokemon.fishing, "fishing", isFirstMulti, subArea));
+		if (data[i].pokemon.hasOwnProperty('purchase'))
+			purchasePokemon.push(readPurchase(gameString, thisArray, data[i].pokemon.purchase, "purchase", isFirstMulti, subArea));
+		if (data[i].pokemon.hasOwnProperty('gift'))
+			giftPokemon.push(readLevelEncounter(gameString, thisArray, data[i].pokemon.gift, "gift", isFirstMulti, subArea));
+		if (data[i].pokemon.hasOwnProperty('trade'))
+			tradePokemon.push(readTrade(gameString, thisArray, data[i].pokemon.trade, "trade", isFirstMulti, subArea));
+		if (data[i].pokemon.hasOwnProperty('statics'))
+			staticPokemon.push(readLevelEncounter(gameString, thisArray, data[i].pokemon.statics, "static", isFirstMulti, subArea));
+		
+		if (isFirstMulti)
+			isFirstMulti = false;
+	}
+	
+	let innerText = "";
+	innerText = walkingPokemon.join("") + surfingPokemon.join("") + fishingPokemon.join("") + purchasePokemon.join("") + giftPokemon.join("") + tradePokemon.join("") + staticPokemon.join("");
+	
+	if (innerText == "")
+		return startDiv + "<p>No Pokémon in " + gameString + ".</p>";
+	else
+		return startDiv + innerText;	
 }
 
 function readLevelEncounter(gameString, gameArray, data, type, isFirstMulti, subArea) {
@@ -347,8 +423,6 @@ function readPurchase(gameString, gameArray, data, type, isFirstMulti, subArea) 
 	}
 	
 	let individualTableStrings = [];
-	
-	console.log(startTable);
 	
 	let combinedTableInnerText = "<div id='pokemon-" + gameString.toLowerCase() + "-all-combined-" + type + "-table" + idAdd + "' class='pokemon-table all combined'>";
 	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>Pokémon</th><th>Level</th><th colspan='" + gameArray.length + "'>Games</th><th>Price</th></tr>";
