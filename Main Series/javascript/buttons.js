@@ -16,8 +16,17 @@ var topButton = function topClick() {
 			$(this).hide();
 	});
 	
+	$(".notes-span").each(function() {
+		if ($(this).hasClass("notes-" + gameSet))
+			$(this).show();
+		else
+			$(this).hide();
+		
+	});
+	
 	headerHider("");
 }
+
 var gameButton = function gameClick() {
 	var selection = $(this).attr("id");
 	var gameSetButtons = $($(this).parent().parent().parent()).attr("id");
