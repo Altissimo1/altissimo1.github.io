@@ -982,6 +982,7 @@ function parseGen(genString) {
 }
 	
 function simplifyLevels(levels) {
+	levels.sort(function(a, b){return a-b});
 	// Set an array to push simplified levels to
 	let simpleArray = [];
 	
