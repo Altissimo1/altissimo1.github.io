@@ -1,11 +1,10 @@
 $(function() {
-	// Get location name
-	let place = $("title").text();
-	place = place.toLowerCase();
-	place = place.replace(" ", "");
+	let fullPlaceTitle = $("title").text();
+	fullPlaceTitle = fullPlaceTitle.replace(" ", ""); // Holds the title without spaces
+	let place = fullPlaceTitle.toLowerCase(); // Holds the lowercase title
 	
-	// Get the json with the location's data.
-	$.getJSON("../json/" + place + ".json", function (data) {
+	$.getJSON("../json/" + place + ".json", function(data) {
+		
 		let topButtonText = "";
 		let gameButtonText = "";
 		
@@ -13,143 +12,231 @@ $(function() {
 		let trainerText = "<h2>Trainers</h2>";
 		let pokemonText = "<h2>Pokémon</h2>";
 		
+		let firstMultiLocation = false;
+		let firstLocation = false;
+		
+		let gameTextArray = [];
+		let gameItemArray = [];
+		let gameTrainerArray = [];
+		
+		// This if statement executes if the file contains a single location
+		if (data.location) {
 		// Read each set of games from the data's "games" value. For each set, perform operations.
-		$.each(data.games, function() {
-			pokemonText += readPokemon(this, parseGen(this), data);
-			topButtonText += populateTopButton(this);
-			gameButtonText += populateGameButtons(this);
-			itemText += readItems(this, parseGen(this), data.items);
-			trainerText += readTrainers(this, parseGen(this), data.trainers);
-		});
+			$.each(data.games, function() {
+				if (this == data.games[0])
+					firstLocation = true;
+				else
+					firstLocation = false;
+				gameTextArray.push(readPokemon(this, parseGen(this), data, firstLocation, true, ""));
+				topButtonText += populateTopButton(this, firstLocation, true);
+				gameButtonText += populateGameButtons(this, firstLocation, true);
+				if (data.hasOwnProperty("items"))
+					gameItemArray.push(readItems(this, parseGen(this), data.items, firstLocation, true, ""));
+				else
+					gameItemArray.push(readItems(this, parseGen(this), null, firstLocation, true, ""));
+					
+				if (data.hasOwnProperty("trainers"))
+					gameTrainerArray.push(readTrainers(this, parseGen(this), data.trainers, firstLocation, true, ""));
+				else
+					gameTrainerArray.push(readTrainers(this, parseGen(this), null, firstLocation, true, ""));
+			});
+		}
+		// This else statement concerns multi-floor/multi-area areas (Mt Moon, Safari Zone)
+		else {
+			for (let i = 0; i < data.length; i++) {
+				for (let j = 0; j < data[i].games.length; j++) {
+					if (j == 0)
+						// Prepare multiple arrays so that each gameset's stuff gets sorted into its own individual div
+						gameTextArray.push("");
+						gameItemArray.push("");
+						gameTrainerArray.push("");
+				}
+			}
+			
+			for (let i = 0; i < data.length; i++) {
+				// Set up a string that contains the "additional" info indicating the sub-area designation
+				// Compare fullPlaceTitle and data[i].location
+				let index = fullPlaceTitle.length;
+				let subArea = data[i].location.substring(index);
+				
+				for (let j = 0; j < data[i].games.length; j++) {
+					if (i == 0)						
+						firstMultiLocation = true;
+					else
+						firstMultiLocation = false;
+					if (data[i].games[j] == data[i].games[0])
+						firstLocation = true;
+					else
+						firstLocation = false;
+					gameTextArray[j] += readPokemon(data[i].games[j], parseGen(data[i].games[j]), data[i], firstLocation, firstMultiLocation, subArea);
+					topButtonText += populateTopButton(data[i].games[j], firstLocation, firstMultiLocation);
+					gameButtonText += populateGameButtons(data[i].games[j], firstLocation, firstMultiLocation);
+					if (data[i].hasOwnProperty("items"))
+						gameItemArray[j] += readItems(data[i].games[j], parseGen(data[i].games[j]), data[i].items, firstLocation, firstMultiLocation, subArea);
+					else
+						gameItemArray[j] += readItems(data[i].games[j], parseGen(data[i].games[j]), null, firstLocation, firstMultiLocation, subArea);
+						
+					if (data[i].hasOwnProperty("trainers"))
+						gameTrainerArray[j] += readTrainers(data[i].games[j], parseGen(data[i].games[j]), data[i].trainers, firstLocation, firstMultiLocation, subArea);
+					else
+						gameTrainerArray[j] += readTrainers(data[i].games[j], parseGen(data[i].games[j]), null, firstLocation, firstMultiLocation, subArea);
+					
+				}
+			}
+		}
+		
+		for (let m = 0; m < gameTextArray.length; m++) {
+			gameTextArray[m] += "</div>";
+			gameItemArray[m] += "</div>";
+			gameTrainerArray[m] += "</div>";
+		}
 		
 		// Finish setting up the top level buttons
-		$("#topButtons").html(topButtonText += finishTopButtons());
+		$("#topButtons").html(topButtonText);
 		$("#pokemon-buttons").html(gameButtonText);
 		
-		$("#items-container").html(itemText);
-		$("#trainers-container").html(trainerText);
-		$("#pokemon-tables").html(pokemonText);
+		// Set up the containers
+		$("#items-container").html(itemText + gameItemArray.join(""));
+		$("#trainers-container").html(trainerText + gameTrainerArray.join(""));
+		$("#pokemon-tables").html(pokemonText + gameTextArray.join(""));
+		
+		function populateTopButton(gen, checked, isFirstMulti) {
+			if (!isFirstMulti)
+				return "";
+			let thisText = "";
+			let addText = "";
+			if (gen == "RGBY")
+				addText += " (Japanese)";
+			if (gen == "RBY")
+				addText += " (Western)";
+			if (checked)
+				thisText = "<input type='radio' onclick='topButton.call(this)' id='" + gen.toLowerCase() + "' name='games' value='" + gen + "' checked='checked'>";
+			else
+				thisText = "<input type='radio' onclick='topButton.call(this)' id='" + gen.toLowerCase() + "' name='games' value='" + gen + "'>";
+			return thisText += "<label for='" + gen.toLowerCase() + "' style='padding-right:1em;'>" + gen + addText + "</label>";
+		}
+
+		function populateGameButtons(gameSet, visible, isFirstMulti) {
+			if (!isFirstMulti)
+				return "";
+			let buttonText = "";
+			if (visible)
+				buttonText += "<div class='button-set' id='pokemon-" + gameSet.toLowerCase() + "-buttons'>";
+			else
+				buttonText += "<div class='button-set' id='pokemon-" + gameSet.toLowerCase() + "-buttons' style='display:none'>";
+			buttonText += "<div style='display:flex;flex-direction:row;'>";
+			gameArray = parseGen(gameSet);
+			let displayArray = gameArray;
+			if (gameSet == "RGBY")
+				displayArray = ["Aka", "Midori", "Ao", "Ki"];
+			for (let i = 0; i < gameArray.length; i++) {
+				buttonText += "<div style='padding-right:1em;'><input type='radio' onclick='gameButton.call(this)' id='pokemon-" + gameSet.toLowerCase() + "-full-" + displayArray[i].toLowerCase() + "' name='pokemon-" + gameSet.toLowerCase() + "-games' class='pokemon-button' value='" + gameArray[i] + " (Full)'>";
+				buttonText += "<label for='pokemon-" + gameSet.toLowerCase() + "-full-" + displayArray[i].toLowerCase() + "'>" + gameArray[i] + " (Full)</label><br />";
+				buttonText += "<input type='radio' onclick='gameButton.call(this)' id='pokemon-" + gameSet.toLowerCase() + "-compressed-" + displayArray[i].toLowerCase() + "' name='pokemon-" + gameSet.toLowerCase() + "-games' class='pokemon-button' value='" + gameArray[i] + " (Compressed)'>";
+				buttonText += "<label for='pokemon-" + gameSet.toLowerCase() + "-compressed-" + displayArray[i].toLowerCase() + "'>" + gameArray[i] + " (Compressed)</label></div>";
+			}
+			
+			buttonText += "<div style='padding-right:1em;'><input type='radio' onclick='gameButton.call(this)' id='pokemon-" + gameSet.toLowerCase() + "-full-combined' name='pokemon-" + gameSet.toLowerCase() + "-games' class='pokemon-button' value='Combined (Full)'>";
+			buttonText += "<label for='pokemon-" + gameSet.toLowerCase() + "-full-combined'>Combined (Full)</label><br />";
+			buttonText += "<input type='radio' onclick='gameButton.call(this)' id='pokemon-" + gameSet.toLowerCase() + "-full-separate' name='pokemon-" + gameSet.toLowerCase() + "-games' class='pokemon-button' value='Separate (Full)'>";
+			buttonText += "<label for='pokemon-" + gameSet.toLowerCase() + "-full-separate'>Separate (Full)</label></div>";
+			
+			buttonText += "<iv><input type='radio' onclick='gameButton.call(this)' id='pokemon-" + gameSet.toLowerCase() + "-compressed-combined' name='pokemon-" + gameSet.toLowerCase() + "-games' class='pokemon-button' value='Combined (Compressed)'";
+			buttonText += " checked='checked'";
+			buttonText += ">";
+			buttonText += "<label for='pokemon-" + gameSet.toLowerCase() + "-compressed-combined'>Combined (Compressed)</label><br />";
+			buttonText += "<input type='radio' onclick='gameButton.call(this)' id='pokemon-" + gameSet.toLowerCase() + "-compressed-separate' name='pokemon-" + gameSet.toLowerCase() + "-games' class='pokemon-button' value='Separate (Compressed)'>";
+			buttonText += "<label for='pokemon-" + gameSet.toLowerCase() + "-compressed-separate'>Separate (Compressed)</label></div></div></div>";
+			
+			return buttonText;
+		}
 	});
-	
 });
 
-function populateTopButton(gen) {
-	let thisText = "<input type='radio' onclick='topButton.call(this)' id='" + gen.toLowerCase() + "' name='games' value='" + gen + "'>";
-	return thisText += "<label for='" + gen.toLowerCase() + "'>" + gen + "</label>";
-}
-
-function finishTopButtons() {
-	let thisText = "<input type='radio' onclick='topButton.call(this)' id='all-full' name='games' value='All (Full)'>";
-	thisText += "<label for='all-full'>All (Full)</label>";
-	thisText += "<input type='radio' onclick='topButton.call(this)' id='all-cmp' name='games' value='All (Compressed)' checked>";
-	return thisText += "<label for='all-cmp'>All (Compressed)</label>";
-}
-
-function populateGameButtons(gameSet) {
-	let firstSet = "<div class='button-set' id='pokemon-" + gameSet.toLowerCase() + "-buttons' style='display:none'>";
-	firstSet += "<div style='display:flex;flex-direction:row;'>";
-	let secondSet = "<div style='display:flex;flex-direction:row;'>";
-	gameArray = parseGen(gameSet);
-	$.each(gameArray, function() {
-		firstSet += "<input type='radio' onclick='gameButton.call(this)' id='pokemon-" + gameSet.toLowerCase() + "-full-" + this.toLowerCase() + "' name='pokemon-" + gameSet.toLowerCase() + "-games' class='pokemon-button' value='" + this + " (Full)'>";
-		firstSet += "<label for='pokemon-" + gameSet.toLowerCase() + "-full-" + this.toLowerCase() + "'>" + this + " (Full)</label>";
-		secondSet += "<input type='radio' onclick='gameButton.call(this)' id='pokemon-" + gameSet.toLowerCase() + "-compressed-" + this.toLowerCase() + "' name='pokemon-" + gameSet.toLowerCase() + "-games' class='pokemon-button' value='" + this + " (Compressed)'>";
-		secondSet += "<label for='pokemon-" + gameSet.toLowerCase() + "-compressed-" + this.toLowerCase() + "'>" + this + " (Compressed)</label>";
-	});
-	
-	firstSet += "<input type='radio' onclick='gameButton.call(this)' id='pokemon-" + gameSet.toLowerCase() + "-full-combined' name='pokemon-" + gameSet.toLowerCase() + "-games' class='pokemon-button' value='Combined (Full)'>";
-	firstSet += "<label for='pokemon-" + gameSet.toLowerCase() + "-full-combined'>Combined (Full)</label>";
-	firstSet += "<input type='radio' onclick='gameButton.call(this)' id='pokemon-" + gameSet.toLowerCase() + "-full-separate' name='pokemon-" + gameSet.toLowerCase() + "-games' class='pokemon-button' value='Separate (Full)'>";
-	firstSet += "<label for='pokemon-" + gameSet.toLowerCase() + "-full-separate'>Separate (Full)</label></div>";
-	
-	secondSet += "<input type='radio' onclick='gameButton.call(this)' id='pokemon-" + gameSet.toLowerCase() + "-compressed-combined' name='pokemon-" + gameSet.toLowerCase() + "-games' class='pokemon-button' value='Combined (Compressed)'>";
-	secondSet += "<label for='pokemon-" + gameSet.toLowerCase() + "-compressed-combined'>Combined (Compressed)</label>";
-	secondSet += "<input type='radio' onclick='gameButton.call(this)' id='pokemon-" + gameSet.toLowerCase() + "-compressed-separate' name='pokemon-" + gameSet.toLowerCase() + "-games' class='pokemon-button' value='Separate (Compressed)'>";
-	secondSet += "<label for='pokemon-" + gameSet.toLowerCase() + "-compressed-separate'>Separate (Compressed)</label></div>";
-	
-	return firstSet += secondSet;
-	
-}
-
 // Reads all pokemon for the current generation and generates tables based on what is in the code.
-function readPokemon(gameString, gameArray, data) {
-	
-	var spriteFolders = [];
-	
-	if (gameString == "RGBY") {
-		spriteFolders.push("redgreen");
-		spriteFolders.push("blue");
-		spriteFolders.push("yellow");
-	}
-		
-	
+function readPokemon(gameString, gameArray, data, isFirst, isFirstMulti, subArea) {
 	// Indices: 0 = walking, 2 = surfing, 3 = fishing, 4 = purchase, 5 = gift, 6 = trade, 7 = static
 	
-	// If location has no pokemon in any gen, display "No Pokémon"
-	if (!(data.hasOwnProperty('pokemon')))
-		return "<p>No Pokémon.</p>";
-	
+	let startDiv = "";
+	if (isFirstMulti) {
+		startDiv += "<div id='pokemon-" + gameString.toLowerCase() + "' class='game-container'";
+		if (!isFirst)
+			startDiv += "style='display:none'";
+		startDiv += ">";
+	}
+		
+	let thisArray = gameArray;
+	if (gameString == "RGBY")
+		thisArray = ["Aka", "Midori", "Ao", "Ki"];
+		
 	let genHasPokemon = false;
 	$.each(data.pokemon, function() {
 		$.each(this, function() {
-			if (gameArray.some(game => this.games.includes(game))) {
+			if (thisArray.some(game => this.games.includes(game))) {
 				genHasPokemon = true;
 			}
 		});
 	});
 	
-	// If location has Pokemon but none in the current gen, return "No Pokemon in [games]."
-	if (!genHasPokemon)
-		return "<p>No Pokémon in " + gameString + ".</p>";
+	// If location has no pokemon in any gen, display "No Pokémon"
+	if (!(data.hasOwnProperty('pokemon')) || !genHasPokemon)
+		return startDiv + "<p>No Pokémon in " + gameString + ".</p>";
 	
-	// Otherwise create a div.
-	let startDiv = "<div id='pokemon-" + gameString.toLowerCase() + "' class='game-container'>";
 	let innerText = "";
 	
 	if (data.pokemon.hasOwnProperty('walking'))
-		innerText += readRateEncounter(gameString, gameArray, data.pokemon.walking, "walking", spriteFolders);
-	
+		innerText += readRateEncounter(gameString, thisArray, data.pokemon.walking, "walking", isFirstMulti, subArea);
 	if (data.pokemon.hasOwnProperty('surfing'))
-		innerText += readRateEncounter(gameString, gameArray, data.pokemon.surfing, "surfing", spriteFolders);
+		innerText += readRateEncounter(gameString, thisArray, data.pokemon.surfing, "surfing", isFirstMulti, subArea);
 	if (data.pokemon.hasOwnProperty('fishing'))
-		innerText += readRateEncounter(gameString, gameArray, data.pokemon.fishing, "fishing", spriteFolders);
+		innerText += readRateEncounter(gameString, thisArray, data.pokemon.fishing, "fishing", isFirstMulti, subArea);
 	if (data.pokemon.hasOwnProperty('purchase'))
-		innerText += readPurchase(gameString, gameArray, data.pokemon.purchase, "purchase", spriteFolders);
+		innerText += readPurchase(gameString, thisArray, data.pokemon.purchase, "purchase", isFirstMulti, subArea);
 	if (data.pokemon.hasOwnProperty('gift'))
-		innerText += readLevelEncounter(gameString, gameArray, data.pokemon.gift, "gift", spriteFolders);
+		innerText += readLevelEncounter(gameString, thisArray, data.pokemon.gift, "gift", isFirstMulti, subArea);
 	if (data.pokemon.hasOwnProperty('trade'))
-		innerText += readTrade(gameString, gameArray, data.pokemon.trade, "trade", spriteFolders);
+		innerText += readTrade(gameString, thisArray, data.pokemon.trade, "trade", isFirstMulti, subArea);
 	if (data.pokemon.hasOwnProperty('statics'))
-		innerText += readLevelEncounter(gameString, gameArray, data.pokemon.statics, "static", spriteFolders);
+		innerText += readLevelEncounter(gameString, thisArray, data.pokemon.statics, "static", isFirstMulti, subArea);
+		
 	
 	if (innerText == "")
-		return innerText;
+		return startDiv + "<p>No Pokémon in " + gameString + ".</p>";
 	else
-		return startDiv + innerText + "</div>";
+		return startDiv + innerText;
 }
 
-function readLevelEncounter(gameString, gameArray, data, type, spriteFolders) {
+function readLevelEncounter(gameString, gameArray, data, type, isFirstMulti, subArea) {
+	
+	let idAdd = "";
+	if (subArea)
+		idAdd = "-" + subArea;
+	
 	let encounters = checkEncounterType(gameArray, data);
 	if (!encounters)
 		return "";
 	// else, process
 	
+	let displayArray = gameArray;
+	if (gameString == "RGBY")
+		displayArray = ["Red", "Green", "Blue", "Yellow"];
+	
 	fullColorBools = [];
 	combinedColorBool = true;
 	
 	let individualTableStrings = [];
-	let combinedTableInnerText = "<div id='pokemon-" + gameString.toLowerCase() + "-all-combined-" + type + "-table' class='pokemon-table all combined'>";
-	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>Pokémon</th><th>Level</th><th colspan='4'>Games</th><th>Notes</th></tr>";
+	let combinedTableInnerText = "<div id='pokemon-" + gameString.toLowerCase() + "-all-combined-" + type + "-table" + idAdd + "' class='pokemon-table all combined'>";
+	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>Pokémon</th><th>Level</th><th colspan='" + gameArray.length + "'>Games</th><th>Notes</th></tr>";
 	
 	for (let i = 0; i < gameArray.length; i++) {
 		fullColorBools.push(true);
-		individualTableStrings.push(["<div id='pokemon-" + gameString.toLowerCase() + "-all-" + gameArray[i].toLowerCase() + "-" + type + "-table' class='pokemon-table all' style='display:none'>"]);
-		individualTableStrings[i] += "<table><caption>" + gameArray[i] + "</caption><tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Level</th><th>Notes</th></tr>";
+		individualTableStrings.push(["<div id='pokemon-" + gameString.toLowerCase() + "-all-" + gameArray[i].toLowerCase() + "-" + type + "-table" + idAdd + "' class='pokemon-table all' style='display:none'>"]);
+		individualTableStrings[i] += "<table><caption>" + displayArray[i] + "</caption><tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Level</th><th>Notes</th></tr>";
 		fullColorBools[i] = !fullColorBools[i];
 	}
 	
 	$.each(data, function() {
-		combinedTableInnerText += "<tr><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteFolders.length -1] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>"  + this.level + "</td>";
+		combinedTableInnerText += "<tr><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>"  + this.level + "</td>";
 		
 		for (let i = 0; i < gameArray.length; i++) {
 			// add a cell for the game
@@ -157,18 +244,10 @@ function readLevelEncounter(gameString, gameArray, data, type, spriteFolders) {
 			// for each pokemon, check if it is in the current game array
 			let index = jQuery.inArray(gameArray[i], this.games);
 			// If index != -1, then it is in in that game; add the text to individualTableStrings
-			
-			var spriteIndex = 0;
-			if (spriteFolders.length > 1) {
-				for (let j = 0; j < spriteFolders.length; j++) {
-					if (~spriteFolders[j].indexOf(gameArray[i].toLowerCase()))
-						spriteIndex = j;
-				}
-			}
-			
+						
 			if (index > -1) {
-				individualTableStrings[i] += "<tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>" + this.level + "</td><td>" + this.notes + "</td></tr>";
-				combinedTableInnerText += " class='" + gameArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
+				individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>" + this.level + "</td><td>" + this.notes + "</td></tr>";
+				combinedTableInnerText += " class='" + displayArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
 				fullColorBools[i] = !fullColorBools[i];
 			}
 			else {
@@ -186,37 +265,46 @@ function readLevelEncounter(gameString, gameArray, data, type, spriteFolders) {
 		individualTableStrings[i] += "</table></div>";
 	};
 	
-	
-	let header = "<h3>" + type[0].toUpperCase() + type.substring(1) + "</h3>";
-	
-	// Loop through Pokemon, add to combined table & split to separate arrays
-	
+	let header = "";	
+	if (isFirstMulti)
+		header = "<h3>" + type[0].toUpperCase() + type.substring(1) + "</h3>";
+	if (subArea)
+		header += "<h4>" + subArea + "</h4>";
 	
 	return header + combinedTableInnerText + "</table></div>" + individualTableStrings.join('');
 }
 
-function readPurchase(gameString, gameArray, data, type, spriteFolders) {
+function readPurchase(gameString, gameArray, data, type, isFirst, isFirstMulti, subArea) {
+	
+	let idAdd = "";
+	if (subArea)
+		idAdd = "-" + subArea;
+	
 	let encounters = checkEncounterType(gameArray, data);
 	if (!encounters)
 		return "";
 	// else, process
 	
+	let displayArray = gameArray;
+	if (gameString == "RGBY")
+		displayArray = ["Red", "Green", "Blue", "Yellow"];
+	
 	fullColorBools = [];
 	combinedColorBool = true;
 	
 	let individualTableStrings = [];
-	let combinedTableInnerText = "<div id='pokemon-" + gameString.toLowerCase() + "-all-combined-" + type + "-table' class='pokemon-table all combined'>";
-	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>Pokémon</th><th>Level</th><th colspan='4'>Games</th><th>Price</th></tr>";
+	let combinedTableInnerText = "<div id='pokemon-" + gameString.toLowerCase() + "-all-combined-" + type + "-table" + idAdd + "' class='pokemon-table all combined'>";
+	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>Pokémon</th><th>Level</th><th colspan='" + gameArray.length +"'>Games</th><th>Price</th></tr>";
 	
 	for (let i = 0; i < gameArray.length; i++) {
 		fullColorBools.push(true);
-		individualTableStrings.push(["<div id='pokemon-" + gameString.toLowerCase() + "-all-" + gameArray[i].toLowerCase() + "-" + type + "-table' class='pokemon-table all' style='display:none'>"]);
-		individualTableStrings[i] += "<table><caption>" + gameArray[i] + "</caption><tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Level</th><th>Price</th></tr>";
+		individualTableStrings.push(["<div id='pokemon-" + gameString.toLowerCase() + "-all-" + gameArray[i].toLowerCase() + "-" + type + "-table" + idAdd + "' class='pokemon-table all' style='display:none'>"]);
+		individualTableStrings[i] += "<table><caption>" + displayArray[i] + "</caption><tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Level</th><th>Price</th></tr>";
 		fullColorBools[i] = !fullColorBools[i];
 	}
 	
 	$.each(data, function() {
-		combinedTableInnerText += "<tr><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteFolders.length -1] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>"  + this.level + "</td>";
+		combinedTableInnerText += "<tr><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>"  + this.level + "</td>";
 		
 		for (let i = 0; i < gameArray.length; i++) {
 			// add a cell for the game
@@ -224,18 +312,10 @@ function readPurchase(gameString, gameArray, data, type, spriteFolders) {
 			// for each pokemon, check if it is in the current game array
 			let index = jQuery.inArray(gameArray[i], this.games);
 			
-			var spriteIndex = 0;
-			if (spriteFolders.length > 1) {
-				for (let j = 0; j < spriteFolders.length; j++) {
-					if (~spriteFolders[j].indexOf(gameArray[i].toLowerCase()))
-						spriteIndex = j;
-				}
-			}
-			
 			// If index != -1, then it is in in that game; add the text to individualTableStrings
 			if (index > -1) {
-				individualTableStrings[i] += "<tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>" + this.level + "</td><td>" + this.price + "</td></tr>";
-				combinedTableInnerText += " class='" + gameArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
+				individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>" + this.level + "</td><td>" + this.price + "</td></tr>";
+				combinedTableInnerText += " class='" + displayArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
 				fullColorBools[index] = !fullColorBools[index];
 			}
 			else {
@@ -253,38 +333,46 @@ function readPurchase(gameString, gameArray, data, type, spriteFolders) {
 		individualTableStrings[i] += "</table></div>";
 	};
 	
-	
-	let header = "<h3>" + type[0].toUpperCase() + type.substring(1) + "</h3>";
-	
-	// Loop through Pokemon, add to combined table & split to separate arrays
-	
+	let header = "";	
+	if (isFirstMulti)
+		header = "<h3>" + type[0].toUpperCase() + type.substring(1) + "</h3>";
+	if (subArea)
+		header += "<h4>" + subArea + "</h4>";
 	
 	return header + combinedTableInnerText + "</table></div>" + individualTableStrings.join('');
-	
 }
 
-function readTrade(gameString, gameArray, data, type, spriteFolders) {
+function readTrade(gameString, gameArray, data, type, isFirstMulti, subArea) {
+	
+	let idAdd = "";
+	if (subArea)
+		idAdd = "-" + subArea;
+	
 	let encounters = checkEncounterType(gameArray, data);
 	if (!encounters)
 		return "";
 	// else, process
 	
+	let displayArray = gameArray;
+	if (gameString == "RGBY")
+		displayArray = ["Red", "Green", "Blue", "Yellow"];
+	
 	fullColorBools = [];
 	combinedColorBool = true;
 	
 	let individualTableStrings = [];
-	let combinedTableInnerText = "<div id='pokemon-" + gameString.toLowerCase() + "-all-combined-" + type + "-table' class='pokemon-table all combined'>";
-	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>NPC's Pokémon</th><th colspan='2'>Your Pokémon</th><th colspan='4'>Games</th><th>Notes</th></tr>";
+	let combinedTableInnerText = "<div id='pokemon-" + gameString.toLowerCase() + "-all-combined-" + type + "-table" + idAdd + "' class='pokemon-table all combined'>";
+	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>NPC's Pokémon</th><th colspan='2'>Your Pokémon</th><th colspan='" + gameArray.length + "'>Games</th><th>Notes</th></tr>";
 	
 	for (let i = 0; i < gameArray.length; i++) {
 		fullColorBools.push(true);
-		individualTableStrings.push(["<div id='pokemon-" + gameString.toLowerCase() + "-all-" + gameArray[i].toLowerCase() + "-" + type + "-table' class='pokemon-table all' style='display:none'>"]);
-		individualTableStrings[i] += "<table><caption>" + gameArray[i] + "</caption><tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>NPC's Pokémon</th><th colspan='2'>Your Pokémon</th><th>Notes</th></tr>";
+		individualTableStrings.push(["<div id='pokemon-" + gameString.toLowerCase() + "-all-" + gameArray[i].toLowerCase() + "-" + type + "-table" + idAdd + "' class='pokemon-table all' style='display:none'>"]);
+		individualTableStrings[i] += "<table><caption>" + displayArray[i] + "</caption><tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>NPC's Pokémon</th><th colspan='2'>Your Pokémon</th><th>Notes</th></tr>";
 		fullColorBools[i] = !fullColorBools[i];
 	}
 	
 	$.each(data, function() {
-		combinedTableInnerText += "<tr><td style='padding:1px;backgroud-color:white;'><div style='display:flex;flex-direction:flex-row; align-items:center;justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteFolders.length - 1] + "/" + this.trade.replace("'", "") + ".png'></div></td><td>" + this.trade + "</td><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteFolders.length - 1] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td>";
+		combinedTableInnerText += "<tr><td><div style='display:flex;flex-direction:flex-row; align-items:center;justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.trade + "</td><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td>";
 		
 		for (let i = 0; i < gameArray.length; i++) {
 			// add a cell for the game
@@ -292,18 +380,10 @@ function readTrade(gameString, gameArray, data, type, spriteFolders) {
 			// for each pokemon, check if it is in the current game array
 			let index = jQuery.inArray(gameArray[i], this.games);
 			
-			var spriteIndex = 0;
-			if (spriteFolders.length > 1) {
-				for (let j = 0; j < spriteFolders.length; j++) {
-					if (~spriteFolders[j].indexOf(gameArray[i].toLowerCase()))
-						spriteIndex = j;
-				}
-			}
-			
 			// If index != -1, then it is in in that game; add the text to individualTableStrings
 			if (index > -1) {
-				individualTableStrings[i] += "<tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + this.trade.replace("'", "") + ".png'></div></td><td>" + this.trade + "</td><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + this.name.replace("'", "") + ".png'></div></td><td>" + this.name + "</td><td>" + this.notes + "</td></tr>";
-				combinedTableInnerText += " class='" + gameArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
+				individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.trade + "</td><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>" + this.notes + "</td></tr>";
+				combinedTableInnerText += " class='" + displayArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
 				fullColorBools[index] = !fullColorBools[index];
 			}
 			else {
@@ -322,43 +402,43 @@ function readTrade(gameString, gameArray, data, type, spriteFolders) {
 	};
 	
 	
-	let header = "<h3>" + type[0].toUpperCase() + type.substring(1) + "</h3>";
-	
-	// Loop through Pokemon, add to combined table & split to separate arrays
-	
+	let header = "";	
+	if (isFirstMulti)
+		header = "<h3>" + type[0].toUpperCase() + type.substring(1) + "</h3>";
+	if (subArea)
+		header += "<h4>" + subArea + "</h4>";
 	
 	return header + combinedTableInnerText + "</table></div>" + individualTableStrings.join('');
 }
 
-function generateEncounterArray(gameArray, data) {
-	let encounterArray = [];
-	for (let i = 0 ; i < gameArray.length; i++) {
-		encounterArray.push(false);
-		for (let j = 0; j < data.length; j++) {
-			if (jQuery.inArray(gameArray[i], data[j].games) != -1) {
-				encounterArray[i] = true;
-				break;
-			}
-		}
-	}
-	
-	return encounterArray;
-	
-}
+function readRateEncounter(gameString, gameArray, data, type, isFirstMulti, subArea) {	
 
-function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
-	// Check if fishing.
-	let fish = false;
-	if (type == "fishing")
-		fish = true;
-	
+	let idAdd = "";
+		if (subArea)
+			idAdd = "-" + subArea;
+
 	// If this gen does not contain any pokemon with a certain encounter type, return a blank string
 	let encounters = checkEncounterType(gameArray, data);
 	if (!encounters)
 		return "";
 	// else, process
 	
-	let header = "<h3>" + type[0].toUpperCase() + type.substring(1) + "</h3>";
+	// Check if fishing.
+	let fish = false;
+	if (type == "fishing")
+		fish = true;
+	
+	let displayArray = gameArray;
+	if (gameString == "RGBY")
+		displayArray = ["Red", "Green", "Blue", "Yellow"];
+	
+	let header = "";	
+	if (isFirstMulti) {
+		header = "<h3>" + type[0].toUpperCase() + type.substring(1) + "</h3>";
+	}
+	if (subArea)
+		header += "<h4>" + subArea + "</h4>";
+	
 	
 	splitGameArrays = [];
 	fullColorBools = [];
@@ -404,8 +484,8 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 	
 	// Combined full table's header
 	
-	combinedFullTableInnerText += "<div id='pokemon-" + gameString.toLowerCase() + "-full-combined-" + type + "-table' class='pokemon-table full combined' style='display:none'>";
-	combinedFullTableInnerText += "<table><caption>All Versions (Full)</caption><tr><th>Rate</th>";
+	combinedFullTableInnerText += "<div id='pokemon-" + gameString.toLowerCase() + "-full-combined-" + type + "-table" + idAdd + "' class='pokemon-table full combined' style='display:none'>";
+	combinedFullTableInnerText += "<table><caption>Combined (Full)</caption><tr><th>Rate</th>";
 	if (fish)
 		combinedFullTableInnerText += "<th>Rod</th>";
 	// Arrays of compressed arrays
@@ -413,10 +493,11 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 	let arrayCmpLevelArray = [];
 	let arrayCmpRateArray = [];
 	let arrayCmpRodArray = [];
+	let arrayCmpImgArray = [];
 	
 	// Combined compressed table's header
-	combinedCmpTableInnerText += "<div id='pokemon-" + gameString.toLowerCase() + "-compressed-combined-" + type + "-table' class='pokemon-table combined compressed'>";
-	combinedCmpTableInnerText += "<table><caption>All Compressed</caption><tr><th colspan='2'>Pokémon</th>";
+	combinedCmpTableInnerText += "<div id='pokemon-" + gameString.toLowerCase() + "-compressed-combined-" + type + "-table" + idAdd + "' class='pokemon-table combined compressed'>";
+	combinedCmpTableInnerText += "<table><caption>Combined (Compressed)</caption><tr><th colspan='2'>Pokémon</th>";
 	if (fish)
 		combinedCmpTableInnerText += "<th>Rod</th>"
 	
@@ -425,13 +506,13 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 		if (splitGameArrays[i].length == 0) {
 			// Check if noPokemon is blank before adding to the string.
 			if (noPokemon == "")
-				noPokemon += "<p>No Pokémon can be found here by " + type + " in " + gameArray[i];
+				noPokemon += "<p>No Pokémon can be found here by " + type + " in " + displayArray[i];
 			else
-				noPokemon += ", " + gameArray[i];
+				noPokemon += ", " + displayArray[i];
 		}
 		// Otherwise, if it has content, add the header cell.
 		else
-			combinedCmpTableInnerText += "<th class='" + gameArray[i].toLowerCase() + "-" + combinedCmpColorBool + "'>" + gameArray[i] + " Rate</th><th class='" + gameArray[i].toLowerCase() + "-" + combinedCmpColorBool + "'>" + gameArray[i] + " Level</th>";
+			combinedCmpTableInnerText += "<th class='" + displayArray[i].toLowerCase() + "-" + combinedCmpColorBool + "'>" + displayArray[i] + "</th>";
 	
 	}
 	combinedCmpColorBool = !combinedCmpColorBool;
@@ -442,13 +523,13 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 	let index = noPokemon.lastIndexOf(",");
 	// Only need to do anything if the comma exists.
 	if (index != -1) {
-		// Now check to see if there are more than one comma. If there are, add "and"
+		// Now check to see if there are more than one comma. If there are, add "or"
 		if (index != noPokemon.indexOf(",")) {
 			noPokemon = noPokemon.substring(0, index + 1) + " or" + noPokemon.substring(index + 1);
 		}
 		// Otherwise, if it is the same index, replace comma with "and"
 		else {
-			noPokemon.replace(",", " and");
+			noPokemon = noPokemon.replace(",", " or");
 		}
 	}
 	// Now add a period
@@ -460,6 +541,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 	combinedCmpRateArray = [];
 	combinedCmpLevelArray = [];
 	combinedCmpRodArray = [];
+	combinedCmpImgArray = [];
 	
 	// Shared game Array Logic
 	for (let i = 0; i < gameArray.length; i++) {
@@ -471,29 +553,30 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 		arrayCmpLevelArray.push([]);
 		arrayCmpRateArray.push([]);
 		arrayCmpRodArray.push([]);
+		arrayCmpImgArray.push([]);
 		
-		// If the game has no pokemon for this method, just break the loop.
+		// If the game has no pokemon for this method, just continue the loop.
 		if (splitGameArrays[i].length == 0)
 			continue;
 		
 		// OPENING STATEMENTS:
 		// Individual Full Table headers
-		individualFullTableInnerText += "<div id='pokemon-" + gameString.toLowerCase() + "-full-" + gameArray[i].toLowerCase() + "-" + type + "-table' class='pokemon-table full' style='display:none'>";
+		individualFullTableInnerText += "<div id='pokemon-" + gameString.toLowerCase() + "-full-" + gameArray[i].toLowerCase() + "-" + type + "-table" + idAdd + "' class='pokemon-table full' style='display:none'>";
 		if (fish)
-			individualFullTableInnerText += "<table><caption>" + gameArray[i] + " Full</caption><tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Rod</th><th>Level</th><th>Rate</th></tr>";
+			individualFullTableInnerText += "<table><caption>" + displayArray[i] + " Full</caption><tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Rod</th><th>Level</th><th>Rate</th></tr>";
 		else
-			individualFullTableInnerText += "<table><caption>" + gameArray[i] + " Full</caption><tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Level</th><th>Rate</th></tr>";
+			individualFullTableInnerText += "<table><caption>" + displayArray[i] + " Full</caption><tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Level</th><th>Rate</th></tr>";
 		fullColorBools[i] = !fullColorBools[i];
 		
 		// Combined Full Table header cells
-		combinedFullTableInnerText += "<th colspan='3' class='" + gameArray[i].toLowerCase() + "-" + combinedFullColorBool + "'>" + gameArray[i] + "</th>";
+		combinedFullTableInnerText += "<th colspan='3' class='" + displayArray[i].toLowerCase() + "-" + combinedFullColorBool + "'>" + displayArray[i] + "</th>";
 	
 		// Individual Compressed Table headers
-		individualCmpTableInnerText += "<div id='pokemon-" + gameString.toLowerCase() + "-compressed-" + gameArray[i].toLowerCase() + "-" + type + "-table' class='pokemon-table compressed' style='display:none'>";
+		individualCmpTableInnerText += "<div id='pokemon-" + gameString.toLowerCase() + "-compressed-" + gameArray[i].toLowerCase() + "-" + type + "-table" + idAdd + "' class='pokemon-table compressed' style='display:none'>";
 		if (fish)
-			individualCmpTableInnerText += "<table><caption>" + gameArray[i] + " Compressed</caption><tr class='" + gameArray[i].toLowerCase() + "-" + cmpColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Rod</th><th>Level</th><th>Rate</th></tr>";
+			individualCmpTableInnerText += "<table><caption>" + displayArray[i] + " Compressed</caption><tr class='" + displayArray[i].toLowerCase() + "-" + cmpColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Rod</th><th>Level</th><th>Rate</th></tr>";
 		else
-			individualCmpTableInnerText += "<table><caption>" + gameArray[i] + " Compressed</caption><tr class='" + gameArray[i].toLowerCase() + "-" + cmpColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Level</th><th>Rate</th></tr>";
+			individualCmpTableInnerText += "<table><caption>" + displayArray[i] + " Compressed</caption><tr class='" + displayArray[i].toLowerCase() + "-" + cmpColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Level</th><th>Rate</th></tr>";
 		cmpColorBools[i] = !cmpColorBools[i];
 		
 		// Initialize Individual Compressed Arrays
@@ -501,19 +584,12 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 		let cmpLevelArray = [];
 		let cmpRateArray = [];
 		let cmpRodArray = [];
-		
-		var spriteIndex = 0;
-			if (spriteFolders.length > 1) {
-				for (let j = 0; j < spriteFolders.length; j++) {
-					if (!spriteFolders[j].indexOf(gameArray[i].toLowerCase()))
-						spriteIndex = j;
-				}
-			}
+		let cmpImgArray = [];
 		
 		// SPECIFIC LOOPS:
 		for (let j = 0; j < splitGameArrays[i].length; j++) {
 			// Individual Full Table rows
-			individualFullTableInnerText += "<tr class='" + gameArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + splitGameArrays[i][j].name.replace("'", "") + ".png'></div></td><td>" + splitGameArrays[i][j].name + "</td>";
+			individualFullTableInnerText += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + splitGameArrays[i][j].image + "'></div></td><td>" + splitGameArrays[i][j].name + "</td>";
 			if (fish)
 				individualFullTableInnerText += "<td>" + splitGameArrays[i][j].rod + "</td>";
 			individualFullTableInnerText += "<td>" + splitGameArrays[i][j].level + "</td>";
@@ -528,6 +604,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 					cmpLevelArray.push([splitGameArrays[i][j].level]);
 					cmpRateArray.push(splitGameArrays[i][j].rate);
 					cmpRodArray.push(splitGameArrays[i][j].rod);
+					cmpImgArray.push(splitGameArrays[i][j].image);
 				}
 				else {
 					let found = false;
@@ -543,6 +620,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 						cmpLevelArray.push([splitGameArrays[i][j].level]);
 						cmpRateArray.push(splitGameArrays[i][j].rate);
 						cmpRodArray.push(splitGameArrays[i][j].rod);
+						cmpImgArray.push(splitGameArrays[i][j].image);
 					}
 				}
 			}
@@ -552,6 +630,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 					cmpNameArray.push(splitGameArrays[i][j].name);
 					cmpLevelArray.push([splitGameArrays[i][j].level]);
 					cmpRateArray.push(splitGameArrays[i][j].rate);
+					cmpImgArray.push(splitGameArrays[i][j].image);
 				}
 				else {
 					cmpLevelArray[index].push(splitGameArrays[i][j].level);
@@ -569,13 +648,14 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 		arrayCmpNameArray[i] = cmpNameArray;
 		arrayCmpLevelArray[i] = cmpLevelArray;
 		arrayCmpRateArray[i] = cmpRateArray;
+		arrayCmpImgArray[i] = cmpImgArray
 		if (fish)
 			arrayCmpRodArray[i] = cmpRodArray;
 	
 		// Iterate over name array; create table cells
 		for (let m = 0; m < cmpNameArray.length; m++) {
 			// Individual Compressed Table rows
-			individualCmpTableInnerText += "<tr class='" + gameArray[i].toLowerCase() + "-" + cmpColorBools[i] + "'><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + cmpNameArray[m].replace("'", "") + ".png'></div></td><td>" + cmpNameArray[m] + "</td>";
+			individualCmpTableInnerText += "<tr class='" + displayArray[i].toLowerCase() + "-" + cmpColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + cmpImgArray[m] + "'></div></td><td>" + cmpNameArray[m] + "</td>";
 			if (fish)
 				individualCmpTableInnerText += "<td>" + cmpRodArray[m] + "</td>";
 			individualCmpTableInnerText += "<td>";
@@ -592,6 +672,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 					combinedCmpLevelArray.push([]);
 					combinedCmpRateArray.push([]);
 					combinedCmpRodArray.push("");
+					combinedCmpImgArray.push("");
 					for (let k = 0; k < gameArray.length; k++) {
 						combinedCmpRateArray[combinedCmpRateArray.length - 1].push(0);
 						combinedCmpLevelArray[combinedCmpLevelArray.length - 1].push([]);
@@ -602,6 +683,8 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 					combinedCmpLevelArray[combinedCmpLevelArray.length - 1][i] = arrayCmpLevelArray[i][m];
 					// Set rod value
 					combinedCmpRodArray[combinedCmpRodArray.length - 1] = arrayCmpRodArray[i][m];
+					//Set img value
+					combinedCmpImgArray[combinedCmpImgArray.length - 1] = arrayCmpImgArray[i][m];
 				}
 				else {
 					let found = false;
@@ -617,6 +700,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 						combinedCmpLevelArray.push([]);
 						combinedCmpRateArray.push([]);
 						combinedCmpRodArray.push("");
+						combinedCmpImgArray.push("");
 						for (let k = 0; k < gameArray.length; k++) {
 							combinedCmpRateArray[combinedCmpRateArray.length - 1].push(0);
 							combinedCmpLevelArray[combinedCmpLevelArray.length - 1].push([]);
@@ -627,6 +711,8 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 						combinedCmpLevelArray[combinedCmpLevelArray.length - 1][i] = arrayCmpLevelArray[i][m];
 						// Set rod value
 						combinedCmpRodArray[combinedCmpRodArray.length - 1] = arrayCmpRodArray[i][m];
+						// Set image
+						combinedCmpImgArray[combinedCmpImgArray.length - 1] = arrayCmpImgArray[i][m];
 					}
 				}
 			} else {
@@ -640,6 +726,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 					// Push an empty array to the Level Array
 					combinedCmpLevelArray.push([]);
 					// Populate with empty values
+					combinedCmpImgArray.push(arrayCmpImgArray[i][m]);
 					for (let k = 0; k < gameArray.length; k++) {
 						combinedCmpRateArray[combinedCmpRateArray.length - 1].push(0);
 						combinedCmpLevelArray[combinedCmpLevelArray.length - 1].push([]);
@@ -653,6 +740,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 				else {
 					combinedCmpRateArray[index][i] = arrayCmpRateArray[i][m];
 					combinedCmpLevelArray[index][i] = arrayCmpLevelArray[i][m];
+					combinedCmpImgArray[index][i] = arrayCmpImgArray[i][m];
 				}
 			}
 		}
@@ -673,23 +761,17 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 	// Use highestSplitIndex for this.
 	
 	//RGBY needs a special handling case because fishing encounters are different from RGB to Y
-	if (gameString.toLowerCase() == "rgby" && fish) {
+	if ((gameString.toLowerCase() == "rgby" || gameString.toLowerCase() == "rby") && fish) {
 		// Add a cell for each of RGB
 		for (let i = 0; i < splitGameArrays[0].length; i++) {
-			for (let j = 0; j < 4; j++) {
-				if (j == 0 || j == 1)
-					spriteIndex = 0;
-				else if (j == 2)
-					spriteIndex = 1;
-				else
-					spriteIndex = 2;
+			for (let j = 0; j < gameString.length; j++) {
 				// If j is 0, handle row
 				if (j == 0)
 					combinedFullTableInnerText += "<tr><td>" + splitGameArrays[j][i].rate + "%</td><td>" + splitGameArrays[j][i].rod + "</td>";
 				// Add a cell for all Old and Good Rod. If Super Rod, only add a cell for RGB
-				if (splitGameArrays[j][i].rod != "Super" || j < 3)
-					combinedFullTableInnerText += "<td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + splitGameArrays[j][i].name.replace("'", "") + ".png'></div></td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].name + "</td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].level + "</td>";
-				else if (splitGameArrays[j][i].rod == "Super" && j == 3)
+				if (splitGameArrays[j][i].rod != "Super" || j < gameString.length - 1)
+					combinedFullTableInnerText += "<td class='" + displayArray[j].toLowerCase() + "-" + combinedFullColorBool + "'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + splitGameArrays[j][i].image + "'></div></td><td class='" + displayArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].name + "</td><td class='" + displayArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].level + "</td>";
+				else if (splitGameArrays[j][i].rod == "Super" && j == gameString.length - 1)
 					combinedFullTableInnerText += "<td colspan='3'>N/A</td>";
 			}		
 			
@@ -698,21 +780,15 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 					
 		}
 		// Now add Yellow cells
-		for (let i = 0; i < splitGameArrays[3].length; i++) {
-			for (let j = 0; j < 4; j++) {
-				if (j == 0 || j == 1)
-					spriteIndex = 0;
-				else if (j == 2)
-					spriteIndex = 1;
-				else
-					spriteIndex = 2;
-				if (j == 0 && splitGameArrays[3][i].rod == "Super")
-					combinedFullTableInnerText += "<tr><td>" + splitGameArrays[3][i].rate + "%</td><td>" + splitGameArrays[3][i].rod + "</td>";
+		for (let i = 0; i < splitGameArrays[gameString.length - 1].length; i++) {
+			for (let j = 0; j < gameString.length; j++) {
+				if (j == 0 && splitGameArrays[gameString.length - 1][i].rod == "Super")
+					combinedFullTableInnerText += "<tr><td>" + splitGameArrays[gameString.length - 1][i].rate + "%</td><td>" + splitGameArrays[gameString.length - 1][i].rod + "</td>";
 				// If rod is super and j = 0-2, add blank row
-				if (splitGameArrays[3][i].rod == "Super" && j < 3)
+				if (splitGameArrays[gameString.length - 1][i].rod == "Super" && j < gameString.length - 1)
 					combinedFullTableInnerText += "<td colspan='3'>N/A</td>";
-				else if (splitGameArrays[3][i].rod == "Super" && j == 3)
-					combinedFullTableInnerText += "<td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + splitGameArrays[j][i].name.replace("'", "") + ".png'></div></td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].name + "</td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].level + "</td>";
+				else if (splitGameArrays[gameString.length - 1][i].rod == "Super" && j == gameString.length - 1)
+					combinedFullTableInnerText += "<td class='" + displayArray[j].toLowerCase() + "-" + combinedFullColorBool + "'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + splitGameArrays[j][i].image + "'></div></td><td class='" + displayArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].name + "</td><td class='" + displayArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].level + "</td>";
 				}
 			combinedFullTableInnerText += "</tr>";
 			combinedFullColorBool = !combinedFullColorBool;
@@ -721,22 +797,17 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 		// Use highestSplitIndex for this.
 	else {
 		for (let i = 0; i < splitGameArrays[highestSplitIndex].length; i++) {
+			
 			for (let j = 0; j < gameArray.length; j++) {
-				var spriteIndex = 0;
-				if (spriteFolders.length > 1) {
-					for (let k = 0; k < spriteFolders.length; k++) {
-						if (!spriteFolders[k].indexOf(gameArray[j].toLowerCase()))
-							spriteIndex = k;
-					}
-				}				
 				if (j == 0) {
 					combinedFullTableInnerText += "<tr><td>" + splitGameArrays[highestSplitIndex][i].rate + "%</td>";
 					if (fish)
 						combinedFullTableInnerText += "<td>" + splitGameArrays[highestSplitIndex][i].rod + "</td>";
 				}
-				// Only add a cell if splitGameArrays[i] isnt 0
-				if (splitGameArrays[j].length != 0)
-					combinedFullTableInnerText += "<td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteIndex] + "/" + splitGameArrays[j][i].name.replace("'", "") + ".png'></div></td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].name + "</td><td class='" + gameArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].level + "</td>";
+				// Only add a cell if splitGameArrays[j] isnt 0
+				if (splitGameArrays[j].length != 0) {
+					combinedFullTableInnerText += "<td class='" + displayArray[j].toLowerCase() + "-" + combinedFullColorBool + "'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + splitGameArrays[j][i].image + "'></div></td><td class='" + displayArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].name + "</td><td class='" + displayArray[j].toLowerCase() + "-" + combinedFullColorBool + "'>" + splitGameArrays[j][i].level + "</td>";
+				}
 			}
 			combinedFullTableInnerText += "</tr>";
 			combinedFullColorBool = !combinedFullColorBool;
@@ -746,7 +817,7 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 
 	// Combined Compressed Array logic
 	for (let m = 0; m < combinedCmpNameArray.length; m++) {
-		combinedCmpTableInnerText += "<tr><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='../" + gameString + "/" + spriteFolders[spriteFolders.length - 1] + "/" + combinedCmpNameArray[m].replace("'", "") + ".png'></div></td><td>" + combinedCmpNameArray[m] + "</td>";
+		combinedCmpTableInnerText += "<tr><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + combinedCmpImgArray[m] + "'></div></td><td>" + combinedCmpNameArray[m] + "</td>";
 		if (fish)
 			combinedCmpTableInnerText += "<td>" + combinedCmpRodArray[m] + "</td>";
 		for (let n = 0; n < gameArray.length; n++) {
@@ -754,12 +825,11 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 			if (splitGameArrays[n].length != 0) {
 				// Still display N/A for games that do have a pokemon in this type but not currently
 				if (combinedCmpRateArray[m][n] == 0) {
-					combinedCmpTableInnerText += "<td colspan='2'>" + "N/A</td>";
+					combinedCmpTableInnerText += "<td>" + "N/A</td>";
 				} else {
-					combinedCmpTableInnerText += "<td class='" + gameArray[n].toLowerCase() + "-" + combinedCmpColorBool + "'>" + combinedCmpRateArray[m][n] + "%</td>";
+					combinedCmpTableInnerText += "<td class='" + displayArray[n].toLowerCase() + "-" + combinedCmpColorBool + "'>" + combinedCmpRateArray[m][n] + "%<br />";
 				}
 				if (combinedCmpLevelArray[m][n].length != 0) {
-					combinedCmpTableInnerText += "<td class='" + gameArray[n].toLowerCase() + "-" + combinedCmpColorBool + "'>";
 					combinedCmpTableInnerText += simplifyLevels(combinedCmpLevelArray[m][n]).join(', ');
 					combinedCmpTableInnerText += "</td>";
 				}
@@ -773,28 +843,37 @@ function readRateEncounter(gameString, gameArray, data, type, spriteFolders) {
 	return header + noPokemon + individualFullTableInnerText + combinedFullTableInnerText + individualCmpTableInnerText + combinedCmpTableInnerText;
 }
 
-// Checks if any game in the gen has any encounters.
-function checkEncounterType(gameArray, data) {
-	let encounters = false;
-	$.each(data, function() {
-		if (gameArray.some(game => this.games.includes(game))) {
-			encounters = true;
-		}
-	});
-	return encounters;
-}
-
-function readItems(gameString, gameArray, data) {
+function readItems(gameString, gameArray, data, isFirst, isFirstMulti, subArea) {
+	let idAdd = "";
+	if (subArea)
+		idAdd = subArea + "-";
+	
+	var thisText = "<div id='" + subArea + "pokemon-" + gameString.toLowerCase() + "-items' class='game-container'";
+	if (!isFirst)
+		thisText += "style='display:none'";
+	thisText += ">";
+	if (subArea)
+		thisText += "<h4>" + subArea + "</h4>";
+	
+	if (!data && !subArea)
+		return thisText + "<p>No items in " + gameString + ".</p></div>"
+	else if (!data && subArea)
+		return thisText + "<p>" + subArea + " has no items in " + gameString + ".</p></div>";
+	
 	var color = true;
-	var thisText = "<div id='pokemon-" + gameString.toLowerCase() + "-items'>";
-	thisText += "<table><tr><th>Item</th><th colspan='4'>Games</th><th>Location</th><th>Notes</th></tr>";
+	let thisArray = gameArray;
+	if (gameString == "RGBY")
+		thisArray = ["Aka", "Midori", "Ao", "Ki"];
+	
+	thisText += "<table><tr><th>Item</th><th colspan='" + gameString.length + "'>Games</th><th>Location</th><th>Notes</th></tr>";
 	$.each(data, function() {
 		if (gameArray.some(game => this.games.includes(game))) {
 			thisText += "<tr><td>" + this.name + "</td>";
 			for (var i = 0; i < gameString.length; i++) {
-				let index = jQuery.inArray(this.games[i], gameArray);
-				if (index != -1)
-					thisText += "<td class='" + gameArray[index].toLowerCase() + "-" + color +"'>";
+				let index = jQuery.inArray(thisArray[i], this.games);
+				if (index != -1) {
+					thisText += "<td class='" + gameArray[i].toLowerCase() + "-" + color +"'>";
+				}
 				else
 					thisText += "<td>";
 				thisText += gameString[i] + "</td>";
@@ -808,20 +887,39 @@ function readItems(gameString, gameArray, data) {
 	thisText += "</table>";
 	
 	return thisText += "</div>";
-	
 }
 
-function readTrainers(gameString, gameArray, data) {
+function readTrainers(gameString, gameArray, data, isFirst, isFirstMulti, subArea) {
+	let idAdd = "";
+	if (subArea)
+		idAdd = subArea + "-";
+	
+	var thisText = "<div id='" + subArea + "pokemon-" + gameString.toLowerCase() + "-trainers' class='game-container'";
+	if (!isFirst)
+		thisText += "style='display:none'";
+	thisText += ">";
+	if (subArea)
+		thisText += "<h4>" + subArea + "</h4>";
+	
+	if (!data && !subArea)
+		return thisText + "<p>No items in " + gameString + ".</p></div>"
+	else if (!data && subArea)
+		return thisText + "<p>" + subArea + " has no trainers in " + gameString + ".</p></div>";
+	
 	var color = true;
-	var thisText = "<div id='pokemon-" + gameString.toLowerCase() + "-items'>";
-	thisText += "<table><tr><th>Trainer</th><th colspan='4'>Games</th><th>Party</th><th>Notes</th></tr>";
+	let thisArray = gameArray;
+	if (gameString == "RGBY")
+		thisArray = ["Aka", "Midori", "Ao", "Ki"];
+	
+	thisText += "<table><tr><th>Trainer</th><th colspan='" + gameString.length + "'>Games</th><th>Party</th><th>Notes</th></tr>";
 	$.each(data, function() {
 		if (gameArray.some(game => this.games.includes(game))) {
 			thisText += "<tr><td>" + this.name + "</td>";
 			for (var i = 0; i < gameString.length; i++) {
-				let index = jQuery.inArray(this.games[i], gameArray);
-				if (index != -1)
-					thisText += "<td class='" + gameArray[index].toLowerCase() + "-" + color +"'>";
+				let index = jQuery.inArray(thisArray[i], this.games);
+				if (index != -1) {
+					thisText += "<td class='" + gameArray[i].toLowerCase() + "-" + color +"'>";
+				}
 				else
 					thisText += "<td>";
 				thisText += gameString[i] + "</td>";
@@ -835,26 +933,54 @@ function readTrainers(gameString, gameArray, data) {
 	thisText += "</table>";
 	
 	return thisText += "</div>";
-	
-	
+}
+
+
+// Checks if any game in the gen has any encounters.
+function checkEncounterType(gameArray, data) {
+	let encounters = false;
+	$.each(data, function() {
+		if (gameArray.some(game => this.games.includes(game))) {
+			encounters = true;
+		}
+	});
+	return encounters;
+}
+
+function generateEncounterArray(gameArray, data) {
+	let encounterArray = [];
+	for (let i = 0 ; i < gameArray.length; i++) {
+		encounterArray.push(false);
+		for (let j = 0; j < data.length; j++) {
+			if (jQuery.inArray(gameArray[i], data[j].games) != -1) {
+				encounterArray[i] = true;
+				break;
+			}
+		}
+	}
+	return encounterArray;
+}
+
+// Designed to check whether an object's games array contains a particular string
+function isInGame(game, gameArray) {
+	if (jQuery.inArray(game, gameArray) !== -1) {
+		return true;
+	}
+	return false;
 }
 
 function parseGen(genString) {
 	
 	if (genString == "RGBY")
 		return ["Red", "Green", "Blue", "Yellow"];
+	else if (genString == "RBY")
+		return ["Red", "Blue", "Yellow"]
 	
 	// handle a bad case?
 
 	
 }
-// Designed to check whether an object's games array contains a particular string
-function isInGame(game, gameArray) {
-	if (jQuery.inArray(game, gameArray) !== -1)
-		return true;
-	return false;
-}
-
+	
 function simplifyLevels(levels) {
 	let simpleArray = [];
 	
