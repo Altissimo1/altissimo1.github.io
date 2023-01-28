@@ -73,26 +73,50 @@ function headerHider(selection) {
 		let endReached = false;
 		var thing = $(this);
 		let visible = false;
-		let paragraphObject = "";
+		let paragraphObject = [];
+		let header4 = false;
+		let header4Object = [];
 		while (!endReached) {
 			var thing = $(thing).next();
 			if (thing.length == 0 || thing[0].localName == "h3")
 				endReached = true;
-			else if (thing.is(":visible") && thing[0].localName != "p")
-				visible = true;
-			else if (thing[0].localName == "p")
-				paragraphObject = thing;
+			else {
+				if (thing.is(":visible") && thing[0].localName != "p" && thing[0].localName != "h4")
+					visible = true;
+				else if (!(thing.is(":visible"))) {
+					if (header4)
+						$(header4Object[length - 1]).hide();
+					if (thing[0].localName == "p")
+						paragraphObject.push(thing);
+				}
+				
+				if (thing[0].localName == "h4") {
+					header4 = true;
+					header4Object.push(thing);
+				}
+				else
+					header4 = false;
+			}
 		}
 		if (!visible) {
 			$(this).hide();
-			$(paragraphObject).hide();
+			$.each(paragraphObject, function() {
+				$(this).hide();
+			});
+			$.each(header4Object, function() {
+				$(this).hide();
+			});
 		}
 		else {
 			$(this).show();
 			if (selection.endsWith("combined") || selection.endsWith("separate"))
-				$(paragraphObject).show();
+				$.each(paragraphObject, function() {
+					$(this).show();
+				});
 			else
-				$(paragraphObject).hide();
+				$.each(paragraphObject, function() {
+					$(this).hide();
+				});
 		}
 	});
 }
