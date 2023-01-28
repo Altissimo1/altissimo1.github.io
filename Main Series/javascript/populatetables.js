@@ -3,6 +3,7 @@ $(function() {
 	fullPlaceTitle = fullPlaceTitle.replaceAll(" ", ""); // Holds the title without spaces
 	let place = fullPlaceTitle.toLowerCase(); // Holds the lowercase title
 	place = place.replaceAll(".", ""); // Replaces periods
+	place = place.replaceAll("é", "e"); // Replaces é in Pokémon
 	
 	$.getJSON("../json/" + place + ".json", function(data) {
 		
