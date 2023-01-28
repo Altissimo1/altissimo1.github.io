@@ -409,6 +409,17 @@ function readTrade(gameString, gameArray, data, type, isFirstMulti, subArea) {
 	let fullColorBools = [];
 	let combinedColorBool = true;
 	
+	let monsInGame  = [];
+	for (let i = 0; i < data.length; i++) {
+		monsInGame.push([]);
+		$.each(gameArray, function() {
+			if (jQuery.inArray(this.toString(), data[i].games) != -1)
+				monsInGame[i].push(true);
+			else
+				monsInGame[i].push(false);
+		});
+	}
+	
 	let individualTableStrings = [];
 	let combinedTableInnerText = "<div id='pokemon-" + gameString.toLowerCase() + "-all-combined-" + type + "-table" + idAdd + "' class='pokemon-table all combined'>";
 	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>Your Pokémon</th><th colspan='2'>NPC's Pokémon</th><th colspan='" + gameArray.length + "'>Games</th><th>Notes</th></tr>";
