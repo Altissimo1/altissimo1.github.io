@@ -902,7 +902,7 @@ function readTrainers(gameString, gameArray, data, isFirst, isFirstMulti, subAre
 		thisText += "<h4>" + subArea + "</h4>";
 	
 	if (!data && !subArea)
-		return thisText + "<p>No items in " + gameString + ".</p></div>"
+		return thisText + "<p>No trainers in " + gameString + ".</p></div>"
 	else if (!data && subArea)
 		return thisText + "<p>" + subArea + " has no trainers in " + gameString + ".</p></div>";
 	
