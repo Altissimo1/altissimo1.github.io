@@ -3,7 +3,7 @@ $(function() {
 	fullPlaceTitle = fullPlaceTitle.replace(" ", ""); // Holds the title without spaces
 	let place = fullPlaceTitle.toLowerCase(); // Holds the lowercase title
 	
-	$.getJSON("../json/" + place + ".json", function(data) {
+	$.getJSON(place + ".json", function(data) {
 		
 		let topButtonText = "";
 		let gameButtonText = "";
@@ -236,28 +236,30 @@ function readLevelEncounter(gameString, gameArray, data, type, isFirstMulti, sub
 	}
 	
 	$.each(data, function() {
-		combinedTableInnerText += "<tr><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>"  + this.level + "</td>";
-		
-		for (let i = 0; i < gameArray.length; i++) {
-			// add a cell for the game
-			combinedTableInnerText += "<td";
-			// for each pokemon, check if it is in the current game array
-			let index = jQuery.inArray(gameArray[i], this.games);
-			// If index != -1, then it is in in that game; add the text to individualTableStrings
-						
-			if (index > -1) {
-				individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>" + this.level + "</td><td>" + this.notes + "</td></tr>";
-				combinedTableInnerText += " class='" + displayArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
-				fullColorBools[i] = !fullColorBools[i];
+		if (gameArray.some(game => this.games.includes(game))) {
+			combinedTableInnerText += "<tr><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>"  + this.level + "</td>";
+			
+			for (let i = 0; i < gameArray.length; i++) {
+				// add a cell for the game
+				combinedTableInnerText += "<td";
+				// for each pokemon, check if it is in the current game array
+				let index = jQuery.inArray(gameArray[i], this.games);
+				// If index != -1, then it is in in that game; add the text to individualTableStrings
+							
+				if (index > -1) {
+					individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>" + this.level + "</td><td>" + this.notes + "</td></tr>";
+					combinedTableInnerText += " class='" + displayArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
+					fullColorBools[i] = !fullColorBools[i];
+				}
+				else {
+					combinedTableInnerText += ">";
+				}
+				combinedTableInnerText += gameString[i] + "</td>";
 			}
-			else {
-				combinedTableInnerText += ">";
-			}
-			combinedTableInnerText += gameString[i] + "</td>";
+			combinedColorBool = !combinedColorBool;
+			
+			combinedTableInnerText += "<td>" + this.notes + "</td></tr>";
 		}
-		combinedColorBool = !combinedColorBool;
-		
-		combinedTableInnerText += "<td>" + this.notes + "</td></tr>";
 		
 	});
 	
@@ -304,28 +306,30 @@ function readPurchase(gameString, gameArray, data, type, isFirst, isFirstMulti, 
 	}
 	
 	$.each(data, function() {
-		combinedTableInnerText += "<tr><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>"  + this.level + "</td>";
-		
-		for (let i = 0; i < gameArray.length; i++) {
-			// add a cell for the game
-			combinedTableInnerText += "<td";
-			// for each pokemon, check if it is in the current game array
-			let index = jQuery.inArray(gameArray[i], this.games);
+		if (gameArray.some(game => this.games.includes(game))) {
+			combinedTableInnerText += "<tr><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>"  + this.level + "</td>";
 			
-			// If index != -1, then it is in in that game; add the text to individualTableStrings
-			if (index > -1) {
-				individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>" + this.level + "</td><td>" + this.price + "</td></tr>";
-				combinedTableInnerText += " class='" + displayArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
-				fullColorBools[index] = !fullColorBools[index];
+			for (let i = 0; i < gameArray.length; i++) {
+				// add a cell for the game
+				combinedTableInnerText += "<td";
+				// for each pokemon, check if it is in the current game array
+				let index = jQuery.inArray(gameArray[i], this.games);
+				
+				// If index != -1, then it is in in that game; add the text to individualTableStrings
+				if (index > -1) {
+					individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>" + this.level + "</td><td>" + this.price + "</td></tr>";
+					combinedTableInnerText += " class='" + displayArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
+					fullColorBools[index] = !fullColorBools[index];
+				}
+				else {
+					combinedTableInnerText += ">";
+				}
+				combinedTableInnerText += gameString[i] + "</td>";
 			}
-			else {
-				combinedTableInnerText += ">";
-			}
-			combinedTableInnerText += gameString[i] + "</td>";
+			combinedColorBool = !combinedColorBool;
+			
+			combinedTableInnerText += "<td>" + this.price + "</td></tr>";
 		}
-		combinedColorBool = !combinedColorBool;
-		
-		combinedTableInnerText += "<td>" + this.price + "</td></tr>";
 		
 	});
 	
@@ -372,28 +376,30 @@ function readTrade(gameString, gameArray, data, type, isFirstMulti, subArea) {
 	}
 	
 	$.each(data, function() {
-		combinedTableInnerText += "<tr><td><div style='display:flex;flex-direction:flex-row; align-items:center;justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.trade + "</td><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td>";
-		
-		for (let i = 0; i < gameArray.length; i++) {
-			// add a cell for the game
-			combinedTableInnerText += "<td";
-			// for each pokemon, check if it is in the current game array
-			let index = jQuery.inArray(gameArray[i], this.games);
+		if (gameArray.some(game => this.games.includes(game))) {
+			combinedTableInnerText += "<tr><td><div style='display:flex;flex-direction:flex-row; align-items:center;justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.trade + "</td><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td>";
 			
-			// If index != -1, then it is in in that game; add the text to individualTableStrings
-			if (index > -1) {
-				individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.trade + "</td><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>" + this.notes + "</td></tr>";
-				combinedTableInnerText += " class='" + displayArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
-				fullColorBools[index] = !fullColorBools[index];
+			for (let i = 0; i < gameArray.length; i++) {
+				// add a cell for the game
+				combinedTableInnerText += "<td";
+				// for each pokemon, check if it is in the current game array
+				let index = jQuery.inArray(gameArray[i], this.games);
+				
+				// If index != -1, then it is in in that game; add the text to individualTableStrings
+				if (index > -1) {
+					individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.trade + "</td><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>" + this.notes + "</td></tr>";
+					combinedTableInnerText += " class='" + displayArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
+					fullColorBools[index] = !fullColorBools[index];
+				}
+				else {
+					combinedTableInnerText += ">";
+				}
+				combinedTableInnerText += gameString[i] + "</td>";
 			}
-			else {
-				combinedTableInnerText += ">";
-			}
-			combinedTableInnerText += gameString[i] + "</td>";
+			combinedColorBool = !combinedColorBool;
+			
+			combinedTableInnerText += "<td>" + this.notes + "</td></tr>";
 		}
-		combinedColorBool = !combinedColorBool;
-		
-		combinedTableInnerText += "<td>" + this.notes + "</td></tr>";
 		
 	});
 	
@@ -983,6 +989,7 @@ function parseGen(genString) {
 	
 function simplifyLevels(levels) {
 	levels.sort(function(a, b){return a-b});
+	
 	// Set an array to push simplified levels to
 	let simpleArray = [];
 	
@@ -1042,7 +1049,6 @@ function simplifyLevels(levels) {
 			dupeFreeArray.push(this.toString());
 		}
 	});
-	
 	return dupeFreeArray;
 	
 }
