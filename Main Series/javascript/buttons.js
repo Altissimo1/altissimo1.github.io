@@ -86,16 +86,17 @@ function headerHider(selection) {
 				else if (!(thing.is(":visible"))) {
 					if (header4)
 						$(header4Object[length - 1]).hide();
-					if (thing[0].localName == "p")
-						paragraphObject.push(thing);
 				}
 				
 				if (thing[0].localName == "h4") {
 					header4 = true;
 					header4Object.push(thing);
 				}
-				else
+				else {
+					if (thing[0].localName == "p")
+						paragraphObject.push(thing);
 					header4 = false;
+				}
 			}
 		}
 		if (!visible) {
@@ -117,6 +118,10 @@ function headerHider(selection) {
 				$.each(paragraphObject, function() {
 					$(this).hide();
 				});
+			$.each(header4Object, function() {
+				$(this).show();
+			});
+				
 		}
 	});
 }
