@@ -470,7 +470,7 @@ function readTrade(gameString, gameArray, data, type, isFirstMulti, subArea) {
 				// add a cell for the game
 				combinedTableInnerText += "<td";
 				if (monsInGame[i][k]) {
-					individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + data[k].image + "'></div></td><td>" + data[k].trade + "</td><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + data[k].image + "'></div></td><td>" + data[k].name + "</td><td>" + data[k].notes + "</td></tr>";
+					individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + data[k].image2 + "'></div></td><td>" + data[k].trade + "</td><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + data[k].image + "'></div></td><td>" + data[k].name + "</td><td>" + data[k].notes + "</td></tr>";
 					combinedTableInnerText += " class='" + displayArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
 					fullColorBools[i] = !fullColorBools[i];
 				}
