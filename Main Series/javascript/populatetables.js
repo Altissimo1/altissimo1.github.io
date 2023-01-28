@@ -366,18 +366,18 @@ function readTrade(gameString, gameArray, data, type, isFirstMulti, subArea) {
 	
 	let individualTableStrings = [];
 	let combinedTableInnerText = "<div id='pokemon-" + gameString.toLowerCase() + "-all-combined-" + type + "-table" + idAdd + "' class='pokemon-table all combined'>";
-	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>NPC's Pokémon</th><th colspan='2'>Your Pokémon</th><th colspan='" + gameArray.length + "'>Games</th><th>Notes</th></tr>";
+	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>Your Pokémon</th><th colspan='2'>NPC's Pokémon</th><th colspan='" + gameArray.length + "'>Games</th><th>Notes</th></tr>";
 	
 	for (let i = 0; i < gameArray.length; i++) {
 		fullColorBools.push(true);
 		individualTableStrings.push(["<div id='pokemon-" + gameString.toLowerCase() + "-all-" + gameArray[i].toLowerCase() + "-" + type + "-table" + idAdd + "' class='pokemon-table all' style='display:none'>"]);
-		individualTableStrings[i] += "<table><caption>" + displayArray[i] + "</caption><tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>NPC's Pokémon</th><th colspan='2'>Your Pokémon</th><th>Notes</th></tr>";
+		individualTableStrings[i] += "<table><caption>" + displayArray[i] + "</caption><tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Your Pokémon</th><th colspan='2'>NPC's Pokémon</th><th>Notes</th></tr>";
 		fullColorBools[i] = !fullColorBools[i];
 	}
 	
 	$.each(data, function() {
 		if (gameArray.some(game => this.games.includes(game))) {
-			combinedTableInnerText += "<tr><td><div style='display:flex;flex-direction:flex-row; align-items:center;justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.trade + "</td><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td>";
+			combinedTableInnerText += "<tr><td><div style='display:flex;flex-direction:flex-row; align-items:center;justify-content:center;'><img src='" + this.image2 + "'></div></td><td>" + this.trade + "</td><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td>";
 			
 			for (let i = 0; i < gameArray.length; i++) {
 				// add a cell for the game
