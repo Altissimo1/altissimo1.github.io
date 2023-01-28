@@ -280,7 +280,7 @@ function readLevelEncounter(gameString, gameArray, data, type, isFirstMulti, sub
 	return header + combinedTableInnerText + "</table></div>" + individualTableStrings.join('');
 }
 
-function readPurchase(gameString, gameArray, data, type, isFirst, isFirstMulti, subArea) {
+function readPurchase(gameString, gameArray, data, type, isFirstMulti, subArea) {
 	
 	let idAdd = "";
 	if (subArea)
