@@ -168,6 +168,10 @@ function readPokemon(gameString, gameArray, data, isFirst, isFirstMulti, subArea
 	let thisArray = gameArray;
 	if (gameString == "RGBY")
 		thisArray = ["Aka", "Midori", "Ao", "Ki"];
+	
+	// If location has no pokemon in any gen, display "No Pokémon"
+	if (!(data.hasOwnProperty('pokemon')))
+		return startDiv + "<p>No Pokémon in " + gameString + ".</p>";
 		
 	let genHasPokemon = false;
 	$.each(data.pokemon, function() {
@@ -179,7 +183,7 @@ function readPokemon(gameString, gameArray, data, isFirst, isFirstMulti, subArea
 	});
 	
 	// If location has no pokemon in any gen, display "No Pokémon"
-	if (!(data.hasOwnProperty('pokemon')) || !genHasPokemon)
+	if (!genHasPokemon)
 		return startDiv + "<p>No Pokémon in " + gameString + ".</p>";
 	
 	let innerText = "";
