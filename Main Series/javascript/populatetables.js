@@ -226,33 +226,52 @@ function readLevelEncounter(gameString, gameArray, data, type, isFirstMulti, sub
 	if (gameString == "RGBY")
 		displayArray = ["Red", "Green", "Blue", "Yellow"];
 	
-	fullColorBools = [];
-	combinedColorBool = true;
+	let fullColorBools = [];
+	let combinedColorBool = true;
+	
+	let monsInGame  = [];
+	for (let i = 0; i < data.length; i++) {
+		monsInGame.push([]);
+		$.each(gameArray, function() {
+			if (jQuery.inArray(this.toString(), data[i].games) != -1)
+				monsInGame[i].push(true);
+			else
+				monsInGame[i].push(false);
+		});
+	}
 	
 	let individualTableStrings = [];
+	
 	let combinedTableInnerText = "<div id='pokemon-" + gameString.toLowerCase() + "-all-combined-" + type + "-table" + idAdd + "' class='pokemon-table all combined'>";
 	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>Pokémon</th><th>Level</th><th colspan='" + gameArray.length + "'>Games</th><th>Notes</th></tr>";
 	
-	for (let i = 0; i < gameArray.length; i++) {
-		fullColorBools.push(true);
-		individualTableStrings.push(["<div id='pokemon-" + gameString.toLowerCase() + "-all-" + gameArray[i].toLowerCase() + "-" + type + "-table" + idAdd + "' class='pokemon-table all' style='display:none'>"]);
-		individualTableStrings[i] += "<table><caption>" + displayArray[i] + "</caption><tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Level</th><th>Notes</th></tr>";
-		fullColorBools[i] = !fullColorBools[i];
+	for (let k = 0; k < data.length; k++) {
+		for (let i = 0; i < gameArray.length; i++) {
+			fullColorBools.push(true);
+			if (monsInGame[k][i] && k == 0) {
+				individualTableStrings.push(["<div id='pokemon-" + gameString.toLowerCase() + "-all-" + gameArray[i].toLowerCase() + "-" + type + "-table" + idAdd + "' class='pokemon-table all' style='display:none'>"]);
+				individualTableStrings[i] += "<table><caption>" + displayArray[i] + "</caption><tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Level</th><th>Notes</th></tr>";
+			}
+			else
+				individualTableStrings.push([""]);
+			fullColorBools[i] = !fullColorBools[i];
+		}
 	}
 	
-	$.each(data, function() {
-		if (gameArray.some(game => this.games.includes(game))) {
-			combinedTableInnerText += "<tr><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>"  + this.level + "</td>";
+	for (let k = 0; k < data.length; k++) {
+		if (gameArray.some(game => data[k].games.includes(game))) {
+			combinedTableInnerText += "<tr><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + data[k].image + "'></div></td><td>" + data[k].name + "</td><td>"  + data[k].level + "</td>";
 			
 			for (let i = 0; i < gameArray.length; i++) {
 				// add a cell for the game
 				combinedTableInnerText += "<td";
 				// for each pokemon, check if it is in the current game array
-				let index = jQuery.inArray(gameArray[i], this.games);
+				let index = jQuery.inArray(gameArray[i], data[k].games);
 				// If index != -1, then it is in in that game; add the text to individualTableStrings
 							
 				if (index > -1) {
-					individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>" + this.level + "</td><td>" + this.notes + "</td></tr>";
+					if (monsInGame[k][i])
+						individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + data[k].image + "'></div></td><td>" + data[k].name + "</td><td>" + data[k].level + "</td><td>" + data[k].notes + "</td></tr>";
 					combinedTableInnerText += " class='" + displayArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
 					fullColorBools[i] = !fullColorBools[i];
 				}
@@ -263,13 +282,14 @@ function readLevelEncounter(gameString, gameArray, data, type, isFirstMulti, sub
 			}
 			combinedColorBool = !combinedColorBool;
 			
-			combinedTableInnerText += "<td>" + this.notes + "</td></tr>";
+			combinedTableInnerText += "<td>" + data[k].notes + "</td></tr>";
 		}
 		
-	});
+	}
 	
 	for (let i = 0; i < individualTableStrings.length; i++)  {
-		individualTableStrings[i] += "</table></div>";
+		if (individualTableStrings[i] != "")
+			individualTableStrings[i] += "</table></div>";
 	};
 	
 	let header = "";	
@@ -282,6 +302,7 @@ function readLevelEncounter(gameString, gameArray, data, type, isFirstMulti, sub
 }
 
 function readPurchase(gameString, gameArray, data, type, isFirstMulti, subArea) {
+	
 	
 	let idAdd = "";
 	if (subArea)
@@ -296,35 +317,53 @@ function readPurchase(gameString, gameArray, data, type, isFirstMulti, subArea) 
 	if (gameString == "RGBY")
 		displayArray = ["Red", "Green", "Blue", "Yellow"];
 	
-	fullColorBools = [];
-	combinedColorBool = true;
+	let fullColorBools = [];
+	let combinedColorBool = true;
+	
+	let monsInGame  = [];
+	for (let i = 0; i < data.length; i++) {
+		monsInGame.push([]);
+		$.each(gameArray, function() {
+			if (jQuery.inArray(this.toString(), data[i].games) != -1)
+				monsInGame[i].push(true);
+			else
+				monsInGame[i].push(false);
+		});
+	}
 	
 	let individualTableStrings = [];
 	let combinedTableInnerText = "<div id='pokemon-" + gameString.toLowerCase() + "-all-combined-" + type + "-table" + idAdd + "' class='pokemon-table all combined'>";
 	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>Pokémon</th><th>Level</th><th colspan='" + gameArray.length +"'>Games</th><th>Price</th></tr>";
 	
-	for (let i = 0; i < gameArray.length; i++) {
-		fullColorBools.push(true);
-		individualTableStrings.push(["<div id='pokemon-" + gameString.toLowerCase() + "-all-" + gameArray[i].toLowerCase() + "-" + type + "-table" + idAdd + "' class='pokemon-table all' style='display:none'>"]);
-		individualTableStrings[i] += "<table><caption>" + displayArray[i] + "</caption><tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Level</th><th>Price</th></tr>";
-		fullColorBools[i] = !fullColorBools[i];
+	for (let k = 0; k < data.length; k++) {
+		for (let i = 0; i < gameArray.length; i++) {
+			fullColorBools.push(true);
+			if (monsInGame[k][i] && k == 0) {
+				individualTableStrings.push(["<div id='pokemon-" + gameString.toLowerCase() + "-all-" + gameArray[i].toLowerCase() + "-" + type + "-table" + idAdd + "' class='pokemon-table all' style='display:none'>"]);
+				individualTableStrings[i] += "<table><caption>" + displayArray[i] + "</caption><tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Pokémon</th><th>Level</th><th>Price</th></tr>";
+			}
+			else
+				individualTableStrings.push([""]);
+			fullColorBools[i] = !fullColorBools[i];
+		}
 	}
 	
-	$.each(data, function() {
-		if (gameArray.some(game => this.games.includes(game))) {
-			combinedTableInnerText += "<tr><td style='padding:1px;background-color:white;'><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>"  + this.level + "</td>";
+	for (let k = 0; k < data.length; k++) {
+		if (gameArray.some(game => data[k].games.includes(game))) {
+			combinedTableInnerText += "<tr><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + data[k].image + "'></div></td><td>" + data[k].name + "</td><td>"  + data[k].level + "</td>";
 			
 			for (let i = 0; i < gameArray.length; i++) {
 				// add a cell for the game
 				combinedTableInnerText += "<td";
 				// for each pokemon, check if it is in the current game array
-				let index = jQuery.inArray(gameArray[i], this.games);
-				
+				let index = jQuery.inArray(gameArray[i], data[k].games);
 				// If index != -1, then it is in in that game; add the text to individualTableStrings
+							
 				if (index > -1) {
-					individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>" + this.level + "</td><td>" + this.price + "</td></tr>";
+					if (monsInGame[k][i])
+						individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + data[k].image + "'></div></td><td>" + data[k].name + "</td><td>" + data[k].level + "</td><td>" + data[k].price + "</td></tr>";
 					combinedTableInnerText += " class='" + displayArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
-					fullColorBools[index] = !fullColorBools[index];
+					fullColorBools[i] = !fullColorBools[i];
 				}
 				else {
 					combinedTableInnerText += ">";
@@ -333,16 +372,17 @@ function readPurchase(gameString, gameArray, data, type, isFirstMulti, subArea) 
 			}
 			combinedColorBool = !combinedColorBool;
 			
-			combinedTableInnerText += "<td>" + this.price + "</td></tr>";
+			combinedTableInnerText += "<td>" + data[k].price + "</td></tr>";
 		}
 		
-	});
+	}
 	
 	for (let i = 0; i < individualTableStrings.length; i++)  {
-		individualTableStrings[i] += "</table></div>";
+		if (individualTableStrings[i] != "")
+			individualTableStrings[i] += "</table></div>";
 	};
 	
-	let header = "";	
+	let header = "";
 	if (isFirstMulti)
 		header = "<h3>" + type[0].toUpperCase() + type.substring(1) + "</h3>";
 	if (subArea)
@@ -366,21 +406,27 @@ function readTrade(gameString, gameArray, data, type, isFirstMulti, subArea) {
 	if (gameString == "RGBY")
 		displayArray = ["Red", "Green", "Blue", "Yellow"];
 	
-	fullColorBools = [];
-	combinedColorBool = true;
+	let fullColorBools = [];
+	let combinedColorBool = true;
 	
 	let individualTableStrings = [];
 	let combinedTableInnerText = "<div id='pokemon-" + gameString.toLowerCase() + "-all-combined-" + type + "-table" + idAdd + "' class='pokemon-table all combined'>";
 	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>Your Pokémon</th><th colspan='2'>NPC's Pokémon</th><th colspan='" + gameArray.length + "'>Games</th><th>Notes</th></tr>";
 	
-	for (let i = 0; i < gameArray.length; i++) {
-		fullColorBools.push(true);
-		individualTableStrings.push(["<div id='pokemon-" + gameString.toLowerCase() + "-all-" + gameArray[i].toLowerCase() + "-" + type + "-table" + idAdd + "' class='pokemon-table all' style='display:none'>"]);
-		individualTableStrings[i] += "<table><caption>" + displayArray[i] + "</caption><tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Your Pokémon</th><th colspan='2'>NPC's Pokémon</th><th>Notes</th></tr>";
-		fullColorBools[i] = !fullColorBools[i];
+	for (let k = 0; k < data.length; k++) {
+		for (let i = 0; i < gameArray.length; i++) {
+			fullColorBools.push(true);
+			if (monsInGame[k][i] && k == 0) {
+				individualTableStrings.push(["<div id='pokemon-" + gameString.toLowerCase() + "-all-" + gameArray[i].toLowerCase() + "-" + type + "-table" + idAdd + "' class='pokemon-table all' style='display:none'>"]);
+				individualTableStrings[i] += "<table><caption>" + displayArray[i] + "</caption><tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><th colspan='2'>Your Pokémon</th><th colspan='2'>NPC's Pokémon</th><th>Notes</th></tr>";
+			}
+			else
+				individualTableStrings.push([""]);
+			fullColorBools[i] = !fullColorBools[i];
+		}
 	}
 	
-	$.each(data, function() {
+	for (let k = 0; k < data.length; k++) {
 		if (gameArray.some(game => this.games.includes(game))) {
 			combinedTableInnerText += "<tr><td><div style='display:flex;flex-direction:flex-row; align-items:center;justify-content:center;'><img src='" + this.image2 + "'></div></td><td>" + this.trade + "</td><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td>";
 			
@@ -389,10 +435,10 @@ function readTrade(gameString, gameArray, data, type, isFirstMulti, subArea) {
 				combinedTableInnerText += "<td";
 				// for each pokemon, check if it is in the current game array
 				let index = jQuery.inArray(gameArray[i], this.games);
-				
 				// If index != -1, then it is in in that game; add the text to individualTableStrings
 				if (index > -1) {
-					individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.trade + "</td><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>" + this.notes + "</td></tr>";
+					if (monsInGame[k][i])
+						individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.trade + "</td><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + this.image + "'></div></td><td>" + this.name + "</td><td>" + this.notes + "</td></tr>";
 					combinedTableInnerText += " class='" + displayArray[i].toLowerCase() + "-" + combinedColorBool + "'>";
 					fullColorBools[index] = !fullColorBools[index];
 				}
@@ -405,11 +451,11 @@ function readTrade(gameString, gameArray, data, type, isFirstMulti, subArea) {
 			
 			combinedTableInnerText += "<td>" + this.notes + "</td></tr>";
 		}
-		
-	});
+	}
 	
 	for (let i = 0; i < individualTableStrings.length; i++)  {
-		individualTableStrings[i] += "</table></div>";
+		if (individualTableStrings[i] != "")
+			individualTableStrings[i] += "</table></div>";
 	};
 	
 	
