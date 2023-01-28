@@ -96,6 +96,15 @@ $(function() {
 		$("#topButtons").html(topButtonText);
 		$("#pokemon-buttons").html(gameButtonText);
 		
+		var tables = false;
+		$.each(gameTextArray, function() {
+			if (~this.indexOf("table"))
+				tables = true;
+		})
+		
+		if (!tables)
+			$("#pokemon-buttons").hide();
+		
 		// Set up the containers
 		$("#items-container").html(itemText + gameItemArray.join(""));
 		$("#trainers-container").html(trainerText + gameTrainerArray.join(""));
