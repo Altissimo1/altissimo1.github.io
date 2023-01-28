@@ -2,6 +2,7 @@ $(function() {
 	let fullPlaceTitle = $("title").text();
 	fullPlaceTitle = fullPlaceTitle.replace(" ", ""); // Holds the title without spaces
 	let place = fullPlaceTitle.toLowerCase(); // Holds the lowercase title
+	place = place.replace(".", ""); // Replaces periods
 	
 	$.getJSON("../json/" + place + ".json", function(data) {
 		
