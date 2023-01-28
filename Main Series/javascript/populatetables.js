@@ -348,8 +348,10 @@ function readPurchase(gameString, gameArray, data, type, isFirstMulti, subArea) 
 	
 	let individualTableStrings = [];
 	
+	console.log(startTable);
+	
 	let combinedTableInnerText = "<div id='pokemon-" + gameString.toLowerCase() + "-all-combined-" + type + "-table" + idAdd + "' class='pokemon-table all combined'>";
-	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>Pokémon</th><th>Level</th><th colspan='" + gameArray.length +"'>Games</th><th>Price</th></tr>";
+	combinedTableInnerText += "<table><caption>All Versions</caption><tr><th colspan='2'>Pokémon</th><th>Level</th><th colspan='" + gameArray.length + "'>Games</th><th>Price</th></tr>";
 	
 	for (let k = 0; k < data.length; k++) {
 		for (let i = 0; i < gameArray.length; i++) {
@@ -364,6 +366,7 @@ function readPurchase(gameString, gameArray, data, type, isFirstMulti, subArea) 
 		}
 	}
 	
+	
 	for (let k = 0; k < data.length; k++) {
 		if (gameArray.some(game => data[k].games.includes(game))) {
 			combinedTableInnerText += "<tr><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + data[k].image + "'></div></td><td>" + data[k].name + "</td><td>"  + data[k].level + "</td>";
@@ -371,7 +374,7 @@ function readPurchase(gameString, gameArray, data, type, isFirstMulti, subArea) 
 			for (let i = 0; i < gameArray.length; i++) {
 				// add a cell for the game
 				combinedTableInnerText += "<td";
-				// for each pokemon, check if it is in the current game array
+				// for each pokemon, check if it is in the current game array				
 				
 				if (monsInGame[i][k]) {
 					individualTableStrings[i] += "<tr class='" + displayArray[i].toLowerCase() + "-" + fullColorBools[i] + "'><td><div style='display:flex; flex-direction:flex-row; align-items: center; justify-content:center;'><img src='" + data[k].image + "'></div></td><td>" + data[k].name + "</td><td>" + data[k].level + "</td><td>" + data[k].price + "</td></tr>";
@@ -392,10 +395,10 @@ function readPurchase(gameString, gameArray, data, type, isFirstMulti, subArea) 
 	
 	for (let i = 0; i < individualTableStrings.length; i++)  {
 		if (individualTableStrings[i] != "")
-			individualTableStrings[i] += "</table<br />></div>";
+			individualTableStrings[i] += "</table><br /></div>";
 	};
 	
-	let header = "";
+	let header = "";	
 	if (isFirstMulti)
 		header = "<h3>" + type[0].toUpperCase() + type.substring(1) + "</h3>";
 	if (subArea)
@@ -497,8 +500,8 @@ function readTrade(gameString, gameArray, data, type, isFirstMulti, subArea) {
 	return header + combinedTableInnerText + "</table></div>" + individualTableStrings.join('');
 }
 
-function readRateEncounter(gameString, gameArray, data, type, isFirstMulti, subArea) {	
-
+function readRateEncounter(gameString, gameArray, data, type, isFirstMulti, subArea) {
+	
 	let idAdd = "";
 		if (subArea)
 			idAdd = "-" + subArea;
