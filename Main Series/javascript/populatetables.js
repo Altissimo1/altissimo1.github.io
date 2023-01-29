@@ -47,14 +47,14 @@ $(function() {
 		else {
 			for (let i = 0; i < data.length; i++) {
 				for (let j = 0; j < data[i].games.length; j++) {
-					if (j == 0)
+					if (i == 0) {
 						// Prepare multiple arrays so that each gameset's stuff gets sorted into its own individual div
 						gameTextArray.push("");
 						gameItemArray.push("");
 						gameTrainerArray.push("");
+					}
 				}
 			}
-			
 			for (let i = 0; i < data.length; i++) {
 				// Set up a string that contains the "additional" info indicating the sub-area designation
 				// Compare fullPlaceTitle and data[i].location
@@ -87,9 +87,16 @@ $(function() {
 			}
 		}
 		
+		
 		for (let m = 0; m < gameTextArray.length; m++) {
 			gameTextArray[m] += "</div>";
+		}
+		
+		for (let m = 0; m < gameItemArray.length; m++) {
 			gameItemArray[m] += "</div>";
+		}
+		
+		for (let m = 0; m < gameTrainerArray.length; m++) {
 			gameTrainerArray[m] += "</div>";
 		}
 		
@@ -103,13 +110,34 @@ $(function() {
 				tables = true;
 		})
 		
+		let trainerData = false;
+		for (let i = 0; i < gameTrainerArray.length; i++) {
+			if (~gameTrainerArray[i].indexOf("table"))
+				trainerData = true;
+			else
+				gameTrainerArray[i] = "";
+		}
+		
+		let itemData = false;
+		for (let i = 0; i < gameItemArray.length; i++) {
+			if (~gameItemArray[i].indexOf("table"))
+				itemData = true;
+			else
+				gameItemArray[i] = "";
+		}
+		
 		if (!tables)
 			$("#pokemon-buttons").hide();
 		
 		// Set up the containers
-		$("#items-container").html(itemText + gameItemArray.join(""));
-		$("#trainers-container").html(trainerText + gameTrainerArray.join(""));
-		$("#pokemon-tables").html(pokemonText + gameTextArray.join(""));
+		if (itemData)
+			$("#items-container").html(itemText + gameItemArray.join(""));
+		if (trainerData)
+			$("#trainers-container").html(trainerText + gameTrainerArray.join(""));
+		if (tables)
+			$("#pokemon-tables").html(pokemonText + gameTextArray.join(""));
+		
+		headerHider("");
 		
 		function populateTopButton(gen, checked, isFirstMulti) {
 			if (!isFirstMulti)
@@ -231,6 +259,14 @@ function readPokemonMultiple(gameString, gameArray, data, isFirst, isFirstMulti,
 	let purchasePokemon = [];
 	let staticPokemon = [];
 	let startDiv = "";
+	
+	// Create an array to hold 7 instances of isFirstMulti
+	
+	isFirstMultiTypes = [];
+	
+	for (let i = 0; i < 7; i++) {
+		isFirstMultiTypes.push(isFirstMulti);
+	}
 			
 	for (let i = 0; i < data.length; i++) {
 		
@@ -269,23 +305,42 @@ function readPokemonMultiple(gameString, gameArray, data, isFirst, isFirstMulti,
 			continue;
 		}
 		
-		if (data[i].pokemon.hasOwnProperty('walking'))
-			walkingPokemon.push(readRateEncounter(gameString, thisArray, data[i].pokemon.walking, "walking", isFirstMulti, subArea));
-		if (data[i].pokemon.hasOwnProperty('surfing'))
-			surfingPokemon.push(readRateEncounter(gameString, thisArray, data[i].pokemon.surfing, "surfing", isFirstMulti, subArea));
-		if (data[i].pokemon.hasOwnProperty('fishing'))
-			fishingPokemon.push(readRateEncounter(gameString, thisArray, data[i].pokemon.fishing, "fishing", isFirstMulti, subArea));
-		if (data[i].pokemon.hasOwnProperty('purchase'))
-			purchasePokemon.push(readPurchase(gameString, thisArray, data[i].pokemon.purchase, "purchase", isFirstMulti, subArea));
-		if (data[i].pokemon.hasOwnProperty('gift'))
-			giftPokemon.push(readLevelEncounter(gameString, thisArray, data[i].pokemon.gift, "gift", isFirstMulti, subArea));
-		if (data[i].pokemon.hasOwnProperty('trade'))
-			tradePokemon.push(readTrade(gameString, thisArray, data[i].pokemon.trade, "trade", isFirstMulti, subArea));
-		if (data[i].pokemon.hasOwnProperty('statics'))
-			staticPokemon.push(readLevelEncounter(gameString, thisArray, data[i].pokemon.statics, "static", isFirstMulti, subArea));
-		
-		if (isFirstMulti)
-			isFirstMulti = false;
+		if (data[i].pokemon.hasOwnProperty('walking')) {
+			walkingPokemon.push(readRateEncounter(gameString, thisArray, data[i].pokemon.walking, "walking", isFirstMultiTypes[0], subArea));
+			if (isFirstMultiTypes[0])
+				isFirstMultiTypes[0] = false;
+		}
+		if (data[i].pokemon.hasOwnProperty('surfing')) {
+			surfingPokemon.push(readRateEncounter(gameString, thisArray, data[i].pokemon.surfing, "surfing", isFirstMultiTypes[1], subArea));
+			if (isFirstMultiTypes[1])
+				isFirstMultiTypes[1] = false;
+		}
+		if (data[i].pokemon.hasOwnProperty('fishing')) {
+			fishingPokemon.push(readRateEncounter(gameString, thisArray, data[i].pokemon.fishing, "fishing", isFirstMultiTypes[2], subArea));
+			if (isFirstMultiTypes[2])
+				isFirstMultiTypes[2] = false;
+		}
+		if (data[i].pokemon.hasOwnProperty('purchase')) {
+			purchasePokemon.push(readPurchase(gameString, thisArray, data[i].pokemon.purchase, "purchase", isFirstMultiTypes[3], subArea));
+			if (isFirstMultiTypes[3])
+				isFirstMultiTypes[3] = false;
+		}
+		if (data[i].pokemon.hasOwnProperty('gift')) {
+			giftPokemon.push(readLevelEncounter(gameString, thisArray, data[i].pokemon.gift, "gift", isFirstMultiTypes[4], subArea));
+			if (isFirstMultiTypes[4])
+				isFirstMultiTypes[4] = false;
+		}
+		if (data[i].pokemon.hasOwnProperty('trade')) {
+			tradePokemon.push(readTrade(gameString, thisArray, data[i].pokemon.trade, "trade", isFirstMultiTypes[5], subArea));
+			if (isFirstMultiTypes[5])
+				isFirstMultiTypes[5] = false;
+		}
+		if (data[i].pokemon.hasOwnProperty('statics')) {
+			staticPokemon.push(readLevelEncounter(gameString, thisArray, data[i].pokemon.statics, "static", isFirstMultiTypes[6], subArea));
+			if (isFirstMultiTypes[6])
+				isFirstMultiTypes[6] = false;
+		}
+		isFirstMulti = false;
 	}
 	
 	let innerText = "";
@@ -1084,12 +1139,13 @@ function readTrainers(gameString, gameArray, data, isFirst, isFirstMulti, subAre
 	if (gameString == "RGBY")
 		thisArray = ["Aka", "Midori", "Ao", "Ki"];
 	
-	thisText += "<table><tr><th>Trainer</th><th colspan='" + gameString.length + "'>Games</th><th>Party</th><th>Notes</th></tr>";
-	$.each(data, function() {
-		if (gameArray.some(game => this.games.includes(game))) {
-			thisText += "<tr><td>" + this.name + "</td>";
+	for (let m = 0; m < data.length; m++) {
+		if (thisArray.some(game => data[m].games.includes(game))) {
+			if (m == 0)
+				thisText += "<table><tr><th>Trainer</th><th colspan='" + gameString.length + "'>Games</th><th>Party</th><th>Notes</th></tr>";
+			thisText += "<tr><td>" + data[m].name + "</td>";
 			for (var i = 0; i < gameString.length; i++) {
-				let index = jQuery.inArray(thisArray[i], this.games);
+				let index = jQuery.inArray(thisArray[i], data[m].games);
 				if (index != -1) {
 					thisText += "<td class='" + gameArray[i].toLowerCase() + "-" + color +"'>";
 				}
@@ -1097,15 +1153,18 @@ function readTrainers(gameString, gameArray, data, isFirst, isFirstMulti, subAre
 					thisText += "<td>";
 				thisText += gameString[i] + "</td>";
 			}
-			thisText += "<td>" + this.party.join("<br />") + "</td>";
-			thisText += "<td>" + this.notes + "</td></tr>";
+			thisText += "<td>" + data[m].party.join("<br />") + "</td>";
+			thisText += "<td>" + data[m].notes + "</td></tr>";
 			color = !color;
+			if (m == data.length - 1)
+				thisText += "</table></div>";
 		}
-	});
+		else {
+			thisText += "<p>" + subArea + " has no trainers in " + gameString + ".</p></div>";
+		}
+	}
 	
-	thisText += "</table>";
-	
-	return thisText += "</div>";
+	return thisText;
 }
 
 
