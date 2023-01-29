@@ -1,3 +1,7 @@
+window.addEventListener('load', function() {
+	headerHider("");
+});
+
 var topButton = function topClick() {
 	
 	var gameSet = ($(this).attr("id"));
@@ -81,7 +85,7 @@ function headerHider(selection) {
 			if (thing.length == 0 || thing[0].localName == "h3")
 				endReached = true;
 			else {
-				if (thing.is(":visible") && thing[0].localName != "p" && thing[0].localName != "h4")
+				if (thing.is(":visible") && thing.parent().is(":visible") && thing[0].localName != "p" && thing[0].localName != "h4")
 					visible = true;
 				else if (!(thing.is(":visible"))) {
 					if (header4)
@@ -121,6 +125,28 @@ function headerHider(selection) {
 			$.each(header4Object, function() {
 				$(this).show();
 			});
+				
+		}
+	});
+	
+	$("h2").each(function() {
+		let endReached = false;
+		var thing = $(this);
+		let visible = false;
+		while (!endReached) {
+			var thing = $(thing).next();
+			if (thing.length == 0 || thing[0].localName == "h2")
+				endReached = true;
+			else {
+				if (thing.is(":visible") && thing.parent().is(":visible") && thing[0].localName != "p" && thing[0].localName != "h4")
+					visible = true;
+			}
+		}
+		if (!visible) {
+			$(this).hide();
+		}
+		else {
+			$(this).show();
 				
 		}
 	});
