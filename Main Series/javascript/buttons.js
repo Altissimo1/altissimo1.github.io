@@ -1,41 +1,39 @@
-window.addEventListener('load', function() {
-	headerHider("");
-});
-
+$(function() {
+	headerHider();
+});	
+	
 var topButton = function topClick() {
 	
 	var gameSet = ($(this).attr("id"));
 	
 	$(".button-set").each(function() {
-		if ($(this).attr("id").indexOf(gameSet) >= 0) {
+		if ($(this).hasClass(gameSet)) {
 			$(this).show();
 		} else
 			$(this).hide();
 	});
 	
 	$(".game-container").each(function() {
-		if ($(this).attr("id").endsWith(gameSet) || $(this).attr("id").endsWith(gameSet + "-items") || $(this).attr("id").endsWith(gameSet + "-trainers"))
+		if ($(this).hasClass(gameSet))
 			$(this).show();
 		else
 			$(this).hide();
 	});
 	
-	$(".notes-span").each(function() {
-		if ($(this).hasClass("notes-" + gameSet))
+	$("p").each(function() {
+		if ($(this).hasClass(gameSet) || $(this).hasClass("buttondisplay"))
 			$(this).show();
 		else
 			$(this).hide();
-		
 	});
 	
-	headerHider("");
+	headerHider();
 }
 
 var gameButton = function gameClick() {
 	var selection = $(this).attr("id");
 	var gameSetButtons = $($(this).parent().parent().parent()).attr("id");
 	var gameSet = gameSetButtons.substring(0, gameSetButtons.length - 8);
-	
 	$(".pokemon-table").each(function() {
 		let thisTable = $(this).attr("id");
 		let full = selection.indexOf("full");
@@ -67,87 +65,21 @@ var gameButton = function gameClick() {
 		}
 	});
 	
-	// Now all the tables are shown/hidden. Show/hide the headers appropriately.
-	
-	headerHider(selection);
+	headerHider();
 }
 
-function headerHider(selection) {
-	$("h3").each(function() {
-		let endReached = false;
-		var thing = $(this);
-		let visible = false;
-		let paragraphObject = [];
-		let header4 = false;
-		let header4Object = [];
-		while (!endReached) {
-			var thing = $(thing).next();
-			if (thing.length == 0 || thing[0].localName == "h3")
-				endReached = true;
-			else {
-				if (thing.is(":visible") && thing.parent().is(":visible") && thing[0].localName != "p" && thing[0].localName != "h4")
-					visible = true;
-				else if (!(thing.is(":visible"))) {
-					if (header4)
-						$(header4Object[length - 1]).hide();
-				}
-				
-				if (thing[0].localName == "h4") {
-					header4 = true;
-					header4Object.push(thing);
-				}
-				else {
-					if (thing[0].localName == "p")
-						paragraphObject.push(thing);
-					header4 = false;
-				}
+function headerHider() {
+	$(".table-collection").each(function() {
+		var visible = false;
+		$(this.children).each(function() {
+			if ($(this).prop('nodeName') == "DIV" && $(this).css('display') != 'none') {
+				visible = true;
 			}
-		}
-		if (!visible) {
+		});
+		
+		if (!visible)
 			$(this).hide();
-			$.each(paragraphObject, function() {
-				$(this).hide();
-			});
-			$.each(header4Object, function() {
-				$(this).hide();
-			});
-		}
-		else {
+		else
 			$(this).show();
-			if (selection.endsWith("combined") || selection.endsWith("separate"))
-				$.each(paragraphObject, function() {
-					$(this).show();
-				});
-			else
-				$.each(paragraphObject, function() {
-					$(this).hide();
-				});
-			$.each(header4Object, function() {
-				$(this).show();
-			});
-				
-		}
-	});
-	
-	$("h2").each(function() {
-		let endReached = false;
-		var thing = $(this);
-		let visible = false;
-		while (!endReached) {
-			var thing = $(thing).next();
-			if (thing.length == 0 || thing[0].localName == "h2")
-				endReached = true;
-			else {
-				if (thing.is(":visible") && thing.parent().is(":visible") && thing[0].localName != "p" && thing[0].localName != "h4")
-					visible = true;
-			}
-		}
-		if (!visible) {
-			$(this).hide();
-		}
-		else {
-			$(this).show();
-				
-		}
 	});
 }
