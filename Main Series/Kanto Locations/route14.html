@@ -1,51 +1,2166 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-   	 <meta charset="utf-8" />
-   	 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   	 <title>Route 14</title>
-   	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-   	 <script type="text/javascript" src="../javascript/populatetables.js"></script>
-	 <script type="text/javascript" src="../javascript/buttons.js"></script>
-	 <link rel="stylesheet" href="../css/tables.css" />
-	 
-    </head>
-    
-    <body id="body">
-	<h4><a href="https://altissimo1.github.io/">Home</a></h4>
-	<h4><a href="index.html">Kanto Locations Home</a></h4>
-	
-	 <div id="topButtons" style="display:flex; flex-direction:row;padding-bottom:0.5em;">
-	 </div>
-	 <p id="notes">
-	 <h2>Route 14</h2>
-		<span><strong>Access to:</strong></span><br />
-		<span>West: <a href="route15.html">Route 15</a></span><br />
-		<span>East: <a href="route13.html">Route 13</a></span><br /><br />
-		<span><strong>Utility:</strong></span><br />
-		<span class="notes-span notes-rby">Cut is required to access the grass patch.<br /></span>
-		<span class="notes-span notes-rgby" style="display:none">Cut is required to access the grass patch.<br /></span>
-		<span class="notes-span notes-rby">Cut is required to access the upper path of Route 15.</span>
-		<span class="notes-span notes-rgby" style="display:none">Cut is required to access the upper path of Route 15.</span>
-	 
-	 </p>
-	 
-	 <div id="pokemon-container">
-		<div id="pokemon-buttons">
-		</div>
-			 
-		<div id="pokemon-tables">
-		</div>
-	 </div>
-	 
-	 
-	 <div id="items-container">
-	 </div>
-	 
-	 <div id="trainers-container">
-	 </div>
-	 
-	 <br /><br />
-	 
-    </body>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Route 14</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../javascript/buttons.js"></script>
+	  <link rel="stylesheet" href="../css/tables.css">
+   </head>
+   <body id="body">
+      <h4><a href="https://altissimo1.github.io/">Home</a></h4>
+      <h4><a href="index.html">Kanto Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rgby" type="radio" onclick="topButton.call(this)" name="games" value="RGBY">
+         <label for="rgby" style="padding-right:1em;">RGBY (Japanese)</label>
+         <input id="rby" type="radio" onclick="topButton.call(this)" name="games" value="RBY" checked="checked">
+         <label for="rby" style="padding-right:1em;">RBY (Western)</label>
+      </div>
+      <h2>Route 14</h2>
+      <div id="notes" style="margin-bottom:2em;">
+         <p id="rgby-notes" class="rgby" style="display:none;">
+            <strong>Access to:</strong><br>
+			West: <a href="route15.html">Route 15</a><br>
+			East: <a href="route13.html">Route 13</a><br><br>
+			<strong>Utility:</strong><br>
+			Cut is required to access the grass patch.<br>
+			Cut is required to access the upper path of Route 15.
+         </p>
+         <p id="rby-notes" class="rby">
+            <strong>Access to:</strong><br>
+			West: <a href="route15.html">Route 15</a><br>
+			East: <a href="route13.html">Route 13</a><br><br>
+			<strong>Utility:</strong><br>
+			Cut is required to access the grass patch.<br>
+			Cut is required to access the upper path of Route 15.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-rgby-buttons" class="button-set rgby" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <input id="pokemon-rgby-full-aka" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rgby-games" value="Red (Full)">
+                     <label for="pokemon-rgby-full-aka">Red (Full)</label>
+                     <br>
+                     <input id="pokemon-rgby-compressed-aka" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rgby-games" value="Red (Compressed)">
+                     <label for="pokemon-rgby-compressed-aka">Red (Compressed)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-rgby-full-midori" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rgby-games" value="Green (Full)">
+                     <label for="pokemon-rgby-full-midori">Green (Full)</label>
+                     <br>
+                     <input id="pokemon-rgby-compressed-midori" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rgby-games" value="Green (Compressed)">
+                     <label for="pokemon-rgby-compressed-midori">Green (Compressed)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-rgby-full-ao" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rgby-games" value="Green (Full)">
+                     <label for="pokemon-rgby-full-ao">Blue (Full)</label>
+                     <br>
+                     <input id="pokemon-rgby-compressed-ao" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rgby-games" value="Blue (Compressed)">
+                     <label for="pokemon-rgby-compressed-ao">Blue (Compressed)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-rgby-full-ki" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rgby-games" value="Yellow (Full)">
+                     <label for="pokemon-rgby-full-ki">Yellow (Full)</label>
+                     <br>
+                     <input id="pokemon-rgby-compressed-ki" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rgby-games" value="Yellow (Compressed)">
+                     <label for="pokemon-rgby-compressed-ki">Yellow (Compressed)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-rgby-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rgby-games" value="Combined (Full)">
+                     <label for="pokemon-rgby-full-combined">Combined (Full)</label>
+                     <br>
+                     <input id="pokemon-rgby-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rgby-games" value="Separate (Full)">
+                     <label for="pokemon-rgby-full-separate">Separate (Full)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-rgby-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rgby-games" value="Combined (Compressed)" checked="checked">
+                     <label for="pokemon-rgby-compressed-combined">Combined (Compressed)</label>
+                     <br>
+                     <input id="pokemon-rgby-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rgby-games" value="Separate (Compressed)">
+                     <label for="pokemon-rgby-compressed-separate">Separate (Compressed)</label>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-rby-buttons" class="button-set rby">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <input id="pokemon-rby-full-red" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rby-games" value="Red (Full)">
+                     <label for="pokemon-rby-full-red">Red (Full)</label>
+                     <br>
+                     <input id="pokemon-rby-compressed-red" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rby-games" value="Red (Compressed)">
+                     <label for="pokemon-rby-compressed-red">Red (Compressed)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-rby-full-blue" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rby-games" value="Blue (Full)">
+                     <label for="pokemon-rby-full-blue">Blue (Full)</label>
+                     <br>
+                     <input id="pokemon-rby-compressed-blue" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rby-games" value="Blue (Compressed)">
+                     <label for="pokemon-rby-compressed-blue">Blue (Compressed)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-rby-full-yellow" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rby-games" value="Yellow (Full)">
+                     <label for="pokemon-rby-full-yellow">Yellow (Full)</label>
+                     <br>
+                     <input id="pokemon-rby-compressed-yellow" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rby-games" value="Yellow (Compressed)">
+                     <label for="pokemon-rby-compressed-yellow">Yellow (Compressed)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-rby-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rby-games" value="Combined (Full)">
+                     <label for="pokemon-rby-full-combined">Combined (Full)</label>
+                     <br>
+                     <input id="pokemon-rby-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rby-games" value="Separate (Full)">
+                     <label for="pokemon-rby-full-separate">Separate (Full)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-rby-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rby-games" value="Combined (Compressed)" checked="checked">
+                     <label for="pokemon-rby-compressed-combined">Combined (Compressed)</label>
+                     <br>
+                     <input id="pokemon-rby-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rby-games" value="Separate (Compressed)">
+                     <label for="pokemon-rby-compressed-separate">Separate (Compressed)</label>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-rgby" class="game-container rgby" style="display:none;">
+               <h2>Pokémon</h2>
+               <div id="pokemon-rgby-walking" class="table-collection walking">
+                  <h3>Walking</h3>
+                  <div id="pokemon-rgby-full-aka-walking-table" class="pokemon-table full" style="display:none">
+                     <table>
+                        <caption>Red (Full)</caption>
+                        <tbody>
+                           <tr class="red-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>24</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td>Ditto</td>
+                              <td>23</td>
+                              <td>15%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>24</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>22</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>26</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>26</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td>Gloom</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>28</td>
+                              <td>4%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>30</td>
+                              <td>1%</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rgby-full-midori-walking-table" class="pokemon-table full" style="display:none">
+                     <table>
+                        <caption>Green (Full)</caption>
+                        <tbody>
+                           <tr class="green-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                           </tr>
+                           <tr class="green-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>24</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="green-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="green-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td>Ditto</td>
+                              <td>23</td>
+                              <td>15%</td>
+                           </tr>
+                           <tr class="green-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>24</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="green-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>22</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="green-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>26</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="green-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>26</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="green-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Weepinbell.png" alt="Weepinbell"></div>
+                              </td>
+                              <td>Weepinbell</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="green-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>28</td>
+                              <td>4%</td>
+                           </tr>
+                           <tr class="green-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>30</td>
+                              <td>1%</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rgby-full-ao-walking-table" class="pokemon-table full" style="display:none">
+                     <table>
+                        <caption>Blue (Full)</caption>
+                        <tbody>
+                           <tr class="blue-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>24</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td>Ditto</td>
+                              <td>23</td>
+                              <td>15%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>24</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>22</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>26</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>26</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td>Gloom</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>28</td>
+                              <td>4%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>30</td>
+                              <td>1%</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rgby-full-ki-walking-table" class="pokemon-table full" style="display:none">
+                     <table>
+                        <caption>Yellow (Full)</caption>
+                        <tbody>
+                           <tr class="yellow-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>24</td>
+                              <td>15%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>30</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>28</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>28</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td>Gloom</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Weepinbell.png" alt="Weepinbell"></div>
+                              </td>
+                              <td>Weepinbell</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>27</td>
+                              <td>4%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venomoth.png" alt="Venomoth"></div>
+                              </td>
+                              <td>Venomoth</td>
+                              <td>30</td>
+                              <td>1%</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rgby-full-combined-walking-table" class="pokemon-table full combined" style="display:none">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <tbody>
+                           <tr>
+                              <th>Rate</th>
+                              <th class="red-true" colspan="3">Red</th>
+                              <th class="green-true" colspan="3">Green</th>
+                              <th class="blue-true" colspan="3">Blue</th>
+                              <th class="yellow-true" colspan="3">Yellow</th>
+                           </tr>
+                           <tr>
+                              <td>20%</td>
+                              <td class="red-false">
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td class="red-false">Oddish</td>
+                              <td class="red-false">24</td>
+                              <td class="green-false">
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td class="green-false">Bellsprout</td>
+                              <td class="green-false">24</td>
+                              <td class="blue-false">
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td class="blue-false">Oddish</td>
+                              <td class="blue-false">24</td>
+                              <td class="yellow-false">
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td class="yellow-false">Oddish</td>
+                              <td class="yellow-false">26</td>
+                           </tr>
+                           <tr>
+                              <td>20%</td>
+                              <td class="red-true">
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td class="red-true">Pidgey</td>
+                              <td class="red-true">26</td>
+                              <td class="green-true">
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td class="green-true">Pidgey</td>
+                              <td class="green-true">26</td>
+                              <td class="blue-true">
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td class="blue-true">Pidgey</td>
+                              <td class="blue-true">26</td>
+                              <td class="yellow-true">
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td class="yellow-true">Bellsprout</td>
+                              <td class="yellow-true">26</td>
+                           </tr>
+                           <tr>
+                              <td>15%</td>
+                              <td class="red-false">
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td class="red-false">Ditto</td>
+                              <td class="red-false">23</td>
+                              <td class="green-false">
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td class="green-false">Ditto</td>
+                              <td class="green-false">23</td>
+                              <td class="blue-false">
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td class="blue-false">Ditto</td>
+                              <td class="blue-false">23</td>
+                              <td class="yellow-false">
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td class="yellow-false">Venonat</td>
+                              <td class="yellow-false">24</td>
+                           </tr>
+                           <tr>
+                              <td>10%</td>
+                              <td class="red-true">
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td class="red-true">Venonat</td>
+                              <td class="red-true">24</td>
+                              <td class="green-true">
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td class="green-true">Venonat</td>
+                              <td class="green-true">24</td>
+                              <td class="blue-true">
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td class="blue-true">Venonat</td>
+                              <td class="blue-true">24</td>
+                              <td class="yellow-true">
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="yellow-true">Pidgeotto</td>
+                              <td class="yellow-true">30</td>
+                           </tr>
+                           <tr>
+                              <td>10%</td>
+                              <td class="red-false">
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td class="red-false">Oddish</td>
+                              <td class="red-false">22</td>
+                              <td class="green-false">
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td class="green-false">Bellsprout</td>
+                              <td class="green-false">22</td>
+                              <td class="blue-false">
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td class="blue-false">Oddish</td>
+                              <td class="blue-false">22</td>
+                              <td class="yellow-false">
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td class="yellow-false">Oddish</td>
+                              <td class="yellow-false">28</td>
+                           </tr>
+                           <tr>
+                              <td>10%</td>
+                              <td class="red-true">
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td class="red-true">Venonat</td>
+                              <td class="red-true">26</td>
+                              <td class="green-true">
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td class="green-true">Venonat</td>
+                              <td class="green-true">26</td>
+                              <td class="blue-true">
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td class="blue-true">Venonat</td>
+                              <td class="blue-true">26</td>
+                              <td class="yellow-true">
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td class="yellow-true">Bellsprout</td>
+                              <td class="yellow-true">28</td>
+                           </tr>
+                           <tr>
+                              <td>5%</td>
+                              <td class="red-false">
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td class="red-false">Oddish</td>
+                              <td class="red-false">26</td>
+                              <td class="green-false">
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td class="green-false">Bellsprout</td>
+                              <td class="green-false">26</td>
+                              <td class="blue-false">
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td class="blue-false">Oddish</td>
+                              <td class="blue-false">26</td>
+                              <td class="yellow-false">
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td class="yellow-false">Gloom</td>
+                              <td class="yellow-false">30</td>
+                           </tr>
+                           <tr>
+                              <td>5%</td>
+                              <td class="red-true">
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td class="red-true">Gloom</td>
+                              <td class="red-true">30</td>
+                              <td class="green-true">
+                                 <div class="flex-img"><img src="../icons/Weepinbell.png" alt="Weepinbell"></div>
+                              </td>
+                              <td class="green-true">Weepinbell</td>
+                              <td class="green-true">30</td>
+                              <td class="blue-true">
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td class="blue-true">Gloom</td>
+                              <td class="blue-true">30</td>
+                              <td class="yellow-true">
+                                 <div class="flex-img"><img src="../icons/Weepinbell.png" alt="Weepinbell"></div>
+                              </td>
+                              <td class="yellow-true">Weepinbell</td>
+                              <td class="yellow-true">30</td>
+                           </tr>
+                           <tr>
+                              <td>4%</td>
+                              <td class="red-false">
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="red-false">Pidgeotto</td>
+                              <td class="red-false">28</td>
+                              <td class="green-false">
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="green-false">Pidgeotto</td>
+                              <td class="green-false">28</td>
+                              <td class="blue-false">
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="blue-false">Pidgeotto</td>
+                              <td class="blue-false">28</td>
+                              <td class="yellow-false">
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td class="yellow-false">Venonat</td>
+                              <td class="yellow-false">27</td>
+                           </tr>
+                           <tr>
+                              <td>1%</td>
+                              <td class="red-true">
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="red-true">Pidgeotto</td>
+                              <td class="red-true">30</td>
+                              <td class="green-true">
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="green-true">Pidgeotto</td>
+                              <td class="green-true">30</td>
+                              <td class="blue-true">
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="blue-true">Pidgeotto</td>
+                              <td class="blue-true">30</td>
+                              <td class="yellow-true">
+                                 <div class="flex-img"><img src="../icons/Venomoth.png" alt="Venomoth"></div>
+                              </td>
+                              <td class="yellow-true">Venomoth</td>
+                              <td class="yellow-true">30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rgby-compressed-aka-walking-table" class="pokemon-table compressed" style="display:none">
+                     <table>
+                        <caption>Red (Compressed)</caption>
+                        <tbody>
+                           <tr class="red-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>22, 24, 26</td>
+                              <td>35%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td>Ditto</td>
+                              <td>23</td>
+                              <td>15%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>24, 26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td>Gloom</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>28, 30</td>
+                              <td>5%</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rgby-compressed-midori-walking-table" class="pokemon-table compressed" style="display:none">
+                     <table>
+                        <caption>Green (Compressed)</caption>
+                        <tbody>
+                           <tr class="green-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                           </tr>
+                           <tr class="green-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>22, 24, 26</td>
+                              <td>35%</td>
+                           </tr>
+                           <tr class="green-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="green-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td>Ditto</td>
+                              <td>23</td>
+                              <td>15%</td>
+                           </tr>
+                           <tr class="green-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>24, 26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="green-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Weepinbell.png" alt="Weepinbell"></div>
+                              </td>
+                              <td>Weepinbell</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="green-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>28, 30</td>
+                              <td>5%</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rgby-compressed-ao-walking-table" class="pokemon-table compressed" style="display:none">
+                     <table>
+                        <caption>Blue (Compressed)</caption>
+                        <tbody>
+                           <tr class="blue-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>22, 24, 26</td>
+                              <td>35%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td>Ditto</td>
+                              <td>23</td>
+                              <td>15%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>24, 26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td>Gloom</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>28, 30</td>
+                              <td>5%</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rgby-compressed-ki-walking-table" class="pokemon-table compressed" style="display:none">
+                     <table>
+                        <caption>Yellow (Compressed)</caption>
+                        <tbody>
+                           <tr class="yellow-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>26, 28</td>
+                              <td>30%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>26, 28</td>
+                              <td>30%</td>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>24, 27</td>
+                              <td>19%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>30</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td>Gloom</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Weepinbell.png" alt="Weepinbell"></div>
+                              </td>
+                              <td>Weepinbell</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venomoth.png" alt="Venomoth"></div>
+                              </td>
+                              <td>Venomoth</td>
+                              <td>30</td>
+                              <td>1%</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rgby-compressed-combined-walking-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <tbody>
+                           <tr>
+                              <th colspan="2">Pokémon</th>
+                              <th class="red-true">Red</th>
+                              <th class="green-true">Green</th>
+                              <th class="blue-true">Blue</th>
+                              <th class="yellow-true">Yellow</th>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td class="red-false">35%<br>
+                                 22, 24, 26
+                              </td>
+                              <td>N/A</td>
+                              <td class="blue-false">35%<br>
+                                 22, 24, 26
+                              </td>
+                              <td class="yellow-false">30%<br>
+                                 26, 28
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td class="red-true">20%<br>
+                                 26
+                              </td>
+                              <td class="green-true">20%<br>
+                                 26
+                              </td>
+                              <td class="blue-true">20%<br>
+                                 26
+                              </td>
+                              <td>N/A</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td>Ditto</td>
+                              <td class="red-false">15%<br>
+                                 23
+                              </td>
+                              <td class="green-false">15%<br>
+                                 23
+                              </td>
+                              <td class="blue-false">15%<br>
+                                 23
+                              </td>
+                              <td>N/A</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td class="red-true">20%<br>
+                                 24, 26
+                              </td>
+                              <td class="green-true">20%<br>
+                                 24, 26
+                              </td>
+                              <td class="blue-true">20%<br>
+                                 24, 26
+                              </td>
+                              <td class="yellow-true">19%<br>
+                                 24, 27
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td>Gloom</td>
+                              <td class="red-false">5%<br>
+                                 30
+                              </td>
+                              <td>N/A</td>
+                              <td class="blue-false">5%<br>
+                                 30
+                              </td>
+                              <td class="yellow-false">5%<br>
+                                 30
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td class="red-true">5%<br>
+                                 28, 30
+                              </td>
+                              <td class="green-true">5%<br>
+                                 28, 30
+                              </td>
+                              <td class="blue-true">5%<br>
+                                 28, 30
+                              </td>
+                              <td class="yellow-true">10%<br>
+                                 30
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>N/A</td>
+                              <td class="green-false">35%<br>
+                                 22, 24, 26
+                              </td>
+                              <td>N/A</td>
+                              <td class="yellow-false">30%<br>
+                                 26, 28
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Weepinbell.png" alt="Weepinbell"></div>
+                              </td>
+                              <td>Weepinbell</td>
+                              <td>N/A</td>
+                              <td class="green-true">5%<br>
+                                 30
+                              </td>
+                              <td>N/A</td>
+                              <td class="yellow-true">5%<br>
+                                 30
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venomoth.png" alt="Venomoth"></div>
+                              </td>
+                              <td>Venomoth</td>
+                              <td>N/A</td>
+                              <td>N/A</td>
+                              <td>N/A</td>
+                              <td class="yellow-false">1%<br>
+                                 30
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-rby" class="game-container rby">
+               <h2>Pokémon</h2>
+               <div id="pokemon-rby-walking" class="table-collection walking">
+                  <h3>Walking</h3>
+                  <div id="pokemon-rby-full-red-walking-table" class="pokemon-table full" style="display:none">
+                     <table>
+                        <caption>Red (Full)</caption>
+                        <tbody>
+                           <tr class="red-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>24</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td>Ditto</td>
+                              <td>23</td>
+                              <td>15%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>24</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>22</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>26</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>26</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td>Gloom</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>28</td>
+                              <td>4%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>30</td>
+                              <td>1%</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rby-full-blue-walking-table" class="pokemon-table full" style="display:none">
+                     <table>
+                        <caption>Blue (Full)</caption>
+                        <tbody>
+                           <tr class="blue-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>24</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td>Ditto</td>
+                              <td>23</td>
+                              <td>15%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>24</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>22</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>26</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>26</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Weepinbell.png" alt="Weepinbell"></div>
+                              </td>
+                              <td>Weepinbell</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>28</td>
+                              <td>4%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>30</td>
+                              <td>1%</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rby-full-yellow-walking-table" class="pokemon-table full" style="display:none">
+                     <table>
+                        <caption>Yellow (Full)</caption>
+                        <tbody>
+                           <tr class="yellow-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>24</td>
+                              <td>15%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>30</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>28</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>28</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td>Gloom</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Weepinbell.png" alt="Weepinbell"></div>
+                              </td>
+                              <td>Weepinbell</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>27</td>
+                              <td>4%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venomoth.png" alt="Venomoth"></div>
+                              </td>
+                              <td>Venomoth</td>
+                              <td>30</td>
+                              <td>1%</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rby-full-combined-walking-table" class="pokemon-table full combined" style="display:none">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <tbody>
+                           <tr>
+                              <th>Rate</th>
+                              <th class="red-true" colspan="3">Red</th>
+                              <th class="blue-true" colspan="3">Blue</th>
+                              <th class="yellow-true" colspan="3">Yellow</th>
+                           </tr>
+                           <tr>
+                              <td>20%</td>
+                              <td class="red-false">
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td class="red-false">Oddish</td>
+                              <td class="red-false">24</td>
+                              <td class="blue-false">
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td class="blue-false">Bellsprout</td>
+                              <td class="blue-false">24</td>
+                              <td class="yellow-false">
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td class="yellow-false">Oddish</td>
+                              <td class="yellow-false">26</td>
+                           </tr>
+                           <tr>
+                              <td>20%</td>
+                              <td class="red-true">
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td class="red-true">Pidgey</td>
+                              <td class="red-true">26</td>
+                              <td class="blue-true">
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td class="blue-true">Pidgey</td>
+                              <td class="blue-true">26</td>
+                              <td class="yellow-true">
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td class="yellow-true">Bellsprout</td>
+                              <td class="yellow-true">26</td>
+                           </tr>
+                           <tr>
+                              <td>15%</td>
+                              <td class="red-false">
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td class="red-false">Ditto</td>
+                              <td class="red-false">23</td>
+                              <td class="blue-false">
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td class="blue-false">Ditto</td>
+                              <td class="blue-false">23</td>
+                              <td class="yellow-false">
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td class="yellow-false">Venonat</td>
+                              <td class="yellow-false">24</td>
+                           </tr>
+                           <tr>
+                              <td>10%</td>
+                              <td class="red-true">
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td class="red-true">Venonat</td>
+                              <td class="red-true">24</td>
+                              <td class="blue-true">
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td class="blue-true">Venonat</td>
+                              <td class="blue-true">24</td>
+                              <td class="yellow-true">
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="yellow-true">Pidgeotto</td>
+                              <td class="yellow-true">30</td>
+                           </tr>
+                           <tr>
+                              <td>10%</td>
+                              <td class="red-false">
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td class="red-false">Oddish</td>
+                              <td class="red-false">22</td>
+                              <td class="blue-false">
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td class="blue-false">Bellsprout</td>
+                              <td class="blue-false">22</td>
+                              <td class="yellow-false">
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td class="yellow-false">Oddish</td>
+                              <td class="yellow-false">28</td>
+                           </tr>
+                           <tr>
+                              <td>10%</td>
+                              <td class="red-true">
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td class="red-true">Venonat</td>
+                              <td class="red-true">26</td>
+                              <td class="blue-true">
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td class="blue-true">Venonat</td>
+                              <td class="blue-true">26</td>
+                              <td class="yellow-true">
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td class="yellow-true">Bellsprout</td>
+                              <td class="yellow-true">28</td>
+                           </tr>
+                           <tr>
+                              <td>5%</td>
+                              <td class="red-false">
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td class="red-false">Oddish</td>
+                              <td class="red-false">26</td>
+                              <td class="blue-false">
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td class="blue-false">Bellsprout</td>
+                              <td class="blue-false">26</td>
+                              <td class="yellow-false">
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td class="yellow-false">Gloom</td>
+                              <td class="yellow-false">30</td>
+                           </tr>
+                           <tr>
+                              <td>5%</td>
+                              <td class="red-true">
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td class="red-true">Gloom</td>
+                              <td class="red-true">30</td>
+                              <td class="blue-true">
+                                 <div class="flex-img"><img src="../icons/Weepinbell.png" alt="Weepinbell"></div>
+                              </td>
+                              <td class="blue-true">Weepinbell</td>
+                              <td class="blue-true">30</td>
+                              <td class="yellow-true">
+                                 <div class="flex-img"><img src="../icons/Weepinbell.png" alt="Weepinbell"></div>
+                              </td>
+                              <td class="yellow-true">Weepinbell</td>
+                              <td class="yellow-true">30</td>
+                           </tr>
+                           <tr>
+                              <td>4%</td>
+                              <td class="red-false">
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="red-false">Pidgeotto</td>
+                              <td class="red-false">28</td>
+                              <td class="blue-false">
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="blue-false">Pidgeotto</td>
+                              <td class="blue-false">28</td>
+                              <td class="yellow-false">
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td class="yellow-false">Venonat</td>
+                              <td class="yellow-false">27</td>
+                           </tr>
+                           <tr>
+                              <td>1%</td>
+                              <td class="red-true">
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="red-true">Pidgeotto</td>
+                              <td class="red-true">30</td>
+                              <td class="blue-true">
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="blue-true">Pidgeotto</td>
+                              <td class="blue-true">30</td>
+                              <td class="yellow-true">
+                                 <div class="flex-img"><img src="../icons/Venomoth.png" alt="Venomoth"></div>
+                              </td>
+                              <td class="yellow-true">Venomoth</td>
+                              <td class="yellow-true">30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rby-compressed-red-walking-table" class="pokemon-table compressed" style="display:none">
+                     <table>
+                        <caption>Red (Compressed)</caption>
+                        <tbody>
+                           <tr class="red-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>22, 24, 26</td>
+                              <td>35%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td>Ditto</td>
+                              <td>23</td>
+                              <td>15%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>24, 26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="red-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td>Gloom</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="red-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>28, 30</td>
+                              <td>5%</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rby-compressed-blue-walking-table" class="pokemon-table compressed" style="display:none">
+                     <table>
+                        <caption>Blue (Compressed)</caption>
+                        <tbody>
+                           <tr class="blue-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>22, 24, 26</td>
+                              <td>35%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td>Ditto</td>
+                              <td>23</td>
+                              <td>15%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>24, 26</td>
+                              <td>20%</td>
+                           </tr>
+                           <tr class="blue-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Weepinbell.png" alt="Weepinbell"></div>
+                              </td>
+                              <td>Weepinbell</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="blue-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>28, 30</td>
+                              <td>5%</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rby-compressed-yellow-walking-table" class="pokemon-table compressed" style="display:none">
+                     <table>
+                        <caption>Yellow (Compressed)</caption>
+                        <tbody>
+                           <tr class="yellow-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td>26, 28</td>
+                              <td>30%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>26, 28</td>
+                              <td>30%</td>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td>24, 27</td>
+                              <td>19%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>30</td>
+                              <td>10%</td>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td>Gloom</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="yellow-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Weepinbell.png" alt="Weepinbell"></div>
+                              </td>
+                              <td>Weepinbell</td>
+                              <td>30</td>
+                              <td>5%</td>
+                           </tr>
+                           <tr class="yellow-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venomoth.png" alt="Venomoth"></div>
+                              </td>
+                              <td>Venomoth</td>
+                              <td>30</td>
+                              <td>1%</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-rby-compressed-combined-walking-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <tbody>
+                           <tr>
+                              <th colspan="2">Pokémon</th>
+                              <th class="red-true">Red</th>
+                              <th class="blue-true">Blue</th>
+                              <th class="yellow-true">Yellow</th>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Oddish.png" alt="Oddish"></div>
+                              </td>
+                              <td>Oddish</td>
+                              <td class="red-false">35%<br>
+                                 22, 24, 26
+                              </td>
+                              <td>N/A</td>
+                              <td class="yellow-false">30%<br>
+                                 26, 28
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td class="red-true">20%<br>
+                                 26
+                              </td>
+                              <td class="blue-true">20%<br>
+                                 26
+                              </td>
+                              <td>N/A</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Ditto.png" alt="Ditto"></div>
+                              </td>
+                              <td>Ditto</td>
+                              <td class="red-false">15%<br>
+                                 23
+                              </td>
+                              <td class="blue-false">15%<br>
+                                 23
+                              </td>
+                              <td>N/A</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venonat.png" alt="Venonat"></div>
+                              </td>
+                              <td>Venonat</td>
+                              <td class="red-true">20%<br>
+                                 24, 26
+                              </td>
+                              <td class="blue-true">20%<br>
+                                 24, 26
+                              </td>
+                              <td class="yellow-true">19%<br>
+                                 24, 27
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gloom-F.png" alt="Gloom"></div>
+                              </td>
+                              <td>Gloom</td>
+                              <td class="red-false">5%<br>
+                                 30
+                              </td>
+                              <td>N/A</td>
+                              <td class="yellow-false">5%<br>
+                                 30
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td class="red-true">5%<br>
+                                 28, 30
+                              </td>
+                              <td class="blue-true">5%<br>
+                                 28, 30
+                              </td>
+                              <td class="yellow-true">10%<br>
+                                 30
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Bellsprout.png" alt="Bellsprout"></div>
+                              </td>
+                              <td>Bellsprout</td>
+                              <td>N/A</td>
+                              <td class="blue-false">35%<br>
+                                 22, 24, 26
+                              </td>
+                              <td class="yellow-false">30%<br>
+                                 26, 28
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Weepinbell.png" alt="Weepinbell"></div>
+                              </td>
+                              <td>Weepinbell</td>
+                              <td>N/A</td>
+                              <td class="blue-true">5%<br>
+                                 30
+                              </td>
+                              <td class="yellow-true">5%<br>
+                                 30
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Venomoth.png" alt="Venomoth"></div>
+                              </td>
+                              <td>Venomoth</td>
+                              <td>N/A</td>
+                              <td>N/A</td>
+                              <td class="yellow-false">1%<br>
+                                 30
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-rgby-trainers" class="game-container rgby" style="display:none;">
+            <h2>Trainers</h2>
+            <table>
+               <caption>RGBY Trainers</caption>
+               <tbody>
+                  <tr>
+                     <th>Trainer</th>
+                     <th colspan="4">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+                  <tr>
+                     <td>Bird Keeper</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Pidgey lv.26<br>Spearow lv.26<br>Pidgey lv.26<br>Fearow lv.26</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Bird Keeper</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Pidgey lv.28<br>Doduo lv.28<br>Pidgeotto lv.28</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Bird Keeper</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Pidgeotto lv.29<br>Fearow lv.29</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Bird Keeper</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Spearow lv.28<br>Doduo lv.28<br>Fearow lv.28</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Biker</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Koffing lv.29<br>Muk lv.29</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Bird Keeper</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Farfetch'd lv.33</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Biker</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Koffing lv.29<br>Grimer lv.29</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Biker</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Grimer lv.28<br>Grimer lv.28<br>Koffing lv.28</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Biker</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Koffing lv.26<br>Koffing lv.26<br>Grimer lv.26<br>Koffing lv.26</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Bird Keeper</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Spearow lv.29<br>Fearow lv.29</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-rby-trainers" class="game-container rby">
+            <h2>Trainers</h2>
+            <table>
+               <caption>RBY Trainers</caption>
+               <tbody>
+                  <tr>
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+                  <tr>
+                     <td>Bird Keeper</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Pidgey lv.26<br>Spearow lv.26<br>Pidgey lv.26<br>Fearow lv.26</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Bird Keeper</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Pidgey lv.28<br>Doduo lv.28<br>Pidgeotto lv.28</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Bird Keeper</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Pidgeotto lv.29<br>Fearow lv.29</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Bird Keeper</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Spearow lv.28<br>Doduo lv.28<br>Fearow lv.28</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Biker</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Koffing lv.29<br>Muk lv.29</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Bird Keeper</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Farfetch'd lv.33</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Biker</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Koffing lv.29<br>Grimer lv.29</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Biker</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Grimer lv.28<br>Grimer lv.28<br>Koffing lv.28</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Biker</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Koffing lv.26<br>Koffing lv.26<br>Grimer lv.26<br>Koffing lv.26</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Bird Keeper</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Spearow lv.29<br>Fearow lv.29</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <br><br>
+   </body>
 </html>
