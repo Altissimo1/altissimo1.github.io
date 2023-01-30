@@ -1,44 +1,586 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-   	 <meta charset="utf-8" />
-   	 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   	 <title>S.S. Anne</title>
-   	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-   	 <script type="text/javascript" src="../javascript/populatetables.js"></script>
-	 <script type="text/javascript" src="../javascript/buttons.js"></script>
-	 <link rel="stylesheet" href="../css/tables.css" />
-	 
-    </head>
-    
-    <body id="body">
-	<h4><a href="https://altissimo1.github.io/">Home</a></h4>
-	<h4><a href="index.html">Kanto Locations Home</a></h4>
-	
-	 <div id="topButtons" style="display:flex; flex-direction:row;padding-bottom:0.5em;">
-	 </div>
-	 <p id="notes">
-	 <h2>S.S. Anne</h2>
-		<span><strong>Access to:</strong></span><br />
-		<span>North: <a href="vermilioncity.html">Vermilion City</a></span><br />
-	 </p>
-	 
-	 <div id="pokemon-container">
-		<div id="pokemon-buttons">
-		</div>
-			 
-		<div id="pokemon-tables">
-		</div>
-	 </div>
-	 
-	 
-	 <div id="items-container">
-	 </div>
-	 
-	 <div id="trainers-container">
-	 </div>
-	 
-	 <br /><br />
-	 
-    </body>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>S.S. Anne</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../javascript/buttons.js"></script>
+	  <link rel="stylesheet" href="../css/tables.css">
+   </head>
+   <body id="body">
+      <h4><a href="https://altissimo1.github.io/">Home</a></h4>
+      <h4><a href="index.html">Kanto Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rgby" type="radio" onclick="topButton.call(this)" name="games" value="RGBY">
+         <label for="rgby" style="padding-right:1em;">RGBY (Japanese)</label>
+         <input id="rby" type="radio" onclick="topButton.call(this)" name="games" value="RBY" checked="checked">
+         <label for="rby" style="padding-right:1em;">RBY (Western)</label>
+      </div>
+      <h2>S.S. Anne</h2>
+      <div id="notes" style="margin-bottom:2em;">
+         <p id="rgby-notes" class="rgby" style="display:none;">
+            <strong>Access to:</strong><br>
+			North exit: <a href="vermilioncity.html">Vermilion City</a>
+         </p>
+         <p id="rby-notes" class="rby">
+            <strong>Access to:</strong><br>
+			North exit: <a href="vermilioncity.html">Vermilion City</a>
+         </p>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-rgby-items" class="game-container rgby" style="display:none;">
+            <h2>Items</h2>
+            <table>
+               <caption>RGBY Items</caption>
+               <tbody>
+                  <tr>
+                     <th>Item</th>
+                     <th colspan="4">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+                  <tr>
+                     <td>Ether</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>B1F, third room from right</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>TM44 Rest</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>B1F, fourth room from right</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>HM01 Cut</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>2F, received from Captain</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Hyper Potion</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>B1F, fifth room from right</td>
+                     <td>Hidden. In Japanese Red and Green, it is on the wall two tiles below the Fisherman. In other releases, it is on the bed's pillow.</td>
+                  </tr>
+                  <tr>
+                     <td>Max Potion</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>B1F, first room from right</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>TM08 Body Slam</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>1F, second room from left</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Great Ball</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Kitchen, in the southernmost trash can on the right</td>
+                     <td>Hidden</td>
+                  </tr>
+                  <tr>
+                     <td>Max Ether</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>2F, second room from left</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Rare Candy</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>2F, fourth room from left</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-rby-items" class="game-container rby">
+            <h2>Items</h2>
+            <table>
+               <caption>RBY Items</caption>
+               <tbody>
+                  <tr>
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+                  <tr>
+                     <td>Ether</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>B1F, third room from right</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>TM44 Rest</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>B1F, fourth room from right</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>HM01 Cut</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>2F, received from Captain</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Hyper Potion</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>B1F, fifth room from right, on the bed's pillow</td>
+                     <td>Hidden</td>
+                  </tr>
+                  <tr>
+                     <td>Max Potion</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>B1F, first room from right</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>TM08 Body Slam</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>1F, second room from left</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Great Ball</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Kitchen, in the southernmost trash can on the right</td>
+                     <td>Hidden</td>
+                  </tr>
+                  <tr>
+                     <td>Max Ether</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>2F, second room from left</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Rare Candy</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>2F, fourth room from left</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-rgby-trainers" class="game-container rgby" style="display:none;">
+            <h2>Trainers</h2>
+            <table>
+               <caption>RGBY Trainers</caption>
+               <tbody>
+                  <tr>
+                     <th>Trainer</th>
+                     <th colspan="4">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+                  <tr>
+                     <td>Sailor</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Machop lv.17<br>Tentacool lv.17</td>
+                     <td>On the ship's deck</td>
+                  </tr>
+                  <tr>
+                     <td>Sailor</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Machop lv.18<br>Shellder lv.18</td>
+                     <td>On the ship's deck</td>
+                  </tr>
+                  <tr>
+                     <td>Sailor</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Shellder lv.21</td>
+                     <td>On B1F</td>
+                  </tr>
+                  <tr>
+                     <td>Sailor</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Horsea lv.17<br>Shellder lv.17<br>Tentacool lv.17</td>
+                     <td>On B1F</td>
+                  </tr>
+                  <tr>
+                     <td>Sailor</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Horsea lv.17<br>Horsea lv.17<br>Horsea lv.17</td>
+                     <td>On B1F</td>
+                  </tr>
+                  <tr>
+                     <td>Sailor</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Tentacool lv.18<br>Staryu lv.18</td>
+                     <td>On B1F</td>
+                  </tr>
+                  <tr>
+                     <td>Fisherman</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Tentacool lv.17<br>Staryu lv.17<br>Shellder lv.17</td>
+                     <td>On B1F</td>
+                  </tr>
+                  <tr>
+                     <td>Sailor</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Machop lv.20</td>
+                     <td>On B1F</td>
+                  </tr>
+                  <tr>
+                     <td>Gentleman</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Growlithe lv.18<br>Growlithe lv.18</td>
+                     <td>On 1F</td>
+                  </tr>
+                  <tr>
+                     <td>Gentleman</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Nidoran-M lv.19<br>Nidoran-F lv.19</td>
+                     <td>On 1F</td>
+                  </tr>
+                  <tr>
+                     <td>Lass</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Pidgey lv.18<br>Nidoran-F lv.18</td>
+                     <td>On 1F</td>
+                  </tr>
+                  <tr>
+                     <td>Youngster</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Nidoran-M lv.21</td>
+                     <td>On 1F</td>
+                  </tr>
+                  <tr>
+                     <td>Fisherman</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Goldeen lv.17<br>Tentacool lv.17<br>Goldeen lv.17</td>
+                     <td>On 2F</td>
+                  </tr>
+                  <tr>
+                     <td>Gentleman</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td>Y</td>
+                     <td>Pikachu lv.23</td>
+                     <td>On 2F</td>
+                  </tr>
+                  <tr>
+                     <td>Gentleman</td>
+                     <td>R</td>
+                     <td>G</td>
+                     <td>B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Voltorb lv.22<br>Magnemite lv.22</td>
+                     <td>On 2F</td>
+                  </tr>
+                  <tr>
+                     <td>Gentleman</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Growlithe lv.17<br>Ponyta lv.17</td>
+                     <td>On 2F</td>
+                  </tr>
+                  <tr>
+                     <td>Lass</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td>Y</td>
+                     <td>Rattata lv.18<br>Pikachu lv.18</td>
+                     <td>On 2F</td>
+                  </tr>
+                  <tr>
+                     <td>Lass</td>
+                     <td>R</td>
+                     <td>G</td>
+                     <td>B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Jigglypuff lv.20</td>
+                     <td>On 2F</td>
+                  </tr>
+                  <tr>
+                     <td>Rival</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td>Y</td>
+                     <td>Pidgeotto lv.19<br>Raticate lv.16<br>Kadabra lv.18<br>Starter (2nd stage) lv.20</td>
+                     <td>Challenges you as you approach the Captain's room. Uses Potions</td>
+                  </tr>
+                  <tr>
+                     <td>Rival</td>
+                     <td>R</td>
+                     <td>G</td>
+                     <td>B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Spearow lv.19<br>Rattata lv.16<br>Sandshrew lv.18<br>Eevee lv.20</td>
+                     <td>Challenges you as you approach the Captain's room. Uses Potions</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-rby-trainers" class="game-container rby">
+            <h2>Trainers</h2>
+            <table>
+               <caption>RBY Trainers</caption>
+               <tbody>
+                  <tr>
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+                  <tr>
+                     <td>Sailor</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Machop lv.17<br>Tentacool lv.17</td>
+                     <td>On the ship's deck</td>
+                  </tr>
+                  <tr>
+                     <td>Sailor</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Machop lv.18<br>Shellder lv.18</td>
+                     <td>On the ship's deck</td>
+                  </tr>
+                  <tr>
+                     <td>Sailor</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Shellder lv.21</td>
+                     <td>On B1F</td>
+                  </tr>
+                  <tr>
+                     <td>Sailor</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Horsea lv.17<br>Shellder lv.17<br>Tentacool lv.17</td>
+                     <td>On B1F</td>
+                  </tr>
+                  <tr>
+                     <td>Sailor</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Horsea lv.17<br>Horsea lv.17<br>Horsea lv.17</td>
+                     <td>On B1F</td>
+                  </tr>
+                  <tr>
+                     <td>Sailor</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Tentacool lv.18<br>Staryu lv.18</td>
+                     <td>On B1F</td>
+                  </tr>
+                  <tr>
+                     <td>Fisherman</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Tentacool lv.17<br>Staryu lv.17<br>Shellder lv.17</td>
+                     <td>On B1F</td>
+                  </tr>
+                  <tr>
+                     <td>Sailor</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Machop lv.20</td>
+                     <td>On B1F</td>
+                  </tr>
+                  <tr>
+                     <td>Gentleman</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Growlithe lv.18<br>Growlithe lv.18</td>
+                     <td>On 1F</td>
+                  </tr>
+                  <tr>
+                     <td>Gentleman</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Nidoran-M lv.19<br>Nidoran-F lv.19</td>
+                     <td>On 1F</td>
+                  </tr>
+                  <tr>
+                     <td>Lass</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Pidgey lv.18<br>Nidoran-F lv.18</td>
+                     <td>On 1F</td>
+                  </tr>
+                  <tr>
+                     <td>Youngster</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Nidoran-M lv.21</td>
+                     <td>On 1F</td>
+                  </tr>
+                  <tr>
+                     <td>Fisherman</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Goldeen lv.17<br>Tentacool lv.17<br>Goldeen lv.17</td>
+                     <td>On 2F</td>
+                  </tr>
+                  <tr>
+                     <td>Gentleman</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td>Y</td>
+                     <td>Pikachu lv.23</td>
+                     <td>On 2F</td>
+                  </tr>
+                  <tr>
+                     <td>Gentleman</td>
+                     <td>R</td>
+                     <td>B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Voltorb lv.22<br>Magnemite lv.22</td>
+                     <td>On 2F</td>
+                  </tr>
+                  <tr>
+                     <td>Gentleman</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Growlithe lv.17<br>Ponyta lv.17</td>
+                     <td>On 2F</td>
+                  </tr>
+                  <tr>
+                     <td>Lass</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td>Y</td>
+                     <td>Rattata lv.18<br>Pikachu lv.18</td>
+                     <td>On 2F</td>
+                  </tr>
+                  <tr>
+                     <td>Lass</td>
+                     <td>R</td>
+                     <td>B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Jigglypuff lv.20</td>
+                     <td>On 2F</td>
+                  </tr>
+                  <tr>
+                     <td>Rival</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td>Y</td>
+                     <td>Pidgeotto lv.19<br>Raticate lv.16<br>Kadabra lv.18<br>Starter (2nd stage) lv.20</td>
+                     <td>Challenges you as you approach the Captain's room. Uses Potions</td>
+                  </tr>
+                  <tr>
+                     <td>Rival</td>
+                     <td>R</td>
+                     <td>B</td>
+                     <td class="yellow-false">Y</td>
+                     <td>Spearow lv.19<br>Rattata lv.16<br>Sandshrew lv.18<br>Eevee lv.20</td>
+                     <td>Challenges you as you approach the Captain's room. Uses Potions</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <br><br>
+   </body>
 </html>
