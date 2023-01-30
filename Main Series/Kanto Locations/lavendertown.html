@@ -1,52 +1,92 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-   	 <meta charset="utf-8" />
-   	 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   	 <title>Lavender Town</title>
-   	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-   	 <script type="text/javascript" src="../javascript/populatetables.js"></script>
-	 <script type="text/javascript" src="../javascript/buttons.js"></script>
-	 <link rel="stylesheet" href="../css/tables.css" />
-	 
-    </head>
-    
-    <body id="body">
-	<h4><a href="https://altissimo1.github.io/">Home</a></h4>
-	<h4><a href="index.html">Kanto Locations Home</a></h4>
-	
-	 <div id="topButtons" style="display:flex; flex-direction:row;padding-bottom:0.5em;">
-	 </div>
-	 <p id="notes">
-	 <h2>Lavender Town</h2>
-		<span><strong>Access to:</strong></span><br />
-		<span>North: <a href="route10.html">Route 10</a></span><br />
-		<span>West: <a href="route8.html">Route 8</a></span><br />
-		<span>South: <a href="route12.html">Route 12</a></span><br />
-		<span>Accessible in the town: <a href="pokemontower.html">Pokémon Tower</a></span><br /><br />
-		<span><strong>Places of interest:</strong></span><br />
-		<span class="notes-span notes-rby">Poké Mart: Sells Great Balls, Super Potions, Revives, Escape Ropes, Super Repels, Antidotes, Burn Heals, Ice Heals, and Parlyz Heals.<br /></span>
-		<span class="notes-span notes-rgby" style="display:none">Poké Mart: Sells Great Balls, Super Potions, Revives, Escape Ropes, Super Repels, Antidotes, Burn Heals, Ice Heals, and Parlyz Heals.<br /></span>
-		<span class="notes-span notes-rby">Name Rater<br /><br /></span>
-		<span class="notes-span notes-rgby" style="display:none">Name Rater<br /><br /></span>
-	 </p>
-	 
-	 <div id="pokemon-container">
-		<div id="pokemon-buttons">
-		</div>
-			 
-		<div id="pokemon-tables">
-		</div>
-	 </div>
-	 
-	 
-	 <div id="items-container">
-	 </div>
-	 
-	 <div id="trainers-container">
-	 </div>
-	 
-	 <br /><br />
-	 
-    </body>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Lavender Town</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="buttons.js"></script>
+      <link rel="stylesheet" href="../testlocations.css">
+   </head>
+   <body id="body">
+      <h4><a href="https://altissimo1.github.io/">Home</a></h4>
+      <h4><a href="index.html">Kanto Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rgby" type="radio" onclick="topButton.call(this)" name="games" value="RGBY">
+         <label for="rgby" style="padding-right:1em;">RGBY (Japanese)</label>
+         <input id="rby" type="radio" onclick="topButton.call(this)" name="games" value="RBY" checked="checked">
+         <label for="rby" style="padding-right:1em;">RBY (Western)</label>
+      </div>
+      <h2>Lavender Town</h2>
+      <div id="notes" style="margin-bottom:2em;">
+         <p id="rgby-notes" class="rgby" style="display:none;">
+            <strong>Access to:</strong><br>
+			North: <a href="route10.html">Route 10</a><br>
+			West: <a href="route8.html">Route 8</a><br>
+			South: <a href="route12.html">Route 12</a><br>
+			Accessible in the town: <a href="pokemontower.html">Pokémon Tower</a><br><br>
+			<strong>Places of interest:</strong><br>
+			Poké Mart: Sells Great Balls, Super Potions, Revives, Escape Ropes, Super Repels, Antidotes, Burn Heals, Ice Heals, and Parlyz Heals.<br>
+			Name Rater
+         </p>
+         <p id="rby-notes" class="rby">
+            <strong>Access to:</strong><br>
+			North: <a href="route10.html">Route 10</a><br>
+			West: <a href="route8.html">Route 8</a><br>
+			South: <a href="route12.html">Route 12</a><br>
+			Accessible in the town: <a href="pokemontower.html">Pokémon Tower</a><br><br>
+			<strong>Places of interest:</strong><br>
+			Poké Mart: Sells Great Balls, Super Potions, Revives, Escape Ropes, Super Repels, Antidotes, Burn Heals, Ice Heals, and Parlyz Heals.<br>
+			Name Rater
+         </p>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-rgby-items" class="game-container rgby" style="display:none;">
+            <h2>Items</h2>
+            <table>
+               <caption>RGBY Items</caption>
+               <tbody>
+                  <tr>
+                     <th>Item</th>
+                     <th colspan="4">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+                  <tr>
+                     <td>Poké Flute</td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Received from Mr. Fuji after completing Pokémon Tower</td>
+                     <td>Required to progress</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-rby-items" class="game-container rby">
+            <h2>Items</h2>
+            <table>
+               <caption>RBY Items</caption>
+               <tbody>
+                  <tr>
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+                  <tr>
+                     <td>Poké Flute</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td>Received from Mr. Fuji after completing Pokémon Tower</td>
+                     <td>Required to progress</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <br><br>
+   </body>
 </html>
