@@ -3,7 +3,7 @@ $(function() {
 	var usCodes = [];
 	var jpCodes = [];
 	var euCodes = [];
-	$.getJSON("../json/qr-codes.json", function(data) {
+	$.getJSON("/json/qr-codes.json", function(data) {
 		$.each(data, function() {
 			if (this.region == "US")
 				usCodes.push(this);
