@@ -43,7 +43,7 @@ $(function() {
 				jsonObject = euCodes[parseInt($(this).attr("id")) - 1];
 			else
 				jsonObject = jpCodes[parseInt($(this).attr("id")) - 1];
-			innerText += '<img src=../"' + jsonObject.src + '" alt="' + jsonObject.alt + '"></div>';
+			innerText += '<img src="' + jsonObject.src + '" alt="' + jsonObject.alt + '"></div>';
 		});
 		
 		$(".images").html(innerText);
