@@ -36,13 +36,14 @@ $(function() {
 			
 			innerText += "<span><strong>" + $(this)[0].value + "</strong></span><br>";
 			var jsonObject;
+			console.log(currentRegion);
 			if (currentRegion == "us")
 				jsonObject = usCodes[parseInt($(this).attr("id")) - 1];
 			else if (currentRegion == "eu")
 				jsonObject = euCodes[parseInt($(this).attr("id")) - 1];
 			else
 				jsonObject = jpCodes[parseInt($(this).attr("id")) - 1];
-			innerText += '<img src="' + jsonObject.src + '" alt="' + jsonObject.alt + '"></div>';
+			innerText += '<img src=../"' + jsonObject.src + '" alt="' + jsonObject.alt + '"></div>';
 		});
 		
 		$(".images").html(innerText);
