@@ -1,5 +1,10 @@
 $(function() {
 	
+	$(document).on("keyup", function (e) {
+		if ($(".generated").is(":visible") && e.key == "Backspace")
+			goToPrevious();
+	});
+	
 	var usCodes = [];
 	var jpCodes = [];
 	var euCodes = [];
@@ -33,11 +38,11 @@ $(function() {
 	});
 	
 	function addRemoveItem(checkItem) {
-		if (checkItem.checked) {
+		if (checkItem.checked && $("span[name='" + checkItem.id + "']").length == 0) {
 			var textDisplay = "<span name='" + checkItem.id + "'><br>" + checkItem.value + "</span>";
 			$("#textlist").html($("#textlist").html() + textDisplay);
 		}
-		else {
+		else if (!checkItem.checked) {
 			$("span[name='" + checkItem.id + "']").remove();
 		}
 	}
@@ -102,6 +107,10 @@ $(function() {
 	});
 	
 	$("#previous").click(function() {
+		goToPrevious();
+	});
+	
+	function goToPrevious() {
 		for (var i = 0; i < $(".images div").length; i++) {
 			if ($($(".images div")[i + 1]).is(":visible")) {
 				$($(".images div")[i]).show();
@@ -110,5 +119,5 @@ $(function() {
 				break;
 			}
 		}
-	});
+	}
 });
