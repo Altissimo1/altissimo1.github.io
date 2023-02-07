@@ -52,32 +52,35 @@ $(function() {
 		var innerText = "";
 		
 		var display = true;
+		if ($("#textlist span").length > 0) {
 		
-		$("#textlist span").each(function() {
-			// Create an image item
-			if (!display)
-				innerText += "<div style='margin:auto;width:50%;display:none;'>";
-			else {
-				innerText += "<div style='margin:auto;width:50%;'>";
-				display = false;
-			}
+			$("#textlist span").each(function() {
+				// Create an image item
+				if (!display)
+					innerText += "<div style='margin:auto;width:50%;display:none;'>";
+				else {
+					innerText += "<div style='margin:auto;width:50%;'>";
+					display = false;
+				}
+
+				innerText += "<span><strong>" + this.textContent + "</strong></span><br>";
+				var jsonObject;
+				if (currentRegion == "us")
+					jsonObject = usCodes[parseInt($(this).attr("name")) - 1];
+				else if (currentRegion == "eu")
+					jsonObject = euCodes[parseInt($(this).attr("name")) - 1];
+				else
+					jsonObject = jpCodes[parseInt($(this).attr("name")) - 1];
+				innerText += '<img src="' + jsonObject.src + '" alt="' + jsonObject.alt + '"></div>';
+			});
+
+			$(".images").html(innerText);
+			$(".generated").show();
+			$("#next").focus();
+			$("#current").text("1");
+			$("#total").text($(".images div").length);
 			
-			innerText += "<span><strong>" + this.textContent + "</strong></span><br>";
-			var jsonObject;
-			if (currentRegion == "us")
-				jsonObject = usCodes[parseInt($(this).attr("name")) - 1];
-			else if (currentRegion == "eu")
-				jsonObject = euCodes[parseInt($(this).attr("name")) - 1];
-			else
-				jsonObject = jpCodes[parseInt($(this).attr("name")) - 1];
-			innerText += '<img src="' + jsonObject.src + '" alt="' + jsonObject.alt + '"></div>';
-		});
-		
-		$(".images").html(innerText);
-		$(".generated").show();
-		$("#next").focus();
-		$("#current").text("1");
-		$("#total").text($(".images div").length);
+		}
 		
 	});
 	
