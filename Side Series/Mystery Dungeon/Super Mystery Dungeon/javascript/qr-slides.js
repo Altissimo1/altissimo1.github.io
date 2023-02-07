@@ -83,17 +83,19 @@ $(function() {
 	
 	$("#next").click(function() {
 		var display = false;
-		$(".images div").each(function() {
-			if (display) {
-				$(this).show();
-				$("#current").text(parseInt($("#current").text()) + 1);
-				display = false;
-			}
-			else if ($(this).is(":visible")) {
-				display = true;
-				$(this).hide();
-			}
-		});
+		if ($("#current").text() != $("#total").text()) {
+			$(".images div").each(function() {
+				if (display) {
+					$(this).show();
+					$("#current").text(parseInt($("#current").text()) + 1);
+					display = false;
+				}
+				else if ($(this).is(":visible")) {
+					display = true;
+					$(this).hide();
+				}
+			});
+		}
 	});
 	
 	$("#previous").click(function() {
