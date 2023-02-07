@@ -38,7 +38,7 @@ $(function() {
 			$("#textlist").html($("#textlist").html() + textDisplay);
 		}
 		else {
-			$("." + checkItem.id).remove();
+			$("span[name='" + checkItem.id + "']").remove();
 		}
 	}
 	
