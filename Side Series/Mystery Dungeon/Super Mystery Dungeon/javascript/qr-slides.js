@@ -1,13 +1,13 @@
+var usCodes = [];
+var jpCodes = [];
+var euCodes = [];
+
 $(function() {
 	
 	$(document).on("keyup", function (e) {
 		if ($(".generated").is(":visible") && e.key == "Backspace")
 			goToPrevious();
 	});
-	
-	var usCodes = [];
-	var jpCodes = [];
-	var euCodes = [];
 	$.getJSON("json/qr-codes.json", function(data) {
 		$.each(data, function() {
 			if (this.region == "US")
@@ -18,6 +18,8 @@ $(function() {
 				jpCodes.push(this);
 		});
 	});
+	
+	
 	
 	$(".checkbox").change(function() {
 		addRemoveItem(this);
@@ -121,3 +123,31 @@ $(function() {
 		}
 	}
 });
+
+var regionButton = function regionClick() {
+	var region = this.id;
+	$(".language").each(function() {
+		var current = $(this).attr("for");
+		if (region == "us" || region == "eu")
+			$(this).text(" " + usCodes[current - 1].name);
+		else
+			$(this).text(" " + jpCodes[current - 1].name);
+	});
+	
+	$(".checkbox").each(function() {
+		if (region == "us" || region == "eu")
+			$(this).val(usCodes[this.id - 1].name);
+		else
+			$(this).val(jpCodes[this.id - 1].name);
+	});
+	
+	$("#textlist span").each(function() {
+		var current = $(this).attr("name");
+		if (region == "us" || region == "eu")
+			$(this).html("<br>" + usCodes[current - 1].name);
+		else
+			$(this).html("<br>" + jpCodes[current - 1].name);
+		
+	});
+		
+}
