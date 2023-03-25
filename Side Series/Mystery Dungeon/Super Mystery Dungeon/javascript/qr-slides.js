@@ -6,8 +6,16 @@ $(function() {
 	
 	$(document).on("keyup", function (e) {
 		if ($(".generated").is(":visible") && e.key == "Backspace")
-			goToPrevious();
+			if (!($("#previous").is(":disabled")))
+				goToPrevious();
 	});
+	
+	$(document).on("keyup", function (e) {
+		if ($(".generated").is(":visible") && e.key == "Enter")
+			if (!($("#next").is(":disabled")))
+				goToNext();
+	});
+	
 	$.getJSON("json/qr-codes.json", function(data) {
 		$.each(data, function() {
 			if (this.region == "US")
@@ -93,10 +101,22 @@ $(function() {
 	});
 	
 	$("#next").click(function() {
-		$(this).prop("disabled", true);
+		goToNext();
+	});
+	
+	$("#previous").click(function() {
+		goToPrevious();
+	});
+	
+	function disableButton(button) {
+		$(button).prop("disabled", true);
 		setTimeout(function() {
-			$("#next").prop("disabled", false);
+			$(button).prop("disabled", false);
 		}, 1000);
+	}
+	
+	function goToNext() {
+		disableButton($("#next"));
 		var display = false;
 		if ($("#current").text() != $("#total").text()) {
 			$(".images div").each(function() {
@@ -111,13 +131,10 @@ $(function() {
 				}
 			});
 		}
-	});
-	
-	$("#previous").click(function() {
-		goToPrevious();
-	});
+	}
 	
 	function goToPrevious() {
+		disableButton($("#previous"));
 		for (var i = 0; i < $(".images div").length; i++) {
 			if ($($(".images div")[i + 1]).is(":visible")) {
 				$($(".images div")[i]).show();
