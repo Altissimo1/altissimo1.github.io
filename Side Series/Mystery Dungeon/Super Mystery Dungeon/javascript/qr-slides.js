@@ -5,15 +5,19 @@ var euCodes = [];
 $(function() {
 	
 	$(document).on("keyup", function (e) {
-		if ($(".generated").is(":visible") && e.key == "Backspace")
-			if (!($("#previous").is(":disabled")))
+		if ($(".generated").is(":visible") && e.key == "Backspace") {
+			if (!($("#previous").is(":disabled"))) {
 				goToPrevious();
+			}
+		}
 	});
 	
 	$(document).on("keyup", function (e) {
-		if ($(".generated").is(":visible") && e.key == "Enter")
-			if (!($("#next").is(":disabled")))
+		if ($(".generated").is(":visible") && e.key == "Enter") {
+			if (!($("#next").is(":disabled"))) {
 				goToNext();
+			}
+		}
 	});
 	
 	$.getJSON("json/qr-codes.json", function(data) {
@@ -92,7 +96,6 @@ $(function() {
 
 			$(".images").html(innerText);
 			$(".generated").show();
-			$("#next").focus();
 			$("#current").text("1");
 			$("#total").text($(".images div").length);
 			
