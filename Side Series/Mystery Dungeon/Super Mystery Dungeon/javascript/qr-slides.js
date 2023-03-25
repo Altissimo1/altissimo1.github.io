@@ -50,6 +50,7 @@ $(function() {
 	}
 	
 	$("#generate").click(function() {
+		
 		var currentRegion = "";
 		$('input[name="regions"]').each(function() {
 			if ($(this).is(":checked"))
@@ -92,6 +93,10 @@ $(function() {
 	});
 	
 	$("#next").click(function() {
+		$(this).prop("disabled", true);
+		setTimeout(function() {
+			$("#next").prop("disabled", false);
+		}, 1000);
 		var display = false;
 		if ($("#current").text() != $("#total").text()) {
 			$(".images div").each(function() {
