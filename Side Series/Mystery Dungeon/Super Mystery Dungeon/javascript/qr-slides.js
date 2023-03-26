@@ -5,18 +5,16 @@ var euCodes = [];
 $(function() {
 	
 	$(document).on("keyup", function (e) {
-		if ($(".generated").is(":visible") && e.key == "Backspace") {
-			if (!($("#previous").is(":disabled"))) {
-				goToPrevious();
-			}
+		if ($(".generated").is(":visible") && e.key == "Enter") {
+			if (!($("#next").is(":disabled")))
+				goToNext(true);
 		}
 	});
 	
 	$(document).on("keyup", function (e) {
-		if ($(".generated").is(":visible") && e.key == "Enter") {
-			if (!($("#next").is(":disabled"))) {
-				goToNext();
-			}
+		if ($(".generated").is(":visible") && e.key == "Backspace") {
+			if (!($("#previous").is(":disabled")))
+				goToPrevious(true);
 		}
 	});
 	
@@ -29,9 +27,7 @@ $(function() {
 			else
 				jpCodes.push(this);
 		});
-	});
-	
-	
+	});	
 	
 	$(".checkbox").change(function() {
 		addRemoveItem(this);
@@ -96,6 +92,7 @@ $(function() {
 
 			$(".images").html(innerText);
 			$(".generated").show();
+			$(this).blur();
 			$("#current").text("1");
 			$("#total").text($(".images div").length);
 			
@@ -104,11 +101,11 @@ $(function() {
 	});
 	
 	$("#next").click(function() {
-		goToNext();
+		goToNext(false);
 	});
 	
 	$("#previous").click(function() {
-		goToPrevious();
+		goToPrevious(false);
 	});
 	
 	function disableButton(button) {
@@ -118,8 +115,9 @@ $(function() {
 		}, 1000);
 	}
 	
-	function goToNext() {
-		disableButton($("#next"));
+	function goToNext(stop) {
+		if (stop)
+			disableButton($("#next"));
 		var display = false;
 		if ($("#current").text() != $("#total").text()) {
 			$(".images div").each(function() {
@@ -136,8 +134,9 @@ $(function() {
 		}
 	}
 	
-	function goToPrevious() {
-		disableButton($("#previous"));
+	function goToPrevious(stop) {
+		if (stop)
+			disableButton($("#previous"));
 		for (var i = 0; i < $(".images div").length; i++) {
 			if ($($(".images div")[i + 1]).is(":visible")) {
 				$($(".images div")[i]).show();
