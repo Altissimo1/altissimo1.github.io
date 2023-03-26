@@ -100,6 +100,21 @@ $(function() {
 		
 	});
 	
+	$("#clearall").click(function() {
+		$("#textlist").html("");
+		$("#current").html("");
+		$("#total").html("");
+		$(".images").html("");
+		$(".generated").hide();
+		$(".allcheck").each(function() {
+			$(this).prop("checked", false);
+		});
+		$(".checkbox").each(function() {
+			console.log(this);
+			$(this).prop("checked", false);
+		});
+	});
+	
 	$("#next").click(function() {
 		goToNext(false);
 	});
