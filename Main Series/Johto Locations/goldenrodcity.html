@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Goldenrod City</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" href="../../general.css">
+   </head>
+   <body id="body">
+      <h4><a href="https://altissimo1.github.io/">Home</a></h4>
+      <h4><a href="index.html">Johto Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="gsc" type="radio" onclick="topButton.call(this)" name="games" value="GSC" checked="checked">
+         <label for="gsc" class="right">GSC</label>
+      </div>
+      <h2>Goldenrod City</h2>
+      <div id="notes" class="bottom">
+         <p id="gsc-notes" class="gsc">
+            <strong>Access to:</strong><br>
+            North: Route 35<br>
+            South: Route 34<br>
+            Accessible in the city: Goldenrod Tunnel<br>
+            Accessible in the city: Goldenrod Radio Tower<br>
+            Accessible from the city: Saffron City (via Magnet Train)<br><br>
+            <strong>Places of interest:</strong><br>
+            Pokémon Communication Center: In the original Japanese Crystal, the GS Ball could be obtained here, the Egg Ticket could be exchanged for the Odd Egg, and online trading was possible.<br>
+            Bike Shop<br>
+            Goldenrod Game Corner: In addition to Pokémon, the prize center sells TM25 Thunder, TM14 Blizzard, and TM38 Fire Blast.<br>
+            Name Rater<br>
+            Friendship Checker<br>
+            Goldenrod Gym: The third gym. It specializes in Normal-types.<br>
+            Goldenrod Department Store<br>
+            <strong>2F</strong>: Upper cashier sells Potions, Super Potions, Antidotes, Parlyz Heals, Awakenings, Burn Heals, and Ice Heals. Lower cashier sells Poké Balls, Great Balls, Escape Ropes, Repels, Revives, Full Heals, Poké Dolls, and Flower Mail.<br>
+            <strong>3F</strong>: Sells X Speeds, X Specials, X Defends, X Attacks, Dire Hits, Guard Specs, and X Accuracies.<br>
+            <strong>4F</strong>: Sells Proteins, Irons, Carboses, Calciums, and HP Ups.<br>
+            <strong>5F</strong>: Sells TM41 Thunderpunch, TM48 Fire Punch, TM33 Ice Punch, TM02 Headbutt (after first obtaining it in Ilex Forest), and TM08 Rock Smash (after first obtaining it on Route 36).<br>
+            <strong>6F</strong>: The Vending Machines sell Fresh Waters, Soda Pops, and Lemonades.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-gsc-buttons" class="button-set gsc">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <input id="pokemon-gsc-full-gold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Gold (Full)">
+                     <label for="pokemon-gsc-full-gold">Gold (Full)</label>
+                     <br>
+                     <input id="pokemon-gsc-compressed-gold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Gold (Compressed)">
+                     <label for="pokemon-gsc-compressed-gold">Gold (Compressed)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-gsc-full-silver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Silver (Full)">
+                     <label for="pokemon-gsc-full-silver">Silver (Full)</label>
+                     <br>
+                     <input id="pokemon-gsc-compressed-silver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Silver (Compressed)">
+                     <label for="pokemon-gsc-compressed-silver">Silver (Compressed)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-gsc-full-crystal" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Crystal (Full)">
+                     <label for="pokemon-gsc-full-crystal">Crystal (Full)</label>
+                     <br>
+                     <input id="pokemon-gsc-compressed-crystal" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Crystal (Compressed)">
+                     <label for="pokemon-gsc-compressed-crystal">Crystal (Compressed)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-gsc-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Combined (Full)">
+                     <label for="pokemon-gsc-full-combined">Combined (Full)</label>
+                     <br>
+                     <input id="pokemon-gsc-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Separate (Full)">
+                     <label for="pokemon-gsc-full-separate">Separate (Full)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-gsc-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Combined (Compressed)" checked="checked">
+                     <label for="pokemon-gsc-compressed-combined">Combined (Compressed)</label>
+                     <br>
+                     <input id="pokemon-gsc-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Separate (Compressed)">
+                     <label for="pokemon-gsc-compressed-separate">Separate (Compressed)</label>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-gsc" class="game-container gsc">
+               <h2>Pokémon</h2>
+               <div id="pokemon-gsc-purchase" class="table-collection purchase">
+                  <h3>Purchase</h3>
+                  <div id="pokemon-gsc-all-combined-purchase-table" class="pokemon-table all combined">
+                     <table>
+                        <caption>All Versions</caption>
+                        <tbody>
+                           <tr>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="3">Games</th>
+                              <th>Price</th>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Abra.png" alt="Abra"></div>
+                              </td>
+                              <td>Abra</td>
+                              <td>10</td>
+                              <td class="gold-true">G</td>
+                              <td class="silver-true">S</td>
+                              <td>C</td>
+                              <td>200C</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Ekans.png" alt="Ekans"></div>
+                              </td>
+                              <td>Ekans</td>
+                              <td>10</td>
+                              <td class="gold-false">G</td>
+                              <td>S</td>
+                              <td>C</td>
+                              <td>700C</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Dratini.png" alt="Dratini"></div>
+                              </td>
+                              <td>Dratini</td>
+                              <td>10</td>
+                              <td class="gold-true">G</td>
+                              <td class="silver-true">S</td>
+                              <td>C</td>
+                              <td>2100C</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>10</td>
+                              <td>G</td>
+                              <td class="silver-false">S</td>
+                              <td>C</td>
+                              <td>700C</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Abra.png" alt="Abra"></div>
+                              </td>
+                              <td>Abra</td>
+                              <td>5</td>
+                              <td>G</td>
+                              <td>S</td>
+                              <td class="crystal-true">C</td>
+                              <td>100C</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Cubone.png" alt="Cubone"></div>
+                              </td>
+                              <td>Cubone</td>
+                              <td>15</td>
+                              <td>G</td>
+                              <td>S</td>
+                              <td class="crystal-false">C</td>
+                              <td>800C</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Wobbuffet-F.png" alt="Wobbuffet"></div>
+                              </td>
+                              <td>Wobbuffet</td>
+                              <td>15</td>
+                              <td>G</td>
+                              <td>S</td>
+                              <td class="crystal-true">C</td>
+                              <td>1500C</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-all-gold-purchase-table" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Gold</caption>
+                        <tbody>
+                           <tr class="gold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Price</th>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Abra.png" alt="Abra"></div>
+                              </td>
+                              <td>Abra</td>
+                              <td>10</td>
+                              <td>200C</td>
+                           </tr>
+                           <tr class="gold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Ekans.png" alt="Ekans"></div>
+                              </td>
+                              <td>Ekans</td>
+                              <td>10</td>
+                              <td>700C</td>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Dratini.png" alt="Dratini"></div>
+                              </td>
+                              <td>Dratini</td>
+                              <td>10</td>
+                              <td>2100C</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-all-silver-purchase-table" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Silver</caption>
+                        <tbody>
+                           <tr class="silver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Price</th>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Abra.png" alt="Abra"></div>
+                              </td>
+                              <td>Abra</td>
+                              <td>10</td>
+                              <td>200C</td>
+                           </tr>
+                           <tr class="silver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Dratini.png" alt="Dratini"></div>
+                              </td>
+                              <td>Dratini</td>
+                              <td>10</td>
+                              <td>2100C</td>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>10</td>
+                              <td>700C</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-all-crystal-purchase-table" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Crystal</caption>
+                        <tbody>
+                           <tr class="crystal-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Price</th>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Abra.png" alt="Abra"></div>
+                              </td>
+                              <td>Abra</td>
+                              <td>5</td>
+                              <td>100C</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Cubone.png" alt="Cubone"></div>
+                              </td>
+                              <td>Cubone</td>
+                              <td>15</td>
+                              <td>800C</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Wobbuffet-F.png" alt="Wobbuffet"></div>
+                              </td>
+                              <td>Wobbuffet</td>
+                              <td>15</td>
+                              <td>1500C</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+               </div>
+               <div id="pokemon-gsc-gift-1" class="table-collection gift">
+                  <h3>Gift</h3>
+                  <div id="pokemon-gsc-all-combined-gift-table" class="pokemon-table all combined">
+                     <table>
+                        <caption>All Versions</caption>
+                        <tbody>
+                           <tr>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="3">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Eevee-F.png" alt="Eevee"></div>
+                              </td>
+                              <td>Eevee</td>
+                              <td>20</td>
+                              <td class="gold-true">G</td>
+                              <td class="silver-true">S</td>
+                              <td class="crystal-true">C</td>
+                              <td>From Bill after meeting him in Ecruteak City.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-all-gold-gift-table" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Gold</caption>
+                        <tbody>
+                           <tr class="gold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Eevee-F.png" alt="Eevee"></div>
+                              </td>
+                              <td>Eevee</td>
+                              <td>20</td>
+                              <td>From Bill after meeting him in Ecruteak City.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-all-silver-gift-table" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Silver</caption>
+                        <tbody>
+                           <tr class="silver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Eevee-F.png" alt="Eevee"></div>
+                              </td>
+                              <td>Eevee</td>
+                              <td>20</td>
+                              <td>From Bill after meeting him in Ecruteak City.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-all-crystal-gift-table" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Crystal</caption>
+                        <tbody>
+                           <tr class="crystal-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Eevee-F.png" alt="Eevee"></div>
+                              </td>
+                              <td>Eevee</td>
+                              <td>20</td>
+                              <td>From Bill after meeting him in Ecruteak City.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+               </div>
+               <div id="pokemon-gsc-gift-odd-egg" class="table-collection gift">
+                  <h3>Odd Egg (Japanese Crystal only)</h3>
+                  <p>The Odd Egg will hatch into into one of the following Pokémon. It will always be female (except for Tyrogue), and know Dizzy Punch. If it is not shiny, its IVs will be all 0's, and it will have a Hidden Power type of Fighting with 31 power. 
+                     If it is shiny, its IVs will be 2/10/10/10, and it will have a Hidden Power type of Grass with 49 power.<br>
+                     In the Japanese games, the hatched Pokémon has a 50% chance of being shiny.
+                  </p>
+                  <div id="pokemon-gsc-all-combined-gift-table-odd-egg" class="pokemon-table all combined">
+                     <table>
+                        <caption>All Versions</caption>
+                        <tbody>
+                           <tr>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="3">Games</th>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td>Pichu</td>
+                              <td>5</td>
+                              <td>G</td>
+                              <td>S</td>
+                              <td class="crystal-true">C</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Cleffa.png" alt="Cleffa"></div>
+                              </td>
+                              <td>Cleffa</td>
+                              <td>5</td>
+                              <td>G</td>
+                              <td>S</td>
+                              <td class="crystal-false">C</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Igglybuff.png" alt="Igglybuff"></div>
+                              </td>
+                              <td>Igglybuff</td>
+                              <td>5</td>
+                              <td>G</td>
+                              <td>S</td>
+                              <td class="crystal-true">C</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Tyrogue.png" alt="Tyrogue"></div>
+                              </td>
+                              <td>Tyrogue</td>
+                              <td>5</td>
+                              <td>G</td>
+                              <td>S</td>
+                              <td class="crystal-false">C</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Smoochum.png" alt="Smoochum"></div>
+                              </td>
+                              <td>Smoochum</td>
+                              <td>5</td>
+                              <td>G</td>
+                              <td>S</td>
+                              <td class="crystal-true">C</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Elekid.png" alt="Elekid"></div>
+                              </td>
+                              <td>Elekid</td>
+                              <td>5</td>
+                              <td>G</td>
+                              <td>S</td>
+                              <td class="crystal-false">C</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Magby.png" alt="Magby"></div>
+                              </td>
+                              <td>Magby</td>
+                              <td>5</td>
+                              <td>G</td>
+                              <td>S</td>
+                              <td class="crystal-true">C</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-all-crystal-gift-table-odd-egg" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Crystal</caption>
+                        <tbody>
+                           <tr class="crystal-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td>Pichu</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Cleffa.png" alt="Cleffa"></div>
+                              </td>
+                              <td>Cleffa</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Igglybuff.png" alt="Igglybuff"></div>
+                              </td>
+                              <td>Igglybuff</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Tyrogue.png" alt="Tyrogue"></div>
+                              </td>
+                              <td>Tyrogue</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Smoochum.png" alt="Smoochum"></div>
+                              </td>
+                              <td>Smoochum</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Elekid.png" alt="Elekid"></div>
+                              </td>
+                              <td>Elekid</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Magby.png" alt="Magby"></div>
+                              </td>
+                              <td>Magby</td>
+                              <td>5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+               </div>
+               <div id="pokemon-gsc-trade" class="table-collection trade">
+                  <h3>Trade</h3>
+                  <div id="pokemon-gsc-all-combined-trade-table" class="pokemon-table all combined">
+                     <table>
+                        <caption>All Versions</caption>
+                        <tbody>
+                           <tr>
+                              <th colspan="2">Your Pokémon</th>
+                              <th colspan="2">NPC's Pokémon</th>
+                              <th colspan="3">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Drowzee.png" alt="Drowzee"></div>
+                              </td>
+                              <td>Drowzee</td>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Machop.png" alt="Machop"></div>
+                              </td>
+                              <td>Machop</td>
+                              <td class="gold-true">G</td>
+                              <td class="silver-true">S</td>
+                              <td>C</td>
+                              <td>Goldenrod Department Store. Holds a Macho Brace.</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Abra.png" alt="Abra"></div>
+                              </td>
+                              <td>Abra</td>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Machop.png" alt="Machop"></div>
+                              </td>
+                              <td>Machop</td>
+                              <td>G</td>
+                              <td>S</td>
+                              <td class="crystal-false">C</td>
+                              <td>Goldenrod Department Store. Holds a Macho Brace.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-all-gold-trade-table" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Gold</caption>
+                        <tbody>
+                           <tr class="gold-true">
+                              <th colspan="2">Your Pokémon</th>
+                              <th colspan="2">NPC's Pokémon</th>
+                              <th>Notes</th>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Machop.png" alt="Drowzee"></div>
+                              </td>
+                              <td>Drowzee</td>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Machop.png" alt="Machop"></div>
+                              </td>
+                              <td>Machop</td>
+                              <td>Goldenrod Department Store. Machop holds a Macho Brace.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-all-silver-trade-table" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Silver</caption>
+                        <tbody>
+                           <tr class="silver-true">
+                              <th colspan="2">Your Pokémon</th>
+                              <th colspan="2">NPC's Pokémon</th>
+                              <th>Notes</th>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Machop.png" alt="Drowzee"></div>
+                              </td>
+                              <td>Drowzee</td>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Machop.png" alt="Machop"></div>
+                              </td>
+                              <td>Machop</td>
+                              <td>Goldenrod Department Store. Machop holds a Macho Brace.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-all-crystal-trade-table" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Crystal</caption>
+                        <tbody>
+                           <tr class="crystal-true">
+                              <th colspan="2">Your Pokémon</th>
+                              <th colspan="2">NPC's Pokémon</th>
+                              <th>Notes</th>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Machop.png" alt="Abra"></div>
+                              </td>
+                              <td>Abra</td>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Machop.png" alt="Machop"></div>
+                              </td>
+                              <td>Machop</td>
+                              <td>Goldenrod Department Store. Machop holds a Macho Brace.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-gsc-items" class="game-container gsc">
+            <h2>Items</h2>
+            <table>
+               <caption>GSC Items</caption>
+               <tbody>
+                  <tr>
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+                  <tr>
+                     <td>Revive</td>
+                     <td>G</td>
+                     <td>S</td>
+                     <td class="crystal-true">C</td>
+                     <td>From the girl in the Pokémon Center</td>
+                     <td>Western releases only. You will need to trade her an Eon Mail (obtained via Mystery Gift).</td>
+                  </tr>
+                  <tr>
+                     <td>Bicycle</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td>From the Bike Shop owner</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Squirtbottle</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td>C</td>
+                     <td>From the Flower Shop lady</td>
+                     <td>Only after defeating Whitney at Goldenrod Gym.</td>
+                  </tr>
+                  <tr>
+                     <td>Squirtbottle</td>
+                     <td>G</td>
+                     <td>S</td>
+                     <td class="crystal-false">C</td>
+                     <td>From the Flower Shop lady</td>
+                     <td>Only after defeating Whitney at Goldenrod Gym and speaking with the lady's sister on Route 36.</td>
+                  </tr>
+                  <tr>
+                     <td>GS Ball</td>
+                     <td>G</td>
+                     <td>S</td>
+                     <td class="crystal-true">C</td>
+                     <td>Obtained from an attendant in the Pokémon Center</td>
+                     <td>Only in the Virtual Console releases.</td>
+                  </tr>
+                  <tr>
+                     <td>Ultra Ball</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td>Goldenrod Department Store basement</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Ether</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td>Goldenrod Department Store basement</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Burn Heal</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td>Goldenrod Department Store basement</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Amulet Coin</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td>Goldenrod Department Store basement</td>
+                     <td>Accessible from Goldenrod Tunnel.</td>
+                  </tr>
+                  <tr>
+                     <td>TM27 Return</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td>Goldenrod Department Store 5F</td>
+                     <td>Received from a lady if the player's lead Pokémon has high friendship. Only on Sundays.</td>
+                  </tr>
+                  <tr>
+                     <td>TM21 Frustration</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td>Goldenrod Department Store 5F</td>
+                     <td>Received from a lady if the player's lead Pokémon has low friendship. Only on Sundays.</td>
+                  </tr>
+                  <tr>
+                     <td>TM45 Attract</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td>Defeat Whitney in Goldenrod Gym</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-gsc-trainers" class="game-container gsc">
+            <h2>Trainers</h2>
+            <table>
+               <caption>GSC Trainers</caption>
+               <tbody>
+                  <tr>
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+                  <tr>
+                     <td>Beauty Victoria</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td>Sentret lv.9<br>Sentret lv.13<br>Sentret lv.17</td>
+                     <td>In Goldenrod Gym.</td>
+                  </tr>
+                  <tr>
+                     <td>Beauty Samantha</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td>Meowth lv.16<br>Meowth lv.16</td>
+                     <td>In Goldenrod Gym.</td>
+                  </tr>
+                  <tr>
+                     <td>Lass Carrie</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td>Snubbull lv.18</td>
+                     <td>In Goldenrod Gym.</td>
+                  </tr>
+                  <tr>
+                     <td>Lass Bridget</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td>Jigglypuff lv.15<br>Jigglypuff lv.15<br>Jigglypuff lv.15</td>
+                     <td>In Goldenrod Gym.</td>
+                  </tr>
+                  <tr>
+                     <td>Whitney</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td>Clefairy lv.18<br>Miltank lv.20</td>
+                     <td>In Goldenrod Gym.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>
