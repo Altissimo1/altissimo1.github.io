@@ -8,6 +8,7 @@ $(function() {
 		if ($(".generated").is(":visible") && e.key == "Enter") {
 			if (!($("#next").is(":disabled")))
 				goToNext(true);
+			$("#next").blur();
 		}
 	});
 	
