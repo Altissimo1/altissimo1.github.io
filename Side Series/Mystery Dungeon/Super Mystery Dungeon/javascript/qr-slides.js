@@ -9,9 +9,6 @@ $(function() {
 			if (!($("#next").is(":disabled")))
 				goToNext(true);
 		}
-	});
-	
-	$(document).on("keyup", function (e) {
 		if ($(".generated").is(":visible") && e.key == "Backspace") {
 			if (!($("#previous").is(":disabled")))
 				goToPrevious(true);
@@ -110,14 +107,12 @@ $(function() {
 			$(this).prop("checked", false);
 		});
 		$(".checkbox").each(function() {
-			console.log(this);
 			$(this).prop("checked", false);
 		});
 	});
 	
 	$("#next").click(function() {
 		goToNext(false);
-		$("#next").blur();
 	});
 	
 	$("#previous").click(function() {
@@ -147,6 +142,18 @@ $(function() {
 					$(this).hide();
 				}
 			});
+		}
+		else {
+			var counter = 0;
+			$(".images div").each(function() {
+				if (counter == 0)
+					$(this).show();
+				else
+					$(this).hide();
+				counter++;
+			});
+					
+			$("#current").text(1);
 		}
 	}
 	
