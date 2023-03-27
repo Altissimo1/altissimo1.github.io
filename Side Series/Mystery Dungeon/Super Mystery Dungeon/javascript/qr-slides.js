@@ -8,7 +8,6 @@ $(function() {
 		if ($(".generated").is(":visible") && e.key == "Enter") {
 			if (!($("#next").is(":disabled")))
 				goToNext(true);
-			$("#next").blur();
 		}
 	});
 	
@@ -118,6 +117,7 @@ $(function() {
 	
 	$("#next").click(function() {
 		goToNext(false);
+		$("#next").blur();
 	});
 	
 	$("#previous").click(function() {
