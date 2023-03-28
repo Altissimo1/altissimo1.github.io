@@ -112,7 +112,6 @@ $(function() {
 	});
 	
 	$("#next").click(function() {
-		console.log($("#importfile"));
 		goToNext(false);
 	});
 	
@@ -126,7 +125,6 @@ $(function() {
 			if ($(this).is(":checked"))
 				region = this.id;
 		});
-		console.log(region);
 		
 		var myData = {
 			Region: region,
@@ -162,13 +160,11 @@ $(function() {
 	$("#submit").click(function(e) {
 		let formData = new FormData();
 		formData.append("file", fileupload.files[0]);
-		console.log(formData);
 	});
 	
 	async function uploadFile() {
 		let formData = newFormData();
 		formData.append("file", fileupload.files[0]);
-		console.log(formData);
 	}
 	
 	$("#upload-button").click(function(e) {
@@ -254,11 +250,18 @@ $(function() {
 	function goToPrevious(stop) {
 		if (stop)
 			disableButton($("#previous"));
-		for (var i = 0; i < $(".images div").length; i++) {
-			if ($($(".images div")[i + 1]).is(":visible")) {
-				$($(".images div")[i]).show();
-				$($(".images div")[i + 1]).hide();
-				$("#current").text(parseInt($("#current").text()) - 1);
+		var length = $(".images div").length;
+		for (var i = 0; i < length; i++) {
+			if ($($(".images div")[i]).is(":visible"))  {
+				if (i == 0) {
+					$($(".images div")[length - 1]).show();
+					$("#current").text(length);
+				}
+				else {
+					$($(".images div")[i - 1]).show();
+					$("#current").text(parseInt($("#current").text()) - 1);
+				}
+				$($(".images div")[i]).hide();
 				break;
 			}
 		}
