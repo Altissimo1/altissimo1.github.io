@@ -112,12 +112,106 @@ $(function() {
 	});
 	
 	$("#next").click(function() {
+		console.log($("#importfile"));
 		goToNext(false);
 	});
 	
 	$("#previous").click(function() {
 		goToPrevious(false);
 	});
+	
+	$("#export").click(function() {
+		var region = "";
+		$(".regionButton").each(function() {
+			if ($(this).is(":checked"))
+				region = this.id;
+		});
+		console.log(region);
+		
+		var myData = {
+			Region: region,
+			AllButtons: [],
+			Buttons: [],
+		}
+		
+		$(".allcheck").each(function() {
+			var thisButton = {
+				Name: this.id,
+				Selected: $(this).is(":checked")
+			}
+			myData.AllButtons.push(thisButton);
+		});
+		
+		$(".checkbox").each(function() {
+			var thisButton = {
+				Name: this.id,
+				Selected: $(this).is(":checked")
+			}
+			myData.Buttons.push(thisButton);
+		});
+		
+		$("<a />", {
+			"download": "codes.json",
+			"href": "data:application/json," + encodeURIComponent(JSON.stringify(myData))
+		}).appendTo("body")
+		.click(function() {
+			$(this).remove()
+		})[0].click()
+	});
+	
+	$("#submit").click(function(e) {
+		let formData = new FormData();
+		formData.append("file", fileupload.files[0]);
+		console.log(formData);
+	});
+	
+	async function uploadFile() {
+		let formData = newFormData();
+		formData.append("file", fileupload.files[0]);
+		console.log(formData);
+	}
+	
+	$("#upload-button").click(function(e) {
+		var file = fileupload.files[0];
+		var path = (window.URL || window.webkitURL).createObjectURL(file);
+		readTextFile(path, function(text) {
+			initializePage(JSON.parse(text));
+		});
+	});
+	
+	function readTextFile(file, callback) {
+		var rawFile = new XMLHttpRequest();
+		rawFile.overrideMimeType("application/json");
+		rawFile.open("GET", file, true);
+		rawFile.onreadystatechange = function() {
+			if (rawFile.readyState === 4 && rawFile.status == "200") {
+				callback(rawFile.responseText);
+			}
+		}
+		rawFile.send(null);
+	}
+
+	function initializePage(importData) {
+		$(".regionButton").each(function() {
+			if (this.id == importData.Region) {
+				$(this).prop("checked", true);
+				regionButton.call(this);
+			}
+			else
+				$(this).prop("checked", false);
+		});
+		
+		$.each(importData.AllButtons, function() {
+			$("#" + this.Name).prop("checked", this.Selected);
+			$("#" + this.Name).trigger("change");
+		});
+		
+		$.each(importData.Buttons, function() {
+			$("#" + this.Name).prop("checked", this.Selected);
+			$("#" + this.Name).trigger("change");
+		});
+	}
+	
 	
 	function disableButton(button) {
 		$(button).prop("disabled", true);
@@ -195,6 +289,5 @@ var regionButton = function regionClick() {
 		else
 			$(this).html("<br>" + jpCodes[current - 1].name);
 		
-	});
-		
+	});		
 }
