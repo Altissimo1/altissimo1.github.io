@@ -113,10 +113,12 @@ $(function() {
 	
 	$("#next").click(function() {
 		goToNext(false);
+		$(this).blur();
 	});
 	
 	$("#previous").click(function() {
 		goToPrevious(false);
+		$(this).blur();
 	});
 	
 	$("#export").click(function() {
