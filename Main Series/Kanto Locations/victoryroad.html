@@ -6,7 +6,7 @@
       <title>Victory Road</title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../javascript/buttons.js"></script>
-	  <link rel="stylesheet" href="../../general.css">
+      <link rel="stylesheet" href="../../general.css">
    </head>
    <body id="body">
       <h4><a href="https://altissimo1.github.io/">Home</a></h4>
@@ -16,20 +16,27 @@
          <label for="rgby" class="right">RGBY (Japanese)</label>
          <input id="rby" type="radio" onclick="topButton.call(this)" name="games" value="RBY" checked="checked">
          <label for="rby" class="right">RBY (Western)</label>
+         <input id="gsc" type="radio" onclick="topButton.call(this)" name="games" value="GSC">
+         <label for="gsc" class="right">GSC</label>
       </div>
       <h2>Victory Road</h2>
       <div id="notes" class="bottom">
          <p id="rgby-notes" class="rgby" style="display:none;">
             <strong>Access to:</strong><br>
-			Either exit: <a href="route23.html">Route 23</a><br><br>
-			<strong>Utility:</strong><br>
-			Strength is required to navigate this area.
+            Either exit: <a href="route23.html">Route 23</a><br><br>
+            <strong>Utility:</strong><br>
+            Strength is required to navigate this area.
          </p>
          <p id="rby-notes" class="rby">
             <strong>Access to:</strong><br>
-			Either exit: <a href="route23.html">Route 23</a><br><br>
-			<strong>Utility:</strong><br>
-			Strength is required to navigate this area.
+            Either exit: <a href="route23.html">Route 23</a><br><br>
+            <strong>Utility:</strong><br>
+            Strength is required to navigate this area.
+         </p>
+         <p id="gsc-notes" class="gsc">
+            <strong>Access to:</strong><br>
+            Exit on 1F: Route 26<br>
+            Exit on 3F: Indigo Plateau
          </p>
       </div>
       <div id="pokemon-container">
@@ -117,6 +124,45 @@
                      <br>
                      <input id="pokemon-rby-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rby-games" value="Separate (Compressed)">
                      <label for="pokemon-rby-compressed-separate">Separate (Compressed)</label>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-gsc-buttons" class="button-set gsc" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <input id="pokemon-gsc-full-gold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Gold (Full)">
+                     <label for="pokemon-gsc-full-gold">Gold (Full)</label>
+                     <br>
+                     <input id="pokemon-gsc-compressed-gold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Gold (Compressed)">
+                     <label for="pokemon-gsc-compressed-gold">Gold (Compressed)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-gsc-full-silver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Silver (Full)">
+                     <label for="pokemon-gsc-full-silver">Silver (Full)</label>
+                     <br>
+                     <input id="pokemon-gsc-compressed-silver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Silver (Compressed)">
+                     <label for="pokemon-gsc-compressed-silver">Silver (Compressed)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-gsc-full-crystal" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Crystal (Full)">
+                     <label for="pokemon-gsc-full-crystal">Crystal (Full)</label>
+                     <br>
+                     <input id="pokemon-gsc-compressed-crystal" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Crystal (Compressed)">
+                     <label for="pokemon-gsc-compressed-crystal">Crystal (Compressed)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-gsc-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Combined (Full)">
+                     <label for="pokemon-gsc-full-combined">Combined (Full)</label>
+                     <br>
+                     <input id="pokemon-gsc-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Separate (Full)">
+                     <label for="pokemon-gsc-full-separate">Separate (Full)</label>
+                  </div>
+                  <div class="right">
+                     <input id="pokemon-gsc-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Combined (Compressed)" checked="checked">
+                     <label for="pokemon-gsc-compressed-combined">Combined (Compressed)</label>
+                     <br>
+                     <input id="pokemon-gsc-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Separate (Compressed)">
+                     <label for="pokemon-gsc-compressed-separate">Separate (Compressed)</label>
                   </div>
                </div>
             </div>
@@ -5932,6 +5978,878 @@
                   </div>
                </div>
             </div>
+            <div id="pokemon-gsc" class="game-container gsc" style="display:none;">
+               <h2>Pokémon</h2>
+			   <p class="gsc">In the Japanese and Korean versions of Gold and Silver, Ursaring appears instead of Donphan in Silver, and Donphan appears instead of Ursaring in Gold.<br>
+			   Wild Graveler have a 2% chance of holding an Everstone.</p>
+               <div id="pokemon-gsc-walking" class="table-collection walking">
+                  <h3>Walking</h3>
+                  <div id="pokemon-gsc-full-gold-walking-table" class="pokemon-table full" style="display:none">
+                     <table>
+                        <caption>Gold (Full)</caption>
+                        <tbody>
+                           <tr class="gold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                              <th>Time</th>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>32</td>
+                              <td>30%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="gold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Golbat-F.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>32</td>
+                              <td>30%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Ursaring-F.png" alt="Ursaring"></div>
+                              </td>
+                              <td>Ursaring</td>
+                              <td>33</td>
+                              <td>20%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="gold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>34</td>
+                              <td>10%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>36</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="gold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td>Rhyhorn</td>
+                              <td>35</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td>Rhyhorn</td>
+                              <td>35</td>
+                              <td>1%</td>
+                              <td>Anytime</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-full-silver-walking-table" class="pokemon-table full" style="display:none">
+                     <table>
+                        <caption>Silver (Full)</caption>
+                        <tbody>
+                           <tr class="silver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                              <th>Time</th>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>32</td>
+                              <td>30%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="silver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Golbat-F.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>32</td>
+                              <td>30%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Donphan-F.png" alt="Donphan"></div>
+                              </td>
+                              <td>Donphan</td>
+                              <td>33</td>
+                              <td>20%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="silver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>34</td>
+                              <td>10%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>36</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="silver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td>Rhyhorn</td>
+                              <td>35</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td>Rhyhorn</td>
+                              <td>35</td>
+                              <td>1%</td>
+                              <td>Anytime</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-full-crystal-walking-table" class="pokemon-table full" style="display:none">
+                     <table>
+                        <caption>Crystal (Full)</caption>
+                        <tbody>
+                           <tr class="crystal-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                              <th>Time</th>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>34</td>
+                              <td>30%</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Golbat-F.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>34</td>
+                              <td>30%</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td>Rhyhorn</td>
+                              <td>32</td>
+                              <td>30%</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>34</td>
+                              <td>30%</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>33</td>
+                              <td>20%</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>32</td>
+                              <td>20%</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Golbat-F.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>34</td>
+                              <td>10%</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>36</td>
+                              <td>10%</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Sandslash.png" alt="Sandslash"></div>
+                              </td>
+                              <td>Sandslash</td>
+                              <td>35</td>
+                              <td>5%</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>38</td>
+                              <td>5%</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhydon-F.png" alt="Rhydon"></div>
+                              </td>
+                              <td>Rhydon</td>
+                              <td>35</td>
+                              <td>4%</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>40</td>
+                              <td>4%</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhydon-F.png" alt="Rhydon"></div>
+                              </td>
+                              <td>Rhydon</td>
+                              <td>35</td>
+                              <td>1%</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>40</td>
+                              <td>1%</td>
+                              <td>Night</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-full-combined-walking-table" class="pokemon-table full combined" style="display:none">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <tbody>
+                           <tr>
+                              <th>Rate</th>
+                              <th class="gold-true" colspan="3">Gold</th>
+                              <th class="silver-true" colspan="3">Silver</th>
+                              <th class="crystal-true" colspan="3">Crystal</th>
+                           </tr>
+                           <tr>
+                              <td>30% (Morning, Day)</td>
+                              <td class="gold-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="gold-false">Graveler</td>
+                              <td class="gold-false">32</td>
+                              <td class="silver-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="silver-false">Graveler</td>
+                              <td class="silver-false">32</td>
+                              <td class="crystal-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="crystal-false">Graveler</td>
+                              <td class="crystal-false">34</td>
+                           </tr>
+                           <tr>
+                              <td>30% (Night)</td>
+                              <td class="gold-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="gold-true">Graveler</td>
+                              <td class="gold-true">32</td>
+                              <td class="silver-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="silver-true">Graveler</td>
+                              <td class="silver-true">32</td>
+                              <td class="crystal-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Golbat-F.png" alt="Golbat"></div>
+                              </td>
+                              <td class="crystal-true">Golbat</td>
+                              <td class="crystal-true">34</td>
+                           </tr>
+                           <tr>
+                              <td>30% (Morning, Day)</td>
+                              <td class="gold-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Golbat-F.png" alt="Golbat"></div>
+                              </td>
+                              <td class="gold-false">Golbat</td>
+                              <td class="gold-false">32</td>
+                              <td class="silver-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Golbat-F.png" alt="Golbat"></div>
+                              </td>
+                              <td class="silver-false">Golbat</td>
+                              <td class="silver-false">32</td>
+                              <td class="crystal-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td class="crystal-false">Rhyhorn</td>
+                              <td class="crystal-false">32</td>
+                           </tr>
+                           <tr>
+                              <td>30% (Night)</td>
+                              <td class="gold-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Golbat-F.png" alt="Golbat"></div>
+                              </td>
+                              <td class="gold-true">Golbat</td>
+                              <td class="gold-true">32</td>
+                              <td class="silver-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Golbat-F.png" alt="Golbat"></div>
+                              </td>
+                              <td class="silver-true">Golbat</td>
+                              <td class="silver-true">32</td>
+                              <td class="crystal-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="crystal-true">Graveler</td>
+                              <td class="crystal-true">34</td>
+                           </tr>
+                           <tr>
+                              <td>20% (Morning, Day)</td>
+                              <td class="gold-false">
+                                 <div class="flex-img"><img src="../icons/Gen 2/Ursaring-F.png" alt="Ursaring"></div>
+                              </td>
+                              <td class="gold-false">Ursaring</td>
+                              <td class="gold-false">33</td>
+                              <td class="silver-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Donphan-F.png" alt="Donphan"></div>
+                              </td>
+                              <td class="silver-false">Donphan</td>
+                              <td class="silver-false">33</td>
+                              <td class="crystal-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="crystal-false">Onix</td>
+                              <td class="crystal-false">33</td>
+                           </tr>
+                           <tr>
+                              <td>20% (Night)</td>
+                              <td class="gold-true">
+                                 <div class="flex-img"><img src="../icons/Gen 2/Ursaring-F.png" alt="Ursaring"></div>
+                              </td>
+                              <td class="gold-true">Ursaring</td>
+                              <td class="gold-true">33</td>
+                              <td class="silver-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Donphan-F.png" alt="Donphan"></div>
+                              </td>
+                              <td class="silver-true">Donphan</td>
+                              <td class="silver-true">33</td>
+                              <td class="crystal-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="crystal-true">Onix</td>
+                              <td class="crystal-true">32</td>
+                           </tr>
+                           <tr>
+                              <td>10% (Morning, Day)</td>
+                              <td class="gold-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="gold-false">Onix</td>
+                              <td class="gold-false">34</td>
+                              <td class="silver-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="silver-false">Onix</td>
+                              <td class="silver-false">34</td>
+                              <td class="crystal-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Golbat-F.png" alt="Golbat"></div>
+                              </td>
+                              <td class="crystal-false">Golbat</td>
+                              <td class="crystal-false">34</td>
+                           </tr>
+                           <tr>
+                              <td>10% (Night)</td>
+                              <td class="gold-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="gold-true">Onix</td>
+                              <td class="gold-true">34</td>
+                              <td class="silver-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="silver-true">Onix</td>
+                              <td class="silver-true">34</td>
+                              <td class="crystal-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="crystal-true">Graveler</td>
+                              <td class="crystal-true">36</td>
+                           </tr>
+                           <tr>
+                              <td>5% (Morning, Day)</td>
+                              <td class="gold-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="gold-false">Onix</td>
+                              <td class="gold-false">36</td>
+                              <td class="silver-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="silver-false">Onix</td>
+                              <td class="silver-false">36</td>
+                              <td class="crystal-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Sandslash.png" alt="Sandslash"></div>
+                              </td>
+                              <td class="crystal-false">Sandslash</td>
+                              <td class="crystal-false">35</td>
+                           </tr>
+                           <tr>
+                              <td>5% (Night)</td>
+                              <td class="gold-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="gold-true">Onix</td>
+                              <td class="gold-true">36</td>
+                              <td class="silver-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="silver-true">Onix</td>
+                              <td class="silver-true">36</td>
+                              <td class="crystal-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="crystal-true">Graveler</td>
+                              <td class="crystal-true">38</td>
+                           </tr>
+                           <tr>
+                              <td>4% (Morning, Day)</td>
+                              <td class="gold-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td class="gold-false">Rhyhorn</td>
+                              <td class="gold-false">35</td>
+                              <td class="silver-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td class="silver-false">Rhyhorn</td>
+                              <td class="silver-false">35</td>
+                              <td class="crystal-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhydon-F.png" alt="Rhydon"></div>
+                              </td>
+                              <td class="crystal-false">Rhydon</td>
+                              <td class="crystal-false">35</td>
+                           </tr>
+                           <tr>
+                              <td>4% (Night)</td>
+                              <td class="gold-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td class="gold-true">Rhyhorn</td>
+                              <td class="gold-true">35</td>
+                              <td class="silver-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td class="silver-true">Rhyhorn</td>
+                              <td class="silver-true">35</td>
+                              <td class="crystal-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="crystal-true">Graveler</td>
+                              <td class="crystal-true">40</td>
+                           </tr>
+                           <tr>
+                              <td>1% (Morning, Day)</td>
+                              <td class="gold-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td class="gold-false">Rhyhorn</td>
+                              <td class="gold-false">35</td>
+                              <td class="silver-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td class="silver-false">Rhyhorn</td>
+                              <td class="silver-false">35</td>
+                              <td class="crystal-false">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhydon-F.png" alt="Rhydon"></div>
+                              </td>
+                              <td class="crystal-false">Rhydon</td>
+                              <td class="crystal-false">35</td>
+                           </tr>
+                           <tr>
+                              <td>1% (Night)</td>
+                              <td class="gold-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td class="gold-true">Rhyhorn</td>
+                              <td class="gold-true">35</td>
+                              <td class="silver-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td class="silver-true">Rhyhorn</td>
+                              <td class="silver-true">35</td>
+                              <td class="crystal-true">
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="crystal-true">Graveler</td>
+                              <td class="crystal-true">40</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-compressed-gold-walking-table" class="pokemon-table compressed" style="display:none">
+                     <table>
+                        <caption>Gold (Compressed)</caption>
+                        <tbody>
+                           <tr class="gold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                              <th>Time</th>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>32</td>
+                              <td>30%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="gold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Golbat-F.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>32</td>
+                              <td>30%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Ursaring-F.png" alt="Ursaring"></div>
+                              </td>
+                              <td>Ursaring</td>
+                              <td>33</td>
+                              <td>20%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="gold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>34, 36</td>
+                              <td>15%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td>Rhyhorn</td>
+                              <td>35</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-compressed-silver-walking-table" class="pokemon-table compressed" style="display:none">
+                     <table>
+                        <caption>Silver (Compressed)</caption>
+                        <tbody>
+                           <tr class="silver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                              <th>Time</th>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>32</td>
+                              <td>30%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="silver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Golbat-F.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>32</td>
+                              <td>30%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Donphan-F.png" alt="Donphan"></div>
+                              </td>
+                              <td>Donphan</td>
+                              <td>33</td>
+                              <td>20%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="silver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>34, 36</td>
+                              <td>15%</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td>Rhyhorn</td>
+                              <td>35</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-compressed-crystal-walking-table" class="pokemon-table compressed" style="display:none">
+                     <table>
+                        <caption>Crystal (Compressed)</caption>
+                        <tbody>
+                           <tr class="crystal-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Rate</th>
+                              <th>Time</th>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>34<br>34, 36, 38, 40</td>
+                              <td>30%<br>50%</td>
+                              <td>Morning, Day<br>Night</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Golbat-F.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>34</td>
+                              <td>10%<br>30%</td>
+                              <td>Morning, Day<br>Night</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td>Rhyhorn</td>
+                              <td>32</td>
+                              <td>30%</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>33<br>32</td>
+                              <td>20%</td>
+                              <td>Morning, Day<br>Night</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Sandslash.png" alt="Sandslash"></div>
+                              </td>
+                              <td>Sandslash</td>
+                              <td>35</td>
+                              <td>5%</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhydon-F.png" alt="Rhydon"></div>
+                              </td>
+                              <td>Rhydon</td>
+                              <td>35</td>
+                              <td>5%</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+                  <div id="pokemon-gsc-compressed-combined-walking-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <tbody>
+                           <tr>
+                              <th colspan="2">Pokémon</th>
+                              <th class="gold-true">Gold</th>
+                              <th class="silver-true">Silver</th>
+                              <th class="crystal-true">Crystal</th>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td class="gold-false">
+                                 30% (Anytime)<br>lv. 32 (Anytime)
+                              </td>
+                              <td class="silver-false">
+                                 30% (Anytime)<br>lv. 32 (Anytime)
+                              </td>
+                              <td class="crystal-false">
+                                 30% (Morning, Day)<br>50% (Night)<br>lv. 34 (Morning, Day)<br>lv. 34, 36, 38, 40 (Night)
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Golbat-F.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td class="gold-true">
+                                 30% (Anytime)<br>lv. 32 (Anytime)
+                              </td>
+                              <td class="silver-true">
+                                 30% (Anytime)<br>lv. 32 (Anytime)
+                              </td>
+                              <td class="crystal-true">
+                                 10% (Morning, Day)<br>30% (Night)<br>lv. 34 (Anytime)
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 2/Ursaring-F.png" alt="Ursaring"></div>
+                              </td>
+                              <td>Ursaring</td>
+                              <td class="gold-false">
+                                 20% (Anytime)<br>lv. 33 (Anytime)
+                              </td>
+                              <td>N/A</td>
+                              <td>N/A</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td class="gold-true">
+                                 15% (Anytime)<br>lv. 34, 36 (Anytime)
+                              </td>
+                              <td class="silver-true">
+                                 15% (Anytime)<br>lv. 34, 36 (Anytime)
+                              </td>
+                              <td class="crystal-true">
+                                 20% (Anytime)<br>lv. 33 (Morning, Day)<br>lv. 32 (Night)
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhyhorn-F.png" alt="Rhyhorn"></div>
+                              </td>
+                              <td>Rhyhorn</td>
+                              <td class="gold-false">
+                                 5% (Anytime)<br>lv. 35 (Anytime)
+                              </td>
+                              <td class="silver-false">
+                                 5% (Anytime)<br>lv. 35 (Anytime)
+                              </td>
+                              <td class="crystal-false">
+                                 30% (Morning, Day)<br>lv. 32 (Morning, Day)
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Donphan-F.png" alt="Donphan"></div>
+                              </td>
+                              <td>Donphan</td>
+                              <td>N/A</td>
+                              <td class="silver-true">
+                                 20% (Anytime)<br>lv. 33 (Anytime)
+                              </td>
+                              <td>N/A</td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Sandslash.png" alt="Sandslash"></div>
+                              </td>
+                              <td>Sandslash</td>
+                              <td>N/A</td>
+                              <td>N/A</td>
+                              <td class="crystal-false">
+                                 5% (Morning, Day)<br>lv. 35 (Morning, Day)
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <div class="flex-img"><img src="../icons/Gen 1/Rhydon-F.png" alt="Rhydon"></div>
+                              </td>
+                              <td>Rhydon</td>
+                              <td>N/A</td>
+                              <td>N/A</td>
+                              <td class="crystal-true">
+                                 5% (Morning, Day)<br>lv. 35 (Morning, Day)
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <br>
+                  </div>
+               </div>
+            </div>
          </div>
       </div>
       <div id="items-container">
@@ -5956,7 +6874,7 @@
                      <td>In the north area</td>
                      <td></td>
                   </tr>
-		  <tr>
+                  <tr>
                      <td>TM43 Sky Attack</td>
                      <td class="red-true">R</td>
                      <td class="green-true">G</td>
@@ -6084,7 +7002,7 @@
                      <td>In the north area</td>
                      <td></td>
                   </tr>
-		       <tr>
+                  <tr>
                      <td>TM43 Sky Attack</td>
                      <td class="red-true">R</td>
                      <td class="blue-true">B</td>
@@ -6179,6 +7097,84 @@
                      <td class="yellow-false">Y</td>
                      <td>Northwest area</td>
                      <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-gsc-items" class="game-container gsc" style="display:none;">
+            <h2>Items</h2>
+            <table>
+               <caption>GSC Items</caption>
+               <tbody>
+                  <tr>
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+                  <tr>
+                     <td>Full Heal</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td>West of the entrance</td>
+                     <td>1F. Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td>Full Heal</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td>In the northeast corner</td>
+                     <td>1F.</td>
+                  </tr>
+                  <tr>
+                     <td>Max Revive</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td>In the northeast corner</td>
+                     <td>1F.</td>
+                  </tr>
+                  <tr>
+                     <td>Full Restore</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td>On the northeast ledge</td>
+                     <td>2F.</td>
+                  </tr>
+                  <tr>
+                     <td>TM26 Earthquake</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td>On the northwest ledge</td>
+                     <td>2F.</td>
+                  </tr>
+                  <tr>
+                     <td>Max Potion</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td>On the rock next to TM26</td>
+                     <td>2F. Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td>X Special</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td>C</td>
+                     <td>On the south ledge</td>
+                     <td>2F.</td>
+                  </tr>
+                  <tr>
+                     <td>HP Up</td>
+                     <td>G</td>
+                     <td>S</td>
+                     <td class="crystal-false">C</td>
+                     <td>On the south ledge</td>
+                     <td>2F.</td>
                   </tr>
                </tbody>
             </table>
@@ -6446,6 +7442,28 @@
                      <td class="yellow-false">Y</td>
                      <td>Bellsprout lv.43<br>Weepinbell lv.43<br>Victreebel lv.43</td>
                      <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-gsc-trainers" class="game-container gsc" style="display:none;">
+            <h2>Trainers</h2>
+            <table>
+               <caption>GSC Trainers</caption>
+               <tbody>
+                  <tr>
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+                  <tr>
+                     <td>Rival</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td>Sneasel lv.34<br>Golbat lv.36<br>Magneton lv.35<br>Haunter lv.35<br>Kadabra lv.35<br>Starter lv.38</td>
+                     <td>Mandatory.</td>
                   </tr>
                </tbody>
             </table>
