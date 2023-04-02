@@ -6,7 +6,7 @@
       <title>Silph Co.</title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../javascript/buttons.js"></script>
-	  <link rel="stylesheet" href="../../general.css">
+      <link rel="stylesheet" href="../../general.css">
    </head>
    <body id="body">
       <h4><a href="https://altissimo1.github.io/">Home</a></h4>
@@ -16,25 +16,31 @@
          <label for="rgby" class="right">RGBY (Japanese)</label>
          <input id="rby" type="radio" onclick="topButton.call(this)" name="games" value="RBY" checked="checked">
          <label for="rby" class="right">RBY (Western)</label>
+         <input id="gsc" type="radio" onclick="topButton.call(this)" name="games" value="GSC">
+         <label for="gsc" class="right">GSC</label>
       </div>
       <h2>Silph Co.</h2>
       <div id="notes" class="bottom">
          <p id="rgby-notes" class="rgby" style="display:none;">
             <strong>Access to:</strong><br>
-			Exit on 1F: <a href="saffroncity.html">Saffron City</a><br><br>
-			<strong>Places of interest:</strong><br>
-			The 9th floor has a nurse that will heal the player's Pokémon.
+            Exit on 1F: <a href="saffroncity.html">Saffron City</a><br><br>
+            <strong>Places of interest:</strong><br>
+            The 9th floor has a nurse that will heal the player's Pokémon.
          </p>
          <p id="rby-notes" class="rby">
             <strong>Access to:</strong><br>
-			Exit on 1F: <a href="saffroncity.html">Saffron City</a><br><br>
-			<strong>Places of interest:</strong><br>
-			The 9th floor has a nurse that will heal the player's Pokémon.
+            Exit on 1F: <a href="saffroncity.html">Saffron City</a><br><br>
+            <strong>Places of interest:</strong><br>
+            The 9th floor has a nurse that will heal the player's Pokémon.
+         </p>
+         <p id="gsc-notes" class="gsc" style="display:none;">
+            <strong>Access to:</strong><br>
+            Exit: Saffron City
          </p>
       </div>
       <div id="pokemon-container">
          <div id="pokemon-buttons">
-            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <p class="buttondisplay only rby rgby">Choose display option for Pokémon tables:</p>
             <div id="pokemon-rgby-buttons" class="button-set rgby" style="display:none;">
                <div class="flex-buttons">
                   <div class="right">
@@ -669,6 +675,28 @@
                </tbody>
             </table>
          </div>
+         <div id="pokemon-gsc-items" class="game-container gsc" style="display:none;">
+            <h2>Items</h2>
+            <table>
+               <caption>GSC Items</caption>
+               <tbody>
+                  <tr>
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+                  <tr>
+                     <td>Upgrade</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td>Gift from the guard</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
       </div>
       <div id="trainers-container">
          <div id="pokemon-rgby-trainers" class="game-container rgby" style="display:none;">
@@ -870,8 +898,9 @@
                      <td>Y</td>
                      <td>Pidgeot lv.37<br>Elemental 1 lv.38<br>Elemental 2 lv.35<br>Alakazam lv.35<br>Starter (3rd stage) lv.40</td>
                      <td>7F. Mandatory.
-					 <br>Elemental 1 will be Exeggcute, Gyarados, or Growlithe; whichever is the same type as the player's starter.
-					 <br>Elemental 2 will be Exeggcute, Gyarados, or Growlithe; whichever is weak against the player's starter.</td>
+                        <br>Elemental 1 will be Exeggcute, Gyarados, or Growlithe; whichever is the same type as the player's starter.
+                        <br>Elemental 2 will be Exeggcute, Gyarados, or Growlithe; whichever is weak against the player's starter.
+                     </td>
                   </tr>
                   <tr>
                      <td>Rival</td>
@@ -881,8 +910,9 @@
                      <td class="yellow-false">Y</td>
                      <td>Sandslash lv.38<br>Elemental 1 lv.35<br>Elemental 2 lv.37<br>Kadabra lv.35<br>Starter lv.40</td>
                      <td>7F. Mandatory.
-					 <br>Pretending Fire is super-effective against Electric, Elemental 1 is Magneton, Ninetales, or Cloyster; whichever is super-effective against the rival's starter.
-					 <br>Elemental 2 is Magneton, Ninetales, or Cloyster; whichever is weak against the rival's starter.</td>
+                        <br>Pretending Fire is super-effective against Electric, Elemental 1 is Magneton, Ninetales, or Cloyster; whichever is super-effective against the rival's starter.
+                        <br>Elemental 2 is Magneton, Ninetales, or Cloyster; whichever is weak against the rival's starter.
+                     </td>
                   </tr>
                   <tr>
                      <td>Rocket</td>
@@ -1182,8 +1212,9 @@
                      <td>Y</td>
                      <td>Pidgeot lv.37<br>Elemental 1 lv.38<br>Elemental 2 lv.35<br>Alakazam lv.35<br>Starter (3rd stage) lv.40</td>
                      <td>7F. Mandatory.
-					 <br>Elemental 1 will be Exeggcute, Gyarados, or Growlithe; whichever is the same type as the player's starter.
-					 <br>Elemental 2 will be Exeggcute, Gyarados, or Growlithe; whichever is weak against the player's starter.</td>
+                        <br>Elemental 1 will be Exeggcute, Gyarados, or Growlithe; whichever is the same type as the player's starter.
+                        <br>Elemental 2 will be Exeggcute, Gyarados, or Growlithe; whichever is weak against the player's starter.
+                     </td>
                   </tr>
                   <tr>
                      <td>Rival</td>
@@ -1192,8 +1223,9 @@
                      <td class="yellow-false">Y</td>
                      <td>Sandslash lv.38<br>Elemental 1 lv.35<br>Elemental 2 lv.37<br>Kadabra lv.35<br>Starter lv.40</td>
                      <td>7F. Mandatory.
-					 <br>Pretending Fire is super-effective against Electric, Elemental 1 is Magneton, Ninetales, or Cloyster; whichever is super-effective against the rival's starter.
-					 <br>Elemental 2 is Magneton, Ninetales, or Cloyster; whichever is weak against the rival's starter.</td>
+                        <br>Pretending Fire is super-effective against Electric, Elemental 1 is Magneton, Ninetales, or Cloyster; whichever is super-effective against the rival's starter.
+                        <br>Elemental 2 is Magneton, Ninetales, or Cloyster; whichever is weak against the rival's starter.
+                     </td>
                   </tr>
                   <tr>
                      <td>Rocket</td>
