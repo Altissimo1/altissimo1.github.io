@@ -21,10 +21,21 @@ var topButton = function topClick() {
 	});
 	
 	$("p").each(function() {
-		if ($(this).hasClass(gameSet) || $(this).hasClass("buttondisplay"))
-			$(this).show();
-		else
-			$(this).hide();
+		if (!($(this).hasClass("permanent"))) {
+			if ($(this).hasClass("only")) {
+				if ($(this).hasClass(gameSet))
+					$(this).show();
+				else
+					$(this).hide();
+			}
+			else {		
+				if ($(this).hasClass(gameSet) || $(this).hasClass("buttondisplay")) {
+					$(this).show();
+				}
+				else
+					$(this).hide();
+			}
+		}
 	});
 	
 	headerHider();
