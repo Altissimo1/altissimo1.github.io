@@ -216,18 +216,18 @@ WMSGen = {
 	},
 
 	/**
-	 * Returns the true monster ID for a given ID based on if the female box is checked.
+	 * Returns the true monster ID for a given ID based on if the female gender is selected.
 	 *
 	 * Both male-only and female-only mons are in the male range and do not allow females.
 	 * Otherwise, females are simply +600 from the male one.
 	 */
-	"getTrueMonID": function(id, femaleChecked) {
+	"getTrueMonID": function(id, femaleSelected) {
 		// First, make the id male to start with.
 		id = id % 600;
 
 		// Second, the special case. Nidoran doesn't follow the standard +600 convention.
 		if(id == WMSGenData.NIDORAN_MALE || id == WMSGenData.NIDORAN_FEMALE) {
-			if(femaleChecked) {
+			if(femaleSelected) {
 				return WMSGenData.NIDORAN_FEMALE;
 			}
 			else {
@@ -239,11 +239,11 @@ WMSGen = {
 		var maleOnly = (WMSGenData.maleOnly.indexOf(id) != -1);
 		var femaleOnly = (WMSGenData.femaleOnly.indexOf(id) != -1);
 
-		if((maleOnly || femaleOnly) && femaleChecked) {
+		if((maleOnly || femaleOnly) && femaleSelected) {
 			//console.info("Prevented %d from being marked as female.", id);
 			return id;
 		}
-		else if(femaleChecked) {
+		else if(femaleSelected) {
 			return id + 600;
 		}
 		else {
@@ -550,7 +550,7 @@ WMSGen = {
 		}
 		else {
 			var client = parseInt(this.getComboBoxValue("clientBox"), 10);
-			struct.client = this.getTrueMonID(client, this.form.clientF.checked);
+			struct.client = this.getTrueMonID(client, this.form.clientF.value == 600 ? true : false);
 		}
 
 		// Target
@@ -562,7 +562,7 @@ WMSGen = {
 		}
 		else {
 			var client = parseInt(this.getComboBoxValue("targetBox"), 10);
-			struct.target = this.getTrueMonID(client, this.form.targetF.checked);
+			struct.target = this.getTrueMonID(client, this.form.targetF.value == 600 ? true : false);
 		}
 
 		// Target 2
