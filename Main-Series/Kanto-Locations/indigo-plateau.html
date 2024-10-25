@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Indigo Plateau</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" href="../../common.css">
+   </head>
+   <body>
+      <h4><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a></h4>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Kanto Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rgby" type="radio" onclick="topButton.call(this)" name="games" value="RGBY">
+         <label for="rgby" class="right">RGBY (Japanese)</label>
+         <input id="rby" type="radio" onclick="topButton.call(this)" name="games" value="RBY" checked="checked">
+         <label for="rby" class="right">RBY (Western)</label>
+         <input id="gsc" type="radio" onclick="topButton.call(this)" name="games" value="GSC">
+         <label for="gsc" class="right">GSC</label>
+         <input id="frlg" type="radio" onclick="topButton.call(this)" name="games" value="FRLG">
+         <label for="frlg" class="right">FRLG</label>
+         <input id="hgss" type="radio" onclick="topButton.call(this)" name="games" value="HGSS">
+         <label for="hgss" class="right">HGSS</label>
+         <input id="lgpe" type="radio" onclick="topButton.call(this)" name="games" value="LGPE">
+         <label for="lgpe" class="right">LGPE</label>
+      </div>
+      <h2>Indigo Plateau</h2>
+      <div id="notes" class="bottom">
+         <p id="rgby-notes" class="rgby" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a href="route-23.html">Route 23</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Pokémon League: The four members of the Elite Four and the Champion can be fought here.<br>
+            Poké Mart<br>
+         </p>
+         <p id="rby-notes" class="rby">
+            <strong>Access to:</strong><br>
+            South: <a href="route-23.html">Route 23</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Pokémon League: The four members of the Elite Four and the Champion can be fought here.<br>
+            Poké Mart<br>
+         </p>
+         <p id="gsc-notes" class="gsc" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a href="route-23.html">Route 23</a><br>
+            A man with an Abra will teleport the player to <a href="../Johto-Locations/new-bark-town.html">New Bark Town</a> when spoken to, anytime before defeating the Elite Four.<br><br>
+            <strong>Places of interest:</strong><br>
+            Pokémon League: The four members of the Elite Four and the Champion can be fought here.<br>
+            Poké Mart
+         </p>
+         <p id="frlg-notes" class="frlg" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a href="route-23.html">Route 23</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Pokémon League: The four members of the Elite Four and the Champion can be fought here.<br>
+            Poké Mart
+         </p>
+         <p id="hgss-notes" class="hgss" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a href="victory-road.html">Victory Road</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Pokémon League: The four members of the Elite Four and the Champion can be fought here.<br>
+            Poké Mart
+         </p>
+         <p id="lgpe-notes" class="lgpe" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a href="route-23.html">Route 23</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Pokémon League: The four members of the Elite Four and the Champion can be fought here.<br>
+            Poké Mart<br>
+            Mega Stone Seller<br>
+            Move Relearner: Madame Memorial will teach a Pokémon a move from its level-up movepool for one Heart Scale per move.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay lgpe only" style="display:none;">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-lgpe-buttons" class="button-set lgpe" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-lgpe-full-lgp" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Let's Go Pikachu (Full)">
+                        <label for="pokemon-lgpe-full-lgp">Let's Go Pikachu (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-lgpe-compressed-lgp" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Let's Go Pikachu (Compressed)">
+                        <label for="pokemon-lgpe-compressed-lgp">Let's Go Pikachu (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-lgpe-full-lge" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Let's Go Eevee (Full)">
+                        <label for="pokemon-lgpe-full-lge">Let's Go Eevee (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-lgpe-compressed-lge" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Let's Go Eevee (Compressed)">
+                        <label for="pokemon-lgpe-compressed-lge">Let's Go Eevee (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-lgpe-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Combined (Full)">
+                        <label for="pokemon-lgpe-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-lgpe-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Separate (Full)">
+                        <label for="pokemon-lgpe-full-separate">Separate (Full)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-lgpe-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-lgpe-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-lgpe-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Separate (Compressed)">
+                        <label for="pokemon-lgpe-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-lgpe" class="game-container lgpe" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-lgpe-trade">
+                  <h4>Trade</h4>
+                  <div id="pokemon-lgpe-all-combined-trade-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/exeggutor.png" alt="Exeggutor"></div>
+                              </td>
+                              <td class="light-false">Exeggutor</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/exeggutor-alola.png" alt="Exeggutor (Alolan)"></div>
+                              </td>
+                              <td class="light-false">Exeggutor (Alolan)</td>
+                              <td class="light-false">46</td>
+                              <td class="lgp-false">LGP</td>
+                              <td class="lge-false">LGE</td>
+                              <td class="light-false">The trade is with the man in the northwest part of the Pokémon Center.<br>The player can repeat this trade indefinitely.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-lgpe-all-lgp-trade-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Let's Go Pikachu</caption>
+                        <thead>
+                           <tr class="lgp-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="lgp-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/exeggutor.png" alt="Exeggutor"></div>
+                              </td>
+                              <td>Exeggutor</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/exeggutor-alola.png" alt="Exeggutor (Alolan)"></div>
+                              </td>
+                              <td>Exeggutor (Alolan)</td>
+                              <td>46</td>
+                              <td>The trade is with the man in the northwest part of the Pokémon Center.<br>The player can repeat this trade indefinitely.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-lgpe-all-lge-trade-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Let's Go Eevee</caption>
+                        <thead>
+                           <tr class="lge-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="lge-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/exeggutor.png" alt="Exeggutor"></div>
+                              </td>
+                              <td>Exeggutor</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/exeggutor-alola.png" alt="Exeggutor (Alolan)"></div>
+                              </td>
+                              <td>Exeggutor (Alolan)</td>
+                              <td>46</td>
+                              <td>The trade is with the man in the northwest part of the Pokémon Center.<br>The player can repeat this trade indefinitely.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-rgby-items" class="game-container rgby" style="display:none;">
+            <h3><u>Items</u></h3>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Red, Green, Blue, and Yellow Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="4">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">ハイパーボール <em>(Ultra Ball)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">スーパーボール <em>(Great Ball)</em></td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">かいふくのくすり <em>(Full Restore)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">3000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">まんたんのくすり <em>(Max Potion)</em></td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">2500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">なんでもなおし <em>(Full Heal)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">げんきのかけら <em>(Revive)</em></td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">ゴールドスプレー <em>(Max Repel)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">700</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-rby-items" class="game-container rby">
+            <h3><u>Items</u></h3>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Red, Blue, and Yellow Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Restore</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">3000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Potion</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">2500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Revive</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">700</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-gsc-items" class="game-container gsc" style="display:none;">
+            <h3><u>Items</u></h3>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Repel</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Hyper Potion</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Potion</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">2500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Restore</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">3000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Revive</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">600</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-frlg-items" class="game-container frlg" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>FireRed and LeafGreen Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Champion Ribbon</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">Obtained on all Pokémon in the player's party any time the Elite Four are defeated</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>FireRed and LeafGreen Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Restore</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">3000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Potion</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">2500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Heal</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">700</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-hgss-items" class="game-container hgss" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Rare Candy</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Next to the northwest statue outside the building</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Repel</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-true">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Hyper Potion</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Potion</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-true">2500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Restore</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">3000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Revive</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-true">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">600</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-lgpe-items" class="game-container lgpe" style="display:none;">
+            <h3><u>Items</u></h3>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Let's Go Pikachu and Let's Go Eevee Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">2500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">3000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Antidote</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Burn Heal</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ice Heal</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Paralyze Heal</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Heal</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">400</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">2000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">400</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Repel</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">900</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lure</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">400</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Lure</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Lure</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">900</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Attack</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">550</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Defense</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Sp. Atk</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">350</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Sp. Def</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">350</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Speed</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">350</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Accuracy</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">950</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Dire Hit</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">650</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Guard Spec.</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">700</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Mega Stone Seller</h4>
+            <table class="bold-contents left-align">
+               <caption>Let's Go Pikachu and Let's Go Eevee Items (Mega Stone Seller)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Beedrillite</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">30000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Pidgeotite</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">30000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Alakazite</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">30000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Slowbronite</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">30000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Gengarite</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">30000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Kangaskhanite</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">30000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Pinsirite</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">30000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Gyaradosite</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">30000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Aerodactylite</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">30000</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-rgby-trainers" class="game-container rgby" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>Elite Four</h4>
+            <table class="bold-contents left-align">
+               <caption>Red, Green, Blue, and Yellow Trainers (Elite Four)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="4">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">カンナ <em>(Lorelei)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">Dewgong lv.54<br>Cloyster lv.53<br>Slowbro lv.54<br>Jynx lv.56<br>Lapras lv.56</td>
+                     <td class="light-false">The first member of the Elite Four. She can use Super Potions during the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">シバ <em>(Bruno)</em></td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">Onix lv.53<br>Hitmonchan lv.55<br>Hitmonlee lv.55<br>Onix lv.56<br>Machamp lv.58</td>
+                     <td class="light-true">The second member of the Elite Four. He can use X Defends during the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">キクコ <em>(Agatha)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">Gengar lv.56<br>Golbat lv.56<br>Haunter lv.55<br>Arbok lv.58<br>Gengar lv.60</td>
+                     <td class="light-false">The third member of the Elite Four. She can use Super Potions during the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">ワタル <em>(Lance)</em></td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">Gyarados lv.58<br>Dragonair lv.56<br>Dragonair lv.56<br>Aerodactyl lv.60<br>Dragonite lv.62</td>
+                     <td class="light-true">The fourth member of the Elite Four. He can use Hyper Potions during the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rival</td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="light-false">Y</td>
+                     <td class="light-false">Pidgeot lv.61<br>Alakazam lv.59<br>Rhydon lv.61<br>Elemental 1 lv.61<br>Elemental 2 lv.63<br>Starter lv.65</td>
+                     <td class="light-false">The Champion of the Elite Four. He can use Full Restores during the battle.
+                        <br>Elemental 1 is one of Exeggutor, Gyarados, or Arcanine, whichever is the same type as the player's starter.
+                        <br>Elemental 2 is one of Exeggutor, Gyarados, or Arcanine, whichever is weak against the player's starter.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Rival</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">G</td>
+                     <td class="light-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">Sandslash lv.61<br>Alakazam lv.59<br>Exeggutor lv.61<br>Elemental 1 lv.61<br>Elemental 2 lv.63<br>Starter lv.65</td>
+                     <td class="light-true">The Champion of the Elite Four. He can use Full Restores during the battle.
+                        <br>Pretending Fire is super-effective against Electric, Elemental 1 is one of Ninetales, Magneton, or Cloyster, whichever is weak against the rival's starter.
+                        <br>Elemental 2 is one of Ninetales, Magneton, or Cloyster, whichever is super-effective against the rival's starter.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-rby-trainers" class="game-container rby">
+            <h3><u>Trainers</u></h3>
+            <h4>Elite Four</h4>
+            <table class="bold-contents left-align">
+               <caption>Red, Blue, and Yellow Trainers (Elite Four)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Lorelei</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">Dewgong lv.54<br>Cloyster lv.53<br>Slowbro lv.54<br>Jynx lv.56<br>Lapras lv.56</td>
+                     <td class="light-false">The first member of the Elite Four. She can use Super Potions during the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Bruno</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">Onix lv.53<br>Hitmonchan lv.55<br>Hitmonlee lv.55<br>Onix lv.56<br>Machamp lv.58</td>
+                     <td class="light-true">The second member of the Elite Four. He can use X Defends during the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Agatha</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">Gengar lv.56<br>Golbat lv.56<br>Haunter lv.55<br>Arbok lv.58<br>Gengar lv.60</td>
+                     <td class="light-false">The third member of the Elite Four. She can use Super Potions during the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lance</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">Gyarados lv.58<br>Dragonair lv.56<br>Dragonair lv.56<br>Aerodactyl lv.60<br>Dragonite lv.62</td>
+                     <td class="light-true">The fourth member of the Elite Four. He can use Hyper Potions during the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rival</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="light-false">Y</td>
+                     <td class="light-false">Pidgeot lv.61<br>Alakazam lv.59<br>Rhydon lv.61<br>Elemental 1 lv.61<br>Elemental 2 lv.63<br>Starter lv.65</td>
+                     <td class="light-false">The Champion of the Elite Four. He can use Full Restores during the battle.
+                        <br>Elemental 1 is one of Exeggutor, Gyarados, or Arcanine, whichever is the same type as the player's starter.
+                        <br>Elemental 2 is one of Exeggutor, Gyarados, or Arcanine, whichever is weak against the player's starter.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Rival</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">Sandslash lv.61<br>Alakazam lv.59<br>Exeggutor lv.61<br>Elemental 1 lv.61<br>Elemental 2 lv.63<br>Starter lv.65</td>
+                     <td class="light-true">The Champion of the Elite Four. He can use Full Restores during the battle.
+                        <br>Pretending Fire is super-effective against Electric, Elemental 1 is one of Ninetales, Magneton, or Cloyster, whichever is weak against the rival's starter.
+                        <br>Elemental 2 is one of Ninetales, Magneton, or Cloyster, whichever is super-effective against the rival's starter.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-gsc-trainers" class="game-container gsc" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Rival</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Sneasel lv.45<br>Crobat lv.48<br>Magneton lv.45<br>Gengar lv.46<br>Alakazam lv.46<br>Starter lv.50</td>
+                     <td class="light-false">He can be fought on Mondays and Wednesdays after defeating him in Mt. Moon.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Elite Four</h4>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Trainers (Elite Four)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Will</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Xatu lv.40<br>Exeggutor lv.41<br>Slowbro lv.41<br>Jynx lv.41<br>Xatu lv.42</td>
+                     <td class="light-false">The first member of the Elite Four. He can use a Max Potion during the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Koga</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">Ariados lv.40<br>Venomoth lv.41<br>Forretress lv.43<br>Muk lv.42<br>Crobat lv.44</td>
+                     <td class="light-true">The second member of the Elite Four. He can use a Full Heal and a Full Restore during the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Bruno</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Hitmontop lv.42<br>Hitmonlee lv.42<br>Hitmonchan lv.42<br>Onix lv.43<br>Machamp lv.46</td>
+                     <td class="light-false">The third member of the Elite Four. He can use a Max Potion during the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Karen</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">Umbreon lv.42<br>Vileplume lv.42<br>Murkrow lv.44<br>Gengar lv.45<br>Houndoom lv.47</td>
+                     <td class="light-true">The fourth member of the Elite Four. She can use a Full Heal and a Max Potion during the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Lance</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Gyarados lv.44<br>Dragonite lv.47<br>Charizard lv.46<br>Aerodactyl lv.46<br>Dragonite lv.47<br>Dragonite lv.50</td>
+                     <td class="light-false">The Champion of the Elite Four. He can use a Full Heal and a Full Restore during the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-frlg-trainers" class="game-container frlg" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>Elite Four</h4>
+            <table class="bold-contents left-align">
+               <caption>FireRed and LeafGreen Trainers (Elite Four)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Lorelei</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">Dewgong lv.52<br>Cloyster lv.51<br>Slowbro lv.52<br>Jynx lv.54<br>Lapras lv.54</td>
+                     <td class="light-false">The first member of the Elite Four. Her Lapras holds a Sitrus Berry.<br>
+                        She can use Full Restores during the battle.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Bruno</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">Onix lv.51<br>Hitmonchan lv.53<br>Hitmonlee lv.53<br>Onix lv.54<br>Machamp lv.56</td>
+                     <td class="light-true">The second member of the Elite Four. His Machamp holds a Sitrus Berry.<br>
+                        He can use Full Restores during the battle.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Agatha</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">Gengar lv.54<br>Golbat lv.54<br>Haunter lv.53<br>Arbok lv.56<br>Gengar lv.58</td>
+                     <td class="light-false">The third member of the Elite Four. Her Gengar holds a Sitrus Berry.<br>
+                        She can use two Full Restores during the battle.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lance</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">Gyarados lv.56<br>Dragonair lv.54<br>Dragonair lv.54<br>Aerodactyl lv.58<br>Dragonite lv.60</td>
+                     <td class="light-true">The fourth member of the Elite Four. His Dragonite holds a Sitrus Berry.<br>
+                        He can use two Full Restores during the battle.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rival</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">Pidgeot lv.59<br>Alakazam lv.57<br>Rhydon lv.59<br>Elemental 1 lv.59<br>Elemental 2 lv.61<br>Starter lv.63</td>
+                     <td class="light-false">The Champion of the Elite Four. His starter holds a Sitrus Berry. He can use Full Restores during the battle.
+                        <br>Elemental 1 is one of Exeggutor, Gyarados, or Arcanine, whichever is the same type as the player's starter.
+                        <br>Elemental 2 is one of Exeggutor, Gyarados, or Arcanine, whichever is weak against the player's starter.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rematches</h4>
+            <p class="frlg">The Elite Four will begin using these teams after the player restores the Network Machine on <a href="one-island.html">One Island</a>.</p>
+            <table class="bold-contents left-align">
+               <caption>FireRed and LeafGreen Trainers (Elite Four Rematches)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Lorelei</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">Dewgong lv.64<br>Cloyster lv.63<br>Piloswine lv.63<br>Jynx lv.66<br>Lapras lv.66</td>
+                     <td class="light-false">The first member of the Elite Four.<br>
+                        Her Lapras holds a Cheri Berry. She can use Full Restores during the battle.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Bruno</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">Steelix lv.65<br>Hitmonchan lv.65<br>Hitmonlee lv.65<br>Steelix lv.66<br>Machamp lv.68</td>
+                     <td class="light-true">The second member of the Elite Four.<br>
+                        His Machamp holds a Persim Berry. He can use Full Restores during the battle.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Agatha</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">Gengar lv.66<br>Crobat lv.66<br>Misdreavus lv.65<br>Arbok lv.68<br>Gengar lv.70</td>
+                     <td class="light-false">The third member of the Elite Four.<br>
+                        Her lv.70 Gengar holds a Chesto Berry. She can use Full Restores during the battle.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lance</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">Gyarados lv.68<br>Dragonite lv.66<br>Kingdra lv.66<br>Aerodactyl lv.70<br>Dragonite lv.72</td>
+                     <td class="light-true">The fourth member of the Elite Four.<br>
+                        His lv.72 Dragonite holds a Persim Berry. He can use Full Restores during the battle.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rival</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">Heracross lv.72<br>Alakazam lv.73<br>Tyranitar lv.72<br>Elemental 1 lv.73<br>Elemental 2 lv.73<br>Starter lv.75</td>
+                     <td class="light-false">The Champion of the Elite Four.<br>
+                        His starter holds a Sitrus Berry. He can use Full Restores during the battle.
+                        <br>Elemental 1 is one of Exeggutor, Gyarados, or Arcanine, whichever is the same type as the player's starter.
+                        <br>Elemental 2 is one of Exeggutor, Gyarados, or Arcanine, whichever is weak against the player's starter.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-hgss-trainers" class="game-container hgss" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Rival</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Sneasel lv.55<br>Magneton lv.55<br>Gengar lv.56<br>Crobat lv.58<br>Alakazam lv.56<br>Starter lv.60</td>
+                     <td class="light-false">He can be fought on Mondays and Wednesdays after defeating him in Mt. Moon and defeating Clair and Lance in the Dragon's Den.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Elite Four</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Trainers (Elite Four)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Will</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Xatu lv.40<br>Jynx lv.41<br>Slowbro lv.41<br>Exeggutor lv.41<br>Xatu lv.42</td>
+                     <td class="light-false">The first member of the Elite Four. His Xatu holds a Sitrus Berry.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Koga</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Ariados lv.40<br>Forretress lv.43<br>Muk lv.42<br>Venomoth lv.41<br>Crobat lv.44</td>
+                     <td class="light-true">The second member of the Elite Four. His Muk holds a Black Sludge and his Crobat holds a Sitrus Berry.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Bruno</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Hitmontop lv.42<br>Hitmonlee lv.42<br>Hitmonchan lv.42<br>Onix lv.43<br>Machamp lv.46</td>
+                     <td class="light-false">The third member of the Elite Four. His Machamp holds a Sitrus Berry.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Karen</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Umbreon lv.42<br>Vileplume lv.42<br>Murkrow lv.44<br>Gengar lv.45<br>Houndoom lv.47</td>
+                     <td class="light-true">The fourth member of the Elite Four. Her Houndoom holds a Sitrus Berry.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Lance</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Gyarados lv.46<br>Dragonite lv.49<br>Dragonite lv.49<br>Aerodactyl lv.48<br>Charizard lv.48<br>Dragonite lv.50</td>
+                     <td class="light-false">The Champion of the Elite Four. He can use Full Restores during the battle. His lv.50 Dragonite holds a Sitrus Berry.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rematches</h4>
+            <p class="hgss">The Elite Four will begin using these teams after the player obtains all 16 Badges.</p>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Trainers (Elite Four Rematches)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Will</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Bronzong lv.58<br>Jynx lv.60<br>Grumpig lv.59<br>Slowbro lv.60<br>Gardevoir lv.61<br>Xatu lv.62</td>
+                     <td class="light-false">The first member of the Elite Four. His Xatu holds a Sitrus Berry.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Koga</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Skuntank lv.61<br>Venomoth lv.63<br>Toxicroak lv.60<br>Swalot lv.62<br>Crobat lv.64<br>Muk lv.62</td>
+                     <td class="light-true">The second member of the Elite Four. His Swalot holds Leftovers and his Muk holds a Black Sludge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Bruno</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Hitmontop lv.62<br>Hitmonlee lv.61<br>Hitmonchan lv.61<br>Hariyama lv.62<br>Machamp lv.64<br>Lucario lv.64</td>
+                     <td class="light-false">The third member of the Elite Four. His Hariyama holds a Sitrus Berry.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Karen</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Weavile lv.62<br>Absol lv.62<br>Spiritomb lv.62<br>Houndoom lv.63<br>Honchkrow lv.64<br>Umbreon lv.64</td>
+                     <td class="light-true">The fourth member of the Elite Four. Her Umbreon holds a Sitrus Berry.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Lance</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Salamence lv.72<br>Gyarados lv.68<br>Garchomp lv.72<br>Altaria lv.73<br>Charizard lv.68<br>Dragonite lv.75</td>
+                     <td class="light-false">The Champion of the Elite Four.
+                        <br>He can use Full Restores during the battle. His Salamence holds a Lum Berry and his Dragonite holds a Sitrus Berry.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-lgpe-trainers" class="game-container lgpe" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Let's Go Pikachu and Let's Go Eevee Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Red</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">Pikachu lv.85<br>Machamp lv.85<br>Arcanine lv.85<br>Lapras lv.85<br>Snorlax lv.85<br>Venusaur lv.85</td>
+                     <td class="light-false">He can be fought here after defeating six Master Trainers, and each time the player defeats the Elite Four after that. His Venusaur can Mega Evolve.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Elite Four</h4>
+            <table class="bold-contents left-align">
+               <caption>Let's Go Pikachu and Let's Go Eevee Trainers (Elite Four)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Lorelei</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">Dewgong lv.51<br>Jynx lv.51<br>Cloyster lv.51<br>Slowbro lv.51<br>Lapras lv.52</td>
+                     <td class="light-false">The first member of the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Bruno</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">Onix lv.52<br>Hitmonchan lv.52<br>Hitmonlee lv.52<br>Poliwrath lv.52<br>Machamp lv.53</td>
+                     <td class="light-true">The second member of the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Agatha</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">Arbok lv.53<br>Gengar lv.53<br>Golbat lv.53<br>Weezing lv.53<br>Gengar lv.54</td>
+                     <td class="light-false">The third member of the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lance</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">Seadra lv.54<br>Aerodactyl lv.54<br>Gyarados lv.54<br>Charizard lv.54<br>Dragonite lv.55</td>
+                     <td class="light-true">The fourth member of the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rival</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="light-false">LGE</td>
+                     <td class="light-false">Pidgeot lv.56<br>Vileplume lv.56<br>Marowak lv.56<br>Rapidash lv.56<br>Slowbro lv.56<br>Jolteon lv.57</td>
+                     <td class="light-false">The Champion of the Elite Four. His Pidgeot can Mega Evolve.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Rival</td>
+                     <td class="light-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">Pidgeot lv.56<br>Vileplume lv.56<br>Marowak lv.56<br>Rapidash lv.56<br>Slowbro lv.56<br>Raichu lv.57</td>
+                     <td class="light-true">The Champion of the Elite Four. His Pidgeot can Mega Evolve.<br>He can use a Full Restore during the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rematches</h4>
+            <table class="bold-contents left-align">
+               <caption>Let's Go Pikachu and Let's Go Eevee Trainers (Elite Four Rematches)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Lorelei</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">Dewgong lv.61<br>Jynx lv.61<br>Sandslash (Alolan) lv.61<br>Cloyster lv.61<br>Slowbro lv.61<br>Lapras lv.62</td>
+                     <td class="light-false">The first member of the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Bruno</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">Onix lv.62<br>Hitmonchan lv.62<br>Hitmonlee lv.62<br>Golem (Alolan) lv.62<br>Poliwrath lv.62<br>Machamp lv.63</td>
+                     <td class="light-true">The second member of the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Agatha</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">Arbok lv.63<br>Marowak (Alolan) lv.63<br>Golbat lv.63<br>Gengar lv.63<br>Weezing lv.63<br>Gengar lv.64</td>
+                     <td class="light-false">The third member of the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lance</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">Seadra lv.64<br>Aerodactyl lv.64<br>Gyarados lv.64<br>Charizard lv.64<br>Exeggutor (Alolan) lv.64<br>Dragonite lv.65</td>
+                     <td class="light-true">The fourth member of the Elite Four. His Charizard can Mega Evolve into Mega Charizard X.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rival</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="light-false">LGE</td>
+                     <td class="light-false">Pidgeot lv.66<br>Vileplume lv.66<br>Marowak lv.66<br>Rapidash lv.66<br>Slowbro lv.66<br>Jolteon lv.67</td>
+                     <td class="light-false">The Champion of the Elite Four. His Pidgeot can Mega Evolve.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Rival</td>
+                     <td class="light-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">Pidgeot lv.66<br>Vileplume lv.66<br>Marowak lv.66<br>Rapidash lv.66<br>Slowbro lv.66<br>Raichu lv.67</td>
+                     <td class="light-true">The Champion of the Elite Four. His Pidgeot can Mega Evolve.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

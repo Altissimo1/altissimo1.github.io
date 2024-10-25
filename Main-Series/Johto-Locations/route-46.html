@@ -1,0 +1,3095 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Route 46</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../javascript/game-sets.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script src="../javascript/conditions.js"></script>
+      <link rel="stylesheet" href="../../common.css">
+   </head>
+   <body>
+      <h4><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a></h4>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Johto Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="gsc" type="radio" onclick="topButton.call(this)" name="games" value="GSC" checked="checked">
+         <label for="gsc" class="right">GSC</label>
+         <input id="hgss" type="radio" onclick="topButton.call(this)" name="games" value="HGSS">
+         <label for="hgss" class="right">HGSS</label>
+      </div>
+      <h2>Route 46</h2>
+      <div id="notes" class="bottom">
+         <p id="gsc-notes" class="gsc">
+            <strong>Access to:</strong><br>
+            South: <a href="route-29.html">Route 29</a><br>
+            East: <a href="route-45.html">Route 45</a><br>
+            Accessible on the route: <a href="dark-cave.html">Dark Cave</a> (Route 31/46 side)
+         </p>
+         <p id="hgss-notes" class="hgss" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a href="route-29.html">Route 29</a><br>
+            East: <a href="route-45.html">Route 45</a><br>
+            Accessible on the route: <a href="dark-cave.html">Dark Cave</a> (Route 31/46 side)<br><br>
+            <strong>Utility:</strong><br>
+            Headbutt can be used to encounter wild Pokémon.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-gsc-buttons" class="button-set gsc">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-full-gold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Gold (Full)">
+                        <label for="pokemon-gsc-full-gold">Gold (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-compressed-gold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Gold (Compressed)">
+                        <label for="pokemon-gsc-compressed-gold">Gold (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-full-silver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Silver (Full)">
+                        <label for="pokemon-gsc-full-silver">Silver (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-compressed-silver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Silver (Compressed)">
+                        <label for="pokemon-gsc-compressed-silver">Silver (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-full-crystal" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Crystal (Full)">
+                        <label for="pokemon-gsc-full-crystal">Crystal (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-compressed-crystal" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Crystal (Compressed)">
+                        <label for="pokemon-gsc-compressed-crystal">Crystal (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Combined (Full)">
+                        <label for="pokemon-gsc-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Separate (Full)">
+                        <label for="pokemon-gsc-full-separate">Separate (Full)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-gsc-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Separate (Compressed)">
+                        <label for="pokemon-gsc-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-hgss-buttons" class="button-set hgss" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-hgss-full-heartgold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="HeartGold (Full)">
+                        <label for="pokemon-hgss-full-heartgold">HeartGold (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-hgss-compressed-heartgold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="HeartGold (Compressed)">
+                        <label for="pokemon-hgss-compressed-heartgold">HeartGold (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-hgss-full-soulsilver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="SoulSilver (Full)">
+                        <label for="pokemon-hgss-full-soulsilver">SoulSilver (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-hgss-compressed-soulsilver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="SoulSilver (Compressed)">
+                        <label for="pokemon-hgss-compressed-soulsilver">SoulSilver (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-hgss-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="Combined (Full)">
+                        <label for="pokemon-hgss-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-hgss-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="Separate (Full)">
+                        <label for="pokemon-hgss-full-separate">Separate (Full)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-hgss-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-hgss-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-hgss-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="Separate (Compressed)">
+                        <label for="pokemon-hgss-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-gsc" class="game-container gsc">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Geodude have a 2% chance of holding an Everstone.</li>
+                  <li>Wild Phanpy can flee.</li>
+               </ul>
+               <div id="pokemon-gsc-walking" class="table-collection walking">
+                  <h4>Walking</h4>
+                  <div id="pokemon-gsc-full-gold-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Gold (Full)</caption>
+                        <thead>
+                           <tr class="gold-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Condition(s)</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="gold-false">
+                              <td>0</td>
+                              <td>30%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="gold-true">
+                              <td rowspan="2">1</td>
+                              <td rowspan="2">30%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="gold-true">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>2</td>
+                              <td>20%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="gold-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="gold-false">
+                              <td rowspan="2">4</td>
+                              <td rowspan="2">5%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>4</td>
+                           </tr>
+                           <tr class="gold-true">
+                              <td>5</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/jigglypuff.png" alt="Jigglypuff"></div>
+                              </td>
+                              <td>Jigglypuff</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>6</td>
+                              <td>1%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/jigglypuff.png" alt="Jigglypuff"></div>
+                              </td>
+                              <td>Jigglypuff</td>
+                              <td>5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-full-silver-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Silver (Full)</caption>
+                        <thead>
+                           <tr class="silver-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Condition(s)</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="silver-false">
+                              <td>0</td>
+                              <td>30%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="silver-true">
+                              <td rowspan="2">1</td>
+                              <td rowspan="2">30%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="silver-true">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>2</td>
+                              <td>20%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="silver-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="silver-false">
+                              <td rowspan="2">4</td>
+                              <td rowspan="2">5%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>4</td>
+                           </tr>
+                           <tr class="silver-true">
+                              <td>5</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/jigglypuff.png" alt="Jigglypuff"></div>
+                              </td>
+                              <td>Jigglypuff</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>6</td>
+                              <td>1%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/jigglypuff.png" alt="Jigglypuff"></div>
+                              </td>
+                              <td>Jigglypuff</td>
+                              <td>5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-full-crystal-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Crystal (Full)</caption>
+                        <thead>
+                           <tr class="crystal-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Condition(s)</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="crystal-false">
+                              <td>0</td>
+                              <td>30%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td rowspan="2">1</td>
+                              <td rowspan="2">30%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>2</td>
+                              <td>20%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td rowspan="2">4</td>
+                              <td rowspan="2">5%</td>
+                              <td>Morning</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/phanpy.png" alt="Phanpy"></div>
+                              </td>
+                              <td>Phanpy</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>Day, Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>5</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>6</td>
+                              <td>1%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>2</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-full-combined-walking-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="light-true">Condition(s)</th>
+                              <th class="gold-true" colspan="3">Gold</th>
+                              <th class="silver-true" colspan="3">Silver</th>
+                              <th class="crystal-true" colspan="3">Crystal</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">30%</td>
+                              <td class="light-false">Anytime</td>
+                              <td class="gold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="gold-false">Geodude</td>
+                              <td class="gold-false">lv. 3</td>
+                              <td class="silver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="silver-false">Geodude</td>
+                              <td class="silver-false">lv. 3</td>
+                              <td class="crystal-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="crystal-false">Geodude</td>
+                              <td class="crystal-false">lv. 2</td>
+                           </tr>
+                           <tr>
+                              <td rowspan="2" class="light-true">1</td>
+                              <td rowspan="2" class="light-true">30%</td>
+                              <td class="light-true">Morning, Day</td>
+                              <td class="gold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="gold-true">Spearow</td>
+                              <td class="gold-true">lv. 2</td>
+                              <td class="silver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="silver-true">Spearow</td>
+                              <td class="silver-true">lv. 2</td>
+                              <td class="crystal-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="crystal-true">Spearow</td>
+                              <td class="crystal-true">lv. 2</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Night</td>
+                              <td class="gold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="gold-true">Rattata</td>
+                              <td class="gold-true">lv. 3</td>
+                              <td class="silver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="silver-true">Rattata</td>
+                              <td class="silver-true">lv. 3</td>
+                              <td class="crystal-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="crystal-true">Rattata</td>
+                              <td class="crystal-true">lv. 2</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">20%</td>
+                              <td class="light-false">Anytime</td>
+                              <td class="gold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="gold-false">Rattata</td>
+                              <td class="gold-false">lv. 2</td>
+                              <td class="silver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="silver-false">Rattata</td>
+                              <td class="silver-false">lv. 2</td>
+                              <td class="crystal-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="crystal-false">Geodude</td>
+                              <td class="crystal-false">lv. 3</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="light-true">Anytime</td>
+                              <td class="gold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="gold-true">Geodude</td>
+                              <td class="gold-true">lv. 2</td>
+                              <td class="silver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="silver-true">Geodude</td>
+                              <td class="silver-true">lv. 2</td>
+                              <td class="crystal-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="crystal-true">Rattata</td>
+                              <td class="crystal-true">lv. 3</td>
+                           </tr>
+                           <tr>
+                              <td rowspan="3" class="light-false">4</td>
+                              <td rowspan="3" class="light-false">5%</td>
+                              <td class="light-false">Morning</td>
+                              <td class="gold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="gold-false">Spearow</td>
+                              <td class="gold-false">lv. 3</td>
+                              <td class="silver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="silver-false">Spearow</td>
+                              <td class="silver-false">lv. 3</td>
+                              <td class="crystal-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/phanpy.png" alt="Phanpy"></div>
+                              </td>
+                              <td class="crystal-false">Phanpy</td>
+                              <td class="crystal-false">lv. 2</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Day</td>
+                              <td class="gold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="gold-false">Spearow</td>
+                              <td class="gold-false">lv. 3</td>
+                              <td class="silver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="silver-false">Spearow</td>
+                              <td class="silver-false">lv. 3</td>
+                              <td class="crystal-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="crystal-false">Rattata</td>
+                              <td class="crystal-false">lv. 2</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Night</td>
+                              <td class="gold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="gold-false">Geodude</td>
+                              <td class="gold-false">lv. 4</td>
+                              <td class="silver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="silver-false">Geodude</td>
+                              <td class="silver-false">lv. 4</td>
+                              <td class="crystal-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="crystal-false">Rattata</td>
+                              <td class="crystal-false">lv. 2</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">4%</td>
+                              <td class="light-true">Anytime</td>
+                              <td class="gold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/jigglypuff.png" alt="Jigglypuff"></div>
+                              </td>
+                              <td class="gold-true">Jigglypuff</td>
+                              <td class="gold-true">lv. 3</td>
+                              <td class="silver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/jigglypuff.png" alt="Jigglypuff"></div>
+                              </td>
+                              <td class="silver-true">Jigglypuff</td>
+                              <td class="silver-true">lv. 3</td>
+                              <td class="crystal-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="crystal-true">Rattata</td>
+                              <td class="crystal-true">lv. 2</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">6</td>
+                              <td class="light-false">1%</td>
+                              <td class="light-false">Anytime</td>
+                              <td class="gold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/jigglypuff.png" alt="Jigglypuff"></div>
+                              </td>
+                              <td class="gold-false">Jigglypuff</td>
+                              <td class="gold-false">lv. 5</td>
+                              <td class="silver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/jigglypuff.png" alt="Jigglypuff"></div>
+                              </td>
+                              <td class="silver-false">Jigglypuff</td>
+                              <td class="silver-false">lv. 5</td>
+                              <td class="crystal-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="crystal-false">Rattata</td>
+                              <td class="crystal-false">lv. 2</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-compressed-gold-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Gold (Compressed)</caption>
+                        <thead>
+                           <tr class="gold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                              <th>Condition(s)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="gold-false">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td rowspan="2">Geodude</td>
+                              <td>40%</td>
+                              <td>2, 3</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>45%</td>
+                              <td>2-4</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="gold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>35%</td>
+                              <td>2, 3</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="gold-false">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td rowspan="2">Rattata</td>
+                              <td>20%</td>
+                              <td>2</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>50%</td>
+                              <td>2, 3</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="gold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/jigglypuff.png" alt="Jigglypuff"></div>
+                              </td>
+                              <td>Jigglypuff</td>
+                              <td>5%</td>
+                              <td>3, 5</td>
+                              <td>Anytime</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-compressed-silver-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Silver (Compressed)</caption>
+                        <thead>
+                           <tr class="silver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                              <th>Condition(s)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="silver-false">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td rowspan="2">Geodude</td>
+                              <td>40%</td>
+                              <td>2, 3</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>45%</td>
+                              <td>2-4</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="silver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>35%</td>
+                              <td>2, 3</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="silver-false">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td rowspan="2">Rattata</td>
+                              <td>20%</td>
+                              <td>2</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>50%</td>
+                              <td>2, 3</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="silver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/jigglypuff.png" alt="Jigglypuff"></div>
+                              </td>
+                              <td>Jigglypuff</td>
+                              <td>5%</td>
+                              <td>3, 5</td>
+                              <td>Anytime</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-compressed-crystal-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Crystal (Compressed)</caption>
+                        <thead>
+                           <tr class="crystal-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                              <th>Condition(s)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>50%</td>
+                              <td>2, 3</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>30%</td>
+                              <td>2</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td rowspan="3">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td rowspan="3">Rattata</td>
+                              <td>15%</td>
+                              <td>2, 3</td>
+                              <td>Morning</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>20%</td>
+                              <td>2, 3</td>
+                              <td>Day</td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>50%</td>
+                              <td>2, 3</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/phanpy.png" alt="Phanpy"></div>
+                              </td>
+                              <td>Phanpy</td>
+                              <td>5%</td>
+                              <td>2</td>
+                              <td>Morning</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-compressed-combined-walking-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="gold-true" colspan="2">Gold</th>
+                              <th class="silver-true" colspan="2">Silver</th>
+                              <th class="crystal-true" colspan="2">Crystal</th>
+                              <th class="light-true">Condition(s)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false" rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="light-false" rowspan="2">Geodude</td>
+                              <td class="gold-false">40%</td>
+                              <td class="gold-false">lv. 2, 3</td>
+                              <td class="silver-false">40%</td>
+                              <td class="silver-false">lv. 2, 3</td>
+                              <td class="crystal-false">50%</td>
+                              <td class="crystal-false">lv. 2, 3</td>
+                              <td class="light-false">Morning, Day</td>
+                           </tr>
+                           <tr>
+                              <td class="gold-false">45%</td>
+                              <td class="gold-false">lv. 2-4</td>
+                              <td class="silver-false">45%</td>
+                              <td class="silver-false">lv. 2-4</td>
+                              <td class="crystal-false">50%</td>
+                              <td class="crystal-false">lv. 2, 3</td>
+                              <td class="light-false">Night</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="light-true">Spearow</td>
+                              <td class="gold-true">35%</td>
+                              <td class="gold-true">lv. 2, 3</td>
+                              <td class="silver-true">35%</td>
+                              <td class="silver-true">lv. 2, 3</td>
+                              <td class="crystal-true">30%</td>
+                              <td class="crystal-true">lv. 2</td>
+                              <td class="light-true">Morning, Day</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false" rowspan="3">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="light-false" rowspan="3">Rattata</td>
+                              <td class="gold-false">20%</td>
+                              <td class="gold-false">lv. 2</td>
+                              <td class="silver-false">20%</td>
+                              <td class="silver-false">lv. 2</td>
+                              <td class="crystal-false">15%</td>
+                              <td class="crystal-false">lv. 2, 3</td>
+                              <td class="light-false">Morning</td>
+                           </tr>
+                           <tr>
+                              <td class="gold-false">20%</td>
+                              <td class="gold-false">lv. 2</td>
+                              <td class="silver-false">20%</td>
+                              <td class="silver-false">lv. 2</td>
+                              <td class="crystal-false">20%</td>
+                              <td class="crystal-false">lv. 2, 3</td>
+                              <td class="light-false">Day</td>
+                           </tr>
+                           <tr>
+                              <td class="gold-false">50%</td>
+                              <td class="gold-false">lv. 2, 3</td>
+                              <td class="silver-false">50%</td>
+                              <td class="silver-false">lv. 2, 3</td>
+                              <td class="crystal-false">50%</td>
+                              <td class="crystal-false">lv. 2, 3</td>
+                              <td class="light-false">Night</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/jigglypuff.png" alt="Jigglypuff"></div>
+                              </td>
+                              <td class="light-true">Jigglypuff</td>
+                              <td class="gold-true">5%</td>
+                              <td class="gold-true">lv. 3, 5</td>
+                              <td class="silver-true">5%</td>
+                              <td class="silver-true">lv. 3, 5</td>
+                              <td class="light-true" colspan="2">N/A</td>
+                              <td class="light-true">Anytime</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/phanpy.png" alt="Phanpy"></div>
+                              </td>
+                              <td class="light-false">Phanpy</td>
+                              <td class="light-false" colspan="2">N/A</td>
+                              <td class="light-false" colspan="2">N/A</td>
+                              <td class="crystal-false">5%</td>
+                              <td class="crystal-false">lv. 2</td>
+                              <td class="light-false">Morning</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-hgss" class="game-container hgss" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Geodude have a 5% chance of holding an Everstone.</li>
+                  <li>Wild Rattata have a 5% chance of holding a Chilan Berry.</li>
+               </ul>
+               <div id="pokemon-hgss-walking" class="table-collection walking">
+                  <h4>Walking</h4>
+                  <div class="flex-row">
+                     <div style="margin-right:2ex;padding-bottom:2ex;">
+                        <div class="flex-row">
+                           <input type="radio" class="show-all-conditions" id="show-all-conditions-hgss" name="conditions-radio-hgss" value="Show all conditions" checked>
+                           <label for="show-all-conditions-hgss">Show all conditions</label>
+                        </div>
+                        <div class="flex-row">
+                           <input type="radio" class="set-conditions" id="set-conditions-hgss" name="conditions-radio-hgss" value="Set conditions">
+                           <label for="set-conditions-hgss">Set conditions</label>
+                        </div>
+                     </div>
+                     <div class="condition-checkboxes" id="condition-checkboxes-hgss" style="display:none;">
+                        <div class="empty-div">
+                        </div>
+                        <div class="flex-row">
+                           <input id="radio-hgss" class="condition-check" type="checkbox" data-condition="radio">
+                           <label for="radio-hgss">Radio on</label>
+                        </div>
+                     </div>
+                  </div>
+                  <div id="pokemon-hgss-full-heartgold-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>HeartGold (Full)</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Condition(s)</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false base">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="heartgold-true base">
+                              <td rowspan="2">1</td>
+                              <td rowspan="2">20%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="heartgold-false radio-true base">
+                              <td rowspan="3" class="radio-base">2</td>
+                              <td rowspan="3" class="radio-base">10%</td>
+                              <td>Radio: Hoenn Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                              </td>
+                              <td>Plusle</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="heartgold-false radio-true">
+                              <td>Radio: Sinnoh Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td>Shinx</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="heartgold-false radio-false">
+                              <td style="display:none;" class="radio-base">2</td>
+                              <td style="display:none;" class="radio-base">10%</td>
+                              <td>Radio: Off</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="heartgold-true radio-true base">
+                              <td rowspan="4" class="radio-base">3</td>
+                              <td rowspan="4" class="radio-base">10%</td>
+                              <td>Radio: Hoenn Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                              </td>
+                              <td>Plusle</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="heartgold-true radio-true">
+                              <td>Radio: Sinnoh Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td>Shinx</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="heartgold-true radio-false">
+                              <td style="display:none;" class="radio-base">3</td>
+                              <td style="display:none;" class="radio-base">10%</td>
+                              <td>Morning, Day, Radio: Off</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="heartgold-true radio-false">
+                              <td>Night, Radio: Off</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="heartgold-false radio-true base">
+                              <td rowspan="3" class="radio-base">4</td>
+                              <td rowspan="3" class="radio-base">10%</td>
+                              <td>Radio: Hoenn Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/minun.png" alt="Minun"></div>
+                              </td>
+                              <td>Minun</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="heartgold-false radio-true">
+                              <td>Radio: Sinnoh Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td>Shinx</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="heartgold-false radio-false">
+                              <td style="display:none;" class="radio-base">4</td>
+                              <td style="display:none;" class="radio-base">10%</td>
+                              <td>Radio: Off</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="heartgold-true radio-true base">
+                              <td rowspan="3" class="radio-base">5</td>
+                              <td rowspan="3" class="radio-base">10%</td>
+                              <td>Radio: Hoenn Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/minun.png" alt="Minun"></div>
+                              </td>
+                              <td>Minun</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="heartgold-true radio-true">
+                              <td>Radio: Sinnoh Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td>Shinx</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="heartgold-true radio-false">
+                              <td style="display:none;" class="radio-base">5</td>
+                              <td style="display:none;" class="radio-base">10%</td>
+                              <td>Radio: Off</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="heartgold-false base">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="heartgold-true base">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="heartgold-false base">
+                              <td rowspan="2">8</td>
+                              <td rowspan="2">4%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="heartgold-true base">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>4</td>
+                           </tr>
+                           <tr class="heartgold-false base">
+                              <td rowspan="2">10</td>
+                              <td rowspan="2">1%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="heartgold-true base">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>4</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-full-soulsilver-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>SoulSilver (Full)</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Condition(s)</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false base">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="soulsilver-true base">
+                              <td rowspan="2">1</td>
+                              <td rowspan="2">20%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="soulsilver-false radio-true base">
+                              <td rowspan="3" class="radio-base">2</td>
+                              <td rowspan="3" class="radio-base">10%</td>
+                              <td>Radio: Hoenn Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                              </td>
+                              <td>Plusle</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="soulsilver-false radio-true">
+                              <td>Radio: Sinnoh Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td>Shinx</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="soulsilver-false radio-false">
+                              <td style="display:none;" class="radio-base">2</td>
+                              <td style="display:none;" class="radio-base">10%</td>
+                              <td>Radio: Off</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="soulsilver-true radio-true base">
+                              <td rowspan="4" class="radio-base">3</td>
+                              <td rowspan="4" class="radio-base">10%</td>
+                              <td>Radio: Hoenn Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                              </td>
+                              <td>Plusle</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="soulsilver-true radio-true">
+                              <td>Radio: Sinnoh Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td>Shinx</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="soulsilver-true radio-false">
+                              <td style="display:none;" class="radio-base">3</td>
+                              <td style="display:none;" class="radio-base">10%</td>
+                              <td>Morning, Day, Radio: Off</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="soulsilver-true radio-false">
+                              <td>Night, Radio: Off</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="soulsilver-false radio-true base">
+                              <td rowspan="3" class="radio-base">4</td>
+                              <td rowspan="3" class="radio-base">10%</td>
+                              <td>Radio: Hoenn Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/minun.png" alt="Minun"></div>
+                              </td>
+                              <td>Minun</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="soulsilver-false radio-true">
+                              <td>Radio: Sinnoh Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td>Shinx</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="soulsilver-false radio-false">
+                              <td style="display:none;" class="radio-base">4</td>
+                              <td style="display:none;" class="radio-base">10%</td>
+                              <td>Radio: Off</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="soulsilver-true radio-true base">
+                              <td rowspan="3" class="radio-base">5</td>
+                              <td rowspan="3" class="radio-base">10%</td>
+                              <td>Radio: Hoenn Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/minun.png" alt="Minun"></div>
+                              </td>
+                              <td>Minun</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="soulsilver-true radio-true">
+                              <td>Radio: Sinnoh Sound</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td>Shinx</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="soulsilver-true radio-false">
+                              <td style="display:none;" class="radio-base">5</td>
+                              <td style="display:none;" class="radio-base">10%</td>
+                              <td>Radio: Off</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="soulsilver-false base">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="soulsilver-true base">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>2</td>
+                           </tr>
+                           <tr class="soulsilver-false base">
+                              <td rowspan="2">8</td>
+                              <td rowspan="2">4%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="soulsilver-true base">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>4</td>
+                           </tr>
+                           <tr class="soulsilver-false base">
+                              <td rowspan="2">10</td>
+                              <td rowspan="2">1%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="soulsilver-true base">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td>Rattata</td>
+                              <td>4</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-full-combined-walking-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="light-true">Condition(s)</th>
+                              <th class="heartgold-true" colspan="3">HeartGold</th>
+                              <th class="soulsilver-true" colspan="3">SoulSilver</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="base">
+                              <td class="light-false">0</td>
+                              <td class="light-false">20%</td>
+                              <td class="light-false">Anytime</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="heartgold-false">Geodude</td>
+                              <td class="heartgold-false">lv. 3</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="soulsilver-false">Geodude</td>
+                              <td class="soulsilver-false">lv. 3</td>
+                           </tr>
+                           <tr class="base">
+                              <td rowspan="2" class="light-true">1</td>
+                              <td rowspan="2" class="light-true">20%</td>
+                              <td class="light-true">Morning, Day</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="heartgold-true">Spearow</td>
+                              <td class="heartgold-true">lv. 2</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="soulsilver-true">Spearow</td>
+                              <td class="soulsilver-true">lv. 2</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Night</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="heartgold-true">Rattata</td>
+                              <td class="heartgold-true">lv. 2</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="soulsilver-true">Rattata</td>
+                              <td class="soulsilver-true">lv. 2</td>
+                           </tr>
+                           <tr class="radio-true base">
+                              <td rowspan="3" class="light-false radio-base">2</td>
+                              <td rowspan="3" class="light-false radio-base">10%</td>
+                              <td class="light-false">Radio: Hoenn Sound</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                              </td>
+                              <td class="heartgold-false">Plusle</td>
+                              <td class="heartgold-false">lv. 3</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                              </td>
+                              <td class="soulsilver-false">Plusle</td>
+                              <td class="soulsilver-false">lv. 3</td>
+                           </tr>
+                           <tr class="radio-true">
+                              <td class="light-false">Radio: Sinnoh Sound</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td class="heartgold-false">Shinx</td>
+                              <td class="heartgold-false">lv. 3</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td class="soulsilver-false">Shinx</td>
+                              <td class="soulsilver-false">lv. 3</td>
+                           </tr>
+                           <tr class="radio-false">
+                              <td style="display:none;" class="light-false radio-base">2</td>
+                              <td style="display:none;" class="light-false radio-base">10%</td>
+                              <td class="light-false">Radio: Off</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="heartgold-false">Geodude</td>
+                              <td class="heartgold-false">lv. 3</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="soulsilver-false">Geodude</td>
+                              <td class="soulsilver-false">lv. 3</td>
+                           </tr>
+                           <tr class="radio-true base">
+                              <td rowspan="4" class="light-true radio-base">3</td>
+                              <td rowspan="4" class="light-true radio-base">10%</td>
+                              <td class="light-true">Radio: Hoenn Sound</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                              </td>
+                              <td class="heartgold-true">Plusle</td>
+                              <td class="heartgold-true">lv. 2</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                              </td>
+                              <td class="soulsilver-true">Plusle</td>
+                              <td class="soulsilver-true">lv. 2</td>
+                           </tr>
+                           <tr class="radio-true">
+                              <td class="light-true">Radio: Sinnoh Sound</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td class="heartgold-true">Shinx</td>
+                              <td class="heartgold-true">lv. 2</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td class="soulsilver-true">Shinx</td>
+                              <td class="soulsilver-true">lv. 2</td>
+                           </tr>
+                           <tr class="radio-false">
+                              <td style="display:none;" class="light-true radio-base">3</td>
+                              <td style="display:none;" class="light-true radio-base">10%</td>
+                              <td class="light-true">Morning, Day, Radio: Off</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="heartgold-true">Spearow</td>
+                              <td class="heartgold-true">lv. 2</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="soulsilver-true">Spearow</td>
+                              <td class="soulsilver-true">lv. 2</td>
+                           </tr>
+                           <tr class="radio-false">
+                              <td class="light-true">Night, Radio: Off</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="heartgold-true">Rattata</td>
+                              <td class="heartgold-true">lv. 2</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="soulsilver-true">Rattata</td>
+                              <td class="soulsilver-true">lv. 2</td>
+                           </tr>
+                           <tr class="radio-true base">
+                              <td rowspan="3" class="light-false radio-base">4</td>
+                              <td rowspan="3" class="light-false radio-base">10%</td>
+                              <td class="light-false">Radio: Hoenn Sound</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/minun.png" alt="Minun"></div>
+                              </td>
+                              <td class="heartgold-false">Minun</td>
+                              <td class="heartgold-false">lv. 2</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/minun.png" alt="Minun"></div>
+                              </td>
+                              <td class="soulsilver-false">Minun</td>
+                              <td class="soulsilver-false">lv. 2</td>
+                           </tr>
+                           <tr class="radio-true">
+                              <td class="light-false">Radio: Sinnoh Sound</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td class="heartgold-false">Shinx</td>
+                              <td class="heartgold-false">lv. 2</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td class="soulsilver-false">Shinx</td>
+                              <td class="soulsilver-false">lv. 2</td>
+                           </tr>
+                           <tr class="radio-false">
+                              <td style="display:none;" class="light-false radio-base">4</td>
+                              <td style="display:none;" class="light-false radio-base">10%</td>
+                              <td class="light-false">Radio: Off</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="heartgold-false">Rattata</td>
+                              <td class="heartgold-false">lv. 2</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="soulsilver-false">Rattata</td>
+                              <td class="soulsilver-false">lv. 2</td>
+                           </tr>
+                           <tr class="radio-true base">
+                              <td rowspan="3" class="light-true radio-base">5</td>
+                              <td rowspan="3" class="light-true radio-base">10%</td>
+                              <td class="light-true">Radio: Hoenn Sound</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/minun.png" alt="Minun"></div>
+                              </td>
+                              <td class="heartgold-true">Minun</td>
+                              <td class="heartgold-true">lv. 2</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/minun.png" alt="Minun"></div>
+                              </td>
+                              <td class="soulsilver-true">Minun</td>
+                              <td class="soulsilver-true">lv. 2</td>
+                           </tr>
+                           <tr class="radio-true">
+                              <td class="light-true">Radio: Sinnoh Sound</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td class="heartgold-true">Shinx</td>
+                              <td class="heartgold-true">lv. 2</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td class="soulsilver-true">Shinx</td>
+                              <td class="soulsilver-true">lv. 2</td>
+                           </tr>
+                           <tr class="radio-false">
+                              <td style="display:none;" class="light-true radio-base">5</td>
+                              <td style="display:none;" class="light-true radio-base">10%</td>
+                              <td class="light-true">Radio: Off</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="heartgold-true">Rattata</td>
+                              <td class="heartgold-true">lv. 2</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="soulsilver-true">Rattata</td>
+                              <td class="soulsilver-true">lv. 2</td>
+                           </tr>
+                           <tr class="base">
+                              <td class="light-false">6</td>
+                              <td class="light-false">5%</td>
+                              <td class="light-false">Anytime</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="heartgold-false">Geodude</td>
+                              <td class="heartgold-false">lv. 2</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="soulsilver-false">Geodude</td>
+                              <td class="soulsilver-false">lv. 2</td>
+                           </tr>
+                           <tr class="base">
+                              <td class="light-true">7</td>
+                              <td class="light-true">5%</td>
+                              <td class="light-true">Anytime</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="heartgold-true">Geodude</td>
+                              <td class="heartgold-true">lv. 2</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="soulsilver-true">Geodude</td>
+                              <td class="soulsilver-true">lv. 2</td>
+                           </tr>
+                           <tr class="base">
+                              <td rowspan="2" class="light-false">8</td>
+                              <td rowspan="2" class="light-false">4%</td>
+                              <td class="light-false">Morning, Day</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="heartgold-false">Spearow</td>
+                              <td class="heartgold-false">lv. 3</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="soulsilver-false">Spearow</td>
+                              <td class="soulsilver-false">lv. 3</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Night</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="heartgold-false">Geodude</td>
+                              <td class="heartgold-false">lv. 3</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="soulsilver-false">Geodude</td>
+                              <td class="soulsilver-false">lv. 3</td>
+                           </tr>
+                           <tr class="base">
+                              <td class="light-true">9</td>
+                              <td class="light-true">4%</td>
+                              <td class="light-true">Anytime</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="heartgold-true">Rattata</td>
+                              <td class="heartgold-true">lv. 4</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="soulsilver-true">Rattata</td>
+                              <td class="soulsilver-true">lv. 4</td>
+                           </tr>
+                           <tr class="base">
+                              <td rowspan="2" class="light-false">10</td>
+                              <td rowspan="2" class="light-false">1%</td>
+                              <td class="light-false">Morning, Day</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="heartgold-false">Spearow</td>
+                              <td class="heartgold-false">lv. 3</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="soulsilver-false">Spearow</td>
+                              <td class="soulsilver-false">lv. 3</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Night</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="heartgold-false">Geodude</td>
+                              <td class="heartgold-false">lv. 3</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="soulsilver-false">Geodude</td>
+                              <td class="soulsilver-false">lv. 3</td>
+                           </tr>
+                           <tr class="base">
+                              <td class="light-true">11</td>
+                              <td class="light-true">1%</td>
+                              <td class="light-true">Anytime</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="heartgold-true">Rattata</td>
+                              <td class="heartgold-true">lv. 4</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="soulsilver-true">Rattata</td>
+                              <td class="soulsilver-true">lv. 4</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-heartgold-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table class="condition-table">
+                        <caption>HeartGold (Compressed)</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                              <th>Condition(s)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td>Shinx</td>
+                              <td>40%</td>
+                              <td>2, 3</td>
+                              <td>Radio: Sinnoh Sound</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td rowspan="3">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td rowspan="3">Geodude</td>
+                              <td>30%</td>
+                              <td>2, 3</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>35%</td>
+                              <td>2, 3</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>10%</td>
+                              <td>3</td>
+                              <td>Radio: Off</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td rowspan="4">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td rowspan="4">Rattata</td>
+                              <td>5%</td>
+                              <td>4</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>25%</td>
+                              <td>2, 4</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>20%</td>
+                              <td>2</td>
+                              <td>Morning, Day, Radio: Off</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>30%</td>
+                              <td>2</td>
+                              <td>Night, Radio: Off</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                              </td>
+                              <td>Plusle</td>
+                              <td>20%</td>
+                              <td>2, 3</td>
+                              <td>Radio: Hoenn Sound</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/minun.png" alt="Minun"></div>
+                              </td>
+                              <td>Minun</td>
+                              <td>20%</td>
+                              <td>2</td>
+                              <td>Radio: Hoenn Sound</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td rowspan="2">Spearow</td>
+                              <td>25%</td>
+                              <td>2, 3</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>10%</td>
+                              <td>2</td>
+                              <td>Morning, Day, Radio: Off</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-soulsilver-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table class="condition-table">
+                        <caption>SoulSilver (Compressed)</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                              <th>Condition(s)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td>Shinx</td>
+                              <td>40%</td>
+                              <td>2, 3</td>
+                              <td>Radio: Sinnoh Sound</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td rowspan="3">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td rowspan="3">Geodude</td>
+                              <td>30%</td>
+                              <td>2, 3</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>35%</td>
+                              <td>2, 3</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>10%</td>
+                              <td>3</td>
+                              <td>Radio: Off</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td rowspan="4">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td rowspan="4">Rattata</td>
+                              <td>5%</td>
+                              <td>4</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>25%</td>
+                              <td>2, 4</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>20%</td>
+                              <td>2</td>
+                              <td>Morning, Day, Radio: Off</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>30%</td>
+                              <td>2</td>
+                              <td>Night, Radio: Off</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                              </td>
+                              <td>Plusle</td>
+                              <td>20%</td>
+                              <td>2, 3</td>
+                              <td>Radio: Hoenn Sound</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/minun.png" alt="Minun"></div>
+                              </td>
+                              <td>Minun</td>
+                              <td>20%</td>
+                              <td>2</td>
+                              <td>Radio: Hoenn Sound</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td rowspan="2">Spearow</td>
+                              <td>25%</td>
+                              <td>2, 3</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>10%</td>
+                              <td>2</td>
+                              <td>Morning, Day, Radio: Off</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-combined-walking-table" class="pokemon-table combined compressed">
+                     <table class="condition-table">
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="heartgold-true" colspan="2">HeartGold</th>
+                              <th class="soulsilver-true" colspan="2">SoulSilver</th>
+                              <th class="light-true">Condition(s)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                              </td>
+                              <td class="light-false">Shinx</td>
+                              <td class="heartgold-false">40%</td>
+                              <td class="heartgold-false">lv. 2, 3</td>
+                              <td class="soulsilver-false">40%</td>
+                              <td class="soulsilver-false">lv. 2, 3</td>
+                              <td class="light-false">Radio: Sinnoh Sound</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true" rowspan="3">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="light-true" rowspan="3">Geodude</td>
+                              <td class="heartgold-true">30%</td>
+                              <td class="heartgold-true">lv. 2, 3</td>
+                              <td class="soulsilver-true">30%</td>
+                              <td class="soulsilver-true">lv. 2, 3</td>
+                              <td class="light-true">Morning, Day</td>
+                           </tr>
+                           <tr>
+                              <td class="heartgold-true">35%</td>
+                              <td class="heartgold-true">lv. 2, 3</td>
+                              <td class="soulsilver-true">35%</td>
+                              <td class="soulsilver-true">lv. 2, 3</td>
+                              <td class="light-true">Night</td>
+                           </tr>
+                           <tr>
+                              <td class="heartgold-true">10%</td>
+                              <td class="heartgold-true">lv. 3</td>
+                              <td class="soulsilver-true">10%</td>
+                              <td class="soulsilver-true">lv. 3</td>
+                              <td class="light-true">Radio: Off</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false" rowspan="4">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rattata-f.png" alt="Rattata"></div>
+                              </td>
+                              <td class="light-false" rowspan="4">Rattata</td>
+                              <td class="heartgold-false">5%</td>
+                              <td class="heartgold-false">lv. 4</td>
+                              <td class="soulsilver-false">5%</td>
+                              <td class="soulsilver-false">lv. 4</td>
+                              <td class="light-false">Morning, Day</td>
+                           </tr>
+                           <tr>
+                              <td class="heartgold-false">25%</td>
+                              <td class="heartgold-false">lv. 2, 4</td>
+                              <td class="soulsilver-false">25%</td>
+                              <td class="soulsilver-false">lv. 2, 4</td>
+                              <td class="light-false">Night</td>
+                           </tr>
+                           <tr>
+                              <td class="heartgold-false">20%</td>
+                              <td class="heartgold-false">lv. 2</td>
+                              <td class="soulsilver-false">20%</td>
+                              <td class="soulsilver-false">lv. 2</td>
+                              <td class="light-false">Morning, Day, Radio: Off</td>
+                           </tr>
+                           <tr>
+                              <td class="heartgold-false">30%</td>
+                              <td class="heartgold-false">lv. 2</td>
+                              <td class="soulsilver-false">30%</td>
+                              <td class="soulsilver-false">lv. 2</td>
+                              <td class="light-false">Night, Radio: Off</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                              </td>
+                              <td class="light-true">Plusle</td>
+                              <td class="heartgold-true">20%</td>
+                              <td class="heartgold-true">lv. 2, 3</td>
+                              <td class="soulsilver-true">20%</td>
+                              <td class="soulsilver-true">lv. 2, 3</td>
+                              <td class="light-true">Radio: Hoenn Sound</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/minun.png" alt="Minun"></div>
+                              </td>
+                              <td class="light-false">Minun</td>
+                              <td class="heartgold-false">20%</td>
+                              <td class="heartgold-false">lv. 2</td>
+                              <td class="soulsilver-false">20%</td>
+                              <td class="soulsilver-false">lv. 2</td>
+                              <td class="light-false">Radio: Hoenn Sound</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true" rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="light-true" rowspan="2">Spearow</td>
+                              <td class="heartgold-true">25%</td>
+                              <td class="heartgold-true">lv. 2, 3</td>
+                              <td class="soulsilver-true">25%</td>
+                              <td class="soulsilver-true">lv. 2, 3</td>
+                              <td class="light-true">Morning, Day</td>
+                           </tr>
+                           <tr>
+                              <td class="heartgold-true">10%</td>
+                              <td class="heartgold-true">lv. 2</td>
+                              <td class="soulsilver-true">10%</td>
+                              <td class="soulsilver-true">lv. 2</td>
+                              <td class="light-true">Morning, Day, Radio: Off</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-hgss-headbutt-a" class="table-collection headbutt-a">
+                  <h4>Headbutt (Group A)</h4>
+                  <div id="pokemon-hgss-full-heartgold-headbutt-a-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>HeartGold (Full)</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>0</td>
+                              <td>50%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>2, 3</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>1</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/heracross-f.png" alt="Heracross"></div>
+                              </td>
+                              <td>Heracross</td>
+                              <td>2, 3</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/heracross-f.png" alt="Heracross"></div>
+                              </td>
+                              <td>Heracross</td>
+                              <td>2, 3</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>2, 3</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>4</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>2, 3</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>5</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>2, 3</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-full-soulsilver-headbutt-a-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>SoulSilver (Full)</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>0</td>
+                              <td>50%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>2, 3</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>1</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/heracross-f.png" alt="Heracross"></div>
+                              </td>
+                              <td>Heracross</td>
+                              <td>2, 3</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/heracross-f.png" alt="Heracross"></div>
+                              </td>
+                              <td>Heracross</td>
+                              <td>2, 3</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>2, 3</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>4</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>2, 3</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>5</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>2, 3</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-full-combined-headbutt-a-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="heartgold-true" colspan="3">HeartGold</th>
+                              <th class="soulsilver-true" colspan="3">SoulSilver</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">50%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="heartgold-false">Spearow</td>
+                              <td class="heartgold-false">lv. 2, 3</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="soulsilver-false">Spearow</td>
+                              <td class="soulsilver-false">lv. 2, 3</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">15%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/heracross-f.png" alt="Heracross"></div>
+                              </td>
+                              <td class="heartgold-true">Heracross</td>
+                              <td class="heartgold-true">lv. 2, 3</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/heracross-f.png" alt="Heracross"></div>
+                              </td>
+                              <td class="soulsilver-true">Heracross</td>
+                              <td class="soulsilver-true">lv. 2, 3</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">15%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/heracross-f.png" alt="Heracross"></div>
+                              </td>
+                              <td class="heartgold-false">Heracross</td>
+                              <td class="heartgold-false">lv. 2, 3</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/heracross-f.png" alt="Heracross"></div>
+                              </td>
+                              <td class="soulsilver-false">Heracross</td>
+                              <td class="soulsilver-false">lv. 2, 3</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td class="heartgold-true">Aipom</td>
+                              <td class="heartgold-true">lv. 2, 3</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td class="soulsilver-true">Aipom</td>
+                              <td class="soulsilver-true">lv. 2, 3</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">5%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td class="heartgold-false">Aipom</td>
+                              <td class="heartgold-false">lv. 2, 3</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td class="soulsilver-false">Aipom</td>
+                              <td class="soulsilver-false">lv. 2, 3</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">5%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td class="heartgold-true">Aipom</td>
+                              <td class="heartgold-true">lv. 2, 3</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td class="soulsilver-true">Aipom</td>
+                              <td class="soulsilver-true">lv. 2, 3</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-heartgold-headbutt-a-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>HeartGold (Compressed)</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>50%</td>
+                              <td>2, 3</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/heracross-f.png" alt="Heracross"></div>
+                              </td>
+                              <td>Heracross</td>
+                              <td>30%</td>
+                              <td>2, 3</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>20%</td>
+                              <td>2, 3</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-soulsilver-headbutt-a-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>SoulSilver (Compressed)</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>50%</td>
+                              <td>2, 3</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/heracross-f.png" alt="Heracross"></div>
+                              </td>
+                              <td>Heracross</td>
+                              <td>30%</td>
+                              <td>2, 3</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>20%</td>
+                              <td>2, 3</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-combined-headbutt-a-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="heartgold-true" colspan="2">HeartGold</th>
+                              <th class="soulsilver-true" colspan="2">SoulSilver</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="light-false">Spearow</td>
+                              <td class="heartgold-false">50%</td>
+                              <td class="heartgold-false">lv. 2, 3</td>
+                              <td class="soulsilver-false">50%</td>
+                              <td class="soulsilver-false">lv. 2, 3</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/heracross-f.png" alt="Heracross"></div>
+                              </td>
+                              <td class="light-true">Heracross</td>
+                              <td class="heartgold-true">30%</td>
+                              <td class="heartgold-true">lv. 2, 3</td>
+                              <td class="soulsilver-true">30%</td>
+                              <td class="soulsilver-true">lv. 2, 3</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td class="light-false">Aipom</td>
+                              <td class="heartgold-false">20%</td>
+                              <td class="heartgold-false">lv. 2, 3</td>
+                              <td class="soulsilver-false">20%</td>
+                              <td class="soulsilver-false">lv. 2, 3</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-hgss-headbutt-b" class="table-collection headbutt-b">
+                  <h4>Headbutt (Group B)</h4>
+                  <div id="pokemon-hgss-full-heartgold-headbutt-b-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>HeartGold (Full)</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>0</td>
+                              <td>50%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>4, 5</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>1</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>4, 5</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>4, 5</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>4, 5</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>4</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>4, 5</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>5</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>4, 5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-full-soulsilver-headbutt-b-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>SoulSilver (Full)</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>0</td>
+                              <td>50%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>4, 5</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>1</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>4, 5</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>4, 5</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>4, 5</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>4</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>4, 5</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>5</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>4, 5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-full-combined-headbutt-b-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="heartgold-true" colspan="3">HeartGold</th>
+                              <th class="soulsilver-true" colspan="3">SoulSilver</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">50%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="heartgold-false">Spearow</td>
+                              <td class="heartgold-false">lv. 4, 5</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="soulsilver-false">Spearow</td>
+                              <td class="soulsilver-false">lv. 4, 5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">15%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="heartgold-true">Spearow</td>
+                              <td class="heartgold-true">lv. 4, 5</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="soulsilver-true">Spearow</td>
+                              <td class="soulsilver-true">lv. 4, 5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">15%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="heartgold-false">Spearow</td>
+                              <td class="heartgold-false">lv. 4, 5</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="soulsilver-false">Spearow</td>
+                              <td class="soulsilver-false">lv. 4, 5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td class="heartgold-true">Aipom</td>
+                              <td class="heartgold-true">lv. 4, 5</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td class="soulsilver-true">Aipom</td>
+                              <td class="soulsilver-true">lv. 4, 5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">5%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td class="heartgold-false">Aipom</td>
+                              <td class="heartgold-false">lv. 4, 5</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td class="soulsilver-false">Aipom</td>
+                              <td class="soulsilver-false">lv. 4, 5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">5%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td class="heartgold-true">Aipom</td>
+                              <td class="heartgold-true">lv. 4, 5</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td class="soulsilver-true">Aipom</td>
+                              <td class="soulsilver-true">lv. 4, 5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-heartgold-headbutt-b-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>HeartGold (Compressed)</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>80%</td>
+                              <td>4, 5</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>20%</td>
+                              <td>4, 5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-soulsilver-headbutt-b-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>SoulSilver (Compressed)</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td>Spearow</td>
+                              <td>80%</td>
+                              <td>4, 5</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>20%</td>
+                              <td>4, 5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-combined-headbutt-b-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="heartgold-true" colspan="2">HeartGold</th>
+                              <th class="soulsilver-true" colspan="2">SoulSilver</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+                              </td>
+                              <td class="light-false">Spearow</td>
+                              <td class="heartgold-false">80%</td>
+                              <td class="heartgold-false">lv. 4, 5</td>
+                              <td class="soulsilver-false">80%</td>
+                              <td class="soulsilver-false">lv. 4, 5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td class="light-true">Aipom</td>
+                              <td class="heartgold-true">20%</td>
+                              <td class="heartgold-true">lv. 4, 5</td>
+                              <td class="soulsilver-true">20%</td>
+                              <td class="soulsilver-true">lv. 4, 5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-gsc-items" class="game-container gsc">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Przcureberry</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">On a Berry tree west of the entrance to Dark Cave</td>
+                     <td class="light-false">Regenerates daily.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Berry</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">On a Berry tree west of the entrance to Dark Cave</td>
+                     <td class="light-true">Regenerates daily.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Dire Hit</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="light-false">C</td>
+                     <td class="light-false">West of Camper Ted</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Speed</td>
+                     <td class="light-true">G</td>
+                     <td class="light-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">West of Camper Ted</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Pokégear</h4>
+            <p class="gsc">In Crystal, Picnicker Erin will sometimes offer a Calcium after she is defeated in her second rematch.</p>
+         </div>
+         <div id="pokemon-hgss-items" class="game-container hgss" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Grn Apricorn</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">On an Apricorn tree west of the entrance to Dark Cave</td>
+                     <td class="light-false">Regenerates daily.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ylw Apricorn</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">On an Apricorn tree west of the entrance to Dark Cave</td>
+                     <td class="light-true">Regenerates daily.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Speed</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">West of Camper Ted</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Pokégear</h4>
+            <p class="hgss">Picnicker Erin will sometimes offer a Calcium after she is defeated in a rematch.</p>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-gsc-trainers" class="game-container gsc">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Camper Ted</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Mankey lv.17</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Picnicker Erin</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">Ponyta lv.16<br>Ponyta lv.16</td>
+                     <td class="light-true">The player can obtain her Pokégear number after the battle.<br>
+                        In Crystal, he can be called for a rematch on Saturday nights.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Hiker Bailey</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Geodude lv.13<br>Geodude lv.13<br>Geodude lv.13<br>Geodude lv.13<br>Geodude lv.13</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rematches</h4>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Rematches</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Picnicker Erin</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Ponyta lv.32<br>Ponyta lv.32</td>
+                     <td class="light-false">Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Picnicker Erin</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="light-true">C</td>
+                     <td class="light-true">Ponyta lv.36<br>Ponyta lv.36</td>
+                     <td class="light-true">Only after restoring power to Kanto.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Picnicker Erin</td>
+                     <td class="light-false">G</td>
+                     <td class="light-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Ponyta lv.36<br>Raichu lv.34<br>Ponyta lv.36</td>
+                     <td class="light-false">Only after restoring power to Kanto.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-hgss-trainers" class="game-container hgss" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Camper Ted</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Mankey lv.17</td>
+                     <td class="light-false">He can potentially be battled in a Double Battle with Picnicker Erin.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Picnicker Erin</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Ponyta lv.17<br>Oddish lv.14</td>
+                     <td class="light-true">She can potentially be battled in a Double Battle with Camper Ted.<br>
+                        The player can obtain her Pokégear number after the battle.<br>She can be called for a rematch on Saturday nights.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Hiker Bailey</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Geodude lv.13<br>Geodude lv.13<br>Geodude lv.13<br>Geodude lv.13<br>Geodude lv.13</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rematches</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Rematches</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Picnicker Erin</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Gloom lv.32<br>Rapidash lv.41</td>
+                     <td class="light-false">Only after defeating Team Rocket at <a href="goldenrod-radio-tower.html">Goldenrod Radio Tower</a>.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Picnicker Erin</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Bellossom lv.46<br>Rapidash lv.48<br>Sunflora lv.39</td>
+                     <td class="light-true">Only after defeating the Elite Four.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Picnicker Erin</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Cherrim lv.42<br>Sunflora lv.46<br>Rapidash lv.53<br>Bellossom lv.49</td>
+                     <td class="light-false">Only after obtaining all 16 Badges.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

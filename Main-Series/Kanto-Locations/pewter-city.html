@@ -1,0 +1,3583 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Pewter City</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" href="../../common.css">
+   </head>
+   <body>
+      <h4><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a></h4>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Kanto Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rgby" type="radio" onclick="topButton.call(this)" name="games" value="RGBY">
+         <label for="rgby" class="right">RGBY (Japanese)</label>
+         <input id="rby" type="radio" onclick="topButton.call(this)" name="games" value="RBY" checked="checked">
+         <label for="rby" class="right">RBY (Western)</label>
+         <input id="gsc" type="radio" onclick="topButton.call(this)" name="games" value="GSC">
+         <label for="gsc" class="right">GSC</label>
+         <input id="frlg" type="radio" onclick="topButton.call(this)" name="games" value="FRLG">
+         <label for="frlg" class="right">FRLG</label>
+         <input id="hgss" type="radio" onclick="topButton.call(this)" name="games" value="HGSS">
+         <label for="hgss" class="right">HGSS</label>
+         <input id="lgpe" type="radio" onclick="topButton.call(this)" name="games" value="LGPE">
+         <label for="lgpe" class="right">LGPE</label>
+      </div>
+      <h2>Pewter City</h2>
+      <div id="notes" class="bottom">
+         <p id="rgby-notes" class="rgby" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a href="route-2.html">Route 2</a><br>
+            East: <a href="route-3.html">Route 3</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Pewter Museum of Science<br>
+            Poké Mart<br>
+            Pewter Gym: The first Gym. It specializes in Rock-types.<br><br>
+            <strong>Utility:</strong><br>
+            Cut is required to collect the Old Amber from a scientist in the Pewter Museum.
+         </p>
+         <p id="rby-notes" class="rby">
+            <strong>Access to:</strong><br>
+            South: <a href="route-2.html">Route 2</a><br>
+            East: <a href="route-3.html">Route 3</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Pewter Museum of Science<br>
+            Poké Mart<br>
+            Pewter Gym: The first Gym. It specializes in Rock-types.<br><br>
+            <strong>Utility:</strong><br>
+            Cut is required to collect the Old Amber from a scientist in the Pewter Museum.
+         </p>
+         <p id="gsc-notes" class="gsc" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a href="route-2.html">Route 2</a><br>
+            East: <a href="route-3.html">Route 3</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Pewter Gym: A Kanto Gym. It specializes in Rock-types.
+         </p>
+         <p id="frlg-notes" class="frlg" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a href="route-2.html">Route 2</a><br>
+            East: <a href="route-3.html">Route 3</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Pewter Museum of Science<br>
+            Poké Mart<br>
+            Pewter Gym: The first Gym. It specializes in Rock-types.<br>
+            Move Tutor: A man in the eastern building of the Pewter Museum can teach one Pokémon Seismic Toss.<br><br>
+            <strong>Utility:</strong><br>
+            Cut is required to collect the Old Amber from a scientist in the Pewter Museum, as well as to access the Move Tutor for Seismic Toss.
+         </p>
+         <p id="hgss-notes" class="hgss" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a href="route-2.html">Route 2</a><br>
+            East: <a href="route-3.html">Route 3</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Pewter Museum of Science<br>
+            Poké Mart<br>
+            Pewter Gym: A Kanto Gym. It specializes in Rock-types.<br><br>
+            <strong>Utility:</strong><br>
+            Rock Smash is required to access a Wise Glasses.<br>
+            Headbutt can be used to encounter wild Pokémon.
+         </p>
+         <p id="lgpe-notes" class="lgpe" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a href="route-2.html">Route 2</a><br>
+            East: <a href="route-3.html">Route 3</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Pewter Museum of Science<br>
+            Poké Mart<br>
+            Pewter Gym: The first Gym. It specializes in Rock-types. The player must have captured a Grass- or Water-type Pokémon to be allowed to enter.<br><br>
+            <strong>Utility:</strong><br>
+            Chop Down is required to collect the Old Amber and ten Pretty Wings from people in the Pewter Museum.<br>
+            A Flying Pokémon can be used to encounter wild Pokémon.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay gsc hgss lgpe only" style="display:none;">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-gsc-buttons" class="button-set gsc" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-full-gold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Gold (Full)">
+                        <label for="pokemon-gsc-full-gold">Gold (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-compressed-gold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Gold (Compressed)">
+                        <label for="pokemon-gsc-compressed-gold">Gold (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-full-silver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Silver (Full)">
+                        <label for="pokemon-gsc-full-silver">Silver (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-compressed-silver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Silver (Compressed)">
+                        <label for="pokemon-gsc-compressed-silver">Silver (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-full-crystal" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Crystal (Full)">
+                        <label for="pokemon-gsc-full-crystal">Crystal (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-compressed-crystal" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Crystal (Compressed)">
+                        <label for="pokemon-gsc-compressed-crystal">Crystal (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Combined (Full)">
+                        <label for="pokemon-gsc-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Separate (Full)">
+                        <label for="pokemon-gsc-full-separate">Separate (Full)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-gsc-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Separate (Compressed)">
+                        <label for="pokemon-gsc-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-hgss-buttons" class="button-set hgss" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-hgss-full-heartgold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="HeartGold (Full)">
+                        <label for="pokemon-hgss-full-heartgold">HeartGold (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-hgss-compressed-heartgold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="HeartGold (Compressed)">
+                        <label for="pokemon-hgss-compressed-heartgold">HeartGold (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-hgss-full-soulsilver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="SoulSilver (Full)">
+                        <label for="pokemon-hgss-full-soulsilver">SoulSilver (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-hgss-compressed-soulsilver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="SoulSilver (Compressed)">
+                        <label for="pokemon-hgss-compressed-soulsilver">SoulSilver (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-hgss-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="Combined (Full)">
+                        <label for="pokemon-hgss-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-hgss-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="Separate (Full)">
+                        <label for="pokemon-hgss-full-separate">Separate (Full)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-hgss-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-hgss-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-hgss-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="Separate (Compressed)">
+                        <label for="pokemon-hgss-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-lgpe-buttons" class="button-set lgpe" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-lgpe-full-lgp" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Let's Go Pikachu (Full)">
+                        <label for="pokemon-lgpe-full-lgp">Let's Go Pikachu (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-lgpe-compressed-lgp" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Let's Go Pikachu (Compressed)">
+                        <label for="pokemon-lgpe-compressed-lgp">Let's Go Pikachu (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-lgpe-full-lge" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Let's Go Eevee (Full)">
+                        <label for="pokemon-lgpe-full-lge">Let's Go Eevee (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-lgpe-compressed-lge" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Let's Go Eevee (Compressed)">
+                        <label for="pokemon-lgpe-compressed-lge">Let's Go Eevee (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-lgpe-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Combined (Full)">
+                        <label for="pokemon-lgpe-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-lgpe-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Separate (Full)">
+                        <label for="pokemon-lgpe-full-separate">Separate (Full)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-lgpe-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-lgpe-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-lgpe-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Separate (Compressed)">
+                        <label for="pokemon-lgpe-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-gsc" class="game-container gsc" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-gsc-trade" class="table-collection trade">
+                  <h4>Trade</h4>
+                  <div id="pokemon-gsc-all-combined-trade-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th colspan="3">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gloom-f.png" alt="Gloom"></div>
+                              </td>
+                              <td class="light-false">Gloom</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rapidash.png" alt="Rapidash"></div>
+                              </td>
+                              <td class="light-false">Rapidash</td>
+                              <td class="gold-false">G</td>
+                              <td class="silver-false">S</td>
+                              <td class="light-false">C</td>
+                              <td class="light-false">Rapidash holds a Burnt Berry.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/haunter.png" alt="Haunter"></div>
+                              </td>
+                              <td class="light-true">Haunter</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/xatu-m.png" alt="Xatu"></div>
+                              </td>
+                              <td class="light-true">Xatu</td>
+                              <td class="light-true">G</td>
+                              <td class="light-true">S</td>
+                              <td class="crystal-true">C</td>
+                              <td class="light-true">Xatu holds a Mysteryberry.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-all-gold-trade-table" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Gold</caption>
+                        <thead>
+                           <tr class="gold-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gloom-f.png" alt="Gloom"></div>
+                              </td>
+                              <td>Gloom</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rapidash.png" alt="Rapidash"></div>
+                              </td>
+                              <td>Rapidash</td>
+                              <td>Rapidash holds a Burnt Berry.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-all-silver-trade-table" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Silver</caption>
+                        <thead>
+                           <tr class="silver-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gloom-f.png" alt="Gloom"></div>
+                              </td>
+                              <td>Gloom</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rapidash.png" alt="Rapidash"></div>
+                              </td>
+                              <td>Rapidash</td>
+                              <td>Rapidash holds a Burnt Berry.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-all-crystal-trade-table" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Crystal</caption>
+                        <thead>
+                           <tr class="crystal-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/haunter.png" alt="Haunter"></div>
+                              </td>
+                              <td>Haunter</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/xatu-m.png" alt="Xatu"></div>
+                              </td>
+                              <td>Xatu</td>
+                              <td>Xatu holds a Mysteryberry.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-hgss" class="game-container hgss" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Starly have a 5% chance of holding a Yache Berry.</li>
+               </ul>
+               <div id="pokemon-hgss-static" class="table-collection static">
+                  <h4>Static</h4>
+                  <div id="pokemon-hgss-all-combined-static-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latios.png" alt="Latios"></div>
+                              </td>
+                              <td class="light-false">Latios</td>
+                              <td class="light-false">40</td>
+                              <td class="heartgold-false">HG</td>
+                              <td class="light-false">SS</td>
+                              <td class="light-false">Can only be encountered if the player has the Soul Dew, which in turn requires the event-exclusive Enigma Stone.<br>
+                                 If defeated or run from, he will reappear after defeating the Elite Four.
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latias.png" alt="Latias"></div>
+                              </td>
+                              <td class="light-true">Latias</td>
+                              <td class="light-true">40</td>
+                              <td class="light-true">HG</td>
+                              <td class="soulsilver-true">SS</td>
+                              <td class="light-true">Can only be encountered if the player has the Soul Dew, which in turn requires the event-exclusive Enigma Stone.<br>
+                                 If defeated or run from, she will reappear after defeating the Elite Four.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-all-heartgold-static-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>HeartGold</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latios.png" alt="Latios"></div>
+                              </td>
+                              <td>Latios</td>
+                              <td>40</td>
+                              <td>Can only be encountered if the player has the Soul Dew, which in turn requires the event-exclusive Enigma Stone.<br>
+                                 If defeated or run from, he will reappear after defeating the Elite Four.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-all-soulsilver-static-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>SoulSilver</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latias.png" alt="Latias"></div>
+                              </td>
+                              <td>Latias</td>
+                              <td>40</td>
+                              <td>Can only be encountered if the player has the Soul Dew, which in turn requires the event-exclusive Enigma Stone.<br>
+                                 If defeated or run from, she will reappear after defeating the Elite Four.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-hgss-gift" class="table-collection gift">
+                  <h4>Gift</h4>
+                  <p class="hgss">All Fossils can be revived at the Pewter Museum. However, Helix and Claw Fossils can only be found naturally in HeartGold, while Dome and Root Fossils can only be found naturally in SoulSilver. Old Amber can be found in both games. Skull and Armor Fossils cannot be found in either game, and must be transferred from Diamond, Pearl, or Platinum.</p>
+                  <div id="pokemon-hgss-all-combined-gift-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/omanyte.png" alt="Omanyte"></div>
+                              </td>
+                              <td class="light-false">Omanyte</td>
+                              <td class="light-false">20</td>
+                              <td class="heartgold-false">HG</td>
+                              <td class="soulsilver-false">SS</td>
+                              <td class="light-false">Can be revived from a Helix Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/kabuto.png" alt="Kabuto"></div>
+                              </td>
+                              <td class="light-true">Kabuto</td>
+                              <td class="light-true">20</td>
+                              <td class="heartgold-true">HG</td>
+                              <td class="soulsilver-true">SS</td>
+                              <td class="light-true">Can be revived from a Dome Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/aerodactyl.png" alt="Aerodactyl"></div>
+                              </td>
+                              <td class="light-false">Aerodactyl</td>
+                              <td class="light-false">20</td>
+                              <td class="heartgold-false">HG</td>
+                              <td class="soulsilver-false">SS</td>
+                              <td class="light-false">Can be revived from an Old Amber in the Pewter Museum.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lileep.png" alt="Lileep"></div>
+                              </td>
+                              <td class="light-true">Lileep</td>
+                              <td class="light-true">20</td>
+                              <td class="heartgold-true">HG</td>
+                              <td class="soulsilver-true">SS</td>
+                              <td class="light-true">Can be revived from a Root Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/anorith.png" alt="Anorith"></div>
+                              </td>
+                              <td class="light-false">Anorith</td>
+                              <td class="light-false">20</td>
+                              <td class="heartgold-false">HG</td>
+                              <td class="soulsilver-false">SS</td>
+                              <td class="light-false">Can be revived from a Claw Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/cranidos.png" alt="Cranidos"></div>
+                              </td>
+                              <td class="light-true">Cranidos</td>
+                              <td class="light-true">20</td>
+                              <td class="heartgold-true">HG</td>
+                              <td class="soulsilver-true">SS</td>
+                              <td class="light-true">Can be revived from a Skull Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shieldon.png" alt="Shieldon"></div>
+                              </td>
+                              <td class="light-false">Shieldon</td>
+                              <td class="light-false">20</td>
+                              <td class="heartgold-false">HG</td>
+                              <td class="soulsilver-false">SS</td>
+                              <td class="light-false">Can be revived from an Armor Fossil in the Pewter Museum.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-all-heartgold-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>HeartGold</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/omanyte.png" alt="Omanyte"></div>
+                              </td>
+                              <td>Omanyte</td>
+                              <td>20</td>
+                              <td>Can be revived from a Helix Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/kabuto.png" alt="Kabuto"></div>
+                              </td>
+                              <td>Kabuto</td>
+                              <td>20</td>
+                              <td>Can be revived from a Dome Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/aerodactyl.png" alt="Aerodactyl"></div>
+                              </td>
+                              <td>Aerodactyl</td>
+                              <td>20</td>
+                              <td>Can be revived from an Old Amber in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lileep.png" alt="Lileep"></div>
+                              </td>
+                              <td>Lileep</td>
+                              <td>20</td>
+                              <td>Can be revived from a Root Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/anorith.png" alt="Anorith"></div>
+                              </td>
+                              <td>Anorith</td>
+                              <td>20</td>
+                              <td>Can be revived from a Claw Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/cranidos.png" alt="Cranidos"></div>
+                              </td>
+                              <td>Cranidos</td>
+                              <td>20</td>
+                              <td>Can be revived from a Skull Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shieldon.png" alt="Shieldon"></div>
+                              </td>
+                              <td>Shieldon</td>
+                              <td>20</td>
+                              <td>Can be revived from an Armor Fossil in the Pewter Museum.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-all-soulsilver-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>SoulSilver</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/omanyte.png" alt="Omanyte"></div>
+                              </td>
+                              <td>Omanyte</td>
+                              <td>20</td>
+                              <td>Can be revived from a Helix Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/kabuto.png" alt="Kabuto"></div>
+                              </td>
+                              <td>Kabuto</td>
+                              <td>20</td>
+                              <td>Can be revived from a Dome Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/aerodactyl.png" alt="Aerodactyl"></div>
+                              </td>
+                              <td>Aerodactyl</td>
+                              <td>20</td>
+                              <td>Can be revived from an Old Amber in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lileep.png" alt="Lileep"></div>
+                              </td>
+                              <td>Lileep</td>
+                              <td>20</td>
+                              <td>Can be revived from a Root Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/anorith.png" alt="Anorith"></div>
+                              </td>
+                              <td>Anorith</td>
+                              <td>20</td>
+                              <td>Can be revived from a Claw Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/cranidos.png" alt="Cranidos"></div>
+                              </td>
+                              <td>Cranidos</td>
+                              <td>20</td>
+                              <td>Can be revived from a Skull Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shieldon.png" alt="Shieldon"></div>
+                              </td>
+                              <td>Shieldon</td>
+                              <td>20</td>
+                              <td>Can be revived from an Armor Fossil in the Pewter Museum.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-hgss-trade" class="table-collection trade">
+                  <h4>Trade</h4>
+                  <div id="pokemon-hgss-all-combined-trade-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/haunter.png" alt="Haunter"></div>
+                              </td>
+                              <td class="light-false">Haunter</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/xatu-m.png" alt="Xatu"></div>
+                              </td>
+                              <td class="light-false">Xatu</td>
+                              <td class="heartgold-false">HG</td>
+                              <td class="soulsilver-false">SS</td>
+                              <td class="light-false">Xatu holds a Wacan Berry.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-all-heartgold-trade-table" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>HeartGold</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/haunter.png" alt="Haunter"></div>
+                              </td>
+                              <td>Haunter</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/xatu-m.png" alt="Xatu"></div>
+                              </td>
+                              <td>Xatu</td>
+                              <td>Xatu holds a Wacan Berry.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-all-soulsilver-trade-table" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>SoulSilver</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/haunter.png" alt="Haunter"></div>
+                              </td>
+                              <td>Haunter</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/xatu-m.png" alt="Xatu"></div>
+                              </td>
+                              <td>Xatu</td>
+                              <td>Xatu holds a Wacan Berry.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-hgss-headbutt-a" class="table-collection headbutt-a">
+                  <h4>Headbutt (Group A)</h4>
+                  <div id="pokemon-hgss-full-heartgold-headbutt-a-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>HeartGold (Full)</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>0</td>
+                              <td>50%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td>Hoothoot</td>
+                              <td>3-5</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>1</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>3-5</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>3-5</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>3-5</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>4</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>3-5</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>5</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>3-5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-full-soulsilver-headbutt-a-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>SoulSilver (Full)</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>0</td>
+                              <td>50%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td>Hoothoot</td>
+                              <td>3-5</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>1</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>3-5</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>3-5</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>3-5</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>4</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>3-5</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>5</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>3-5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-full-combined-headbutt-a-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="heartgold-true" colspan="3">HeartGold</th>
+                              <th class="soulsilver-true" colspan="3">SoulSilver</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">50%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td class="heartgold-false">Hoothoot</td>
+                              <td class="heartgold-false">lv. 3-5</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td class="soulsilver-false">Hoothoot</td>
+                              <td class="soulsilver-false">lv. 3-5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">15%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td class="heartgold-true">Pineco</td>
+                              <td class="heartgold-true">lv. 3-5</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td class="soulsilver-true">Pineco</td>
+                              <td class="soulsilver-true">lv. 3-5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">15%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td class="heartgold-false">Pineco</td>
+                              <td class="heartgold-false">lv. 3-5</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td class="soulsilver-false">Pineco</td>
+                              <td class="soulsilver-false">lv. 3-5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="heartgold-true">Wurmple</td>
+                              <td class="heartgold-true">lv. 3-5</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="soulsilver-true">Wurmple</td>
+                              <td class="soulsilver-true">lv. 3-5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">5%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="heartgold-false">Wurmple</td>
+                              <td class="heartgold-false">lv. 3-5</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="soulsilver-false">Wurmple</td>
+                              <td class="soulsilver-false">lv. 3-5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">5%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="heartgold-true">Wurmple</td>
+                              <td class="heartgold-true">lv. 3-5</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="soulsilver-true">Wurmple</td>
+                              <td class="soulsilver-true">lv. 3-5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-heartgold-headbutt-a-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>HeartGold (Compressed)</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td>Hoothoot</td>
+                              <td>50%</td>
+                              <td>3-5</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>30%</td>
+                              <td>3-5</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>20%</td>
+                              <td>3-5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-soulsilver-headbutt-a-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>SoulSilver (Compressed)</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td>Hoothoot</td>
+                              <td>50%</td>
+                              <td>3-5</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>30%</td>
+                              <td>3-5</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>20%</td>
+                              <td>3-5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-combined-headbutt-a-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="heartgold-true" colspan="2">HeartGold</th>
+                              <th class="soulsilver-true" colspan="2">SoulSilver</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td class="light-false">Hoothoot</td>
+                              <td class="heartgold-false">50%</td>
+                              <td class="heartgold-false">lv. 3-5</td>
+                              <td class="soulsilver-false">50%</td>
+                              <td class="soulsilver-false">lv. 3-5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td class="light-true">Pineco</td>
+                              <td class="heartgold-true">30%</td>
+                              <td class="heartgold-true">lv. 3-5</td>
+                              <td class="soulsilver-true">30%</td>
+                              <td class="soulsilver-true">lv. 3-5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="light-false">Wurmple</td>
+                              <td class="heartgold-false">20%</td>
+                              <td class="heartgold-false">lv. 3-5</td>
+                              <td class="soulsilver-false">20%</td>
+                              <td class="soulsilver-false">lv. 3-5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-hgss-headbutt-b" class="table-collection headbutt-b">
+                  <h4>Headbutt (Group B)</h4>
+                  <div id="pokemon-hgss-full-heartgold-headbutt-b-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>HeartGold (Full)</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>0</td>
+                              <td>50%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td>Hoothoot</td>
+                              <td>7-9</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>1</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td>Hoothoot</td>
+                              <td>7-9</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td>Hoothoot</td>
+                              <td>7-9</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>7-9</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>4</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>7-9</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>5</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>7-9</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-full-soulsilver-headbutt-b-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>SoulSilver (Full)</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>0</td>
+                              <td>50%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td>Hoothoot</td>
+                              <td>7-9</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>1</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td>Hoothoot</td>
+                              <td>7-9</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td>Hoothoot</td>
+                              <td>7-9</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>7-9</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>4</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>7-9</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>5</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>7-9</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-full-combined-headbutt-b-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="heartgold-true" colspan="3">HeartGold</th>
+                              <th class="soulsilver-true" colspan="3">SoulSilver</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">50%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td class="heartgold-false">Hoothoot</td>
+                              <td class="heartgold-false">lv. 7-9</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td class="soulsilver-false">Hoothoot</td>
+                              <td class="soulsilver-false">lv. 7-9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">15%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td class="heartgold-true">Hoothoot</td>
+                              <td class="heartgold-true">lv. 7-9</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td class="soulsilver-true">Hoothoot</td>
+                              <td class="soulsilver-true">lv. 7-9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">15%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td class="heartgold-false">Hoothoot</td>
+                              <td class="heartgold-false">lv. 7-9</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td class="soulsilver-false">Hoothoot</td>
+                              <td class="soulsilver-false">lv. 7-9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="heartgold-true">Wurmple</td>
+                              <td class="heartgold-true">lv. 7-9</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="soulsilver-true">Wurmple</td>
+                              <td class="soulsilver-true">lv. 7-9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">5%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="heartgold-false">Wurmple</td>
+                              <td class="heartgold-false">lv. 7-9</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="soulsilver-false">Wurmple</td>
+                              <td class="soulsilver-false">lv. 7-9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">5%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="heartgold-true">Wurmple</td>
+                              <td class="heartgold-true">lv. 7-9</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="soulsilver-true">Wurmple</td>
+                              <td class="soulsilver-true">lv. 7-9</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-heartgold-headbutt-b-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>HeartGold (Compressed)</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td>Hoothoot</td>
+                              <td>80%</td>
+                              <td>7-9</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>20%</td>
+                              <td>7-9</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-soulsilver-headbutt-b-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>SoulSilver (Compressed)</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td>Hoothoot</td>
+                              <td>80%</td>
+                              <td>7-9</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>20%</td>
+                              <td>7-9</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-combined-headbutt-b-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="heartgold-true" colspan="2">HeartGold</th>
+                              <th class="soulsilver-true" colspan="2">SoulSilver</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoothoot.png" alt="Hoothoot"></div>
+                              </td>
+                              <td class="light-false">Hoothoot</td>
+                              <td class="heartgold-false">80%</td>
+                              <td class="heartgold-false">lv. 7-9</td>
+                              <td class="soulsilver-false">80%</td>
+                              <td class="soulsilver-false">lv. 7-9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="light-true">Wurmple</td>
+                              <td class="heartgold-true">20%</td>
+                              <td class="heartgold-true">lv. 7-9</td>
+                              <td class="soulsilver-true">20%</td>
+                              <td class="soulsilver-true">lv. 7-9</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-hgss-headbutt-special" class="table-collection headbutt-special">
+                  <h4>Headbutt (Special)</h4>
+                  <div id="pokemon-hgss-full-heartgold-headbutt-special-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>HeartGold (Full)</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>0</td>
+                              <td>50%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>5-9</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>1</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>5-9</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td>Starly</td>
+                              <td>5-9</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td>Starly</td>
+                              <td>5-9</td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>4</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td>Starly</td>
+                              <td>5-9</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>5</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td>Starly</td>
+                              <td>8-12</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-full-soulsilver-headbutt-special-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>SoulSilver (Full)</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>0</td>
+                              <td>50%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>5-9</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>1</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>5-9</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td>Starly</td>
+                              <td>5-9</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td>Starly</td>
+                              <td>5-9</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>4</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td>Starly</td>
+                              <td>5-9</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>5</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td>Starly</td>
+                              <td>8-12</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-full-combined-headbutt-special-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="heartgold-true" colspan="3">HeartGold</th>
+                              <th class="soulsilver-true" colspan="3">SoulSilver</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">50%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="heartgold-false">Wurmple</td>
+                              <td class="heartgold-false">lv. 5-9</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="soulsilver-false">Wurmple</td>
+                              <td class="soulsilver-false">lv. 5-9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">15%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="heartgold-true">Wurmple</td>
+                              <td class="heartgold-true">lv. 5-9</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="soulsilver-true">Wurmple</td>
+                              <td class="soulsilver-true">lv. 5-9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">15%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td class="heartgold-false">Starly</td>
+                              <td class="heartgold-false">lv. 5-9</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td class="soulsilver-false">Starly</td>
+                              <td class="soulsilver-false">lv. 5-9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td class="heartgold-true">Starly</td>
+                              <td class="heartgold-true">lv. 5-9</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td class="soulsilver-true">Starly</td>
+                              <td class="soulsilver-true">lv. 5-9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">5%</td>
+                              <td class="heartgold-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td class="heartgold-false">Starly</td>
+                              <td class="heartgold-false">lv. 5-9</td>
+                              <td class="soulsilver-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td class="soulsilver-false">Starly</td>
+                              <td class="soulsilver-false">lv. 5-9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">5%</td>
+                              <td class="heartgold-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td class="heartgold-true">Starly</td>
+                              <td class="heartgold-true">lv. 8-12</td>
+                              <td class="soulsilver-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td class="soulsilver-true">Starly</td>
+                              <td class="soulsilver-true">lv. 8-12</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-heartgold-headbutt-special-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>HeartGold (Compressed)</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>65%</td>
+                              <td>5-9</td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td>Starly</td>
+                              <td>35%</td>
+                              <td>5-12</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-soulsilver-headbutt-special-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>SoulSilver (Compressed)</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td>Wurmple</td>
+                              <td>65%</td>
+                              <td>5-9</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td>Starly</td>
+                              <td>35%</td>
+                              <td>5-12</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-compressed-combined-headbutt-special-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="heartgold-true" colspan="2">HeartGold</th>
+                              <th class="soulsilver-true" colspan="2">SoulSilver</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                              </td>
+                              <td class="light-false">Wurmple</td>
+                              <td class="heartgold-false">65%</td>
+                              <td class="heartgold-false">lv. 5-9</td>
+                              <td class="soulsilver-false">65%</td>
+                              <td class="soulsilver-false">lv. 5-9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                              </td>
+                              <td class="light-true">Starly</td>
+                              <td class="heartgold-true">35%</td>
+                              <td class="heartgold-true">lv. 5-12</td>
+                              <td class="soulsilver-true">35%</td>
+                              <td class="soulsilver-true">lv. 5-12</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-lgpe" class="game-container lgpe" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-lgpe-flying" class="table-collection flying">
+                  <h4>Flying</h4>
+                  <div id="pokemon-lgpe-full-lgp-flying-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Let's Go Pikachu (Full)</caption>
+                        <thead>
+                           <tr class="lgp-true">
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="lgp-false">
+                              <td>60%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lgp-true">
+                              <td>35%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lgp-false">
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeot.png" alt="Pidgeot"></div>
+                              </td>
+                              <td>Pidgeot</td>
+                              <td>3-56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-lgpe-full-lge-flying-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Let's Go Eevee (Full)</caption>
+                        <thead>
+                           <tr class="lge-true">
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="lge-false">
+                              <td>60%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lge-true">
+                              <td>35%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lge-false">
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeot.png" alt="Pidgeot"></div>
+                              </td>
+                              <td>Pidgeot</td>
+                              <td>3-56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-lgpe-full-combined-flying-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Rate</th>
+                              <th class="lgp-true" colspan="3">Let's Go Pikachu</th>
+                              <th class="lge-true" colspan="3">Let's Go Eevee</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">60%</td>
+                              <td class="lgp-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td class="lgp-false">Pidgey</td>
+                              <td class="lgp-false">lv. 3-56</td>
+                              <td class="lge-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td class="lge-false">Pidgey</td>
+                              <td class="lge-false">lv. 3-56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">35%</td>
+                              <td class="lgp-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="lgp-true">Pidgeotto</td>
+                              <td class="lgp-true">lv. 3-56</td>
+                              <td class="lge-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="lge-true">Pidgeotto</td>
+                              <td class="lge-true">lv. 3-56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">5%</td>
+                              <td class="lgp-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeot.png" alt="Pidgeot"></div>
+                              </td>
+                              <td class="lgp-false">Pidgeot</td>
+                              <td class="lgp-false">lv. 3-56</td>
+                              <td class="lge-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeot.png" alt="Pidgeot"></div>
+                              </td>
+                              <td class="lge-false">Pidgeot</td>
+                              <td class="lge-false">lv. 3-56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-lgpe-compressed-lgp-flying-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Let's Go Pikachu (Compressed)</caption>
+                        <thead>
+                           <tr class="lgp-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="lgp-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>60%</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lgp-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>35%</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lgp-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeot.png" alt="Pidgeot"></div>
+                              </td>
+                              <td>Pidgeot</td>
+                              <td>5%</td>
+                              <td>3-56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-lgpe-compressed-lge-flying-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Let's Go Eevee (Compressed)</caption>
+                        <thead>
+                           <tr class="lge-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="lge-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>60%</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lge-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>35%</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lge-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeot.png" alt="Pidgeot"></div>
+                              </td>
+                              <td>Pidgeot</td>
+                              <td>5%</td>
+                              <td>3-56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-lgpe-compressed-combined-flying-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="lgp-true" colspan="2">Let's Go Pikachu</th>
+                              <th class="lge-true" colspan="2">Let's Go Eevee</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td class="light-false">Pidgey</td>
+                              <td class="lgp-false">60%</td>
+                              <td class="lgp-false">lv. 3-56</td>
+                              <td class="lge-false">60%</td>
+                              <td class="lge-false">lv. 3-56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="light-true">Pidgeotto</td>
+                              <td class="lgp-true">35%</td>
+                              <td class="lgp-true">lv. 3-56</td>
+                              <td class="lge-true">35%</td>
+                              <td class="lge-true">lv. 3-56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeot.png" alt="Pidgeot"></div>
+                              </td>
+                              <td class="light-false">Pidgeot</td>
+                              <td class="lgp-false">5%</td>
+                              <td class="lgp-false">lv. 3-56</td>
+                              <td class="lge-false">5%</td>
+                              <td class="lge-false">lv. 3-56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-rgby-items" class="game-container rgby" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Red, Green, Blue, and Yellow Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="4">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">ひみつのコハク <em>(Old Amber)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">Obtained from a scientist in the eastern building of the Pewter Museum</td>
+                     <td class="light-false">Requires Cut.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Pewter Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Red, Green, Blue, and Yellow Items (Pewter Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="4">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">わざマシン３４ <em>(TM34 Bide)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">Obtained from Brock</td>
+                     <td class="light-true">Only after defeating him.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Red, Green, Blue, and Yellow Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="4">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">モンスターボール <em>(Poké Ball)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">キズぐすり <em>(Potion)</em></td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">あなぬけのヒモ <em>(Escape Rope)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">550</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">どくけし <em>(Antidote)</em></td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">やけどなおし <em>(Burn Heal)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">ねむけざまし <em>(Awakening)</em></td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">まひなおし <em>(Parlyz Heal)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">200</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-rby-items" class="game-container rby">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Red, Blue, and Yellow Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Old Amber</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">Obtained from a scientist in the eastern building of the Pewter Museum</td>
+                     <td class="light-false">Requires Cut.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Pewter Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Red, Blue, and Yellow Items (Pewter Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM34 Bide</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">Obtained from Brock</td>
+                     <td class="light-false">Only after defeating him.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Red, Blue, and Yellow Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Escape Rope</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">550</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parlyz Heal</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">200</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-gsc-items" class="game-container gsc" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ice Berry</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">On the Berry tree east of the Pewter Museum</td>
+                     <td class="light-false">Regenerates daily.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Mint Berry</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">On the Berry tree east of the Pewter Museum</td>
+                     <td class="light-true">Regenerates daily.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Silver Wing</td>
+                     <td class="gold-false">G</td>
+                     <td class="light-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Obtained from an old man near the eastern exit</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Rainbow Wing</td>
+                     <td class="light-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="light-true">C</td>
+                     <td class="light-true">Obtained from an old man near the eastern exit</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Great Ball</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Potion</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Repel</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parlyz Heal</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">250</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-frlg-items" class="game-container frlg" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>FireRed and LeafGreen Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">In the center of the patch of light green grass west of the Pewter Museum</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Old Amber</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">Obtained from a scientist in the eastern building of the Pewter Museum</td>
+                     <td class="light-true">Requires Cut.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Running Shoes</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">Obtained from Professor Oak's Aide near the eastern exit</td>
+                     <td class="light-false">Only after defeating Brock.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Pewter Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>FireRed and LeafGreen Items (Pewter Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM39 Rock Tomb</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">Obtained from Brock</td>
+                     <td class="light-false">Only after defeating him.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>FireRed and LeafGreen Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Antidote</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Parlyz Heal</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Awakening</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Burn Heal</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Escape Rope</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">550</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Repel</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">350</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-hgss-items" class="game-container hgss" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Blu Apricorn</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">On the Apricorn tree east of the Pewter Museum</td>
+                     <td class="light-false">Regenerates daily.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Wht Apricorn</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">On the Apricorn tree east of the Pewter Museum</td>
+                     <td class="light-true">Regenerates daily.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Guard Spec.</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">In the flower bed</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Revive</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Near the southern exit</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">PP Up</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">On the rock southwest of the Pewter Gym</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Wise Glasses</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">In the path to the northwest</td>
+                     <td class="light-true">Requires Rock Smash.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Silver Wing</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="light-false">SS</td>
+                     <td class="light-false">Obtained from an old man near the eastern exit</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Rainbow Wing</td>
+                     <td class="light-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Obtained from an old man near the eastern exit</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Soul Dew</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Obtained from a scientist in the Pewter Museum</td>
+                     <td class="light-false">Only after showing him the Enigma Stone.<br>The Enigma Stone requires an event to access.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Pewter Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Items (Pewter Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM80 Rock Slide</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Obtained from Brock</td>
+                     <td class="light-false">Only after defeating him.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Upper vendor</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Steel Mail</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">50</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Net Ball</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">1000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Quick Ball</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">1000</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">2500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">3000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parlyz Heal</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ice Heal</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">550</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">350</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Repel</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">700</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-lgpe-items" class="game-container lgpe" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Let's Go Pikachu and Let's Go Eevee Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Potion (5x)</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">Obtained from the Rival when first entering the city</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Defense</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">Behind the Pokémon Center</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Pewter Crunchies</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">Sold by a man in the Pokémon Center daily for 500</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Big Pearl</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">Obtained from the lady west of the Pewter Museum</td>
+                     <td class="light-true">Only after watching her Slowpoke.<br>This can be repeated daily.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Great Ball (5x)</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">Obtained from Blue upon leaving Pewter Gym</td>
+                     <td class="light-false">Only after defeating Brock.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Old Amber</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">Obtained from a scientist in the eastern building of the Pewter Museum</td>
+                     <td class="light-true">Requires Chop Down.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Pretty Wing (10x)</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">Obtained from a scientist in the eastern building of Pewter Museum</td>
+                     <td class="light-false">Requires Chop Down.<br>Only after showing him an Aerodactyl.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Pewter Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Let's Go Pikachu and Let's Go Eevee Items (Pewter Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM01 Headbutt</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">Obtained from Brock</td>
+                     <td class="light-false">Only after defeating him.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Let's Go Pikachu and Let's Go Eevee Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">100</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">300</td>
+                     <td class="light-true">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">500</td>
+                     <td class="light-false">Only after obtaining 4 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">200</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">700</td>
+                     <td class="light-false">Only after obtaining 2 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">1500</td>
+                     <td class="light-true">Only after obtaining 4 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">2500</td>
+                     <td class="light-false">Only after obtaining 6 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">3000</td>
+                     <td class="light-true">Only after obtaining all 8 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Antidote</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">200</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Burn Heal</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">300</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ice Heal</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">100</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">100</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Paralyze Heal</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">300</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Heal</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">400</td>
+                     <td class="light-true">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">2000</td>
+                     <td class="light-false">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">300</td>
+                     <td class="light-true">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">400</td>
+                     <td class="light-false">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Repel</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">700</td>
+                     <td class="light-true">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">900</td>
+                     <td class="light-false">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lure</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">400</td>
+                     <td class="light-true">Only after obtaining 2 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Lure</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">700</td>
+                     <td class="light-false">Only after obtaining 4 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Lure</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">900</td>
+                     <td class="light-true">Only after obtaining 6 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Attack</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">550</td>
+                     <td class="light-false">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Defense</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">500</td>
+                     <td class="light-true">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Sp. Atk</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">350</td>
+                     <td class="light-false">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Sp. Def</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">350</td>
+                     <td class="light-true">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Speed</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">350</td>
+                     <td class="light-false">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Accuracy</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">950</td>
+                     <td class="light-true">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Dire Hit</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">650</td>
+                     <td class="light-false">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Guard Spec.</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">700</td>
+                     <td class="light-true">Only after obtaining 1 Badge.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Walking Pokémon</h4>
+            <p class="lgpe">Walking Pokémon can find Razz Berries and Nanab Berries in the bush near the house southeast of the Pewter Museum.</p>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-rgby-trainers" class="game-container rgby" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>Pewter Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Red, Green, Blue, and Yellow Trainers (Pewter Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="4">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">ボーイスカウト <em>(Jr. Trainer♂)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="light-false">Y</td>
+                     <td class="light-false">Diglett lv.11<br>Sandshrew lv.11</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">ボーイスカウト <em>(Jr. Trainer♂)</em></td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">G</td>
+                     <td class="light-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">Diglett lv.9<br>Sandshrew lv.9</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">タケシ <em>(Brock)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="light-false">Y</td>
+                     <td class="light-false">Geodude lv.12<br>Onix lv.14</td>
+                     <td class="light-false">He can use Full Heals during the battle.<br>
+                        He will give the player TM34 Bide after the battle.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">タケシ <em>(Brock)</em></td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">G</td>
+                     <td class="light-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">Geodude lv.10<br>Onix lv.12</td>
+                     <td class="light-true">He can use Full Heals during the battle.<br>
+                        He will give the player TM34 Bide after the battle.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-rby-trainers" class="game-container rby">
+            <h3><u>Trainers</u></h3>
+            <h4>Pewter Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Red, Blue, and Yellow Trainers (Pewter Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Jr. Trainer♂</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="light-false">Y</td>
+                     <td class="light-false">Diglett lv.11<br>Sandshrew lv.11</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Jr. Trainer♂</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">Diglett lv.9<br>Sandshrew lv.9</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Brock</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="light-false">Y</td>
+                     <td class="light-false">Geodude lv.12<br>Onix lv.14</td>
+                     <td class="light-false">He can use Full Heals during the battle.<br>
+                        He will give the player TM34 Bide after the battle.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Brock</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">Geodude lv.10<br>Onix lv.12</td>
+                     <td class="light-true">He can use Full Heals during the battle.<br>
+                        He will give the player TM34 Bide after the battle.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-gsc-trainers" class="game-container gsc" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>Pewter Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Trainers (Pewter Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Camper Jerry</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Sandslash lv.37</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Brock</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">Graveler lv.41<br>Rhyhorn lv.41<br>Omastar lv.42<br>Onix lv.44<br>Kabutops lv.42</td>
+                     <td class="light-true">He can use a Hyper Potion during the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-frlg-trainers" class="game-container frlg" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>Pewter Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>FireRed and LeafGreen Trainers (Pewter Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Camper Liam</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">Geodude lv.10<br>Sandshrew lv.11</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Brock</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">Geodude lv.12<br>Onix lv.14</td>
+                     <td class="light-true">He will give the player TM39 Rock Tomb after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-hgss-trainers" class="game-container hgss" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>Pewter Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Trainers (Pewter Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Camper Jerry</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Rhydon lv.50</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hiker Edwin</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Golem lv.50</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Brock</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Graveler lv.51<br>Rhyhorn lv.51<br>Omastar lv.53<br>Onix lv.54<br>Kabutops lv.52</td>
+                     <td class="light-false">His Onix holds a Sitrus Berry.<br>He will give the player TM80 Rock Slide after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-lgpe-trainers" class="game-container lgpe" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>Master Trainers</h4>
+            <p class="lgpe">Master Trainers can only be battled after defeating the Elite Four.</p>
+            <table>
+               <caption>Let's Go Pikachu and Let's Go Eevee Master Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                     <th>Nature</th>
+                     <th colspan="8">Moves</th>
+                     <th>HP</th>
+                     <th>Atk</th>
+                     <th>Def</th>
+                     <th>SpA</th>
+                     <th>SpD</th>
+                     <th>Spe</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td rowspan="2">Bird Keeper Ralph</td>
+                     <td rowspan="2"><img src="../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></td>
+                     <td rowspan="2">Spearow</td>
+                     <td rowspan="2">70</td>
+                     <td rowspan="2">Adamant</td>
+                     <td colspan="2" class="normal-false">Fury Attack</td>
+                     <td colspan="2" class="status-false">Focus Energy</td>
+                     <td colspan="2" rowspan="2">N/A</td>
+                     <td colspan="2" rowspan="2">N/A</td>
+                     <td rowspan="2">277</td>
+                     <td rowspan="2">201</td>
+                     <td rowspan="2">218</td>
+                     <td rowspan="2">43</td>
+                     <td rowspan="2">48</td>
+                     <td rowspan="2">124</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                     </td>
+                  </tr>
+                  <tr class="light-true">
+                     <td rowspan="2">Lass Marge</td>
+                     <td rowspan="2"><img src="../../Resources/images/home-renders/gen-1/jigglypuff.png" alt="Jigglypuff"></td>
+                     <td rowspan="2">Jigglypuff</td>
+                     <td rowspan="2">70</td>
+                     <td rowspan="2">Adamant</td>
+                     <td colspan="2" class="status-false">Sing</td>
+                     <td colspan="2" class="normal-false">Body Slam</td>
+                     <td colspan="2" class="status-false">Disable</td>
+                     <td colspan="2" rowspan="2">N/A</td>
+                     <td rowspan="2">362</td>
+                     <td rowspan="2">147</td>
+                     <td rowspan="2">154</td>
+                     <td rowspan="2">61</td>
+                     <td rowspan="2">161</td>
+                     <td rowspan="2">33</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                     </td>
+                  </tr>
+                  <tr class="light-false">
+                     <td rowspan="2">Lass Emma</td>
+                     <td rowspan="2"><img src="../../Resources/images/home-renders/gen-1/gloom-f.png" alt="Gloom"></td>
+                     <td rowspan="2">Gloom</td>
+                     <td rowspan="2">70</td>
+                     <td rowspan="2">Modest</td>
+                     <td colspan="2" class="poison-false">Sludge Bomb</td>
+                     <td colspan="2" rowspan="2">N/A</td>
+                     <td colspan="2" rowspan="2">N/A</td>
+                     <td colspan="2" rowspan="2">N/A</td>
+                     <td rowspan="2">185</td>
+                     <td rowspan="2">86</td>
+                     <td rowspan="2">124</td>
+                     <td rowspan="2">309</td>
+                     <td rowspan="2">281</td>
+                     <td rowspan="2">232</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                     </td>
+                  </tr>
+                  <tr class="light-true">
+                     <td rowspan="2">Hiker Kenji</td>
+                     <td rowspan="2"><img src="../../Resources/images/home-renders/gen-1/kabutops.png" alt="Kabutops"></td>
+                     <td rowspan="2">Kabutops</td>
+                     <td rowspan="2">75</td>
+                     <td rowspan="2">Gentle</td>
+                     <td colspan="2" class="grass-false">Mega Drain</td>
+                     <td colspan="2" class="fighting-false">Brick Break</td>
+                     <td colspan="2" class="normal-false">Feint</td>
+                     <td colspan="2" rowspan="2">N/A</td>
+                     <td rowspan="2">398</td>
+                     <td rowspan="2">200</td>
+                     <td rowspan="2">145</td>
+                     <td rowspan="2">102</td>
+                     <td rowspan="2">346</td>
+                     <td rowspan="2">268</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/grass.png" alt="Grass"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Feint"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                     </td>
+                  </tr>
+                  <tr class="light-false">
+                     <td rowspan="2">Hiker Hisato<br>(Pewter Museum)</td>
+                     <td rowspan="2"><img src="../../Resources/images/home-renders/gen-1/aerodactyl.png" alt="Aerodactyl"></td>
+                     <td rowspan="2">Aerodactyl</td>
+                     <td rowspan="2">75</td>
+                     <td rowspan="2">Impish</td>
+                     <td colspan="2" class="status-false">Roost</td>
+                     <td colspan="2" class="flying-false">Fly</td>
+                     <td colspan="2" class="status-false">Toxic</td>
+                     <td colspan="2" class="steel-false">Iron Tail</td>
+                     <td rowspan="2">428</td>
+                     <td rowspan="2">265</td>
+                     <td rowspan="2">337</td>
+                     <td rowspan="2">85</td>
+                     <td rowspan="2">117</td>
+                     <td rowspan="2">423</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                     </td>
+                  </tr>
+                  <tr class="light-true">
+                     <td rowspan="2">Hiker Valentino<br>(Pewter Museum)</td>
+                     <td rowspan="2"><img src="../../Resources/images/home-renders/gen-1/golem.png" alt="Golem"></td>
+                     <td rowspan="2">Golem</td>
+                     <td rowspan="2">75</td>
+                     <td rowspan="2">Impish</td>
+                     <td colspan="2" class="ground-false">Dig</td>
+                     <td colspan="2" class="fire-false">Fire Punch</td>
+                     <td colspan="2" class="status-false">Defense Curl</td>
+                     <td colspan="2" class="status-false">Protect</td>
+                     <td rowspan="2">348</td>
+                     <td rowspan="2">408</td>
+                     <td rowspan="2">445</td>
+                     <td rowspan="2">78</td>
+                     <td rowspan="2">102</td>
+                     <td rowspan="2">95</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/fire.png" alt="Fire"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Pewter Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Let's Go Pikachu and Let's Go Eevee Trainers (Pewter Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Picnicker Amara</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">Geodude lv.7</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Camper Liam</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">Geodude lv.7</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Brock</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">Geodude lv.11<br>Onix lv.12</td>
+                     <td class="light-false">He will give the player TM01 Headbutt after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Brock</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">Onix lv.56<br>Kabutops lv.56<br>Omastar lv.56<br>Aerodactyl lv.56<br>Golem lv.57</td>
+                     <td class="light-true">Rematch.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

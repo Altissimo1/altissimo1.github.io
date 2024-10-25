@@ -1,0 +1,1 @@
+var gameSets = ["gsc", "dppt", "hgss"];

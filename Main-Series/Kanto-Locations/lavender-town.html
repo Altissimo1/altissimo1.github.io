@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Lavender Town</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" href="../../common.css">
+   </head>
+   <body>
+      <h4><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a></h4>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Kanto Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rgby" type="radio" onclick="topButton.call(this)" name="games" value="RGBY">
+         <label for="rgby" class="right">RGBY (Japanese)</label>
+         <input id="rby" type="radio" onclick="topButton.call(this)" name="games" value="RBY" checked="checked">
+         <label for="rby" class="right">RBY (Western)</label>
+         <input id="gsc" type="radio" onclick="topButton.call(this)" name="games" value="GSC">
+         <label for="gsc" class="right">GSC</label>
+         <input id="frlg" type="radio" onclick="topButton.call(this)" name="games" value="FRLG">
+         <label for="frlg" class="right">FRLG</label>
+         <input id="hgss" type="radio" onclick="topButton.call(this)" name="games" value="HGSS">
+         <label for="hgss" class="right">HGSS</label>
+         <input id="lgpe" type="radio" onclick="topButton.call(this)" name="games" value="LGPE">
+         <label for="lgpe" class="right">LGPE</label>
+      </div>
+      <h2>Lavender Town</h2>
+      <div id="notes" class="bottom">
+         <p id="rgby-notes" class="rgby" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a href="route-10.html">Route 10</a><br>
+            West: <a href="route-8.html">Route 8</a><br>
+            South: <a href="route-12.html">Route 12</a><br>
+            Accessible in the town: <a href="pokemon-tower.html">Pokémon Tower</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Name Rater
+         </p>
+         <p id="rby-notes" class="rby">
+            <strong>Access to:</strong><br>
+            North: <a href="route-10.html">Route 10</a><br>
+            West: <a href="route-8.html">Route 8</a><br>
+            South: <a href="route-12.html">Route 12</a><br>
+            Accessible in the town: <a href="pokemon-tower.html">Pokémon Tower</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Name Rater
+         </p>
+         <p id="gsc-notes" class="gsc" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a href="route-10.html">Route 10</a><br>
+            West: <a href="route-8.html">Route 8</a><br>
+            South: <a href="route-12.html">Route 12</a><br>
+            Accessible in the town: <a href="pokemon-tower.html">Kanto Radio Tower</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Name Rater
+         </p>
+         <p id="frlg-notes" class="frlg" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a href="route-10.html">Route 10</a><br>
+            West: <a href="route-8.html">Route 8</a><br>
+            South: <a href="route-12.html">Route 12</a><br>
+            Accessible in the town: <a href="pokemon-tower.html">Pokémon Tower</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Name Rater
+         </p>
+         <p id="hgss-notes" class="hgss" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a href="route-10.html">Route 10</a><br>
+            West: <a href="route-8.html">Route 8</a><br>
+            South: <a href="route-12.html">Route 12</a><br>
+            Accessible in the town: <a href="pokemon-tower.html">Kanto Radio Tower</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Name Rater
+         </p>
+         <p id="lgpe-notes" class="lgpe" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a href="route-10.html">Route 10</a><br>
+            West: <a href="route-8.html">Route 8</a><br>
+            South: <a href="route-12.html">Route 12</a><br>
+            Accessible in the town: <a href="pokemon-tower.html">Pokémon Tower</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Name Rater<br><br>
+            <strong>Utility:</strong><br>
+            A Flying Pokémon can be used to encounter wild Pokémon.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay lgpe only" style="display:none;">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-lgpe-buttons" class="button-set lgpe" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-lgpe-full-lgp" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Let's Go Pikachu (Full)">
+                        <label for="pokemon-lgpe-full-lgp">Let's Go Pikachu (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-lgpe-compressed-lgp" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Let's Go Pikachu (Compressed)">
+                        <label for="pokemon-lgpe-compressed-lgp">Let's Go Pikachu (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-lgpe-full-lge" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Let's Go Eevee (Full)">
+                        <label for="pokemon-lgpe-full-lge">Let's Go Eevee (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-lgpe-compressed-lge" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Let's Go Eevee (Compressed)">
+                        <label for="pokemon-lgpe-compressed-lge">Let's Go Eevee (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-lgpe-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Combined (Full)">
+                        <label for="pokemon-lgpe-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-lgpe-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Separate (Full)">
+                        <label for="pokemon-lgpe-full-separate">Separate (Full)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-lgpe-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-lgpe-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-lgpe-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-lgpe-games" value="Separate (Compressed)">
+                        <label for="pokemon-lgpe-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-lgpe" class="game-container lgpe" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-lgpe-trade">
+                  <h4>Trade</h4>
+                  <div id="pokemon-lgpe-all-combined-trade-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/diglett.png" alt="Diglett"></div>
+                              </td>
+                              <td class="light-false">Diglett</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/diglett-alola.png" alt="Diglett (Alolan)"></div>
+                              </td>
+                              <td class="light-false">Diglett (Alolan)</td>
+                              <td class="light-false">25</td>
+                              <td class="lgp-false">LGP</td>
+                              <td class="lge-false">LGE</td>
+                              <td class="light-false">The trade is with a lady in the southwest part of the Pokémon Center.<br>The player can repeat this trade indefinitely.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-lgpe-all-lgp-trade-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Let's Go Pikachu</caption>
+                        <thead>
+                           <tr class="lgp-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="lgp-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/diglett.png" alt="Diglett"></div>
+                              </td>
+                              <td>Diglett</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/diglett-alola.png" alt="Diglett (Alolan)"></div>
+                              </td>
+                              <td>Diglett (Alolan)</td>
+                              <td>25</td>
+                              <td>The trade is with a lady in the southwest part of the Pokémon Center.<br>The player can repeat this trade indefinitely.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-lgpe-all-lge-trade-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Let's Go Eevee</caption>
+                        <thead>
+                           <tr class="lge-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="lge-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/diglett.png" alt="Diglett"></div>
+                              </td>
+                              <td>Diglett</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/diglett-alola.png" alt="Diglett (Alolan)"></div>
+                              </td>
+                              <td>Diglett (Alolan)</td>
+                              <td>25</td>
+                              <td>The trade is with a lady in the southwest part of the Pokémon Center.<br>The player can repeat this trade indefinitely.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-lgpe-flying" class="table-collection flying">
+                  <h4>Flying</h4>
+                  <div id="pokemon-lgpe-full-lgp-flying-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Let's Go Pikachu (Full)</caption>
+                        <thead>
+                           <tr class="lgp-true">
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="lgp-false">
+                              <td>60%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lgp-true">
+                              <td>35%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lgp-false">
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeot.png" alt="Pidgeot"></div>
+                              </td>
+                              <td>Pidgeot</td>
+                              <td>3-56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-lgpe-full-lge-flying-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Let's Go Eevee (Full)</caption>
+                        <thead>
+                           <tr class="lge-true">
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="lge-false">
+                              <td>60%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lge-true">
+                              <td>35%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lge-false">
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeot.png" alt="Pidgeot"></div>
+                              </td>
+                              <td>Pidgeot</td>
+                              <td>3-56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-lgpe-full-combined-flying-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Rate</th>
+                              <th class="lgp-true" colspan="3">Let's Go Pikachu</th>
+                              <th class="lge-true" colspan="3">Let's Go Eevee</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">60%</td>
+                              <td class="lgp-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td class="lgp-false">Pidgey</td>
+                              <td class="lgp-false">lv. 3-56</td>
+                              <td class="lge-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td class="lge-false">Pidgey</td>
+                              <td class="lge-false">lv. 3-56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">35%</td>
+                              <td class="lgp-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="lgp-true">Pidgeotto</td>
+                              <td class="lgp-true">lv. 3-56</td>
+                              <td class="lge-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="lge-true">Pidgeotto</td>
+                              <td class="lge-true">lv. 3-56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">5%</td>
+                              <td class="lgp-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeot.png" alt="Pidgeot"></div>
+                              </td>
+                              <td class="lgp-false">Pidgeot</td>
+                              <td class="lgp-false">lv. 3-56</td>
+                              <td class="lge-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeot.png" alt="Pidgeot"></div>
+                              </td>
+                              <td class="lge-false">Pidgeot</td>
+                              <td class="lge-false">lv. 3-56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-lgpe-compressed-lgp-flying-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Let's Go Pikachu (Compressed)</caption>
+                        <thead>
+                           <tr class="lgp-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="lgp-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>60%</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lgp-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>35%</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lgp-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeot.png" alt="Pidgeot"></div>
+                              </td>
+                              <td>Pidgeot</td>
+                              <td>5%</td>
+                              <td>3-56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-lgpe-compressed-lge-flying-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Let's Go Eevee (Compressed)</caption>
+                        <thead>
+                           <tr class="lge-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="lge-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td>Pidgey</td>
+                              <td>60%</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lge-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td>Pidgeotto</td>
+                              <td>35%</td>
+                              <td>3-56</td>
+                           </tr>
+                           <tr class="lge-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeot.png" alt="Pidgeot"></div>
+                              </td>
+                              <td>Pidgeot</td>
+                              <td>5%</td>
+                              <td>3-56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-lgpe-compressed-combined-flying-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="lgp-true" colspan="2">Let's Go Pikachu</th>
+                              <th class="lge-true" colspan="2">Let's Go Eevee</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                              </td>
+                              <td class="light-false">Pidgey</td>
+                              <td class="lgp-false">60%</td>
+                              <td class="lgp-false">lv. 3-56</td>
+                              <td class="lge-false">60%</td>
+                              <td class="lge-false">lv. 3-56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+                              </td>
+                              <td class="light-true">Pidgeotto</td>
+                              <td class="lgp-true">35%</td>
+                              <td class="lgp-true">lv. 3-56</td>
+                              <td class="lge-true">35%</td>
+                              <td class="lge-true">lv. 3-56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgeot.png" alt="Pidgeot"></div>
+                              </td>
+                              <td class="light-false">Pidgeot</td>
+                              <td class="lgp-false">5%</td>
+                              <td class="lgp-false">lv. 3-56</td>
+                              <td class="lge-false">5%</td>
+                              <td class="lge-false">lv. 3-56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-rgby-items" class="game-container rgby" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Red, Green, Blue, and Yellow Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="4">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">ポケモンのふえ <em>(Poké Flute)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">Obtained from Mr. Fuji</td>
+                     <td class="light-false">Only after speaking with him in Pokémon Tower.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Red, Green, Blue, and Yellow Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="4">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">スーパーボール <em>(Great Ball)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">いいキズぐすり <em>(Super Potion)</em></td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">げんきのかけら <em>(Revive)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">あなぬけのヒモ <em>(Escape Rope)</em></td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">550</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">シルバースプレー <em>(Super Repel)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">どくけし <em>(Antidote)</em></td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">やけどなおし <em>(Burn Heal)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">こおりなおし <em>(Ice Heal)</em></td>
+                     <td class="red-true">R</td>
+                     <td class="green-true">G</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">まひなおし <em>(Parlyz Heal)</em></td>
+                     <td class="red-false">R</td>
+                     <td class="green-false">G</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">200</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-rby-items" class="game-container rby">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Red, Blue, and Yellow Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Flute</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">Obtained from Mr. Fuji</td>
+                     <td class="light-false">Only after speaking with him in Pokémon Tower.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Red, Blue, and Yellow Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Great Ball</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Potion</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">550</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Repel</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ice Heal</td>
+                     <td class="red-true">R</td>
+                     <td class="blue-true">B</td>
+                     <td class="yellow-true">Y</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parlyz Heal</td>
+                     <td class="red-false">R</td>
+                     <td class="blue-false">B</td>
+                     <td class="yellow-false">Y</td>
+                     <td class="light-false">200</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-gsc-items" class="game-container gsc" style="display:none;">
+            <h3><u>Items</u></h3>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Great Ball</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Repel</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Antidote</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Parlyz Heal</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Awakening</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Burn Heal</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">250</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-frlg-items" class="game-container frlg" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>FireRed and LeafGreen Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Flute</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">Obtained from Mr. Fuji</td>
+                     <td class="light-false">Only after speaking with him in Pokémon Tower.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>FireRed and LeafGreen Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Great Ball</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Potion</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Repel</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Antidote</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Parlyz Heal</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Awakening</td>
+                     <td class="firered-false">FR</td>
+                     <td class="leafgreen-false">LG</td>
+                     <td class="light-false">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Burn Heal</td>
+                     <td class="firered-true">FR</td>
+                     <td class="leafgreen-true">LG</td>
+                     <td class="light-true">250</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-hgss-items" class="game-container hgss" style="display:none;">
+            <h3><u>Items</u></h3>
+            <h4>Poké Mart - Upper vendor</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Snow Mail</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">50</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Dusk Ball</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">1000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Quick Ball</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">1000</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">2500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">3000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parlyz Heal</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ice Heal</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">550</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">350</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Repel</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">700</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-lgpe-items" class="game-container lgpe" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Let's Go Pikachu and Let's Go Eevee Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Flute</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">Obtained from Mr. Fuji</td>
+                     <td class="light-false">Only after speaking with him in Pokémon Tower.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball (20x)</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">Obtained from a man near Route 8</td>
+                     <td class="light-true">Only after rescuing Cubone from the <a href="rocket-hideout.html">Team Rocket Hideout</a>.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Let's Go Pikachu and Let's Go Eevee Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">100</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">300</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">500</td>
+                     <td class="light-false">Only after obtaining 4 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">200</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">700</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">1500</td>
+                     <td class="light-true">Only after obtaining 4 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">2500</td>
+                     <td class="light-false">Only after obtaining 6 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">3000</td>
+                     <td class="light-true">Only after obtaining all 8 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Antidote</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">200</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Burn Heal</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">300</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ice Heal</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">100</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">100</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Paralyze Heal</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">300</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Heal</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">400</td>
+                     <td class="light-true">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">2000</td>
+                     <td class="light-false">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">300</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">400</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Repel</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">700</td>
+                     <td class="light-true">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">900</td>
+                     <td class="light-false">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lure</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">400</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Lure</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">700</td>
+                     <td class="light-false">Only after obtaining 4 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Lure</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">900</td>
+                     <td class="light-true">Only after obtaining 6 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Attack</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">550</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Defense</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">500</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Sp. Atk</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">350</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Sp. Def</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">350</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Speed</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">350</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Accuracy</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">950</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Dire Hit</td>
+                     <td class="lgp-false">LGP</td>
+                     <td class="lge-false">LGE</td>
+                     <td class="light-false">650</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Guard Spec.</td>
+                     <td class="lgp-true">LGP</td>
+                     <td class="lge-true">LGE</td>
+                     <td class="light-true">700</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Walking Pokémon</h4>
+            <p class="lgpe">Walking Pokémon can find Pretty Wings in the flower bed south of Pokémon Tower.</p>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-lgpe-trainers" class="game-container lgpe" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>Master Trainers</h4>
+            <p class="lgpe">Master Trainers can only be battled after defeating the Elite Four.</p>
+            <table>
+               <caption>Let's Go Pikachu and Let's Go Eevee Master Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                     <th>Nature</th>
+                     <th colspan="7">Moves</th>
+                     <th>HP</th>
+                     <th>Atk</th>
+                     <th>Def</th>
+                     <th>SpA</th>
+                     <th>SpD</th>
+                     <th>Spe</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td rowspan="2">Psychic Arin</td>
+                     <td rowspan="2"><img src="../../Resources/images/home-renders/gen-1/gastly.png" alt="Gastly"></td>
+                     <td rowspan="2">Gastly</td>
+                     <td rowspan="2">70</td>
+                     <td rowspan="2">Calm</td>
+                     <td colspan="2" class="ghost-false">Shadow Ball</td>
+                     <td colspan="2" rowspan="2">N/A</td>
+                     <td colspan="2" rowspan="2">N/A</td>
+                     <td rowspan="2">N/A</td>
+                     <td rowspan="2">243</td>
+                     <td rowspan="2">48</td>
+                     <td rowspan="2">47</td>
+                     <td rowspan="2">166</td>
+                     <td rowspan="2">282</td>
+                     <td rowspan="2">238</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/ghost.png" alt="Ghost"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                     </td>
+                  </tr>
+                  <tr class="light-true">
+                     <td rowspan="2">Psychic Danny</td>
+                     <td rowspan="2"><img src="../../Resources/images/home-renders/gen-1/haunter.png" alt="Haunter"></td>
+                     <td rowspan="2">Haunter</td>
+                     <td rowspan="2">75</td>
+                     <td rowspan="2">Calm</td>
+                     <td colspan="2" class="ghost-false">Shadow Ball</td>
+                     <td colspan="2" rowspan="2">N/A</td>
+                     <td colspan="2" rowspan="2">N/A</td>
+                     <td rowspan="2">N/A</td>
+                     <td rowspan="2">295</td>
+                     <td rowspan="2">72</td>
+                     <td rowspan="2">72</td>
+                     <td rowspan="2">200</td>
+                     <td rowspan="2">321</td>
+                     <td rowspan="2">320</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/ghost.png" alt="Ghost"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                     </td>
+                  </tr>
+                  <tr class="light-false">
+                     <td rowspan="2">Psychic Ross</td>
+                     <td rowspan="2"><img src="../../Resources/images/home-renders/gen-1/gengar.png" alt="Gengar"></td>
+                     <td rowspan="2">Gengar</td>
+                     <td rowspan="2">80</td>
+                     <td rowspan="2">Modest</td>
+                     <td colspan="2" class="status-false">Hypnosis</td>
+                     <td colspan="2" class="psychic-false">Dream Eater</td>
+                     <td colspan="2" class="electric-false">Thunderbolt</td>
+                     <td rowspan="2">N/A</td>
+                     <td rowspan="2">410</td>
+                     <td rowspan="2">98</td>
+                     <td rowspan="2">125</td>
+                     <td rowspan="2">460</td>
+                     <td rowspan="2">349</td>
+                     <td rowspan="2">285</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                     </td>
+                  </tr>
+                  <tr class="light-true">
+                     <td rowspan="2">Hiker Julius</td>
+                     <td rowspan="2"><img src="../../Resources/images/home-renders/gen-1/marowak.png" alt="Marowak"></td>
+                     <td rowspan="2">Marowak</td>
+                     <td rowspan="2">75</td>
+                     <td rowspan="2">Adamant</td>
+                     <td colspan="2" class="status-false">Swords Dance</td>
+                     <td colspan="2" class="normal-false">Double-Edge</td>
+                     <td colspan="2" class="fire-false">Fire Punch</td>
+                     <td rowspan="2">N/A</td>
+                     <td rowspan="2">298</td>
+                     <td rowspan="2">362</td>
+                     <td rowspan="2">313</td>
+                     <td rowspan="2">72</td>
+                     <td rowspan="2">125</td>
+                     <td rowspan="2">295</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/fire.png" alt="Fire"></div>
+                     </td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

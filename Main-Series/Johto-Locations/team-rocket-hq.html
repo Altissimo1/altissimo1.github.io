@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Team Rocket HQ</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" href="../../common.css">
+   </head>
+   <body>
+      <h4><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a></h4>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Johto Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="gsc" type="radio" onclick="topButton.call(this)" name="games" value="GSC" checked="checked">
+         <label for="gsc" class="right">GSC</label>
+         <input id="hgss" type="radio" onclick="topButton.call(this)" name="games" value="HGSS">
+         <label for="hgss" class="right">HGSS</label>
+      </div>
+      <h2>Team Rocket HQ</h2>
+      <div id="notes" class="bottom">
+         <p id="gsc-notes" class="gsc">
+            <strong>Access to:</strong><br>
+            Exit on B1F: <a href="mahogany-town.html">Mahogany Town</a>
+         </p>
+         <p id="hgss-notes" class="hgss" style="display:none;">
+            <strong>Access to:</strong><br>
+            Exit on B1F: <a href="goldenrod-city.html">Mahogany Town</a>
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-gsc-buttons" class="button-set gsc">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-full-gold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Gold (Full)">
+                        <label for="pokemon-gsc-full-gold">Gold (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-compressed-gold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Gold (Compressed)">
+                        <label for="pokemon-gsc-compressed-gold">Gold (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-full-silver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Silver (Full)">
+                        <label for="pokemon-gsc-full-silver">Silver (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-compressed-silver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Silver (Compressed)">
+                        <label for="pokemon-gsc-compressed-silver">Silver (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-full-crystal" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Crystal (Full)">
+                        <label for="pokemon-gsc-full-crystal">Crystal (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-compressed-crystal" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Crystal (Compressed)">
+                        <label for="pokemon-gsc-compressed-crystal">Crystal (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Combined (Full)">
+                        <label for="pokemon-gsc-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Separate (Full)">
+                        <label for="pokemon-gsc-full-separate">Separate (Full)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-gsc-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-gsc-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-gsc-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-gsc-games" value="Separate (Compressed)">
+                        <label for="pokemon-gsc-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-hgss-buttons" class="button-set hgss" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-hgss-full-heartgold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="HeartGold (Full)">
+                        <label for="pokemon-hgss-full-heartgold">HeartGold (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-hgss-compressed-heartgold" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="HeartGold (Compressed)">
+                        <label for="pokemon-hgss-compressed-heartgold">HeartGold (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-hgss-full-soulsilver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="SoulSilver (Full)">
+                        <label for="pokemon-hgss-full-soulsilver">SoulSilver (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-hgss-compressed-soulsilver" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="SoulSilver (Compressed)">
+                        <label for="pokemon-hgss-compressed-soulsilver">SoulSilver (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-hgss-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="Combined (Full)">
+                        <label for="pokemon-hgss-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-hgss-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="Separate (Full)">
+                        <label for="pokemon-hgss-full-separate">Separate (Full)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-hgss-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-hgss-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-hgss-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-hgss-games" value="Separate (Compressed)">
+                        <label for="pokemon-hgss-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-gsc" class="game-container gsc">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Geodude have a 2% chance of holding an Everstone.</li>
+               </ul>
+               <div id="pokemon-gsc-static" class="table-collection static">
+                  <h4>Static (B1F)</h4>
+                  <div id="pokemon-gsc-all-combined-static-table-b1f" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="3">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="light-false">Geodude</td>
+                              <td class="light-false">21</td>
+                              <td class="gold-false">G</td>
+                              <td class="silver-false">S</td>
+                              <td class="crystal-false">C</td>
+                              <td class="light-false">Seven total. On the trap tiles on B1F. They cannot be fled from.
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/voltorb.png" alt="Voltorb"></div>
+                              </td>
+                              <td class="light-true">Voltorb</td>
+                              <td class="light-true">23</td>
+                              <td class="gold-true">G</td>
+                              <td class="silver-true">S</td>
+                              <td class="crystal-true">C</td>
+                              <td class="light-true">Eight total. On the trap tiles on B1F. They cannot be fled from.
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/koffing.png" alt="Koffing"></div>
+                              </td>
+                              <td class="light-false">Koffing</td>
+                              <td class="light-false">21</td>
+                              <td class="gold-false">G</td>
+                              <td class="silver-false">S</td>
+                              <td class="crystal-false">C</td>
+                              <td class="light-false">Seven total. On the trap tiles on B1F. They cannot be fled from.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-all-gold-static-table-b1f" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Gold</caption>
+                        <thead>
+                           <tr class="gold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>21</td>
+                              <td>Seven total. On the trap tiles on B1F. They cannot be fled from.
+                              </td>
+                           </tr>
+                           <tr class="gold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/voltorb.png" alt="Voltorb"></div>
+                              </td>
+                              <td>Voltorb</td>
+                              <td>23</td>
+                              <td>Eight total. On the trap tiles on B1F. They cannot be fled from.
+                              </td>
+                           </tr>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/koffing.png" alt="Koffing"></div>
+                              </td>
+                              <td>Koffing</td>
+                              <td>21</td>
+                              <td>Seven total. On the trap tiles on B1F. They cannot be fled from.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-all-silver-static-table-b1f" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Silver</caption>
+                        <thead>
+                           <tr class="silver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>21</td>
+                              <td>Seven total. On the trap tiles on B1F. They cannot be fled from.
+                              </td>
+                           </tr>
+                           <tr class="silver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/voltorb.png" alt="Voltorb"></div>
+                              </td>
+                              <td>Voltorb</td>
+                              <td>23</td>
+                              <td>Eight total. On the trap tiles on B1F. They cannot be fled from.
+                              </td>
+                           </tr>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/koffing.png" alt="Koffing"></div>
+                              </td>
+                              <td>Koffing</td>
+                              <td>21</td>
+                              <td>Seven total. On the trap tiles on B1F. They cannot be fled from.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-all-crystal-static-table-b1f" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Crystal</caption>
+                        <thead>
+                           <tr class="crystal-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>21</td>
+                              <td>Seven total. On the trap tiles on B1F. They cannot be fled from.
+                              </td>
+                           </tr>
+                           <tr class="crystal-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/voltorb.png" alt="Voltorb"></div>
+                              </td>
+                              <td>Voltorb</td>
+                              <td>23</td>
+                              <td>Eight total. On the trap tiles on B1F. They cannot be fled from.
+                              </td>
+                           </tr>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/koffing.png" alt="Koffing"></div>
+                              </td>
+                              <td>Koffing</td>
+                              <td>21</td>
+                              <td>Seven total. On the trap tiles on B1F. They cannot be fled from.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h4>Static (B2F)</h4>
+                  <div id="pokemon-gsc-all-combined-static-table-b2f" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="3">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/electrode.png" alt="Electrode"></div>
+                              </td>
+                              <td class="light-false">Electrode</td>
+                              <td class="light-false">23</td>
+                              <td class="gold-false">G</td>
+                              <td class="silver-false">S</td>
+                              <td class="crystal-false">C</td>
+                              <td class="light-false">Three total. In Gold and Silver, if run from, they will respawn immediately.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-all-gold-static-table-b2f" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Gold</caption>
+                        <thead>
+                           <tr class="gold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="gold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/electrode.png" alt="Electrode"></div>
+                              </td>
+                              <td>Electrode</td>
+                              <td>23</td>
+                              <td>Three total. In Gold and Silver, if run from, they will respawn immediately.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-all-silver-static-table-b2f" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Silver</caption>
+                        <thead>
+                           <tr class="silver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="silver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/electrode.png" alt="Electrode"></div>
+                              </td>
+                              <td>Electrode</td>
+                              <td>23</td>
+                              <td>Three total. In Gold and Silver, if run from, they will respawn immediately.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-gsc-all-crystal-static-table-b2f" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>Crystal</caption>
+                        <thead>
+                           <tr class="crystal-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="crystal-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/electrode.png" alt="Electrode"></div>
+                              </td>
+                              <td>Electrode</td>
+                              <td>23</td>
+                              <td>Three total. In Gold and Silver, if run from, they will respawn immediately.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-hgss" class="game-container hgss" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Geodude have a 5% chance of holding an Everstone.</li>
+                  <li>Wild Koffing have a 5% chance of holding a Smoke Ball.</li>
+               </ul>
+               <div id="pokemon-hgss-static" class="table-collection static">
+                  <h4>Static (B1F)</h4>
+                  <div id="pokemon-hgss-all-combined-static-table-b1f" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="light-false">Geodude</td>
+                              <td class="light-false">21</td>
+                              <td class="heartgold-false">HG</td>
+                              <td class="soulsilver-false">SS</td>
+                              <td class="light-false">Five total. On the trap tiles on B1F.
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/voltorb.png" alt="Voltorb"></div>
+                              </td>
+                              <td class="light-true">Voltorb</td>
+                              <td class="light-true">23</td>
+                              <td class="heartgold-true">HG</td>
+                              <td class="soulsilver-true">SS</td>
+                              <td class="light-true">Six total. On the trap tiles on B1F.
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/koffing.png" alt="Koffing"></div>
+                              </td>
+                              <td class="light-false">Koffing</td>
+                              <td class="light-false">21</td>
+                              <td class="heartgold-false">HG</td>
+                              <td class="soulsilver-false">SS</td>
+                              <td class="light-false">Five total. On the trap tiles on B1F.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-all-heartgold-static-table-b1f" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>HeartGold</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>21</td>
+                              <td>Five total. On the trap tiles on B1F.
+                              </td>
+                           </tr>
+                           <tr class="heartgold-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/voltorb.png" alt="Voltorb"></div>
+                              </td>
+                              <td>Voltorb</td>
+                              <td>23</td>
+                              <td>Six total. On the trap tiles on B1F.
+                              </td>
+                           </tr>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/koffing.png" alt="Koffing"></div>
+                              </td>
+                              <td>Koffing</td>
+                              <td>21</td>
+                              <td>Five total. On the trap tiles on B1F.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-all-soulsilver-static-table-b1f" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>SoulSilver</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>21</td>
+                              <td>Five total. On the trap tiles on B1F.
+                              </td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/voltorb.png" alt="Voltorb"></div>
+                              </td>
+                              <td>Voltorb</td>
+                              <td>23</td>
+                              <td>Six total. On the trap tiles on B1F.
+                              </td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/koffing.png" alt="Koffing"></div>
+                              </td>
+                              <td>Koffing</td>
+                              <td>21</td>
+                              <td>Five total. On the trap tiles on B1F.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h4>Static (B2F)</h4>
+                  <div id="pokemon-hgss-all-combined-static-table-b2f" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/electrode.png" alt="Electrode"></div>
+                              </td>
+                              <td class="light-false">Electrode</td>
+                              <td class="light-false">23</td>
+                              <td class="heartgold-false">HG</td>
+                              <td class="soulsilver-false">SS</td>
+                              <td class="light-false">Three total.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-all-heartgold-static-table-b2f" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>HeartGold</caption>
+                        <thead>
+                           <tr class="heartgold-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="heartgold-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/electrode.png" alt="Electrode"></div>
+                              </td>
+                              <td>Electrode</td>
+                              <td>23</td>
+                              <td>Three total.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-all-soulsilver-static-table-b2f" class="pokemon-table all" style="display:none">
+                     <table>
+                        <caption>SoulSilver</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/electrode.png" alt="Electrode"></div>
+                              </td>
+                              <td>Electrode</td>
+                              <td>23</td>
+                              <td>Three total.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-gsc-items" class="game-container gsc">
+            <h3><u>Items</u></h3>
+            <h4>B1F</h4>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Items (B1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">X Accuracy</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="light-false">C</td>
+                     <td class="light-false">In the room with the computer</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Guard Spec.</td>
+                     <td class="light-true">G</td>
+                     <td class="light-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">In the room with the computer</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Hyper Potion</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">In the eastern area</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Nugget</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">In the southwestern corner</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Three tiles north of the stairs</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>B2F</h4>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Items (B2F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">On a machine next to a computer in the eastern area</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM46 Thief</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">In the southwestern room</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">HM06 Whirlpool</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Obtained from Lance</td>
+                     <td class="light-false">Only after defeating the Electrode.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>B3F</h4>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Items (B3F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="light-false">G</td>
+                     <td class="light-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">In the eastern corridor</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Heal</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="light-true">C</td>
+                     <td class="light-true">In the southwest corner</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ice Heal</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">In the northwest corner of the outer corridor</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Dire Hit</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="light-true">C</td>
+                     <td class="light-true">In the southwest corner</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Special</td>
+                     <td class="light-false">G</td>
+                     <td class="light-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">In the southwest corner</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Protein</td>
+                     <td class="light-true">G</td>
+                     <td class="light-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">In the southwest corner</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Protein</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="light-false">C</td>
+                     <td class="light-false">In the eastern corridor</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ultra Ball</td>
+                     <td class="light-true">G</td>
+                     <td class="light-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">At the end of the dead end corridor in the west</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-hgss-items" class="game-container hgss" style="display:none;">
+            <h3><u>Items</u></h3>
+            <h4>B1F</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Items (B1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Guard Spec.</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">In the room with the computer</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">In the eastern area</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Nugget</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">In the southwest corner</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Revive</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">In the northeast corner of the eastern room with blue containers</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>B2F</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Items (B2F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">East of the stairs to B1F, in the middle of three boxes</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Sp. Def</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">On a machine next to a computer in the eastern area</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM46 Thief</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">In the southwestern room</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">HM05 Whirlpool</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Obtained from Lance</td>
+                     <td class="light-true">Only after defeating the Electrode.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>B3F</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Items (B3F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">In the eastern corridor</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM49 Snatch</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">In the northwest corner of the outer corridor</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Special</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">In the southwest corner</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Protein</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">In the southwest corner</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">At the end of the dead end corridor in the west</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-gsc-trainers" class="game-container gsc">
+            <h3><u>Trainers</u></h3>
+            <h4>B1F</h4>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Trainers (B1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Rocket Grunt</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Rattata lv.16<br>Rattata lv.16<br>Rattata lv.16<br>Rattata lv.16</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Scientist Jed</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">Magnemite lv.20<br>Magnemite lv.20<br>Magnemite lv.20</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rocket Grunt</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Drowzee lv.17<br>Zubat lv.19</td>
+                     <td class="light-false">This is the first of two guards that will challenge the player every time they pass in front of a Persian statue before disabling the alarm.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Rocket Grunt</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">Zubat lv.16<br>Grimer lv.17<br>Rattata lv.18</td>
+                     <td class="light-true">This is the second of two guards that will challenge the player every time they pass in front of a Persian statue before disabling the alarm.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>B2F</h4>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Trainers (B2F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Rocket Grunt</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Venonat lv.18<br>Venonat lv.18</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Rocket Grunt</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">Golbat lv.18</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rocket Grunt</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Rattata lv.17<br>Zubat lv.17<br>Rattata lv.17</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Rocket Executive</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">Arbok lv.23<br>Gloom lv.23<br>Murkrow lv.25</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>B3F</h4>
+            <table class="bold-contents left-align">
+               <caption>Gold, Silver, and Crystal Trainers (B3F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Rocket Grunt</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Ekans lv.18<br>Gloom lv.18</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Rocket Grunt</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">Raticate lv.19</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Scientist Ross</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Koffing lv.22<br>Koffing lv.22</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Scientist Mitch</td>
+                     <td class="gold-true">G</td>
+                     <td class="silver-true">S</td>
+                     <td class="crystal-true">C</td>
+                     <td class="light-true">Ditto lv.24</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rocket Executive</td>
+                     <td class="gold-false">G</td>
+                     <td class="silver-false">S</td>
+                     <td class="crystal-false">C</td>
+                     <td class="light-false">Zubat lv.22<br>Koffing lv.22<br>Raticate lv.24</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-hgss-trainers" class="game-container hgss" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>B1F</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Trainers (B1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Team Rocket Grunt</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Rattata lv.16<br>Rattata lv.16<br>Rattata lv.16<br>Rattata lv.16</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Scientist Gregg</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Magnemite lv.20<br>Magnemite lv.20<br>Magnemite lv.20</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Team Rocket Grunt</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Drowzee lv.17<br>Zubat lv.19</td>
+                     <td class="light-false">This is the first of two guards that will challenge the player every time they pass in front of a Persian statue before disabling the alarm.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Team Rocket Grunt</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Zubat lv.16<br>Grimer lv.17<br>Rattata lv.18</td>
+                     <td class="light-true">This is the first of two guards that will challenge the player every time they pass in front of a Persian statue before disabling the alarm.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>B2F</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Trainers (B2F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Team Rocket Grunt</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Venonat lv.18<br>Venonat lv.18</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Team Rocket Grunt</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Golbat lv.18</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Team Rocket Grunt</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Rattata lv.17<br>Rattata lv.17<br>Zubat lv.17</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Executive Ariana <br>and Team Rocket Grunt</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Arbok lv.25<br>Gloom lv.25<br>Murkrow lv.27<br>Drowzee lv.18<br>Grimer lv.20</td>
+                     <td class="light-true">Lance will join the player to fight them in a Multi Battle. Lance has a lv.40 Dragonite.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>B3F</h4>
+            <table class="bold-contents left-align">
+               <caption>HeartGold and SoulSilver Trainers (B3F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Scientist Ross</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Koffing lv.22<br>Koffing lv.22</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Team Rocket Grunt</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Ekans lv.18<br>Gloom lv.18</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Scientist Mitch</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Ditto lv.24</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Team Rocket Grunt</td>
+                     <td class="heartgold-true">HG</td>
+                     <td class="soulsilver-true">SS</td>
+                     <td class="light-true">Raticate lv.19</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Executive Petrel</td>
+                     <td class="heartgold-false">HG</td>
+                     <td class="soulsilver-false">SS</td>
+                     <td class="light-false">Zubat lv.22<br>Koffing lv.22<br>Raticate lv.24</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>
