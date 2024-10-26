@@ -1,4 +1,6 @@
 $(function() {
+	setTopButton();	
+	
 	var topButtons = $("input[type=radio][name=games]");
 	topButtons.each(function() {
 		if ($(this).is(":checked"))
@@ -52,6 +54,21 @@ var topButton = function topClick() {
 				else
 					$(this).hide();
 			}
+		}
+	});
+	
+	// Update location URLs
+	
+	$("a").each(function() {
+		if (($(this).hasClass("location-link"))) {
+			// Check to see if a question mark tag has already been appended
+			var href = this.href;
+			var question = href.indexOf("?");
+			if (question > 0) {
+				var href = this.href.substring(0, question);
+			}
+			
+			this.href = href + "?" + gameSet;
 		}
 	});
 	
@@ -114,5 +131,18 @@ function headerHider() {
 			$(this).hide();
 		else
 			$(this).show();
+	});
+}
+
+function setTopButton() {
+	var url = window.location.href;
+	
+	var game = url.substring(url.indexOf("?") + 1);
+	
+	var topButtons = $("input[type=radio][name=games]");
+	
+	topButtons.each(function() {
+		if (this.id == game)
+			$(this).prop("checked", true);
 	});
 }
