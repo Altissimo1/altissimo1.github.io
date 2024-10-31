@@ -20,6 +20,17 @@ $(function() {
 	
 	prepareImage();
 	
+	// Set up click event on the zoom button.
+	$("#enlarge").click(function() {
+		if ($("#zoom").attr('src') == "../../../../Resources/images/pla-icons/other-icons/zoom-minus.png") {
+			$("#map-div").css("width", "45%");
+			$("#zoom").attr("src", "../../../../Resources/images/pla-icons/other-icons/zoom-plus.png");
+		} else {
+			$("#map-div").css("width", "98%");
+			$("#zoom").attr("src", "../../../../Resources/images/pla-icons/other-icons/zoom-minus.png");
+		}
+	});
+	
 	// Check if cookies are present
 	if (useCookies) {
 		// Set up filters based on cookies.
