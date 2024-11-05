@@ -34,6 +34,23 @@ $(function() {
 	
 	// Setup.
 	
+	// Change the border color on the divs depending on dark mode.
+	
+	setBorderColor();
+	
+	$("#dark-mode").click(function() {
+		if ($(this).is(":checked")) {
+			$.each($(".border"), function() {
+				$(this).css({"border-width": "1px", "border-style": "solid", "border-color": "#32383e"});
+			});
+		}
+		else {
+			$.each($(".border"), function() {
+				$(this).css({"border-width": "1px", "border-style": "solid", "border-color": "black"});
+			});
+		}			
+	});
+	
 	// Set keyup event to move back and forth on the QR codes if enter or backspace is pressed.
 	$(document).on("keyup", function (e) {
 		if ($(".generated").is(":visible") && e.key == "Enter") {
@@ -332,3 +349,16 @@ $(function() {
 		}
 	}
 });
+
+function setBorderColor()  {
+	if ($("#dark-mode").is(":checked")) {
+		$.each($(".border"), function() {
+			$(this).css({"border-width": "1px", "border-style": "solid", "border-color": "#32383e"});
+		});
+	}
+	else {
+		$.each($(".border"), function() {
+			$(this).css({"border-width": "1px", "border-style": "solid", "border-color": "black"});
+		});
+	}
+}
