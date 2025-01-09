@@ -709,9 +709,7 @@ $(function() {
 				color = !color;			
 		});
 		
-		tableParent.append(newTableStartText + newTableMiddleText + newTableEndText);
-		
-		$(this).hide();
+		tableParent.append(newTableStartText + newTableMiddleText + newTableEndText);		
 	}
 	
 	function createCombinedTable(tableParent, table, caption, fishing, gameSet) {
@@ -1610,8 +1608,6 @@ $(function() {
 		});
 		
 		tableParent.append(newTableStartText + newTableMiddleText + newTableEndText);
-		
-		$(this).hide();
 	}
 	
 	
