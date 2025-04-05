@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Southern Island</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Hoenn Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rse" type="radio" onclick="topButton.call(this)" name="games" value="RSE" checked="checked">
+         <label for="rse" class="right">RSE</label>
+         <input id="oras" type="radio" onclick="topButton.call(this)" name="games" value="ORAS">
+         <label for="oras" class="right">ORAS</label>
+      </div>
+      <h2>Southern Island</h2>
+      <div id="notes" class="bottom">
+         <p id="rse-notes" class="rse">
+            <strong>Access to:</strong><br>
+            Accessible from the area (via the <a class="location-link" href="ss-tidal.html">S.S. Tidal</a>): <a class="location-link" href="lilycove-city.html">Lilycove City</a>
+         </p>
+         <p id="oras-notes" class="oras" style="display:none;">
+            <strong>Access to:</strong><br>
+            The first time the player visits, they arrive from <a class="location-link" href="route-118.html">Route 118</a>.<br>
+            Accessible from the area (via the <a class="location-link" href="ss-tidal.html">S.S. Tidal</a>): <a class="location-link" href="slateport-city.html">Slateport City</a>
+         </p>
+      </div>
+      <p class="rse">Accessing this area requires the Eon Ticket, which was only available via an e-Reader card distributed in 2003, or by mixing records with a copy of Ruby, Sapphire, or Emerald that has obtained the Eon Ticket.</p>
+      <p class="oras">Accessing this area after the initial visit with Steven requires the Eon Ticket, which was only available via download or StreetPass between 2014 and 2015, or by communicating with a player who has it via StreetPass.</p>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-rse-buttons" class="button-set rse">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-ruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Ruby (Full)">
+                        <label for="pokemon-rse-full-ruby">Ruby (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-ruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Ruby (Compressed)">
+                        <label for="pokemon-rse-compressed-ruby">Ruby (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-sapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Sapphire (Full)">
+                        <label for="pokemon-rse-full-sapphire">Sapphire (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-sapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Sapphire (Compressed)">
+                        <label for="pokemon-rse-compressed-sapphire">Sapphire (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Full)">
+                        <label for="pokemon-rse-full-emerald">Emerald (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Compressed)">
+                        <label for="pokemon-rse-compressed-emerald">Emerald (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Combined (Full)">
+                        <label for="pokemon-rse-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-rse-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Separate (Full)">
+                        <label for="pokemon-rse-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Separate (Compressed)">
+                        <label for="pokemon-rse-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-oras-buttons" class="button-set oras" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-omegaruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Omega Ruby (Full)">
+                        <label for="pokemon-oras-full-omegaruby">Omega Ruby (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-omegaruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Omega Ruby (Compressed)">
+                        <label for="pokemon-oras-compressed-omegaruby">Omega Ruby (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-alphasapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Alpha Sapphire (Full)">
+                        <label for="pokemon-oras-full-alphasapphire">Alpha Sapphire (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-alphasapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Alpha Sapphire (Compressed)">
+                        <label for="pokemon-oras-compressed-alphasapphire">Alpha Sapphire (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Combined (Full)">
+                        <label for="pokemon-oras-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-oras-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Separate (Full)">
+                        <label for="pokemon-oras-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Separate (Compressed)">
+                        <label for="pokemon-oras-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-rse" class="game-container rse">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-rse-static" class="table-collection static">
+                  <h4>Static</h4>
+                  <div id="pokemon-rse-all-combined-static-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="3">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latias.png" alt="Latias"></div>
+                              </td>
+                              <td class="light-false">Latias</td>
+                              <td class="light-false">50</td>
+                              <td class="ruby-false">R</td>
+                              <td class="light-false">S</td>
+                              <td class="emerald-false">E</td>
+                              <td class="light-false">In Ruby, if she is defeated, no other Latias can be obtained on the save file.<br>
+                                 In Emerald, she will only appear if the player selected for Latios to roam Hoenn. If she is defeated, she will respawn after defeating the Elite Four.<br>
+                                 She always holds Soul Dew.
+                              </td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latios.png" alt="Latios"></div>
+                              </td>
+                              <td class="light-true">Latios</td>
+                              <td class="light-true">50</td>
+                              <td class="light-true">R</td>
+                              <td class="sapphire-true">S</td>
+                              <td class="emerald-true">E</td>
+                              <td class="light-true">In Sapphire, if he is defeated, no other Latios can be obtained on the save file.<br>
+                                 In Emerald, he will only appear if the player selected for Latias to roam Hoenn. If he is defeated, he will respawn after defeating the Elite Four.<br>
+                                 He always holds Soul Dew.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-ruby-static-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Ruby</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latias.png" alt="Latias"></div>
+                              </td>
+                              <td>Latias</td>
+                              <td>50</td>
+                              <td>If she is defeated, no other Latias can be obtained on the save file.<br>
+                                 She always holds Soul Dew.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-sapphire-static-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Sapphire</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latios.png" alt="Latios"></div>
+                              </td>
+                              <td>Latios</td>
+                              <td>50</td>
+                              <td>If he is defeated, no other Latios can be obtained on the save file.<br>
+                                 He always holds Soul Dew.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-emerald-static-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Emerald</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latias.png" alt="Latias"></div>
+                              </td>
+                              <td>Latias</td>
+                              <td>50</td>
+                              <td>She will only appear if the player selected for Latios to roam Hoenn. If she is defeated, she will respawn after defeating the Elite Four.<br>
+                                 She always holds Soul Dew.
+                              </td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latios.png" alt="Latios"></div>
+                              </td>
+                              <td>Latios</td>
+                              <td>50</td>
+                              <td>He will only appear if the player selected for Latias to roam Hoenn. If he is defeated, he will respawn after defeating the Elite Four.<br>
+                                 He always holds Soul Dew.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-oras" class="game-container oras" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-oras-gift" class="table-collection gift">
+                  <h4>Gift</h4>
+                  <div id="pokemon-oras-all-combined-gift-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latios.png" alt="Latios"></div>
+                              </td>
+                              <td class="light-false">Latios</td>
+                              <td class="light-false">30</td>
+                              <td class="omegaruby-false">OR</td>
+                              <td class="light-false">AS</td>
+                              <td class="light-false">He always holds a Latiosite.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latias.png" alt="Latias"></div>
+                              </td>
+                              <td class="light-true">Latias</td>
+                              <td class="light-true">30</td>
+                              <td class="light-true">OR</td>
+                              <td class="alphasapphire-true">AS</td>
+                              <td class="light-true">She always holds a Latiasite.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-omegaruby-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latios.png" alt="Latios"></div>
+                              </td>
+                              <td>Latios</td>
+                              <td>30</td>
+                              <td>He always holds a Latiosite.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-alphasapphire-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latias.png" alt="Latias"></div>
+                              </td>
+                              <td>Latias</td>
+                              <td>30</td>
+                              <td>She always holds a Latiasite.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-oras-static" class="table-collection gift">
+                  <h4>Static</h4>
+                  <p class="oras">This encounter is only available the second time the player visits the island, which requires the Eon Ticket event item.</p>
+                  <div id="pokemon-oras-all-combined-static-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latias.png" alt="Latias"></div>
+                              </td>
+                              <td class="light-false">Latios</td>
+                              <td class="light-false">30</td>
+                              <td class="omegaruby-false">OR</td>
+                              <td class="light-false">AS</td>
+                              <td class="light-false"></td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latios.png" alt="Latios"></div>
+                              </td>
+                              <td class="light-true">Latios</td>
+                              <td class="light-true">30</td>
+                              <td class="light-true">OR</td>
+                              <td class="alphasapphire-true">AS</td>
+                              <td class="light-true"></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-omegaruby-static-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latias.png" alt="Latias"></div>
+                              </td>
+                              <td>Latias</td>
+                              <td>30</td>
+                              <td></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-alphasapphire-static-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latios.png" alt="Latios"></div>
+                              </td>
+                              <td>Latios</td>
+                              <td>30</td>
+                              <td></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-oras-items" class="game-container oras" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Mega Bracelet</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Steven</td>
+                     <td class="light-false">Only after defeating Team Magma/Aqua.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Soul Dew</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from Latias/Latios after catching it</td>
+                     <td class="light-true">This can only be obtained when the island is accessed with the Eon Ticket.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-oras-trainers" class="game-container oras" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Magma Admin Courtney<br> and Team Magma Grunt</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="light-false">AS</td>
+                     <td class="light-false">Camerupt lv.31<br>Koffing lv.29</td>
+                     <td class="light-false">Steven will join the player to fight them in a Multi Battle.<br>
+                        Steven has a lv.35 Metang.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Aqua Admin Matt<br> and Team Aqua Grunt</td>
+                     <td class="light-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Sharpedo lv.31<br>Grimer lv.29</td>
+                     <td class="light-true">Steven will join the player to fight them in a Multi Battle.<br>
+                        Steven has a lv.35 Metang.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

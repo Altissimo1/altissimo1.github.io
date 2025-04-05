@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Trick House</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Hoenn Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rse" type="radio" onclick="topButton.call(this)" name="games" value="RSE" checked="checked">
+         <label for="rse" class="right">RSE</label>
+         <input id="oras" type="radio" onclick="topButton.call(this)" name="games" value="ORAS">
+         <label for="oras" class="right">ORAS</label>
+      </div>
+      <h2>Trick House</h2>
+      <div id="notes" class="bottom">
+         <p id="rse-notes" class="rse">
+            <strong>Access to:</strong><br>
+            Exit: <a class="location-link" href="route-110.html">Route 110</a><br><br>
+            <strong>Utility:</strong><br>
+            Various HMs are required to complete the puzzles here; see below for more details.
+         </p>
+         <p id="oras-notes" class="oras" style="display:none;">
+            <strong>Access to:</strong><br>
+            Any exit: <a class="location-link" href="route-110.html">Route 110</a><br><br>
+            <strong>Utility:</strong><br>
+            Various HMs are required to complete the puzzles here; see below for more details.
+         </p>
+      </div>
+      <p class="permanent">The Trick House consists of three rooms: the entrance room, a maze room, and the end room.</p>
+      <p class="permanent">In the entrance room, the Trick Master is hiding somewhere. The player must locate him for him to open the way to the maze room.</p>
+      <p class="rse">In the maze room, the player must navigate a maze with items and Trainers to find the entrance to the end room. There are actually eight different maze rooms, with each successive maze room becoming accessible as the player gains additional Gym Badges or defeats the Elite Four. HMs are required to complete most of the maze rooms.</p>
+      <p class="oras">In the maze room, the player must navigate a maze with items and Trainers to find the entrance to the end room. There are actually six different maze rooms. HMs are required to complete most of the maze rooms, meaning the player cannot complete all the maze rooms immediately; they will need to collect HMs and their corresponding Gym Badges to be able to navigate the rooms.</p>
+      <p class="permanent">In the end room, the Trick Master will give the player a reward for completing the maze, and then allow the player to leave the Trick House.</p>
+      <p class="permanent">Once a maze is completed, it cannot be re-accessed. This means that any items not picked up or any Trainers not battled become inaccessible once the player finishes the maze. The player can leave the maze before finishing it with no issues, though.</p>
+      <p class="permanent">Details on each puzzle are given below. First are the items that can be obtained in the entrance and end rooms.</p>
+      <div id="items-container">
+         <div id="pokemon-rse-items" class="game-container rse">
+            <h3><u>Items</u></h3>
+            <h4>End room</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items (End room)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Nugget</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Under the Trick Master's cushion</td>
+                     <td class="light-false">Hidden. Only after completing Puzzle 8.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-oras-items" class="game-container oras" style="display:none;">
+            <h3><u>Items</u></h3>
+            <h4>Entrance room</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Entrance room)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Escape Rope</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from the Trick Master</td>
+                     <td class="light-false">Only after finding him the first time.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>End room</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (End room)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Expert Belt</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">At the back of the room</td>
+                     <td class="light-false">Only after completing Puzzle 1.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Big Nugget</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Under the Trick Master's cushion</td>
+                     <td class="light-true">Hidden. Only after completing Puzzle 7.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Mechadoll 3</h4>
+            <p class="oras">In puzzles 2, 3, 4, and 6, the Mechadoll 3 appears at the start and will sell Escape Ropes for 550.</p>
+         </div>
+      </div>
+      <h3><u>Puzzle 1</u></h3>
+      <p class="permanent">The Trick Master hides under the desk in the entrance room.</p>
+      <p class="permanent">The HM used here is Cut.</p>
+      <div class="game-container rse">
+         <h4>Items</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Items (Puzzle 1)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Item</th>
+                  <th colspan="3">Games</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Orange Mail</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="light-false">E</td>
+                  <td class="light-false">In the middle part of the maze</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Orange Mail</td>
+                  <td class="light-true">R</td>
+                  <td class="light-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">West of the exit to the maze</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Rare Candy</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Obtained from the Trick Master in the end room</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Trainers</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Trainers (Puzzle 1)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Trainer</th>
+                  <th colspan="3">Games</th>
+                  <th>Party</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Lass Sally</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Oddish lv.16</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Lass Robin</td>
+                  <td class="ruby-true">R</td>
+                  <td class="sapphire-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">Skitty lv.14<br>Shroomish lv.14<br>Marill lv.14</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Youngster Eddie</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Zigzagoon lv.14<br>Zigzagoon lv.16</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="game-container oras" style="display:none;">
+         <h4>Items</h4>
+         <table class="bold-contents left-align">
+            <caption>Omega Ruby and Alpha Sapphire Items (Puzzle 1)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Item</th>
+                  <th colspan="2">Games</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Lava Cookie</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">In the central west part of the maze</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Lava Cookie</td>
+                  <td class="omegaruby-true">OR</td>
+                  <td class="alphasapphire-true">AS</td>
+                  <td class="light-true">In the northwest part of the maze</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">TM12 Taunt</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">Obtained from the Trick Master in the end room</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Trainers</h4>
+         <table class="bold-contents left-align">
+            <caption>Omega Ruby and Alpha Sapphire Trainers (Puzzle 1)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Trainer</th>
+                  <th colspan="2">Games</th>
+                  <th>Party</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Lass Sally</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">Gulpin lv.16</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Battle Girl Cora</td>
+                  <td class="omegaruby-true">OR</td>
+                  <td class="alphasapphire-true">AS</td>
+                  <td class="light-true">Meditite lv.17</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Youngster Eddie</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">Nincada lv.14<br>Geodude lv.14</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <h3><u>Puzzle 2</u></h3>
+      <div class="game-container rse">
+         <p class="rse">The Trick Master hides behind the eastern tree in the entrance room.</p>
+         <p class="rse">The player needs the Dynamo Badge from <a class="location-link" href="mauville-city.html">Mauville Gym</a> to unlock this puzzle.</p>
+         <h4>Items</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Items (Puzzle 2)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Item</th>
+                  <th colspan="3">Games</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Wave Mail</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Near the entrance</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Harbor Mail</td>
+                  <td class="ruby-true">R</td>
+                  <td class="sapphire-true">S</td>
+                  <td class="light-true">E</td>
+                  <td class="light-true">In the northwestern corner</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Harbor Mail</td>
+                  <td class="light-false">R</td>
+                  <td class="light-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Near the middle of the maze</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Timer Ball</td>
+                  <td class="ruby-true">R</td>
+                  <td class="sapphire-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">Obtained from the Trick Master in the end room</td>
+                  <td class="light-true"></td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Trainers</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Trainers (Puzzle 2)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Trainer</th>
+                  <th colspan="3">Games</th>
+                  <th>Party</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">School Kid Ted</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Ralts lv.17</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">School Kid Paul</td>
+                  <td class="ruby-true">R</td>
+                  <td class="sapphire-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">Numel lv.15<br>Oddish lv.15<br>Wingull lv.15</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">School Kid Georgia</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Shroomish lv.16<br>Beautifly lv.16</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="game-container oras" style="display:none;">
+         <p class="oras">The Trick Master hides inside the eastern tree pot in the entrance room.</p>
+         <p class="oras">The HM used here is Rock Smash.</p>
+         <h4>Items</h4>
+         <table class="bold-contents left-align">
+            <caption>Omega Ruby and Alpha Sapphire Items (Puzzle 2)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Item</th>
+                  <th colspan="2">Games</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Rage Candy Bar</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">In the southeastern corner</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Rage Candy Bar</td>
+                  <td class="omegaruby-true">OR</td>
+                  <td class="alphasapphire-true">AS</td>
+                  <td class="light-true">Near Black Belt Yuji</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Hard Stone</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">Obtained from the Trick Master in the end room</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Trainers</h4>
+         <table class="bold-contents left-align">
+            <caption>Omega Ruby and Alpha Sapphire Trainers (Puzzle 2)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Trainer</th>
+                  <th colspan="2">Games</th>
+                  <th>Party</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Black Belt Yuji</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">Makuhita lv.16<br>Machop lv.18</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Schoolkid Georgie</td>
+                  <td class="omegaruby-true">OR</td>
+                  <td class="alphasapphire-true">AS</td>
+                  <td class="light-true">Shroomish lv.16<br>Beautifly lv.16</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Pokémon Ranger Sebastian</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">Cacnea lv.16<br>Aron lv.18</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Pokémon Ranger Sophia</td>
+                  <td class="omegaruby-true">OR</td>
+                  <td class="alphasapphire-true">AS</td>
+                  <td class="light-true">Swablu lv.17<br>Roselia lv.17</td>
+                  <td class="light-true"></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <h3><u>Puzzle 3</u></h3>
+      <div class="game-container rse">
+         <p class="rse">The Trick Master hides behind the eastern dresser in the entrance room.</p>
+         <p class="rse">The player needs the Heat Badge from <a class="location-link" href="lavaridge-town.html">Lavaridge Gym</a> to unlock this puzzle.</p>
+         <p class="rse">The HM used here is Rock Smash.</p>
+         <h4>Items</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Items (Puzzle 3)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Item</th>
+                  <th colspan="3">Games</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Wood Mail</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="light-false">E</td>
+                  <td class="light-false">Near Picnicker Martha</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Wood Mail</td>
+                  <td class="light-true">R</td>
+                  <td class="light-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">In the northwestern corner</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Shadow Mail</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="light-false">E</td>
+                  <td class="light-false">Near Hiker Alan</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Shadow Mail</td>
+                  <td class="light-true">R</td>
+                  <td class="light-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">Behind Picnicker Martha</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Hard Stone</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Obtained from the Trick Master in the end room</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Trainers</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Trainers (Puzzle 3)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Trainer</th>
+                  <th colspan="3">Games</th>
+                  <th>Party</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Camper Justin</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Kecleon lv.24</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Picnicker Martha</td>
+                  <td class="ruby-true">R</td>
+                  <td class="sapphire-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">Skitty lv.23<br>Swablu lv.23</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Hiker Alan</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Geodude lv.22<br>Nosepass lv.22<br>Graveler lv.22</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="game-container oras" style="display:none;">
+         <p class="oras">The Trick Master hides inside the western dresser in the entrance room.</p>
+         <p class="oras">The HM used here is Flash.</p>
+         <h4>Items</h4>
+         <table class="bold-contents left-align">
+            <caption>Omega Ruby and Alpha Sapphire Items (Puzzle 3)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Item</th>
+                  <th colspan="2">Games</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Lumiose Galette</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">Behind the wall near Ace Duo Pike & Shiel</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Lumiose Galette</td>
+                  <td class="omegaruby-true">OR</td>
+                  <td class="alphasapphire-true">AS</td>
+                  <td class="light-true">North of the scroll with the password</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">TM92 Trick Room</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">Obtained from the Trick Master in the end room</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Trainers</h4>
+         <table class="bold-contents left-align">
+            <caption>Omega Ruby and Alpha Sapphire Trainers (Puzzle 3)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Trainer</th>
+                  <th colspan="2">Games</th>
+                  <th>Party</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Lass Robin</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">Oddish lv.16<br>Goldeen lv.18</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Ace Duo Pike & Shiel</td>
+                  <td class="omegaruby-true">OR</td>
+                  <td class="alphasapphire-true">AS</td>
+                  <td class="light-true">Carvanha lv.21<br>Numel lv.21</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Schoolkid Ted</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">Ralts lv.19</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <h3><u>Puzzle 4</u></h3>
+      <div class="game-container rse">
+         <p class="rse">The Trick Master hides behind the western window in the entrance room.</p>
+         <p class="rse">The player needs the Balance Badge from <a class="location-link" href="petalburg-city.html">Petalburg City</a> to unlock this puzzle.</p>
+         <p class="rse">The HM used here is Strength.</p>
+         <h4>Items</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Items (Puzzle 4)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Item</th>
+                  <th colspan="3">Games</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Mech Mail</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="light-false">E</td>
+                  <td class="light-false">Near Black Belt Yuji</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Mech Mail</td>
+                  <td class="light-true">R</td>
+                  <td class="light-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">Near Battle Girl Cora</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Smoke Ball</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Obtained from the Trick Master in the end room</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Trainers</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Trainers (Puzzle 4)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Trainer</th>
+                  <th colspan="3">Games</th>
+                  <th>Party</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Black Belt Yuji</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Makuhita lv.26<br>Machoke lv.26</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Battle Girl Cora</td>
+                  <td class="ruby-true">R</td>
+                  <td class="sapphire-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">Meditite lv.27</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Battle Girl Jill</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="light-false">E</td>
+                  <td class="light-false">Breloom lv.27</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Battle Girl Paula</td>
+                  <td class="light-true">R</td>
+                  <td class="light-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">Breloom lv.27</td>
+                  <td class="light-true"></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="game-container oras" style="display:none;">
+         <p class="oras">The Trick Master hides inside the western window in the entrance room.</p>
+         <p class="oras">The HM used here is Strength.</p>
+         <h4>Items</h4>
+         <table class="bold-contents left-align">
+            <caption>Omega Ruby and Alpha Sapphire Items (Puzzle 4)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Item</th>
+                  <th colspan="2">Games</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Casteliacone</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">North of the entrance</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Casteliacone</td>
+                  <td class="omegaruby-true">OR</td>
+                  <td class="alphasapphire-true">AS</td>
+                  <td class="light-true">South of the exit</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Smoke Ball</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">Obtained from the Trick Master in the end room</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <h3><u>Puzzle 5</u></h3>
+      <div class="game-container rse">
+         <p class="rse">The Trick Master hides behind the western planter in the entrance room.</p>
+         <p class="rse">The player needs the Feather Badge from <a class="location-link" href="fortree-city.html">Fortree Gym</a> to unlock this puzzle.</p>
+         <h4>Items</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Items (Puzzle 5)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Item</th>
+                  <th colspan="3">Games</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">TM12 Taunt</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Obtained from the Trick Master in the end room</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="game-container oras" style="display:none;">
+         <p class="oras">The Trick Master hides inside the eastern cupboard in the entrance room.</p>
+         <h4>Items</h4>
+         <table class="bold-contents left-align">
+            <caption>Omega Ruby and Alpha Sapphire Items (Puzzle 5)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Item</th>
+                  <th colspan="2">Games</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Old Gateau</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">Between Mechadolls 2 and 3</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Old Gateau</td>
+                  <td class="omegaruby-true">OR</td>
+                  <td class="alphasapphire-true">AS</td>
+                  <td class="light-true">Next to the exit</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Escape Rope</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">Obtained from Mechadoll 3 after answering its question correctly</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Magnet</td>
+                  <td class="omegaruby-true">OR</td>
+                  <td class="alphasapphire-true">AS</td>
+                  <td class="light-true">Obtained from the Trick Master in the end room</td>
+                  <td class="light-true"></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <h3><u>Puzzle 6</u></h3>
+      <div class="game-container rse">
+         <p class="rse">The Trick Master hides behind the eastern cupboard in the entrance room.</p>
+         <p class="rse">The player needs the Mind Badge from <a class="location-link" href="mossdeep-city.html">Mossdeep Gym</a> to unlock this puzzle.</p>
+         <h4>Items</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Items (Puzzle 6)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Item</th>
+                  <th colspan="3">Games</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Glitter Mail</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="light-false">E</td>
+                  <td class="light-false">Near the exit</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Glitter Mail</td>
+                  <td class="light-true">R</td>
+                  <td class="light-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">In the southeastern area</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Magnet</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Obtained from the Trick Master in the end room</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Trainers</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Trainers (Puzzle 6)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Trainer</th>
+                  <th colspan="3">Games</th>
+                  <th>Party</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">PKMN Ranger Sophia</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Swablu lv.38<br>Roselia lv.38</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">PKMN Ranger Sebastian</td>
+                  <td class="ruby-true">R</td>
+                  <td class="sapphire-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">Cacturne lv.39</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Bird Keeper Benny</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Swellow lv.36<br>Pelipper lv.36<br>Xatu lv.36</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="game-container oras" style="display:none;">
+         <p class="oras">The Trick Master hides inside the first eastern cushion in the entrance room.</p>
+         <h4>Items</h4>
+         <table class="bold-contents left-align">
+            <caption>Omega Ruby and Alpha Sapphire Items (Puzzle 6)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Item</th>
+                  <th colspan="2">Games</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Shalour Sable</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="alphasapphire-false">AS</td>
+                  <td class="light-false">In the northwestern corner</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Shalour Sable</td>
+                  <td class="omegaruby-true">OR</td>
+                  <td class="alphasapphire-true">AS</td>
+                  <td class="light-true">In the southeastern corner</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Red Tent</td>
+                  <td class="omegaruby-false">OR</td>
+                  <td class="light-false">AS</td>
+                  <td class="light-false">Obtained from the Trick Master in the end room</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Blue Tent</td>
+                  <td class="light-true">OR</td>
+                  <td class="alphasapphire-true">AS</td>
+                  <td class="light-true">Obtained from the Trick Master in the end room</td>
+                  <td class="light-true"></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="game-container rse">
+         <h3><u>Puzzle 7</u></h3>
+         <p class="rse">The Trick Master hides behind the eastern window in the entrance room.</p>
+         <p class="rse">The player needs the Rain Badge from <a class="location-link" href="sootopolis-city.html">Sootopolis Gym</a> to unlock this puzzle.</p>
+         <h4>Items</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Items (Puzzle 7)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Item</th>
+                  <th colspan="3">Games</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Tropic Mail</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="light-false">E</td>
+                  <td class="light-false">East of Hex Maniac Patricia</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Tropic Mail</td>
+                  <td class="light-true">R</td>
+                  <td class="light-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">In the middle of the room, accessible from a warp tile</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">PP Max</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Obtained from the Trick Master in the end room</td>
+                  <td class="light-false"></td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Trainers</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Trainers (Puzzle 7)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Trainer</th>
+                  <th colspan="3">Games</th>
+                  <th>Party</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Psychic Joshua</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Kadabra lv.41<br>Solrock lv.41</td>
+                  <td class="light-false">In Emerald, he can potentially be battled in a Double Battle with Hex Maniac Patricia.</td>
+               </tr>
+               <tr>
+                  <td class="light-true">Hex Maniac Patricia</td>
+                  <td class="ruby-true">R</td>
+                  <td class="sapphire-true">S</td>
+                  <td class="light-true">E</td>
+                  <td class="light-true">Banette lv.42</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Hex Maniac Patricia</td>
+                  <td class="light-false">R</td>
+                  <td class="light-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Banette lv.41<br>Lunatone lv.41</td>
+                  <td class="light-false">She can potentially be battled in a Double Battle with Psychic Joshua.</td>
+               </tr>
+               <tr>
+                  <td class="light-true">Psychic Mariela</td>
+                  <td class="light-true">R</td>
+                  <td class="light-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">Chimecho lv.41</td>
+                  <td class="light-true">She can potentially be battled in a Double Battle with Gentleman Everett.</td>
+               </tr>
+               <tr>
+                  <td class="light-false">Gentleman Everett</td>
+                  <td class="light-false">R</td>
+                  <td class="light-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Wobbuffet lv.41</td>
+                  <td class="light-false">He can potentially be battled in a Double Battle with Psychic Mariela.</td>
+               </tr>
+               <tr>
+                  <td class="light-true">Psychic Alexis</td>
+                  <td class="ruby-true">R</td>
+                  <td class="sapphire-true">S</td>
+                  <td class="light-true">E</td>
+                  <td class="light-true">Kirlia lv.40<br>Xatu lv.40<br>Kadabra lv.40</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Psychic Alexis</td>
+                  <td class="light-false">R</td>
+                  <td class="light-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Kirlia lv.41<br>Xatu lv.41</td>
+                  <td class="light-false">She can potentially be battled in a Double Battle with Psychic Alvaro.</td>
+               </tr>
+               <tr>
+                  <td class="light-true">Psychic Alvaro</td>
+                  <td class="light-true">R</td>
+                  <td class="light-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">Banette lv.41<br>Kadabra lv.41</td>
+                  <td class="light-true">He can potentially be battled in a Double Battle with Psychic Alexis.</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="game-container rse">
+         <h3><u>Puzzle 8</u></h3>
+         <p class="rse">The Trick Master hides behind the first western cushion in the entrance room.</p>
+         <p class="rse">The player needs to defeat the Elite Four to unlock this puzzle.</p>
+         <h4>Items</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Items (Puzzle 8)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Item</th>
+                  <th colspan="3">Games</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Bead Mail</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="light-false">E</td>
+                  <td class="light-false">Between the two sliding patches</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Bead Mail</td>
+                  <td class="light-true">R</td>
+                  <td class="light-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">In the northwestern area</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Red Tent</td>
+                  <td class="ruby-false">R</td>
+                  <td class="light-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Obtained from the Trick Master in the end room</td>
+                  <td class="light-false">In Emerald, the player can choose between this and the Blue Tent.</td>
+               </tr>
+               <tr>
+                  <td class="light-true">Blue Tent</td>
+                  <td class="light-true">R</td>
+                  <td class="sapphire-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">Obtained from the Trick Master in the end room</td>
+                  <td class="light-true">In Emerald, the player can choose between this and the Red Tent.</td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Trainers</h4>
+         <table class="bold-contents left-align">
+            <caption>Ruby, Sapphire, and Emerald Trainers (Puzzle 8)</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Trainer</th>
+                  <th colspan="3">Games</th>
+                  <th>Party</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="light-false">Cooltrainer Elaine</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="light-false">E</td>
+                  <td class="light-false">Lairon lv.45<br>Manectric lv.45</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Cooltrainer Keira</td>
+                  <td class="light-true">R</td>
+                  <td class="light-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">Lairon lv.45<br>Manectric lv.45</td>
+                  <td class="light-true"></td>
+               </tr>
+               <tr>
+                  <td class="light-false">Cooltrainer Vincent</td>
+                  <td class="ruby-false">R</td>
+                  <td class="sapphire-false">S</td>
+                  <td class="emerald-false">E</td>
+                  <td class="light-false">Sableye lv.44<br>Medicham lv.44<br>Sharpedo lv.44</td>
+                  <td class="light-false"></td>
+               </tr>
+               <tr>
+                  <td class="light-true">Cooltrainer Leroy</td>
+                  <td class="ruby-true">R</td>
+                  <td class="sapphire-true">S</td>
+                  <td class="emerald-true">E</td>
+                  <td class="light-true">Mawile lv.46<br>Starmie lv.46</td>
+                  <td class="light-true"></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </body>
+</html>

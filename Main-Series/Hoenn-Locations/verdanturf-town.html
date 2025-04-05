@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Verdanturf Town</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Hoenn Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rse" type="radio" onclick="topButton.call(this)" name="games" value="RSE" checked="checked">
+         <label for="rse" class="right">RSE</label>
+         <input id="oras" type="radio" onclick="topButton.call(this)" name="games" value="ORAS">
+         <label for="oras" class="right">ORAS</label>
+      </div>
+      <h2>Verdanturf Town</h2>
+      <div id="notes" class="bottom">
+         <p id="rse-notes" class="rse">
+            <strong>Access to:</strong><br>
+            East: <a class="location-link" href="route-117.html">Route 117</a><br>
+            Accessible from the city: <a class="location-link" href="rusturf-tunnel.html">Rusturf Tunnel</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Friendship checker<br>
+            Contest Hall (Ruby and Sapphire): This Contest Hall hosts Normal Contests. For a list of Contest opponents, check out <a href="../RSE/contest-opponents.html">this page</a>.<br>
+            <a href="../RSE/battle-tent-verdanturf.html">Battle Tent</a> (Emerald)<br>
+            Move Tutor: In Emerald, a tutor in the Pokémon Center can teach one Pokémon Fury Cutter.
+         </p>
+         <p id="oras-notes" class="oras" style="display:none;">
+            <strong>Access to:</strong><br>
+            East: <a class="location-link" href="route-117.html">Route 117</a><br>
+            Accessible from the city: <a class="location-link" href="rusturf-tunnel.html">Rusturf Tunnel</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Friendship checker<br>
+            Contest Hall: For a list of Contest opponents, check out <a href="../ORAS/contest-opponents.html">this page</a>.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-oras-buttons" class="button-set oras" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-omegaruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Omega Ruby (Full)">
+                        <label for="pokemon-oras-full-omegaruby">Omega Ruby (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-omegaruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Omega Ruby (Compressed)">
+                        <label for="pokemon-oras-compressed-omegaruby">Omega Ruby (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-alphasapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Alpha Sapphire (Full)">
+                        <label for="pokemon-oras-full-alphasapphire">Alpha Sapphire (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-alphasapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Alpha Sapphire (Compressed)">
+                        <label for="pokemon-oras-compressed-alphasapphire">Alpha Sapphire (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Combined (Full)">
+                        <label for="pokemon-oras-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-oras-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Separate (Full)">
+                        <label for="pokemon-oras-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Separate (Compressed)">
+                        <label for="pokemon-oras-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-oras" class="game-container oras" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-oras-gift">
+                  <h4>Gift</h4>
+                  <div id="pokemon-oras-all-combined-gift-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/cosplay-pikachu.png" alt="Cosplay Pikachu"></div>
+                              </td>
+                              <td class="light-false">Cosplay Pikachu</td>
+                              <td class="light-false">20</td>
+                              <td class="omegaruby-false">OR</td>
+                              <td class="alphasapphire-false">AS</td>
+                              <td class="light-false">Obtained after entering a Contest. She can be obtained at any Contest Hall.<br>
+                                 If the player is male, she will wear her Rock Star costume. If the player is female, she will wear her Pop Star costume.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-omegaruby-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/cosplay-pikachu.png" alt="Cosplay Pikachu"></div>
+                              </td>
+                              <td>Cosplay Pikachu</td>
+                              <td>20</td>
+                              <td>Obtained after entering a Contest. She can be obtained at any Contest Hall.<br>
+                                 If the player is male, she will wear her Rock Star costume. If the player is female, she will wear her Pop Star costume.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-alphasapphire-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/cosplay-pikachu.png" alt="Cosplay Pikachu"></div>
+                              </td>
+                              <td>Cosplay Pikachu</td>
+                              <td>20</td>
+                              <td>Obtained after entering a Contest. She can be obtained at any Contest Hall.<br>
+                                 If the player is male, she will wear her Rock Star costume. If the player is female, she will wear her Pop Star costume.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-rse-items" class="game-container rse">
+            <h3><u>Items</u></h3>
+            <h4>Contest Hall (Ruby and Sapphire)</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby and Sapphire Items (Contest Hall)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM45 Attract</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">Obtained from a woman</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Contest Pass</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="light-true">Obtained from the receptionist</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Cool Ribbon</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">Obtained on a Pokémon that wins a Cool Contest</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Beauty Ribbon</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="light-true">Obtained on a Pokémon that wins a Beauty Contest</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Cute Ribbon</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">Obtained on a Pokémon that wins a Cute Contest</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Smart Ribbon</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="light-true">Obtained on a Pokémon that wins a Smart Contest</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Tough Ribbon</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">Obtained on a Pokémon that wins a Tough Contest</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Battle Tent (Emerald)</h4>
+            <table class="left-align">
+               <caption>Emerald Items (Battle Tent)</caption>
+               <thead>
+                  <tr class="emerald-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="emerald-false">
+                     <td>TM45 Attract</td>
+                     <td>Obtained from a woman</td>
+                     <td></td>
+                  </tr>
+                  <tr class="emerald-true">
+                     <td>Nest Ball</td>
+                     <td>Reward for completing the Battle Tent challenge</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Great Ball</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Nest Ball</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">1000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parlyz Heal</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ice Heal</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">350</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Special</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">350</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Fluffy Tail</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">1000</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-oras-items" class="game-container oras" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Mawilite</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">In the southeast area, accessible from Route 117</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Repel</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">In the southeast area, accessible from Route 117</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Intriguing Stone</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from a little girl in the southwest</td>
+                     <td class="light-false">Only after finding her Shroomish.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Gardevoirite</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from Wanda</td>
+                     <td class="light-true">Only after clearing the breakable rocks in Rusturf Tunnel and catching Groudon/Kyogre.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Contest Hall</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Contest Hall)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM45 Attract</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from a Lass</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Contest Costume</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from Lisia when first approaching a Contest Hall's reception desk</td>
+                     <td class="light-true">This can be obtained at any Contest Hall.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Star Light</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Lisia after defeating her in a Master Rank Contest</td>
+                     <td class="light-false">This can be obtained at any Contest Hall.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Coolness Master Ribbon</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained on a Pokémon that wins a Master Rank Cool Contest</td>
+                     <td class="light-true">This can be obtained at any Contest Hall.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Beauty Master Ribbon</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained on a Pokémon that wins a Master Rank Beauty Contest</td>
+                     <td class="light-false">This can be obtained at any Contest Hall.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Cuteness Master Ribbon</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained on a Pokémon that wins a Master Rank Cute Contest</td>
+                     <td class="light-true">This can be obtained at any Contest Hall.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Cleverness Master Ribbon</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained on a Pokémon that wins a Master Rank Clever Contest</td>
+                     <td class="light-false">This can be obtained at any Contest Hall.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Toughness Master Ribbon</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained on a Pokémon that wins a Master Rank Tough Contest</td>
+                     <td class="light-true">This can be obtained at any Contest Hall.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Contest Star Ribbon</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained on a Pokémon that wins a Master Rank Contest in every category</td>
+                     <td class="light-false">This can be obtained at any Contest Hall.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Upper vendor</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Heal Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Nest Ball</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">1000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Luxury Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1000</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <p class="oras">The player will receive a Premier Ball for every ten Poké Balls, Great Balls, or Ultra Balls they purchase at once.</p>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">200</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">600</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1200</td>
+                     <td class="light-false">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">300</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">700</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">1200</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2500</td>
+                     <td class="light-false">Only after obtaining 4 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">3000</td>
+                     <td class="light-true">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1500</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">100</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Paralyze Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">200</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">250</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">250</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ice Heal</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">250</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">600</td>
+                     <td class="light-false">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">550</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">350</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Repel</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">500</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">700</td>
+                     <td class="light-false">Only after obtaining 3 Badges.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

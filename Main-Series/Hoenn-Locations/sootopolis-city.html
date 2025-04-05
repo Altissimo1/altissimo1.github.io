@@ -1,0 +1,2920 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Sootopolis City</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Hoenn Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rse" type="radio" onclick="topButton.call(this)" name="games" value="RSE" checked="checked">
+         <label for="rse" class="right">RSE</label>
+         <input id="oras" type="radio" onclick="topButton.call(this)" name="games" value="ORAS">
+         <label for="oras" class="right">ORAS</label>
+      </div>
+      <h2>Sootopolis City</h2>
+      <div id="notes" class="bottom">
+         <p id="rse-notes" class="rse">
+            <strong>Access to:</strong><br>
+            Accessible from the Dive spot: <a class="location-link" href="route-126.html">Route 126</a><br>
+            Accessible in the city: <a class="location-link" href="cave-of-origin.html">Cave of Origin</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Sootopolis Gym: The eighth Gym. It specializes in Water-types.<br>
+            Move Tutor: In Emerald, a Trainer in the Pokémon Center can teach one Pokémon Double-Edge.<br><br>
+            <strong>Utility:</strong><br>
+            Surf is required to access Sootopolis City the first time and traverse the city, as well as to travel to Route 126. Wild Pokémon can also be encountered here with Surf.<br>
+            Dive is required to traverse Sootopolis City the first time, as well as to travel to Route 126.
+         </p>
+         <p id="oras-notes" class="oras" style="display:none;">
+            <strong>Access to:</strong><br>
+            Accessible from the Dive spot: <a class="location-link" href="route-126.html">Route 126</a><br>
+            Accessible in the city: <a class="location-link" href="cave-of-origin.html">Cave of Origin</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Sootopolis Gym: The eighth Gym. It specializes in Water-types.<br>
+            Move Tutor: An old man in a house to the northeast will teach Draco Meteor to Dragon-type Pokémon with high friendship.<br><br>
+            <strong>Utility:</strong><br>
+            Surf is required to access Sootopolis City the first time and traverse the city, as well as to travel to Route 126. Wild Pokémon can also be encountered here with Surf.<br>
+            Dive is required to traverse Sootopolis City the first time, as well as to travel to Route 126.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-rse-buttons" class="button-set rse">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-ruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Ruby (Full)">
+                        <label for="pokemon-rse-full-ruby">Ruby (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-ruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Ruby (Compressed)">
+                        <label for="pokemon-rse-compressed-ruby">Ruby (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-sapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Sapphire (Full)">
+                        <label for="pokemon-rse-full-sapphire">Sapphire (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-sapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Sapphire (Compressed)">
+                        <label for="pokemon-rse-compressed-sapphire">Sapphire (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Full)">
+                        <label for="pokemon-rse-full-emerald">Emerald (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Compressed)">
+                        <label for="pokemon-rse-compressed-emerald">Emerald (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Combined (Full)">
+                        <label for="pokemon-rse-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-rse-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Separate (Full)">
+                        <label for="pokemon-rse-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Separate (Compressed)">
+                        <label for="pokemon-rse-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-oras-buttons" class="button-set oras" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-omegaruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Omega Ruby (Full)">
+                        <label for="pokemon-oras-full-omegaruby">Omega Ruby (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-omegaruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Omega Ruby (Compressed)">
+                        <label for="pokemon-oras-compressed-omegaruby">Omega Ruby (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-alphasapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Alpha Sapphire (Full)">
+                        <label for="pokemon-oras-full-alphasapphire">Alpha Sapphire (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-alphasapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Alpha Sapphire (Compressed)">
+                        <label for="pokemon-oras-compressed-alphasapphire">Alpha Sapphire (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Combined (Full)">
+                        <label for="pokemon-oras-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-oras-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Separate (Full)">
+                        <label for="pokemon-oras-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Separate (Compressed)">
+                        <label for="pokemon-oras-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-rse" class="game-container rse">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-rse-surfing" class="table-collection surfing">
+                  <h4>Surfing</h4>
+                  <div id="pokemon-rse-full-ruby-surfing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Ruby (Full)</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>5-35</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>15-25</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25-30</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25-30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-sapphire-surfing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Sapphire (Full)</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>5-35</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>15-25</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25-30</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25-30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-emerald-surfing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Emerald (Full)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>5-35</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>15-25</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25-30</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25-30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-combined-surfing-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="ruby-true" colspan="3">Ruby</th>
+                              <th class="sapphire-true" colspan="3">Sapphire</th>
+                              <th class="emerald-true" colspan="3">Emerald</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">60%</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="ruby-false">Magikarp</td>
+                              <td class="ruby-false">lv. 5-35</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="sapphire-false">Magikarp</td>
+                              <td class="sapphire-false">lv. 5-35</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="emerald-false">Magikarp</td>
+                              <td class="emerald-false">lv. 5-35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">30%</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="ruby-true">Magikarp</td>
+                              <td class="ruby-true">lv. 10-30</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="sapphire-true">Magikarp</td>
+                              <td class="sapphire-true">lv. 10-30</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="emerald-true">Magikarp</td>
+                              <td class="emerald-true">lv. 10-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">5%</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="ruby-false">Magikarp</td>
+                              <td class="ruby-false">lv. 15-25</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="sapphire-false">Magikarp</td>
+                              <td class="sapphire-false">lv. 15-25</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="emerald-false">Magikarp</td>
+                              <td class="emerald-false">lv. 15-25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">4%</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="ruby-true">Magikarp</td>
+                              <td class="ruby-true">lv. 25-30</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="sapphire-true">Magikarp</td>
+                              <td class="sapphire-true">lv. 25-30</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="emerald-true">Magikarp</td>
+                              <td class="emerald-true">lv. 25-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">1%</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="ruby-false">Magikarp</td>
+                              <td class="ruby-false">lv. 25-30</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="sapphire-false">Magikarp</td>
+                              <td class="sapphire-false">lv. 25-30</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="emerald-false">Magikarp</td>
+                              <td class="emerald-false">lv. 25-30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-ruby-surfing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Ruby (Compressed)</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>100%</td>
+                              <td>5-35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-sapphire-surfing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Sapphire (Compressed)</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>100%</td>
+                              <td>5-35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-emerald-surfing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Emerald (Compressed)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>100%</td>
+                              <td>5-35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-combined-surfing-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="ruby-true" colspan="2">Ruby</th>
+                              <th class="sapphire-true" colspan="2">Sapphire</th>
+                              <th class="emerald-true" colspan="2">Emerald</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="light-false">Magikarp</td>
+                              <td class="ruby-false">100%</td>
+                              <td class="ruby-false">lv. 5-35</td>
+                              <td class="sapphire-false">100%</td>
+                              <td class="sapphire-false">lv. 5-35</td>
+                              <td class="emerald-false">100%</td>
+                              <td class="emerald-false">lv. 5-35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-rse-fishing" class="table-collection fishing">
+                  <h4>Fishing</h4>
+                  <div id="pokemon-rse-full-ruby-fishing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Ruby (Full)</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>0</td>
+                              <td>70%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-15</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>2</td>
+                              <td>20%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>0</td>
+                              <td>40%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>1</td>
+                              <td>40%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>35-40</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>35-45</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>5-45</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-sapphire-fishing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Sapphire (Full)</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>0</td>
+                              <td>70%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>2</td>
+                              <td>20%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>0</td>
+                              <td>40%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>1</td>
+                              <td>40%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>35-40</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>35-45</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>5-45</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-emerald-fishing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Emerald (Full)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>70%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>2</td>
+                              <td>20%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>0</td>
+                              <td>40%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>1</td>
+                              <td>40%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>35-40</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>35-45</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>5-45</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-combined-fishing-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="light-true">Rod</th>
+                              <th class="ruby-true" colspan="3">Ruby</th>
+                              <th class="sapphire-true" colspan="3">Sapphire</th>
+                              <th class="emerald-true" colspan="3">Emerald</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">70%</td>
+                              <td class="light-false">Old</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="ruby-false">Magikarp</td>
+                              <td class="ruby-false">lv. 5-10</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="sapphire-false">Magikarp</td>
+                              <td class="sapphire-false">lv. 5-10</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="emerald-false">Magikarp</td>
+                              <td class="emerald-false">lv. 5-10</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">30%</td>
+                              <td class="light-true">Old</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="ruby-true">Magikarp</td>
+                              <td class="ruby-true">lv. 10-15</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="sapphire-true">Tentacool</td>
+                              <td class="sapphire-true">lv. 5-10</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="emerald-true">Tentacool</td>
+                              <td class="emerald-true">lv. 5-10</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">60%</td>
+                              <td class="light-false">Good</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="ruby-false">Magikarp</td>
+                              <td class="ruby-false">lv. 10-30</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="sapphire-false">Magikarp</td>
+                              <td class="sapphire-false">lv. 10-30</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="emerald-false">Magikarp</td>
+                              <td class="emerald-false">lv. 10-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">20%</td>
+                              <td class="light-true">Good</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="ruby-true">Magikarp</td>
+                              <td class="ruby-true">lv. 10-30</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="sapphire-true">Magikarp</td>
+                              <td class="sapphire-true">lv. 10-30</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="emerald-true">Magikarp</td>
+                              <td class="emerald-true">lv. 10-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">20%</td>
+                              <td class="light-false">Good</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="ruby-false">Magikarp</td>
+                              <td class="ruby-false">lv. 10-30</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="sapphire-false">Magikarp</td>
+                              <td class="sapphire-false">lv. 10-30</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="emerald-false">Magikarp</td>
+                              <td class="emerald-false">lv. 10-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">0</td>
+                              <td class="light-true">40%</td>
+                              <td class="light-true">Super</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="ruby-true">Magikarp</td>
+                              <td class="ruby-true">lv. 30-35</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="sapphire-true">Magikarp</td>
+                              <td class="sapphire-true">lv. 30-35</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="emerald-true">Magikarp</td>
+                              <td class="emerald-true">lv. 30-35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">1</td>
+                              <td class="light-false">40%</td>
+                              <td class="light-false">Super</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="ruby-false">Magikarp</td>
+                              <td class="ruby-false">lv. 30-35</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="sapphire-false">Magikarp</td>
+                              <td class="sapphire-false">lv. 30-35</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="emerald-false">Magikarp</td>
+                              <td class="emerald-false">lv. 30-35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">2</td>
+                              <td class="light-true">15%</td>
+                              <td class="light-true">Super</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td class="ruby-true">Gyarados</td>
+                              <td class="ruby-true">lv. 35-40</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td class="sapphire-true">Gyarados</td>
+                              <td class="sapphire-true">lv. 35-40</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td class="emerald-true">Gyarados</td>
+                              <td class="emerald-true">lv. 35-40</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">3</td>
+                              <td class="light-false">4%</td>
+                              <td class="light-false">Super</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td class="ruby-false">Gyarados</td>
+                              <td class="ruby-false">lv. 35-45</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td class="sapphire-false">Gyarados</td>
+                              <td class="sapphire-false">lv. 35-45</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td class="emerald-false">Gyarados</td>
+                              <td class="emerald-false">lv. 35-45</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">4</td>
+                              <td class="light-true">1%</td>
+                              <td class="light-true">Super</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td class="ruby-true">Gyarados</td>
+                              <td class="ruby-true">lv. 5-45</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td class="sapphire-true">Gyarados</td>
+                              <td class="sapphire-true">lv. 5-45</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td class="emerald-true">Gyarados</td>
+                              <td class="emerald-true">lv. 5-45</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-ruby-fishing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Ruby (Compressed)</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>100%</td>
+                              <td>5-15</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>100%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>80%</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>20%</td>
+                              <td>5-45</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-sapphire-fishing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Sapphire (Compressed)</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>70%</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>30%</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>100%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>80%</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>20%</td>
+                              <td>5-45</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-emerald-fishing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Emerald (Compressed)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>70%</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>30%</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>100%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>80%</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>20%</td>
+                              <td>5-45</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-combined-fishing-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Rod</th>
+                              <th class="light-true" colspan="2">Pokémon</th>
+                              <th class="ruby-true" colspan="2">Ruby</th>
+                              <th class="sapphire-true" colspan="2">Sapphire</th>
+                              <th class="emerald-true" colspan="2">Emerald</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">Old</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="light-false">Magikarp</td>
+                              <td class="ruby-false">100%</td>
+                              <td class="ruby-false">lv. 5-15</td>
+                              <td class="sapphire-false">70%</td>
+                              <td class="sapphire-false">lv. 5-10</td>
+                              <td class="emerald-false">70%</td>
+                              <td class="emerald-false">lv. 5-10</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Old</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="light-true">Tentacool</td>
+                              <td class="light-true" colspan="2">N/A</td>
+                              <td class="sapphire-true">30%</td>
+                              <td class="sapphire-true">lv. 5-10</td>
+                              <td class="emerald-true">30%</td>
+                              <td class="emerald-true">lv. 5-10</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Good</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="light-false">Magikarp</td>
+                              <td class="ruby-false">100%</td>
+                              <td class="ruby-false">lv. 10-30</td>
+                              <td class="sapphire-false">100%</td>
+                              <td class="sapphire-false">lv. 10-30</td>
+                              <td class="emerald-false">100%</td>
+                              <td class="emerald-false">lv. 10-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Super</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="light-true">Magikarp</td>
+                              <td class="ruby-true">80%</td>
+                              <td class="ruby-true">lv. 30-35</td>
+                              <td class="sapphire-true">80%</td>
+                              <td class="sapphire-true">lv. 30-35</td>
+                              <td class="emerald-true">80%</td>
+                              <td class="emerald-true">lv. 30-35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Super</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td class="light-false">Gyarados</td>
+                              <td class="ruby-false">20%</td>
+                              <td class="ruby-false">lv. 5-45</td>
+                              <td class="sapphire-false">20%</td>
+                              <td class="sapphire-false">lv. 5-45</td>
+                              <td class="emerald-false">20%</td>
+                              <td class="emerald-false">lv. 5-45</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-oras" class="game-container oras" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-oras-surfing" class="table-collection surfing">
+                  <h4>Surfing</h4>
+                  <div id="pokemon-oras-full-omegaruby-surfing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby (Full)</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>0</td>
+                              <td>50%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>30</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-full-alphasapphire-surfing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire (Full)</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>0</td>
+                              <td>50%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>30</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-full-combined-surfing-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="omegaruby-true" colspan="3">Omega Ruby</th>
+                              <th class="alphasapphire-true" colspan="3">Alpha Sapphire</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">50%</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-false">Magikarp</td>
+                              <td class="omegaruby-false">lv. 30</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-false">Magikarp</td>
+                              <td class="alphasapphire-false">lv. 30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">30%</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-true">Magikarp</td>
+                              <td class="omegaruby-true">lv. 25</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-true">Magikarp</td>
+                              <td class="alphasapphire-true">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">15%</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-false">Magikarp</td>
+                              <td class="omegaruby-false">lv. 35</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-false">Magikarp</td>
+                              <td class="alphasapphire-false">lv. 35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">4%</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-true">Magikarp</td>
+                              <td class="omegaruby-true">lv. 35</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-true">Magikarp</td>
+                              <td class="alphasapphire-true">lv. 35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">1%</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-false">Magikarp</td>
+                              <td class="omegaruby-false">lv. 35</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-false">Magikarp</td>
+                              <td class="alphasapphire-false">lv. 35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-omegaruby-surfing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby (Compressed)</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>100%</td>
+                              <td>25, 30, 35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-alphasapphire-surfing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire (Compressed)</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>100%</td>
+                              <td>25, 30, 35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-combined-surfing-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="omegaruby-true" colspan="2">Omega Ruby</th>
+                              <th class="alphasapphire-true" colspan="2">Alpha Sapphire</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="light-false">Magikarp</td>
+                              <td class="omegaruby-false">100%</td>
+                              <td class="omegaruby-false">lv. 25, 30, 35</td>
+                              <td class="alphasapphire-false">100%</td>
+                              <td class="alphasapphire-false">lv. 25, 30, 35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-oras-fishing" class="table-collection fishing">
+                  <h4>Fishing</h4>
+                  <div id="pokemon-oras-full-omegaruby-fishing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby (Full)</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>1</td>
+                              <td>35%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>1</td>
+                              <td>35%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>1</td>
+                              <td>35%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>30</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>40</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-full-alphasapphire-fishing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire (Full)</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>1</td>
+                              <td>35%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>1</td>
+                              <td>35%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>1</td>
+                              <td>35%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>30</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>40</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-full-combined-fishing-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="light-true">Rod</th>
+                              <th class="omegaruby-true" colspan="3">Omega Ruby</th>
+                              <th class="alphasapphire-true" colspan="3">Alpha Sapphire</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">60%</td>
+                              <td class="light-false">Old</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-false">Magikarp</td>
+                              <td class="omegaruby-false">lv. 10</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-false">Magikarp</td>
+                              <td class="alphasapphire-false">lv. 10</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">35%</td>
+                              <td class="light-true">Old</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-true">Magikarp</td>
+                              <td class="omegaruby-true">lv. 5</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-true">Magikarp</td>
+                              <td class="alphasapphire-true">lv. 5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">5%</td>
+                              <td class="light-false">Old</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-false">Magikarp</td>
+                              <td class="omegaruby-false">lv. 15</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-false">Magikarp</td>
+                              <td class="alphasapphire-false">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">0</td>
+                              <td class="light-true">60%</td>
+                              <td class="light-true">Good</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-true">Magikarp</td>
+                              <td class="omegaruby-true">lv. 25</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-true">Magikarp</td>
+                              <td class="alphasapphire-true">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">1</td>
+                              <td class="light-false">35%</td>
+                              <td class="light-false">Good</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-false">Magikarp</td>
+                              <td class="omegaruby-false">lv. 25</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-false">Magikarp</td>
+                              <td class="alphasapphire-false">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">2</td>
+                              <td class="light-true">5%</td>
+                              <td class="light-true">Good</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-true">Magikarp</td>
+                              <td class="omegaruby-true">lv. 25</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-true">Magikarp</td>
+                              <td class="alphasapphire-true">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">60%</td>
+                              <td class="light-false">Super</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-false">Magikarp</td>
+                              <td class="omegaruby-false">lv. 35</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-false">Magikarp</td>
+                              <td class="alphasapphire-false">lv. 35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">35%</td>
+                              <td class="light-true">Super</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-true">Magikarp</td>
+                              <td class="omegaruby-true">lv. 30</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-true">Magikarp</td>
+                              <td class="alphasapphire-true">lv. 30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">5%</td>
+                              <td class="light-false">Super</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td class="omegaruby-false">Gyarados</td>
+                              <td class="omegaruby-false">lv. 40</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td class="alphasapphire-false">Gyarados</td>
+                              <td class="alphasapphire-false">lv. 40</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-omegaruby-fishing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby (Compressed)</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>100%</td>
+                              <td>5, 10, 15</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>100%</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>95%</td>
+                              <td>30, 35</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>5%</td>
+                              <td>40</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-alphasapphire-fishing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire (Compressed)</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>100%</td>
+                              <td>5, 10, 15</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>100%</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>95%</td>
+                              <td>30, 35</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td>Gyarados</td>
+                              <td>5%</td>
+                              <td>40</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-combined-fishing-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Rod</th>
+                              <th class="light-true" colspan="2">Pokémon</th>
+                              <th class="omegaruby-true" colspan="2">Omega Ruby</th>
+                              <th class="alphasapphire-true" colspan="2">Alpha Sapphire</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">Old</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="light-false">Magikarp</td>
+                              <td class="omegaruby-false">100%</td>
+                              <td class="omegaruby-false">lv. 5, 10, 15</td>
+                              <td class="alphasapphire-false">100%</td>
+                              <td class="alphasapphire-false">lv. 5, 10, 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Good</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="light-true">Magikarp</td>
+                              <td class="omegaruby-true">100%</td>
+                              <td class="omegaruby-true">lv. 25</td>
+                              <td class="alphasapphire-true">100%</td>
+                              <td class="alphasapphire-true">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Super</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="light-false">Magikarp</td>
+                              <td class="omegaruby-false">95%</td>
+                              <td class="omegaruby-false">lv. 30, 35</td>
+                              <td class="alphasapphire-false">95%</td>
+                              <td class="alphasapphire-false">lv. 30, 35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Super</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+                              </td>
+                              <td class="light-true">Gyarados</td>
+                              <td class="omegaruby-true">5%</td>
+                              <td class="omegaruby-true">lv. 40</td>
+                              <td class="alphasapphire-true">5%</td>
+                              <td class="alphasapphire-true">lv. 40</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-rse-items" class="game-container rse">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Elixir</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Obtained from one of the brothers in the north part of the city for showing them a Barboach or Shroomish</td>
+                     <td class="light-false">The first time the player shows either brother their preferred Pokémon that is larger than 15.7 in, he will give them an Elixir. After that, the player has to show him a Pokémon whose size is greater than the current record Pokémon in order for him to give them another Elixir.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Elixir</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Obtained from one of the brothers in the north part of the city for showing them a Seedot or Lotad</td>
+                     <td class="light-true">The first time the player shows either brother their preferred Pokémon that is larger than 19.6 in, he will give them an Elixir. After that, the player has to show him a Pokémon whose size is greater than the current record Pokémon in order for him to give them another Elixir.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM31 Brick Break</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from the Black Belt in the northwestern house</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Wailmer Doll</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Obtained from the girl in the house east of the Pokémon Center</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">HM07 Waterfall</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from Wallace outside the Gym</td>
+                     <td class="light-false">Only after bringing Rayquaza to calm Groudon and Kyogre.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Kiri's Berries</h4>
+            <p class="rse">A little girl named Kiri will give the player two Berries every day, except when abnormal weather is present, or (in Emerald) when Groudon and Kyogre are fighting. One Berry will always be a Figy or Iapapa berry, and the other will come from the below list.</p>
+            <table>
+               <tbody>
+                  <tr class="light-true">
+                     <td>Pomeg Berry</td>
+                     <td>Kelpsy Berry</td>
+                     <td>Qualot Berry</td>
+                     <td>Hondew Berry</td>
+                     <td>Grepa Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Tamato Berry</td>
+                     <td>Cornn Berry</td>
+                     <td>Magost Berry</td>
+                     <td>Rabuta Berry</td>
+                     <td>Nomel Berry</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Sootopolis Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items (Sootopolis Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM03 Water Pulse</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from Wallace (Ruby and Sapphire) or Juan (Emerald)</td>
+                     <td class="light-false">Only after defeating him.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">2500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Heal</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Repel</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Attack</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Defend</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">550</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Shadow Mail</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">50</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-oras-items" class="game-container oras" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Max Elixir</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from one of the brothers in the north part of the city for showing them a Barboach or Shroomish with an Affection level of at least 4</td>
+                     <td class="light-false">This item will only be obtained once from each brother.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM31 Brick Break</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from the Black Belt in the northwestern house</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Wailmer Doll</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from the girl in the house east of the Pokémon Center</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Potion</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">North of Kiri</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Protein</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Behind the house southeast of the Pokémon Center</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM83 Infestation</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from a Collector in the Poké Mart</td>
+                     <td class="light-true">Only if the player answers "Lisia" to his question.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Sablenite</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">In the southeast part of the area leading to the Cave of Origin</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Magma Suit</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="light-true">AS</td>
+                     <td class="light-true">Obtained from Maxie</td>
+                     <td class="light-true">Only after Groudon has been awakened.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Aqua Suit</td>
+                     <td class="light-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Archie</td>
+                     <td class="light-false">Only after Kyogre has been awakened.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Red Orb</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="light-true">AS</td>
+                     <td class="light-true">Obtained from Maxie</td>
+                     <td class="light-true">Only after engaging Groudon.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Blue Orb</td>
+                     <td class="light-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Archie</td>
+                     <td class="light-false">Only after engaging Kyogre.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Eon Flute</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from Steven</td>
+                     <td class="light-true">Only after engaging Groudon/Kyogre.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Kiri's Berries</h4>
+            <p class="oras">A little girl named Kiri will give the player two Berries every day, except when abnormal weather is present. The possible Berries she can give out come from the below list.</p>
+            <table>
+               <tbody>
+                  <tr class="light-true">
+                     <td>Figy Berry</td>
+                     <td>Wiki Berry</td>
+                     <td>Mago Berry</td>
+                     <td>Aguav Berry</td>
+                     <td>Iapapa Berry</td>
+                     <td>Razz Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Pomeg Berry</td>
+                     <td>Kelpsy Berry</td>
+                     <td>Qualot Berry</td>
+                     <td>Hondew Berry</td>
+                     <td>Grepa Berry</td>
+                     <td>Tamato Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cornn Berry</td>
+                     <td>Magost Berry</td>
+                     <td>Rabuta Berry</td>
+                     <td>Nomel Berry</td>
+                     <td colspan="2"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Sootopolis Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Sootopolis Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">HM05 Waterfall</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Wallace</td>
+                     <td class="light-false">Only after defeating him.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <p class="oras">The player will receive a Premier Ball for every ten Poké Balls, Great Balls, or Ultra Balls they purchase at once.</p>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">3000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Paralyze Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ice Heal</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">550</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">350</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Repel</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">700</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-rse-trainers" class="game-container rse">
+            <h3><u>Trainers</u></h3>
+            <h4>Sootopolis Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Trainers (Sootopolis Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Beauty Connie</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Goldeen lv.40<br>Wailmer lv.40</td>
+                     <td class="light-false">On the lowest level.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Beauty Connie</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Goldeen lv.40</td>
+                     <td class="light-true">On the lowest level.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Lass Andrea</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Luvdisc lv.41</td>
+                     <td class="light-false">On the lowest level.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lass Andrea</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Luvdisc lv.40</td>
+                     <td class="light-true">On the lowest level.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Beauty Bridget</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Azumarill lv.41</td>
+                     <td class="light-false">On the middle level.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lady Brianna</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="light-true">E</td>
+                     <td class="light-true">Seaking lv.41</td>
+                     <td class="light-true">On the middle level. Her Seaking holds a Nugget.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Lady Daphne</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Luvdisc lv.39<br>Luvdisc lv.39</td>
+                     <td class="light-false">On the middle level. Both of her Pokémon hold Nuggets.<br>She can potentially be battled in a Double Battle with Pokéfan Annika.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Pokéfan Annika</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Feebas lv.39<br>Feebas lv.39</td>
+                     <td class="light-true">On the middle level. Both of her Pokémon hold Oran Berries.<br>She can potentially be battled in a Double Battle with Lady Daphne.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Beauty Olivia</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Lombre lv.41</td>
+                     <td class="light-false">On the highest level.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Beauty Olivia</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Clamperl lv.35<br>Corphish lv.37<br>Lombre lv.49</td>
+                     <td class="light-true">On the highest level.<br>She can potentially be battled in a Double Battle with Pokéfan Bethany.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Pokéfan Bethany</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Azurill lv.35<br>Marill lv.37<br>Azumarill lv.39</td>
+                     <td class="light-false">On the highest level. All of her Pokémon hold Oran Berries.<br>She can potentially be battled in a Double Battle with Beauty Olivia.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lass Crissy</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="light-true">E</td>
+                     <td class="light-true">Wailmer lv.40<br>Wailmer lv.40</td>
+                     <td class="light-true">On the highest level.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Beauty Tiffany</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Carvanha lv.39<br>Wailmer lv.39<br>Sharpedo lv.39</td>
+                     <td class="light-false">On the highest level.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lass Crissy</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Goldeen lv.39<br>Wailmer lv.39</td>
+                     <td class="light-true">On the highest level.<br>She can potentially be battled in a Double Battle with Beauty Tiffany.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Beauty Tiffany</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Carvanha lv.39<br>Sharpedo lv.39</td>
+                     <td class="light-false">On the highest level.<br>She can potentially be battled in a Double Battle with Lass Crissy.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Pokéfan Marissa</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="light-true">E</td>
+                     <td class="light-true">Azurill lv.36<br>Marill lv.38<br>Azumarill lv.40</td>
+                     <td class="light-true">On the highest level. All of her Pokémon hold Oran Berries.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Lady Brianna</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Seaking lv.40</td>
+                     <td class="light-false">On the highest level. Her Seaking holds a Nugget.<br>She can potentially be battled in a Double Battle with Beauty Bridget.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Beauty Bridget</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Azumarill lv.40</td>
+                     <td class="light-true">On the highest level.<br>She can potentially be battled in a Double Battle with Lady Brianna.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Wallace</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Luvdisc lv.40<br>Whiscash lv.42<br>Sealeo lv.40<br>Seaking lv.42<br>Milotic lv.43</td>
+                     <td class="light-false">He can use two Hyper Potions during the battle.<br>He will give the player TM03 Water Pulse after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Juan</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Luvdisc lv.41<br>Whiscash lv.41<br>Sealeo lv.43<br>Crawdaunt lv.43<br>Kingdra lv.46</td>
+                     <td class="light-true">His Kingdra holds a Chesto Berry. He can use two Hyper Potions during the battle.<br>He will give the player TM03 Water Pulse after the battle.<br>The player can register him in the PokéNav after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Gym Leader Rematches</h4>
+            <p class="rse">Rematches are unlocked after the player defeats the Elite Four. The player must defeat all Gym Leaders' first rematch in order to unlock their second rematch. The same holds true for their third and fourth rematches.</p>
+            <table class="left-align">
+               <caption>Emerald Trainers (Gym Leader Rematches)</caption>
+               <thead>
+                  <tr class="emerald-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="emerald-false">
+                     <td>Juan</td>
+                     <td>Poliwag lv.46<br>Whiscash lv.46<br>Walrein lv.48<br>Crawdaunt lv.48<br>Kingdra lv.51</td>
+                     <td>His Crawdaunt and Kingdra hold Chesto Berries. He can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+                  <tr class="emerald-true">
+                     <td>Juan</td>
+                     <td>Poliwhirl lv.50<br>Whiscash lv.51<br>Walrein lv.53<br>Crawdaunt lv.53<br>Kingdra lv.56</td>
+                     <td>His Crawdaunt and Kingdra hold Chesto Berries. He can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+                  <tr class="emerald-false">
+                     <td>Juan</td>
+                     <td>Lapras lv.56<br>Whiscash lv.58<br>Poliwhirl lv.56<br>Walrein lv.58<br>Crawdaunt lv.58<br>Kingdra lv.61</td>
+                     <td>His Crawdaunt and Kingdra hold Chesto Berries. He can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+                  <tr class="emerald-true">
+                     <td>Juan</td>
+                     <td>Lapras lv.61<br>Whiscash lv.63<br>Politoed lv.61<br>Walrein lv.63<br>Crawdaunt lv.63<br>Kingdra lv.66</td>
+                     <td>His Crawdaunt and Kingdra hold Chesto Berries. He can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-oras-trainers" class="game-container oras" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>Sootopolis Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Trainers (Sootopolis Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Fan Marissa</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Azumarill lv.43</td>
+                     <td class="light-false">On 1F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lass Crissy</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Luvdisc lv.39<br>Seadra lv.41</td>
+                     <td class="light-true">On 1F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Beauty Olivia</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Starmie lv.43</td>
+                     <td class="light-false">On B1F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lady Brianna</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Clamperl lv.41<br>Corsola lv.41</td>
+                     <td class="light-true">On B1F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Beauty Connie</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Huntail lv.43</td>
+                     <td class="light-false">On B1F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Beauty Bridget</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Gorebyss lv.43</td>
+                     <td class="light-true">On B1F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Beauty Tiffany</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Golduck lv.41<br>Wailord lv.41</td>
+                     <td class="light-false">On B1F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lass Andrea</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Ludicolo lv.42</td>
+                     <td class="light-true">On B1F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Wallace</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Luvdisc lv.44<br>Whiscash lv.44<br>Sealeo lv.44<br>Seaking lv.44<br>Milotic lv.46</td>
+                     <td class="light-false">He will give the player TM03 Water Pulse after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

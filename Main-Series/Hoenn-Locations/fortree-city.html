@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Fortree City</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Hoenn Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rse" type="radio" onclick="topButton.call(this)" name="games" value="RSE" checked="checked">
+         <label for="rse" class="right">RSE</label>
+         <input id="oras" type="radio" onclick="topButton.call(this)" name="games" value="ORAS">
+         <label for="oras" class="right">ORAS</label>
+      </div>
+      <h2>Fortree City</h2>
+      <div id="notes" class="bottom">
+         <p id="rse-notes" class="rse">
+            <strong>Access to:</strong><br>
+            West: <a class="location-link" href="route-119.html">Route 119</a><br>
+            East: <a class="location-link" href="route-120.html">Route 120</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Secret Base decoration shop<br>
+            Fortree Gym: The sixth Gym. It specializes in Flying-types.<br>
+            Move Tutor: In Emerald, a tutor in the house northwest of the Gym can teach one Pokémon Sleep Talk.<br><br>
+            <strong>Utility:</strong><br>
+            The Devon Scope is required to clear Kecleon, which in turn is required to access the Gym.
+         </p>
+         <p id="oras-notes" class="oras" style="display:none;">
+            <strong>Access to:</strong><br>
+            West: <a class="location-link" href="route-119.html">Route 119</a><br>
+            East: <a class="location-link" href="route-120.html">Route 120</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Secret Base Guild<br>
+            Fortree Gym: The sixth Gym. It specializes in Flying-types.<br><br>
+            <strong>Utility:</strong><br>
+            The Devon Scope is required to clear Kecleon, which in turn is required to access the Gym.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-rse-buttons" class="button-set rse">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-ruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Ruby (Full)">
+                        <label for="pokemon-rse-full-ruby">Ruby (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-ruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Ruby (Compressed)">
+                        <label for="pokemon-rse-compressed-ruby">Ruby (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-sapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Sapphire (Full)">
+                        <label for="pokemon-rse-full-sapphire">Sapphire (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-sapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Sapphire (Compressed)">
+                        <label for="pokemon-rse-compressed-sapphire">Sapphire (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Full)">
+                        <label for="pokemon-rse-full-emerald">Emerald (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Compressed)">
+                        <label for="pokemon-rse-compressed-emerald">Emerald (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Combined (Full)">
+                        <label for="pokemon-rse-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-rse-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Separate (Full)">
+                        <label for="pokemon-rse-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Separate (Compressed)">
+                        <label for="pokemon-rse-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-oras-buttons" class="button-set oras" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-omegaruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Omega Ruby (Full)">
+                        <label for="pokemon-oras-full-omegaruby">Omega Ruby (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-omegaruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Omega Ruby (Compressed)">
+                        <label for="pokemon-oras-compressed-omegaruby">Omega Ruby (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-alphasapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Alpha Sapphire (Full)">
+                        <label for="pokemon-oras-full-alphasapphire">Alpha Sapphire (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-alphasapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Alpha Sapphire (Compressed)">
+                        <label for="pokemon-oras-compressed-alphasapphire">Alpha Sapphire (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Combined (Full)">
+                        <label for="pokemon-oras-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-oras-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Separate (Full)">
+                        <label for="pokemon-oras-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Separate (Compressed)">
+                        <label for="pokemon-oras-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-rse" class="game-container rse">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-rse-trade" class="table-collection trade">
+                  <h4>Trade</h4>
+                  <div id="pokemon-rse-all-combined-trade-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th colspan="3">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td class="light-false">Pikachu</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/skitty.png" alt="Skitty"></div>
+                              </td>
+                              <td class="light-false">Skitty</td>
+                              <td class="ruby-false">R</td>
+                              <td class="sapphire-false">S</td>
+                              <td class="light-false">E</td>
+                              <td class="light-false">Skitty holds a Glitter Mail.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/volbeat.png" alt="Volbeat"></div>
+                              </td>
+                              <td class="light-true">Volbeat</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                              </td>
+                              <td class="light-true">Plusle</td>
+                              <td class="light-true">R</td>
+                              <td class="light-true">S</td>
+                              <td class="emerald-true">E</td>
+                              <td class="light-true">Plusle holds a Wood Mail.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-ruby-trade-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Ruby</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td>Pikachu</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/skitty.png" alt="Skitty"></div>
+                              </td>
+                              <td>Skitty</td>
+                              <td>Skitty holds a Glitter Mail.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-sapphire-trade-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Sapphire</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td>Pikachu</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/skitty.png" alt="Skitty"></div>
+                              </td>
+                              <td>Skitty</td>
+                              <td>Skitty holds a Glitter Mail.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-emerald-trade-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Emerald</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/volbeat.png" alt="Volbeat"></div>
+                              </td>
+                              <td>Volbeat</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                              </td>
+                              <td>Plusle</td>
+                              <td>Plusle holds a Wood Mail.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-oras" class="game-container oras" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-oras-trade" class="table-collection trade">
+                  <h4>Trade</h4>
+                  <div id="pokemon-oras-all-combined-trade-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="light-false">Spinda</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/skitty.png" alt="Skitty"></div>
+                              </td>
+                              <td class="light-false">Skitty</td>
+                              <td class="light-false">30</td>
+                              <td class="omegaruby-false">OR</td>
+                              <td class="alphasapphire-false">AS</td>
+                              <td class="light-false">Skitty holds a Magost Berry.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-omegaruby-trade-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/skitty.png" alt="Skitty"></div>
+                              </td>
+                              <td>Skitty</td>
+                              <td>30</td>
+                              <td>Skitty holds a Magost Berry.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-alphasapphire-trade-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/skitty.png" alt="Skitty"></div>
+                              </td>
+                              <td>Skitty</td>
+                              <td>30</td>
+                              <td>Skitty holds a Magost Berry.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-rse-items" class="game-container rse">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Super Repel</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">South of the Poké Mart</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM10 Hidden Power</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Obtained from an old woman in the house northwest of the Gym</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Mental Herb</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from the man in the northeastern house</td>
+                     <td class="light-false">Only after speaking to him and then meeting his Wingull in <a class="location-link" href="mossdeep-city.html">Mossdeep City</a>.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Great Ball</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ultra Ball</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Antidote</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Parlyz Heal</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Awakening</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Revive</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Repel</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Wood Mail</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">50</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Secret Base Shop - Desk shop</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items (Secret Base Shop)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Small Desk</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">3000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Pokémon Desk</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">3000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Heavy Desk</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">6000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ragged Desk</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">6000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Comfort Desk</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">6000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Brick Desk</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">9000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Camp Desk</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">9000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hard Desk</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">9000</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Secret Base Shop - Chair shop</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items (Secret Base Shop)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Small Chair</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">2000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Pokémon Chair</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">2000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Heavy Chair</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">2000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ragged Chair</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">2000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Comfort Chair</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">2000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Brick Chair</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">2000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Camp Chair</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">2000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hard Chair</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">2000</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Fortree Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items (Fortree Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM40 Aerial Ace</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from Winona</td>
+                     <td class="light-false">Only after defeating her.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-oras-items" class="game-container oras" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM10 Hidden Power</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from the woman in the house northwest of the Gym</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM86 Grass Knot</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Behind the Gym</td>
+                     <td class="light-true">Requires the Devon Scope.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Mental Herb</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from the man in the northeastern house</td>
+                     <td class="light-false">Only after speaking to him and then meeting his Wingull in <a class="location-link" href="mossdeep-city.html">Mossdeep City</a>.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Stairs</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from the Lass in the southwestern house</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Proclamation</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Aarune the first time the player visits the Secret Base Guild</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Blackboard</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from Aarune for reaching the Bronze Secret Base rank</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Jukebox</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Aarune for reaching the Silver Secret Base rank</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Mood Lighting</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from Aarune for reaching the Gold Secret Base rank</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Confetti Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Aarune for reaching the Platinum Secret Base rank</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Garchompite</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from Aarune for reaching the Platinum Secret Base rank</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Tiny Mushroom</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">In the corner west of the Pokémon Ranger near the entrance to Route 120</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <p class="oras">The player will receive a Premier Ball for every ten Poké Balls, Great Balls, or Ultra Balls they purchase at once.</p>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">3000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Paralyze Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ice Heal</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">550</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">350</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Repel</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">700</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Secret Base Guild - Lass</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Secret Base Guild)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Small Chair</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1000</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Poké Ball Chair</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">1000</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Heavy Chair</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1000</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Soft Chair</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">1000</td>
+                     <td class="light-true">Only after the player achieves the Bronze Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rough Chair</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1000</td>
+                     <td class="light-false">Only after the player achieves the Bronze Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Brick Chair</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">1000</td>
+                     <td class="light-true">Only after the player achieves the Silver Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Log Chair</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1000</td>
+                     <td class="light-false">Only after the player achieves the Silver Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hard Chair</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">1000</td>
+                     <td class="light-true">Only after the player achieves the Silver Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Small Desk</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2000</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Poké Ball Desk</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">2000</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Heavy Desk</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">3000</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Rough Desk</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">3000</td>
+                     <td class="light-true">Only after the player achieves the Bronze Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Soft Desk</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">3000</td>
+                     <td class="light-false">Only after the player achieves the Bronze Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Brick Desk</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">4000</td>
+                     <td class="light-true">Only after the player achieves the Silver Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Log Desk</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">4000</td>
+                     <td class="light-false">Only after the player achieves the Silver Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hard Desk</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">4000</td>
+                     <td class="light-true">Only after the player achieves the Silver Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Icy Desk</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">5000</td>
+                     <td class="light-false">Only after the player achieves the Gold Secret Base rank.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Secret Base Guild - Schoolkid</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Secret Base Guild)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Fence</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">500</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Makiwara</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">1000</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Tall Grass</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1000</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Gym Statue</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">3000</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Boppoyama</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">4000</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Invisible Doll</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">4000</td>
+                     <td class="light-true">Only after the player achieves the Gold Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Comfortable Bed</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">6000</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Vending Machine</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">6000</td>
+                     <td class="light-true">Only after the player achieves the Silver Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Glitter Mat</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2000</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Jump Mat</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">2000</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Spin Mat</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2000</td>
+                     <td class="light-false">Only after the player achieves the Bronze Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Pitfall Mat</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">2000</td>
+                     <td class="light-true">Only after the player achieves the Bronze Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Square-One Mat</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2000</td>
+                     <td class="light-false">Only after the player achieves the Silver Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Red Spin Panel</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">2000</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Blue Spin Panel</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2500</td>
+                     <td class="light-false">Only after the player achieves the Bronze Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Yellow Spin Panel</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">3000</td>
+                     <td class="light-true">Only after the player achieves the Silver Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Red Warp Panel</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2500</td>
+                     <td class="light-false">Only after the player achieves the Silver Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Blue Warp Panel</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">2500</td>
+                     <td class="light-true">Only after the player achieves the Gold Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Yellow Warp Panel</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2500</td>
+                     <td class="light-false">Only after the player achieves the Gold Secret Base rank.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Toy PC</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">5000</td>
+                     <td class="light-true">Only after the player achieves the Gold Secret Base rank.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Fortree Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Fortree Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM19 Roost</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Winona</td>
+                     <td class="light-false">Only after defeating her.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-rse-trainers" class="game-container rse">
+            <h3><u>Trainers</u></h3>
+            <h4>Fortree Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Trainers (Fortree Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Bird Keeper Jared</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Doduo lv.30</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Bird Keeper Humberto</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Skarmory lv.30</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Picnicker Kylee</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Swablu lv.30</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Bird Keeper Jared</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Doduo lv.27<br>Skarmory lv.27<br>Tropius lv.27</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Picnicker Ashley.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Picnicker Ashley</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Swablu lv.27<br>Swablu lv.27<br>Swablu lv.27</td>
+                     <td class="light-false">She can potentially be battled in a Double Battle with Bird Keeper Jared.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Camper Terrell</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="light-true">E</td>
+                     <td class="light-true">Taillow lv.29<br>Swellow lv.29</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Camper Flint</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Swellow lv.29<br>Xatu lv.29</td>
+                     <td class="light-false">He can potentially be battled in a Double Battle with Bird Keeper Edwardo.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Bird Keeper Edwardo</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Doduo lv.29<br>Pelipper lv.29</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Camper Flint.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Bird Keeper Will</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Wingull lv.28<br>Swellow lv.28<br>Pelipper lv.28</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Bird Keeper Darius</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Tropius lv.30</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Winona</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Swellow lv.31<br>Pelipper lv.30<br>Skarmory lv.32<br>Altaria lv.33</td>
+                     <td class="light-false">She can use two Hyper Potions during the battle.<br>She will give the player TM40 Aerial Ace after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Winona</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Swablu lv.29<br>Tropius lv.29<br>Pelipper lv.30<br>Skarmory lv.31<br>Altaria lv.33</td>
+                     <td class="light-true">Her Altaria holds an Oran Berry. She can use two Hyper Potions during the battle.<br>She will give the player TM40 Aerial Ace after the battle.<br>The player can register her in the PokéNav after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Gym Leader Rematches</h4>
+            <p class="rse">Rematches are unlocked after the player defeats the Elite Four in Emerald only. The player must defeat all Gym Leaders' first rematch in order to unlock their second rematch. The same holds true for their third and fourth rematches.</p>
+            <table class="left-align">
+               <caption>Emerald Trainers (Gym Leader Rematches)</caption>
+               <thead>
+                  <tr class="emerald-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="emerald-false">
+                     <td>Winona</td>
+                     <td>Dratini lv.40<br>Tropius lv.38<br>Pelipper lv.41<br>Skarmory lv.43<br>Altaria lv.45</td>
+                     <td>Her Dratini holds a Sitrus Berry and her Altaria holds a Chesto Berry. She can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+                  <tr class="emerald-true">
+                     <td>Winona</td>
+                     <td>Hoothoot lv.43<br>Tropius lv.43<br>Dragonair lv.45<br>Pelipper lv.46<br>Skarmory lv.48<br>Altaria lv.50</td>
+                     <td>Her Dragonair holds a Sitrus Berry and her Altaria holds a Chesto Berry. She can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+                  <tr class="emerald-false">
+                     <td>Winona</td>
+                     <td>Noctowl lv.48<br>Tropius lv.49<br>Dragonair lv.50<br>Pelipper lv.51<br>Skarmory lv.53<br>Altaria lv.55</td>
+                     <td>Her Dragonair holds a Sitrus Berry and her Altaria holds a Chesto Berry. She can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+                  <tr class="emerald-true">
+                     <td>Winona</td>
+                     <td>Noctowl lv.53<br>Tropius lv.54<br>Pelipper lv.55<br>Dragonite lv.55<br>Skarmory lv.58<br>Altaria lv.60</td>
+                     <td>Her Dragonite holds a Sitrus Berry and her Altaria holds a Chesto Berry. She can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-oras-trainers" class="game-container oras" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Aarune</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Flygon lv.23</td>
+                     <td class="light-false">Only before defeating the Elite Four. His Flygon holds a Normal Gem.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Aarune</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Flygon lv.53</td>
+                     <td class="light-true">Only after defeating the Elite Four. His Flygon holds a Normal Gem.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Fortree Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Trainers (Fortree Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Bird Keeper Jared</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Swellow lv.30<br>Skarmory lv.30</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Picnicker Kylee</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Swablu lv.31</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Camper Terrell</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Doduo lv.28<br>Pelipper lv.30</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Bird Keeper Will</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Dodrio lv.32</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Bird Keeper Bran</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Pelipper lv.32</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Winona</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Swellow lv.33<br>Pelipper lv.33<br>Skarmory lv.33<br>Altaria lv.35</td>
+                     <td class="light-true">She will give the player TM19 Roost after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

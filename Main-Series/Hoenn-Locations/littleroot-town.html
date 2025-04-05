@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Littleroot Town</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Hoenn Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rse" type="radio" onclick="topButton.call(this)" name="games" value="RSE" checked="checked">
+         <label for="rse" class="right">RSE</label>
+         <input id="oras" type="radio" onclick="topButton.call(this)" name="games" value="ORAS">
+         <label for="oras" class="right">ORAS</label>
+      </div>
+      <h2>Littleroot Town</h2>
+      <div id="notes" class="bottom">
+         <p id="rse-notes" class="rse">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-101.html">Route 101</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Professor Birch's Lab<br>
+            The player character's mother will heal the player's Pokémon when spoken to.
+         </p>
+         <p id="oras-notes" class="oras" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-101.html">Route 101</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Professor Birch's Lab<br>
+            The player character's mother will heal the player's Pokémon when spoken to.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay rse only">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-rse-buttons" class="button-set rse">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-ruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Ruby (Full)">
+                        <label for="pokemon-rse-full-ruby">Ruby (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-ruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Ruby (Compressed)">
+                        <label for="pokemon-rse-compressed-ruby">Ruby (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-sapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Sapphire (Full)">
+                        <label for="pokemon-rse-full-sapphire">Sapphire (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-sapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Sapphire (Compressed)">
+                        <label for="pokemon-rse-compressed-sapphire">Sapphire (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Full)">
+                        <label for="pokemon-rse-full-emerald">Emerald (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Compressed)">
+                        <label for="pokemon-rse-compressed-emerald">Emerald (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Combined (Full)">
+                        <label for="pokemon-rse-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-rse-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Separate (Full)">
+                        <label for="pokemon-rse-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Separate (Compressed)">
+                        <label for="pokemon-rse-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-rse" class="game-container rse">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-rse-gift" class="table-collection gift">
+                  <h4>Gift</h4>
+                  <div id="pokemon-rse-all-combined-gift-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="3">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/chikorita.png" alt="Chikorita"></div>
+                              </td>
+                              <td class="light-false">Chikorita</td>
+                              <td class="light-false">5</td>
+                              <td class="light-false">R</td>
+                              <td class="light-false">S</td>
+                              <td class="emerald-false">E</td>
+                              <td class="light-false">Obtained from Professor Birch after completing the Hoenn Pokédex.<br>Mutually exclusive with Cyndaquil and Totodile.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/cyndaquil.png" alt="Cyndaquil"></div>
+                              </td>
+                              <td class="light-true">Cyndaquil</td>
+                              <td class="light-true">5</td>
+                              <td class="light-true">R</td>
+                              <td class="light-true">S</td>
+                              <td class="emerald-true">E</td>
+                              <td class="light-true">Obtained from Professor Birch after completing the Hoenn Pokédex.<br>Mutually exclusive with Chikorita and Totodile.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/totodile.png" alt="Totodile"></div>
+                              </td>
+                              <td class="light-false">Totodile</td>
+                              <td class="light-false">5</td>
+                              <td class="light-false">R</td>
+                              <td class="light-false">S</td>
+                              <td class="emerald-false">E</td>
+                              <td class="light-false">Obtained from Professor Birch after completing the Hoenn Pokédex.<br>Mutually exclusive with Chikorita and Cyndaquil.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-emerald-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Emerald</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/chikorita.png" alt="Chikorita"></div>
+                              </td>
+                              <td>Chikorita</td>
+                              <td>5</td>
+                              <td>Obtained from Professor Birch after completing the Hoenn Pokédex.<br>Mutually exclusive with Cyndaquil and Totodile.</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/cyndaquil.png" alt="Cyndaquil"></div>
+                              </td>
+                              <td>Cyndaquil</td>
+                              <td>5</td>
+                              <td>Obtained from Professor Birch after completing the Hoenn Pokédex.<br>Mutually exclusive with Chikorita and Totodile.</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/totodile.png" alt="Totodile"></div>
+                              </td>
+                              <td>Totodile</td>
+                              <td>5</td>
+                              <td>Obtained from Professor Birch after completing the Hoenn Pokédex.<br>Mutually exclusive with Chikorita and Cyndaquil.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-rse-items" class="game-container rse">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Potion</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">In the player's PC</td>
+                     <td class="light-false">It is not exclusive to Littleroot Town, but it is first obtainable here.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Pokédex</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Obtained from Professor Birch in his Lab</td>
+                     <td class="light-true">Only after defeating Brendan or May on <a class="location-link" href="route-103.html">Route 103</a>.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Poké Ball (5x)</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from Brendan or May in Professor Birch's Lab</td>
+                     <td class="light-false">Only after receiving the Pokédex.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Running Shoes</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Obtained from the player character's mother outside the player's house</td>
+                     <td class="light-true">Only after receiving the Pokédex.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Amulet Coin</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from the player character's mother</td>
+                     <td class="light-false">Only after defeating Norman in <a class="location-link" href="petalburg-city.html">Petalburg Gym</a>.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">S.S. Ticket</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Obtained from Norman in the player's house</td>
+                     <td class="light-true">Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">National Pokédex</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from Professor Birch in his Lab</td>
+                     <td class="light-false">Only after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-oras-items" class="game-container oras" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">PokéNav Plus</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained upon starting the game</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">AreaNav</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained upon starting the game</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Running Shoes</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained upon starting the game</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained upon starting the game</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Pokédex</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Professor Birch in his Lab</td>
+                     <td class="light-false">Only after defeating Brendan or May on <a class="location-link" href="route-103.html">Route 103</a>.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Poké Ball (10x)</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from Brendan or May in Professor Birch's Lab</td>
+                     <td class="light-true">Only after receiving the Pokédex.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Amulet Coin</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from the player character's mother</td>
+                     <td class="light-false">Only after defeating Norman in <a class="location-link" href="petalburg-city.html">Petalburg Gym</a>.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">National Pokédex</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from Professor Birch in his Lab</td>
+                     <td class="light-true">Only after engaging Groudon/Kyogre.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Mewtwonite X</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">In the southwest part of town</td>
+                     <td class="light-false">Only after engaging Groudon/Kyogre.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Pair of Tickets</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from Norman in the player's house</td>
+                     <td class="light-true">Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">S.S. Ticket</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Norman in the player's house</td>
+                     <td class="light-false">Only after completing the Delta Episode.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Latiasite</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="light-true">AS</td>
+                     <td class="light-true">Obtained from the player's mother</td>
+                     <td class="light-true">Only after completing the Delta Episode.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Latiosite</td>
+                     <td class="light-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from the player's mother</td>
+                     <td class="light-false">Only after completing the Delta Episode.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Oval Charm</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from Professor Birch in his Lab</td>
+                     <td class="light-true">Only after completing the Hoenn Pokédex.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Shiny Charm</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Professor Birch in his Lab</td>
+                     <td class="light-false">Only after completing the National Pokédex.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

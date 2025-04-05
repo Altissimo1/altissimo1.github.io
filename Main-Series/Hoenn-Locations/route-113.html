@@ -1,0 +1,2550 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Route 113</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Hoenn Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rse" type="radio" onclick="topButton.call(this)" name="games" value="RSE" checked="checked">
+         <label for="rse" class="right">RSE</label>
+         <input id="oras" type="radio" onclick="topButton.call(this)" name="games" value="ORAS">
+         <label for="oras" class="right">ORAS</label>
+      </div>
+      <h2>Route 113</h2>
+      <div id="notes" class="bottom">
+         <p id="rse-notes" class="rse">
+            <strong>Access to:</strong><br>
+            West: <a class="location-link" href="fallarbor-town.html">Fallarbor Town</a><br>
+            East: <a class="location-link" href="route-111.html">Route 111</a>
+         </p>
+         <p id="oras-notes" class="oras" style="display:none;">
+            <strong>Access to:</strong><br>
+            West: <a class="location-link" href="fallarbor-town.html">Fallarbor Town</a><br>
+            East: <a class="location-link" href="route-111.html">Route 111</a>
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-rse-buttons" class="button-set rse">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-ruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Ruby (Full)">
+                        <label for="pokemon-rse-full-ruby">Ruby (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-ruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Ruby (Compressed)">
+                        <label for="pokemon-rse-compressed-ruby">Ruby (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-sapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Sapphire (Full)">
+                        <label for="pokemon-rse-full-sapphire">Sapphire (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-sapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Sapphire (Compressed)">
+                        <label for="pokemon-rse-compressed-sapphire">Sapphire (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Full)">
+                        <label for="pokemon-rse-full-emerald">Emerald (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Compressed)">
+                        <label for="pokemon-rse-compressed-emerald">Emerald (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Combined (Full)">
+                        <label for="pokemon-rse-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-rse-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Separate (Full)">
+                        <label for="pokemon-rse-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Separate (Compressed)">
+                        <label for="pokemon-rse-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-oras-buttons" class="button-set oras" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-omegaruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Omega Ruby (Full)">
+                        <label for="pokemon-oras-full-omegaruby">Omega Ruby (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-omegaruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Omega Ruby (Compressed)">
+                        <label for="pokemon-oras-compressed-omegaruby">Omega Ruby (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-alphasapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Alpha Sapphire (Full)">
+                        <label for="pokemon-oras-full-alphasapphire">Alpha Sapphire (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-alphasapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Alpha Sapphire (Compressed)">
+                        <label for="pokemon-oras-compressed-alphasapphire">Alpha Sapphire (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Combined (Full)">
+                        <label for="pokemon-oras-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-oras-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Separate (Full)">
+                        <label for="pokemon-oras-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Separate (Compressed)">
+                        <label for="pokemon-oras-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-rse" class="game-container rse">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Spinda have a 5% chance of holding a Chesto Berry.</li>
+                  <li>Wild Sandshrew have a 5% chance of holding a Quick Claw.</li>
+               </ul>
+               <div id="pokemon-rse-walking" class="table-collection walking">
+                  <h4>Walking</h4>
+                  <div id="pokemon-rse-full-ruby-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Ruby (Full)</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-sapphire-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Sapphire (Full)</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-emerald-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Emerald (Full)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/slugma.png" alt="Slugma"></div>
+                              </td>
+                              <td>Slugma</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/slugma.png" alt="Slugma"></div>
+                              </td>
+                              <td>Slugma</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/slugma.png" alt="Slugma"></div>
+                              </td>
+                              <td>Slugma</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-combined-walking-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="ruby-true" colspan="3">Ruby</th>
+                              <th class="sapphire-true" colspan="3">Sapphire</th>
+                              <th class="emerald-true" colspan="3">Emerald</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">20%</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="ruby-false">Spinda</td>
+                              <td class="ruby-false">lv. 15</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="sapphire-false">Spinda</td>
+                              <td class="sapphire-false">lv. 15</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="emerald-false">Spinda</td>
+                              <td class="emerald-false">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">20%</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="ruby-true">Spinda</td>
+                              <td class="ruby-true">lv. 15</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="sapphire-true">Spinda</td>
+                              <td class="sapphire-true">lv. 15</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="emerald-true">Spinda</td>
+                              <td class="emerald-true">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">10%</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="ruby-false">Sandshrew</td>
+                              <td class="ruby-false">lv. 15</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="sapphire-false">Sandshrew</td>
+                              <td class="sapphire-false">lv. 15</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/slugma.png" alt="Slugma"></div>
+                              </td>
+                              <td class="emerald-false">Slugma</td>
+                              <td class="emerald-false">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="ruby-true">Spinda</td>
+                              <td class="ruby-true">lv. 14</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="sapphire-true">Spinda</td>
+                              <td class="sapphire-true">lv. 14</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="emerald-true">Spinda</td>
+                              <td class="emerald-true">lv. 14</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">10%</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="ruby-false">Spinda</td>
+                              <td class="ruby-false">lv. 14</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="sapphire-false">Spinda</td>
+                              <td class="sapphire-false">lv. 14</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="emerald-false">Spinda</td>
+                              <td class="emerald-false">lv. 14</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">10%</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="ruby-true">Sandshrew</td>
+                              <td class="ruby-true">lv. 14</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="sapphire-true">Sandshrew</td>
+                              <td class="sapphire-true">lv. 14</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/slugma.png" alt="Slugma"></div>
+                              </td>
+                              <td class="emerald-true">Slugma</td>
+                              <td class="emerald-true">lv. 14</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">6</td>
+                              <td class="light-false">5%</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="ruby-false">Spinda</td>
+                              <td class="ruby-false">lv. 16</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="sapphire-false">Spinda</td>
+                              <td class="sapphire-false">lv. 16</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="emerald-false">Spinda</td>
+                              <td class="emerald-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">7</td>
+                              <td class="light-true">5%</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="ruby-true">Sandshrew</td>
+                              <td class="ruby-true">lv. 16</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="sapphire-true">Sandshrew</td>
+                              <td class="sapphire-true">lv. 16</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/slugma.png" alt="Slugma"></div>
+                              </td>
+                              <td class="emerald-true">Slugma</td>
+                              <td class="emerald-true">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">8</td>
+                              <td class="light-false">4%</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="ruby-false">Spinda</td>
+                              <td class="ruby-false">lv. 16</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="sapphire-false">Spinda</td>
+                              <td class="sapphire-false">lv. 16</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="emerald-false">Spinda</td>
+                              <td class="emerald-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">9</td>
+                              <td class="light-true">4%</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="ruby-true">Skarmory</td>
+                              <td class="ruby-true">lv. 16</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="sapphire-true">Skarmory</td>
+                              <td class="sapphire-true">lv. 16</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="emerald-true">Skarmory</td>
+                              <td class="emerald-true">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">10</td>
+                              <td class="light-false">1%</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="ruby-false">Spinda</td>
+                              <td class="ruby-false">lv. 16</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="sapphire-false">Spinda</td>
+                              <td class="sapphire-false">lv. 16</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="emerald-false">Spinda</td>
+                              <td class="emerald-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">11</td>
+                              <td class="light-true">1%</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="ruby-true">Skarmory</td>
+                              <td class="ruby-true">lv. 16</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="sapphire-true">Skarmory</td>
+                              <td class="sapphire-true">lv. 16</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="emerald-true">Skarmory</td>
+                              <td class="emerald-true">lv. 16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-ruby-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Ruby (Compressed)</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>70%</td>
+                              <td>14-16</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>25%</td>
+                              <td>14-16</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>5%</td>
+                              <td>16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-sapphire-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Sapphire (Compressed)</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>70%</td>
+                              <td>14-16</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>25%</td>
+                              <td>14-16</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>5%</td>
+                              <td>16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-emerald-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Emerald (Compressed)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>70%</td>
+                              <td>14-16</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/slugma.png" alt="Slugma"></div>
+                              </td>
+                              <td>Slugma</td>
+                              <td>25%</td>
+                              <td>14-16</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>5%</td>
+                              <td>16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-combined-walking-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="ruby-true" colspan="2">Ruby</th>
+                              <th class="sapphire-true" colspan="2">Sapphire</th>
+                              <th class="emerald-true" colspan="2">Emerald</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="light-false">Spinda</td>
+                              <td class="ruby-false">70%</td>
+                              <td class="ruby-false">lv. 14-16</td>
+                              <td class="sapphire-false">70%</td>
+                              <td class="sapphire-false">lv. 14-16</td>
+                              <td class="emerald-false">70%</td>
+                              <td class="emerald-false">lv. 14-16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="light-true">Skarmory</td>
+                              <td class="ruby-true">5%</td>
+                              <td class="ruby-true">lv. 16</td>
+                              <td class="sapphire-true">5%</td>
+                              <td class="sapphire-true">lv. 16</td>
+                              <td class="emerald-true">5%</td>
+                              <td class="emerald-true">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="light-false">Sandshrew</td>
+                              <td class="ruby-false">25%</td>
+                              <td class="ruby-false">lv. 14-16</td>
+                              <td class="sapphire-false">25%</td>
+                              <td class="sapphire-false">lv. 14-16</td>
+                              <td class="light-false" colspan="2">N/A</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/slugma.png" alt="Slugma"></div>
+                              </td>
+                              <td class="light-true">Slugma</td>
+                              <td class="light-true" colspan="2">N/A</td>
+                              <td class="light-true" colspan="2">N/A</td>
+                              <td class="emerald-true">25%</td>
+                              <td class="emerald-true">lv. 14-16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-oras" class="game-container oras" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Sandshrew have a 5% chance of holding a Grip Claw.</li>
+                  <li>Wild Skarmory have a 5% chance of holding a Metal Coat.</li>
+                  <li>Wild Scraggy have a 5% chance of holding a Shed Shell.</li>
+               </ul>
+               <div id="pokemon-oras-walking" class="table-collection walking">
+                  <h4>Walking</h4>
+                  <div id="pokemon-oras-full-omegaruby-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby (Full)</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>0</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>1</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>6</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>7</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>8</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>9</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>10</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>18</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-full-alphasapphire-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire (Full)</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>0</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>1</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>6</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>7</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>8</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>9</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>10</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>18</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-full-combined-walking-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="omegaruby-true" colspan="3">Omega Ruby</th>
+                              <th class="alphasapphire-true" colspan="3">Alpha Sapphire</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">10%</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="omegaruby-false">Spinda</td>
+                              <td class="omegaruby-false">lv. 15</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="alphasapphire-false">Spinda</td>
+                              <td class="alphasapphire-false">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">10%</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="omegaruby-true">Spinda</td>
+                              <td class="omegaruby-true">lv. 16</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="alphasapphire-true">Spinda</td>
+                              <td class="alphasapphire-true">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">10%</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="omegaruby-false">Spinda</td>
+                              <td class="omegaruby-false">lv. 16</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="alphasapphire-false">Spinda</td>
+                              <td class="alphasapphire-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="omegaruby-true">Spinda</td>
+                              <td class="omegaruby-true">lv. 17</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="alphasapphire-true">Spinda</td>
+                              <td class="alphasapphire-true">lv. 17</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">10%</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="omegaruby-false">Spinda</td>
+                              <td class="omegaruby-false">lv. 17</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="alphasapphire-false">Spinda</td>
+                              <td class="alphasapphire-false">lv. 17</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">10%</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="omegaruby-true">Spinda</td>
+                              <td class="omegaruby-true">lv. 18</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="alphasapphire-true">Spinda</td>
+                              <td class="alphasapphire-true">lv. 18</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">6</td>
+                              <td class="light-false">10%</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="omegaruby-false">Sandshrew</td>
+                              <td class="omegaruby-false">lv. 15</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="alphasapphire-false">Sandshrew</td>
+                              <td class="alphasapphire-false">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">7</td>
+                              <td class="light-true">10%</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="omegaruby-true">Sandshrew</td>
+                              <td class="omegaruby-true">lv. 16</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="alphasapphire-true">Sandshrew</td>
+                              <td class="alphasapphire-true">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">8</td>
+                              <td class="light-false">10%</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="omegaruby-false">Sandshrew</td>
+                              <td class="omegaruby-false">lv. 17</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="alphasapphire-false">Sandshrew</td>
+                              <td class="alphasapphire-false">lv. 17</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">9</td>
+                              <td class="light-true">5%</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="omegaruby-true">Sandshrew</td>
+                              <td class="omegaruby-true">lv. 18</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="alphasapphire-true">Sandshrew</td>
+                              <td class="alphasapphire-true">lv. 18</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">10</td>
+                              <td class="light-false">4%</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="omegaruby-false">Skarmory</td>
+                              <td class="omegaruby-false">lv. 16</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="alphasapphire-false">Skarmory</td>
+                              <td class="alphasapphire-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">11</td>
+                              <td class="light-true">1%</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="omegaruby-true">Skarmory</td>
+                              <td class="omegaruby-true">lv. 18</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="alphasapphire-true">Skarmory</td>
+                              <td class="alphasapphire-true">lv. 18</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-omegaruby-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby (Compressed)</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>60%</td>
+                              <td>15-18</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>35%</td>
+                              <td>15-18</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>5%</td>
+                              <td>16, 18</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-alphasapphire-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire (Compressed)</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>60%</td>
+                              <td>15-18</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td>Sandshrew</td>
+                              <td>35%</td>
+                              <td>15-18</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>5%</td>
+                              <td>16, 18</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-combined-walking-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="omegaruby-true" colspan="2">Omega Ruby</th>
+                              <th class="alphasapphire-true" colspan="2">Alpha Sapphire</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="light-false">Spinda</td>
+                              <td class="omegaruby-false">60%</td>
+                              <td class="omegaruby-false">lv. 15-18</td>
+                              <td class="alphasapphire-false">60%</td>
+                              <td class="alphasapphire-false">lv. 15-18</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+                              </td>
+                              <td class="light-true">Sandshrew</td>
+                              <td class="omegaruby-true">35%</td>
+                              <td class="omegaruby-true">lv. 15-18</td>
+                              <td class="alphasapphire-true">35%</td>
+                              <td class="alphasapphire-true">lv. 15-18</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="light-false">Skarmory</td>
+                              <td class="omegaruby-false">5%</td>
+                              <td class="omegaruby-false">lv. 16, 18</td>
+                              <td class="alphasapphire-false">5%</td>
+                              <td class="alphasapphire-false">lv. 16, 18</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-oras-dexnav" class="table-collection dexnav">
+                  <h4>DexNav</h4>
+                  <p class="oras">These Pokémon can only be found after the player engages Groudon/Kyogre.</p>
+                  <div id="pokemon-oras-all-combined-dexnav-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/scraggy.png" alt="Scraggy"></div>
+                              </td>
+                              <td class="light-false">Scraggy</td>
+                              <td class="light-false">18</td>
+                              <td class="omegaruby-false">OR</td>
+                              <td class="alphasapphire-false">AS</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-6/klefki.png" alt="Klefki"></div>
+                              </td>
+                              <td class="light-true">Klefki</td>
+                              <td class="light-true">18</td>
+                              <td class="omegaruby-true">OR</td>
+                              <td class="alphasapphire-true">AS</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/bouffalant.png" alt="Bouffalant"></div>
+                              </td>
+                              <td class="light-false">Bouffalant</td>
+                              <td class="light-false">18</td>
+                              <td class="omegaruby-false">OR</td>
+                              <td class="alphasapphire-false">AS</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-omegaruby-dexnav-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/scraggy.png" alt="Scraggy"></div>
+                              </td>
+                              <td>Scraggy</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-6/klefki.png" alt="Klefki"></div>
+                              </td>
+                              <td>Klefki</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/bouffalant.png" alt="Bouffalant"></div>
+                              </td>
+                              <td>Bouffalant</td>
+                              <td>18</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-alphasapphire-dexnav-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/scraggy.png" alt="Scraggy"></div>
+                              </td>
+                              <td>Scraggy</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-6/klefki.png" alt="Klefki"></div>
+                              </td>
+                              <td>Klefki</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/bouffalant.png" alt="Bouffalant"></div>
+                              </td>
+                              <td>Bouffalant</td>
+                              <td>18</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-oras-horde" class="table-collection horde">
+                  <h4>Horde</h4>
+                  <div id="pokemon-oras-all-combined-horde-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon #1</th>
+                              <th>Level</th>
+                              <th colspan="2">Pokémon #2</th>
+                              <th>Level</th>
+                              <th colspan="2">Pokémon #3</th>
+                              <th>Level</th>
+                              <th colspan="2">Pokémon #4</th>
+                              <th>Level</th>
+                              <th colspan="2">Pokémon #5</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">60%</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="light-false">Spinda</td>
+                              <td class="light-false">9</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="light-false">Spinda</td>
+                              <td class="light-false">9</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="light-false">Spinda</td>
+                              <td class="light-false">9</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="light-false">Spinda</td>
+                              <td class="light-false">9</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="light-false">Spinda</td>
+                              <td class="light-false">9</td>
+                              <td class="omegaruby-false">OR</td>
+                              <td class="alphasapphire-false">AS</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">35%</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="light-true">Spinda</td>
+                              <td class="light-true">9</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="light-true">Spinda</td>
+                              <td class="light-true">9</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="light-true">Spinda</td>
+                              <td class="light-true">9</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="light-true">Spinda</td>
+                              <td class="light-true">9</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td class="light-true">Spinda</td>
+                              <td class="light-true">9</td>
+                              <td class="omegaruby-true">OR</td>
+                              <td class="alphasapphire-true">AS</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">5%</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="light-false">Skarmory</td>
+                              <td class="light-false">9</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="light-false">Skarmory</td>
+                              <td class="light-false">9</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="light-false">Skarmory</td>
+                              <td class="light-false">9</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="light-false">Skarmory</td>
+                              <td class="light-false">9</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td class="light-false">Skarmory</td>
+                              <td class="light-false">9</td>
+                              <td class="omegaruby-false">OR</td>
+                              <td class="alphasapphire-false">AS</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-omegaruby-horde-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon #1</th>
+                              <th>Level</th>
+                              <th colspan="2">Pokémon #2</th>
+                              <th>Level</th>
+                              <th colspan="2">Pokémon #3</th>
+                              <th>Level</th>
+                              <th colspan="2">Pokémon #4</th>
+                              <th>Level</th>
+                              <th colspan="2">Pokémon #5</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>60%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>35%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>9</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-alphasapphire-horde-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon #1</th>
+                              <th>Level</th>
+                              <th colspan="2">Pokémon #2</th>
+                              <th>Level</th>
+                              <th colspan="2">Pokémon #3</th>
+                              <th>Level</th>
+                              <th colspan="2">Pokémon #4</th>
+                              <th>Level</th>
+                              <th colspan="2">Pokémon #5</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>60%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>35%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/spinda.png" alt="Spinda"></div>
+                              </td>
+                              <td>Spinda</td>
+                              <td>9</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>9</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+                              </td>
+                              <td>Skarmory</td>
+                              <td>9</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-rse-items" class="game-container rse">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ether</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">On the first ledge from the east</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Nugget</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">On the first ledge from the east</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Repel</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">On the first ledge from the east</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Ether</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">On the middle ledge</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM32 Double Team</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">North of the westernmost grass patch</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Soot Sack</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Obtained from the boss of the Glass Workshop</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Hyper Potion</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">At the edge of the soot near the farmland to the west</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Glass Workshop</h4>
+            <p class="rse">At the Glass Workshop, the boss can turn soot collected from walking on Route 113 into glass objects. Stepping on a single sooty grass tile provides the player with one unit of soot. The units needed to make each item are shown below.</p>
+            <table>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Units</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Blue Flute</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Red Flute</td>
+                     <td>500</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Yellow Flute</td>
+                     <td>500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Black Flute</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>White Flute</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Pretty Desk</td>
+                     <td>8000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Pretty Chair</td>
+                     <td>6000</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-oras-items" class="game-container oras" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ether</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">In the soot pile next to the Trainer Tips sign</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Repel</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Under a soot pile near the first ledge from the east</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM32 Double Team</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">North of Parasol Lady Madeline</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Ether</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">In a soot pile in front of the Glass Workshop</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Nugget</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">In a soot pile south of the Glass Workshop</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Soot Sack</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from the boss of the Glass Workshop</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Hyper Potion</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">In the soot pile north of Ninja Boy Lung</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Glass Workshop</h4>
+            <p class="oras">At the Glass Workshop, the boss can turn soot collected from walking on Route 113 into glass objects. Sooty tiles can provide between 5-15 grams or 30-60 grams. The grams needed to make each item are shown below.</p>
+            <table>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Units</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Blue Flute</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Red Flute</td>
+                     <td>500</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Yellow Flute</td>
+                     <td>500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Black Flute</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>White Flute</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Elegant Desk</td>
+                     <td>8000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Elegant Chair</td>
+                     <td>6000</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>PokéNav</h4>
+            <p class="oras">Ninja Boy Lao will sometimes offer a Revive after he is defeated in a rematch.<br>
+               Parasol Lady Madeline will sometimes offer a Max Repel after she is defeated in a rematch.
+            </p>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-rse-trainers" class="game-container rse">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Youngster Neal</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Trapinch lv.18<br>Linoone lv.20</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Youngster Jaylen</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Trapinch lv.19</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ninja Boy Lao</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Koffing lv.17<br>Koffing lv.17<br>Koffing lv.17<br>Koffing lv.19</td>
+                     <td class="light-false">The player can register him in the PokéNav after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Camper Lawrence</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Baltoy lv.18<br>Sandshrew lv.18</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Ninja Boy Lung.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ninja Boy Lung</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Koffing lv.18<br>Ninjask lv.18</td>
+                     <td class="light-false">He can potentially be battled in a Double Battle with Camper Lawrence or Pokémaniac Wyatt.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Pokémaniac Wyatt</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Aron lv.18<br>Aron lv.18</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Ninja Boy Lung.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parasol Lady Madeline</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Numel lv.20</td>
+                     <td class="light-false">The player can register her in the PokéNav after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Parasol Lady Madeline</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Numel lv.19</td>
+                     <td class="light-true">The player can register her in the PokéNav after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Twins Tori & Tia</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Whismur lv.20<br>Whismur lv.20</td>
+                     <td class="light-false">This is a Double Battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Twins Tori & Tia</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Spinda lv.19<br>Spinda lv.19</td>
+                     <td class="light-true">This is a Double Battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ninja Boy Lung</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Nincada lv.19<br>Ninjask lv.19</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ninja Boy Lao</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Koffing lv.17<br>Koffing lv.17<br>Koffing lv.17</td>
+                     <td class="light-true">The player can register him in the PokéNav after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Youngster Dillon</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Aron lv.20</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Youngster Dillon</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Aron lv.19</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Picnicker Sophie</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Marill lv.17<br>Lombre lv.19</td>
+                     <td class="light-false">She can potentially be battled in a Double Battle with Bird Keeper Coby.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Bird Keeper Coby</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Skarmory lv.17<br>Swellow lv.19</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Picnicker Sophie.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rematches</h4>
+            <p class="rse">All rematches only become available after the player defeats Norman in <a class="location-link" href="petalburg-city.html">Petalburg Gym</a>.</p>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Trainers (Rematches)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ninja Boy Lao</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Koffing lv.24<br>Koffing lv.24<br>Koffing lv.24<br>Koffing lv.26</td>
+                     <td class="light-false">First rematch.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ninja Boy Lao</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Koffing lv.27<br>Koffing lv.27<br>Koffing lv.27<br>Koffing lv.29</td>
+                     <td class="light-true">Second rematch.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ninja Boy Lao</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Koffing lv.30<br>Koffing lv.30<br>Koffing lv.30<br>Koffing lv.32</td>
+                     <td class="light-false">Third rematch.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ninja Boy Lao</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Koffing lv.33<br>Koffing lv.33<br>Koffing lv.33<br>Weezing lv.35</td>
+                     <td class="light-true">Fourth rematch. His Weezing holds a Smoke Ball.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parasol Lady Madeline</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Numel lv.27</td>
+                     <td class="light-false">First rematch.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Parasol Lady Madeline</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Numel lv.29</td>
+                     <td class="light-true">First rematch.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parasol Lady Madeline</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Numel lv.30</td>
+                     <td class="light-false">Second rematch.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Parasol Lady Madeline</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Numel lv.32</td>
+                     <td class="light-true">Second rematch.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parasol Lady Madeline</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Roselia lv.32<br>Numel lv.32</td>
+                     <td class="light-false">Third rematch.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Parasol Lady Madeline</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Roselia lv.34<br>Numel lv.34</td>
+                     <td class="light-true">Third rematch.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parasol Lady Madeline</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Roselia lv.35<br>Camerupt lv.35</td>
+                     <td class="light-false">Fourth rematch.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Parasol Lady Madeline</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Roselia lv.37<br>Camerupt lv.37</td>
+                     <td class="light-true">Fourth rematch.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-oras-trainers" class="game-container oras" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Youngster Neal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Trapinch lv.19<br>Electrike lv.19</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Fairy Tale Girl Franny</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Kirlia lv.22</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ninja Boy Lao</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Koffing lv.16<br>Koffing lv.17<br>Koffing lv.18</td>
+                     <td class="light-false">The player can register him in the PokéNav after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Parasol Lady Madeline</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Numel lv.22</td>
+                     <td class="light-true">The player can register her in the PokéNav after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Youngster Dillion</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Aron lv.21</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ninja Boy Lung</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Nincada lv.18<br>Ninjask lv.20</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rematches</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Trainers (Rematches)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ninja Boy Lao</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Koffing lv.22<br>Koffing lv.23<br>Koffing lv.24</td>
+                     <td class="light-false">Only after defeating Flannery in <a class="location-link" href="lavaridge-town.html">Lavaridge Gym</a>.<br>He may give the player a Revive after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ninja Boy Lao</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Koffing lv.29<br>Koffing lv.30<br>Koffing lv.31</td>
+                     <td class="light-true">Only after defeating Winona in <a class="location-link" href="fortree-city.html">Fortree Gym</a>.<br>He may give the player a Revive after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ninja Boy Lao</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Weezing lv.40<br>Weezing lv.41<br>Weezing lv.42</td>
+                     <td class="light-false">Only after defeating Wallace in <a class="location-link" href="sootopolis-city.html">Sootopolis Gym</a>.<br>He may give the player a Revive after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ninja Boy Lao</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Weezing lv.46<br>Weezing lv.47<br>Weezing lv.48</td>
+                     <td class="light-true">Only after defeating the Elite Four.<br>He may give the player a Revive after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parasol Lady Madeline</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Numel lv.27</td>
+                     <td class="light-false">Only after defeating Flannery in Lavaridge Gym.<br>She may give the player a Max Repel after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Parasol Lady Madeline</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Staryu lv.31<br>Spheal lv.31<br>Numel lv.31</td>
+                     <td class="light-true">Only after defeating Winona in Fortree Gym.<br>Sge may give the player a Max Repel after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parasol Lady Madeline</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Starmie lv.42<br>Sealeo lv.42<br>Camerupt lv.42</td>
+                     <td class="light-false">Only after defeating Wallace in Sootopolis Gym.<br>She may give the player a Max Repel after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Parasol Lady Madeline</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Starmie lv.48<br>Walrein lv.48<br>Camerupt lv.48</td>
+                     <td class="light-true">Only after defeating the Elite Four.<br>She may give the player a Max Repel after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

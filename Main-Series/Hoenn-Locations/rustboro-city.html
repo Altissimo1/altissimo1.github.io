@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Rustboro City</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Hoenn Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rse" type="radio" onclick="topButton.call(this)" name="games" value="RSE" checked="checked">
+         <label for="rse" class="right">RSE</label>
+         <input id="oras" type="radio" onclick="topButton.call(this)" name="games" value="ORAS">
+         <label for="oras" class="right">ORAS</label>
+      </div>
+      <h2>Rustboro City</h2>
+      <div id="notes" class="bottom">
+         <p id="rse-notes" class="rse">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-115.html">Route 115</a><br>
+            South: <a class="location-link" href="route-104.html">Route 104</a><br>
+            East: <a class="location-link" href="route-116.html">Route 116</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Devon Corporation<br>
+            Trainers' School<br>
+            Walda's House: In Emerald, the player can say a passphrase to a sick girl named Walda to receive a custom wallpaper. The details about the possible wallpapers are located <a href="https://bulbapedia.bulbagarden.net/wiki/Walda#Custom_wallpaper">here</a>, and a generator to create the passphrases is located <a href="https://www.pokewiki.de/Spezial:Geheimcode-Generator?uselang=en">here</a>.<br>
+            Rustboro Gym: The first Gym. It specializes in Rock-types.<br><br>
+         </p>
+         <p id="oras-notes" class="oras" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-115.html">Route 115</a><br>
+            South: <a class="location-link" href="route-104.html">Route 104</a><br>
+            East: <a class="location-link" href="route-116.html">Route 116</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            Devon Corporation<br>
+            Trainers' School<br>
+            Rustboro Gym: The first Gym. It specializes in Rock-types.<br><br>
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-rse-buttons" class="button-set rse">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-ruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Ruby (Full)">
+                        <label for="pokemon-rse-full-ruby">Ruby (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-ruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Ruby (Compressed)">
+                        <label for="pokemon-rse-compressed-ruby">Ruby (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-sapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Sapphire (Full)">
+                        <label for="pokemon-rse-full-sapphire">Sapphire (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-sapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Sapphire (Compressed)">
+                        <label for="pokemon-rse-compressed-sapphire">Sapphire (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Full)">
+                        <label for="pokemon-rse-full-emerald">Emerald (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Compressed)">
+                        <label for="pokemon-rse-compressed-emerald">Emerald (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Combined (Full)">
+                        <label for="pokemon-rse-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-rse-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Separate (Full)">
+                        <label for="pokemon-rse-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Separate (Compressed)">
+                        <label for="pokemon-rse-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-oras-buttons" class="button-set oras" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-omegaruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Omega Ruby (Full)">
+                        <label for="pokemon-oras-full-omegaruby">Omega Ruby (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-omegaruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Omega Ruby (Compressed)">
+                        <label for="pokemon-oras-compressed-omegaruby">Omega Ruby (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-alphasapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Alpha Sapphire (Full)">
+                        <label for="pokemon-oras-full-alphasapphire">Alpha Sapphire (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-alphasapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Alpha Sapphire (Compressed)">
+                        <label for="pokemon-oras-compressed-alphasapphire">Alpha Sapphire (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Combined (Full)">
+                        <label for="pokemon-oras-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-oras-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Separate (Full)">
+                        <label for="pokemon-oras-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Separate (Compressed)">
+                        <label for="pokemon-oras-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-rse" class="game-container rse">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-rse-gift" class="table-collection gift">
+                  <h4>Gift</h4>
+                  <p class="rse">Any Root or Claw Fossil can be revived on the second floor of Devon Corporation.</p>
+                  <div id="pokemon-rse-all-combined-gift-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="3">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lileep.png" alt="Lileep"></div>
+                              </td>
+                              <td class="light-false">Lileep</td>
+                              <td class="light-false">20</td>
+                              <td class="ruby-false">R</td>
+                              <td class="sapphire-false">S</td>
+                              <td class="emerald-false">E</td>
+                              <td class="light-false">Can be revived from a Root Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/anorith.png" alt="Anorith"></div>
+                              </td>
+                              <td class="light-true">Anorith</td>
+                              <td class="light-true">20</td>
+                              <td class="ruby-true">R</td>
+                              <td class="sapphire-true">S</td>
+                              <td class="emerald-true">E</td>
+                              <td class="light-true">Can be revived from a Claw Fossil in Devon Corporation.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-ruby-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Ruby</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lileep.png" alt="Lileep"></div>
+                              </td>
+                              <td>Ruby</td>
+                              <td>20</td>
+                              <td>Can be revived from a Root Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/anorith.png" alt="Anorith"></div>
+                              </td>
+                              <td>Anorith</td>
+                              <td>20</td>
+                              <td>Can be revived from a Claw Fossil in Devon Corporation.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-sapphire-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Sapphire</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lileep.png" alt="Lileep"></div>
+                              </td>
+                              <td>Ruby</td>
+                              <td>20</td>
+                              <td>Can be revived from a Root Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/anorith.png" alt="Anorith"></div>
+                              </td>
+                              <td>Anorith</td>
+                              <td>20</td>
+                              <td>Can be revived from a Claw Fossil in Devon Corporation.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-emerald-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Emerald</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lileep.png" alt="Lileep"></div>
+                              </td>
+                              <td>Ruby</td>
+                              <td>20</td>
+                              <td>Can be revived from a Root Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/anorith.png" alt="Anorith"></div>
+                              </td>
+                              <td>Anorith</td>
+                              <td>20</td>
+                              <td>Can be revived from a Claw Fossil in Devon Corporation.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-rse-trade" class="table-collection trade">
+                  <h4>Trade</h4>
+                  <div id="pokemon-rse-all-combined-trade-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th colspan="3">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/slakoth.png" alt="Slakoth"></div>
+                              </td>
+                              <td class="light-false">Slakoth</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/makuhita.png" alt="Makuhita"></div>
+                              </td>
+                              <td class="light-false">Makuhita</td>
+                              <td class="ruby-false">R</td>
+                              <td class="sapphire-false">S</td>
+                              <td class="light-false">E</td>
+                              <td class="light-false">Makuhita holds an X Attack.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/ralts.png" alt="Ralts"></div>
+                              </td>
+                              <td class="light-true">Ralts</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/seedot.png" alt="Seedot"></div>
+                              </td>
+                              <td class="light-true">Seedot</td>
+                              <td class="light-true">R</td>
+                              <td class="light-true">S</td>
+                              <td class="emerald-true">E</td>
+                              <td class="light-true">Seedot holds a Chesto Berry.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-ruby-trade-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Ruby</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/slakoth.png" alt="Slakoth"></div>
+                              </td>
+                              <td>Slakoth</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/makuhita.png" alt="Makuhita"></div>
+                              </td>
+                              <td>Makuhita</td>
+                              <td>Makuhita holds an X Attack.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-sapphire-trade-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Sapphire</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/slakoth.png" alt="Slakoth"></div>
+                              </td>
+                              <td>Slakoth</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/makuhita.png" alt="Makuhita"></div>
+                              </td>
+                              <td>Makuhita</td>
+                              <td>Makuhita holds an X Attack.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-emerald-trade-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Emerald</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/ralts.png" alt="Ralts"></div>
+                              </td>
+                              <td>Ralts</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/seedot.png" alt="Seedot"></div>
+                              </td>
+                              <td>Seedot</td>
+                              <td>Seedot holds a Chesto Berry.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-oras" class="game-container oras" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-oras-gift" class="table-collection gift">
+                  <h4>Gift</h4>
+                  <p class="oras">All Fossils can be revived on the second floor of Devon Corporation. However, Dome, Armor, and Plume Fossils can only be found naturally in Omega Ruby, while Helix, Skull, and Cover Fossils can only be found naturally in Alpha Sapphire. Old Amber can be found in both games. A Root and Claw Fossil can be found in both games, but only one may be chosen. Jaw and Sail Fossils cannot be found in either game, and must be transferred from X or Y.</p>
+                  <div id="pokemon-oras-all-combined-gift-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/omanyte.png" alt="Omanyte"></div>
+                              </td>
+                              <td class="light-false">Omanyte</td>
+                              <td class="light-false">20</td>
+                              <td class="omegaruby-false">HG</td>
+                              <td class="alphasapphire-false">SS</td>
+                              <td class="light-false">Can be revived from a Helix Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/kabuto.png" alt="Kabuto"></div>
+                              </td>
+                              <td class="light-true">Kabuto</td>
+                              <td class="light-true">20</td>
+                              <td class="omegaruby-true">HG</td>
+                              <td class="alphasapphire-true">SS</td>
+                              <td class="light-true">Can be revived from a Dome Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/aerodactyl.png" alt="Aerodactyl"></div>
+                              </td>
+                              <td class="light-false">Aerodactyl</td>
+                              <td class="light-false">20</td>
+                              <td class="omegaruby-false">HG</td>
+                              <td class="alphasapphire-false">SS</td>
+                              <td class="light-false">Can be revived from an Old Amber in Devon Corporation.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lileep.png" alt="Lileep"></div>
+                              </td>
+                              <td class="light-true">Lileep</td>
+                              <td class="light-true">20</td>
+                              <td class="omegaruby-true">HG</td>
+                              <td class="alphasapphire-true">SS</td>
+                              <td class="light-true">Can be revived from a Root Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/anorith.png" alt="Anorith"></div>
+                              </td>
+                              <td class="light-false">Anorith</td>
+                              <td class="light-false">20</td>
+                              <td class="omegaruby-false">HG</td>
+                              <td class="alphasapphire-false">SS</td>
+                              <td class="light-false">Can be revived from a Claw Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/cranidos.png" alt="Cranidos"></div>
+                              </td>
+                              <td class="light-true">Cranidos</td>
+                              <td class="light-true">20</td>
+                              <td class="omegaruby-true">HG</td>
+                              <td class="alphasapphire-true">SS</td>
+                              <td class="light-true">Can be revived from a Skull Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shieldon.png" alt="Shieldon"></div>
+                              </td>
+                              <td class="light-false">Shieldon</td>
+                              <td class="light-false">20</td>
+                              <td class="omegaruby-false">HG</td>
+                              <td class="alphasapphire-false">SS</td>
+                              <td class="light-false">Can be revived from an Armor Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/tirtouga.png" alt="Tirtouga"></div>
+                              </td>
+                              <td class="light-true">Tirtouga</td>
+                              <td class="light-true">20</td>
+                              <td class="omegaruby-true">HG</td>
+                              <td class="alphasapphire-true">SS</td>
+                              <td class="light-true">Can be revived from a Cover Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/archen.png" alt="Archen"></div>
+                              </td>
+                              <td class="light-false">Archen</td>
+                              <td class="light-false">20</td>
+                              <td class="omegaruby-false">HG</td>
+                              <td class="alphasapphire-false">SS</td>
+                              <td class="light-false">Can be revived from a Plume Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-6/tyrunt.png" alt="Tyrunt"></div>
+                              </td>
+                              <td class="light-true">Tyrunt</td>
+                              <td class="light-true">20</td>
+                              <td class="omegaruby-true">HG</td>
+                              <td class="alphasapphire-true">SS</td>
+                              <td class="light-true">Can be revived from a Jaw Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-6/amaura.png" alt="Amaura"></div>
+                              </td>
+                              <td class="light-false">Amaura</td>
+                              <td class="light-false">20</td>
+                              <td class="omegaruby-false">HG</td>
+                              <td class="alphasapphire-false">SS</td>
+                              <td class="light-false">Can be revived from a Sail Fossil in Devon Corporation.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-omegaruby-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/omanyte.png" alt="Omanyte"></div>
+                              </td>
+                              <td>Omanyte</td>
+                              <td>20</td>
+                              <td>Can be revived from a Helix Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/kabuto.png" alt="Kabuto"></div>
+                              </td>
+                              <td>Kabuto</td>
+                              <td>20</td>
+                              <td>Can be revived from a Dome Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/aerodactyl.png" alt="Aerodactyl"></div>
+                              </td>
+                              <td>Aerodactyl</td>
+                              <td>20</td>
+                              <td>Can be revived from an Old Amber in Devon Corporation.</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lileep.png" alt="Lileep"></div>
+                              </td>
+                              <td>Lileep</td>
+                              <td>20</td>
+                              <td>Can be revived from a Root Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/anorith.png" alt="Anorith"></div>
+                              </td>
+                              <td>Anorith</td>
+                              <td>20</td>
+                              <td>Can be revived from a Claw Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/cranidos.png" alt="Cranidos"></div>
+                              </td>
+                              <td>Cranidos</td>
+                              <td>20</td>
+                              <td>Can be revived from a Skull Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shieldon.png" alt="Shieldon"></div>
+                              </td>
+                              <td>Shieldon</td>
+                              <td>20</td>
+                              <td>Can be revived from an Armor Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/tirtouga.png" alt="Tirtouga"></div>
+                              </td>
+                              <td>Tirtouga</td>
+                              <td>20</td>
+                              <td>Can be revived from a Cover Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/archen.png" alt="Archen"></div>
+                              </td>
+                              <td>Archen</td>
+                              <td>20</td>
+                              <td>Can be revived from a Plume Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-6/tyrunt.png" alt="Tyrunt"></div>
+                              </td>
+                              <td>Tyrunt</td>
+                              <td>20</td>
+                              <td>Can be revived from a Jaw Fossil in Devon Corporation.</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-6/amaura.png" alt="Amaura"></div>
+                              </td>
+                              <td>Amaura</td>
+                              <td>20</td>
+                              <td>Can be revived from a Sail Fossil in Devon Corporation.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-hgss-all-soulsilver-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>SoulSilver</caption>
+                        <thead>
+                           <tr class="soulsilver-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/omanyte.png" alt="Omanyte"></div>
+                              </td>
+                              <td>Omanyte</td>
+                              <td>20</td>
+                              <td>Can be revived from a Helix Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/kabuto.png" alt="Kabuto"></div>
+                              </td>
+                              <td>Kabuto</td>
+                              <td>20</td>
+                              <td>Can be revived from a Dome Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/aerodactyl.png" alt="Aerodactyl"></div>
+                              </td>
+                              <td>Aerodactyl</td>
+                              <td>20</td>
+                              <td>Can be revived from an Old Amber in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lileep.png" alt="Lileep"></div>
+                              </td>
+                              <td>Lileep</td>
+                              <td>20</td>
+                              <td>Can be revived from a Root Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/anorith.png" alt="Anorith"></div>
+                              </td>
+                              <td>Anorith</td>
+                              <td>20</td>
+                              <td>Can be revived from a Claw Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="soulsilver-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/cranidos.png" alt="Cranidos"></div>
+                              </td>
+                              <td>Cranidos</td>
+                              <td>20</td>
+                              <td>Can be revived from a Skull Fossil in the Pewter Museum.</td>
+                           </tr>
+                           <tr class="soulsilver-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shieldon.png" alt="Shieldon"></div>
+                              </td>
+                              <td>Shieldon</td>
+                              <td>20</td>
+                              <td>Can be revived from an Armor Fossil in the Pewter Museum.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-oras-trade" class="table-collection trade">
+                  <h4>Trade</h4>
+                  <div id="pokemon-oras-all-combined-trade-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/slakoth.png" alt="Slakoth"></div>
+                              </td>
+                              <td class="light-false">Slakoth</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/makuhita.png" alt="Makuhita"></div>
+                              </td>
+                              <td class="light-false">Makuhita</td>
+                              <td class="light-false">9</td>
+                              <td class="omegaruby-false">OR</td>
+                              <td class="alphasapphire-false">AS</td>
+                              <td class="light-false">Makuhita holds an X Attack.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-omegaruby-trade-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/slakoth.png" alt="Slakoth"></div>
+                              </td>
+                              <td>Slakoth</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/makuhita.png" alt="Makuhita"></div>
+                              </td>
+                              <td>Makuhita</td>
+                              <td>9</td>
+                              <td>Makuhita holds an X Attack.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-alphasapphire-trade-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th colspan="2">Player's Pokémon</th>
+                              <th colspan="2">Received Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/slakoth.png" alt="Slakoth"></div>
+                              </td>
+                              <td>Slakoth</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/makuhita.png" alt="Makuhita"></div>
+                              </td>
+                              <td>Makuhita</td>
+                              <td>9</td>
+                              <td>Makuhita holds an X Attack.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-rse-items" class="game-container rse">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">X Defend</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Outside of the southeastern fence</td>
+                     <td class="light-false">Accessible from Route 104.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Premier Ball</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Obtained from a boy on the second floor of the southwesternmost building</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">HM01 Cut</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from the Cutter in the house west of the Pokémon Center</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Obtained from the Devon employee</td>
+                     <td class="light-true">Only after retrieving the Devon Goods from <a class="location-link" href="rusturf-tunnel.html">Rusturf Tunnel</a>.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Quick Claw</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from the teacher in the Trainers' School</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Devon Corporation</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items (Devon Corporation)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Letter</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from Mr. Stone</td>
+                     <td class="light-false">Only after retrieving the Devon Goods from Rusturf Tunnel.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">PokéNav</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Obtained from Mr. Stone after receiving the Letter</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Exp. Share</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from Mr. Stone</td>
+                     <td class="light-false">Only after delivering the Letter to Steven in <a class="location-link" href="granite-cave.html">Granite Cave</a>.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rustboro Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items (Rustboro Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM39 Rock Tomb</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from Roxanne</td>
+                     <td class="light-false">Only after defeating her.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <p class="rse">The player will receive a Premier Ball for buying ten or more Poké Balls at once.<br>
+               Timer Balls and Repeat Balls are only sold here after receiving the Repeat Ball from the Devon Corporation employee on Route 116, which in turn only happens after the player delivers the Devon Goods to Captain Stern in <a class="location-link" href="slateport-city.html">Slateport City</a>.
+            </p>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Timer Ball</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">1000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repeat Ball</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">1000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parlyz Heal</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">550</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">350</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Speed</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">350</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Attack</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Defend</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">550</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-oras-items" class="game-container oras" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">X Defense</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Outside of the southeastern fence</td>
+                     <td class="light-false">Accessible from Route 104.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM54 False Swipe</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from the businessman in the Poké Mart</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Float Stone</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from an Ace Trainer on the second floor of the building north of the Pokémon Center</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Premier Ball</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from a boy on the second floor of the building north of the Pokémon Center</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">HM01 Cut</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from the Cutter in the house west of the Pokémon Center</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from the Devon employee</td>
+                     <td class="light-true">Only after retrieving the Devon Parts from <a class="location-link" href="rusturf-tunnel.html">Rusturf Tunnel</a>.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Quick Claw</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from the teacher in the Trainers' School</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Devon Corporation</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Devon Corporation)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">BuzzNav</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Mr. Stone</td>
+                     <td class="light-false">Only after retrieving the Devon Parts from Rusturf Tunnel.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Letter</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from Mr. Stone</td>
+                     <td class="light-true">Only after retrieving the Devon Parts from Rusturf Tunnel.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Pidgeotite</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Recognized by Mr. Stone when he is shown the Intriguing Stone</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rustboro Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Rustboro Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM39 Rock Tomb</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Roxanne</td>
+                     <td class="light-false">Only after defeating her.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Upper vendor</h4>
+            <p class="oras">The player will receive a Premier Ball for every ten Repeat Balls, Timer Balls, or Net Balls they purchase at once.</p>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Repeat Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Timer Ball</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">1000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Net Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1000</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <p class="oras">The player will receive a Premier Ball for every ten Poké Balls, Great Balls, or Ultra Balls they purchase at once.</p>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">200</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">600</td>
+                     <td class="light-true">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1200</td>
+                     <td class="light-false">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">300</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">700</td>
+                     <td class="light-false">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">1200</td>
+                     <td class="light-true">Only after obtaining 2 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2500</td>
+                     <td class="light-false">Only after obtaining 4 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">3000</td>
+                     <td class="light-true">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1500</td>
+                     <td class="light-false">Only after obtaining 2 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">100</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Paralyze Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">200</td>
+                     <td class="light-false">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">250</td>
+                     <td class="light-true">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">250</td>
+                     <td class="light-false">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ice Heal</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">250</td>
+                     <td class="light-true">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">600</td>
+                     <td class="light-false">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">550</td>
+                     <td class="light-true">Only after obtaining 2 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">350</td>
+                     <td class="light-false">Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Repel</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">500</td>
+                     <td class="light-true">Only after obtaining 2 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">700</td>
+                     <td class="light-false">Only after obtaining 3 Badges.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-rse-trainers" class="game-container rse">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Brendan or May</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Elemental 1 lv.13<br>Starter lv.15</td>
+                     <td class="light-false">Only after defeating Roxanne. If the player leaves Rustboro City without exiting through the southern exit, this battle will be available on Route 104 instead.<br>
+                        Elemental 1 is a Pokémon of the same type as the player's starter.<br>If the player is female, this Pokémon will be Lotad, Slugma, or Wingull.<br>If the player is male, this Pokémon will be Lotad, Torkoal, or Wingull.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rustboro Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Trainers (Rustboro Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Youngster Josh</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Geodude lv.10<br>Geodude lv.8<br>Geodude lv.6</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Youngster Josh</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Geodude lv.10</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Youngster Tommy</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Geodude lv.11</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Youngster Tommy</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Geodude lv.8<br>Geodude lv.8</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Hiker Marc.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Hiker Marc</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Geodude lv.8<br>Geodude lv.8</td>
+                     <td class="light-false">He can potentially be battled in a Double Battle with Youngster Tommy.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Roxanne</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="light-true">E</td>
+                     <td class="light-true">Geodude lv.15<br>Nosepass lv.15</td>
+                     <td class="light-true">She can use two Potions during the battle.<br>She will give the player TM39 Rock Tomb after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Roxanne</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Geodude lv.12<br>Geodude lv.12<br>Nosepass lv.15</td>
+                     <td class="light-false">Her Nosepass holds an Oran Berry. She can use two Potions during the battle.<br>She will give the player TM39 Rock Tomb after the battle.<br>The player can register her in the PokéNav after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Gym Leader Rematches</h4>
+            <p class="rse">Rematches are unlocked after the player defeats the Elite Four in Emerald only. The player must defeat all Gym Leaders' first rematch in order to unlock their second rematch. The same holds true for their third and fourth rematches.</p>
+            <table class="left-align">
+               <caption>Emerald Trainers (Gym Leader Rematches)</caption>
+               <thead>
+                  <tr class="emerald-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="emerald-false">
+                     <td>Roxanne</td>
+                     <td>Golem lv.32<br>Kabuto lv.35<br>Onix lv.35<br>Nosepass lv.37</td>
+                     <td>Her Kabuto and Nosepass hold Sitrus Berries. She can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+                  <tr class="emerald-true">
+                     <td>Roxanne</td>
+                     <td>Omanyte lv.37<br>Golem lv.37<br>Kabutops lv.40<br>Onix lv.40<br>Nosepass lv.42</td>
+                     <td>Her Kabutops and Nosepass hold Sitrus Berries. She can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+                  <tr class="emerald-false">
+                     <td>Roxanne</td>
+                     <td>Omastar lv.42<br>Golem lv.42<br>Kabutops lv.45<br>Onix lv.45<br>Nosepass lv.47</td>
+                     <td>Her Kabutops and Nosepass hold Sitrus Berries. She can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+                  <tr class="emerald-true">
+                     <td>Roxanne</td>
+                     <td>Aerodactyl lv.47<br>Golem lv.47<br>Omastar lv.47<br>Kabutops lv.50<br>Steelix lv.50<br>Nosepass lv.52</td>
+                     <td>Her Kabutops and Nosepass hold Sitrus Berries. She can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-oras-trainers" class="game-container oras" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Team Magma/Aqua Grunt</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Mightyena lv.48<br>Golbat lv.50</td>
+                     <td class="light-false">This battle takes place during the Delta Episode.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Team Magma Grunt</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="light-true">AS</td>
+                     <td class="light-true">Weezing lv.51</td>
+                     <td class="light-true">This battle takes place during the Delta Episode.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Team Aqua Grunt</td>
+                     <td class="light-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Muk lv.51</td>
+                     <td class="light-false">This battle takes place during the Delta Episode.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Team Magma Grunt</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="light-true">AS</td>
+                     <td class="light-true">Golbat lv.49<br>Camerupt lv.49</td>
+                     <td class="light-true">This battle takes place during the Delta Episode.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Team Aqua Grunt</td>
+                     <td class="light-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Golbat lv.49<br>Sharpedo lv.49</td>
+                     <td class="light-false">This battle takes place during the Delta Episode.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rustboro Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Youngster Josh</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Geodude lv.7<br>Geodude lv.9</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Youngster Tommy</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Geodude lv.10</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Schoolkid Georgia</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Geodude lv.10</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Roxanne</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Geodude lv.12<br>Nosepass lv.14</td>
+                     <td class="light-true">She will give the player TM39 Rock Tomb after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

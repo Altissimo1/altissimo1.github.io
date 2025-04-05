@@ -139,10 +139,22 @@ function setTopButton() {
 	
 	var game = url.substring(url.indexOf("?") + 1);
 	
+	var bookmark = "";
+	
+	if (game.indexOf("#") > 0) {
+		bookmark = true;
+		bookmark = game.substring(game.indexOf("#") + 1);
+		game = game.substring(0, game.indexOf("#"));
+	}
+	
 	var topButtons = $("input[type=radio][name=games]");
 	
 	topButtons.each(function() {
 		if (this.id == game)
 			$(this).prop("checked", true);
 	});
+	
+	if (bookmark !== "") {		
+		window.location.hash = bookmark;
+	}	
 }

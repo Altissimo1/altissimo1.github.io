@@ -1,0 +1,2702 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Battle Maison</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="../Hoenn-Locations/index.html">Hoenn Locations Home</a> | <a href="../ORAS/index.html">Omega Ruby and Alpha Sapphire Home</a></h4>
+      <h2>Battle Maison</h2>
+      <div id="notes" class="bottom">
+         <p id="oras-notes" class="oras">
+            <strong>Access to:</strong><br>
+            Exit: <a href="../Hoenn-Locations/battle-resort.html">Battle Resort</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Exchange Service Corner
+         </p>
+      </div>
+      <p class="permanent">The Battle Maison is a facility, accessible in X, Y, Omega Ruby, and Alpha Sapphire, where the goal is to defeat Trainers without losing in one of five different modes. Each mode has a leader, known as the Battle Chatelaine, who can be battled after a given number of Trainers have been defeated, without the player losing to any one. Each Battle Chatelaine has two encounters in their mode. Winning the first Battle Chatelaine fight will give the player's Pokémon (only the ones chosen for the challenge) a Skillful Battler Ribbon, and winning the second fight will give the player's Pokémon an Expert Battler Ribbon. Additionally, achieving 100 wins in any mode will allow the player to receive a Lansat Berry, and achieving 200 wins will allow them to receive a Starf Berry.</p>
+      <p class="permanent">Battles conducted in the Maison are subject to restrictions.</p>
+      <ul>
+         <li>The player will not receive money, and their Pokémon will not receive experience. Instead, the player will receive BP, which is used as a currency for purchasable items in the Battle Maison.</li>
+         <li>Enemy Pokémon, and Pokémon used by allied Trainers in Multi Battles, are always level 50. The player's Pokémon above level 50 will be set to level 50, and those below level 50 will not be changed.</li>
+         <li>Set Mode is enforced.</li>
+         <li>Items cannot be used in battle.</li>
+         <li>The moves Return and Frustration, when used by the opponent, will always have their maximum power.</li>
+         <li>Losing a battle will reset the player's streak to 0. Turning off the game mid-battle will count as a loss and reset the streak.</li>
+         <li>Pokémon encountered in battles will not be added to the Pokédex.</li>
+         <li>Enemy Pokémon will always take their Nature, Item, moves, and EVs from predetermined 'sets'.</li>
+         <li>Enemy Pokémon that can have multiple Abilities, including Hidden Abilities, will always have a random Ability. Enemy Pokémon that can be male or female will have their gender randomly determined.</li>
+         <li>The player cannot enter two Pokémon of the same species or holding the same held item, unless they are playing Multis. Playing Multis also allows the player to use two Mega Evolutions across the two Trainers' teams.</li>
+         <li>Any Pokémon holding a Soul Dew cannot enter.</li>
+         <li>Some Pokémon cannot be entered altogether, and will never be encountered on an opponent's team:</li>
+      </ul>
+      <table>
+         <tbody>
+            <tr class="light-true">
+               <td>Mewtwo</td>
+               <td>Mew</td>
+               <td>Lugia</td>
+               <td>Ho-Oh</td>
+               <td>Celebi</td>
+            </tr>
+            <tr class="light-false">
+               <td>Kyogre</td>
+               <td>Groudon</td>
+               <td>Rayquaza</td>
+               <td>Jirachi</td>
+               <td>Deoxys</td>
+            </tr>
+            <tr class="light-true">
+               <td>Dialga</td>
+               <td>Palkia</td>
+               <td>Giratina</td>
+               <td>Phione</td>
+               <td>Manaphy</td>
+            </tr>
+            <tr class="light-false">
+               <td>Darkrai</td>
+               <td>Shaymin</td>
+               <td>Arceus</td>
+               <td>Victini</td>
+               <td>Reshiram</td>
+            </tr>
+            <tr class="light-true">
+               <td>Zekrom</td>
+               <td>Kyurem</td>
+               <td>Keldeo</td>
+               <td>Meloetta</td>
+               <td>Genesect</td>
+            </tr>
+            <tr class="light-false">
+               <td>Xerneas</td>
+               <td>Yveltal</td>
+               <td>Zygarde</td>
+               <td>Diancie</td>
+               <td>Hoopa</td>
+            </tr>
+            <tr class="light-true">
+               <td>Volcanion</td>
+               <td>Eggs</td>
+               <td colspan="3"></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3><u>Resources</u></h3>
+      <ul>
+         <li><a href="../XY/battle-maison-pokemon.html">Pokémon that can appear in the Battle Maison</a></li>
+         <li><a href="../XY/battle-maison-trainers.html">Trainers, and associated Pokémon rosters, that can appear in the Battle Maison</a></li>
+         <li><a href="https://www.smogon.com/forums/threads/battle-maison-discussion-records.3492706/">Smogon's Battle Maison records & discussion topic</a></li>
+         <li><a href="http://turskain.github.io/">turskain's damage calculator</a>, with the possible opposing movesets built in</li>
+         <li><a href="https://www.smogon.com/ingame/bc/maison_part1">Battle Maison Guide</a></li>
+         <li><a href="https://www.smogon.com/forums/threads/battle-maison-discussion-records.3492706/page-67#post-5464799">Battle Maison Guide - Singles</a></li>
+         <li><a href="https://www.smogon.com/forums/threads/battle-maison-discussion-records.3492706/page-94#post-5773172">Battle Maison Guide - Triples</a></li>
+      </ul>
+      <p class="permanent">The teams of the Battle Chatelaines and the amount of BP the player can receive from Maison battles is given <a href="#maison-info">below</a>. The Items and Trainers sections that follow are about the items and trainers that can be found in the Battle Maison building, but not as part of the Maison challenge.</p>
+      <div id="items-container">
+         <div id="pokemon-xy-items" class="game-container xy" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>X and Y Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Skillful Battler Ribbon</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">Obtained on all Pokémon selected for the Maison challenge after defeating the Battle Chatelaine in the Normal Course</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Expert Battler Ribbon</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">Obtained on all Pokémon selected for the Maison challenge after defeating the Battle Chatelaine in the Super Course</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Lansat Berry</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">Obtained from a little girl</td>
+                     <td class="light-false">Only after achieving a 100 battle win streak in any mode.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Starf Berry</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">Obtained from a little girl</td>
+                     <td class="light-true">Only after achieving a 200 battle win streak in any mode.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Exchange Service Corner</h4>
+            <p class="xy">Items here are purchased using BP won through the Battle Maison.</p>
+            <h4>Left vendor</h4>
+            <table class="bold-contents left-align">
+               <caption>X and Y Items (Left vendor)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Protein</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">2BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Calcium</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">2BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Iron</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">2BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Zinc</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">2BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Carbos</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">2BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">HP Up</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">2BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Power Bracer</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Power Belt</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Power Lens</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Power Band</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Power Anklet</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Power Weight</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Toxic Orb</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Flame Orb</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">White Herb</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Power Herb</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Absorb Bulb</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Cell Battery</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Red Card</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Eject Button</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Weakness Policy</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ring Target</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Protector</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Whipped Dream</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Sachet</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Electirizer</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Magmarizer</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Reaper Cloth</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Up-Grade</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Dubious Disc</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Wise Glasses</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Choice Specs</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Scope Lens</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Zoom Lens</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Wide Lens</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Muscle Band</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Focus Band</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Choice Band</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Choice Scarf</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Assault Vest</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Focus Sash</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Razor Claw</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Razor Fang</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Bright Powder</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Life Orb</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Iron Ball</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Air Balloon</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Binding Band</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Safety Goggles</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Rare Candy</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ability Capsule</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">200BP</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Right vendor</h4>
+            <table class="bold-contents left-align">
+               <caption>X and Y Items (Right vendor)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM48 Round</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM59 Incinerate</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM87 Swagger</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">24BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM60 Quash</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">24BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM05 Roar</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">24BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM23 Smack Down</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM34 Sludge Wave</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM51 Steel Wing</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM64 Explosion</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM67 Retaliate</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM72 Volt Switch</td>
+                     <td class="x-false">X</td>
+                     <td class="y-false">Y</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM85 Dream Eater</td>
+                     <td class="x-true">X</td>
+                     <td class="y-true">Y</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-oras-items" class="game-container oras">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Skillful Battler Ribbon</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained on all Pokémon selected for the Maison challenge after defeating the Battle Chatelaine in the Normal Course</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Expert Battler Ribbon</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained on all Pokémon selected for the Maison challenge after defeating the Battle Chatelaine in the Super Course</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ability Capsule</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">There is a 1% chance that the player will receive one after defeating Wally in a rematch</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Exchange Service Corner</h4>
+            <p class="oras">Items here are purchased using BP won through the Battle Maison.</p>
+            <h4>Left vendor</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Left vendor)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Protein</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Calcium</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">2BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Iron</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Zinc</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">2BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Carbos</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">HP Up</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">2BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Power Bracer</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Power Belt</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Power Lens</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Power Band</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Power Anklet</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Power Weight</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Protector</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Whipped Dream</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Sachet</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Electirizer</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Up-Grade</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Dubious Disc</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Magmarizer</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Reaper Cloth</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rare Candy</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ability Capsule</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">200BP</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Right vendor</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Right vendor)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Toxic Orb</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Flame Orb</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">16BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">White Herb</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Power Herb</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Absorb Bulb</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Luminous Moss</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Cell Battery</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Snowball</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Red Card</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Eject Button</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Weakness Policy</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ring Target</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">32BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Wise Glasses</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Choice Specs</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Scope Lens</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Zoom Lens</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Wide Lens</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Muscle Band</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Focus Band</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Choice Band</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Choice Scarf</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Assault Vest</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Focus Sash</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Razor Claw</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Razor Fang</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Bright Powder</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Life Orb</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Iron Ball</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Air Balloon</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Binding Band</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">48BP</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Safety Goggles</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">48BP</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-oras-trainers" class="game-container oras">
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Wally</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Altaria lv.64<br>Delcatty lv.64<br>Roserade lv.64<br>Magnezone lv.64<br>Gallade lv.66 @ Galladite</td>
+                     <td class="light-false">He will appear in the lobby after the player achieves a 50 battle win streak in any mode.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Wally</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Roserade lv.79 @ Bright Powder<br>Talonflame lv.79 @ Life Orb<br>Azumarill lv.79 @ Assault Vest<br>Magnezone lv.79 @ Air Balloon<br>Garchomp lv.79 @ Rocky Helmet<br>Gallade lv.81 @ Galladite</td>
+                     <td class="light-true">Wally will only use this team after the previous team has been defeated.<br>There is a 1% chance that he will give the player an Ability Capsule after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div>
+         <h3 id="maison-info"><u>Maison Challenge Information</u></h3>
+         <h4>Battle Points</h4>
+         <p class="permanent">The player will receive the following amounts of Battle Points for every battle completed.</p>
+         <table>
+            <caption>Normal Course</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Battle(s)</th>
+                  <th>Points</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td>1-10</td>
+                  <td>1</td>
+               </tr>
+               <tr class="light-true">
+                  <td>11-19</td>
+                  <td>2</td>
+               </tr>
+               <tr class="light-false">
+                  <td>20</td>
+                  <td>20</td>
+               </tr>
+            </tbody>
+         </table>
+         <table>
+            <caption>Super Course</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Battle(s)</th>
+                  <th>Points</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td>1-10</td>
+                  <td>2</td>
+               </tr>
+               <tr class="light-true">
+                  <td>11-20</td>
+                  <td>3</td>
+               </tr>
+               <tr class="light-false">
+                  <td>21-30</td>
+                  <td>4</td>
+               </tr>
+               <tr class="light-true">
+                  <td>31-40</td>
+                  <td>5</td>
+               </tr>
+               <tr class="light-false">
+                  <td>41-49</td>
+                  <td>6</td>
+               </tr>
+               <tr class="light-true">
+                  <td>50</td>
+                  <td>50</td>
+               </tr>
+               <tr class="light-false">
+                  <td>51+</td>
+                  <td>7</td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Battle Chatelaines</h4>
+         <p class="permanent">Each of the four regular modes (Singles, Doubles, Triples, and Rotations) has a single Battle Chatelaine that serves as the leader of that mode. The player will battle them first as the 20th battle in the Normal Course and again as the 50th battle in the Super Course, and a commemorative monument will be placed in the Maison for each Chatelaine the player defeats in the Super Course. Their teams are always the same, but the order of Pokémon within their party varies.</p>
+         <p class="permanent">When battling a Chatelaine in Multis, two random Chatelaines will be selected, and two random Pokémon from each of their teams will be selected.</p>
+         <p class="permanent">Their Pokémon always have 15 IVs in the Normal Course and 31 in the Super Course.</p>
+         <h4>Singles</h4>
+         <table>
+            <caption>Chatelaine Nita - Normal Course</caption>
+            <thead>
+               <tr class="light-true">
+                  <th colspan="2">Pokémon</th>
+                  <th>Nature</th>
+                  <th>Item</th>
+                  <th colspan="8">Moves</th>
+                  <th>HP</th>
+                  <th>Atk</th>
+                  <th>Def</th>
+                  <th>SpA</th>
+                  <th>SpD</th>
+                  <th>Spe</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/purugly.png" alt="Purugly"></div>
+                  </td>
+                  <td rowspan="2">Purugly</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">Big Root</td>
+                  <td class="status" colspan="2">Hypnosis</td>
+                  <td class="psychic" colspan="2">Dream Eater</td>
+                  <td class="ghost" colspan="2">Shadow Ball</td>
+                  <td class="normal" colspan="2">Round</td>
+                  <td rowspan="2">138</td>
+                  <td rowspan="2">84</td>
+                  <td rowspan="2">76</td>
+                  <td rowspan="2">118</td>
+                  <td rowspan="2">71</td>
+                  <td rowspan="2">156</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ghost.png" alt="Ghost"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/wigglytuff.png" alt="Wigglytuff"></div>
+                  </td>
+                  <td rowspan="2">Wigglytuff</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">Shell Bell</td>
+                  <td class="fairy" colspan="2">Disarming Voice</td>
+                  <td class="normal" colspan="2">Round</td>
+                  <td class="fighting" colspan="2">Focus Blast</td>
+                  <td class="electric" colspan="2">Thunderbolt</td>
+                  <td rowspan="2">239</td>
+                  <td rowspan="2">73</td>
+                  <td rowspan="2">57</td>
+                  <td rowspan="2">141</td>
+                  <td rowspan="2">62</td>
+                  <td rowspan="2">57</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fairy.png" alt="Fairy"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+               </tr>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/grumpig.png" alt="Grumpig"></div>
+                  </td>
+                  <td rowspan="2">Grumpig</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">Wise Glasses</td>
+                  <td class="psychic" colspan="2">Psychic</td>
+                  <td class="ghost" colspan="2">Shadow Ball</td>
+                  <td class="rock" colspan="2">Power Gem</td>
+                  <td class="grass" colspan="2">Energy Ball</td>
+                  <td rowspan="2">147</td>
+                  <td rowspan="2">51</td>
+                  <td rowspan="2">77</td>
+                  <td rowspan="2">147</td>
+                  <td rowspan="2">122</td>
+                  <td rowspan="2">124</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ghost.png" alt="Ghost"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/grass.png" alt="Grass"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <table>
+            <caption>Chatelaine Nita - Super Course</caption>
+            <thead>
+               <tr class="light-true">
+                  <th colspan="2">Pokémon</th>
+                  <th>Nature</th>
+                  <th>Item</th>
+                  <th colspan="8">Moves</th>
+                  <th>HP</th>
+                  <th>Atk</th>
+                  <th>Def</th>
+                  <th>SpA</th>
+                  <th>SpD</th>
+                  <th>Spe</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/tornadus.png" alt="Tornadus"></div>
+                  </td>
+                  <td rowspan="2">Tornadus</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">Yache Berry</td>
+                  <td class="status" colspan="2">Substitute</td>
+                  <td class="status" colspan="2">Double Team</td>
+                  <td class="fighting" colspan="2">Focus Blast</td>
+                  <td class="flying" colspan="2">Hurricane</td>
+                  <td rowspan="2">186</td>
+                  <td rowspan="2">121</td>
+                  <td rowspan="2">90</td>
+                  <td rowspan="2">194</td>
+                  <td rowspan="2">100</td>
+                  <td rowspan="2">131</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/thundurus.png" alt="Thundurus"></div>
+                  </td>
+                  <td rowspan="2">Thundurus</td>
+                  <td rowspan="2">Jolly</td>
+                  <td rowspan="2">Sitrus Berry</td>
+                  <td class="electric" colspan="2">Wild Charge</td>
+                  <td class="bug" colspan="2">U-turn</td>
+                  <td class="dark" colspan="2">Crunch</td>
+                  <td class="flying" colspan="2">Sky Drop</td>
+                  <td rowspan="2">154</td>
+                  <td rowspan="2">167</td>
+                  <td rowspan="2">90</td>
+                  <td rowspan="2">130</td>
+                  <td rowspan="2">100</td>
+                  <td rowspan="2">179</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/bug.png" alt="Bug"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/dark.png" alt="Dark"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/landorus.png" alt="Landorus"></div>
+                  </td>
+                  <td rowspan="2">Landorus</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">Choice Scarf</td>
+                  <td class="ground" colspan="2">Earth Power</td>
+                  <td class="psychic" colspan="2">Extrasensory</td>
+                  <td class="fighting" colspan="2">Focus Blast</td>
+                  <td class="grass" colspan="2">Grass Knot</td>
+                  <td rowspan="2">164</td>
+                  <td rowspan="2">130</td>
+                  <td rowspan="2">110</td>
+                  <td rowspan="2">183</td>
+                  <td rowspan="2">100</td>
+                  <td rowspan="2">153</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/grass.png" alt="Grass"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Doubles</h4>
+         <table>
+            <caption>Chatelaine Evelyn - Normal Course</caption>
+            <thead>
+               <tr class="light-true">
+                  <th colspan="2">Pokémon</th>
+                  <th>Nature</th>
+                  <th>Item</th>
+                  <th colspan="8">Moves</th>
+                  <th>HP</th>
+                  <th>Atk</th>
+                  <th>Def</th>
+                  <th>SpA</th>
+                  <th>SpD</th>
+                  <th>Spe</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/primeape.png" alt="Primeape"></div>
+                  </td>
+                  <td rowspan="2">Primeape</td>
+                  <td rowspan="2">Jolly</td>
+                  <td rowspan="2">Scope Lens</td>
+                  <td class="fighting" colspan="2">Cross Chop</td>
+                  <td class="rock" colspan="2">Stone Edge</td>
+                  <td class="normal" colspan="2">Retaliate</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td rowspan="2">132</td>
+                  <td rowspan="2">149</td>
+                  <td rowspan="2">72</td>
+                  <td rowspan="2">64</td>
+                  <td rowspan="2">82</td>
+                  <td rowspan="2">152</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/persian.png" alt="Persian"></div>
+                  </td>
+                  <td rowspan="2">Persian</td>
+                  <td rowspan="2">Timid</td>
+                  <td rowspan="2">Life Orb</td>
+                  <td class="normal" colspan="2">Round</td>
+                  <td class="normal" colspan="2">Fake Out</td>
+                  <td class="rock" colspan="2">Power Gem</td>
+                  <td class="dark" colspan="2">Dark Pulse</td>
+                  <td rowspan="2">132</td>
+                  <td rowspan="2">73</td>
+                  <td rowspan="2">72</td>
+                  <td rowspan="2">109</td>
+                  <td rowspan="2">77</td>
+                  <td rowspan="2">174</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/dark.png" alt="Dark"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+               </tr>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/pachirisu-f.png" alt="Pachirisu"></div>
+                  </td>
+                  <td rowspan="2">Pachirisu</td>
+                  <td rowspan="2">Jolly</td>
+                  <td rowspan="2">Sitrus Berry</td>
+                  <td class="electric" colspan="2">Volt Switch</td>
+                  <td class="bug" colspan="2">U-turn</td>
+                  <td class="normal" colspan="2">Super Fang</td>
+                  <td class="status" colspan="2">Light Screen</td>
+                  <td rowspan="2">127</td>
+                  <td rowspan="2">89</td>
+                  <td rowspan="2">82</td>
+                  <td rowspan="2">51</td>
+                  <td rowspan="2">102</td>
+                  <td rowspan="2">152</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/bug.png" alt="Bug"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/lumineon-f.png" alt="Lumineon"></div>
+                  </td>
+                  <td rowspan="2">Lumineon</td>
+                  <td rowspan="2">Timid</td>
+                  <td rowspan="2">Expert Belt</td>
+                  <td class="status" colspan="2">Rain Dance</td>
+                  <td class="water" colspan="2">Surf</td>
+                  <td class="ice" colspan="2">Ice Beam</td>
+                  <td class="bug" colspan="2">Silver Wind</td>
+                  <td rowspan="2">136</td>
+                  <td rowspan="2">72</td>
+                  <td rowspan="2">88</td>
+                  <td rowspan="2">113</td>
+                  <td rowspan="2">98</td>
+                  <td rowspan="2">148</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/water.png" alt="Water"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/water.png" alt="Water"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ice.png" alt="Ice"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/bug.png" alt="Bug"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <table>
+            <caption>Chatelaine Evelyn - Super Course</caption>
+            <thead>
+               <tr class="light-true">
+                  <th colspan="2">Pokémon</th>
+                  <th>Nature</th>
+                  <th>Item</th>
+                  <th colspan="8">Moves</th>
+                  <th>HP</th>
+                  <th>Atk</th>
+                  <th>Def</th>
+                  <th>SpA</th>
+                  <th>SpD</th>
+                  <th>Spe</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/raikou.png" alt="Raikou"></div>
+                  </td>
+                  <td rowspan="2">Raikou</td>
+                  <td rowspan="2">Timid</td>
+                  <td rowspan="2">Air Balloon</td>
+                  <td class="electric" colspan="2">Thunderbolt</td>
+                  <td class="electric" colspan="2">Volt Switch</td>
+                  <td class="ghost" colspan="2">Shadow Ball</td>
+                  <td class="status" colspan="2">Protect</td>
+                  <td rowspan="2">165</td>
+                  <td rowspan="2">94</td>
+                  <td rowspan="2">95</td>
+                  <td rowspan="2">167</td>
+                  <td rowspan="2">120</td>
+                  <td rowspan="2">183</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ghost.png" alt="Ghost"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/entei.png" alt="Entei"></div>
+                  </td>
+                  <td rowspan="2">Entei</td>
+                  <td rowspan="2">Adamant</td>
+                  <td rowspan="2">Life Orb</td>
+                  <td class="fire" colspan="2">Sacred Fire</td>
+                  <td class="steel" colspan="2">Iron Head</td>
+                  <td class="rock" colspan="2">Stone Edge</td>
+                  <td class="status" colspan="2">Protect</td>
+                  <td rowspan="2">222</td>
+                  <td rowspan="2">183</td>
+                  <td rowspan="2">105</td>
+                  <td rowspan="2">99</td>
+                  <td rowspan="2">95</td>
+                  <td rowspan="2">120</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fire.png" alt="Fire"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/suicune.png" alt="Suicune"></div>
+                  </td>
+                  <td rowspan="2">Suicune</td>
+                  <td rowspan="2">Timid</td>
+                  <td rowspan="2">Lum Berry</td>
+                  <td class="ice" colspan="2">Icy Wind</td>
+                  <td class="water" colspan="2">Surf</td>
+                  <td class="ice" colspan="2">Blizzard</td>
+                  <td class="status" colspan="2">Protect</td>
+                  <td rowspan="2">175</td>
+                  <td rowspan="2">85</td>
+                  <td rowspan="2">135</td>
+                  <td rowspan="2">142</td>
+                  <td rowspan="2">135</td>
+                  <td rowspan="2">150</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ice.png" alt="Ice"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/water.png" alt="Water"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ice.png" alt="Ice"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latios.png" alt="Latios"></div>
+                  </td>
+                  <td rowspan="2">Latios</td>
+                  <td rowspan="2">Bold</td>
+                  <td rowspan="2">Lax Incense</td>
+                  <td class="status" colspan="2">Calm Mind</td>
+                  <td class="psychic" colspan="2">Luster Purge</td>
+                  <td class="dragon" colspan="2">Dragon Pulse</td>
+                  <td class="status" colspan="2">Recover</td>
+                  <td rowspan="2">187</td>
+                  <td rowspan="2">99</td>
+                  <td rowspan="2">145</td>
+                  <td rowspan="2">150</td>
+                  <td rowspan="2">130</td>
+                  <td rowspan="2">130</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/dragon.png" alt="Dragon"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Triples</h4>
+         <table>
+            <caption>Chatelaine Dana - Normal Course</caption>
+            <thead>
+               <tr class="light-true">
+                  <th colspan="2">Pokémon</th>
+                  <th>Nature</th>
+                  <th>Item</th>
+                  <th colspan="8">Moves</th>
+                  <th>HP</th>
+                  <th>Atk</th>
+                  <th>Def</th>
+                  <th>SpA</th>
+                  <th>SpD</th>
+                  <th>Spe</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/piloswine-f.png" alt="Piloswine"></div>
+                  </td>
+                  <td rowspan="2">Piloswine</td>
+                  <td rowspan="2">Bashful</td>
+                  <td rowspan="2">Persim Berry</td>
+                  <td class="ice" colspan="2">Blizzard</td>
+                  <td class="normal" colspan="2">Thrash</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td class="status" colspan="2">Hail</td>
+                  <td rowspan="2">167</td>
+                  <td rowspan="2">144</td>
+                  <td rowspan="2">92</td>
+                  <td rowspan="2">104</td>
+                  <td rowspan="2">72</td>
+                  <td rowspan="2">62</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ice.png" alt="Ice"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ice.png" alt="Ice"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-6/dragalge.png" alt="Dragalge"></div>
+                  </td>
+                  <td rowspan="2">Dragalge</td>
+                  <td rowspan="2">Adamant</td>
+                  <td rowspan="2">Bright Powder</td>
+                  <td class="water" colspan="2">Waterfall</td>
+                  <td class="normal" colspan="2">Facade</td>
+                  <td class="status" colspan="2">Double Team</td>
+                  <td class="poison" colspan="2">Poison Tail</td>
+                  <td rowspan="2">132</td>
+                  <td rowspan="2">130</td>
+                  <td rowspan="2">102</td>
+                  <td rowspan="2">98</td>
+                  <td rowspan="2">135</td>
+                  <td rowspan="2">88</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/water.png" alt="Water"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/whimsicott.png" alt="Whimsicott"></div>
+                  </td>
+                  <td rowspan="2">Whimsicott</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">Sitrus Berry</td>
+                  <td class="grass" colspan="2">Energy Ball</td>
+                  <td class="fairy" colspan="2">Moonblast</td>
+                  <td class="status" colspan="2">Leech Seed</td>
+                  <td class="status" colspan="2">Tailwind</td>
+                  <td rowspan="2">127</td>
+                  <td rowspan="2">71</td>
+                  <td rowspan="2">97</td>
+                  <td rowspan="2">133</td>
+                  <td rowspan="2">87</td>
+                  <td rowspan="2">160</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/grass.png" alt="Grass"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fairy.png" alt="Fairy"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/grass.png" alt="Grass"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magneton.png" alt="Magneton"></div>
+                  </td>
+                  <td rowspan="2">Magneton</td>
+                  <td rowspan="2">Calm</td>
+                  <td rowspan="2">Shuca Berry</td>
+                  <td class="electric" colspan="2">Thunderbolt</td>
+                  <td class="steel" colspan="2">Flash Cannon</td>
+                  <td class="status" colspan="2">Screech</td>
+                  <td class="status" colspan="2">Metal Sound</td>
+                  <td rowspan="2">117</td>
+                  <td rowspan="2">64</td>
+                  <td rowspan="2">139</td>
+                  <td rowspan="2">132</td>
+                  <td rowspan="2">125</td>
+                  <td rowspan="2">82</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/girafarig.png" alt="Girafarig"></div>
+                  </td>
+                  <td rowspan="2">Girafarig</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">Colbur Berry</td>
+                  <td class="psychic" colspan="2">Psychic</td>
+                  <td class="electric" colspan="2">Thunderbolt</td>
+                  <td class="grass" colspan="2">Energy Ball</td>
+                  <td class="fairy" colspan="2">Dazzling Gleam</td>
+                  <td rowspan="2">137</td>
+                  <td rowspan="2">82</td>
+                  <td rowspan="2">77</td>
+                  <td rowspan="2">147</td>
+                  <td rowspan="2">77</td>
+                  <td rowspan="2">129</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/grass.png" alt="Grass"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fairy.png" alt="Fairy"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/magcargo.png" alt="Magcargo"></div>
+                  </td>
+                  <td rowspan="2">Magcargo</td>
+                  <td rowspan="2">Quiet</td>
+                  <td rowspan="2">White Herb</td>
+                  <td class="fire" colspan="2">Overheat</td>
+                  <td class="ground" colspan="2">Earth Power</td>
+                  <td class="steel" colspan="2">Gyro Ball</td>
+                  <td class="normal" colspan="2">Body Slam</td>
+                  <td rowspan="2">117</td>
+                  <td rowspan="2">94</td>
+                  <td rowspan="2">132</td>
+                  <td rowspan="2">136</td>
+                  <td rowspan="2">92</td>
+                  <td rowspan="2">37</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fire.png" alt="Fire"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <table>
+            <caption>Chatelaine Dana - Super Course</caption>
+            <thead>
+               <tr class="light-true">
+                  <th colspan="2">Pokémon</th>
+                  <th>Nature</th>
+                  <th>Item</th>
+                  <th colspan="8">Moves</th>
+                  <th>HP</th>
+                  <th>Atk</th>
+                  <th>Def</th>
+                  <th>SpA</th>
+                  <th>SpD</th>
+                  <th>Spe</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/articuno.png" alt="Articuno"></div>
+                  </td>
+                  <td rowspan="2">Articuno</td>
+                  <td rowspan="2">Jolly</td>
+                  <td rowspan="2">Charti Berry</td>
+                  <td class="ice" colspan="2">Frost Breath</td>
+                  <td class="status" colspan="2">Reflect</td>
+                  <td class="steel" colspan="2">Steel Wing</td>
+                  <td class="bug" colspan="2">U-turn</td>
+                  <td rowspan="2">165</td>
+                  <td rowspan="2">137</td>
+                  <td rowspan="2">120</td>
+                  <td rowspan="2">103</td>
+                  <td rowspan="2">145</td>
+                  <td rowspan="2">150</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ice.png" alt="Ice"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/bug.png" alt="Bug"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zapdos.png" alt="Zapdos"></div>
+                  </td>
+                  <td rowspan="2">Zapdos</td>
+                  <td rowspan="2">Naive</td>
+                  <td rowspan="2">Petaya Berry</td>
+                  <td class="electric" colspan="2">Thunder</td>
+                  <td class="status" colspan="2">Light Screen</td>
+                  <td class="status" colspan="2">Rain Dance</td>
+                  <td class="flying" colspan="2">Drill Peck</td>
+                  <td rowspan="2">165</td>
+                  <td rowspan="2">110</td>
+                  <td rowspan="2">105</td>
+                  <td rowspan="2">177</td>
+                  <td rowspan="2">99</td>
+                  <td rowspan="2">167</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/water.png" alt="Water"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/moltres.png" alt="Moltres"></div>
+                  </td>
+                  <td rowspan="2">Moltres</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">White Herb</td>
+                  <td class="fire" colspan="2">Overheat</td>
+                  <td class="flying" colspan="2">Air Slash</td>
+                  <td class="status" colspan="2">Tailwind</td>
+                  <td class="status" colspan="2">Will-O-Wisp</td>
+                  <td rowspan="2">165</td>
+                  <td rowspan="2">108</td>
+                  <td rowspan="2">110</td>
+                  <td rowspan="2">194</td>
+                  <td rowspan="2">105</td>
+                  <td rowspan="2">142</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fire.png" alt="Fire"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fire.png" alt="Fire"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/regirock.png" alt="Regirock"></div>
+                  </td>
+                  <td rowspan="2">Regirock</td>
+                  <td rowspan="2">Adamant</td>
+                  <td rowspan="2">Luminous Moss</td>
+                  <td class="ice" colspan="2">Ice Punch</td>
+                  <td class="rock" colspan="2">Rock Slide</td>
+                  <td class="fighting" colspan="2">Drain Punch</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td rowspan="2">187</td>
+                  <td rowspan="2">167</td>
+                  <td rowspan="2">220</td>
+                  <td rowspan="2">63</td>
+                  <td rowspan="2">120</td>
+                  <td rowspan="2">70</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ice.png" alt="Ice"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/regice.png" alt="Regice"></div>
+                  </td>
+                  <td rowspan="2">Regice</td>
+                  <td rowspan="2">Impish</td>
+                  <td rowspan="2">Zoom Lens</td>
+                  <td class="electric" colspan="2">Thunder</td>
+                  <td class="ice" colspan="2">Blizzard</td>
+                  <td class="fighting" colspan="2">Focus Blast</td>
+                  <td class="status" colspan="2">Thunder Wave</td>
+                  <td rowspan="2">187</td>
+                  <td rowspan="2">70</td>
+                  <td rowspan="2">132</td>
+                  <td rowspan="2">108</td>
+                  <td rowspan="2">252</td>
+                  <td rowspan="2">70</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ice.png" alt="Ice"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/registeel.png" alt="Registeel"></div>
+                  </td>
+                  <td rowspan="2">Registeel</td>
+                  <td rowspan="2">Jolly</td>
+                  <td rowspan="2">King's Rock</td>
+                  <td class="status" colspan="2">Rock Polish</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td class="steel" colspan="2">Iron Head</td>
+                  <td class="electric" colspan="2">Thunder Punch</td>
+                  <td rowspan="2">155</td>
+                  <td rowspan="2">127</td>
+                  <td rowspan="2">170</td>
+                  <td rowspan="2">85</td>
+                  <td rowspan="2">170</td>
+                  <td rowspan="2">112</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Rotations</h4>
+         <table>
+            <caption>Chatelaine Morgan - Normal Course</caption>
+            <thead>
+               <tr class="light-true">
+                  <th colspan="2">Pokémon</th>
+                  <th>Nature</th>
+                  <th>Item</th>
+                  <th colspan="8">Moves</th>
+                  <th>HP</th>
+                  <th>Atk</th>
+                  <th>Def</th>
+                  <th>SpA</th>
+                  <th>SpD</th>
+                  <th>Spe</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mantine.png" alt="Mantine"></div>
+                  </td>
+                  <td rowspan="2">Mantine</td>
+                  <td rowspan="2">Timid</td>
+                  <td rowspan="2">Wacan Berry</td>
+                  <td class="flying" colspan="2">Air Slash</td>
+                  <td class="water" colspan="2">Scald</td>
+                  <td class="status" colspan="2">Wide Guard</td>
+                  <td class="status" colspan="2">Aqua Ring</td>
+                  <td rowspan="2">132</td>
+                  <td rowspan="2">46</td>
+                  <td rowspan="2">82</td>
+                  <td rowspan="2">124</td>
+                  <td rowspan="2">152</td>
+                  <td rowspan="2">125</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/water.png" alt="Water"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/water.png" alt="Water"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/sawsbuck-spring.png" alt="Sawsbuck"></div>
+                  </td>
+                  <td rowspan="2">Sawsbuck</td>
+                  <td rowspan="2">Adamant</td>
+                  <td rowspan="2">Shell Bell</td>
+                  <td class="grass" colspan="2">Horn Leech</td>
+                  <td class="normal" colspan="2">Double-Edge</td>
+                  <td class="bug" colspan="2">Megahorn</td>
+                  <td class="status" colspan="2">Leech Seed</td>
+                  <td rowspan="2">147</td>
+                  <td rowspan="2">158</td>
+                  <td rowspan="2">82</td>
+                  <td rowspan="2">64</td>
+                  <td rowspan="2">82</td>
+                  <td rowspan="2">139</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/grass.png" alt="Grass"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/bug.png" alt="Bug"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/grass.png" alt="Grass"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/swalot-f.png" alt="Swalot"></div>
+                  </td>
+                  <td rowspan="2">Swalot</td>
+                  <td rowspan="2">Calm</td>
+                  <td rowspan="2">Black Sludge</td>
+                  <td class="status" colspan="2">Stockpile</td>
+                  <td class="status" colspan="2">Toxic</td>
+                  <td class="status" colspan="2">Protect</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td rowspan="2">167</td>
+                  <td rowspan="2">76</td>
+                  <td rowspan="2">127</td>
+                  <td rowspan="2">85</td>
+                  <td rowspan="2">139</td>
+                  <td rowspan="2">67</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-6/klefki.png" alt="Klefki"></div>
+                  </td>
+                  <td rowspan="2">Klefki</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">Apicot Berry</td>
+                  <td class="steel" colspan="2">Flash Cannon</td>
+                  <td class="status" colspan="2">Recycle</td>
+                  <td class="fairy" colspan="2">Draining Kiss</td>
+                  <td class="status" colspan="2">Metal Sound</td>
+                  <td rowspan="2">124</td>
+                  <td rowspan="2">82</td>
+                  <td rowspan="2">103</td>
+                  <td rowspan="2">136</td>
+                  <td rowspan="2">131</td>
+                  <td rowspan="2">87</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fairy.png" alt="Fairy"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <table>
+            <caption>Chatelaine Morgan - Super Course</caption>
+            <thead>
+               <tr class="light-true">
+                  <th colspan="2">Pokémon</th>
+                  <th>Nature</th>
+                  <th>Item</th>
+                  <th colspan="8">Moves</th>
+                  <th>HP</th>
+                  <th>Atk</th>
+                  <th>Def</th>
+                  <th>SpA</th>
+                  <th>SpD</th>
+                  <th>Spe</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/cobalion.png" alt="Cobalion"></div>
+                  </td>
+                  <td rowspan="2">Cobalion</td>
+                  <td rowspan="2">Brave</td>
+                  <td rowspan="2">Maranga Berry</td>
+                  <td class="steel" colspan="2">Metal Burst</td>
+                  <td class="fighting" colspan="2">Sacred Sword</td>
+                  <td class="normal" colspan="2">Quick Attack</td>
+                  <td class="steel" colspan="2">Iron Head</td>
+                  <td rowspan="2">198</td>
+                  <td rowspan="2">156</td>
+                  <td rowspan="2">149</td>
+                  <td rowspan="2">110</td>
+                  <td rowspan="2">92</td>
+                  <td rowspan="2">115</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/terrakion.png" alt="Terrakion"></div>
+                  </td>
+                  <td rowspan="2">Terrakion</td>
+                  <td rowspan="2">Jolly</td>
+                  <td rowspan="2">Sitrus Berry</td>
+                  <td class="status" colspan="2">Swords Dance</td>
+                  <td class="fighting" colspan="2">Sacred Sword</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td class="rock" colspan="2">Rock Slide</td>
+                  <td rowspan="2">166</td>
+                  <td rowspan="2">181</td>
+                  <td rowspan="2">110</td>
+                  <td rowspan="2">82</td>
+                  <td rowspan="2">110</td>
+                  <td rowspan="2">176</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/virizion.png" alt="Virizion"></div>
+                  </td>
+                  <td rowspan="2">Virizion</td>
+                  <td rowspan="2">Jolly</td>
+                  <td rowspan="2">Coba Berry</td>
+                  <td class="grass" colspan="2">Leaf Blade</td>
+                  <td class="rock" colspan="2">Stone Edge</td>
+                  <td class="fighting" colspan="2">Sacred Sword</td>
+                  <td class="status" colspan="2">Protect</td>
+                  <td rowspan="2">166</td>
+                  <td rowspan="2">142</td>
+                  <td rowspan="2">92</td>
+                  <td rowspan="2">99</td>
+                  <td rowspan="2">149</td>
+                  <td rowspan="2">176</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/grass.png" alt="Grass"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latias.png" alt="Latias"></div>
+                  </td>
+                  <td rowspan="2">Latias</td>
+                  <td rowspan="2">Bold</td>
+                  <td rowspan="2">Lax Incense</td>
+                  <td class="status" colspan="2">Calm Mind</td>
+                  <td class="psychic" colspan="2">Mist Ball</td>
+                  <td class="dragon" colspan="2">Dragon Pulse</td>
+                  <td class="status" colspan="2">Recover</td>
+                  <td rowspan="2">187</td>
+                  <td rowspan="2">90</td>
+                  <td rowspan="2">156</td>
+                  <td rowspan="2">130</td>
+                  <td rowspan="2">150</td>
+                  <td rowspan="2">130</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/dragon.png" alt="Dragon"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <h3><u>Credits & sources</u></h3>
+      <ul>
+         <li><a href="https://www.smogon.com/forums/threads/battle-maison-discussion-records.3492706/">The Battle Maison records topic on Smogon</a>, for the collected resources of many players (notably Team Rocket Elite / R Inanimate, NoCheese, and turskain) including Pokémon movesets, Trainer information, and all the collective team-building knowledge.</li>
+         <li><a href="https://bulbapedia.bulbagarden.net/wiki/Battle_Maison">Bulbapedia</a>, for the Pokémon and Trainers used by the Normal Course and various facts such as the items available for purchase in the Frontier, the Battle Chatelaine teams, and the Battle Points received as rewards.</li>
+         <li><a href="https://www.smogon.com/forums/threads/battle-maison-discussion-records.3492706/page-97#post-5831376">This documentation</a>, for the Pokémon and Trainers used by the Super Course.</li>
+      </ul>
+   </body>
+</html>

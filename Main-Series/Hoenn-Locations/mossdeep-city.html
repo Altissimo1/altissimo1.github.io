@@ -1,0 +1,3499 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Mossdeep City</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Hoenn Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="rse" type="radio" onclick="topButton.call(this)" name="games" value="RSE" checked="checked">
+         <label for="rse" class="right">RSE</label>
+         <input id="oras" type="radio" onclick="topButton.call(this)" name="games" value="ORAS">
+         <label for="oras" class="right">ORAS</label>
+      </div>
+      <h2>Mossdeep City</h2>
+      <div id="notes" class="bottom">
+         <p id="rse-notes" class="rse">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-125.html">Route 125</a><br>
+            West: <a class="location-link" href="route-124.html">Route 124</a><br>
+            South: <a class="location-link" href="route-127.html">Route 127</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            The boy in the house west of the Pokémon Center will tell the player where their Secret Base is.<br>
+            In Ruby and Sapphire, there is a house with a door on the back wall. Trainers can be battled here if the player has scanned e-Reader cards.<br>
+            Mossdeep Space Center<br>
+            Mossdeep Gym: The seventh Gym. It specializes in Psychic-types and Double Battles.<br>
+            Mossdeep Game Corner: In Emerald, a Game Corner located in the city allows players to play minigames with other owners of FireRed, LeafGreen, and Emerald, using the Wireless Adapter.<br>
+            Move Tutor: In Emerald, a Black Belt near the western shore can teach one Pokémon Dynamicpunch.<br><br>
+            <strong>Utility:</strong><br>
+            Surf is required to access Mossdeep City the first time, as well as to travel to Route 124, 125, or 127. Wild Pokémon can also be encountered here with Surf.
+         </p>
+         <p id="oras-notes" class="oras" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-125.html">Route 125</a><br>
+            West: <a class="location-link" href="route-124.html">Route 124</a><br>
+            South: <a class="location-link" href="route-127.html">Route 127</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br>
+            There is a house with a door on the back wall. If the player scans QR codes corresponding to special Secret Bases, they can access those Bases through this door. Scanning Shigeru Ohmori's Base's code and speaking to him will reward the player with a Regice Doll.<br>
+            Mossdeep Space Center<br>
+            Mossdeep Gym: The seventh Gym. It specializes in Psychic-types and Double Battles.<br><br>
+            <strong>Utility:</strong><br>
+            Surf is required to access Mossdeep City the first time, as well as to travel to Route 124, 125, or 127. Wild Pokémon can also be encountered here with Surf.<br>
+            The Devon Scope is required to battle Kecleon in the Space Center.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-rse-buttons" class="button-set rse">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-ruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Ruby (Full)">
+                        <label for="pokemon-rse-full-ruby">Ruby (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-ruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Ruby (Compressed)">
+                        <label for="pokemon-rse-compressed-ruby">Ruby (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-sapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Sapphire (Full)">
+                        <label for="pokemon-rse-full-sapphire">Sapphire (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-sapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Sapphire (Compressed)">
+                        <label for="pokemon-rse-compressed-sapphire">Sapphire (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Full)">
+                        <label for="pokemon-rse-full-emerald">Emerald (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Compressed)">
+                        <label for="pokemon-rse-compressed-emerald">Emerald (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Combined (Full)">
+                        <label for="pokemon-rse-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-rse-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Separate (Full)">
+                        <label for="pokemon-rse-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Separate (Compressed)">
+                        <label for="pokemon-rse-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-oras-buttons" class="button-set oras" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-omegaruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Omega Ruby (Full)">
+                        <label for="pokemon-oras-full-omegaruby">Omega Ruby (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-omegaruby" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Omega Ruby (Compressed)">
+                        <label for="pokemon-oras-compressed-omegaruby">Omega Ruby (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-alphasapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Alpha Sapphire (Full)">
+                        <label for="pokemon-oras-full-alphasapphire">Alpha Sapphire (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-alphasapphire" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Alpha Sapphire (Compressed)">
+                        <label for="pokemon-oras-compressed-alphasapphire">Alpha Sapphire (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Combined (Full)">
+                        <label for="pokemon-oras-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-oras-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-oras-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Separate (Full)">
+                        <label for="pokemon-oras-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-oras-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-oras-games" value="Separate (Compressed)">
+                        <label for="pokemon-oras-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-rse" class="game-container rse">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-rse-surfing" class="table-collection surfing">
+                  <h4>Surfing</h4>
+                  <div id="pokemon-rse-full-ruby-surfing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Ruby (Full)</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>5-35</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td>Wingull</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td>Wingull</td>
+                              <td>15-25</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>25-30</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>25-30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-sapphire-surfing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Sapphire (Full)</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>5-35</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td>Wingull</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td>Wingull</td>
+                              <td>15-25</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>25-30</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>25-30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-emerald-surfing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Emerald (Full)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>5-35</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td>Wingull</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td>Wingull</td>
+                              <td>15-25</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>25-30</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>25-30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-combined-surfing-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="ruby-true" colspan="3">Ruby</th>
+                              <th class="sapphire-true" colspan="3">Sapphire</th>
+                              <th class="emerald-true" colspan="3">Emerald</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">60%</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="ruby-false">Tentacool</td>
+                              <td class="ruby-false">lv. 5-35</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="sapphire-false">Tentacool</td>
+                              <td class="sapphire-false">lv. 5-35</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="emerald-false">Tentacool</td>
+                              <td class="emerald-false">lv. 5-35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">30%</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td class="ruby-true">Wingull</td>
+                              <td class="ruby-true">lv. 10-30</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td class="sapphire-true">Wingull</td>
+                              <td class="sapphire-true">lv. 10-30</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td class="emerald-true">Wingull</td>
+                              <td class="emerald-true">lv. 10-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">5%</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td class="ruby-false">Wingull</td>
+                              <td class="ruby-false">lv. 15-25</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td class="sapphire-false">Wingull</td>
+                              <td class="sapphire-false">lv. 15-25</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td class="emerald-false">Wingull</td>
+                              <td class="emerald-false">lv. 15-25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">4%</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td class="ruby-true">Pelipper</td>
+                              <td class="ruby-true">lv. 25-30</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td class="sapphire-true">Pelipper</td>
+                              <td class="sapphire-true">lv. 25-30</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td class="emerald-true">Pelipper</td>
+                              <td class="emerald-true">lv. 25-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">1%</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td class="ruby-false">Pelipper</td>
+                              <td class="ruby-false">lv. 25-30</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td class="sapphire-false">Pelipper</td>
+                              <td class="sapphire-false">lv. 25-30</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td class="emerald-false">Pelipper</td>
+                              <td class="emerald-false">lv. 25-30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-ruby-surfing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Ruby (Compressed)</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>60%</td>
+                              <td>5-35</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td>Wingull</td>
+                              <td>35%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>5%</td>
+                              <td>25-30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-sapphire-surfing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Sapphire (Compressed)</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>60%</td>
+                              <td>5-35</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td>Wingull</td>
+                              <td>35%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>5%</td>
+                              <td>25-30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-emerald-surfing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Emerald (Compressed)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>60%</td>
+                              <td>5-35</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td>Wingull</td>
+                              <td>35%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>5%</td>
+                              <td>25-30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-combined-surfing-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="ruby-true" colspan="2">Ruby</th>
+                              <th class="sapphire-true" colspan="2">Sapphire</th>
+                              <th class="emerald-true" colspan="2">Emerald</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="light-false">Tentacool</td>
+                              <td class="ruby-false">60%</td>
+                              <td class="ruby-false">lv. 5-35</td>
+                              <td class="sapphire-false">60%</td>
+                              <td class="sapphire-false">lv. 5-35</td>
+                              <td class="emerald-false">60%</td>
+                              <td class="emerald-false">lv. 5-35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wingull.png" alt="Wingull"></div>
+                              </td>
+                              <td class="light-true">Wingull</td>
+                              <td class="ruby-true">35%</td>
+                              <td class="ruby-true">lv. 10-30</td>
+                              <td class="sapphire-true">35%</td>
+                              <td class="sapphire-true">lv. 10-30</td>
+                              <td class="emerald-true">35%</td>
+                              <td class="emerald-true">lv. 10-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td class="light-false">Pelipper</td>
+                              <td class="ruby-false">5%</td>
+                              <td class="ruby-false">lv. 25-30</td>
+                              <td class="sapphire-false">5%</td>
+                              <td class="sapphire-false">lv. 25-30</td>
+                              <td class="emerald-false">5%</td>
+                              <td class="emerald-false">lv. 25-30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-rse-gift">
+                  <h4>Gift</h4>
+                  <div id="pokemon-rse-all-combined-gift-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="3">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/beldum.png" alt="Beldum"></div>
+                              </td>
+                              <td class="light-false">Beldum</td>
+                              <td class="light-false">5</td>
+                              <td class="ruby-false">R</td>
+                              <td class="sapphire-false">S</td>
+                              <td class="emerald-false">E</td>
+                              <td class="light-false">Obtained in Steven's house after defeating the Elite Four.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-ruby-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Ruby</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/beldum.png" alt="Beldum"></div>
+                              </td>
+                              <td>Beldum</td>
+                              <td>5</td>
+                              <td>Obtained in Steven's house after defeating the Elite Four.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-sapphire-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Sapphire</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/beldum.png" alt="Beldum"></div>
+                              </td>
+                              <td>Beldum</td>
+                              <td>5</td>
+                              <td>Obtained in Steven's house after defeating the Elite Four.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-all-emerald-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Emerald</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/beldum.png" alt="Beldum"></div>
+                              </td>
+                              <td>Beldum</td>
+                              <td>5</td>
+                              <td>Obtained in Steven's house after defeating the Elite Four.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-rse-fishing" class="table-collection fishing">
+                  <h4>Fishing</h4>
+                  <div id="pokemon-rse-full-ruby-fishing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Ruby (Full)</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>0</td>
+                              <td>70%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>2</td>
+                              <td>20%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>0</td>
+                              <td>40%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/sharpedo.png" alt="Sharpedo"></div>
+                              </td>
+                              <td>Sharpedo</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>1</td>
+                              <td>40%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>25-30</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>35-40</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>40-45</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-sapphire-fishing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Sapphire (Full)</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>0</td>
+                              <td>70%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>2</td>
+                              <td>20%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>0</td>
+                              <td>40%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/sharpedo.png" alt="Sharpedo"></div>
+                              </td>
+                              <td>Sharpedo</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>1</td>
+                              <td>40%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>25-30</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>35-40</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>40-45</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-emerald-fishing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Emerald (Full)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>70%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>2</td>
+                              <td>20%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>0</td>
+                              <td>40%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/sharpedo.png" alt="Sharpedo"></div>
+                              </td>
+                              <td>Sharpedo</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>1</td>
+                              <td>40%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>30-35</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>25-30</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>35-40</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>40-45</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-full-combined-fishing-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="light-true">Rod</th>
+                              <th class="ruby-true" colspan="3">Ruby</th>
+                              <th class="sapphire-true" colspan="3">Sapphire</th>
+                              <th class="emerald-true" colspan="3">Emerald</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">70%</td>
+                              <td class="light-false">Old</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="ruby-false">Magikarp</td>
+                              <td class="ruby-false">lv. 5-10</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="sapphire-false">Magikarp</td>
+                              <td class="sapphire-false">lv. 5-10</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="emerald-false">Magikarp</td>
+                              <td class="emerald-false">lv. 5-10</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">30%</td>
+                              <td class="light-true">Old</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="ruby-true">Tentacool</td>
+                              <td class="ruby-true">lv. 5-10</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="sapphire-true">Tentacool</td>
+                              <td class="sapphire-true">lv. 5-10</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="emerald-true">Tentacool</td>
+                              <td class="emerald-true">lv. 5-10</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">60%</td>
+                              <td class="light-false">Good</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="ruby-false">Magikarp</td>
+                              <td class="ruby-false">lv. 10-30</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="sapphire-false">Magikarp</td>
+                              <td class="sapphire-false">lv. 10-30</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="emerald-false">Magikarp</td>
+                              <td class="emerald-false">lv. 10-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">20%</td>
+                              <td class="light-true">Good</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="ruby-true">Tentacool</td>
+                              <td class="ruby-true">lv. 10-30</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="sapphire-true">Tentacool</td>
+                              <td class="sapphire-true">lv. 10-30</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="emerald-true">Tentacool</td>
+                              <td class="emerald-true">lv. 10-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">20%</td>
+                              <td class="light-false">Good</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="ruby-false">Wailmer</td>
+                              <td class="ruby-false">lv. 10-30</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="sapphire-false">Wailmer</td>
+                              <td class="sapphire-false">lv. 10-30</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="emerald-false">Wailmer</td>
+                              <td class="emerald-false">lv. 10-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">0</td>
+                              <td class="light-true">40%</td>
+                              <td class="light-true">Super</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/sharpedo.png" alt="Sharpedo"></div>
+                              </td>
+                              <td class="ruby-true">Sharpedo</td>
+                              <td class="ruby-true">lv. 30-35</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/sharpedo.png" alt="Sharpedo"></div>
+                              </td>
+                              <td class="sapphire-true">Sharpedo</td>
+                              <td class="sapphire-true">lv. 30-35</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/sharpedo.png" alt="Sharpedo"></div>
+                              </td>
+                              <td class="emerald-true">Sharpedo</td>
+                              <td class="emerald-true">lv. 30-35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">1</td>
+                              <td class="light-false">40%</td>
+                              <td class="light-false">Super</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="ruby-false">Wailmer</td>
+                              <td class="ruby-false">lv. 30-35</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="sapphire-false">Wailmer</td>
+                              <td class="sapphire-false">lv. 30-35</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="emerald-false">Wailmer</td>
+                              <td class="emerald-false">lv. 30-35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">2</td>
+                              <td class="light-true">15%</td>
+                              <td class="light-true">Super</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="ruby-true">Wailmer</td>
+                              <td class="ruby-true">lv. 25-30</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="sapphire-true">Wailmer</td>
+                              <td class="sapphire-true">lv. 25-30</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="emerald-true">Wailmer</td>
+                              <td class="emerald-true">lv. 25-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">3</td>
+                              <td class="light-false">4%</td>
+                              <td class="light-false">Super</td>
+                              <td class="ruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="ruby-false">Wailmer</td>
+                              <td class="ruby-false">lv. 35-40</td>
+                              <td class="sapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="sapphire-false">Wailmer</td>
+                              <td class="sapphire-false">lv. 35-40</td>
+                              <td class="emerald-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="emerald-false">Wailmer</td>
+                              <td class="emerald-false">lv. 35-40</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">4</td>
+                              <td class="light-true">1%</td>
+                              <td class="light-true">Super</td>
+                              <td class="ruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="ruby-true">Wailmer</td>
+                              <td class="ruby-true">lv. 40-45</td>
+                              <td class="sapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="sapphire-true">Wailmer</td>
+                              <td class="sapphire-true">lv. 40-45</td>
+                              <td class="emerald-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="emerald-true">Wailmer</td>
+                              <td class="emerald-true">lv. 40-45</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-ruby-fishing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Ruby (Compressed)</caption>
+                        <thead>
+                           <tr class="ruby-true">
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="ruby-false">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>70%</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>30%</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>60%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>20%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>20%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="ruby-true">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>60%</td>
+                              <td>25-45</td>
+                           </tr>
+                           <tr class="ruby-false">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/sharpedo.png" alt="Sharpedo"></div>
+                              </td>
+                              <td>Sharpedo</td>
+                              <td>40%</td>
+                              <td>30-35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-sapphire-fishing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Sapphire (Compressed)</caption>
+                        <thead>
+                           <tr class="sapphire-true">
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="sapphire-false">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>70%</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>30%</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>60%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>20%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>20%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="sapphire-true">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>60%</td>
+                              <td>25-45</td>
+                           </tr>
+                           <tr class="sapphire-false">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/sharpedo.png" alt="Sharpedo"></div>
+                              </td>
+                              <td>Sharpedo</td>
+                              <td>40%</td>
+                              <td>30-35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-emerald-fishing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Emerald (Compressed)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>70%</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>30%</td>
+                              <td>5-10</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>60%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>20%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>20%</td>
+                              <td>10-30</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>60%</td>
+                              <td>25-45</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/sharpedo.png" alt="Sharpedo"></div>
+                              </td>
+                              <td>Sharpedo</td>
+                              <td>40%</td>
+                              <td>30-35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-combined-fishing-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Rod</th>
+                              <th class="light-true" colspan="2">Pokémon</th>
+                              <th class="ruby-true" colspan="2">Ruby</th>
+                              <th class="sapphire-true" colspan="2">Sapphire</th>
+                              <th class="emerald-true" colspan="2">Emerald</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">Old</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="light-false">Magikarp</td>
+                              <td class="ruby-false">70%</td>
+                              <td class="ruby-false">lv. 5-10</td>
+                              <td class="sapphire-false">70%</td>
+                              <td class="sapphire-false">lv. 5-10</td>
+                              <td class="emerald-false">70%</td>
+                              <td class="emerald-false">lv. 5-10</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Old</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="light-true">Tentacool</td>
+                              <td class="ruby-true">30%</td>
+                              <td class="ruby-true">lv. 5-10</td>
+                              <td class="sapphire-true">30%</td>
+                              <td class="sapphire-true">lv. 5-10</td>
+                              <td class="emerald-true">30%</td>
+                              <td class="emerald-true">lv. 5-10</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Good</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="light-false">Magikarp</td>
+                              <td class="ruby-false">60%</td>
+                              <td class="ruby-false">lv. 10-30</td>
+                              <td class="sapphire-false">60%</td>
+                              <td class="sapphire-false">lv. 10-30</td>
+                              <td class="emerald-false">60%</td>
+                              <td class="emerald-false">lv. 10-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Good</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="light-true">Tentacool</td>
+                              <td class="ruby-true">20%</td>
+                              <td class="ruby-true">lv. 10-30</td>
+                              <td class="sapphire-true">20%</td>
+                              <td class="sapphire-true">lv. 10-30</td>
+                              <td class="emerald-true">20%</td>
+                              <td class="emerald-true">lv. 10-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Good</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="light-false">Wailmer</td>
+                              <td class="ruby-false">20%</td>
+                              <td class="ruby-false">lv. 10-30</td>
+                              <td class="sapphire-false">20%</td>
+                              <td class="sapphire-false">lv. 10-30</td>
+                              <td class="emerald-false">20%</td>
+                              <td class="emerald-false">lv. 10-30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Super</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="light-true">Wailmer</td>
+                              <td class="ruby-true">60%</td>
+                              <td class="ruby-true">lv. 25-45</td>
+                              <td class="sapphire-true">60%</td>
+                              <td class="sapphire-true">lv. 25-45</td>
+                              <td class="emerald-true">60%</td>
+                              <td class="emerald-true">lv. 25-45</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Super</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/sharpedo.png" alt="Sharpedo"></div>
+                              </td>
+                              <td class="light-false">Sharpedo</td>
+                              <td class="ruby-false">40%</td>
+                              <td class="ruby-false">lv. 30-35</td>
+                              <td class="sapphire-false">40%</td>
+                              <td class="sapphire-false">lv. 30-35</td>
+                              <td class="emerald-false">40%</td>
+                              <td class="emerald-false">lv. 30-35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-oras" class="game-container oras" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Tentacool and Tentacruel have a 5% chance of holding a Poison Barb.</li>
+                  <li>Wild Pelipper have a 50% chance of holding a Pretty Wing and a 5% chance of holding a Lucky Egg.</li>
+               </ul>
+               <div id="pokemon-oras-surfing" class="table-collection surfing">
+                  <h4>Surfing</h4>
+                  <div id="pokemon-oras-full-omegaruby-surfing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby (Full)</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>0</td>
+                              <td>50%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacruel.png" alt="Tentacruel"></div>
+                              </td>
+                              <td>Tentacruel</td>
+                              <td>30</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>30</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-full-alphasapphire-surfing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire (Full)</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>0</td>
+                              <td>50%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>1</td>
+                              <td>30%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>2</td>
+                              <td>15%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacruel.png" alt="Tentacruel"></div>
+                              </td>
+                              <td>Tentacruel</td>
+                              <td>30</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>3</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>30</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>4</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-full-combined-surfing-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="omegaruby-true" colspan="3">Omega Ruby</th>
+                              <th class="alphasapphire-true" colspan="3">Alpha Sapphire</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">50%</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="omegaruby-false">Tentacool</td>
+                              <td class="omegaruby-false">lv. 25</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="alphasapphire-false">Tentacool</td>
+                              <td class="alphasapphire-false">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">30%</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td class="omegaruby-true">Pelipper</td>
+                              <td class="omegaruby-true">lv. 25</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td class="alphasapphire-true">Pelipper</td>
+                              <td class="alphasapphire-true">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">15%</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacruel.png" alt="Tentacruel"></div>
+                              </td>
+                              <td class="omegaruby-false">Tentacruel</td>
+                              <td class="omegaruby-false">lv. 30</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacruel.png" alt="Tentacruel"></div>
+                              </td>
+                              <td class="alphasapphire-false">Tentacruel</td>
+                              <td class="alphasapphire-false">lv. 30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">4%</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td class="omegaruby-true">Pelipper</td>
+                              <td class="omegaruby-true">lv. 30</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td class="alphasapphire-true">Pelipper</td>
+                              <td class="alphasapphire-true">lv. 30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">1%</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td class="omegaruby-false">Pelipper</td>
+                              <td class="omegaruby-false">lv. 35</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td class="alphasapphire-false">Pelipper</td>
+                              <td class="alphasapphire-false">lv. 35</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-omegaruby-surfing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby (Compressed)</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>50%</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>35%</td>
+                              <td>25, 30, 35</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacruel.png" alt="Tentacruel"></div>
+                              </td>
+                              <td>Tentacruel</td>
+                              <td>15%</td>
+                              <td>30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-alphasapphire-surfing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire (Compressed)</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>50%</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td>Pelipper</td>
+                              <td>35%</td>
+                              <td>25, 30, 35</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacruel.png" alt="Tentacruel"></div>
+                              </td>
+                              <td>Tentacruel</td>
+                              <td>15%</td>
+                              <td>30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-combined-surfing-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="omegaruby-true" colspan="2">Omega Ruby</th>
+                              <th class="alphasapphire-true" colspan="2">Alpha Sapphire</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="light-false">Tentacool</td>
+                              <td class="omegaruby-false">50%</td>
+                              <td class="omegaruby-false">lv. 25</td>
+                              <td class="alphasapphire-false">50%</td>
+                              <td class="alphasapphire-false">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+                              </td>
+                              <td class="light-true">Pelipper</td>
+                              <td class="omegaruby-true">35%</td>
+                              <td class="omegaruby-true">lv. 25, 30, 35</td>
+                              <td class="alphasapphire-true">35%</td>
+                              <td class="alphasapphire-true">lv. 25, 30, 35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacruel.png" alt="Tentacruel"></div>
+                              </td>
+                              <td class="light-false">Tentacruel</td>
+                              <td class="omegaruby-false">15%</td>
+                              <td class="omegaruby-false">lv. 30</td>
+                              <td class="alphasapphire-false">15%</td>
+                              <td class="alphasapphire-false">lv. 30</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-oras-static">
+                  <h4>Static</h4>
+                  <div id="pokemon-oras-all-combined-static-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/kecleon.png" alt="Kecleon"></div>
+                              </td>
+                              <td class="light-false">Kecleon</td>
+                              <td class="light-false">45</td>
+                              <td class="omegaruby-false">OR</td>
+                              <td class="alphasapphire-false">AS</td>
+                              <td class="light-false">Behind the face board in the Mossdeep Space Center after finishing the Delta Episode.<br>
+                                 Requires the Devon Scope to battle.<br>It has Protean.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-omegaruby-static-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/kecleon.png" alt="Kecleon"></div>
+                              </td>
+                              <td>Kecleon</td>
+                              <td>40</td>
+                              <td>Behind the face board in the Mossdeep Space Center after finishing the Delta Episode.<br>
+                                 Requires the Devon Scope to battle.<br>It has Protean.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-alphasapphire-static-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/kecleon.png" alt="Kecleon"></div>
+                              </td>
+                              <td>Kecleon</td>
+                              <td>40</td>
+                              <td>Behind the face board in the Mossdeep Space Center after finishing the Delta Episode.<br>
+                                 Requires the Devon Scope to battle.<br>It has Protean.
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-oras-gift">
+                  <h4>Gift</h4>
+                  <div id="pokemon-oras-all-combined-gift-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/beldum.png" alt="Beldum"></div>
+                              </td>
+                              <td class="light-false">Beldum</td>
+                              <td class="light-false">1</td>
+                              <td class="omegaruby-false">OR</td>
+                              <td class="alphasapphire-false">AS</td>
+                              <td class="light-false">Obtained in Steven's house after defeating the Elite Four. It holds an Iron Plate.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-omegaruby-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/beldum.png" alt="Beldum"></div>
+                              </td>
+                              <td>Beldum</td>
+                              <td>1</td>
+                              <td>Obtained in Steven's house after defeating the Elite Four. It holds an Iron Plate.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-all-alphasapphire-gift-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/beldum.png" alt="Beldum"></div>
+                              </td>
+                              <td>Beldum</td>
+                              <td>1</td>
+                              <td>Obtained in Steven's house after defeating the Elite Four. It holds an Iron Plate.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-oras-fishing" class="table-collection fishing">
+                  <h4>Fishing</h4>
+                  <div id="pokemon-oras-full-omegaruby-fishing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby (Full)</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>1</td>
+                              <td>35%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>1</td>
+                              <td>35%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>1</td>
+                              <td>35%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>30</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>40</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-full-alphasapphire-fishing-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire (Full)</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>10</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>1</td>
+                              <td>35%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>1</td>
+                              <td>35%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>0</td>
+                              <td>60%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>1</td>
+                              <td>35%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>30</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>2</td>
+                              <td>5%</td>
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>40</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-full-combined-fishing-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="light-true">Rod</th>
+                              <th class="omegaruby-true" colspan="3">Omega Ruby</th>
+                              <th class="alphasapphire-true" colspan="3">Alpha Sapphire</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">60%</td>
+                              <td class="light-false">Old</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-false">Magikarp</td>
+                              <td class="omegaruby-false">lv. 10</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-false">Magikarp</td>
+                              <td class="alphasapphire-false">lv. 10</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">35%</td>
+                              <td class="light-true">Old</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="omegaruby-true">Tentacool</td>
+                              <td class="omegaruby-true">lv. 5</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="alphasapphire-true">Tentacool</td>
+                              <td class="alphasapphire-true">lv. 5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">5%</td>
+                              <td class="light-false">Old</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-false">Magikarp</td>
+                              <td class="omegaruby-false">lv. 15</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-false">Magikarp</td>
+                              <td class="alphasapphire-false">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">0</td>
+                              <td class="light-true">60%</td>
+                              <td class="light-true">Good</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="omegaruby-true">Magikarp</td>
+                              <td class="omegaruby-true">lv. 25</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="alphasapphire-true">Magikarp</td>
+                              <td class="alphasapphire-true">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">1</td>
+                              <td class="light-false">35%</td>
+                              <td class="light-false">Good</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="omegaruby-false">Tentacool</td>
+                              <td class="omegaruby-false">lv. 25</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="alphasapphire-false">Tentacool</td>
+                              <td class="alphasapphire-false">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">2</td>
+                              <td class="light-true">5%</td>
+                              <td class="light-true">Good</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="omegaruby-true">Wailmer</td>
+                              <td class="omegaruby-true">lv. 25</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="alphasapphire-true">Wailmer</td>
+                              <td class="alphasapphire-true">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">60%</td>
+                              <td class="light-false">Super</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="omegaruby-false">Wailmer</td>
+                              <td class="omegaruby-false">lv. 25</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="alphasapphire-false">Wailmer</td>
+                              <td class="alphasapphire-false">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">35%</td>
+                              <td class="light-true">Super</td>
+                              <td class="omegaruby-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="omegaruby-true">Wailmer</td>
+                              <td class="omegaruby-true">lv. 30</td>
+                              <td class="alphasapphire-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="alphasapphire-true">Wailmer</td>
+                              <td class="alphasapphire-true">lv. 30</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">5%</td>
+                              <td class="light-false">Super</td>
+                              <td class="omegaruby-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="omegaruby-false">Wailmer</td>
+                              <td class="omegaruby-false">lv. 40</td>
+                              <td class="alphasapphire-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="alphasapphire-false">Wailmer</td>
+                              <td class="alphasapphire-false">lv. 40</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-omegaruby-fishing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Omega Ruby (Compressed)</caption>
+                        <thead>
+                           <tr class="omegaruby-true">
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="omegaruby-false">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>65%</td>
+                              <td>10, 15</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>35%</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>60%</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>35%</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-false">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>5%</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="omegaruby-true">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>100%</td>
+                              <td>25, 30, 40</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-alphasapphire-fishing-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Alpha Sapphire (Compressed)</caption>
+                        <thead>
+                           <tr class="alphasapphire-true">
+                              <th>Rod</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="alphasapphire-false">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>65%</td>
+                              <td>10, 15</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>Old</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>35%</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td>Magikarp</td>
+                              <td>60%</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td>Tentacool</td>
+                              <td>35%</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-false">
+                              <td>Good</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>5%</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="alphasapphire-true">
+                              <td>Super</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td>Wailmer</td>
+                              <td>100%</td>
+                              <td>25, 30, 40</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-oras-compressed-combined-fishing-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Rod</th>
+                              <th class="light-true" colspan="2">Pokémon</th>
+                              <th class="omegaruby-true" colspan="2">Omega Ruby</th>
+                              <th class="alphasapphire-true" colspan="2">Alpha Sapphire</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">Old</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="light-false">Magikarp</td>
+                              <td class="omegaruby-false">65%</td>
+                              <td class="omegaruby-false">lv. 10, 15</td>
+                              <td class="alphasapphire-false">65%</td>
+                              <td class="alphasapphire-false">lv. 10, 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Old</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="light-true">Tentacool</td>
+                              <td class="omegaruby-true">35%</td>
+                              <td class="omegaruby-true">lv. 5</td>
+                              <td class="alphasapphire-true">35%</td>
+                              <td class="alphasapphire-true">lv. 5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Good</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magikarp-f.png" alt="Magikarp"></div>
+                              </td>
+                              <td class="light-false">Magikarp</td>
+                              <td class="omegaruby-false">60%</td>
+                              <td class="omegaruby-false">lv. 25</td>
+                              <td class="alphasapphire-false">60%</td>
+                              <td class="alphasapphire-false">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Good</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/tentacool.png" alt="Tentacool"></div>
+                              </td>
+                              <td class="light-true">Tentacool</td>
+                              <td class="omegaruby-true">35%</td>
+                              <td class="omegaruby-true">lv. 25</td>
+                              <td class="alphasapphire-true">35%</td>
+                              <td class="alphasapphire-true">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Good</td>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="light-false">Wailmer</td>
+                              <td class="omegaruby-false">5%</td>
+                              <td class="omegaruby-false">lv. 25</td>
+                              <td class="alphasapphire-false">5%</td>
+                              <td class="alphasapphire-false">lv. 25</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Super</td>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wailmer.png" alt="Wailmer"></div>
+                              </td>
+                              <td class="light-true">Wailmer</td>
+                              <td class="omegaruby-true">100%</td>
+                              <td class="omegaruby-true">lv. 25, 30, 40</td>
+                              <td class="alphasapphire-true">100%</td>
+                              <td class="alphasapphire-true">lv. 25, 30, 40</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-rse-items" class="game-container rse">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Net Ball</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">In the southeastern part of the city</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">King's Rock</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Obtained from a boy outside Steven's house</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">HM08 Dive</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from Steven in his house</td>
+                     <td class="light-false">In Emerald, the player must first beat Team Magma at the Mossdeep Space Center.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Rod</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Obtained from the Fisherman in the house east of the Gym</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Mossdeep Space Center</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items (Mossdeep Space Center)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Sun Stone</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from a Sailor on 1F</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Mossdeep Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items (Mossdeep Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM04 Calm Mind</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Obtained from Tate & Liza</td>
+                     <td class="light-false">Only after defeating them.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Net Ball</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">1000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Dive Ball</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">1000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Revive</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Attack</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">X Defend</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">550</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-oras-items" class="game-container oras" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Big Pearl</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">In the middle of the beach</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Net Ball</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">In the southeastern part of the city</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Star Piece</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">East of Steven's house</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">King's Rock</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from a boy outside Steven's house</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">South of the Fisherman's house</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Iron</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">On the northeast corner of the rocket launch pad</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM60 Quash</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from a woman in the Poké Mart</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Rod</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from the Fisherman in the house east of the Gym</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">HM07 Dive</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Steven in his house</td>
+                     <td class="light-false">Only after defeating Tate & Liza at the Mossdeep Gym.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Devon Scuba Gear</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Obtained from Steven in his house</td>
+                     <td class="light-true">Only after defeating Tate & Liza at the Mossdeep Gym.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Mossdeep Space Center</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Mossdeep Space Center)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Sun Stone</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from a Sailor on 1F</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Mossdeep Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Mossdeep Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM04 Calm Mind</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Obtained from Tate & Liza</td>
+                     <td class="light-false">Only after defeating them.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <p class="oras">The player will receive a Premier Ball for every ten Poké Balls, Great Balls, or Ultra Balls they purchase at once.</p>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">700</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">1200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">2500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">3000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">1500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">100</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Paralyze Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">200</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ice Heal</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">250</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">600</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">550</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">350</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Repel</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">500</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">700</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-rse-trainers" class="game-container rse">
+            <h3><u>Trainers</u></h3>
+            <h4>Mossdeep Space Center</h4>
+            <table class="left-align">
+               <caption>Emerald Trainers (Mossdeep Space Center)</caption>
+               <thead>
+                  <tr class="emerald-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="emerald-false">
+                     <td>Team Magma Grunt</td>
+                     <td>Zubat lv.31<br>Poochyena lv.31</td>
+                     <td>On 1F.</td>
+                  </tr>
+                  <tr class="emerald-true">
+                     <td>Team Magma Grunt</td>
+                     <td>Numel lv.32</td>
+                     <td>On 1F.</td>
+                  </tr>
+                  <tr class="emerald-false">
+                     <td>Team Magma Grunt</td>
+                     <td>Baltoy lv.32</td>
+                     <td>On 1F.</td>
+                  </tr>
+                  <tr class="emerald-true">
+                     <td>Team Magma Grunt</td>
+                     <td>Mightyena lv.26<br>Mightyena lv.28<br>Numel lv.30</td>
+                     <td>On 1F.</td>
+                  </tr>
+                  <tr class="emerald-false">
+                     <td>Team Magma Grunt</td>
+                     <td>Zubat lv.32</td>
+                     <td>On 2F.</td>
+                  </tr>
+                  <tr class="emerald-true">
+                     <td>Team Magma Grunt</td>
+                     <td>Mightyena lv.32</td>
+                     <td>On 2F.</td>
+                  </tr>
+                  <tr class="emerald-false">
+                     <td>Team Magma Grunt</td>
+                     <td>Baltoy lv.32</td>
+                     <td>On 2F.</td>
+                  </tr>
+                  <tr class="emerald-true">
+                     <td>Magma Leader Maxie <br>and Magma Admin Tabitha</td>
+                     <td>Mightyena lv.42<br>Crobat lv.43<br>Camerupt lv.44<br>Camerupt lv.36<br>Mightyena lv.38<br>Golbat lv.40</td>
+                     <td>On 2F. Steven will join the player to fight them in a Multi Battle.<br>
+                        Steven has a lv.42 Metang, a lv.43 Skarmory, and a lv.44 Aggron.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Mossdeep Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Ruby, Sapphire, and Emerald Trainers (Mossdeep Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Psychic Preston</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Kirlia lv.37</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Psychic Maura</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="light-true">E</td>
+                     <td class="light-true">Kadabra lv.36<br>Kirlia lv.36</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Psychic Preston</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Kirlia lv.36</td>
+                     <td class="light-false">In the entrance room.<br>He can potentially be battled in a Double Battle with Psychic Maura.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Psychic Maura</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Kadabra lv.36</td>
+                     <td class="light-true">In the entrance room.<br>She can potentially be battled in a Double Battle with Psychic Preston.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Psychic Samantha</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Xatu lv.37</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Psychic Samantha</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Xatu lv.36</td>
+                     <td class="light-true">In the central west room.<br>She can potentially be battled in a Double Battle with Psychic Blake.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Psychic Blake</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Girafarig lv.36</td>
+                     <td class="light-false">In the central west room.<br>He can potentially be battled in a Double Battle with Psychic Samantha.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Psychic Fritz</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="light-true">E</td>
+                     <td class="light-true">Natu lv.35<br>Girafarig lv.35<br>Kadabra lv.35</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Psychic Macey</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Natu lv.36</td>
+                     <td class="light-false">In the southeast room.<br>She can potentially be battled in a Double Battle with Gentleman Clifford.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Gentleman Clifford</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Girafarig lv.36</td>
+                     <td class="light-true">In the southeast room.<br>He can potentially be battled in a Double Battle with Psychic Macey or Hex Maniac Kathleen.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Hex Maniac Kathleen</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Kadabra lv.36</td>
+                     <td class="light-false">In the southeast room.<br>She can potentially be battled in a Double Battle with Gentleman Clifford or Psychic Nicholas.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Psychic Nicholas</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Wobbuffet lv.36</td>
+                     <td class="light-true">In the southeast room.<br>He can potentially be battled in a Double Battle with Hex Maniac Kathleen.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Psychic Virgil</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Ralts lv.36<br>Kadabra lv.36</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Psychic Hannah</td>
+                     <td class="ruby-true">R</td>
+                     <td class="sapphire-true">S</td>
+                     <td class="light-true">E</td>
+                     <td class="light-true">Ralts lv.36<br>Kirlia lv.36</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Gentleman Nate</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Spoink lv.36</td>
+                     <td class="light-false">In the northwest room.<br>He can potentially be battled in a Double Battle with Psychic Virgil.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Psychic Virgil</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Ralts lv.36</td>
+                     <td class="light-true">In the northwest room.<br>He can potentially be battled in a Double Battle with Gentleman Nate or Hex Maniac Sylvia.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Hex Maniac Sylvia</td>
+                     <td class="light-false">R</td>
+                     <td class="light-false">S</td>
+                     <td class="emerald-false">E</td>
+                     <td class="light-false">Meditite lv.36</td>
+                     <td class="light-false">In the northwest room.<br>She can potentially be battled in a Double Battle with Psychic Virgil or Psychic Hannah.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Psychic Hannah</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Kirlia lv.36</td>
+                     <td class="light-true">In the northwest room.<br>She can potentially be battled in a Double Battle with Hex Maniac Sylvia.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Tate & Liza</td>
+                     <td class="ruby-false">R</td>
+                     <td class="sapphire-false">S</td>
+                     <td class="light-false">E</td>
+                     <td class="light-false">Lunatone lv.42<br>Solrock lv.42</td>
+                     <td class="light-false">They can use four Hyper Potions during the battle.<br>This is a Double Battle.<br>They will give the player TM04 Calm Mind after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Tate & Liza</td>
+                     <td class="light-true">R</td>
+                     <td class="light-true">S</td>
+                     <td class="emerald-true">E</td>
+                     <td class="light-true">Claydol lv.41<br>Xatu lv.41<br>Lunatone lv.42<br>Solrock lv.42</td>
+                     <td class="light-true">Their Lunatone and Solrock hold Sitrus Berries. They can use four Hyper Potions during the battle.<br>This is a Double Battle.<br>They will give the player TM04 Calm Mind after the battle.<br>The player can register them in the PokéNav after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Gym Leader Rematches</h4>
+            <p class="rse">Rematches are unlocked after the player defeats the Elite Four. The player must defeat all Gym Leaders' first rematch in order to unlock their second rematch. The same holds true for their third and fourth rematches.</p>
+            <table class="left-align">
+               <caption>Emerald Trainers (Gym Leader Rematches)</caption>
+               <thead>
+                  <tr class="emerald-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="emerald-false">
+                     <td>Tate & Liza</td>
+                     <td>Slowpoke lv.48<br>Claydol lv.49<br>Xatu lv.49<br>Lunatone lv.50<br>Solrock lv.50</td>
+                     <td>Their Xatu and Lunatone hold Chesto Berries and their Solrock holds a Sitrus Berry. They can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+                  <tr class="emerald-true">
+                     <td>Tate & Liza</td>
+                     <td>Drowzee lv.53<br>Slowpoke lv.53<br>Claydol lv.54<br>Xatu lv.54<br>Lunatone lv.55<br>Solrock lv.55</td>
+                     <td>Their Xatu and Lunatone hold Chesto Berries and their Solrock holds a Sitrus Berry. She can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+                  <tr class="emerald-false">
+                     <td>Tate & Liza</td>
+                     <td>Hypno lv.58<br>Claydol lv.59<br>Slowpoke lv.58<br>Xatu lv.59<br>Lunatone lv.60<br>Solrock lv.60</td>
+                     <td>Their Xatu and Lunatone hold Chesto Berries and their Solrock holds a Sitrus Berry. She can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+                  <tr class="emerald-true">
+                     <td>Tate & Liza</td>
+                     <td>Hypno lv.63<br>Claydol lv.64<br>Slowking lv.63<br>Xatu lv.64<br>Lunatone lv.65<br>Solrock lv.65</td>
+                     <td>Their Xatu and Lunatone hold Chesto Berries and their Solrock holds a Sitrus Berry. She can use three Full Restores during the battle.<br>This is a Double Battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-oras-trainers" class="game-container oras" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>Mossdeep Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Trainers (Mossdeep Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Psychic Preston</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Kadabra lv.42</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Psychic Joshua</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Kadabra lv.40<br>Medicham lv.40</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Psychic Fritz</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Claydol lv.39<br>Starmie lv.41</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hex Maniac Kindra</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Kirlia lv.39<br>Grumpig lv.39</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Hex Maniac Patricia</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Chimecho lv.41</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Psychic Virgil</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="alphasapphire-true">AS</td>
+                     <td class="light-true">Kadabra lv.40<br>Girafarig lv.40</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Tate & Liza</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Lunatone lv.45<br>Solrock lv.45</td>
+                     <td class="light-false">This is a Double Battle.<br>They will give the player TM04 Calm Mind after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Mossdeep Space Center</h4>
+            <table class="bold-contents left-align">
+               <caption>Omega Ruby and Alpha Sapphire Trainers (Mossdeep Space Center)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Team Magma/Aqua Grunts</td>
+                     <td class="omegaruby-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Mightyena lv.25<br>Mightyena lv.25<br>Mightyena lv.25<br>Mightyena lv.25<br>Mightyena lv.25</td>
+                     <td class="light-false">This is a Horde Battle.<br>This battle takes place during the Delta Episode.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Magma Admin Courtney <br>and Team Magma Grunt</td>
+                     <td class="omegaruby-true">OR</td>
+                     <td class="light-true">AS</td>
+                     <td class="light-true">Camerupt lv.55<br>Mightyena lv.51<br>Weezing lv.51</td>
+                     <td class="light-true">Steven will join the player to fight them in a Multi Battle.<br>
+                        Steven has a lv.57 Skarmory, a lv.57 Claydol, a lv.57 Aggron, a lv.57 Cradily, a lv.57 Armaldo, and a lv.59 Metagross holding Metagrossite.<br>Courtney's Camerupt holds a Cameruptite.<br>This battle takes place during the Delta Episode.
+                     </td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Aqua Admin Matt <br>and Team Aqua Grunt</td>
+                     <td class="light-false">OR</td>
+                     <td class="alphasapphire-false">AS</td>
+                     <td class="light-false">Sharpedo lv.55<br>Mightyena lv.51<br>Muk lv.51</td>
+                     <td class="light-false">Steven will join the player to fight them in a Multi Battle.<br>
+                        Steven has a lv.57 Skarmory, a lv.57 Claydol, a lv.57 Aggron, a lv.57 Cradily, a lv.57 Armaldo, and a lv.59 Metagross holding Metagrossite.<br>Matt's Sharpedo holds a Sharpedonite.<br>This battle takes place during the Delta Episode.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>
