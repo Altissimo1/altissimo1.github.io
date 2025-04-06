@@ -5,16 +5,23 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Altering Cave</title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	  <script src="../../colors.js"></script>
+      <script src="../../colors.js"></script>
       <script src="../javascript/buttons.js"></script>
       <link rel="stylesheet" id="common" href="../../common.css">
-	  <link rel="stylesheet" id="style">
+      <link rel="stylesheet" id="style">
    </head>
    <body>
       <div class="flex-row" style="align-items:center;margin-top:2ex;">
-		 <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4> <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
       </div>
-	  <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Kanto Locations Home</a></h4>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Kanto Locations Home</a> | <a href="../Hoenn-Locations/index.html">Hoenn Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="frlg" type="radio" onclick="topButton.call(this)" name="games" value="FRLG" checked="checked">
+         <label for="frlg" class="right">FRLG</label>
+         <input id="rse" type="radio" onclick="topButton.call(this)" name="games" value="RSE">
+         <label for="rse" class="right">Emerald</label>
+      </div>
       <h2>Altering Cave</h2>
       <div id="notes" class="bottom">
          <p id="frlg-notes" class="frlg">
@@ -23,7 +30,11 @@
             <strong>Utility:</strong><br>
             Surf is required to access Altering Cave.
          </p>
-         <p class="permanent">The Altering Cave is a location available in FireRed, LeafGreen, and Emerald; in Emerald, it is only accessible after defeating the Elite Four. Normally, the cave contains only Zubat. The intended function of Altering Cave was that the player would be able to change the wild Pokémon available in the cave by using Mystery Gift at a Wonder Spot, in a real-life location, but the distribution that would have allowed for this never occurred. The data for the other obtainable species of Pokémon is still coded in the game, however, and the other species can be made to appear here with hacking or cheats.</p>
+         <p id="rse-notes" class="rse" style="display:none;">
+            <strong>Access to:</strong><br>
+            Exit: <a href="../Hoenn-Locations/route-103.html">Route 103</a>
+         </p>
+         <p class="permanent">This area is only accessible in FireRed, LeafGreen, and Emerald; in Emerald, it is only accessible after defeating the Elite Four. Normally, the cave contains only Zubat. The intended function of Altering Cave was that the player would be able to change the wild Pokémon available in the cave by using Mystery Gift at a Wonder Spot, in a real-life location, but the distribution that would have allowed for this never occurred. The data for the other obtainable species of Pokémon is still coded in the game, however, and the other species can be made to appear here with hacking or cheats.</p>
       </div>
       <div id="pokemon-container">
          <div id="pokemon-buttons">
@@ -68,6 +79,20 @@
                      <div>
                         <input id="pokemon-frlg-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-frlg-games" value="Separate (Compressed)">
                         <label for="pokemon-frlg-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-rse-buttons" class="button-set rse" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-rse-full-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Full)">
+                        <label for="pokemon-rse-full-emerald">Emerald (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-rse-compressed-emerald" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-rse-games" value="Emerald (Compressed)" checked="checked">
+                        <label for="pokemon-rse-compressed-emerald">Emerald (Compressed)</label>
                      </div>
                   </div>
                </div>
@@ -4559,6 +4584,1333 @@
                               <td class="firered-false">lv. 18, 20, 22, 24, 26, 28</td>
                               <td class="leafgreen-false">100%</td>
                               <td class="leafgreen-false">lv. 18, 20, 22, 24, 26, 28</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-rse" class="game-container rse" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Mareep have a 5% chance of holding a Ganlon Berry.</li>
+                  <li>Wild Pineco have a 5% chance of holding a Apicot Berry.</li>
+                  <li>Wild Houndour have a 5% chance of holding a Big Mushroom.</li>
+                  <li>Wild Teddiursa and Stantler have a 5% chance of holding a Petaya Berry.</li>
+                  <li>Wild Aipom and Shuckle have a 5% chance of holding Berry Juice.</li>
+                  <li>Wild Smeargle have a 5% chance of holding a Salac Berry.</li>
+               </ul>
+               <div id="pokemon-rse-walking" class="table-collection walking">
+                  <h4>Walking (base encounters / Set A)</h4>
+                  <div id="pokemon-rse-full-emerald-walking-table-a" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Emerald (Full)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>10</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>12</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>10</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>12</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>6</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>14</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-emerald-walking-table-a" class="pokemon-table compressed">
+                     <table>
+                        <caption>Emerald (Compressed)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>100%</td>
+                              <td>6, 8, 10, 12, 14, 16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h4>Walking (Set B)</h4>
+                  <div id="pokemon-rse-full-emerald-walking-table-b" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Emerald (Full)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mareep.png" alt="Mareep"></div>
+                              </td>
+                              <td>Mareep</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mareep.png" alt="Mareep"></div>
+                              </td>
+                              <td>Mareep</td>
+                              <td>9</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mareep.png" alt="Mareep"></div>
+                              </td>
+                              <td>Mareep</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mareep.png" alt="Mareep"></div>
+                              </td>
+                              <td>Mareep</td>
+                              <td>11</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mareep.png" alt="Mareep"></div>
+                              </td>
+                              <td>Mareep</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mareep.png" alt="Mareep"></div>
+                              </td>
+                              <td>Mareep</td>
+                              <td>9</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mareep.png" alt="Mareep"></div>
+                              </td>
+                              <td>Mareep</td>
+                              <td>13</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mareep.png" alt="Mareep"></div>
+                              </td>
+                              <td>Mareep</td>
+                              <td>3</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mareep.png" alt="Mareep"></div>
+                              </td>
+                              <td>Mareep</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mareep.png" alt="Mareep"></div>
+                              </td>
+                              <td>Mareep</td>
+                              <td>11</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mareep.png" alt="Mareep"></div>
+                              </td>
+                              <td>Mareep</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mareep.png" alt="Mareep"></div>
+                              </td>
+                              <td>Mareep</td>
+                              <td>11</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-emerald-walking-table-b" class="pokemon-table compressed">
+                     <table>
+                        <caption>Emerald (Compressed)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mareep.png" alt="Mareep"></div>
+                              </td>
+                              <td>Mareep</td>
+                              <td>100%</td>
+                              <td>3, 5, 7, 9, 11, 13</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h4>Walking (Set C)</h4>
+                  <div id="pokemon-rse-full-emerald-walking-table-c" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Emerald (Full)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>23</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>22</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>27</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>23</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>25</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>29</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>19</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>21</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>27</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>21</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>27</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-emerald-walking-table-c" class="pokemon-table compressed">
+                     <table>
+                        <caption>Emerald (Compressed)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pineco.png" alt="Pineco"></div>
+                              </td>
+                              <td>Pineco</td>
+                              <td>100%</td>
+                              <td>19, 21-23, 25, 27, 29</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h4>Walking (Set D)</h4>
+                  <div id="pokemon-rse-full-emerald-walking-table-d" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Emerald (Full)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/houndour.png" alt="Houndour"></div>
+                              </td>
+                              <td>Houndour</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/houndour.png" alt="Houndour"></div>
+                              </td>
+                              <td>Houndour</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/houndour.png" alt="Houndour"></div>
+                              </td>
+                              <td>Houndour</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/houndour.png" alt="Houndour"></div>
+                              </td>
+                              <td>Houndour</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/houndour.png" alt="Houndour"></div>
+                              </td>
+                              <td>Houndour</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/houndour.png" alt="Houndour"></div>
+                              </td>
+                              <td>Houndour</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/houndour.png" alt="Houndour"></div>
+                              </td>
+                              <td>Houndour</td>
+                              <td>22</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/houndour.png" alt="Houndour"></div>
+                              </td>
+                              <td>Houndour</td>
+                              <td>12</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/houndour.png" alt="Houndour"></div>
+                              </td>
+                              <td>Houndour</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/houndour.png" alt="Houndour"></div>
+                              </td>
+                              <td>Houndour</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/houndour.png" alt="Houndour"></div>
+                              </td>
+                              <td>Houndour</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/houndour.png" alt="Houndour"></div>
+                              </td>
+                              <td>Houndour</td>
+                              <td>20</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-emerald-walking-table-d" class="pokemon-table compressed">
+                     <table>
+                        <caption>Emerald (Compressed)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/houndour.png" alt="Houndour"></div>
+                              </td>
+                              <td>Houndour</td>
+                              <td>100%</td>
+                              <td>12, 14, 16, 18, 20, 22</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h4>Walking (Set E)</h4>
+                  <div id="pokemon-rse-full-emerald-walking-table-e" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Emerald (Full)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/teddiursa.png" alt="Teddiursa"></div>
+                              </td>
+                              <td>Teddiursa</td>
+                              <td>22</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/teddiursa.png" alt="Teddiursa"></div>
+                              </td>
+                              <td>Teddiursa</td>
+                              <td>24</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/teddiursa.png" alt="Teddiursa"></div>
+                              </td>
+                              <td>Teddiursa</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/teddiursa.png" alt="Teddiursa"></div>
+                              </td>
+                              <td>Teddiursa</td>
+                              <td>26</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/teddiursa.png" alt="Teddiursa"></div>
+                              </td>
+                              <td>Teddiursa</td>
+                              <td>22</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/teddiursa.png" alt="Teddiursa"></div>
+                              </td>
+                              <td>Teddiursa</td>
+                              <td>24</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/teddiursa.png" alt="Teddiursa"></div>
+                              </td>
+                              <td>Teddiursa</td>
+                              <td>28</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/teddiursa.png" alt="Teddiursa"></div>
+                              </td>
+                              <td>Teddiursa</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/teddiursa.png" alt="Teddiursa"></div>
+                              </td>
+                              <td>Teddiursa</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/teddiursa.png" alt="Teddiursa"></div>
+                              </td>
+                              <td>Teddiursa</td>
+                              <td>26</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/teddiursa.png" alt="Teddiursa"></div>
+                              </td>
+                              <td>Teddiursa</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/teddiursa.png" alt="Teddiursa"></div>
+                              </td>
+                              <td>Teddiursa</td>
+                              <td>26</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-emerald-walking-table-e" class="pokemon-table compressed">
+                     <table>
+                        <caption>Emerald (Compressed)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/teddiursa.png" alt="Teddiursa"></div>
+                              </td>
+                              <td>Teddiursa</td>
+                              <td>100%</td>
+                              <td>18, 20, 22, 24, 26, 28</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h4>Walking (Set F)</h4>
+                  <div id="pokemon-rse-full-emerald-walking-table-f" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Emerald (Full)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>22</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>24</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>26</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>22</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>24</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>28</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>26</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>26</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-emerald-walking-table-f" class="pokemon-table compressed">
+                     <table>
+                        <caption>Emerald (Compressed)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/aipom-f.png" alt="Aipom"></div>
+                              </td>
+                              <td>Aipom</td>
+                              <td>100%</td>
+                              <td>18, 20, 22, 24, 26, 28</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h4>Walking (Set G)</h4>
+                  <div id="pokemon-rse-full-emerald-walking-table-g" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Emerald (Full)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/shuckle.png" alt="Shuckle"></div>
+                              </td>
+                              <td>Shuckle</td>
+                              <td>22</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/shuckle.png" alt="Shuckle"></div>
+                              </td>
+                              <td>Shuckle</td>
+                              <td>24</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/shuckle.png" alt="Shuckle"></div>
+                              </td>
+                              <td>Shuckle</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/shuckle.png" alt="Shuckle"></div>
+                              </td>
+                              <td>Shuckle</td>
+                              <td>26</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/shuckle.png" alt="Shuckle"></div>
+                              </td>
+                              <td>Shuckle</td>
+                              <td>22</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/shuckle.png" alt="Shuckle"></div>
+                              </td>
+                              <td>Shuckle</td>
+                              <td>24</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/shuckle.png" alt="Shuckle"></div>
+                              </td>
+                              <td>Shuckle</td>
+                              <td>28</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/shuckle.png" alt="Shuckle"></div>
+                              </td>
+                              <td>Shuckle</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/shuckle.png" alt="Shuckle"></div>
+                              </td>
+                              <td>Shuckle</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/shuckle.png" alt="Shuckle"></div>
+                              </td>
+                              <td>Shuckle</td>
+                              <td>26</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/shuckle.png" alt="Shuckle"></div>
+                              </td>
+                              <td>Shuckle</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/shuckle.png" alt="Shuckle"></div>
+                              </td>
+                              <td>Shuckle</td>
+                              <td>26</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-emerald-walking-table-g" class="pokemon-table compressed">
+                     <table>
+                        <caption>Emerald (Compressed)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/shuckle.png" alt="Shuckle"></div>
+                              </td>
+                              <td>Shuckle</td>
+                              <td>100%</td>
+                              <td>18, 20, 22, 24, 26, 28</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h4>Walking (Set H)</h4>
+                  <div id="pokemon-rse-full-emerald-walking-table-h" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Emerald (Full)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/stantler.png" alt="Stantler"></div>
+                              </td>
+                              <td>Stantler</td>
+                              <td>22</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/stantler.png" alt="Stantler"></div>
+                              </td>
+                              <td>Stantler</td>
+                              <td>24</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/stantler.png" alt="Stantler"></div>
+                              </td>
+                              <td>Stantler</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/stantler.png" alt="Stantler"></div>
+                              </td>
+                              <td>Stantler</td>
+                              <td>26</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/stantler.png" alt="Stantler"></div>
+                              </td>
+                              <td>Stantler</td>
+                              <td>22</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/stantler.png" alt="Stantler"></div>
+                              </td>
+                              <td>Stantler</td>
+                              <td>24</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/stantler.png" alt="Stantler"></div>
+                              </td>
+                              <td>Stantler</td>
+                              <td>28</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/stantler.png" alt="Stantler"></div>
+                              </td>
+                              <td>Stantler</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/stantler.png" alt="Stantler"></div>
+                              </td>
+                              <td>Stantler</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/stantler.png" alt="Stantler"></div>
+                              </td>
+                              <td>Stantler</td>
+                              <td>26</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/stantler.png" alt="Stantler"></div>
+                              </td>
+                              <td>Stantler</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/stantler.png" alt="Stantler"></div>
+                              </td>
+                              <td>Stantler</td>
+                              <td>26</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-emerald-walking-table-h" class="pokemon-table compressed">
+                     <table>
+                        <caption>Emerald (Compressed)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/stantler.png" alt="Stantler"></div>
+                              </td>
+                              <td>Stantler</td>
+                              <td>100%</td>
+                              <td>18, 20, 22, 24, 26, 28</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h4>Walking (Set I)</h4>
+                  <div id="pokemon-rse-full-emerald-walking-table-i" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Emerald (Full)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/smeargle.png" alt="Smeargle"></div>
+                              </td>
+                              <td>Smeargle</td>
+                              <td>22</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/smeargle.png" alt="Smeargle"></div>
+                              </td>
+                              <td>Smeargle</td>
+                              <td>24</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/smeargle.png" alt="Smeargle"></div>
+                              </td>
+                              <td>Smeargle</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/smeargle.png" alt="Smeargle"></div>
+                              </td>
+                              <td>Smeargle</td>
+                              <td>26</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/smeargle.png" alt="Smeargle"></div>
+                              </td>
+                              <td>Smeargle</td>
+                              <td>22</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/smeargle.png" alt="Smeargle"></div>
+                              </td>
+                              <td>Smeargle</td>
+                              <td>24</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/smeargle.png" alt="Smeargle"></div>
+                              </td>
+                              <td>Smeargle</td>
+                              <td>28</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/smeargle.png" alt="Smeargle"></div>
+                              </td>
+                              <td>Smeargle</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/smeargle.png" alt="Smeargle"></div>
+                              </td>
+                              <td>Smeargle</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/smeargle.png" alt="Smeargle"></div>
+                              </td>
+                              <td>Smeargle</td>
+                              <td>26</td>
+                           </tr>
+                           <tr class="emerald-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/smeargle.png" alt="Smeargle"></div>
+                              </td>
+                              <td>Smeargle</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="emerald-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/smeargle.png" alt="Smeargle"></div>
+                              </td>
+                              <td>Smeargle</td>
+                              <td>26</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-rse-compressed-emerald-walking-table-i" class="pokemon-table compressed">
+                     <table>
+                        <caption>Emerald (Compressed)</caption>
+                        <thead>
+                           <tr class="emerald-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="emerald-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/smeargle.png" alt="Smeargle"></div>
+                              </td>
+                              <td>Smeargle</td>
+                              <td>100%</td>
+                              <td>18, 20, 22, 24, 26, 28</td>
                            </tr>
                         </tbody>
                      </table>
