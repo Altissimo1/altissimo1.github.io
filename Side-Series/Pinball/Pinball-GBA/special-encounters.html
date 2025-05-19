@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Pinball Ruby & Sapphire Special Encounters</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../../colors.js"></script>
+      <link rel="stylesheet" id="common" href="../../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../../index.html">Home</a> | <a href="../../../Maintenance/contact.html">Contact Me</a> | <a href="../../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../../index.html">Side Series Home</a> | <a href="../index.html">Pinball Series Home</a> | <a href="index.html">Pinball Ruby & Sapphire Home</a></h4>
+      <h2>Pinball Ruby & Sapphire Special Encounters</h2>
+      <p>The majority of Catch and Hatch Pokémon in the game fall into one of two categories: Common and Rare. The mechanics that determine the encounter rates of each of these Pokémon are outlined on <a href="locations.html">this page</a>. A handful of Pokémon have special mechanics associated with them; this page will detail all such encounters. Information about Groudon, Kyogre, and Rayquaza can be found <a href="bonus.html">here</a>.</p>
+      <h4>Jirachi</h4>
+      <img src="../../../Resources/images/pinball-icons/pinball-gba/jirachi-slot.png" alt="Jirachi slot image">
+      <p>Jirachi is only obtainable in the Ruins area, by getting the Jirachi Arrival option on the slots. The Ruins location itself requires the player to Travel seven times to access. When the player triggers Jirachi Arrival, Jirachi will appear on the field and float around for thirty seconds. The player must hit it three times in order to catch it.</p>
+      <p>Because triggering Jirachi's appearance relies on the player getting its option in the slots, the Sapphire field is recommended, since the player can use the Zigzagoon there to stop the slots.</p>
+      <h4>Pichu</h4>
+      <p>Pichu is obtainable as a Hatch Mode catch on either field. It will only be a Hatch option once the player has captured 5 Pokémon in the current game (indicated by the number at the bottom of the screen). Pichu is also generated as the Hatch encounter separately from all other Hatch Pokémon. The mechanics for encountering Pichu work as follows:</p>
+      <ol>
+         <li>The game first generates a random number between 0 and 99, inclusive. (It may be the case that the number is between 1 and 100, but either way the percentages are identical.)</li>
+         <li>The game will divide this number by 50 and take the remainder. If the player has beaten Rayquaza in the current game, or is using an e-Reader card to increase special Pokémon's encounter rates, then the game will divide by 100 instead.</li>
+         <li>If the last Pokémon species encountered via egg is Pichu, the game will manually set the remainder value to 1, regardless of what it actually is. (This has the effect of preventing the player from being able to encounter two Pichu in a row.)</li>
+         <li>The game will check if the remainder value is equal to 0 and the number of caught Pokémon is 5. If both are true, the egg species is set to Pichu.</li>
+         <li>Otherwise, the game will generate an egg Pokémon normally based on the mechanics described on the Locations page.</li>
+      </ol>
+      <p>In order for the remainder of 0 divided by 50 to be 0, only 2 values of the possible 100 work: 0 and 50 itself. This means that Pichu has a 2% chance before the player has defeated Rayquaza. After defeating Rayquaza, 100 is used instead of 50, and only 1 value will result in a 0 remainder: 0 itself, meaning Pichu has a 1% chance after defeating Rayquaza.</p>
+      <p>This information is based on my interpretation of the still-in-progress pret decompilation project for Pinball Ruby & Sapphire; the relevant part of the code is located <a href="https://github.com/pret/pokepinballrs/blob/5c35766f7f0aabd9aa76e88d72d3df846f845096/src/rom_31F6C.c#L298">here</a>. If I am misunderstanding what I'm reading, please <a href="../../../Maintenance/contact.html">contact me</a> to issue a correction.</p>
+      <h4>Special Catch Mode Encounters (Aerodactyl, Chikorita, Totodile, Cyndaquil, Latios, and Latias)</h4>
+      <p>There is a group of six special Pokémon, consisting of the Lati twins, the Johto starters, and Aerodactyl, who are all generated using the same function in the code. Because they are all generated the same way, they are all discussed in this section. <strong>However, the Johto starters and Aerodactyl <em>cannot</em> be obtained without the use of an e-Reader card or hacking the game.</strong> <a href="https://www.youtube.com/watch?v=qMn8j6u6uvA">This video</a> by gmedley goes into the details and shows off the process of catching them, and it helped me understand how to interpret the code such that I can provide the description below explaining why.</p>
+      <p>When the player enters Catch Mode, the game has a chance of generating a special Catch Mode encounter instead of a normal encounter. Whether a special encounter is used is determined through the following process:</p>
+      <ol>
+         <li>The game first generates a random number between 0 and 99, inclusive. (It may be the case that the number is between 1 and 100, but either way the percentages are identical.)</li>
+         <li>The game will divide this number by 100 and take the remainder. If the player has beaten Rayquaza in the current game, or is using an e-Reader card to increase special Pokémon's encounter rates, then the game will divide by 50 instead.</li>
+         <li>If the player has fewer than 100 Pokémon registered as caught in the Pokédex, the game will manually set the remainder value to 1, regardless of what it actually is. (This has the effect that special encounters will never be generated if the player has caught fewer than 100 Pokémon.)</li>
+         <li>The game will check if the remainder value is equal to 0 and the number of caught Pokémon is 5. If both are true, the game will decide to use a special encounter.</li>
+      </ol>
+      <p>In order for the remainder of 0 divided by 5100 to be 0, only 1 value of the possible 100 works: 0 itself. This means that any special encounter has a 1% chance before the player has defeated Rayquaza. After defeating Rayquaza, 50 is used instead of 100, and 2 values will result in a 0 remainder: 0 and 50, meaning special encounters have a 2% chance after defeating Rayquaza.</p>
+      <p>Once the game decides to use a special encounter, it will select which encounter to use in the following manner:</p>
+      <ol>
+         <li>The game starts by creating a pool of special Pokémon that can possibly be encountered by the player. It will add to this list as it checks each Pokémon in turn.</li>
+         <li>The game will check Aerodactyl, Chikorita, Totodile, and Cyndaquil, in that order. It will first check if the Pokémon has any entry in the Pokédex, whether seen or caught. If it does, the game will add it to the list. If the Pokémon has been seen but not caught, the game will set the species of the upcoming encounter to that Pokémon.</li>
+         <li>The game will then check Latios and Latias. It will first check the board: if it is Ruby, Latios is added to the list, and if it is Sapphire, Latias is added. If the Pokémon has been seen but not caught, the game will set the species of the upcoming encounter to that Pokémon.</li>
+         <li>If, at this point, the list of Pokémon has been populated <em>but</em> an encounter has not yet been chosen, the game will choose a random Pokémon from the list to spawn. (This is only possible if the player has seen <em>and</em> caught all special Pokémon or none of them.)</li>
+      </ol>
+      <p>As mentioned above, the game will check each special encounter to see if it has been seen but not caught, and automatically set the species to spawn if this is true. The game will also overwrite its own setting if it encounters another Pokémon the player has seen but not caught. For example, if the player has seen but not caught Aerodactyl, the game will set Aerodactyl as the Pokémon to appear, but if the game gets to Totodile and sees it's also seen but not caught, then Totodile overwrites Aerodactyl. Therefore, if the player has seen but not caught all special Pokémon, they will encounter them in reverse order from how they are checked in the code: Latias/Latios, Cyndaquil, Totodile, Chikorita, and Aerodactyl, until all of them have been caught.</p>
+      <p>The game requires the player to have registered the Johto starters and Aerodactyl as "seen" in the Pokédex in order to possibly spawn them. However, there is no way to register them as "seen" without the use of e-Reader cards or hacking. <strong>This means that the Johto starters and Aerodactyl are impossible to acquire without hacking or using the e-Reader to add them to the Pokédex.</strong></p>
+      <p>According to WhenGryphonsFly on the pret project, there is also an e-Reader card that can force the Johto starters and Aerodactyl to be the next Pokémon generated by the game, skipping this entire process. There is not a card that does the same for Latias or Latios.</p>
+      <p>This information is based on my interpretation & discussions about the still-in-progress pret decompilation project for Pinball Ruby & Sapphire; the relevant part of the code is located <a href="https://github.com/pret/pokepinballrs/blob/5c35766f7f0aabd9aa76e88d72d3df846f845096/src/rom_31F6C.c#L156">here</a>. If I am misunderstanding what I'm reading, please <a href="../../../Maintenance/contact.html">contact me</a> to issue a correction.</p>
+   </body>
+</html>
