@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Cipher Lab</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../../colors.js"></script>
+      <!-- <script src="javascript/buttons.js"></script> -->
+      <link rel="stylesheet" id="common" href="../../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../../index.html">Home</a> | <a href="../../../Maintenance/contact.html">Contact Me</a> | <a href="../../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../../index.html">Supplementary Series Home</a> | <a href="../index.html">Orre Games Home</a> | <a href="index.html">Orre Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="colosseum" type="radio" onclick="topButton.call(this)" name="games" value="Colosseum" checked="checked">
+         <label for="colosseum" class="right">Colosseum</label>
+         <!-- <input id="xd" type="radio" onclick="topButton.call(this)" name="games" value="XD"> -->
+         <!-- <label for="xd" class="right">XD</label> -->
+      </div>
+      <h2>Cipher Lab</h2>
+      <div id="notes" class="bottom">
+         <p id="colosseum-notes" class="colosseum">
+            This area is called <strong>Shadow PKMN Lab</strong> in Colosseum.<br><br>
+            <strong>Access to:</strong><br>
+            One small area here can be accessed from <a class="location-link" href="the-under.html">The Under Subway</a>
+         </p>
+         <p id="xd-notes" class="xd" style="display:none;">
+         </p>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-colosseum-items" class="game-container colosseum">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Colosseum Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Maingate Key</td>
+                     <td>On the lowest floor, in the area only accessible from The Under Subway</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Heal (2x)</td>
+                     <td>Outside, to the southwest</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive (3x)</td>
+                     <td>Outside, to the northeast</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>PP Up (3x)</td>
+                     <td>On 1F, in the northwest part of the room with the PC</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Card Key</td>
+                     <td>On B1F of the western wing, next to Researcher Myron</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Elixir (3x)</td>
+                     <td>On the lowest floor, across from the area accessible from The Under Subway</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Down St. Key</td>
+                     <td>On the table in the room with Researcher Coren</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>At the dead end south of the area with two adjacent elevators</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>HP Up</td>
+                     <td>In the southwest part of Ein's room</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM26 Earthquake</td>
+                     <td>In the northeast part of Ein's room</td>
+                     <td>Only after defeating him.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Data ROM</td>
+                     <td>On the shelf east of Ein in his room</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>DNA Samples</h4>
+            <p class="colosseum">To enter Ein's room, the player must find 3 DNA Samples around the location and analyze them with the DNA Analyzer. There are nine possible locations for the DNA Samples, though only three will be selected.</p>
+            <ul>
+               <li>One in the northwest corner of the room west of the door unlocked with the Down St. Key</li>
+               <li>One in the room with the stairway leading to the room containing the Down St. Key</li>
+               <li>Two in the room to the west after the door unlocked with the Down St. Key</li>
+               <li>Two in the room guarded by Cipher Peon Lesar</li>
+               <li>One east of the two adjacent elevators</li>
+               <li>Two in the room north of the two adjacent elevators</li>
+            </ul>
+         </div>
+         <div id="pokemon-xd-items" class="game-container xd" style="display:none;">
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-colosseum-trainers" class="game-container colosseum">
+            <h3><u>Trainers</u></h3>
+            <h4>First visit</h4>
+            <table class="left-align">
+               <caption>Colosseum Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Researcher Myron</td>
+                     <td>Voltorb lv.38<br>Voltorb lv.38</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Peon Cole</td>
+                     <td>Furret lv.37<br>Remoraid lv.39<br>Castform lv.41<br><strong>Aipom (Shadow) lv.43</strong></td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Researcher Lethco</td>
+                     <td>Magnemite lv.37<br>Chinchou lv.38<br>Electrike lv.39</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Researcher Odlow</td>
+                     <td>Magnemite lv.38<br>Electrode lv.39<br>Magneton lv.39</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Researcher Coren</td>
+                     <td>Magnemite lv.39<br>Electrode lv.40<br>Magneton lv.40</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Peon Lare</td>
+                     <td>Carvanha lv.38<br>Nuzleaf lv.38<br>Houndour lv.38<br><strong>Murkrow (Shadow) lv.43</strong></td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Cipher Peon Vana</td>
+                     <td><strong>Forretress (Shadow) lv.43</strong><br>Zubat lv.40<br>Swablu lv.40<br>Pupitar lv.40</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Peon Lesar</td>
+                     <td><strong>Ariados (Shadow) lv.43</strong><br>Rhyhorn lv.40<br>Grovyle lv.40</td>
+                     <td>Ariados holds Silverpowder.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Cipher Peon Tanie</td>
+                     <td><strong>Granbull (Shadow) lv.43</strong><br>Linoone lv.38<br>Vigoroth lv.39</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Researcher Dubik</td>
+                     <td>Electrode lv.37<br>Electrode lv.37</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Researcher Kotan</td>
+                     <td>Electrode lv.42<br>Magneton lv.40<br>Ampharos lv.41</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Peon Remil</td>
+                     <td><strong>Vibrava (Shadow) lv.43</strong><br>Swellow lv.43<br>Kecleon lv.43<br>Kadabra lv.42</td>
+                     <td>Vibrava holds a Dragon Fang.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Cipher Peon Skrub</td>
+                     <td>Medicham lv.41<br>Clamperl lv.43<br>Graveler lv.44<br>Wobbuffet lv.42</td>
+                     <td>If the player did not Snag his Hitmontop earlier in the game, he will use it instead of Medicham here, and it can be Snagged.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Admin Ein</td>
+                     <td><strong>Raikou (Shadow) lv.40</strong><br>Lanturn lv.47<br>Altaria lv.46<br>Huntail lv.47<br>Golbat lv.48</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>After meeting a Mystery Troop member at <a class="location-link" href="snagem-hideout.html">Snagem Hideout</a> and speaking with Nett about his email</h4>
+            <table class="left-align">
+               <caption>Colosseum Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Cipher Peon Cole</td>
+                     <td>Wigglytuff lv.56<br>Furret lv.57<br>Octillery lv.56<br>Castform lv.58</td>
+                     <td>If the player did not Snag his Aipom, he will use it instead of Wigglytuff here, and it can be Snagged.<br>
+                        This battle can be repeated until his Aipom is Snagged.
+                     </td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Peon Lare</td>
+                     <td>Sneasel lv.57<br>Houndour lv.56<br>Nuzleaf lv.57<br>Sharpedo lv.56</td>
+                     <td>If the player did not Snag her Murkrow, she will use it instead of Sneasel here, and it can be Snagged.<br>
+                        This battle can be repeated until her Murkrow is Snagged.
+                     </td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Cipher Peon Vana</td>
+                     <td>Mawile lv.57<br>Golbat lv.56<br>Swablu lv.58<br>Pupitar lv.56</td>
+                     <td>If the player did not Snag her Forretress, she will use it instead of Mawile here, and it can be Snagged.<br>
+                        This battle can be repeated until her Forretress is Snagged.
+                     </td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Peon Lesar</td>
+                     <td>Masquerain lv.57<br>Rhyhorn lv.57<br>Grovyle lv.56</td>
+                     <td>If the player did not Snag his Ariados, he will use it instead of Masquerain here, and it can be Snagged.<br>
+                        This battle can be repeated until his Ariados is Snagged.
+                     </td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Cipher Peon Tanie</td>
+                     <td>Delcatty lv.43<br>Linoone lv.42<br>Vigoroth lv.44</td>
+                     <td>If the player did not Snag her Granbull, she will use it instead of Delcatty here, and it can be Snagged.<br>
+                        This battle can be repeated until her Granbull is Snagged.
+                     </td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Peon Remil</td>
+                     <td>Quagsire lv.58<br>Swellow lv.58<br>Kecleon lv.58<br>Kadabra lv.57</td>
+                     <td>If the player did not Snag her Vibrava, she will use it instead of Quagsire here, and it can be Snagged.<br>
+                        This battle can be repeated until her Vibrava is Snagged.
+                     </td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Mystery Troop Verde</td>
+                     <td><strong>Bayleef (Shadow) lv.30</strong><br>Muk lv.63<br>Grumpig lv.62<br>Sharpedo lv.61</td>
+                     <td>Only if the player chose to fight Mystery Troop Bluno in <a class="location-link" href="phenac-city.html">Phenac City</a>.<br>
+                        Bayleef holds a Miracle Seed.<br>
+                        This battle can be repeated until his Bayleef is Snagged.
+                     </td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Mystery Troop Rosso</td>
+                     <td><strong>Quilava (Shadow) lv.30</strong><br>Muk lv.63<br>Grumpig lv.62<br>Breloom lv.61</td>
+                     <td>Only if the player chose to fight Mystery Troop Verde in Phenac City.<br>
+                        Quilava holds a Charcoal.<br>
+                        This battle can be repeated until his Quilava is Snagged.
+                     </td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Mystery Troop Bluno</td>
+                     <td><strong>Croconaw (Shadow) lv.30</strong><br>Muk lv.63<br>Grumpig lv.62<br>Camerupt lv.61</td>
+                     <td>Only if the player chose to fight Mystery Troop Rosso in Phenac City.<br>
+                        Croconaw holds a Mystic Water.<br>
+                        This battle can be repeated until his Croconaw is Snagged.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-xd-trainers" class="game-container xd" style="display:none;">
+         </div>
+      </div>
+   </body>
+</html>
