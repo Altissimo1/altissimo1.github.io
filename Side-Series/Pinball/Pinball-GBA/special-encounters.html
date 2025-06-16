@@ -19,12 +19,12 @@
       <p>The majority of Catch and Hatch Pokémon in the game fall into one of two categories: Common and Rare. The mechanics that determine the encounter rates of each of these Pokémon are outlined on <a href="locations.html">this page</a>. A handful of Pokémon have special mechanics associated with them; this page will detail all such encounters. Information about Groudon, Kyogre, and Rayquaza can be found <a href="bonus.html">here</a>.</p>
       <h4>Jirachi</h4>
       <img src="../../../Resources/images/pinball-icons/pinball-gba/jirachi-slot.png" alt="Jirachi slot image">
-      <p>Jirachi is only obtainable in the Ruins area, by getting the Jirachi Arrival option on the slots. The Ruins location itself requires the player to Travel seven times to access. When the player triggers Jirachi Arrival, Jirachi will appear on the field and float around for thirty seconds. The player must hit it three times in order to catch it.</p>
+      <p>Jirachi is only obtainable in the Ruins area, by getting the Jirachi Arrival option on the slots. The Ruins location itself requires the player to Travel six times to access. When the player triggers Jirachi Arrival, Jirachi will appear on the field and float around for thirty seconds. The player must hit it three times in order to catch it.</p>
       <p>Because triggering Jirachi's appearance relies on the player getting its option in the slots, the Sapphire field is recommended, since the player can use the Zigzagoon there to stop the slots.</p>
       <h4>Pichu</h4>
       <p>Pichu is obtainable as a Hatch Mode catch on either field. It will only be a Hatch option once the player has captured 5 Pokémon in the current game (indicated by the number at the bottom of the screen). Pichu is also generated as the Hatch encounter separately from all other Hatch Pokémon. The mechanics for encountering Pichu work as follows:</p>
       <ol>
-         <li>The game first generates a random number between 0 and 99, inclusive. (It may be the case that the number is between 1 and 100, but either way the percentages are identical.)</li>
+         <li>The game first generates a random number between 0 and 99, inclusive.</li>
          <li>The game will divide this number by 50 and take the remainder. If the player has beaten Rayquaza in the current game, or is using an e-Reader card to increase special Pokémon's encounter rates, then the game will divide by 100 instead.</li>
          <li>If the last Pokémon species encountered via egg is Pichu, the game will manually set the remainder value to 1, regardless of what it actually is. (This has the effect of preventing the player from being able to encounter two Pichu in a row.)</li>
          <li>The game will check if the remainder value is equal to 0 and the number of caught Pokémon is 5. If both are true, the egg species is set to Pichu.</li>
@@ -36,12 +36,12 @@
       <p>There is a group of six special Pokémon, consisting of the Lati twins, the Johto starters, and Aerodactyl, who are all generated using the same function in the code. Because they are all generated the same way, they are all discussed in this section. <strong>However, the Johto starters and Aerodactyl <em>cannot</em> be obtained without the use of an e-Reader card or hacking the game.</strong> <a href="https://www.youtube.com/watch?v=qMn8j6u6uvA">This video</a> by gmedley goes into the details and shows off the process of catching them, and it helped me understand how to interpret the code such that I can provide the description below explaining why.</p>
       <p>When the player enters Catch Mode, the game has a chance of generating a special Catch Mode encounter instead of a normal encounter. Whether a special encounter is used is determined through the following process:</p>
       <ol>
-         <li>The game first generates a random number between 0 and 99, inclusive. (It may be the case that the number is between 1 and 100, but either way the percentages are identical.)</li>
+         <li>The game first generates a random number between 0 and 99, inclusive.</li>
          <li>The game will divide this number by 100 and take the remainder. If the player has beaten Rayquaza in the current game, or is using an e-Reader card to increase special Pokémon's encounter rates, then the game will divide by 50 instead.</li>
          <li>If the player has fewer than 100 Pokémon registered as caught in the Pokédex, the game will manually set the remainder value to 1, regardless of what it actually is. (This has the effect that special encounters will never be generated if the player has caught fewer than 100 Pokémon.)</li>
          <li>The game will check if the remainder value is equal to 0 and the number of caught Pokémon is 5. If both are true, the game will decide to use a special encounter.</li>
       </ol>
-      <p>In order for the remainder of 0 divided by 5100 to be 0, only 1 value of the possible 100 works: 0 itself. This means that any special encounter has a 1% chance before the player has defeated Rayquaza. After defeating Rayquaza, 50 is used instead of 100, and 2 values will result in a 0 remainder: 0 and 50, meaning special encounters have a 2% chance after defeating Rayquaza.</p>
+      <p>In order for the remainder of 0 divided by 100 to be 0, only 1 value of the possible 100 works: 0 itself. This means that any special encounter has a 1% chance before the player has defeated Rayquaza. After defeating Rayquaza, 50 is used instead of 100, and 2 values will result in a 0 remainder: 0 and 50, meaning special encounters have a 2% chance after defeating Rayquaza.</p>
       <p>Once the game decides to use a special encounter, it will select which encounter to use in the following manner:</p>
       <ol>
          <li>The game starts by creating a pool of special Pokémon that can possibly be encountered by the player. It will add to this list as it checks each Pokémon in turn.</li>
