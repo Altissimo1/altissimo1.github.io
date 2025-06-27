@@ -120,7 +120,7 @@
          <li>If the player has enough steps, the game will check to see if 'rand' is lower than the second item's weight. If it is lower, the player obtains the second item.</li>
          <li>[Continue the above logic through all ten items. The tenth item's step value is 0 and its weight is 100, so it will always be obtained if none of the other items is.]</li>
       </ol>
-      <p>The difference between generating a new 'rand' and <em>not</em> doing that slightly affects the calculation. Here is a comparison of what the difference would look like for the Doduo example in Pokémon: As it is, 'rand' needs to be between 70 and 75 for a Nidoran to spawn if the player has over 2000 steps, giving it a 5% chance. If the game instead generates a new 'rand' to check for Nidoran, this would instead mean that Nidoran can be spawned with any 'rand' under 75 if Doduo fails. Since it's a 30% chance to fail Doduo, this means that Nidoran would actually have a (0.3 * 75) = 22.5% chance to spawn, while Pidgey/Sentret would have 2.5%. This is <em>very</em> different from the case the game actually uses, where Nidoran has a 5% chance and Pidgey/Sentret has a 25% chance!</p>
+      <p>The difference between generating a new 'rand' and <em>not</em> doing that slightly affects the calculation. Here is a comparison of what the difference would look like for the Doduo example in Pokémon: As it is, 'rand' needs to be between 70 and 75 for a Nidoran to spawn if the player has over 2000 steps, giving it a 5% chance. If the game instead generates a new 'rand' to check for Nidoran, this would instead mean that Nidoran can be spawned with any 'rand' under 75 if Doduo fails. Since it's a 30% chance to fail Doduo, this means that Nidoran would actually have a (0.3 * 75) = 22.5% chance to spawn, while Pidgey/Sentret would have 7.5%. This is <em>very</em> different from the case the game actually uses, where Nidoran has a 5% chance and Pidgey/Sentret has a 25% chance!</p>
       <p>In order to calculate any one item's appearance rate, you will have to calculate the chance of generating a 'rand' below the item's weight (this is always going to be equal to the weight; e.g. a 20 weight is a 20% chance) and then multiply it by the chance of failing the checks for all the items higher on the list than the one you're checking. Keep in mind that only items that can be obtained at your current step counter need to be considered, because the game will just skip any items you don't meet the step requirement for.</p>
       <h4>Other Pokéwalker Items</h4>
       <p>The player can also find items when interacting with another Pokéwalker. The item the player finds is taken from the same list of ten that can be found normally in the Pokéwalker, but the method of deciding which item to give the player is different.</p>
@@ -5649,7 +5649,7 @@
                <td>10</td>
             </tr>
             <tr class="light-false">
-               <td>Heal Bell</td>
+               <td>Heal Ball</td>
                <td>2000</td>
                <td>20</td>
             </tr>
