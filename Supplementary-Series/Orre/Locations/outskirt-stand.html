@@ -6,7 +6,7 @@
       <title>Outskirt Stand</title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../../../colors.js"></script>
-      <!-- <script src="javascript/buttons.js"></script> -->
+      <script src="javascript/buttons.js"></script>
       <link rel="stylesheet" id="common" href="../../../common.css">
       <link rel="stylesheet" id="style">
    </head>
@@ -19,10 +19,67 @@
       <div id="topButtons" class="flex-buttons">
          <input id="colosseum" type="radio" onclick="topButton.call(this)" name="games" value="Colosseum" checked="checked">
          <label for="colosseum" class="right">Colosseum</label>
-         <!-- <input id="xd" type="radio" onclick="topButton.call(this)" name="games" value="XD"> -->
-         <!-- <label for="xd" class="right">XD</label> -->
+         <input id="xd" type="radio" onclick="topButton.call(this)" name="games" value="XD">
+         <label for="xd" class="right">XD</label>
       </div>
       <h2>Outskirt Stand</h2>
+	  <div id="pokemon-container">
+         <div id="pokemon-tables">
+            <div id="pokemon-xd" class="game-container xd" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-xd-gift" class="table-collection gift">
+                  <h4>Gift</h4>
+                  <div id="pokemon-xd-all-combined-gift-table" class="pokemon-table all combined">
+                     <table>
+                        <caption>Pokémon</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="light-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/togepi.png" alt="Togepi"></div>
+                              </td>
+                              <td>Togepi (Shadow)</td>
+                              <td>25</td>
+                              <td>Obtained from Hordel. Once it has been purified, the player can trade it back to Hordel in exchange for an Elekid, even if Togepi has evolved.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+			   <div id="pokemon-xd-trade" class="table-collection trade">
+                  <h4>Trade</h4>
+                  <div id="pokemon-xd-all-combined-trade-table" class="pokemon-table all combined">
+                     <table>
+                        <caption>Pokémon</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="light-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/elekid.png" alt="Elekid"></div>
+                              </td>
+                              <td>Elekid</td>
+                              <td>20</td>
+                              <td>This trade is with Hordel, who will only accept the purified Shadow Togepi (or Togetic) that the player received from him earlier in the game.<br>Elekid knows Cross Chop, Fire Punch, Ice Punch, and Thunderpunch.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+			    </div>
+            </div>
+         </div>
+      </div>
       <div id="items-container">
          <div id="pokemon-colosseum-items" class="game-container colosseum">
             <h3><u>Items</u></h3>
@@ -81,23 +138,23 @@
                      <td>Only after defeating Shady Guy Folly in Phenac City.</td>
                   </tr>
                   <tr class="light-true">
-                     <td>Great Ball</td>
-                     <td>600</td>
-                     <td>Only after defeating Team Snagem Wakin in Phenac City.</td>
-                  </tr>
-                  <tr class="light-false">
-                     <td>Poké Ball</td>
-                     <td>200</td>
-                     <td>Only after defeating Team Snagem Wakin in Phenac City.</td>
-                  </tr>
-                  <tr class="light-true">
                      <td>Full Heal</td>
                      <td>600</td>
                      <td>Only after defeating Team Snagem Wakin in Phenac City.</td>
                   </tr>
                   <tr class="light-false">
-                     <td>Nest Ball</td>
-                     <td>1000</td>
+                     <td>Great Ball</td>
+                     <td>600</td>
+                     <td>Only after defeating Team Snagem Wakin in Phenac City.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Poké Ball</td>
+                     <td>200</td>
+                     <td>Only after defeating Team Snagem Wakin in Phenac City.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
                      <td>Only after Team Cipher attacks <a class="location-link" href="mt-battle.html">Mt. Battle</a>.</td>
                   </tr>
                   <tr class="light-true">
@@ -106,19 +163,69 @@
                      <td>Only after Team Cipher attacks Mt. Battle.</td>
                   </tr>
                   <tr class="light-false">
-                     <td>Timer Ball</td>
+                     <td>Nest Ball</td>
                      <td>1000</td>
                      <td>Only after Team Cipher attacks Mt. Battle.</td>
                   </tr>
                   <tr class="light-true">
-                     <td>Ultra Ball</td>
-                     <td>1200</td>
+                     <td>Timer Ball</td>
+                     <td>1000</td>
                      <td>Only after Team Cipher attacks Mt. Battle.</td>
                   </tr>
                </tbody>
             </table>
          </div>
          <div id="pokemon-xd-items" class="game-container xd" style="display:none;">
+			<h3><u>Items</u></h3>
+			<h4>Shop</h4>
+            <p class="xd">The player will receive a Premier Ball for buying ten or more Poké Balls at once.</p>
+            <table class="left-align">
+               <caption>XD Items (Shop)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Net Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Nest Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Timer Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>700</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Revive</td>
+                     <td>1500</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Poké Snack</td>
+                     <td>300</td>
+                  </tr>
+               </tbody>
+            </table>
          </div>
       </div>
       <div id="trainers-container">
@@ -198,7 +305,49 @@
             </table>
          </div>
          <div id="pokemon-xd-trainers" class="game-container xd" style="display:none;">
-         </div>
+			<h3><u>Trainers</u></h3>
+            <h4>First visit</h4>
+            <table class="left-align">
+               <caption>XD Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Wanderer Miror B.</td>
+                     <td>Lombre lv.26<br>Lombre lv.26<br>Lombre lv.26<br><strong>Nosepass (Shadow) lv.26</strong><br>Ludicolo lv.26</td>
+                     <td>Nosepass cannot be Snagged at this time.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rider Willie</td>
+                     <td>Zigzagoon lv.24<br>Zigzagoon lv.24<br>Linoone lv.26<br>Linoone lv.26</td>
+                     <td>This battle can be repeated indefinitely.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>After defeating Greevil at <a class="location-link" href="citadark-isle.html">Citadark Isle</a></h4>
+            <table class="left-align">
+               <caption>XD Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Rider Willie</td>
+                     <td>Linoone lv.50<br>Linoone lv.50<br>Linoone lv.50<br>Linoone lv.50</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>			
+		 </div>
       </div>
    </body>
 </html>

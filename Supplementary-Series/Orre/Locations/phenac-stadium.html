@@ -6,6 +6,7 @@
       <title>Phenac Stadium</title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../../../colors.js"></script>
+      <script src="javascript/buttons.js"></script>
       <link rel="stylesheet" id="common" href="../../../common.css">
       <link rel="stylesheet" id="style">
    </head>
@@ -15,6 +16,12 @@
          <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
       </div>
       <h4><a href="../../index.html">Supplementary Series Home</a> | <a href="../index.html">Orre Games Home</a> | <a href="index.html">Orre Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="colosseum" type="radio" onclick="topButton.call(this)" name="games" value="Colosseum" checked="checked">
+         <label for="colosseum" class="right">Colosseum</label>
+         <input id="xd" type="radio" onclick="topButton.call(this)" name="games" value="XD">
+         <label for="xd" class="right">XD</label>
+      </div>
       <h2>Phenac Stadium</h2>
       <div id="notes" class="bottom">
          <p id="colosseum-notes" class="colosseum">
@@ -22,6 +29,10 @@
             Exit: <a class="location-link" href="phenac-city.html">Phenac City</a><br><br>
             <strong>Places of interest:</strong><br>
             In the Japanese release, VR Trainers scanned from e-Reader cards can be battled here. See <a href="https://bulbapedia.bulbagarden.net/wiki/Card_e_Room">Bulbapedia's article</a> for more information.
+         </p>
+         <p id="xd-notes" class="xd" style="display:none;">
+            <strong>Access to:</strong><br>
+            Exit: <a class="location-link" href="phenac-city.html">Phenac City</a>
          </p>
       </div>
       <div id="items-container">
@@ -56,6 +67,46 @@
                      <td>TM22 Solarbeam</td>
                      <td>Reward for clearing Round 4</td>
                      <td>Only available the first time.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-xd-items" class="game-container xd" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>XD Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Water Stone</td>
+                     <td>On the western side of the stadium floor</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>PP Up</td>
+                     <td>On the northeastern side of the stadium floor</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM13 Ice Beam</td>
+                     <td>On the southeastern side of the stadium floor</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Elevator Key</td>
+                     <td>Dropped by Snattle after he is defeated</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Battle CD 44</td>
+                     <td>On the northern side of the stadium floor</td>
+                     <td>Only after defeating Greevil at <a class="location-link" href="citadark-isle.html">Citadark Isle</a>.</td>
                   </tr>
                </tbody>
             </table>
@@ -194,6 +245,77 @@
                      <td>Teacher Glais</td>
                      <td>Staryu lv.41<br>Ledyba lv.41<br>Pichu lv.42</td>
                      <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-xd-trainers" class="game-container xd" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>XD Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Cipher Peon Ezin</td>
+                     <td>Pelipper lv.23<br>Electrike lv.23<br><strong>Spearow (Shadow) lv.22</strong></td>
+                     <td>Pelipper and Spearow both hold Sharp Beaks.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Peon Faltly</td>
+                     <td>Chimecho lv.23<br>Stantler lv.23<br><strong>Grimer (Shadow) lv.23</strong></td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Cipher Peon Egrog</td>
+                     <td>Hoothoot lv.25<br>Graveler lv.26<br>Gulpin lv.26<br><strong>Seel (Shadow) lv.23</strong></td>
+                     <td>Seel holds Mystic Water.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Admin Snattle</td>
+                     <td>Lanturn lv.26<br>Quagsire lv.26<br><strong>Lunatone (Shadow) lv.25</strong><br>Castform lv.27<br>Metang lv.28</td>
+                     <td>Lunatone holds a Hard Stone. He will drop the Elevator Key after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>After saving Phenac City</h4>
+            <table class="left-align">
+               <caption>XD Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Cooltrainer Equin</td>
+                     <td>Sneasel lv.23<br>Spoink lv.23<br>Spinda lv.23</td>
+                     <td>If the player defeats her with this team, she will not challenge the player again with her higher-leveled team after the player defeats Greevil.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>After defeating Greevil at <a class="location-link" href="citadark-isle.html">Citadark Isle</a></h4>
+            <table class="left-align">
+               <caption>XD Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Cooltrainer Equin</td>
+                     <td>Sneasel lv.50<br>Grumpig lv.50<br>Spinda lv.50</td>
+                     <td>This battle can only be fought if the player never fought her level 23 team.</td>
                   </tr>
                </tbody>
             </table>

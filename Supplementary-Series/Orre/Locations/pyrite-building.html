@@ -6,6 +6,7 @@
       <title>Pyrite Bldg</title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../../../colors.js"></script>
+      <script src="javascript/buttons.js"></script>
       <link rel="stylesheet" id="common" href="../../../common.css">
       <link rel="stylesheet" id="style">
    </head>
@@ -15,13 +16,24 @@
          <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
       </div>
       <h4><a href="../../index.html">Supplementary Series Home</a> | <a href="../index.html">Orre Games Home</a> | <a href="index.html">Orre Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="colosseum" type="radio" onclick="topButton.call(this)" name="games" value="Colosseum" checked="checked">
+         <label for="colosseum" class="right">Colosseum</label>
+         <input id="xd" type="radio" onclick="topButton.call(this)" name="games" value="XD">
+         <label for="xd" class="right">XD</label>
+      </div>
       <h2>Pyrite Bldg (Building)</h2>
       <div id="notes" class="bottom">
          <p id="colosseum-notes" class="colosseum">
             <strong>Access to:</strong><br>
             Exit: <a class="location-link" href="pyrite-town.html">Pyrite Town</a><br>
-            Accessible from the roof: <a class="location-link" href="pyrite-cave.html">Pyrite Cave</a><br>
-            Accessible from the elevator: <a class="location-link" href="the-under.html">The Under</a>
+            Accessible from the roof: <a href="pyrite-cave.html">Pyrite Cave</a><br>
+            Accessible from the elevator: <a href="the-under.html">The Under</a>
+         </p>
+         <p id="xd-notes" class="xd" style="display:none;">
+            This area is called <strong>ONBS</strong> in XD.<br><br>
+            <strong>Access to:</strong><br>
+            Exit: <a class="location-link" href="pyrite-town.html">Pyrite Town</a>
          </p>
       </div>
       <div id="items-container">
@@ -65,11 +77,70 @@
                </tbody>
             </table>
          </div>
+         <div id="pokemon-xd-items" class="game-container xd" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Colosseum Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Battle CD 24</td>
+                     <td>On 1F, on a bookshelf in the southwestern room</td>
+                     <td>Only after clearing <a href="cipher-key-lair.html">Cipher Key Lair</a>.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ether</td>
+                     <td>On 2F, in a locker room</td>
+                     <td>This room is first accessible when Cipher attacks the building.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Battle CD 21</td>
+                     <td>On 2F, on the northern bookshelf in Secc's office</td>
+                     <td>Only after clearing Cipher Key Lair.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Soothe Bell</td>
+                     <td>On 3F, obtained from Kandee's mother for bringing Kandee from 2F</td>
+                     <td>This item is permanently missable if the player does not obtain it before fighting Miror B. at the <a href="poke-spots.html">Cave Poké Spot</a>.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>On 3F, in the room across from the elevator</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>HP Up</td>
+                     <td>On 3F, in the room with the Worker</td>
+                     <td>This room is first accessible when Cipher attacks the building.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Battle CD 38</td>
+                     <td>On 3F, on a bookshelf in the southeastern room</td>
+                     <td>Only after the Snag Machine is stolen.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Battle CD 36</td>
+                     <td>On the roof, on the bookshelf behind Nett</td>
+                     <td>Only after the Snag Machine is stolen.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Bonsly Card</td>
+                     <td>On the roof, obtained from Bonsly's owner</td>
+                     <td>Only after the player finds Bonsly at a Poké Spot.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
       </div>
       <div id="trainers-container">
          <div id="pokemon-colosseum-trainers" class="game-container colosseum">
             <h3><u>Trainers</u></h3>
-            <p class="colosseum">All Trainers except Cipher Peon Nore, Miror B.Peon Reath, and Miror B.Peon Ferma can be battled indefinitely. Their teams will improve as the player progresses the plot; updated teams are given at the relevant plot points in the tables below.</p>
             <h4>First visit</h4>
             <h4>1F</h4>
             <table class="left-align">
@@ -165,7 +236,7 @@
                   </tr>
                </tbody>
             </table>
-            <h4>4F</h4>
+            <h4>Roof</h4>
             <table class="left-align">
                <caption>Colosseum Trainers</caption>
                <thead>
@@ -186,19 +257,6 @@
                      <td><strong>Mantine (Shadow) lv.33</strong><br>Aipom lv.32<br>Furret lv.31<br>Yanma lv.33</td>
                      <td></td>
                   </tr>
-               </tbody>
-            </table>
-            <h4>Roof</h4>
-            <table class="left-align">
-               <caption>Colosseum Trainers</caption>
-               <thead>
-                  <tr class="light-true">
-                     <th>Trainer</th>
-                     <th>Party</th>
-                     <th>Notes</th>
-                  </tr>
-               </thead>
-               <tbody>
                   <tr class="light-false">
                      <td>Hunter Doken</td>
                      <td><strong>Qwilfish (Shadow) lv.33</strong><br>Goldeen lv.33<br>Linoone lv.33</td>
@@ -221,7 +279,9 @@
                   <tr class="light-false">
                      <td>Hunter Doken</td>
                      <td>Corphish lv.37<br>Goldeen lv.38<br>Linoone lv.37</td>
-                     <td>If the player did not Snag his Qwilfish, he will use it instead of Corphish here, and it can be Snagged.</td>
+                     <td>If the player did not Snag his Qwilfish, he will use it instead of Corphish here, and it can be Snagged. However, it will no longer be holding its Poison Barb.<br>
+                        This battle can be repeated indefinitely.
+                     </td>
                   </tr>
                </tbody>
             </table>
@@ -311,6 +371,116 @@
                   <tr class="light-true">
                      <td>Bodybuilder Elidi</td>
                      <td>Cacnea lv.40<br>Tentacool lv.39</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-xd-trainers" class="game-container xd" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>1F</h4>
+            <table class="left-align">
+               <caption>XD Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Cipher Peon Rett</td>
+                     <td>Carvanha lv.18<br>Barboach lv.17</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Peon Mocor</td>
+                     <td>Corphish lv.18<br>Electrike lv.17<br>Grimer lv.18</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>2F</h4>
+            <table class="left-align">
+               <caption>XD Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Cipher Peon Torkin</td>
+                     <td>Kecleon lv.19<br>Surskit lv.21<br><strong>Makuhita (Shadow) lv.18</strong></td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Peon Elox</td>
+                     <td>Doduo lv.20<br>Tentacool lv.18<br>Chimecho lv.20</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Cipher Peon Rixor</td>
+                     <td>Qwilfish lv.19<br>Rhyhorn lv.20<br>Chinchou lv.20<br>Koffing lv.20</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Peon Mesin</td>
+                     <td>Spinarak lv.20<br>Beautifly lv.19<br>Dustox lv.20<br><strong>Vulpix (Shadow) lv.18</strong></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>3F</h4>
+            <table class="left-align">
+               <caption>XD Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Cipher Peon Dilly</td>
+                     <td>Gulpin lv.19<br>Mareep lv.18<br>Luvdisc lv.20<br>Bellossom lv.21</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Peon Edlos</td>
+                     <td>Furret lv.19<br>Zigzagoon lv.20<br>Togetic lv.19<br>Delibird lv.21</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Cipher Peon Lobar</td>
+                     <td>Sneasel lv.20<br>Yanma lv.19<br>Misdreavus lv.20<br><strong>Duskull (Shadow) lv.19</strong></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Roof</h4>
+            <table class="left-align">
+               <caption>XD Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Cipher Peon Feldas</td>
+                     <td>Kadabra lv.22<br>Flaaffy lv.22<br>Vigoroth lv.21<br><strong>Ralts (Shadow) lv.20</strong></td>
+                     <td>Ralts holds a Twistedspoon.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cipher Cmdr Exol</td>
+                     <td>Loudred lv.23<br>Girafarig lv.23<br><strong>Mawile (Shadow) lv.22</strong><br>Raichu lv.23</td>
                      <td></td>
                   </tr>
                </tbody>
