@@ -100,9 +100,9 @@ var WMSParser = {
 	// Sanitizes a WonderMail S string by removing all unknown characters.
 	"sanitize": function(wmString) {
 		// If dontSanitize is there and is checked, return our input.
-		if(getOption("dontSanitize")) {
-			return wmString;
-		}
+		//if(getOption("dontSanitize")) {
+		//	return wmString;
+		//}
 		
 		wmString = wmString.toUpperCase();
 		var outString = "";
