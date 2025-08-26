@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wonder Mail S Decoder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    input[type="text"] {
+      width: 400px;
+      padding: 8px;
+    }
+    button {
+      padding: 8px 12px;
+      margin-left: 10px;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border: 1px solid #ccc;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Wonder Mail S Password Decoder</h1>
+  <p>Enter a Wonder Mail S password:</p>
+  <input type="text" id="wmInput" placeholder="e.g. N323S0Q=CPXXS9P328QFJ&2JT72X">
+  <button onclick="processPassword()">Decode</button>
+
+  <h2>Results:</h2>
+  <pre id="output">Enter a password and click "Decode".</pre>
+
+  <script src="./script/wm.js"></script>
+  <script src="./script/wmutils.js"></script>
+  <script src="./script/sky_dungeon.js"></script>
+  <script src="./script/sky_item.js"></script>
+  <script src="./script/sky_poke.js"></script>
+  <script>
+    function processPassword() {
+      const input = document.getElementById("wmInput").value.trim();
+      const output = document.getElementById("output");
+
+      try {
+        const sanitized = WMSParser.sanitize(input);
+        const unscrambled = WMSParser.unscrambleString(sanitized);
+        const bits = WMSParser.bytesToBits(unscrambled);
+        const decryptedBits = WMSParser.decryptBitStream(bits);
+        const structure = WMSParser.bitsToStructure(decryptedBits);
+
+        // Annotate with names using wmutils
+        let annotations = {};
+
+        // Monster names
+        annotations.client = getMonName(structure.client);
+        annotations.target = getMonName(structure.target);
+
+        // Dungeon name
+        annotations.dungeon = getDungeonName(structure.dungeon);
+
+        // Item names (conditionally for reward)
+        if (structure.rewardType >= 1 && structure.rewardType <= 4) {
+          annotations.reward = getItemName(structure.reward);
+        }
+        annotations.targetItem = getItemName(structure.targetItem);
+        // reward types
+        switch(structure.rewardType) {
+            case 0:
+                annotations.rewardType = 'Cash';
+                break;
+            case 1:
+                annotations.rewardType = 'Cash + ??? (Reward item)';
+                break;
+            case 2:
+                annotations.rewardType = 'Item';
+                break;
+            case 3:
+                annotations.rewardType = 'Item + ??? (Random)';
+                break;
+            case 4:
+                annotations.rewardType = '??? (Reward item)';
+                break;
+            case 5:
+                annotations.rewardType = '??? (Egg)';
+                break;
+            case 6:
+                annotations.rewardType = '??? (Client joins)';
+                break;
+            default:
+                console.info("Warning: rewardType is an invalid value: %d expected value 0-6", structure.rewardType)
+        }
+        // Build output
+        let result = `Sanitized: ${sanitized}\n`;
+        result += `Unscrambled: ${unscrambled}\n`;
+        result += `Bitstream: ${bits}\n`;
+        result += `Decrypted Bits: ${decryptedBits}\n\n`;
+
+        result += `Structured Output:\n`;
+        for (const key in structure) {
+          let value = structure[key];
+          if (annotations[key]) {
+            value += ` (${annotations[key]})`;
+          }
+          result += `${key}: ${value}\n`;
+        }
+
+        output.textContent = result;
+      } catch (e) {
+        output.textContent = "Error: " + e.message;
+        console.error(e);
+      }
+    }
+  </script>
+</body>
+</html>
