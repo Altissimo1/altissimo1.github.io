@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Battle Bingo</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../../colors.js"></script>
+      <link rel="stylesheet" id="common" href="../../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../../index.html">Home</a> | <a href="../../../Maintenance/contact.html">Contact Me</a> | <a href="../../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../../index.html">Supplementary Series Home</a> | <a href="../index.html">Orre Games Home</a> | <a href="index.html">XD Home</a></h4>
+      <h2>Battle Bingo</h2>
+      <p>Battle Bingo is a minigame that the player can play at <a href="../Locations/realgam-tower.html?xd">Realgam Tower</a>. This page contains information on each Battle Bingo card, as well as a method of clearing each card in 1-Panel mode.</p>
+      <h3><u>Overview</u></h3>
+      <p>In a game of Battle Bingo, the player will receive a bingo card with 16 panels on it, arranged in rows of four. The player will receive one Pokémon upon starting the game, and two Master Balls that can be used to capture additional Pokémon. A fourth Pokémon slot is available, though the player must get the Master Ball to use during the course of playing the card.</p>
+      <p>Every Pokémon, when obtained, has 2 Entry Points, or EP. One EP must be used to flip one of the sixteen panels. If the player runs out of EP at any time, they lose the game. EP can be gained by flipping all panels in a single row, column, or corner-to-corner diagonal. Two of the panels on the card will also give the player 1 EP and 2 EP. When EP is gained this way, it can be placed on any Pokémon, but the player cannot transfer EP between Pokémon.</p>
+      <p>Three of the panels on the board are marked with question marks. One will be the fourth Master Ball, and the other two will provide EP (1 and 2). The other 13 panels are all named for Pokémon types. Entering one of these panels will start a 1v1 Single Battle with the Pokémon whose EP was used to enter the panel, and a Pokémon matching the panel's type. The player must either defeat the Pokémon or use a Master Ball on it to clear the panel. If the player loses, they can continue playing the card, but must use another EP to enter the panel where they lost.</p>
+      <p>All panels will always have the same Pokémon or question mark bonus every time the card is played. When starting the card, the player can select any panel to start with, but can only flip over panels adjacent to any previously-flipped panel. In 1-Panel mode, the player can only select a panel adjacent to the most recently selected panel, meaning the player must 'snake' through the panels. If the player has no legal moves, the game will end.</p>
+      <h3><u>Considerations</u></h3>
+      <p>The Battle Bingo cards are generally built around the type chart. Most Pokémon (but not all!) have a strong, accurate attack matching their type (such as Flamethrower or Surf), and the idea is that most Pokémon can win 1v1 matchups against Pokémon weak to their strong STAB moves. The idea is generally to use a Pokémon whose attack is super-effective against the panel type to enter the panel. Although this is the general design philosophy behind the cards, it's possible to find exceptions to the "strong STAB move" rule, and cases where a Pokémon can actually win a 1v1 into a certain panel that it should be weak against (for example, Gengar wins against Quagsire since Quagsire has Earthquake and Gengar is immune). All Rock-type moves additionally have less than perfect accuracy, and many moves (like Poison-type and Water-type moves) have a chance of a secondary effect that may change the outcome.</p>
+      <p>Some guides for completing the cards can be found <a href="https://gamefaqs.gamespot.com/gamecube/925945-pokemon-xd-gale-of-darkness/faqs/41596">here</a> and <a href="https://pokemonlp.fandom.com/wiki/Appendix:Pok%C3%A9mon_XD:_Gale_of_Darkness_Walkthrough/Battle_Bingo">here</a>.</p>
+      <h3><u>Cards</u></h3>
+      <p>The cards are divided into four categories: Novice, Regular, Expert, Extra, and Special. For the first four categories, all cards of the first category must be cleared to unlock cards of the next category. The Special category contains only the Bonsly card, which has to be obtained from a lady in <a href="../Locations/pyrite-building.html?xd">ONBS</a> after finding Bonsly at a <a href="../Locations/poke-spots.html">Poké Spot</a>.</p>
+      <p>The first time the player completes every card, they will receive an item reward. Additionally, every time the player completes a card, they will receive a Poké Coupon bonus. The bonus will be equivalent to the value shown on the card screen for 10 lines, plus a bonus for the player's remaining EP and/or Master Balls. After clearing all 10 cards apart from the Bonsly Card, the player will receive 5000 Poké Coupons and unlock 1-Panel mode.</p>
+      <p>After clearing a card, the panels on the card will be shuffled each subsequent time the player plays the card. This means it's not possible to create a single solution that is applicable to 1-Panel Mode, since panels will always be shuffled on that mode.</p>
+      <table class="left-align">
+         <tbody>
+            <tr class="light-true">
+               <td><strong>Novice</strong></td>
+               <td><a href="#dragonair">Dragonair Card</a></td>
+               <td><a href="#3-type">3-Type Card</a></td>
+               <td><a href="#4-type">4-Type Card</a></td>
+            </tr>
+            <tr class="light-false">
+               <td><strong>Regular</strong></td>
+               <td><a href="#charmander">Charmander Card</a></td>
+               <td><a href="#pikachu">Pikachu Card</a></td>
+               <td><a href="#sudowoodo">Rock vs Flying Card</a></td>
+            </tr>
+            <tr class="light-true">
+               <td><strong>Expert</strong></td>
+               <td><a href="#magikarp">SOS Magikarp Card</a></td>
+               <td><a href="#waterproof">Waterproof Card</a></td>
+               <td><a href="#counter">Counter Card</a></td>
+            </tr>
+            <tr class="light-false">
+               <td><strong>Extra</strong></td>
+               <td><a href="#psychic">Psychic Card</a></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr class="light-true">
+               <td><strong>Special</strong></td>
+               <td><a href="#bonsly">Bonsly Card</a></td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h4 id="dragonair">Dragonair Card</h4>
+      <p>The starting Pokémon is a Dragonair with Outrage.</p>
+      <p>The reward for completing this card is 2 Ethers. The player will receive a minimum of 200 Poké Coupons for completing the card normally and 300 for completing 1-Panel Mode.</p>
+      <table>
+         <tbody>
+            <tr class="light-true">
+               <td colspan="2" class="fire">Fire</td>
+               <td colspan="2" rowspan="3">Master Ball</td>
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" class="water">Water</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/charmander.png" alt="Charmander"></div>
+               </td>
+               <td>Charmander</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/mudkip.png" alt="Mudkip"></div>
+               </td>
+               <td>Mudkip</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/poliwag.png" alt="Poliwag"></div>
+               </td>
+               <td>Poliwag</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="fire">Flamethrower</td>
+               <td colspan="2" class="water">Surf</td>
+               <td colspan="2" class="water">Surf</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="grass">Grass</td>
+               <td colspan="2" class="fire">Fire</td>
+               <td colspan="2" class="grass">Grass</td>
+               <td colspan="2" class="grass">Grass</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/treecko.png" alt="Treecko"></div>
+               </td>
+               <td>Treecko</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/torchic.png" alt="Torchic"></div>
+               </td>
+               <td>Torchic</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/roselia-f.png" alt="Roselia"></div>
+               </td>
+               <td>Roselia</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/chikorita.png" alt="Chikorita"></div>
+               </td>
+               <td>Chikorita</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="grass">Giga Drain</td>
+               <td colspan="2" class="fire">Flamethrower</td>
+               <td colspan="2" class="grass">Giga Drain</td>
+               <td colspan="2" class="grass">Giga Drain</td>
+            </tr>
+            <tr class="light-true">
+               <td colspan="2" class="fire">Fire</td>
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" rowspan="3">EP + 2</td>
+               <td colspan="2" class="water">Water</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/cyndaquil.png" alt="Cyndaquil"></div>
+               </td>
+               <td>Cyndaquil</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/squirtle.png" alt="Squirtle"></div>
+               </td>
+               <td>Squirtle</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/totodile.png" alt="Totodile"></div>
+               </td>
+               <td>Totodile</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="fire">Flamethrower</td>
+               <td colspan="2" class="water">Surf</td>
+               <td colspan="2" class="water">Surf</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" rowspan="3">EP + 1</td>
+               <td colspan="2" class="grass">Grass</td>
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" class="fire">Fire</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/bulbasaur.png" alt="Bulbasaur"></div>
+               </td>
+               <td>Bulbasaur</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/remoraid.png" alt="Remoraid"></div>
+               </td>
+               <td>Remoraid</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/vulpix.png" alt="Vulpix"></div>
+               </td>
+               <td>Vulpix</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="grass">Giga Drain</td>
+               <td colspan="2" class="water">Surf</td>
+               <td colspan="2" class="fire">Flamethrower</td>
+            </tr>
+         </tbody>
+      </table>
+      <h4 id="3-type">3-Type Card</h4>
+      <p>The starting Pokémon is a Nidorino with Sludge Bomb.</p>
+      <p>The reward for completing this card is 2 Ethers. The player will receive a minimum of 200 Poké Coupons for completing the card normally and 300 for completing 1-Panel Mode.</p>
+      <table>
+         <tbody>
+            <tr class="light-true">
+               <td colspan="2" class="grass">Grass</td>
+               <td colspan="2" class="poison">Poison</td>
+               <td colspan="2" class="grass">Grass</td>
+               <td colspan="2" class="ground">Ground</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/tangela.png" alt="Tangela"></div>
+               </td>
+               <td>Tangela</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/seviper.png" alt="Seviper"></div>
+               </td>
+               <td>Seviper</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/sunkern.png" alt="Sunkern"></div>
+               </td>
+               <td>Sunkern</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/phanpy.png" alt="Phanpy"></div>
+               </td>
+               <td>Phanpy</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="grass">Mega Drain</td>
+               <td colspan="2" class="poison">Sludge Bomb</td>
+               <td colspan="2" class="grass">Giga Drain</td>
+               <td colspan="2" class="ground">Earthquake</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="ground">Ground</td>
+               <td colspan="2" rowspan="3">Master Ball</td>
+               <td colspan="2" class="grass">Grass</td>
+               <td colspan="2" class="poison">Gulpin</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+               </td>
+               <td>Onix</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/chikorita.png" alt="Chikorita"></div>
+               </td>
+               <td>Chikorita</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/gulpin-f.png" alt="Gulpin"></div>
+               </td>
+               <td>Gulpin</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="ground">Earthquake</td>
+               <td colspan="2" class="grass">Giga Drain</td>
+               <td colspan="2" class="poison">Sludge Bomb</td>
+            </tr>
+            <tr class="light-true">
+               <td colspan="2" class="grass">Grass</td>
+               <td colspan="2" class="poison">Poison</td>
+               <td colspan="2" class="poison">Poison</td>
+               <td colspan="2" rowspan="3">EP + 1</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/treecko.png" alt="Treecko"></div>
+               </td>
+               <td>Treecko</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/grimer.png" alt="Grimer"></div>
+               </td>
+               <td>Grimer</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/ekans.png" alt="Ekans"></div>
+               </td>
+               <td>Ekans</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="grass">Giga Drain</td>
+               <td colspan="2" class="poison">Sludge Bomb</td>
+               <td colspan="2" class="poison">Sludge Bomb</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="grass">Grass</td>
+               <td colspan="2" rowspan="3">EP + 2</td>
+               <td colspan="2" class="ground">Golem</td>
+               <td colspan="2" class="ground">Sandshrew</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/seedot.png" alt="Seedot"></div>
+               </td>
+               <td>Seedot</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/golem.png" alt="Golem"></div>
+               </td>
+               <td>Golem</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+               </td>
+               <td>Sandshrew</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="grass">Giga Drain</td>
+               <td colspan="2" class="ground">Earthquake</td>
+               <td colspan="2" class="ground">Earthquake</td>
+            </tr>
+         </tbody>
+      </table>
+      <h4 id="4-type">4-Type Card</h4>
+      <p>The starting Pokémon is a Lotad with Giga Drain.</p>
+      <p>The reward for completing this card is 2 Ethers. The player will receive a minimum of 200 Poké Coupons for completing the card normally and 300 for completing 1-Panel Mode.</p>
+      <table>
+         <tbody>
+            <tr class="light-true">
+               <td colspan="2" rowspan="3">EP + 1</td>
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" class="ground">Ground</td>
+               <td colspan="2" rowspan="3">EP + 2</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/farfetchd.png" alt="Farfetch'd"></div>
+               </td>
+               <td>Farfetch'd</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/cubone.png" alt="Cubone"></div>
+               </td>
+               <td>Cubone</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="flying">Aerial Ace</td>
+               <td colspan="2" class="fighting">Focus Punch</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="ground">Ground</td>
+               <td colspan="2" class="electric">Electric</td>
+               <td colspan="2" class="ground">Ground</td>
+               <td colspan="2" class="electric">Electric</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/sandshrew.png" alt="Sandshrew"></div>
+               </td>
+               <td>Sandshrew</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/magnemite.png" alt="Magnemite"></div>
+               </td>
+               <td>Magnemite</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/phanpy.png" alt="Phanpy"></div>
+               </td>
+               <td>Phanpy</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/electabuzz.png" alt="Electabuzz"></div>
+               </td>
+               <td>Electabuzz</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="ground">Earthquake</td>
+               <td colspan="2" class="electric">Spark</td>
+               <td colspan="2" class="ground">Earthquake</td>
+               <td colspan="2" class="electric">Shock Wave</td>
+            </tr>
+            <tr class="light-true">
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" rowspan="3">Master Ball</td>
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" class="grass">Seedot</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+               </td>
+               <td>Spearow</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/doduo-f.png" alt="Doduo"></div>
+               </td>
+               <td>Doduo</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/seedot.png" alt="Seedot"></div>
+               </td>
+               <td>Seedot</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="flying">Aerial Ace</td>
+               <td colspan="2" class="flying">Aerial Ace</td>
+               <td colspan="2" class="grass">Giga Drain</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="grass">Grass</td>
+               <td colspan="2" class="electric">Electric</td>
+               <td colspan="2" class="grass">Exeggcute</td>
+               <td colspan="2" class="flying">Flying</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/cacnea.png" alt="Cacnea"></div>
+               </td>
+               <td>Cacnea</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/voltorb.png" alt="Voltorb"></div>
+               </td>
+               <td>Voltorb</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/exeggcute.png" alt="Exeggcute"></div>
+               </td>
+               <td>Exeggcute</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+               </td>
+               <td>Pidgey</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="grass">Needle Arm</td>
+               <td colspan="2" class="electric">Thunderbolt</td>
+               <td colspan="2" class="grass">Giga Drain</td>
+               <td colspan="2" class="flying">Wing Attack</td>
+            </tr>
+         </tbody>
+      </table>
+      <h4 id="charmander">Charmander Card</h4>
+      <p>The starting Pokémon is a Charmander with Flamethrower.</p>
+      <p>The reward for completing this card is a Max Ether. The player will receive a minimum of 400 Poké Coupons for completing the card normally and 600 for completing 1-Panel Mode.</p>
+      <table>
+         <tbody>
+            <tr class="light-true">
+               <td colspan="2" class="ground">Ground</td>
+               <td colspan="2" class="fire">Fire</td>
+               <td colspan="2" rowspan="3">EP + 1</td>
+               <td colspan="2" class="flying">Flying</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/phanpy.png" alt="Phanpy"></div>
+               </td>
+               <td>Phanpy</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/torchic.png" alt="Torchic"></div>
+               </td>
+               <td>Torchic</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+               </td>
+               <td>Pidgey</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="ground">Earthquake</td>
+               <td colspan="2" class="fire">Flamethrower</td>
+               <td colspan="2" class="flying">Aerial Ace</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="ice">Ice</td>
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" class="ground">Ground</td>
+               <td colspan="2" class="fighting">Fighting</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+               </td>
+               <td>Snorunt</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/taillow.png" alt="Taillow"></div>
+               </td>
+               <td>Taillow</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/diglett.png" alt="Diglett"></div>
+               </td>
+               <td>Diglett</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/mankey.png" alt="Mankey"></div>
+               </td>
+               <td>Mankey</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="ice">Ice Beam</td>
+               <td colspan="2" class="flying">Aerial Ace</td>
+               <td colspan="2" class="ground">Earthquake</td>
+               <td colspan="2" class="fighting">Brick Break</td>
+            </tr>
+            <tr class="light-true">
+               <td colspan="2" rowspan="3">EP + 2</td>
+               <td colspan="2" class="fighting">Fighting</td>
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" class="fire">Fire</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/machop.png" alt="Machop"></div>
+               </td>
+               <td>Machop</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/spearow.png" alt="Spearow"></div>
+               </td>
+               <td>Spearow</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/growlithe.png" alt="Growlithe"></div>
+               </td>
+               <td>Growlithe</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="fighting">Brick Break</td>
+               <td colspan="2" class="flying">Aerial Ace</td>
+               <td colspan="2" class="fire">Flamethrower</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="ground">Ground</td>
+               <td colspan="2" rowspan="3">Master Ball</td>
+               <td colspan="2" class="ice">Ice</td>
+               <td colspan="2" class="fighting">Fighting</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/cubone.png" alt="Cubone"></div>
+               </td>
+               <td>Cubone</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/spheal.png" alt="Spheal"></div>
+               </td>
+               <td>Spheal</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/makuhita.png" alt="Makuhita"></div>
+               </td>
+               <td>Makuhita</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="ground">Earthquake</td>
+               <td colspan="2" class="ice">Ice Beam</td>
+               <td colspan="2" class="fighting">Brick Break</td>
+            </tr>
+         </tbody>
+      </table>
+      <h4 id="pikachu">Pikachu Card</h4>
+      <p>The starting Pokémon is a Pikachu with Thunderbolt.</p>
+      <p>The reward for completing this card is a Max Ether. The player will receive a minimum of 200 Poké Coupons for completing the card normally and 300 for completing 1-Panel Mode.</p>
+      <table>
+         <tbody>
+            <tr class="light-true">
+               <td colspan="2" class="ground">Ground</td>
+               <td colspan="2" class="grass">Grass</td>
+               <td colspan="2" class="rock">Rock</td>
+               <td colspan="2" class="psychic">Psychic</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/diglett.png" alt="Diglett"></div>
+               </td>
+               <td>Diglett</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/tangela.png" alt="Tangela"></div>
+               </td>
+               <td>Tangela</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/nosepass.png" alt="Nosepass"></div>
+               </td>
+               <td>Nosepass</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/spoink.png" alt="Spoink"></div>
+               </td>
+               <td>Spoink</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="ground">Earthquake</td>
+               <td colspan="2" class="grass">Mega Drain</td>
+               <td colspan="2" class="rock">Rock Throw</td>
+               <td colspan="2" class="psychic">Psychic</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" rowspan="3">EP + 1</td>
+               <td colspan="2" class="poison">Poison</td>
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" class="fighting">Fighting</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/grimer.png" alt="Grimer"></div>
+               </td>
+               <td>Grimer</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/pidgeotto.png" alt="Pidgeotto"></div>
+               </td>
+               <td>Pidgeotto</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/mankey.png" alt="Mankey"></div>
+               </td>
+               <td>Mankey</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="poison">Sludge Bomb</td>
+               <td colspan="2" class="flying">Wing Attack</td>
+               <td colspan="2" class="fighting">Brick Break</td>
+            </tr>
+            <tr class="light-true">
+               <td colspan="2" class="fire">Fire</td>
+               <td colspan="2" rowspan="3">Master Ball</td>
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" class="dark">Dark</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/vulpix.png" alt="Vulpix"></div>
+               </td>
+               <td>Vulpix</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/poliwag.png" alt="Poliwag"></div>
+               </td>
+               <td>Poliwag</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/poochyena.png" alt="Poochyena"></div>
+               </td>
+               <td>Poochyena</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="fire">Flamethrower</td>
+               <td colspan="2" class="water">Surf</td>
+               <td colspan="2" class="dark">Crunch</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="bug">Bug</td>
+               <td colspan="2" class="ice">Ice</td>
+               <td colspan="2" class="ghost">Ghost</td>
+               <td colspan="2" rowspan="3">EP + 2</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/butterfree-f.png" alt="Butterfree"></div>
+               </td>
+               <td>Butterfree</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+               </td>
+               <td>Snorunt</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/shuppet.png" alt="Shuppet"></div>
+               </td>
+               <td>Shuppet</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="bug">Silver Wind</td>
+               <td colspan="2" class="ice">Ice Beam</td>
+               <td colspan="2" class="ghost">Shadow Ball</td>
+            </tr>
+         </tbody>
+      </table>
+      <h4 id="sudowoodo">Rock vs Flying Card</h4>
+      <p>The starting Pokémon is a Sudowoodo with Rock Throw.</p>
+      <p>The reward for completing this card is a Max Ether. The player will receive a minimum of 200 Poké Coupons for completing the card normally and 300 for completing 1-Panel Mode.</p>
+      <table>
+         <tbody>
+            <tr class="light-true">
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" rowspan="3">EP + 2</td>
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" class="flying">Flying</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/fearow.png" alt="Fearow"></div>
+               </td>
+               <td>Fearow</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/mantine.png" alt="Mantine"></div>
+               </td>
+               <td>Mantine</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/charizard.png" alt="Charizard"></div>
+               </td>
+               <td>Charizard</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="flying">Drill Peck</td>
+               <td colspan="2" class="water">Surf</td>
+               <td colspan="2" class="fire">Flamethrower</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" rowspan="3">Master Ball</td>
+               <td colspan="2" class="flying">Flying</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/scyther-f.png" alt="Scyther"></div>
+               </td>
+               <td>Scyther</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/skarmory.png" alt="Skarmory"></div>
+               </td>
+               <td>Skarmory</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/xatu-f.png" alt="Xatu"></div>
+               </td>
+               <td>Xatu</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="bug">Silver Wind</td>
+               <td colspan="2" class="steel">Steel Wing</td>
+               <td colspan="2" class="psychic">Psychic</td>
+            </tr>
+            <tr class="light-true">
+               <td colspan="2" rowspan="3">EP + 1</td>
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" class="flying">Flying</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/crobat.png" alt="Crobat"></div>
+               </td>
+               <td>Crobat</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/gligar-f.png" alt="Gligar"></div>
+               </td>
+               <td>Gligar</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/murkrow-f.png" alt="Murkrow"></div>
+               </td>
+               <td>Murkrow</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="poison">Sludge Bomb</td>
+               <td colspan="2" class="ground">Earthquake</td>
+               <td colspan="2" class="dark">Faint Attack</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" class="flying">Flying</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/altaria.png" alt="Altaria"></div>
+               </td>
+               <td>Altaria</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/aerodactyl.png" alt="Aerodactyl"></div>
+               </td>
+               <td>Aerodactyl</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/delibird.png" alt="Delibird"></div>
+               </td>
+               <td>Delibird</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/tropius.png" alt="Tropius"></div>
+               </td>
+               <td>Tropius</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="dragon">Dragonbreath</td>
+               <td colspan="2" class="normal">Hyper Beam</td>
+               <td colspan="2" class="ice">Ice Beam</td>
+               <td colspan="2" class="grass">Magical Leaf</td>
+            </tr>
+         </tbody>
+      </table>
+      <h4 id="magikarp">SOS Magikarp Card</h4>
+      <p>The starting Pokémon is a Magikarp with Splash.</p>
+      <p>The reward for completing this card is an Elixir. The player will receive a minimum of 800 Poké Coupons for completing the card normally and 1200 for completing 1-Panel Mode.</p>
+      <table>
+         <tbody>
+            <tr class="light-true">
+               <td colspan="2" class="poison">Poison</td>
+               <td colspan="2" class="electric">Electric</td>
+               <td colspan="2" class="ground">Ground</td>
+               <td colspan="2" class="grass">Grass</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/gengar.png" alt="Gengar"></div>
+               </td>
+               <td>Gengar</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/manectric.png" alt="Manectric"></div>
+               </td>
+               <td>Manectric</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/quagsire-f.png" alt="Quagsire"></div>
+               </td>
+               <td>Quagsire</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/cacturne-f.png" alt="Cacturne"></div>
+               </td>
+               <td>Cacturne</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="electric">Thunderbolt</td>
+               <td colspan="2" class="ground">Earthquake</td>
+               <td colspan="2" class="grass">Needle Arm</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" rowspan="3">EP + 2</td>
+               <td colspan="2" class="ground">Ground</td>
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" rowspan="3">Master Ball</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/marowak.png" alt="Marowak"></div>
+               </td>
+               <td>Marowak</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/lanturn.png" alt="Lanturn"></div>
+               </td>
+               <td>Lanturn</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="rock">Rock Tomb</td>
+               <td colspan="2" class="water">Surf</td>
+            </tr>
+            <tr class="light-true">
+               <td colspan="2" class="electric">Electric</td>
+               <td colspan="2" class="poison">Poison</td>
+               <td colspan="2" class="ground">Ground</td>
+               <td colspan="2" class="electric">Electric</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/electrode.png" alt="Electrode"></div>
+               </td>
+               <td>Electrode</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/arbok.png" alt="Arbok"></div>
+               </td>
+               <td>Arbok</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/golem.png" alt="Golem"></div>
+               </td>
+               <td>Golem</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/magneton.png" alt="Magneton"></div>
+               </td>
+               <td>Magneton</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="electric">Thunderbolt</td>
+               <td colspan="2" class="poison">Sludge Bomb</td>
+               <td colspan="2" class="rock">Rock Throw</td>
+               <td colspan="2" class="electric">Thunderbolt</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="grass">Grass</td>
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" rowspan="3">EP + 1</td>
+               <td colspan="2" class="poison">Poison</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/victreebel.png" alt="Victreebel"></div>
+               </td>
+               <td>Victreebel</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/tentacruel.png" alt="Tentacruel"></div>
+               </td>
+               <td>Tentacruel</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/weezing.png" alt="Weezing"></div>
+               </td>
+               <td>Weezing</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="grass">Razor Leaf</td>
+               <td colspan="2" class="water">Water Pulse</td>
+               <td colspan="2" class="poison">Sludge Bomb</td>
+            </tr>
+         </tbody>
+      </table>
+      <h4 id="waterproof">Waterproof Card</h4>
+      <p>The starting Pokémon is a Golduck with Brick Break.</p>
+      <p>The reward for completing this card is an Elixir. The player will receive a minimum of 800 Poké Coupons for completing the card normally and 1200 for completing 1-Panel Mode.</p>
+      <table>
+         <tbody>
+            <tr class="light-true">
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" class="water">Water</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/crawdaunt.png" alt="Crawdaunt"></div>
+               </td>
+               <td>Crawdaunt</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/swampert.png" alt="Swampert"></div>
+               </td>
+               <td>Swampert</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
+               </td>
+               <td>Pelipper</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+               </td>
+               <td>Surskit</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="dark">Crunch</td>
+               <td colspan="2" class="ground">Earthquake</td>
+               <td colspan="2" class="flying">Aerial Ace</td>
+               <td colspan="2" class="ghost">Shadow Ball</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" class="water">Water</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/tentacruel.png" alt="Tentacruel"></div>
+               </td>
+               <td>Tentacruel</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/kingdra.png" alt="Kingdra"></div>
+               </td>
+               <td>Kingdra</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/octillery-f.png" alt="Octillery"></div>
+               </td>
+               <td>Octillery</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/lanturn.png" alt="Lanturn"></div>
+               </td>
+               <td>Lanturn</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="poison">Sludge Bomb</td>
+               <td colspan="2" class="dragon">Dragonbreath</td>
+               <td colspan="2" class="fire">Flamethrower</td>
+               <td colspan="2" class="electric">Shock Wave</td>
+            </tr>
+            <tr class="light-true">
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" rowspan="3">EP + 1</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/starmie.png" alt="Starmie"></div>
+               </td>
+               <td>Starmie</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/relicanth-f.png" alt="Relicanth"></div>
+               </td>
+               <td>Relicanth</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/lapras.png" alt="Lapras"></div>
+               </td>
+               <td>Lapras</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="rock">Rock Slide</td>
+               <td colspan="2" class="ice">Ice Beam</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" rowspan="3">Master Ball</td>
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" rowspan="3">EP + 2</td>
+               <td colspan="2" class="water">Water</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/ludicolo-f.png" alt="Ludicolo"></div>
+               </td>
+               <td>Ludicolo</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/poliwrath.png" alt="Poliwrath"></div>
+               </td>
+               <td>Poliwrath</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="grass">Mega Drain</td>
+               <td colspan="2" class="fighting">Brick Break</td>
+            </tr>
+         </tbody>
+      </table>
+      <h4 id="counter">Counter Card</h4>
+      <p>The starting Pokémon is a Scyther with Aerial Ace.</p>
+      <p>The reward for completing this card is an Elixir. The player will receive a minimum of 800 Poké Coupons for completing the card normally and 1200 for completing 1-Panel Mode.</p>
+      <table>
+         <tbody>
+            <tr class="light-true">
+               <td colspan="2" class="grass">Grass</td>
+               <td colspan="2" class="ground">Ground</td>
+               <td colspan="2" class="ice">Ice</td>
+               <td colspan="2" class="electric">Electric</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/vileplume-f.png" alt="Vileplume"></div>
+               </td>
+               <td>Vileplume</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/quagsire-f.png" alt="Quagsire"></div>
+               </td>
+               <td>Quagsire</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/glalie.png" alt="Glalie"></div>
+               </td>
+               <td>Glalie</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/electrode.png" alt="Electrode"></div>
+               </td>
+               <td>Electrode</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="grass">Petal Dance</td>
+               <td colspan="2" class="ground">Earthquake</td>
+               <td colspan="2" class="ice">Ice Beam</td>
+               <td colspan="2" class="electric">Thunderbolt</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" rowspan="3">Master Ball</td>
+               <td colspan="2" rowspan="3">EP + 2</td>
+               <td colspan="2" class="fighting">Fighting</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/lanturn.png" alt="Lanturn"></div>
+               </td>
+               <td>Lanturn</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/hariyama.png" alt="Hariyama"></div>
+               </td>
+               <td>Hariyama</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="water">Surf</td>
+               <td colspan="2" class="rock">Rock Slide</td>
+            </tr>
+            <tr class="light-true">
+               <td colspan="2" class="normal">Normal</td>
+               <td colspan="2" class="water">Water</td>
+               <td colspan="2" class="grass">Grass</td>
+               <td colspan="2" class="fire">Fire</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/kecleon.png" alt="Kecleon"></div>
+               </td>
+               <td>Kecleon</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
+               </td>
+               <td>Gyarados</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/ludicolo-f.png" alt="Ludicolo"></div>
+               </td>
+               <td>Ludicolo</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/charizard.png" alt="Charizard"></div>
+               </td>
+               <td>Charizard</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="normal">Strength</td>
+               <td colspan="2" class="fire">Flamethrower</td>
+               <td colspan="2" class="water">Surf</td>
+               <td colspan="2" class="fire">Flamethrower</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="electric">Electric</td>
+               <td colspan="2" class="normal">Normal</td>
+               <td colspan="2" class="ground">Ground</td>
+               <td colspan="2" rowspan="3">EP + 1</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/raichu-f.png" alt="Raichu"></div>
+               </td>
+               <td>Raichu</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/exploud.png" alt="Exploud"></div>
+               </td>
+               <td>Exploud</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/golem.png" alt="Golem"></div>
+               </td>
+               <td>Golem</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="electric">Thunderbolt</td>
+               <td colspan="2" class="normal">Hyper Voice</td>
+               <td colspan="2" class="rock">Rock Slide</td>
+            </tr>
+         </tbody>
+      </table>
+      <h4 id="psychic">Psychic Card</h4>
+      <p>The starting Pokémon is a Houndoom with Crunch.</p>
+      <p>The reward for completing this card is a Max Elixir. The player will receive a minimum of 2000 Poké Coupons for completing the card normally and 3000 for completing 1-Panel Mode.</p>
+      <table>
+         <tbody>
+            <tr class="light-true">
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" rowspan="3">Master Ball</td>
+               <td colspan="2" class="psychic">Psychic</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+               </td>
+               <td>Medicham</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/chimecho.png" alt="Chimecho"></div>
+               </td>
+               <td>Chimecho</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/jynx.png" alt="Jynx"></div>
+               </td>
+               <td>Jynx</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="fighting">Hi Jump Kick</td>
+               <td colspan="2" class="ghost">Shadow Ball</td>
+               <td colspan="2" class="ice">Ice Beam</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" rowspan="3">EP + 1</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/exeggutor.png" alt="Exeggutor"></div>
+               </td>
+               <td>Exeggutor</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/solrock.png" alt="Solrock"></div>
+               </td>
+               <td>Solrock</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/girafarig.png" alt="Girafarig"></div>
+               </td>
+               <td>Girafarig</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="grass">Giga Drain</td>
+               <td colspan="2" class="fire">Flamethrower</td>
+               <td colspan="2" class="electric">Thunderbolt</td>
+            </tr>
+            <tr class="light-true">
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="psychic">Psychic</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/slowbro.png" alt="Slowbro"></div>
+               </td>
+               <td>Slowbro</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/grumpig.png" alt="Grumpig"></div>
+               </td>
+               <td>Grumpig</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/claydol.png" alt="Claydol"></div>
+               </td>
+               <td>Claydol</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/xatu-f.png" alt="Xatu"></div>
+               </td>
+               <td>Xatu</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="water">Surf</td>
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="ground">Earthquake</td>
+               <td colspan="2" class="flying">Drill Peck</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" rowspan="3">EP + 2</td>
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="psychic">Psychic</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/metagross.png" alt="Metagross"></div>
+               </td>
+               <td>Metagross</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/lunatone.png" alt="Lunatone"></div>
+               </td>
+               <td>Lunatone</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/slowking.png" alt="Slowking"></div>
+               </td>
+               <td>Slowking</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="rock">Rock Slide</td>
+               <td colspan="2" class="fighting">Brick Break</td>
+            </tr>
+         </tbody>
+      </table>
+      <h4 id="bonsly">Bonsly Card</h4>
+      <p>The starting Pokémon is a Bonsly with Rock Slide.</p>
+      <p>The reward for completing this card is a Max Revive and a Bonsly Photo. The player will receive a minimum of 400 Poké Coupons for completing the card normally and 600 for completing 1-Panel Mode.</p>
+      <table>
+         <tbody>
+            <tr class="light-true">
+               <td colspan="2" rowspan="3">EP + 1</td>
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="bug">Bug</td>
+               <td colspan="2" rowspan="3">Master Ball</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/spoink.png" alt="Spoink"></div>
+               </td>
+               <td>Spoink</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/ledyba-f.png" alt="Ledyba"></div>
+               </td>
+               <td>Ledyba</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="psychic">Psybeam</td>
+               <td colspan="2" class="bug">Silver Wind</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="flying">Flying</td>
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="rock">Rock</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/abra.png" alt="Abra"></div>
+               </td>
+               <td>Abra</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/taillow.png" alt="Taillow"></div>
+               </td>
+               <td>Taillow</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/kirlia.png" alt="Kirlia"></div>
+               </td>
+               <td>Kirlia</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+               </td>
+               <td>Geodude</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="fire">Fire Punch</td>
+               <td colspan="2" class="flying">Aerial Ace</td>
+               <td colspan="2" class="psychic">Psychic</td>
+               <td colspan="2" class="fighting">Counter</td>
+            </tr>
+            <tr class="light-true">
+               <td colspan="2" class="fighting">Fighting</td>
+               <td colspan="2" class="bug">Bug</td>
+               <td colspan="2" rowspan="3">EP + 2</td>
+               <td colspan="2" class="fighting">Fighting</td>
+            </tr>
+            <tr class="light-true">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/mankey.png" alt="Mankey"></div>
+               </td>
+               <td>Mankey</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/shedinja.png" alt="Shedinja"></div>
+               </td>
+               <td>Shedinja</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/machop.png" alt="Machop"></div>
+               </td>
+               <td>Machop</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="fighting">Karate Chop</td>
+               <td colspan="2" class="bug">Silver Wind</td>
+               <td colspan="2" class="fighting">Karate Chop</td>
+            </tr>
+            <tr class="light-false">
+               <td colspan="2" class="bug">Bug</td>
+               <td colspan="2" class="fighting">Fighting</td>
+               <td colspan="2" class="rock">Rock</td>
+               <td colspan="2" class="rock">Rock</td>
+            </tr>
+            <tr class="light-false">
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+               </td>
+               <td>Surskit</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/makuhita.png" alt="Makuhita"></div>
+               </td>
+               <td>Makuhita</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/aron.png" alt="Aron"></div>
+               </td>
+               <td>Aron</td>
+               <td>
+                  <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/larvitar.png" alt="Larvitar"></div>
+               </td>
+               <td>Larvitar</td>
+            </tr>
+            <tr>
+               <td colspan="2" class="ghost">Shadow Ball</td>
+               <td colspan="2" class="fighting">Vital Throw</td>
+               <td colspan="2" class="rock">Rock Slide</td>
+               <td colspan="2" class="rock">Rock Slide</td>
+            </tr>
+         </tbody>
+      </table>
+   </body>
+</html>
