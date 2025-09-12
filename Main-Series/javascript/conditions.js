@@ -260,6 +260,7 @@ $(function() {
 	
 		// Set the color variable to false.
 		var color = false;
+		
 		// SEt strings for beginning, middle, and end of table.
 		var newTableStartText = "<table class='set-table'><caption>" + caption + "</caption><thead><tr class='" + game + "-true'><th colspan='2'>Pokémon</th><th>Rate</th><th>Level</th><th>Condition(s)</th></tr></thead><tbody>";
 		if (fishing)
@@ -725,7 +726,14 @@ $(function() {
 		if (fishing)
 			newTableStartText = "<table class='set-table'><caption>" + caption + "</caption><thead><tr class='light-true'><th>Rod</th><th colspan='2'>Pokémon</th>";
 		$.each(games, function() {
-			newTableStartText = newTableStartText + "<th class='" + this.toLowerCase() + "-true' colspan='2'>" + this + "</th>";
+			// Brilliant Diamond and Shining Pearl have to be treated differently since they're two words
+			var gameName = this;
+			if (gameName == "BrilliantDiamond")
+				gameName = "Brilliant Diamond";
+			else if (gameName == "ShiningPearl")
+				gameName = "Shining Pearl";
+			
+			newTableStartText = newTableStartText + "<th class='" + this.toLowerCase() + "-true' colspan='2'>" + gameName + "</th>";
 		});
 		newTableStartText = newTableStartText + "<th>Condition</th></tr></thead><tbody>";
 		var newTableMiddleText = "";
