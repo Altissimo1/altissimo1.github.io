@@ -665,7 +665,17 @@ $(function() {
 						if (hasAllConditions)
 							conditionString = "Anytime";
 						if (complexCondition != "")
-							conditionString = complexCondition;
+							conditionString = complexCondition;						
+						
+						// Check for dualslot condition specifically to update the view
+						if (conditionString.indexOf("Slot 2:") !== -1) {
+							// Find the dualslot checkbox for this gameSet
+							var dualslotCheckbox = tableParent.parent().find('.condition-check[data-condition="dualslot"]');
+							if (!dualslotCheckbox.is(':checked')) {
+								// If not checked, show "Anytime"
+								conditionString = "Anytime";
+							}
+						}
 						
 						// Check if a row needs to be pushed for a complex condition.
 						if (complexConditionLevels != "0") {
@@ -710,7 +720,7 @@ $(function() {
 				color = !color;			
 		});
 		
-		tableParent.append(newTableStartText + newTableMiddleText + newTableEndText);		
+		tableParent.append(newTableStartText + newTableMiddleText + newTableEndText);
 	}
 	
 	function createCombinedTable(tableParent, table, caption, fishing, gameSet) {
@@ -1001,8 +1011,6 @@ $(function() {
 							var entries = [];
 							
 							var complexConFound = false;
-							
-							var complexConFound = false;
 						
 							$.each(otherConditions, function() {
 								var otherCondition = this.toString();
@@ -1263,6 +1271,16 @@ $(function() {
 						// is defined.
 						if (complexCondition != "")
 							conditionString = complexCondition;
+						
+						// Check for dualslot condition specifically to update the view
+						if (conditionString.indexOf("Slot 2:") !== -1) {
+							// Find the dualslot checkbox for this gameSet
+							var dualslotCheckbox = tableParent.parent().find('.condition-check[data-condition="dualslot"]');
+							if (!dualslotCheckbox.is(':checked')) {
+								// If not checked, show "Anytime"
+								conditionString = "Anytime";
+							}
+						}
 						
 						// Set up a new string to hold output.
 						var tableRow = "";
