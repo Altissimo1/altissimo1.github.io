@@ -260,7 +260,6 @@ $(function() {
 	
 		// Set the color variable to false.
 		var color = false;
-		
 		// SEt strings for beginning, middle, and end of table.
 		var newTableStartText = "<table class='set-table'><caption>" + caption + "</caption><thead><tr class='" + game + "-true'><th colspan='2'>Pokémon</th><th>Rate</th><th>Level</th><th>Condition(s)</th></tr></thead><tbody>";
 		if (fishing)
@@ -665,17 +664,7 @@ $(function() {
 						if (hasAllConditions)
 							conditionString = "Anytime";
 						if (complexCondition != "")
-							conditionString = complexCondition;						
-						
-						// Check for dualslot condition specifically to update the view
-						if (conditionString.indexOf("Slot 2:") !== -1) {
-							// Find the dualslot checkbox for this gameSet
-							var dualslotCheckbox = tableParent.parent().find('.condition-check[data-condition="dualslot"]');
-							if (!dualslotCheckbox.is(':checked')) {
-								// If not checked, show "Anytime"
-								conditionString = "Anytime";
-							}
-						}
+							conditionString = complexCondition;
 						
 						// Check if a row needs to be pushed for a complex condition.
 						if (complexConditionLevels != "0") {
@@ -720,7 +709,7 @@ $(function() {
 				color = !color;			
 		});
 		
-		tableParent.append(newTableStartText + newTableMiddleText + newTableEndText);
+		tableParent.append(newTableStartText + newTableMiddleText + newTableEndText);		
 	}
 	
 	function createCombinedTable(tableParent, table, caption, fishing, gameSet) {
@@ -742,8 +731,7 @@ $(function() {
 				gameName = "Brilliant Diamond";
 			else if (gameName == "ShiningPearl")
 				gameName = "Shining Pearl";
-			
-			newTableStartText = newTableStartText + "<th class='" + this.toLowerCase() + "-true' colspan='2'>" + gameName + "</th>";
+			newTableStartText = newTableStartText + "<th class='" + this.toLowerCase() + "-true' colspan='2'>" + this + "</th>";
 		});
 		newTableStartText = newTableStartText + "<th>Condition</th></tr></thead><tbody>";
 		var newTableMiddleText = "";
@@ -1011,6 +999,8 @@ $(function() {
 							var entries = [];
 							
 							var complexConFound = false;
+							
+							var complexConFound = false;
 						
 							$.each(otherConditions, function() {
 								var otherCondition = this.toString();
@@ -1272,16 +1262,6 @@ $(function() {
 						if (complexCondition != "")
 							conditionString = complexCondition;
 						
-						// Check for dualslot condition specifically to update the view
-						if (conditionString.indexOf("Slot 2:") !== -1) {
-							// Find the dualslot checkbox for this gameSet
-							var dualslotCheckbox = tableParent.parent().find('.condition-check[data-condition="dualslot"]');
-							if (!dualslotCheckbox.is(':checked')) {
-								// If not checked, show "Anytime"
-								conditionString = "Anytime";
-							}
-						}
-						
 						// Set up a new string to hold output.
 						var tableRow = "";
 						
@@ -1337,7 +1317,7 @@ $(function() {
 									
 									// If the rate is still 0, the pokemon is not in this game. Add an empty row.
 									if (rate == "0%") {
-										tableRow += "<td class=\"light-" + color.toString() + "\ colspan=\"2\">N/A</td>";
+										tableRow += "<td class=\"light-" + color.toString() + "\" colspan=\"2\">N/A</td>";
 									}
 									// Otherwise, add the row.
 									else {							
@@ -1427,7 +1407,7 @@ $(function() {
 										
 										// If the rate is still 0, the pokemon is not in this game. Add an empty row.
 										if (rate == "0%" || !(gamesInCurrentSet[key])) {
-											tableRow += "<td class=\"light-" + color.toString() + "\ colspan=\"2\">N/A</td>";
+											tableRow += "<td class=\"light-" + color.toString() + "\" colspan=\"2\">N/A</td>";
 										}
 										// Otherwise, add the row.
 										else {							
@@ -1465,7 +1445,7 @@ $(function() {
 									
 									var allGamesUsed = true;
 									$.each(Object.keys(gamesPushed), function() {
-										if (!gamesPushed[this.toString])
+										if (!gamesPushed[this.toString()])
 											allGamesUsed = false;
 									});
 									
@@ -1598,7 +1578,7 @@ $(function() {
 							
 							var allGamesUsed = true;
 							$.each(Object.keys(gamesPushed), function() {
-								if (!gamesPushed[this.toString])
+								if (!gamesPushed[this.toString()])
 									allGamesUsed = false;
 							});
 							
