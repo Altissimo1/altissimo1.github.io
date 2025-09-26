@@ -17,13 +17,13 @@
       <!-- <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Brilliant Diamond and Shining Pearl Home</a></h4> -->
       <h2>Grand Underground Documentation</h2>
       <!-- <p><strong>This page aims to explain the logic that controls Pokémon encounter rates in the Grand Underground. For lists of encounters in the individual areas of the Grand Underground, please see <a href="../Sinnoh-Locations/grand-underground.html">this page</a>.</strong></p> -->
-	  <p>Links to specific tables below:</p>
-	  <ul>
-		 <li><a href="#areatable">Area Data</a></li>
-		 <li><a href="#statuetable">Statue Data</a></li>
-		 <li><a href="#pokemontable">Pokémon Data</a></li>
-	  </ul>	  
-	  <p>The actual code and data that I looked at to identify how the game is handling encounters can be found as part of <a href="https://github.com/SteveCookTU/bdsp_ug_generator/tree/master">this</a> GitHub project, an RNG tool for Grand Underground encounters. The following parts of the project were used to understand this logic:</p>
+      <p>Links to specific tables below:</p>
+      <ul>
+         <li><a href="#areatable">Area Data</a></li>
+         <li><a href="#statuetable">Statue Data</a></li>
+         <li><a href="#pokemontable">Pokémon Data</a></li>
+      </ul>
+      <p>The actual code and data that I looked at to identify how the game is handling encounters can be found as part of <a href="https://github.com/SteveCookTU/bdsp_ug_generator/tree/master">this</a> GitHub project, an RNG tool for Grand Underground encounters. The following parts of the project were used to understand this logic:</p>
       <ul>
          <li><a href="https://github.com/SteveCookTU/bdsp_ug_generator/blob/master/src/run_results.rs">run_results.rs</a> contains the logic for calculating type and Pokémon spawn rates.</li>
          <li><a href="https://github.com/SteveCookTU/bdsp_ug_generator/blob/master/src/statues.rs">statues.rs</a> contains the logic for creating a statue configuration used by run_results.</li>
@@ -75,7 +75,7 @@
       <h4>Area Rates</h4>
       <p>The data in the UgRandMark.json file linked above has a type array that contains a value for every type in the game. The ordering is as follows: Normal, Fighting, Flying, Poison, Ground, Rock, Bug, Ghost, Steel, Fire, Water, Grass, Electric, Psychic, Ice, Dragon, Dark, Fairy. The array contains a number that is given to each type. Some areas have higher values for certain types than others, indicating that the area has a natural bias toward those types irrespective of the player's statue configuration. These values are used as the base values for each type.</p>
       <h4>Statue Bonuses</h4>
-      <p>The player can have a total of 18 statues in their Secret Base. Each statue will provide a boost for its primary and secondary type. The exact bonus varies on a statue-to-statue-basis, and it seems to be the case that there may be multiple versions of statues for one Pokémon species that have different rates. I suspect these represent the difference between Standard Statues and Color Statues, and I suspect that Color Statues are those with higher type bonuses than the Standard Statues, but I have not been able to confirm this by looking at the code alone.</p>
+      <p>The player can have a total of 18 statues in their Secret Base. Each statue will provide a boost for its primary and secondary type. The exact bonus varies on a statue-to-statue-basis, and Standard and Color statues have different values.</p>
       <p>Bulbapedia claims that "Only the type with the greatest number of statues of the corresponding type will have a boosted effect, which is indicated by the color of the orb placed next to the entrance of the player's base. This "Statue 
          Effect" is increased for every statue of that type that is placed in the player's Secret Base. If the Pokémon has two types, the primary type of the Pokémon has a greater effect than its secondary type in determining which type has a boosted 
          effect. Hence, if only one statue of a dual-typed Pokémon is placed, the boosted type will correspond to the Pokémon's primary type.". Based on the code, I believe this to be incorrect. It seems to be the case that statues' primary types give 
@@ -86,7 +86,7 @@
       <h3><u>Pokémon Calculation</u></h3>
       <p>The example I gave earlier for Big Bluff Cavern should be sufficient to indicate how individual Pokémon's spawn rates are calculated. This section provides a few extra data points.</p>
       <h4>Diglett Bonus</h4>
-      <p>Accumulating 40 points from Diglett and Dugtrio's sparkles activates a 4-minute period during which some bonuses are applied. According to Bulbapedia, the benefits include doubled Shiny probability (which is handled by run_results.rs) and upgrading all Stone Boxes to Gorgeous Stone Boxes. Another benefit of the Diglett bonus is to increase the spawn rates of certain Pokémon.</p>
+      <p>Accumulating 40 points from Diglett and Dugtrio's sparkles activates a 4-minute period during which some bonuses are applied. According to Bulbapedia, the benefits include doubled Shiny probability (which is handled by run_results.rs) and upgrading all Stone Boxes to Gorgeous Boxes. (The documentation <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_lWppNo-hlbGeq5rmYD_mFqicp1hRRr6dmoTMQVojkOHhO2SAttmShgA_8xgTVpaLWISnutqJR1ZS/pubhtml#gid=1974278792">here</a> indicates it is actually a 95% chance to get a Gorgeous Box.) Another benefit of the Diglett bonus is to increase the spawn rates of certain Pokémon.</p>
       <p>Every Pokémon has a "Rate Up" value associated with it. If a Diglett bonus is active, then when the Pokémon's spawn weight is being added to the sum of weights, the weight will be multiplied by the "Rate Up" value before it is added. This means that any Pokémon whose Rate Up value is 1 basically has its weight unaffected, and only Rate Up values of 2 or higher will be affected. This seems to only affect starter Pokémon, all of whom have a Rate Up value of 3.</p>
       <h4>Story Flags</h4>
       <p>Every Pokémon has six spawn weights associated with it, indicating its spawn weight when different milestones have been reached in the story. A Pokémon with a weight of 0 (shown as "N/A" in the below tables) will not be available at that story flag. Once a Pokémon is added to the list of potential spawns, it is not removed from it. However, the spawn weight can change depending on which story flag is currently being used. The six story flags are as follows:</p>
@@ -255,7 +255,7 @@
                <td>7</td>
             </tr>
             <tr class="light-true">
-               <td>Stillwater Cavern</td>
+               <td>Still-Water Cavern</td>
                <td>13</td>
                <td>UgEncount_11.json</td>
                <td>Flying (100), Bug (80), Water (100), Grass (100)</td>
@@ -313,6 +313,16 @@
          </tbody>
       </table>
       <h4 id="statuetable">Statue Data</h4>
+      <p>Statues are obtained from Boxes that can be obtained through digging. According to <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_lWppNo-hlbGeq5rmYD_mFqicp1hRRr6dmoTMQVojkOHhO2SAttmShgA_8xgTVpaLWISnutqJR1ZS/pubhtml#gid=1974278792">this</a> documentation, boxes have a 50% chance to appear during any digging session. There is a 95% chance to get a Stone Box and a 5% chance to get a Gorgeous Box; during a Diglett Bonus, the rates are reversed.</p>
+      <p>The game will generate a box by first selecting a type and then selecting a random Pokémon belonging to that type to use for the statue. I am unsure if all types are weighted equally. Within each type, it appears according to the above documentation that all Pokémon are themselves weighted equally, with a spawn weight of 15 used for statues appearing before the National Pokédex is obtained and 5 for statues appearing afterward.</p>
+      <p>Following the documentation <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_lWppNo-hlbGeq5rmYD_mFqicp1hRRr6dmoTMQVojkOHhO2SAttmShgA_8xgTVpaLWISnutqJR1ZS/pubhtml#gid=1974278792">here</a>, and looking at the ordering of data there, it looks like the first instance of each Pokémon species in the list below is the Standard Statue version, and the second instance is the Color Statue version. Color Statues seem to consistently have twice the type bonus values of their Standard counterparts.</p>
+      <p>No Legendary Pokémon's statues can be found in the Underground. They are listed here to show what their type bonuses are. These are obtained by catching the relevant Legendary.</p>
+      <dl>
+         <dt>All statues in the table below (except those of Legendary Pokémon) can be found by digging after obtaining the National Pokédex. Before the National Pokédex is obtained, only the following Pokémon can be found:</dt>
+         <dd>Pikachu, Clefairy, Psyduck, Alakazam, Machamp, Tentacruel, Geodude, Rapidash, Gengar, Chansey, Seaking, Mr. Mime, Magikarp, Gyarados, Snorlax, Noctowl, Crobat, Togepi, Marill, Sudowoodo, Aipom, Quagsire,
+            Murkrow, Unown, Girafarig, Steelix, Heracross, Octillery, Mantine, Beautifly, Dustox, Pelipper, Mawile, Medicham, Roselia, Altaria, Whiscash, Milotic, Chimecho, Salamence, and all Pokémon between Turtwig and Rotom (inclusive).
+         </dd>
+      </dl>
       <table class="left-align">
          <thead>
             <tr class="light-true">
@@ -327,7 +337,7 @@
          <tbody>
             <tr class="light-false">
                <td>1</td>
-               <td class="mon-id">1</td>
+               <td>Bulbasaur</td>
                <td>Grass</td>
                <td>30</td>
                <td>Poison</td>
@@ -335,7 +345,7 @@
             </tr>
             <tr class="light-true">
                <td>226</td>
-               <td class="mon-id">1</td>
+               <td>Bulbasaur</td>
                <td>Grass</td>
                <td>60</td>
                <td>Poison</td>
@@ -343,7 +353,7 @@
             </tr>
             <tr class="light-false">
                <td>2</td>
-               <td class="mon-id">2</td>
+               <td>Ivysaur</td>
                <td>Grass</td>
                <td>42</td>
                <td>Poison</td>
@@ -351,7 +361,7 @@
             </tr>
             <tr class="light-true">
                <td>227</td>
-               <td class="mon-id">2</td>
+               <td>Ivysaur</td>
                <td>Grass</td>
                <td>84</td>
                <td>Poison</td>
@@ -359,7 +369,7 @@
             </tr>
             <tr class="light-false">
                <td>3</td>
-               <td class="mon-id">3</td>
+               <td>Venusaur</td>
                <td>Grass</td>
                <td>48</td>
                <td>Poison</td>
@@ -367,7 +377,7 @@
             </tr>
             <tr class="light-true">
                <td>228</td>
-               <td class="mon-id">3</td>
+               <td>Venusaur</td>
                <td>Grass</td>
                <td>96</td>
                <td>Poison</td>
@@ -375,7 +385,7 @@
             </tr>
             <tr class="light-false">
                <td>4</td>
-               <td class="mon-id">4</td>
+               <td>Charmander</td>
                <td>Fire</td>
                <td>30</td>
                <td>N/A</td>
@@ -383,7 +393,7 @@
             </tr>
             <tr class="light-true">
                <td>229</td>
-               <td class="mon-id">4</td>
+               <td>Charmander</td>
                <td>Fire</td>
                <td>60</td>
                <td>N/A</td>
@@ -391,7 +401,7 @@
             </tr>
             <tr class="light-false">
                <td>5</td>
-               <td class="mon-id">5</td>
+               <td>Charmeleon</td>
                <td>Fire</td>
                <td>42</td>
                <td>N/A</td>
@@ -399,7 +409,7 @@
             </tr>
             <tr class="light-true">
                <td>230</td>
-               <td class="mon-id">5</td>
+               <td>Charmeleon</td>
                <td>Fire</td>
                <td>84</td>
                <td>N/A</td>
@@ -407,7 +417,7 @@
             </tr>
             <tr class="light-false">
                <td>6</td>
-               <td class="mon-id">6</td>
+               <td>Charizard</td>
                <td>Fire</td>
                <td>48</td>
                <td>Flying</td>
@@ -415,7 +425,7 @@
             </tr>
             <tr class="light-true">
                <td>231</td>
-               <td class="mon-id">6</td>
+               <td>Charizard</td>
                <td>Fire</td>
                <td>96</td>
                <td>Flying</td>
@@ -423,7 +433,7 @@
             </tr>
             <tr class="light-false">
                <td>7</td>
-               <td class="mon-id">7</td>
+               <td>Squirtle</td>
                <td>Water</td>
                <td>30</td>
                <td>N/A</td>
@@ -431,7 +441,7 @@
             </tr>
             <tr class="light-true">
                <td>232</td>
-               <td class="mon-id">7</td>
+               <td>Squirtle</td>
                <td>Water</td>
                <td>60</td>
                <td>N/A</td>
@@ -439,7 +449,7 @@
             </tr>
             <tr class="light-false">
                <td>8</td>
-               <td class="mon-id">8</td>
+               <td>Wartortle</td>
                <td>Water</td>
                <td>42</td>
                <td>N/A</td>
@@ -447,7 +457,7 @@
             </tr>
             <tr class="light-true">
                <td>233</td>
-               <td class="mon-id">8</td>
+               <td>Wartortle</td>
                <td>Water</td>
                <td>84</td>
                <td>N/A</td>
@@ -455,7 +465,7 @@
             </tr>
             <tr class="light-false">
                <td>9</td>
-               <td class="mon-id">9</td>
+               <td>Blastoise</td>
                <td>Water</td>
                <td>48</td>
                <td>N/A</td>
@@ -463,7 +473,7 @@
             </tr>
             <tr class="light-true">
                <td>234</td>
-               <td class="mon-id">9</td>
+               <td>Blastoise</td>
                <td>Water</td>
                <td>96</td>
                <td>N/A</td>
@@ -471,7 +481,7 @@
             </tr>
             <tr class="light-false">
                <td>10</td>
-               <td class="mon-id">25</td>
+               <td>Pikachu</td>
                <td>Electric</td>
                <td>30</td>
                <td>N/A</td>
@@ -479,7 +489,7 @@
             </tr>
             <tr class="light-true">
                <td>235</td>
-               <td class="mon-id">25</td>
+               <td>Pikachu</td>
                <td>Electric</td>
                <td>60</td>
                <td>N/A</td>
@@ -487,7 +497,7 @@
             </tr>
             <tr class="light-false">
                <td>11</td>
-               <td class="mon-id">31</td>
+               <td>Nidoqueen</td>
                <td>Poison</td>
                <td>42</td>
                <td>Ground</td>
@@ -495,7 +505,7 @@
             </tr>
             <tr class="light-true">
                <td>236</td>
-               <td class="mon-id">31</td>
+               <td>Nidoqueen</td>
                <td>Poison</td>
                <td>84</td>
                <td>Ground</td>
@@ -503,7 +513,7 @@
             </tr>
             <tr class="light-false">
                <td>12</td>
-               <td class="mon-id">34</td>
+               <td>Nidoking</td>
                <td>Poison</td>
                <td>48</td>
                <td>Ground</td>
@@ -511,7 +521,7 @@
             </tr>
             <tr class="light-true">
                <td>237</td>
-               <td class="mon-id">34</td>
+               <td>Nidoking</td>
                <td>Poison</td>
                <td>96</td>
                <td>Ground</td>
@@ -519,7 +529,7 @@
             </tr>
             <tr class="light-false">
                <td>13</td>
-               <td class="mon-id">35</td>
+               <td>Clefairy</td>
                <td>Fairy</td>
                <td>30</td>
                <td>N/A</td>
@@ -527,7 +537,7 @@
             </tr>
             <tr class="light-true">
                <td>238</td>
-               <td class="mon-id">35</td>
+               <td>Clefairy</td>
                <td>Fairy</td>
                <td>60</td>
                <td>N/A</td>
@@ -535,7 +545,7 @@
             </tr>
             <tr class="light-false">
                <td>14</td>
-               <td class="mon-id">37</td>
+               <td>Vulpix</td>
                <td>Fire</td>
                <td>30</td>
                <td>N/A</td>
@@ -543,7 +553,7 @@
             </tr>
             <tr class="light-true">
                <td>239</td>
-               <td class="mon-id">37</td>
+               <td>Vulpix</td>
                <td>Fire</td>
                <td>60</td>
                <td>N/A</td>
@@ -551,7 +561,7 @@
             </tr>
             <tr class="light-false">
                <td>15</td>
-               <td class="mon-id">39</td>
+               <td>Jigglypuff</td>
                <td>Normal</td>
                <td>30</td>
                <td>Fairy</td>
@@ -559,7 +569,7 @@
             </tr>
             <tr class="light-true">
                <td>240</td>
-               <td class="mon-id">39</td>
+               <td>Jigglypuff</td>
                <td>Normal</td>
                <td>60</td>
                <td>Fairy</td>
@@ -567,7 +577,7 @@
             </tr>
             <tr class="light-false">
                <td>16</td>
-               <td class="mon-id">43</td>
+               <td>Oddish</td>
                <td>Grass</td>
                <td>30</td>
                <td>Poison</td>
@@ -575,7 +585,7 @@
             </tr>
             <tr class="light-true">
                <td>241</td>
-               <td class="mon-id">43</td>
+               <td>Oddish</td>
                <td>Grass</td>
                <td>60</td>
                <td>Poison</td>
@@ -583,7 +593,7 @@
             </tr>
             <tr class="light-false">
                <td>17</td>
-               <td class="mon-id">52</td>
+               <td>Meowth</td>
                <td>Normal</td>
                <td>30</td>
                <td>N/A</td>
@@ -591,7 +601,7 @@
             </tr>
             <tr class="light-true">
                <td>242</td>
-               <td class="mon-id">52</td>
+               <td>Meowth</td>
                <td>Normal</td>
                <td>60</td>
                <td>N/A</td>
@@ -599,7 +609,7 @@
             </tr>
             <tr class="light-false">
                <td>18</td>
-               <td class="mon-id">54</td>
+               <td>Psyduck</td>
                <td>Water</td>
                <td>30</td>
                <td>N/A</td>
@@ -607,7 +617,7 @@
             </tr>
             <tr class="light-true">
                <td>243</td>
-               <td class="mon-id">54</td>
+               <td>Psyduck</td>
                <td>Water</td>
                <td>60</td>
                <td>N/A</td>
@@ -615,7 +625,7 @@
             </tr>
             <tr class="light-false">
                <td>19</td>
-               <td class="mon-id">59</td>
+               <td>Arcanine</td>
                <td>Fire</td>
                <td>48</td>
                <td>N/A</td>
@@ -623,7 +633,7 @@
             </tr>
             <tr class="light-true">
                <td>244</td>
-               <td class="mon-id">59</td>
+               <td>Arcanine</td>
                <td>Fire</td>
                <td>96</td>
                <td>N/A</td>
@@ -631,7 +641,7 @@
             </tr>
             <tr class="light-false">
                <td>20</td>
-               <td class="mon-id">62</td>
+               <td>Poliwrath</td>
                <td>Water</td>
                <td>42</td>
                <td>Fighting</td>
@@ -639,7 +649,7 @@
             </tr>
             <tr class="light-true">
                <td>245</td>
-               <td class="mon-id">62</td>
+               <td>Poliwrath</td>
                <td>Water</td>
                <td>84</td>
                <td>Fighting</td>
@@ -647,7 +657,7 @@
             </tr>
             <tr class="light-false">
                <td>21</td>
-               <td class="mon-id">65</td>
+               <td>Alakazam</td>
                <td>Psychic</td>
                <td>42</td>
                <td>N/A</td>
@@ -655,7 +665,7 @@
             </tr>
             <tr class="light-true">
                <td>246</td>
-               <td class="mon-id">65</td>
+               <td>Alakazam</td>
                <td>Psychic</td>
                <td>84</td>
                <td>N/A</td>
@@ -663,7 +673,7 @@
             </tr>
             <tr class="light-false">
                <td>22</td>
-               <td class="mon-id">68</td>
+               <td>Machamp</td>
                <td>Fighting</td>
                <td>48</td>
                <td>N/A</td>
@@ -671,7 +681,7 @@
             </tr>
             <tr class="light-true">
                <td>247</td>
-               <td class="mon-id">68</td>
+               <td>Machamp</td>
                <td>Fighting</td>
                <td>96</td>
                <td>N/A</td>
@@ -679,7 +689,7 @@
             </tr>
             <tr class="light-false">
                <td>23</td>
-               <td class="mon-id">73</td>
+               <td>Tentacruel</td>
                <td>Water</td>
                <td>48</td>
                <td>Poison</td>
@@ -687,7 +697,7 @@
             </tr>
             <tr class="light-true">
                <td>248</td>
-               <td class="mon-id">73</td>
+               <td>Tentacruel</td>
                <td>Water</td>
                <td>96</td>
                <td>Poison</td>
@@ -695,7 +705,7 @@
             </tr>
             <tr class="light-false">
                <td>24</td>
-               <td class="mon-id">74</td>
+               <td>Geodude</td>
                <td>Rock</td>
                <td>30</td>
                <td>Ground</td>
@@ -703,7 +713,7 @@
             </tr>
             <tr class="light-true">
                <td>249</td>
-               <td class="mon-id">74</td>
+               <td>Geodude</td>
                <td>Rock</td>
                <td>60</td>
                <td>Ground</td>
@@ -711,7 +721,7 @@
             </tr>
             <tr class="light-false">
                <td>25</td>
-               <td class="mon-id">78</td>
+               <td>Rapidash</td>
                <td>Fire</td>
                <td>48</td>
                <td>N/A</td>
@@ -719,7 +729,7 @@
             </tr>
             <tr class="light-true">
                <td>250</td>
-               <td class="mon-id">78</td>
+               <td>Rapidash</td>
                <td>Fire</td>
                <td>96</td>
                <td>N/A</td>
@@ -727,7 +737,7 @@
             </tr>
             <tr class="light-false">
                <td>26</td>
-               <td class="mon-id">79</td>
+               <td>Slowpoke</td>
                <td>Water</td>
                <td>42</td>
                <td>Psychic</td>
@@ -735,7 +745,7 @@
             </tr>
             <tr class="light-true">
                <td>251</td>
-               <td class="mon-id">79</td>
+               <td>Slowpoke</td>
                <td>Water</td>
                <td>84</td>
                <td>Psychic</td>
@@ -743,7 +753,7 @@
             </tr>
             <tr class="light-false">
                <td>27</td>
-               <td class="mon-id">83</td>
+               <td>Farfetch'd</td>
                <td>Normal</td>
                <td>30</td>
                <td>Flying</td>
@@ -751,7 +761,7 @@
             </tr>
             <tr class="light-true">
                <td>252</td>
-               <td class="mon-id">83</td>
+               <td>Farfetch'd</td>
                <td>Normal</td>
                <td>60</td>
                <td>Flying</td>
@@ -759,7 +769,7 @@
             </tr>
             <tr class="light-false">
                <td>28</td>
-               <td class="mon-id">94</td>
+               <td>Gengar</td>
                <td>Ghost</td>
                <td>48</td>
                <td>Poison</td>
@@ -767,7 +777,7 @@
             </tr>
             <tr class="light-true">
                <td>253</td>
-               <td class="mon-id">94</td>
+               <td>Gengar</td>
                <td>Ghost</td>
                <td>96</td>
                <td>Poison</td>
@@ -775,7 +785,7 @@
             </tr>
             <tr class="light-false">
                <td>29</td>
-               <td class="mon-id">104</td>
+               <td>Cubone</td>
                <td>Ground</td>
                <td>30</td>
                <td>N/A</td>
@@ -783,7 +793,7 @@
             </tr>
             <tr class="light-true">
                <td>254</td>
-               <td class="mon-id">104</td>
+               <td>Cubone</td>
                <td>Ground</td>
                <td>60</td>
                <td>N/A</td>
@@ -791,7 +801,7 @@
             </tr>
             <tr class="light-false">
                <td>30</td>
-               <td class="mon-id">108</td>
+               <td>Lickitung</td>
                <td>Normal</td>
                <td>42</td>
                <td>N/A</td>
@@ -799,7 +809,7 @@
             </tr>
             <tr class="light-true">
                <td>255</td>
-               <td class="mon-id">108</td>
+               <td>Lickitung</td>
                <td>Normal</td>
                <td>84</td>
                <td>N/A</td>
@@ -807,7 +817,7 @@
             </tr>
             <tr class="light-false">
                <td>31</td>
-               <td class="mon-id">110</td>
+               <td>Weezing</td>
                <td>Poison</td>
                <td>42</td>
                <td>N/A</td>
@@ -815,7 +825,7 @@
             </tr>
             <tr class="light-true">
                <td>256</td>
-               <td class="mon-id">110</td>
+               <td>Weezing</td>
                <td>Poison</td>
                <td>84</td>
                <td>N/A</td>
@@ -823,7 +833,7 @@
             </tr>
             <tr class="light-false">
                <td>32</td>
-               <td class="mon-id">113</td>
+               <td>Chansey</td>
                <td>Normal</td>
                <td>42</td>
                <td>N/A</td>
@@ -831,7 +841,7 @@
             </tr>
             <tr class="light-true">
                <td>257</td>
-               <td class="mon-id">113</td>
+               <td>Chansey</td>
                <td>Normal</td>
                <td>84</td>
                <td>N/A</td>
@@ -839,7 +849,7 @@
             </tr>
             <tr class="light-false">
                <td>33</td>
-               <td class="mon-id">115</td>
+               <td>Kangaskhan</td>
                <td>Normal</td>
                <td>60</td>
                <td>N/A</td>
@@ -847,7 +857,7 @@
             </tr>
             <tr class="light-true">
                <td>258</td>
-               <td class="mon-id">115</td>
+               <td>Kangaskhan</td>
                <td>Normal</td>
                <td>120</td>
                <td>N/A</td>
@@ -855,7 +865,7 @@
             </tr>
             <tr class="light-false">
                <td>34</td>
-               <td class="mon-id">119</td>
+               <td>Seaking</td>
                <td>Water</td>
                <td>42</td>
                <td>N/A</td>
@@ -863,7 +873,7 @@
             </tr>
             <tr class="light-true">
                <td>259</td>
-               <td class="mon-id">119</td>
+               <td>Seaking</td>
                <td>Water</td>
                <td>84</td>
                <td>N/A</td>
@@ -871,7 +881,7 @@
             </tr>
             <tr class="light-false">
                <td>35</td>
-               <td class="mon-id">122</td>
+               <td>Mr. Mime</td>
                <td>Psychic</td>
                <td>42</td>
                <td>Fairy</td>
@@ -879,7 +889,7 @@
             </tr>
             <tr class="light-true">
                <td>260</td>
-               <td class="mon-id">122</td>
+               <td>Mr. Mime</td>
                <td>Psychic</td>
                <td>84</td>
                <td>Fairy</td>
@@ -887,7 +897,7 @@
             </tr>
             <tr class="light-false">
                <td>36</td>
-               <td class="mon-id">128</td>
+               <td>Tauros</td>
                <td>Normal</td>
                <td>48</td>
                <td>N/A</td>
@@ -895,7 +905,7 @@
             </tr>
             <tr class="light-true">
                <td>261</td>
-               <td class="mon-id">128</td>
+               <td>Tauros</td>
                <td>Normal</td>
                <td>96</td>
                <td>N/A</td>
@@ -903,7 +913,7 @@
             </tr>
             <tr class="light-false">
                <td>37</td>
-               <td class="mon-id">129</td>
+               <td>Magikarp</td>
                <td>Water</td>
                <td>30</td>
                <td>N/A</td>
@@ -911,7 +921,7 @@
             </tr>
             <tr class="light-true">
                <td>262</td>
-               <td class="mon-id">129</td>
+               <td>Magikarp</td>
                <td>Water</td>
                <td>60</td>
                <td>N/A</td>
@@ -919,7 +929,7 @@
             </tr>
             <tr class="light-false">
                <td>38</td>
-               <td class="mon-id">130</td>
+               <td>Gyarados</td>
                <td>Water</td>
                <td>48</td>
                <td>Flying</td>
@@ -927,7 +937,7 @@
             </tr>
             <tr class="light-true">
                <td>263</td>
-               <td class="mon-id">130</td>
+               <td>Gyarados</td>
                <td>Water</td>
                <td>96</td>
                <td>Flying</td>
@@ -935,7 +945,7 @@
             </tr>
             <tr class="light-false">
                <td>39</td>
-               <td class="mon-id">131</td>
+               <td>Lapras</td>
                <td>Water</td>
                <td>60</td>
                <td>Ice</td>
@@ -943,7 +953,7 @@
             </tr>
             <tr class="light-true">
                <td>264</td>
-               <td class="mon-id">131</td>
+               <td>Lapras</td>
                <td>Water</td>
                <td>120</td>
                <td>Ice</td>
@@ -951,7 +961,7 @@
             </tr>
             <tr class="light-false">
                <td>40</td>
-               <td class="mon-id">132</td>
+               <td>Ditto</td>
                <td>Normal</td>
                <td>30</td>
                <td>N/A</td>
@@ -959,7 +969,7 @@
             </tr>
             <tr class="light-true">
                <td>265</td>
-               <td class="mon-id">132</td>
+               <td>Ditto</td>
                <td>Normal</td>
                <td>60</td>
                <td>N/A</td>
@@ -967,7 +977,7 @@
             </tr>
             <tr class="light-false">
                <td>41</td>
-               <td class="mon-id">133</td>
+               <td>Eevee</td>
                <td>Normal</td>
                <td>30</td>
                <td>N/A</td>
@@ -975,7 +985,7 @@
             </tr>
             <tr class="light-true">
                <td>266</td>
-               <td class="mon-id">133</td>
+               <td>Eevee</td>
                <td>Normal</td>
                <td>60</td>
                <td>N/A</td>
@@ -983,7 +993,7 @@
             </tr>
             <tr class="light-false">
                <td>42</td>
-               <td class="mon-id">134</td>
+               <td>Vaporeon</td>
                <td>Water</td>
                <td>36</td>
                <td>N/A</td>
@@ -991,7 +1001,7 @@
             </tr>
             <tr class="light-true">
                <td>267</td>
-               <td class="mon-id">134</td>
+               <td>Vaporeon</td>
                <td>Water</td>
                <td>72</td>
                <td>N/A</td>
@@ -999,7 +1009,7 @@
             </tr>
             <tr class="light-false">
                <td>43</td>
-               <td class="mon-id">135</td>
+               <td>Jolteon</td>
                <td>Electric</td>
                <td>36</td>
                <td>N/A</td>
@@ -1007,7 +1017,7 @@
             </tr>
             <tr class="light-true">
                <td>268</td>
-               <td class="mon-id">135</td>
+               <td>Jolteon</td>
                <td>Electric</td>
                <td>72</td>
                <td>N/A</td>
@@ -1015,7 +1025,7 @@
             </tr>
             <tr class="light-false">
                <td>44</td>
-               <td class="mon-id">136</td>
+               <td>Flareon</td>
                <td>Fire</td>
                <td>36</td>
                <td>N/A</td>
@@ -1023,7 +1033,7 @@
             </tr>
             <tr class="light-true">
                <td>269</td>
-               <td class="mon-id">136</td>
+               <td>Flareon</td>
                <td>Fire</td>
                <td>72</td>
                <td>N/A</td>
@@ -1031,7 +1041,7 @@
             </tr>
             <tr class="light-false">
                <td>45</td>
-               <td class="mon-id">137</td>
+               <td>Porygon</td>
                <td>Normal</td>
                <td>30</td>
                <td>N/A</td>
@@ -1039,7 +1049,7 @@
             </tr>
             <tr class="light-true">
                <td>270</td>
-               <td class="mon-id">137</td>
+               <td>Porygon</td>
                <td>Normal</td>
                <td>60</td>
                <td>N/A</td>
@@ -1047,7 +1057,7 @@
             </tr>
             <tr class="light-false">
                <td>46</td>
-               <td class="mon-id">139</td>
+               <td>Omastar</td>
                <td>Rock</td>
                <td>42</td>
                <td>Water</td>
@@ -1055,7 +1065,7 @@
             </tr>
             <tr class="light-true">
                <td>271</td>
-               <td class="mon-id">139</td>
+               <td>Omastar</td>
                <td>Rock</td>
                <td>84</td>
                <td>Water</td>
@@ -1063,7 +1073,7 @@
             </tr>
             <tr class="light-false">
                <td>47</td>
-               <td class="mon-id">143</td>
+               <td>Snorlax</td>
                <td>Normal</td>
                <td>48</td>
                <td>N/A</td>
@@ -1071,7 +1081,7 @@
             </tr>
             <tr class="light-true">
                <td>272</td>
-               <td class="mon-id">143</td>
+               <td>Snorlax</td>
                <td>Normal</td>
                <td>96</td>
                <td>N/A</td>
@@ -1079,7 +1089,7 @@
             </tr>
             <tr class="light-false">
                <td>209</td>
-               <td class="mon-id">144</td>
+               <td>Articuno</td>
                <td>Ice</td>
                <td>144</td>
                <td>Flying</td>
@@ -1087,7 +1097,7 @@
             </tr>
             <tr class="light-true">
                <td>210</td>
-               <td class="mon-id">145</td>
+               <td>Zapdos</td>
                <td>Electric</td>
                <td>144</td>
                <td>Flying</td>
@@ -1095,7 +1105,7 @@
             </tr>
             <tr class="light-false">
                <td>211</td>
-               <td class="mon-id">146</td>
+               <td>Moltres</td>
                <td>Fire</td>
                <td>144</td>
                <td>Flying</td>
@@ -1103,7 +1113,7 @@
             </tr>
             <tr class="light-true">
                <td>48</td>
-               <td class="mon-id">149</td>
+               <td>Dragonite</td>
                <td>Dragon</td>
                <td>60</td>
                <td>Flying</td>
@@ -1111,7 +1121,7 @@
             </tr>
             <tr class="light-false">
                <td>273</td>
-               <td class="mon-id">149</td>
+               <td>Dragonite</td>
                <td>Dragon</td>
                <td>120</td>
                <td>Flying</td>
@@ -1119,7 +1129,7 @@
             </tr>
             <tr class="light-true">
                <td>212</td>
-               <td class="mon-id">150</td>
+               <td>Mewtwo</td>
                <td>Psychic</td>
                <td>180</td>
                <td>N/A</td>
@@ -1127,7 +1137,7 @@
             </tr>
             <tr class="light-false">
                <td>49</td>
-               <td class="mon-id">152</td>
+               <td>Chikorita</td>
                <td>Grass</td>
                <td>30</td>
                <td>N/A</td>
@@ -1135,7 +1145,7 @@
             </tr>
             <tr class="light-true">
                <td>274</td>
-               <td class="mon-id">152</td>
+               <td>Chikorita</td>
                <td>Grass</td>
                <td>60</td>
                <td>N/A</td>
@@ -1143,7 +1153,7 @@
             </tr>
             <tr class="light-false">
                <td>50</td>
-               <td class="mon-id">153</td>
+               <td>Bayleef</td>
                <td>Grass</td>
                <td>42</td>
                <td>N/A</td>
@@ -1151,7 +1161,7 @@
             </tr>
             <tr class="light-true">
                <td>275</td>
-               <td class="mon-id">153</td>
+               <td>Bayleef</td>
                <td>Grass</td>
                <td>84</td>
                <td>N/A</td>
@@ -1159,7 +1169,7 @@
             </tr>
             <tr class="light-false">
                <td>51</td>
-               <td class="mon-id">154</td>
+               <td>Meganium</td>
                <td>Grass</td>
                <td>48</td>
                <td>N/A</td>
@@ -1167,7 +1177,7 @@
             </tr>
             <tr class="light-true">
                <td>276</td>
-               <td class="mon-id">154</td>
+               <td>Meganium</td>
                <td>Grass</td>
                <td>96</td>
                <td>N/A</td>
@@ -1175,7 +1185,7 @@
             </tr>
             <tr class="light-false">
                <td>52</td>
-               <td class="mon-id">155</td>
+               <td>Cyndaquil</td>
                <td>Fire</td>
                <td>30</td>
                <td>N/A</td>
@@ -1183,7 +1193,7 @@
             </tr>
             <tr class="light-true">
                <td>277</td>
-               <td class="mon-id">155</td>
+               <td>Cyndaquil</td>
                <td>Fire</td>
                <td>60</td>
                <td>N/A</td>
@@ -1191,7 +1201,7 @@
             </tr>
             <tr class="light-false">
                <td>53</td>
-               <td class="mon-id">156</td>
+               <td>Quilava</td>
                <td>Fire</td>
                <td>36</td>
                <td>N/A</td>
@@ -1199,7 +1209,7 @@
             </tr>
             <tr class="light-true">
                <td>278</td>
-               <td class="mon-id">156</td>
+               <td>Quilava</td>
                <td>Fire</td>
                <td>72</td>
                <td>N/A</td>
@@ -1207,7 +1217,7 @@
             </tr>
             <tr class="light-false">
                <td>54</td>
-               <td class="mon-id">157</td>
+               <td>Typhlosion</td>
                <td>Fire</td>
                <td>48</td>
                <td>N/A</td>
@@ -1215,7 +1225,7 @@
             </tr>
             <tr class="light-true">
                <td>279</td>
-               <td class="mon-id">157</td>
+               <td>Typhlosion</td>
                <td>Fire</td>
                <td>96</td>
                <td>N/A</td>
@@ -1223,7 +1233,7 @@
             </tr>
             <tr class="light-false">
                <td>55</td>
-               <td class="mon-id">158</td>
+               <td>Totodile</td>
                <td>Water</td>
                <td>30</td>
                <td>N/A</td>
@@ -1231,7 +1241,7 @@
             </tr>
             <tr class="light-true">
                <td>280</td>
-               <td class="mon-id">158</td>
+               <td>Totodile</td>
                <td>Water</td>
                <td>60</td>
                <td>N/A</td>
@@ -1239,7 +1249,7 @@
             </tr>
             <tr class="light-false">
                <td>56</td>
-               <td class="mon-id">159</td>
+               <td>Croconaw</td>
                <td>Water</td>
                <td>42</td>
                <td>N/A</td>
@@ -1247,7 +1257,7 @@
             </tr>
             <tr class="light-true">
                <td>281</td>
-               <td class="mon-id">159</td>
+               <td>Croconaw</td>
                <td>Water</td>
                <td>84</td>
                <td>N/A</td>
@@ -1255,7 +1265,7 @@
             </tr>
             <tr class="light-false">
                <td>57</td>
-               <td class="mon-id">160</td>
+               <td>Feraligatr</td>
                <td>Water</td>
                <td>48</td>
                <td>N/A</td>
@@ -1263,7 +1273,7 @@
             </tr>
             <tr class="light-true">
                <td>282</td>
-               <td class="mon-id">160</td>
+               <td>Feraligatr</td>
                <td>Water</td>
                <td>96</td>
                <td>N/A</td>
@@ -1271,7 +1281,7 @@
             </tr>
             <tr class="light-false">
                <td>58</td>
-               <td class="mon-id">162</td>
+               <td>Furret</td>
                <td>Normal</td>
                <td>42</td>
                <td>N/A</td>
@@ -1279,7 +1289,7 @@
             </tr>
             <tr class="light-true">
                <td>283</td>
-               <td class="mon-id">162</td>
+               <td>Furret</td>
                <td>Normal</td>
                <td>84</td>
                <td>N/A</td>
@@ -1287,7 +1297,7 @@
             </tr>
             <tr class="light-false">
                <td>59</td>
-               <td class="mon-id">164</td>
+               <td>Noctowl</td>
                <td>Normal</td>
                <td>48</td>
                <td>Flying</td>
@@ -1295,7 +1305,7 @@
             </tr>
             <tr class="light-true">
                <td>284</td>
-               <td class="mon-id">164</td>
+               <td>Noctowl</td>
                <td>Normal</td>
                <td>96</td>
                <td>Flying</td>
@@ -1303,7 +1313,7 @@
             </tr>
             <tr class="light-false">
                <td>60</td>
-               <td class="mon-id">169</td>
+               <td>Crobat</td>
                <td>Poison</td>
                <td>48</td>
                <td>Flying</td>
@@ -1311,7 +1321,7 @@
             </tr>
             <tr class="light-true">
                <td>285</td>
-               <td class="mon-id">169</td>
+               <td>Crobat</td>
                <td>Poison</td>
                <td>96</td>
                <td>Flying</td>
@@ -1319,7 +1329,7 @@
             </tr>
             <tr class="light-false">
                <td>61</td>
-               <td class="mon-id">175</td>
+               <td>Togepi</td>
                <td>Fairy</td>
                <td>30</td>
                <td>N/A</td>
@@ -1327,7 +1337,7 @@
             </tr>
             <tr class="light-true">
                <td>286</td>
-               <td class="mon-id">175</td>
+               <td>Togepi</td>
                <td>Fairy</td>
                <td>60</td>
                <td>N/A</td>
@@ -1335,7 +1345,7 @@
             </tr>
             <tr class="light-false">
                <td>62</td>
-               <td class="mon-id">181</td>
+               <td>Ampharos</td>
                <td>Electric</td>
                <td>42</td>
                <td>N/A</td>
@@ -1343,7 +1353,7 @@
             </tr>
             <tr class="light-true">
                <td>287</td>
-               <td class="mon-id">181</td>
+               <td>Ampharos</td>
                <td>Electric</td>
                <td>84</td>
                <td>N/A</td>
@@ -1351,7 +1361,7 @@
             </tr>
             <tr class="light-false">
                <td>63</td>
-               <td class="mon-id">182</td>
+               <td>Bellossom</td>
                <td>Grass</td>
                <td>30</td>
                <td>N/A</td>
@@ -1359,7 +1369,7 @@
             </tr>
             <tr class="light-true">
                <td>288</td>
-               <td class="mon-id">182</td>
+               <td>Bellossom</td>
                <td>Grass</td>
                <td>60</td>
                <td>N/A</td>
@@ -1367,7 +1377,7 @@
             </tr>
             <tr class="light-false">
                <td>64</td>
-               <td class="mon-id">183</td>
+               <td>Marill</td>
                <td>Water</td>
                <td>36</td>
                <td>Fairy</td>
@@ -1375,7 +1385,7 @@
             </tr>
             <tr class="light-true">
                <td>289</td>
-               <td class="mon-id">183</td>
+               <td>Marill</td>
                <td>Water</td>
                <td>72</td>
                <td>Fairy</td>
@@ -1383,7 +1393,7 @@
             </tr>
             <tr class="light-false">
                <td>65</td>
-               <td class="mon-id">185</td>
+               <td>Sudowoodo</td>
                <td>Rock</td>
                <td>42</td>
                <td>N/A</td>
@@ -1391,7 +1401,7 @@
             </tr>
             <tr class="light-true">
                <td>290</td>
-               <td class="mon-id">185</td>
+               <td>Sudowoodo</td>
                <td>Rock</td>
                <td>84</td>
                <td>N/A</td>
@@ -1399,7 +1409,7 @@
             </tr>
             <tr class="light-false">
                <td>66</td>
-               <td class="mon-id">190</td>
+               <td>Aipom</td>
                <td>Normal</td>
                <td>30</td>
                <td>N/A</td>
@@ -1407,7 +1417,7 @@
             </tr>
             <tr class="light-true">
                <td>291</td>
-               <td class="mon-id">190</td>
+               <td>Aipom</td>
                <td>Normal</td>
                <td>60</td>
                <td>N/A</td>
@@ -1415,7 +1425,7 @@
             </tr>
             <tr class="light-false">
                <td>67</td>
-               <td class="mon-id">191</td>
+               <td>Sunkern</td>
                <td>Grass</td>
                <td>30</td>
                <td>N/A</td>
@@ -1423,7 +1433,7 @@
             </tr>
             <tr class="light-true">
                <td>292</td>
-               <td class="mon-id">191</td>
+               <td>Sunkern</td>
                <td>Grass</td>
                <td>60</td>
                <td>N/A</td>
@@ -1431,7 +1441,7 @@
             </tr>
             <tr class="light-false">
                <td>68</td>
-               <td class="mon-id">195</td>
+               <td>Quagsire</td>
                <td>Water</td>
                <td>42</td>
                <td>Ground</td>
@@ -1439,7 +1449,7 @@
             </tr>
             <tr class="light-true">
                <td>293</td>
-               <td class="mon-id">195</td>
+               <td>Quagsire</td>
                <td>Water</td>
                <td>84</td>
                <td>Ground</td>
@@ -1447,7 +1457,7 @@
             </tr>
             <tr class="light-false">
                <td>69</td>
-               <td class="mon-id">196</td>
+               <td>Espeon</td>
                <td>Psychic</td>
                <td>36</td>
                <td>N/A</td>
@@ -1455,7 +1465,7 @@
             </tr>
             <tr class="light-true">
                <td>294</td>
-               <td class="mon-id">196</td>
+               <td>Espeon</td>
                <td>Psychic</td>
                <td>72</td>
                <td>N/A</td>
@@ -1463,7 +1473,7 @@
             </tr>
             <tr class="light-false">
                <td>70</td>
-               <td class="mon-id">197</td>
+               <td>Umbreon</td>
                <td>Dark</td>
                <td>36</td>
                <td>N/A</td>
@@ -1471,7 +1481,7 @@
             </tr>
             <tr class="light-true">
                <td>295</td>
-               <td class="mon-id">197</td>
+               <td>Umbreon</td>
                <td>Dark</td>
                <td>72</td>
                <td>N/A</td>
@@ -1479,7 +1489,7 @@
             </tr>
             <tr class="light-false">
                <td>71</td>
-               <td class="mon-id">198</td>
+               <td>Murkrow</td>
                <td>Dark</td>
                <td>30</td>
                <td>Flying</td>
@@ -1487,7 +1497,7 @@
             </tr>
             <tr class="light-true">
                <td>296</td>
-               <td class="mon-id">198</td>
+               <td>Murkrow</td>
                <td>Dark</td>
                <td>60</td>
                <td>Flying</td>
@@ -1495,7 +1505,7 @@
             </tr>
             <tr class="light-false">
                <td>72</td>
-               <td class="mon-id">201</td>
+               <td>Unown</td>
                <td>Psychic</td>
                <td>30</td>
                <td>N/A</td>
@@ -1503,7 +1513,7 @@
             </tr>
             <tr class="light-true">
                <td>297</td>
-               <td class="mon-id">201</td>
+               <td>Unown</td>
                <td>Psychic</td>
                <td>60</td>
                <td>N/A</td>
@@ -1511,7 +1521,7 @@
             </tr>
             <tr class="light-false">
                <td>73</td>
-               <td class="mon-id">202</td>
+               <td>Wobbuffet</td>
                <td>Psychic</td>
                <td>42</td>
                <td>N/A</td>
@@ -1519,7 +1529,7 @@
             </tr>
             <tr class="light-true">
                <td>298</td>
-               <td class="mon-id">202</td>
+               <td>Wobbuffet</td>
                <td>Psychic</td>
                <td>84</td>
                <td>N/A</td>
@@ -1527,7 +1537,7 @@
             </tr>
             <tr class="light-false">
                <td>74</td>
-               <td class="mon-id">203</td>
+               <td>Girafarig</td>
                <td>Normal</td>
                <td>42</td>
                <td>Psychic</td>
@@ -1535,7 +1545,7 @@
             </tr>
             <tr class="light-true">
                <td>299</td>
-               <td class="mon-id">203</td>
+               <td>Girafarig</td>
                <td>Normal</td>
                <td>84</td>
                <td>Psychic</td>
@@ -1543,7 +1553,7 @@
             </tr>
             <tr class="light-false">
                <td>75</td>
-               <td class="mon-id">206</td>
+               <td>Dunsparce</td>
                <td>Normal</td>
                <td>42</td>
                <td>N/A</td>
@@ -1551,7 +1561,7 @@
             </tr>
             <tr class="light-true">
                <td>300</td>
-               <td class="mon-id">206</td>
+               <td>Dunsparce</td>
                <td>Normal</td>
                <td>84</td>
                <td>N/A</td>
@@ -1559,7 +1569,7 @@
             </tr>
             <tr class="light-false">
                <td>76</td>
-               <td class="mon-id">208</td>
+               <td>Steelix</td>
                <td>Steel</td>
                <td>48</td>
                <td>Ground</td>
@@ -1567,7 +1577,7 @@
             </tr>
             <tr class="light-true">
                <td>301</td>
-               <td class="mon-id">208</td>
+               <td>Steelix</td>
                <td>Steel</td>
                <td>96</td>
                <td>Ground</td>
@@ -1575,7 +1585,7 @@
             </tr>
             <tr class="light-false">
                <td>77</td>
-               <td class="mon-id">209</td>
+               <td>Snubbull</td>
                <td>Fairy</td>
                <td>30</td>
                <td>N/A</td>
@@ -1583,7 +1593,7 @@
             </tr>
             <tr class="light-true">
                <td>302</td>
-               <td class="mon-id">209</td>
+               <td>Snubbull</td>
                <td>Fairy</td>
                <td>60</td>
                <td>N/A</td>
@@ -1591,7 +1601,7 @@
             </tr>
             <tr class="light-false">
                <td>78</td>
-               <td class="mon-id">212</td>
+               <td>Scizor</td>
                <td>Bug</td>
                <td>48</td>
                <td>Steel</td>
@@ -1599,7 +1609,7 @@
             </tr>
             <tr class="light-true">
                <td>303</td>
-               <td class="mon-id">212</td>
+               <td>Scizor</td>
                <td>Bug</td>
                <td>96</td>
                <td>Steel</td>
@@ -1607,7 +1617,7 @@
             </tr>
             <tr class="light-false">
                <td>79</td>
-               <td class="mon-id">214</td>
+               <td>Heracross</td>
                <td>Bug</td>
                <td>42</td>
                <td>Fighting</td>
@@ -1615,7 +1625,7 @@
             </tr>
             <tr class="light-true">
                <td>304</td>
-               <td class="mon-id">214</td>
+               <td>Heracross</td>
                <td>Bug</td>
                <td>84</td>
                <td>Fighting</td>
@@ -1623,7 +1633,7 @@
             </tr>
             <tr class="light-false">
                <td>80</td>
-               <td class="mon-id">219</td>
+               <td>Magcargo</td>
                <td>Fire</td>
                <td>30</td>
                <td>Rock</td>
@@ -1631,7 +1641,7 @@
             </tr>
             <tr class="light-true">
                <td>305</td>
-               <td class="mon-id">219</td>
+               <td>Magcargo</td>
                <td>Fire</td>
                <td>60</td>
                <td>Rock</td>
@@ -1639,7 +1649,7 @@
             </tr>
             <tr class="light-false">
                <td>81</td>
-               <td class="mon-id">224</td>
+               <td>Octillery</td>
                <td>Water</td>
                <td>30</td>
                <td>N/A</td>
@@ -1647,7 +1657,7 @@
             </tr>
             <tr class="light-true">
                <td>306</td>
-               <td class="mon-id">224</td>
+               <td>Octillery</td>
                <td>Water</td>
                <td>60</td>
                <td>N/A</td>
@@ -1655,7 +1665,7 @@
             </tr>
             <tr class="light-false">
                <td>82</td>
-               <td class="mon-id">226</td>
+               <td>Mantine</td>
                <td>Water</td>
                <td>48</td>
                <td>Flying</td>
@@ -1663,7 +1673,7 @@
             </tr>
             <tr class="light-true">
                <td>307</td>
-               <td class="mon-id">226</td>
+               <td>Mantine</td>
                <td>Water</td>
                <td>96</td>
                <td>Flying</td>
@@ -1671,7 +1681,7 @@
             </tr>
             <tr class="light-false">
                <td>83</td>
-               <td class="mon-id">235</td>
+               <td>Smeargle</td>
                <td>Normal</td>
                <td>42</td>
                <td>N/A</td>
@@ -1679,7 +1689,7 @@
             </tr>
             <tr class="light-true">
                <td>308</td>
-               <td class="mon-id">235</td>
+               <td>Smeargle</td>
                <td>Normal</td>
                <td>84</td>
                <td>N/A</td>
@@ -1687,7 +1697,7 @@
             </tr>
             <tr class="light-false">
                <td>84</td>
-               <td class="mon-id">241</td>
+               <td>Miltank</td>
                <td>Normal</td>
                <td>42</td>
                <td>N/A</td>
@@ -1695,7 +1705,7 @@
             </tr>
             <tr class="light-true">
                <td>309</td>
-               <td class="mon-id">241</td>
+               <td>Miltank</td>
                <td>Normal</td>
                <td>84</td>
                <td>N/A</td>
@@ -1703,7 +1713,7 @@
             </tr>
             <tr class="light-false">
                <td>213</td>
-               <td class="mon-id">243</td>
+               <td>Raikou</td>
                <td>Electric</td>
                <td>144</td>
                <td>N/A</td>
@@ -1711,7 +1721,7 @@
             </tr>
             <tr class="light-true">
                <td>214</td>
-               <td class="mon-id">244</td>
+               <td>Entei</td>
                <td>Fire</td>
                <td>144</td>
                <td>N/A</td>
@@ -1719,7 +1729,7 @@
             </tr>
             <tr class="light-false">
                <td>215</td>
-               <td class="mon-id">245</td>
+               <td>Suicune</td>
                <td>Water</td>
                <td>144</td>
                <td>N/A</td>
@@ -1727,7 +1737,7 @@
             </tr>
             <tr class="light-true">
                <td>85</td>
-               <td class="mon-id">248</td>
+               <td>Tyranitar</td>
                <td>Rock</td>
                <td>48</td>
                <td>Dark</td>
@@ -1735,7 +1745,7 @@
             </tr>
             <tr class="light-false">
                <td>310</td>
-               <td class="mon-id">248</td>
+               <td>Tyranitar</td>
                <td>Rock</td>
                <td>96</td>
                <td>Dark</td>
@@ -1743,7 +1753,7 @@
             </tr>
             <tr class="light-true">
                <td>216</td>
-               <td class="mon-id">249</td>
+               <td>Lugia</td>
                <td>Psychic</td>
                <td>180</td>
                <td>Flying</td>
@@ -1751,7 +1761,7 @@
             </tr>
             <tr class="light-false">
                <td>217</td>
-               <td class="mon-id">250</td>
+               <td>Ho-Oh</td>
                <td>Fire</td>
                <td>180</td>
                <td>Flying</td>
@@ -1759,7 +1769,7 @@
             </tr>
             <tr class="light-true">
                <td>86</td>
-               <td class="mon-id">252</td>
+               <td>Treecko</td>
                <td>Grass</td>
                <td>30</td>
                <td>N/A</td>
@@ -1767,7 +1777,7 @@
             </tr>
             <tr class="light-false">
                <td>311</td>
-               <td class="mon-id">252</td>
+               <td>Treecko</td>
                <td>Grass</td>
                <td>60</td>
                <td>N/A</td>
@@ -1775,7 +1785,7 @@
             </tr>
             <tr class="light-true">
                <td>87</td>
-               <td class="mon-id">253</td>
+               <td>Grovyle</td>
                <td>Grass</td>
                <td>42</td>
                <td>N/A</td>
@@ -1783,7 +1793,7 @@
             </tr>
             <tr class="light-false">
                <td>312</td>
-               <td class="mon-id">253</td>
+               <td>Grovyle</td>
                <td>Grass</td>
                <td>84</td>
                <td>N/A</td>
@@ -1791,7 +1801,7 @@
             </tr>
             <tr class="light-true">
                <td>88</td>
-               <td class="mon-id">254</td>
+               <td>Sceptile</td>
                <td>Grass</td>
                <td>48</td>
                <td>N/A</td>
@@ -1799,7 +1809,7 @@
             </tr>
             <tr class="light-false">
                <td>313</td>
-               <td class="mon-id">254</td>
+               <td>Sceptile</td>
                <td>Grass</td>
                <td>96</td>
                <td>N/A</td>
@@ -1807,7 +1817,7 @@
             </tr>
             <tr class="light-true">
                <td>89</td>
-               <td class="mon-id">255</td>
+               <td>Torchic</td>
                <td>Fire</td>
                <td>30</td>
                <td>N/A</td>
@@ -1815,7 +1825,7 @@
             </tr>
             <tr class="light-false">
                <td>314</td>
-               <td class="mon-id">255</td>
+               <td>Torchic</td>
                <td>Fire</td>
                <td>60</td>
                <td>N/A</td>
@@ -1823,7 +1833,7 @@
             </tr>
             <tr class="light-true">
                <td>90</td>
-               <td class="mon-id">256</td>
+               <td>Combusken</td>
                <td>Fire</td>
                <td>42</td>
                <td>Fighting</td>
@@ -1831,7 +1841,7 @@
             </tr>
             <tr class="light-false">
                <td>315</td>
-               <td class="mon-id">256</td>
+               <td>Combusken</td>
                <td>Fire</td>
                <td>84</td>
                <td>Fighting</td>
@@ -1839,7 +1849,7 @@
             </tr>
             <tr class="light-true">
                <td>91</td>
-               <td class="mon-id">257</td>
+               <td>Blaziken</td>
                <td>Fire</td>
                <td>48</td>
                <td>Fighting</td>
@@ -1847,7 +1857,7 @@
             </tr>
             <tr class="light-false">
                <td>316</td>
-               <td class="mon-id">257</td>
+               <td>Blaziken</td>
                <td>Fire</td>
                <td>96</td>
                <td>Fighting</td>
@@ -1855,7 +1865,7 @@
             </tr>
             <tr class="light-true">
                <td>92</td>
-               <td class="mon-id">258</td>
+               <td>Mudkip</td>
                <td>Water</td>
                <td>30</td>
                <td>N/A</td>
@@ -1863,7 +1873,7 @@
             </tr>
             <tr class="light-false">
                <td>317</td>
-               <td class="mon-id">258</td>
+               <td>Mudkip</td>
                <td>Water</td>
                <td>60</td>
                <td>N/A</td>
@@ -1871,7 +1881,7 @@
             </tr>
             <tr class="light-true">
                <td>93</td>
-               <td class="mon-id">259</td>
+               <td>Marshtomp</td>
                <td>Water</td>
                <td>42</td>
                <td>Ground</td>
@@ -1879,7 +1889,7 @@
             </tr>
             <tr class="light-false">
                <td>318</td>
-               <td class="mon-id">259</td>
+               <td>Marshtomp</td>
                <td>Water</td>
                <td>84</td>
                <td>Ground</td>
@@ -1887,7 +1897,7 @@
             </tr>
             <tr class="light-true">
                <td>94</td>
-               <td class="mon-id">260</td>
+               <td>Swampert</td>
                <td>Water</td>
                <td>48</td>
                <td>Ground</td>
@@ -1895,7 +1905,7 @@
             </tr>
             <tr class="light-false">
                <td>319</td>
-               <td class="mon-id">260</td>
+               <td>Swampert</td>
                <td>Water</td>
                <td>96</td>
                <td>Ground</td>
@@ -1903,7 +1913,7 @@
             </tr>
             <tr class="light-true">
                <td>95</td>
-               <td class="mon-id">267</td>
+               <td>Beautifly</td>
                <td>Bug</td>
                <td>42</td>
                <td>Flying</td>
@@ -1911,7 +1921,7 @@
             </tr>
             <tr class="light-false">
                <td>320</td>
-               <td class="mon-id">267</td>
+               <td>Beautifly</td>
                <td>Bug</td>
                <td>84</td>
                <td>Flying</td>
@@ -1919,7 +1929,7 @@
             </tr>
             <tr class="light-true">
                <td>96</td>
-               <td class="mon-id">269</td>
+               <td>Dustox</td>
                <td>Bug</td>
                <td>42</td>
                <td>Poison</td>
@@ -1927,7 +1937,7 @@
             </tr>
             <tr class="light-false">
                <td>321</td>
-               <td class="mon-id">269</td>
+               <td>Dustox</td>
                <td>Bug</td>
                <td>84</td>
                <td>Poison</td>
@@ -1935,7 +1945,7 @@
             </tr>
             <tr class="light-true">
                <td>97</td>
-               <td class="mon-id">272</td>
+               <td>Ludicolo</td>
                <td>Water</td>
                <td>42</td>
                <td>Grass</td>
@@ -1943,7 +1953,7 @@
             </tr>
             <tr class="light-false">
                <td>322</td>
-               <td class="mon-id">272</td>
+               <td>Ludicolo</td>
                <td>Water</td>
                <td>84</td>
                <td>Grass</td>
@@ -1951,7 +1961,7 @@
             </tr>
             <tr class="light-true">
                <td>98</td>
-               <td class="mon-id">279</td>
+               <td>Pelipper</td>
                <td>Water</td>
                <td>42</td>
                <td>Flying</td>
@@ -1959,7 +1969,7 @@
             </tr>
             <tr class="light-false">
                <td>323</td>
-               <td class="mon-id">279</td>
+               <td>Pelipper</td>
                <td>Water</td>
                <td>84</td>
                <td>Flying</td>
@@ -1967,7 +1977,7 @@
             </tr>
             <tr class="light-true">
                <td>99</td>
-               <td class="mon-id">282</td>
+               <td>Gardevoir</td>
                <td>Psychic</td>
                <td>48</td>
                <td>Fairy</td>
@@ -1975,7 +1985,7 @@
             </tr>
             <tr class="light-false">
                <td>324</td>
-               <td class="mon-id">282</td>
+               <td>Gardevoir</td>
                <td>Psychic</td>
                <td>96</td>
                <td>Fairy</td>
@@ -1983,7 +1993,7 @@
             </tr>
             <tr class="light-true">
                <td>100</td>
-               <td class="mon-id">285</td>
+               <td>Shroomish</td>
                <td>Grass</td>
                <td>30</td>
                <td>N/A</td>
@@ -1991,7 +2001,7 @@
             </tr>
             <tr class="light-false">
                <td>325</td>
-               <td class="mon-id">285</td>
+               <td>Shroomish</td>
                <td>Grass</td>
                <td>60</td>
                <td>N/A</td>
@@ -1999,7 +2009,7 @@
             </tr>
             <tr class="light-true">
                <td>101</td>
-               <td class="mon-id">289</td>
+               <td>Slaking</td>
                <td>Normal</td>
                <td>48</td>
                <td>N/A</td>
@@ -2007,7 +2017,7 @@
             </tr>
             <tr class="light-false">
                <td>326</td>
-               <td class="mon-id">289</td>
+               <td>Slaking</td>
                <td>Normal</td>
                <td>96</td>
                <td>N/A</td>
@@ -2015,7 +2025,7 @@
             </tr>
             <tr class="light-true">
                <td>102</td>
-               <td class="mon-id">291</td>
+               <td>Ninjask</td>
                <td>Bug</td>
                <td>30</td>
                <td>Flying</td>
@@ -2023,7 +2033,7 @@
             </tr>
             <tr class="light-false">
                <td>327</td>
-               <td class="mon-id">291</td>
+               <td>Ninjask</td>
                <td>Bug</td>
                <td>60</td>
                <td>Flying</td>
@@ -2031,7 +2041,7 @@
             </tr>
             <tr class="light-true">
                <td>103</td>
-               <td class="mon-id">295</td>
+               <td>Exploud</td>
                <td>Normal</td>
                <td>42</td>
                <td>N/A</td>
@@ -2039,7 +2049,7 @@
             </tr>
             <tr class="light-false">
                <td>328</td>
-               <td class="mon-id">295</td>
+               <td>Exploud</td>
                <td>Normal</td>
                <td>84</td>
                <td>N/A</td>
@@ -2047,7 +2057,7 @@
             </tr>
             <tr class="light-true">
                <td>104</td>
-               <td class="mon-id">300</td>
+               <td>Skitty</td>
                <td>Normal</td>
                <td>30</td>
                <td>N/A</td>
@@ -2055,7 +2065,7 @@
             </tr>
             <tr class="light-false">
                <td>329</td>
-               <td class="mon-id">300</td>
+               <td>Skitty</td>
                <td>Normal</td>
                <td>60</td>
                <td>N/A</td>
@@ -2063,7 +2073,7 @@
             </tr>
             <tr class="light-true">
                <td>105</td>
-               <td class="mon-id">302</td>
+               <td>Sableye</td>
                <td>Dark</td>
                <td>30</td>
                <td>Ghost</td>
@@ -2071,7 +2081,7 @@
             </tr>
             <tr class="light-false">
                <td>330</td>
-               <td class="mon-id">302</td>
+               <td>Sableye</td>
                <td>Dark</td>
                <td>60</td>
                <td>Ghost</td>
@@ -2079,7 +2089,7 @@
             </tr>
             <tr class="light-true">
                <td>106</td>
-               <td class="mon-id">303</td>
+               <td>Mawile</td>
                <td>Steel</td>
                <td>30</td>
                <td>Fairy</td>
@@ -2087,7 +2097,7 @@
             </tr>
             <tr class="light-false">
                <td>331</td>
-               <td class="mon-id">303</td>
+               <td>Mawile</td>
                <td>Steel</td>
                <td>60</td>
                <td>Fairy</td>
@@ -2095,7 +2105,7 @@
             </tr>
             <tr class="light-true">
                <td>107</td>
-               <td class="mon-id">306</td>
+               <td>Aggron</td>
                <td>Steel</td>
                <td>60</td>
                <td>Rock</td>
@@ -2103,7 +2113,7 @@
             </tr>
             <tr class="light-false">
                <td>332</td>
-               <td class="mon-id">306</td>
+               <td>Aggron</td>
                <td>Steel</td>
                <td>120</td>
                <td>Rock</td>
@@ -2111,7 +2121,7 @@
             </tr>
             <tr class="light-true">
                <td>108</td>
-               <td class="mon-id">308</td>
+               <td>Medicham</td>
                <td>Fighting</td>
                <td>42</td>
                <td>Psychic</td>
@@ -2119,7 +2129,7 @@
             </tr>
             <tr class="light-false">
                <td>333</td>
-               <td class="mon-id">308</td>
+               <td>Medicham</td>
                <td>Fighting</td>
                <td>84</td>
                <td>Psychic</td>
@@ -2127,7 +2137,7 @@
             </tr>
             <tr class="light-true">
                <td>109</td>
-               <td class="mon-id">310</td>
+               <td>Manectric</td>
                <td>Electric</td>
                <td>36</td>
                <td>N/A</td>
@@ -2135,7 +2145,7 @@
             </tr>
             <tr class="light-false">
                <td>334</td>
-               <td class="mon-id">310</td>
+               <td>Manectric</td>
                <td>Electric</td>
                <td>72</td>
                <td>N/A</td>
@@ -2143,7 +2153,7 @@
             </tr>
             <tr class="light-true">
                <td>110</td>
-               <td class="mon-id">311</td>
+               <td>Plusle</td>
                <td>Electric</td>
                <td>30</td>
                <td>N/A</td>
@@ -2151,7 +2161,7 @@
             </tr>
             <tr class="light-false">
                <td>335</td>
-               <td class="mon-id">311</td>
+               <td>Plusle</td>
                <td>Electric</td>
                <td>60</td>
                <td>N/A</td>
@@ -2159,7 +2169,7 @@
             </tr>
             <tr class="light-true">
                <td>111</td>
-               <td class="mon-id">312</td>
+               <td>Minun</td>
                <td>Electric</td>
                <td>30</td>
                <td>N/A</td>
@@ -2167,7 +2177,7 @@
             </tr>
             <tr class="light-false">
                <td>336</td>
-               <td class="mon-id">312</td>
+               <td>Minun</td>
                <td>Electric</td>
                <td>60</td>
                <td>N/A</td>
@@ -2175,7 +2185,7 @@
             </tr>
             <tr class="light-true">
                <td>112</td>
-               <td class="mon-id">313</td>
+               <td>Volbeat</td>
                <td>Bug</td>
                <td>30</td>
                <td>N/A</td>
@@ -2183,7 +2193,7 @@
             </tr>
             <tr class="light-false">
                <td>337</td>
-               <td class="mon-id">313</td>
+               <td>Volbeat</td>
                <td>Bug</td>
                <td>60</td>
                <td>N/A</td>
@@ -2191,7 +2201,7 @@
             </tr>
             <tr class="light-true">
                <td>113</td>
-               <td class="mon-id">314</td>
+               <td>Illumise</td>
                <td>Bug</td>
                <td>30</td>
                <td>N/A</td>
@@ -2199,7 +2209,7 @@
             </tr>
             <tr class="light-false">
                <td>338</td>
-               <td class="mon-id">314</td>
+               <td>Illumise</td>
                <td>Bug</td>
                <td>60</td>
                <td>N/A</td>
@@ -2207,7 +2217,7 @@
             </tr>
             <tr class="light-true">
                <td>114</td>
-               <td class="mon-id">315</td>
+               <td>Roselia</td>
                <td>Grass</td>
                <td>30</td>
                <td>Poison</td>
@@ -2215,7 +2225,7 @@
             </tr>
             <tr class="light-false">
                <td>339</td>
-               <td class="mon-id">315</td>
+               <td>Roselia</td>
                <td>Grass</td>
                <td>60</td>
                <td>Poison</td>
@@ -2223,7 +2233,7 @@
             </tr>
             <tr class="light-true">
                <td>115</td>
-               <td class="mon-id">319</td>
+               <td>Sharpedo</td>
                <td>Water</td>
                <td>48</td>
                <td>Dark</td>
@@ -2231,7 +2241,7 @@
             </tr>
             <tr class="light-false">
                <td>340</td>
-               <td class="mon-id">319</td>
+               <td>Sharpedo</td>
                <td>Water</td>
                <td>96</td>
                <td>Dark</td>
@@ -2239,7 +2249,7 @@
             </tr>
             <tr class="light-true">
                <td>116</td>
-               <td class="mon-id">320</td>
+               <td>Wailmer</td>
                <td>Water</td>
                <td>48</td>
                <td>N/A</td>
@@ -2247,7 +2257,7 @@
             </tr>
             <tr class="light-false">
                <td>341</td>
-               <td class="mon-id">320</td>
+               <td>Wailmer</td>
                <td>Water</td>
                <td>96</td>
                <td>N/A</td>
@@ -2255,7 +2265,7 @@
             </tr>
             <tr class="light-true">
                <td>117</td>
-               <td class="mon-id">323</td>
+               <td>Camerupt</td>
                <td>Fire</td>
                <td>48</td>
                <td>Ground</td>
@@ -2263,7 +2273,7 @@
             </tr>
             <tr class="light-false">
                <td>342</td>
-               <td class="mon-id">323</td>
+               <td>Camerupt</td>
                <td>Fire</td>
                <td>96</td>
                <td>Ground</td>
@@ -2271,7 +2281,7 @@
             </tr>
             <tr class="light-true">
                <td>118</td>
-               <td class="mon-id">324</td>
+               <td>Torkoal</td>
                <td>Fire</td>
                <td>30</td>
                <td>N/A</td>
@@ -2279,7 +2289,7 @@
             </tr>
             <tr class="light-false">
                <td>343</td>
-               <td class="mon-id">324</td>
+               <td>Torkoal</td>
                <td>Fire</td>
                <td>60</td>
                <td>N/A</td>
@@ -2287,7 +2297,7 @@
             </tr>
             <tr class="light-true">
                <td>120</td>
-               <td class="mon-id">330</td>
+               <td>Flygon</td>
                <td>Ground</td>
                <td>48</td>
                <td>Dragon</td>
@@ -2295,7 +2305,7 @@
             </tr>
             <tr class="light-false">
                <td>345</td>
-               <td class="mon-id">330</td>
+               <td>Flygon</td>
                <td>Ground</td>
                <td>96</td>
                <td>Dragon</td>
@@ -2303,7 +2313,7 @@
             </tr>
             <tr class="light-true">
                <td>121</td>
-               <td class="mon-id">332</td>
+               <td>Cacturne</td>
                <td>Grass</td>
                <td>42</td>
                <td>Dark</td>
@@ -2311,7 +2321,7 @@
             </tr>
             <tr class="light-false">
                <td>346</td>
-               <td class="mon-id">332</td>
+               <td>Cacturne</td>
                <td>Grass</td>
                <td>84</td>
                <td>Dark</td>
@@ -2319,7 +2329,7 @@
             </tr>
             <tr class="light-true">
                <td>122</td>
-               <td class="mon-id">334</td>
+               <td>Altaria</td>
                <td>Dragon</td>
                <td>42</td>
                <td>Flying</td>
@@ -2327,7 +2337,7 @@
             </tr>
             <tr class="light-false">
                <td>347</td>
-               <td class="mon-id">334</td>
+               <td>Altaria</td>
                <td>Dragon</td>
                <td>84</td>
                <td>Flying</td>
@@ -2335,7 +2345,7 @@
             </tr>
             <tr class="light-true">
                <td>123</td>
-               <td class="mon-id">335</td>
+               <td>Zangoose</td>
                <td>Normal</td>
                <td>42</td>
                <td>N/A</td>
@@ -2343,7 +2353,7 @@
             </tr>
             <tr class="light-false">
                <td>348</td>
-               <td class="mon-id">335</td>
+               <td>Zangoose</td>
                <td>Normal</td>
                <td>84</td>
                <td>N/A</td>
@@ -2351,7 +2361,7 @@
             </tr>
             <tr class="light-true">
                <td>124</td>
-               <td class="mon-id">336</td>
+               <td>Seviper</td>
                <td>Poison</td>
                <td>48</td>
                <td>N/A</td>
@@ -2359,7 +2369,7 @@
             </tr>
             <tr class="light-false">
                <td>349</td>
-               <td class="mon-id">336</td>
+               <td>Seviper</td>
                <td>Poison</td>
                <td>96</td>
                <td>N/A</td>
@@ -2367,7 +2377,7 @@
             </tr>
             <tr class="light-true">
                <td>125</td>
-               <td class="mon-id">337</td>
+               <td>Lunatone</td>
                <td>Rock</td>
                <td>42</td>
                <td>Psychic</td>
@@ -2375,7 +2385,7 @@
             </tr>
             <tr class="light-false">
                <td>350</td>
-               <td class="mon-id">337</td>
+               <td>Lunatone</td>
                <td>Rock</td>
                <td>84</td>
                <td>Psychic</td>
@@ -2383,7 +2393,7 @@
             </tr>
             <tr class="light-true">
                <td>126</td>
-               <td class="mon-id">338</td>
+               <td>Solrock</td>
                <td>Rock</td>
                <td>42</td>
                <td>Psychic</td>
@@ -2391,7 +2401,7 @@
             </tr>
             <tr class="light-false">
                <td>351</td>
-               <td class="mon-id">338</td>
+               <td>Solrock</td>
                <td>Rock</td>
                <td>84</td>
                <td>Psychic</td>
@@ -2399,7 +2409,7 @@
             </tr>
             <tr class="light-true">
                <td>127</td>
-               <td class="mon-id">340</td>
+               <td>Whiscash</td>
                <td>Water</td>
                <td>42</td>
                <td>Ground</td>
@@ -2407,7 +2417,7 @@
             </tr>
             <tr class="light-false">
                <td>352</td>
-               <td class="mon-id">340</td>
+               <td>Whiscash</td>
                <td>Water</td>
                <td>84</td>
                <td>Ground</td>
@@ -2415,7 +2425,7 @@
             </tr>
             <tr class="light-true">
                <td>128</td>
-               <td class="mon-id">344</td>
+               <td>Claydol</td>
                <td>Ground</td>
                <td>42</td>
                <td>Psychic</td>
@@ -2423,7 +2433,7 @@
             </tr>
             <tr class="light-false">
                <td>353</td>
-               <td class="mon-id">344</td>
+               <td>Claydol</td>
                <td>Ground</td>
                <td>84</td>
                <td>Psychic</td>
@@ -2431,7 +2441,7 @@
             </tr>
             <tr class="light-true">
                <td>129</td>
-               <td class="mon-id">346</td>
+               <td>Cradily</td>
                <td>Rock</td>
                <td>42</td>
                <td>Grass</td>
@@ -2439,7 +2449,7 @@
             </tr>
             <tr class="light-false">
                <td>354</td>
-               <td class="mon-id">346</td>
+               <td>Cradily</td>
                <td>Rock</td>
                <td>84</td>
                <td>Grass</td>
@@ -2447,7 +2457,7 @@
             </tr>
             <tr class="light-true">
                <td>130</td>
-               <td class="mon-id">350</td>
+               <td>Milotic</td>
                <td>Water</td>
                <td>60</td>
                <td>N/A</td>
@@ -2455,7 +2465,7 @@
             </tr>
             <tr class="light-false">
                <td>355</td>
-               <td class="mon-id">350</td>
+               <td>Milotic</td>
                <td>Water</td>
                <td>120</td>
                <td>N/A</td>
@@ -2463,7 +2473,7 @@
             </tr>
             <tr class="light-true">
                <td>131</td>
-               <td class="mon-id">351</td>
+               <td>Castform</td>
                <td>Normal</td>
                <td>30</td>
                <td>N/A</td>
@@ -2471,7 +2481,7 @@
             </tr>
             <tr class="light-false">
                <td>356</td>
-               <td class="mon-id">351</td>
+               <td>Castform</td>
                <td>Normal</td>
                <td>60</td>
                <td>N/A</td>
@@ -2479,7 +2489,7 @@
             </tr>
             <tr class="light-true">
                <td>132</td>
-               <td class="mon-id">352</td>
+               <td>Kecleon</td>
                <td>Normal</td>
                <td>42</td>
                <td>N/A</td>
@@ -2487,7 +2497,7 @@
             </tr>
             <tr class="light-false">
                <td>357</td>
-               <td class="mon-id">352</td>
+               <td>Kecleon</td>
                <td>Normal</td>
                <td>84</td>
                <td>N/A</td>
@@ -2495,7 +2505,7 @@
             </tr>
             <tr class="light-true">
                <td>133</td>
-               <td class="mon-id">357</td>
+               <td>Tropius</td>
                <td>Grass</td>
                <td>48</td>
                <td>Flying</td>
@@ -2503,7 +2513,7 @@
             </tr>
             <tr class="light-false">
                <td>358</td>
-               <td class="mon-id">357</td>
+               <td>Tropius</td>
                <td>Grass</td>
                <td>96</td>
                <td>Flying</td>
@@ -2511,7 +2521,7 @@
             </tr>
             <tr class="light-true">
                <td>134</td>
-               <td class="mon-id">358</td>
+               <td>Chimecho</td>
                <td>Psychic</td>
                <td>30</td>
                <td>N/A</td>
@@ -2519,7 +2529,7 @@
             </tr>
             <tr class="light-false">
                <td>359</td>
-               <td class="mon-id">358</td>
+               <td>Chimecho</td>
                <td>Psychic</td>
                <td>60</td>
                <td>N/A</td>
@@ -2527,7 +2537,7 @@
             </tr>
             <tr class="light-true">
                <td>135</td>
-               <td class="mon-id">359</td>
+               <td>Absol</td>
                <td>Dark</td>
                <td>36</td>
                <td>N/A</td>
@@ -2535,7 +2545,7 @@
             </tr>
             <tr class="light-false">
                <td>360</td>
-               <td class="mon-id">359</td>
+               <td>Absol</td>
                <td>Dark</td>
                <td>72</td>
                <td>N/A</td>
@@ -2543,7 +2553,7 @@
             </tr>
             <tr class="light-true">
                <td>136</td>
-               <td class="mon-id">363</td>
+               <td>Spheal</td>
                <td>Ice</td>
                <td>30</td>
                <td>Water</td>
@@ -2551,7 +2561,7 @@
             </tr>
             <tr class="light-false">
                <td>361</td>
-               <td class="mon-id">363</td>
+               <td>Spheal</td>
                <td>Ice</td>
                <td>60</td>
                <td>Water</td>
@@ -2559,7 +2569,7 @@
             </tr>
             <tr class="light-true">
                <td>137</td>
-               <td class="mon-id">366</td>
+               <td>Clamperl</td>
                <td>Water</td>
                <td>30</td>
                <td>N/A</td>
@@ -2567,7 +2577,7 @@
             </tr>
             <tr class="light-false">
                <td>362</td>
-               <td class="mon-id">366</td>
+               <td>Clamperl</td>
                <td>Water</td>
                <td>60</td>
                <td>N/A</td>
@@ -2575,7 +2585,7 @@
             </tr>
             <tr class="light-true">
                <td>138</td>
-               <td class="mon-id">369</td>
+               <td>Relicanth</td>
                <td>Water</td>
                <td>36</td>
                <td>Rock</td>
@@ -2583,7 +2593,7 @@
             </tr>
             <tr class="light-false">
                <td>363</td>
-               <td class="mon-id">369</td>
+               <td>Relicanth</td>
                <td>Water</td>
                <td>72</td>
                <td>Rock</td>
@@ -2591,7 +2601,7 @@
             </tr>
             <tr class="light-true">
                <td>139</td>
-               <td class="mon-id">370</td>
+               <td>Luvdisc</td>
                <td>Water</td>
                <td>30</td>
                <td>N/A</td>
@@ -2599,7 +2609,7 @@
             </tr>
             <tr class="light-false">
                <td>364</td>
-               <td class="mon-id">370</td>
+               <td>Luvdisc</td>
                <td>Water</td>
                <td>60</td>
                <td>N/A</td>
@@ -2607,7 +2617,7 @@
             </tr>
             <tr class="light-true">
                <td>140</td>
-               <td class="mon-id">373</td>
+               <td>Salamence</td>
                <td>Dragon</td>
                <td>60</td>
                <td>Flying</td>
@@ -2615,7 +2625,7 @@
             </tr>
             <tr class="light-false">
                <td>365</td>
-               <td class="mon-id">373</td>
+               <td>Salamence</td>
                <td>Dragon</td>
                <td>120</td>
                <td>Flying</td>
@@ -2623,7 +2633,7 @@
             </tr>
             <tr class="light-true">
                <td>141</td>
-               <td class="mon-id">376</td>
+               <td>Metagross</td>
                <td>Steel</td>
                <td>48</td>
                <td>Psychic</td>
@@ -2631,7 +2641,7 @@
             </tr>
             <tr class="light-false">
                <td>366</td>
-               <td class="mon-id">376</td>
+               <td>Metagross</td>
                <td>Steel</td>
                <td>96</td>
                <td>Psychic</td>
@@ -2639,7 +2649,7 @@
             </tr>
             <tr class="light-true">
                <td>218</td>
-               <td class="mon-id">377</td>
+               <td>Regirock</td>
                <td>Rock</td>
                <td>144</td>
                <td>N/A</td>
@@ -2647,7 +2657,7 @@
             </tr>
             <tr class="light-false">
                <td>219</td>
-               <td class="mon-id">378</td>
+               <td>Regice</td>
                <td>Ice</td>
                <td>144</td>
                <td>N/A</td>
@@ -2655,7 +2665,7 @@
             </tr>
             <tr class="light-true">
                <td>220</td>
-               <td class="mon-id">379</td>
+               <td>Registeel</td>
                <td>Steel</td>
                <td>144</td>
                <td>N/A</td>
@@ -2663,7 +2673,7 @@
             </tr>
             <tr class="light-false">
                <td>221</td>
-               <td class="mon-id">380</td>
+               <td>Latias</td>
                <td>Dragon</td>
                <td>144</td>
                <td>Psychic</td>
@@ -2671,7 +2681,7 @@
             </tr>
             <tr class="light-true">
                <td>222</td>
-               <td class="mon-id">381</td>
+               <td>Latios</td>
                <td>Dragon</td>
                <td>144</td>
                <td>Psychic</td>
@@ -2679,7 +2689,7 @@
             </tr>
             <tr class="light-false">
                <td>223</td>
-               <td class="mon-id">382</td>
+               <td>Kyogre</td>
                <td>Water</td>
                <td>180</td>
                <td>N/A</td>
@@ -2687,7 +2697,7 @@
             </tr>
             <tr class="light-true">
                <td>224</td>
-               <td class="mon-id">383</td>
+               <td>Groudon</td>
                <td>Ground</td>
                <td>180</td>
                <td>N/A</td>
@@ -2695,7 +2705,7 @@
             </tr>
             <tr class="light-false">
                <td>225</td>
-               <td class="mon-id">384</td>
+               <td>Rayquaza</td>
                <td>Dragon</td>
                <td>180</td>
                <td>Flying</td>
@@ -2703,7 +2713,7 @@
             </tr>
             <tr class="light-true">
                <td>142</td>
-               <td class="mon-id">387</td>
+               <td>Turtwig</td>
                <td>Grass</td>
                <td>30</td>
                <td>N/A</td>
@@ -2711,7 +2721,7 @@
             </tr>
             <tr class="light-false">
                <td>367</td>
-               <td class="mon-id">387</td>
+               <td>Turtwig</td>
                <td>Grass</td>
                <td>60</td>
                <td>N/A</td>
@@ -2719,7 +2729,7 @@
             </tr>
             <tr class="light-true">
                <td>143</td>
-               <td class="mon-id">388</td>
+               <td>Grotle</td>
                <td>Grass</td>
                <td>42</td>
                <td>N/A</td>
@@ -2727,7 +2737,7 @@
             </tr>
             <tr class="light-false">
                <td>368</td>
-               <td class="mon-id">388</td>
+               <td>Grotle</td>
                <td>Grass</td>
                <td>84</td>
                <td>N/A</td>
@@ -2735,7 +2745,7 @@
             </tr>
             <tr class="light-true">
                <td>144</td>
-               <td class="mon-id">389</td>
+               <td>Torterra</td>
                <td>Grass</td>
                <td>60</td>
                <td>Ground</td>
@@ -2743,7 +2753,7 @@
             </tr>
             <tr class="light-false">
                <td>369</td>
-               <td class="mon-id">389</td>
+               <td>Torterra</td>
                <td>Grass</td>
                <td>120</td>
                <td>Ground</td>
@@ -2751,7 +2761,7 @@
             </tr>
             <tr class="light-true">
                <td>145</td>
-               <td class="mon-id">390</td>
+               <td>Chimchar</td>
                <td>Fire</td>
                <td>30</td>
                <td>N/A</td>
@@ -2759,7 +2769,7 @@
             </tr>
             <tr class="light-false">
                <td>370</td>
-               <td class="mon-id">390</td>
+               <td>Chimchar</td>
                <td>Fire</td>
                <td>60</td>
                <td>N/A</td>
@@ -2767,7 +2777,7 @@
             </tr>
             <tr class="light-true">
                <td>146</td>
-               <td class="mon-id">391</td>
+               <td>Monferno</td>
                <td>Fire</td>
                <td>42</td>
                <td>Fighting</td>
@@ -2775,7 +2785,7 @@
             </tr>
             <tr class="light-false">
                <td>371</td>
-               <td class="mon-id">391</td>
+               <td>Monferno</td>
                <td>Fire</td>
                <td>84</td>
                <td>Fighting</td>
@@ -2783,7 +2793,7 @@
             </tr>
             <tr class="light-true">
                <td>147</td>
-               <td class="mon-id">392</td>
+               <td>Infernape</td>
                <td>Fire</td>
                <td>48</td>
                <td>Fighting</td>
@@ -2791,7 +2801,7 @@
             </tr>
             <tr class="light-false">
                <td>372</td>
-               <td class="mon-id">392</td>
+               <td>Infernape</td>
                <td>Fire</td>
                <td>96</td>
                <td>Fighting</td>
@@ -2799,7 +2809,7 @@
             </tr>
             <tr class="light-true">
                <td>148</td>
-               <td class="mon-id">393</td>
+               <td>Piplup</td>
                <td>Water</td>
                <td>30</td>
                <td>N/A</td>
@@ -2807,7 +2817,7 @@
             </tr>
             <tr class="light-false">
                <td>373</td>
-               <td class="mon-id">393</td>
+               <td>Piplup</td>
                <td>Water</td>
                <td>60</td>
                <td>N/A</td>
@@ -2815,7 +2825,7 @@
             </tr>
             <tr class="light-true">
                <td>149</td>
-               <td class="mon-id">394</td>
+               <td>Prinplup</td>
                <td>Water</td>
                <td>42</td>
                <td>N/A</td>
@@ -2823,7 +2833,7 @@
             </tr>
             <tr class="light-false">
                <td>374</td>
-               <td class="mon-id">394</td>
+               <td>Prinplup</td>
                <td>Water</td>
                <td>84</td>
                <td>N/A</td>
@@ -2831,7 +2841,7 @@
             </tr>
             <tr class="light-true">
                <td>150</td>
-               <td class="mon-id">395</td>
+               <td>Empoleon</td>
                <td>Water</td>
                <td>48</td>
                <td>Steel</td>
@@ -2839,7 +2849,7 @@
             </tr>
             <tr class="light-false">
                <td>375</td>
-               <td class="mon-id">395</td>
+               <td>Empoleon</td>
                <td>Water</td>
                <td>96</td>
                <td>Steel</td>
@@ -2847,7 +2857,7 @@
             </tr>
             <tr class="light-true">
                <td>151</td>
-               <td class="mon-id">398</td>
+               <td>Staraptor</td>
                <td>Normal</td>
                <td>42</td>
                <td>Flying</td>
@@ -2855,7 +2865,7 @@
             </tr>
             <tr class="light-false">
                <td>376</td>
-               <td class="mon-id">398</td>
+               <td>Staraptor</td>
                <td>Normal</td>
                <td>84</td>
                <td>Flying</td>
@@ -2863,7 +2873,7 @@
             </tr>
             <tr class="light-true">
                <td>152</td>
-               <td class="mon-id">400</td>
+               <td>Bibarel</td>
                <td>Normal</td>
                <td>42</td>
                <td>Water</td>
@@ -2871,7 +2881,7 @@
             </tr>
             <tr class="light-false">
                <td>377</td>
-               <td class="mon-id">400</td>
+               <td>Bibarel</td>
                <td>Normal</td>
                <td>84</td>
                <td>Water</td>
@@ -2879,7 +2889,7 @@
             </tr>
             <tr class="light-true">
                <td>153</td>
-               <td class="mon-id">401</td>
+               <td>Kricketot</td>
                <td>Bug</td>
                <td>30</td>
                <td>N/A</td>
@@ -2887,7 +2897,7 @@
             </tr>
             <tr class="light-false">
                <td>378</td>
-               <td class="mon-id">401</td>
+               <td>Kricketot</td>
                <td>Bug</td>
                <td>60</td>
                <td>N/A</td>
@@ -2895,7 +2905,7 @@
             </tr>
             <tr class="light-true">
                <td>154</td>
-               <td class="mon-id">405</td>
+               <td>Luxray</td>
                <td>Electric</td>
                <td>42</td>
                <td>N/A</td>
@@ -2903,7 +2913,7 @@
             </tr>
             <tr class="light-false">
                <td>379</td>
-               <td class="mon-id">405</td>
+               <td>Luxray</td>
                <td>Electric</td>
                <td>84</td>
                <td>N/A</td>
@@ -2911,7 +2921,7 @@
             </tr>
             <tr class="light-true">
                <td>155</td>
-               <td class="mon-id">406</td>
+               <td>Budew</td>
                <td>Grass</td>
                <td>30</td>
                <td>Poison</td>
@@ -2919,7 +2929,7 @@
             </tr>
             <tr class="light-false">
                <td>380</td>
-               <td class="mon-id">406</td>
+               <td>Budew</td>
                <td>Grass</td>
                <td>60</td>
                <td>Poison</td>
@@ -2927,7 +2937,7 @@
             </tr>
             <tr class="light-true">
                <td>156</td>
-               <td class="mon-id">407</td>
+               <td>Roserade</td>
                <td>Grass</td>
                <td>30</td>
                <td>Poison</td>
@@ -2935,7 +2945,7 @@
             </tr>
             <tr class="light-false">
                <td>381</td>
-               <td class="mon-id">407</td>
+               <td>Roserade</td>
                <td>Grass</td>
                <td>60</td>
                <td>Poison</td>
@@ -2943,7 +2953,7 @@
             </tr>
             <tr class="light-true">
                <td>157</td>
-               <td class="mon-id">408</td>
+               <td>Cranidos</td>
                <td>Rock</td>
                <td>30</td>
                <td>N/A</td>
@@ -2951,7 +2961,7 @@
             </tr>
             <tr class="light-false">
                <td>382</td>
-               <td class="mon-id">408</td>
+               <td>Cranidos</td>
                <td>Rock</td>
                <td>60</td>
                <td>N/A</td>
@@ -2959,7 +2969,7 @@
             </tr>
             <tr class="light-true">
                <td>158</td>
-               <td class="mon-id">411</td>
+               <td>Bastiodon</td>
                <td>Rock</td>
                <td>42</td>
                <td>Steel</td>
@@ -2967,7 +2977,7 @@
             </tr>
             <tr class="light-false">
                <td>383</td>
-               <td class="mon-id">411</td>
+               <td>Bastiodon</td>
                <td>Rock</td>
                <td>84</td>
                <td>Steel</td>
@@ -2975,7 +2985,7 @@
             </tr>
             <tr class="light-true">
                <td>159</td>
-               <td class="mon-id">412</td>
+               <td>Burmy</td>
                <td>Bug</td>
                <td>30</td>
                <td>N/A</td>
@@ -2983,7 +2993,7 @@
             </tr>
             <tr class="light-false">
                <td>384</td>
-               <td class="mon-id">412</td>
+               <td>Burmy</td>
                <td>Bug</td>
                <td>60</td>
                <td>N/A</td>
@@ -2991,7 +3001,7 @@
             </tr>
             <tr class="light-true">
                <td>160</td>
-               <td class="mon-id">413</td>
+               <td>Wormadam (Plant)</td>
                <td>Bug</td>
                <td>30</td>
                <td>Grass</td>
@@ -2999,7 +3009,7 @@
             </tr>
             <tr class="light-false">
                <td>385</td>
-               <td class="mon-id">413</td>
+               <td>Wormadam (Plant)</td>
                <td>Bug</td>
                <td>60</td>
                <td>Grass</td>
@@ -3007,7 +3017,7 @@
             </tr>
             <tr class="light-true">
                <td>161</td>
-               <td class="mon-id">414</td>
+               <td>Mothim</td>
                <td>Bug</td>
                <td>30</td>
                <td>Flying</td>
@@ -3015,7 +3025,7 @@
             </tr>
             <tr class="light-false">
                <td>386</td>
-               <td class="mon-id">414</td>
+               <td>Mothim</td>
                <td>Bug</td>
                <td>60</td>
                <td>Flying</td>
@@ -3023,7 +3033,7 @@
             </tr>
             <tr class="light-true">
                <td>162</td>
-               <td class="mon-id">416</td>
+               <td>Vespiquen</td>
                <td>Bug</td>
                <td>42</td>
                <td>Flying</td>
@@ -3031,7 +3041,7 @@
             </tr>
             <tr class="light-false">
                <td>387</td>
-               <td class="mon-id">416</td>
+               <td>Vespiquen</td>
                <td>Bug</td>
                <td>84</td>
                <td>Flying</td>
@@ -3039,7 +3049,7 @@
             </tr>
             <tr class="light-true">
                <td>163</td>
-               <td class="mon-id">417</td>
+               <td>Pachirisu</td>
                <td>Electric</td>
                <td>30</td>
                <td>N/A</td>
@@ -3047,7 +3057,7 @@
             </tr>
             <tr class="light-false">
                <td>388</td>
-               <td class="mon-id">417</td>
+               <td>Pachirisu</td>
                <td>Electric</td>
                <td>60</td>
                <td>N/A</td>
@@ -3055,7 +3065,7 @@
             </tr>
             <tr class="light-true">
                <td>164</td>
-               <td class="mon-id">419</td>
+               <td>Floatzel</td>
                <td>Water</td>
                <td>42</td>
                <td>N/A</td>
@@ -3063,7 +3073,7 @@
             </tr>
             <tr class="light-false">
                <td>389</td>
-               <td class="mon-id">419</td>
+               <td>Floatzel</td>
                <td>Water</td>
                <td>84</td>
                <td>N/A</td>
@@ -3071,7 +3081,7 @@
             </tr>
             <tr class="light-true">
                <td>165</td>
-               <td class="mon-id">420</td>
+               <td>Cherubi</td>
                <td>Grass</td>
                <td>30</td>
                <td>N/A</td>
@@ -3079,7 +3089,7 @@
             </tr>
             <tr class="light-false">
                <td>390</td>
-               <td class="mon-id">420</td>
+               <td>Cherubi</td>
                <td>Grass</td>
                <td>60</td>
                <td>N/A</td>
@@ -3087,7 +3097,7 @@
             </tr>
             <tr class="light-true">
                <td>166</td>
-               <td class="mon-id">423</td>
+               <td>Gastrodon</td>
                <td>Water</td>
                <td>36</td>
                <td>Ground</td>
@@ -3095,7 +3105,7 @@
             </tr>
             <tr class="light-false">
                <td>391</td>
-               <td class="mon-id">423</td>
+               <td>Gastrodon</td>
                <td>Water</td>
                <td>72</td>
                <td>Ground</td>
@@ -3103,7 +3113,7 @@
             </tr>
             <tr class="light-true">
                <td>167</td>
-               <td class="mon-id">424</td>
+               <td>Ambipom</td>
                <td>Normal</td>
                <td>42</td>
                <td>N/A</td>
@@ -3111,7 +3121,7 @@
             </tr>
             <tr class="light-false">
                <td>392</td>
-               <td class="mon-id">424</td>
+               <td>Ambipom</td>
                <td>Normal</td>
                <td>84</td>
                <td>N/A</td>
@@ -3119,7 +3129,7 @@
             </tr>
             <tr class="light-true">
                <td>168</td>
-               <td class="mon-id">425</td>
+               <td>Drifloon</td>
                <td>Ghost</td>
                <td>30</td>
                <td>Flying</td>
@@ -3127,7 +3137,7 @@
             </tr>
             <tr class="light-false">
                <td>393</td>
-               <td class="mon-id">425</td>
+               <td>Drifloon</td>
                <td>Ghost</td>
                <td>60</td>
                <td>Flying</td>
@@ -3135,7 +3145,7 @@
             </tr>
             <tr class="light-true">
                <td>169</td>
-               <td class="mon-id">427</td>
+               <td>Buneary</td>
                <td>Normal</td>
                <td>30</td>
                <td>N/A</td>
@@ -3143,7 +3153,7 @@
             </tr>
             <tr class="light-false">
                <td>394</td>
-               <td class="mon-id">427</td>
+               <td>Buneary</td>
                <td>Normal</td>
                <td>60</td>
                <td>N/A</td>
@@ -3151,7 +3161,7 @@
             </tr>
             <tr class="light-true">
                <td>170</td>
-               <td class="mon-id">429</td>
+               <td>Mismagius</td>
                <td>Ghost</td>
                <td>30</td>
                <td>N/A</td>
@@ -3159,7 +3169,7 @@
             </tr>
             <tr class="light-false">
                <td>395</td>
-               <td class="mon-id">429</td>
+               <td>Mismagius</td>
                <td>Ghost</td>
                <td>60</td>
                <td>N/A</td>
@@ -3167,7 +3177,7 @@
             </tr>
             <tr class="light-true">
                <td>171</td>
-               <td class="mon-id">430</td>
+               <td>Honchkrow</td>
                <td>Dark</td>
                <td>42</td>
                <td>Flying</td>
@@ -3175,7 +3185,7 @@
             </tr>
             <tr class="light-false">
                <td>396</td>
-               <td class="mon-id">430</td>
+               <td>Honchkrow</td>
                <td>Dark</td>
                <td>84</td>
                <td>Flying</td>
@@ -3183,7 +3193,7 @@
             </tr>
             <tr class="light-true">
                <td>172</td>
-               <td class="mon-id">432</td>
+               <td>Purugly</td>
                <td>Normal</td>
                <td>42</td>
                <td>N/A</td>
@@ -3191,7 +3201,7 @@
             </tr>
             <tr class="light-false">
                <td>397</td>
-               <td class="mon-id">432</td>
+               <td>Purugly</td>
                <td>Normal</td>
                <td>84</td>
                <td>N/A</td>
@@ -3199,7 +3209,7 @@
             </tr>
             <tr class="light-true">
                <td>173</td>
-               <td class="mon-id">435</td>
+               <td>Skuntank</td>
                <td>Poison</td>
                <td>42</td>
                <td>Dark</td>
@@ -3207,7 +3217,7 @@
             </tr>
             <tr class="light-false">
                <td>398</td>
-               <td class="mon-id">435</td>
+               <td>Skuntank</td>
                <td>Poison</td>
                <td>84</td>
                <td>Dark</td>
@@ -3215,7 +3225,7 @@
             </tr>
             <tr class="light-true">
                <td>174</td>
-               <td class="mon-id">437</td>
+               <td>Bronzong</td>
                <td>Steel</td>
                <td>42</td>
                <td>Psychic</td>
@@ -3223,7 +3233,7 @@
             </tr>
             <tr class="light-false">
                <td>399</td>
-               <td class="mon-id">437</td>
+               <td>Bronzong</td>
                <td>Steel</td>
                <td>84</td>
                <td>Psychic</td>
@@ -3231,7 +3241,7 @@
             </tr>
             <tr class="light-true">
                <td>175</td>
-               <td class="mon-id">440</td>
+               <td>Happiny</td>
                <td>Normal</td>
                <td>30</td>
                <td>N/A</td>
@@ -3239,7 +3249,7 @@
             </tr>
             <tr class="light-false">
                <td>400</td>
-               <td class="mon-id">440</td>
+               <td>Happiny</td>
                <td>Normal</td>
                <td>60</td>
                <td>N/A</td>
@@ -3247,7 +3257,7 @@
             </tr>
             <tr class="light-true">
                <td>176</td>
-               <td class="mon-id">441</td>
+               <td>Chatot</td>
                <td>Normal</td>
                <td>30</td>
                <td>Flying</td>
@@ -3255,7 +3265,7 @@
             </tr>
             <tr class="light-false">
                <td>401</td>
-               <td class="mon-id">441</td>
+               <td>Chatot</td>
                <td>Normal</td>
                <td>60</td>
                <td>Flying</td>
@@ -3263,7 +3273,7 @@
             </tr>
             <tr class="light-true">
                <td>178</td>
-               <td class="mon-id">445</td>
+               <td>Garchomp</td>
                <td>Dragon</td>
                <td>48</td>
                <td>Ground</td>
@@ -3271,7 +3281,7 @@
             </tr>
             <tr class="light-false">
                <td>403</td>
-               <td class="mon-id">445</td>
+               <td>Garchomp</td>
                <td>Dragon</td>
                <td>96</td>
                <td>Ground</td>
@@ -3279,7 +3289,7 @@
             </tr>
             <tr class="light-true">
                <td>179</td>
-               <td class="mon-id">448</td>
+               <td>Lucario</td>
                <td>Fighting</td>
                <td>42</td>
                <td>Steel</td>
@@ -3287,7 +3297,7 @@
             </tr>
             <tr class="light-false">
                <td>404</td>
-               <td class="mon-id">448</td>
+               <td>Lucario</td>
                <td>Fighting</td>
                <td>84</td>
                <td>Steel</td>
@@ -3295,7 +3305,7 @@
             </tr>
             <tr class="light-true">
                <td>180</td>
-               <td class="mon-id">450</td>
+               <td>Hippowdon</td>
                <td>Ground</td>
                <td>48</td>
                <td>N/A</td>
@@ -3303,7 +3313,7 @@
             </tr>
             <tr class="light-false">
                <td>405</td>
-               <td class="mon-id">450</td>
+               <td>Hippowdon</td>
                <td>Ground</td>
                <td>96</td>
                <td>N/A</td>
@@ -3311,7 +3321,7 @@
             </tr>
             <tr class="light-true">
                <td>181</td>
-               <td class="mon-id">452</td>
+               <td>Drapion</td>
                <td>Poison</td>
                <td>48</td>
                <td>Dark</td>
@@ -3319,7 +3329,7 @@
             </tr>
             <tr class="light-false">
                <td>406</td>
-               <td class="mon-id">452</td>
+               <td>Drapion</td>
                <td>Poison</td>
                <td>96</td>
                <td>Dark</td>
@@ -3327,7 +3337,7 @@
             </tr>
             <tr class="light-true">
                <td>182</td>
-               <td class="mon-id">453</td>
+               <td>Croagunk</td>
                <td>Poison</td>
                <td>30</td>
                <td>Fighting</td>
@@ -3335,7 +3345,7 @@
             </tr>
             <tr class="light-false">
                <td>407</td>
-               <td class="mon-id">453</td>
+               <td>Croagunk</td>
                <td>Poison</td>
                <td>60</td>
                <td>Fighting</td>
@@ -3343,7 +3353,7 @@
             </tr>
             <tr class="light-true">
                <td>183</td>
-               <td class="mon-id">455</td>
+               <td>Carnivine</td>
                <td>Grass</td>
                <td>42</td>
                <td>N/A</td>
@@ -3351,7 +3361,7 @@
             </tr>
             <tr class="light-false">
                <td>408</td>
-               <td class="mon-id">455</td>
+               <td>Carnivine</td>
                <td>Grass</td>
                <td>84</td>
                <td>N/A</td>
@@ -3359,7 +3369,7 @@
             </tr>
             <tr class="light-true">
                <td>184</td>
-               <td class="mon-id">457</td>
+               <td>Lumineon</td>
                <td>Water</td>
                <td>42</td>
                <td>N/A</td>
@@ -3367,7 +3377,7 @@
             </tr>
             <tr class="light-false">
                <td>409</td>
-               <td class="mon-id">457</td>
+               <td>Lumineon</td>
                <td>Water</td>
                <td>84</td>
                <td>N/A</td>
@@ -3375,7 +3385,7 @@
             </tr>
             <tr class="light-true">
                <td>185</td>
-               <td class="mon-id">460</td>
+               <td>Abomasnow</td>
                <td>Grass</td>
                <td>48</td>
                <td>Ice</td>
@@ -3383,7 +3393,7 @@
             </tr>
             <tr class="light-false">
                <td>410</td>
-               <td class="mon-id">460</td>
+               <td>Abomasnow</td>
                <td>Grass</td>
                <td>96</td>
                <td>Ice</td>
@@ -3391,7 +3401,7 @@
             </tr>
             <tr class="light-true">
                <td>186</td>
-               <td class="mon-id">461</td>
+               <td>Weavile</td>
                <td>Dark</td>
                <td>42</td>
                <td>Ice</td>
@@ -3399,7 +3409,7 @@
             </tr>
             <tr class="light-false">
                <td>411</td>
-               <td class="mon-id">461</td>
+               <td>Weavile</td>
                <td>Dark</td>
                <td>84</td>
                <td>Ice</td>
@@ -3407,7 +3417,7 @@
             </tr>
             <tr class="light-true">
                <td>187</td>
-               <td class="mon-id">462</td>
+               <td>Magnezone</td>
                <td>Electric</td>
                <td>48</td>
                <td>Steel</td>
@@ -3415,7 +3425,7 @@
             </tr>
             <tr class="light-false">
                <td>412</td>
-               <td class="mon-id">462</td>
+               <td>Magnezone</td>
                <td>Electric</td>
                <td>96</td>
                <td>Steel</td>
@@ -3423,7 +3433,7 @@
             </tr>
             <tr class="light-true">
                <td>188</td>
-               <td class="mon-id">464</td>
+               <td>Rhyperior</td>
                <td>Ground</td>
                <td>60</td>
                <td>Rock</td>
@@ -3431,7 +3441,7 @@
             </tr>
             <tr class="light-false">
                <td>413</td>
-               <td class="mon-id">464</td>
+               <td>Rhyperior</td>
                <td>Ground</td>
                <td>120</td>
                <td>Rock</td>
@@ -3439,7 +3449,7 @@
             </tr>
             <tr class="light-true">
                <td>189</td>
-               <td class="mon-id">465</td>
+               <td>Tangrowth</td>
                <td>Grass</td>
                <td>48</td>
                <td>N/A</td>
@@ -3447,7 +3457,7 @@
             </tr>
             <tr class="light-false">
                <td>414</td>
-               <td class="mon-id">465</td>
+               <td>Tangrowth</td>
                <td>Grass</td>
                <td>96</td>
                <td>N/A</td>
@@ -3455,7 +3465,7 @@
             </tr>
             <tr class="light-true">
                <td>190</td>
-               <td class="mon-id">466</td>
+               <td>Electivire</td>
                <td>Electric</td>
                <td>48</td>
                <td>N/A</td>
@@ -3463,7 +3473,7 @@
             </tr>
             <tr class="light-false">
                <td>415</td>
-               <td class="mon-id">466</td>
+               <td>Electivire</td>
                <td>Electric</td>
                <td>96</td>
                <td>N/A</td>
@@ -3471,7 +3481,7 @@
             </tr>
             <tr class="light-true">
                <td>191</td>
-               <td class="mon-id">467</td>
+               <td>Magmortar</td>
                <td>Fire</td>
                <td>48</td>
                <td>N/A</td>
@@ -3479,7 +3489,7 @@
             </tr>
             <tr class="light-false">
                <td>416</td>
-               <td class="mon-id">467</td>
+               <td>Magmortar</td>
                <td>Fire</td>
                <td>96</td>
                <td>N/A</td>
@@ -3487,7 +3497,7 @@
             </tr>
             <tr class="light-true">
                <td>192</td>
-               <td class="mon-id">468</td>
+               <td>Togekiss</td>
                <td>Fairy</td>
                <td>42</td>
                <td>Flying</td>
@@ -3495,7 +3505,7 @@
             </tr>
             <tr class="light-false">
                <td>417</td>
-               <td class="mon-id">468</td>
+               <td>Togekiss</td>
                <td>Fairy</td>
                <td>84</td>
                <td>Flying</td>
@@ -3503,7 +3513,7 @@
             </tr>
             <tr class="light-true">
                <td>193</td>
-               <td class="mon-id">469</td>
+               <td>Yanmega</td>
                <td>Bug</td>
                <td>48</td>
                <td>Flying</td>
@@ -3511,7 +3521,7 @@
             </tr>
             <tr class="light-false">
                <td>418</td>
-               <td class="mon-id">469</td>
+               <td>Yanmega</td>
                <td>Bug</td>
                <td>96</td>
                <td>Flying</td>
@@ -3519,7 +3529,7 @@
             </tr>
             <tr class="light-true">
                <td>194</td>
-               <td class="mon-id">470</td>
+               <td>Leafeon</td>
                <td>Grass</td>
                <td>36</td>
                <td>N/A</td>
@@ -3527,7 +3537,7 @@
             </tr>
             <tr class="light-false">
                <td>419</td>
-               <td class="mon-id">470</td>
+               <td>Leafeon</td>
                <td>Grass</td>
                <td>72</td>
                <td>N/A</td>
@@ -3535,7 +3545,7 @@
             </tr>
             <tr class="light-true">
                <td>195</td>
-               <td class="mon-id">471</td>
+               <td>Glaceon</td>
                <td>Ice</td>
                <td>36</td>
                <td>N/A</td>
@@ -3543,7 +3553,7 @@
             </tr>
             <tr class="light-false">
                <td>420</td>
-               <td class="mon-id">471</td>
+               <td>Glaceon</td>
                <td>Ice</td>
                <td>72</td>
                <td>N/A</td>
@@ -3551,7 +3561,7 @@
             </tr>
             <tr class="light-true">
                <td>196</td>
-               <td class="mon-id">472</td>
+               <td>Gliscor</td>
                <td>Ground</td>
                <td>48</td>
                <td>Flying</td>
@@ -3559,7 +3569,7 @@
             </tr>
             <tr class="light-false">
                <td>421</td>
-               <td class="mon-id">472</td>
+               <td>Gliscor</td>
                <td>Ground</td>
                <td>96</td>
                <td>Flying</td>
@@ -3567,7 +3577,7 @@
             </tr>
             <tr class="light-true">
                <td>197</td>
-               <td class="mon-id">473</td>
+               <td>Mamoswine</td>
                <td>Ice</td>
                <td>60</td>
                <td>Ground</td>
@@ -3575,7 +3585,7 @@
             </tr>
             <tr class="light-false">
                <td>422</td>
-               <td class="mon-id">473</td>
+               <td>Mamoswine</td>
                <td>Ice</td>
                <td>120</td>
                <td>Ground</td>
@@ -3583,7 +3593,7 @@
             </tr>
             <tr class="light-true">
                <td>198</td>
-               <td class="mon-id">474</td>
+               <td>Porygon-Z</td>
                <td>Normal</td>
                <td>30</td>
                <td>N/A</td>
@@ -3591,7 +3601,7 @@
             </tr>
             <tr class="light-false">
                <td>423</td>
-               <td class="mon-id">474</td>
+               <td>Porygon-Z</td>
                <td>Normal</td>
                <td>60</td>
                <td>N/A</td>
@@ -3599,7 +3609,7 @@
             </tr>
             <tr class="light-true">
                <td>199</td>
-               <td class="mon-id">475</td>
+               <td>Gallade</td>
                <td>Psychic</td>
                <td>48</td>
                <td>Fighting</td>
@@ -3607,7 +3617,7 @@
             </tr>
             <tr class="light-false">
                <td>424</td>
-               <td class="mon-id">475</td>
+               <td>Gallade</td>
                <td>Psychic</td>
                <td>96</td>
                <td>Fighting</td>
@@ -3615,7 +3625,7 @@
             </tr>
             <tr class="light-true">
                <td>200</td>
-               <td class="mon-id">476</td>
+               <td>Probopass</td>
                <td>Rock</td>
                <td>42</td>
                <td>Steel</td>
@@ -3623,7 +3633,7 @@
             </tr>
             <tr class="light-false">
                <td>425</td>
-               <td class="mon-id">476</td>
+               <td>Probopass</td>
                <td>Rock</td>
                <td>84</td>
                <td>Steel</td>
@@ -3631,7 +3641,7 @@
             </tr>
             <tr class="light-true">
                <td>201</td>
-               <td class="mon-id">477</td>
+               <td>Dusknoir</td>
                <td>Ghost</td>
                <td>48</td>
                <td>N/A</td>
@@ -3639,7 +3649,7 @@
             </tr>
             <tr class="light-false">
                <td>426</td>
-               <td class="mon-id">477</td>
+               <td>Dusknoir</td>
                <td>Ghost</td>
                <td>96</td>
                <td>N/A</td>
@@ -3647,7 +3657,7 @@
             </tr>
             <tr class="light-true">
                <td>202</td>
-               <td class="mon-id">478</td>
+               <td>Froslass</td>
                <td>Ice</td>
                <td>42</td>
                <td>Ghost</td>
@@ -3655,7 +3665,7 @@
             </tr>
             <tr class="light-false">
                <td>427</td>
-               <td class="mon-id">478</td>
+               <td>Froslass</td>
                <td>Ice</td>
                <td>84</td>
                <td>Ghost</td>
@@ -3663,7 +3673,7 @@
             </tr>
             <tr class="light-true">
                <td>203</td>
-               <td class="mon-id">479</td>
+               <td>Rotom</td>
                <td>Electric</td>
                <td>30</td>
                <td>Ghost</td>
@@ -3671,7 +3681,7 @@
             </tr>
             <tr class="light-false">
                <td>204</td>
-               <td class="mon-id">479</td>
+               <td>Rotom (Heat)</td>
                <td>Electric</td>
                <td>30</td>
                <td>Fire</td>
@@ -3679,7 +3689,7 @@
             </tr>
             <tr class="light-true">
                <td>205</td>
-               <td class="mon-id">479</td>
+               <td>Rotom (Wash)</td>
                <td>Electric</td>
                <td>30</td>
                <td>Water</td>
@@ -3687,7 +3697,7 @@
             </tr>
             <tr class="light-false">
                <td>206</td>
-               <td class="mon-id">479</td>
+               <td>Rotom (Frost)</td>
                <td>Electric</td>
                <td>30</td>
                <td>Ice</td>
@@ -3695,7 +3705,7 @@
             </tr>
             <tr class="light-true">
                <td>207</td>
-               <td class="mon-id">479</td>
+               <td>Rotom (Fan)</td>
                <td>Electric</td>
                <td>30</td>
                <td>Flying</td>
@@ -3703,7 +3713,7 @@
             </tr>
             <tr class="light-false">
                <td>208</td>
-               <td class="mon-id">479</td>
+               <td>Rotom (Mow)</td>
                <td>Electric</td>
                <td>30</td>
                <td>Grass</td>
@@ -3711,7 +3721,7 @@
             </tr>
             <tr class="light-true">
                <td>428</td>
-               <td class="mon-id">479</td>
+               <td>Rotom</td>
                <td>Electric</td>
                <td>60</td>
                <td>Ghost</td>
@@ -3719,7 +3729,7 @@
             </tr>
             <tr class="light-false">
                <td>429</td>
-               <td class="mon-id">479</td>
+               <td>Rotom (Heat)</td>
                <td>Electric</td>
                <td>60</td>
                <td>Fire</td>
@@ -3727,7 +3737,7 @@
             </tr>
             <tr class="light-true">
                <td>430</td>
-               <td class="mon-id">479</td>
+               <td>Rotom (Wash)</td>
                <td>Electric</td>
                <td>60</td>
                <td>Water</td>
@@ -3735,7 +3745,7 @@
             </tr>
             <tr class="light-false">
                <td>431</td>
-               <td class="mon-id">479</td>
+               <td>Rotom (Frost)</td>
                <td>Electric</td>
                <td>60</td>
                <td>Ice</td>
@@ -3743,7 +3753,7 @@
             </tr>
             <tr class="light-true">
                <td>432</td>
-               <td class="mon-id">479</td>
+               <td>Rotom (Fan)</td>
                <td>Electric</td>
                <td>60</td>
                <td>Flying</td>
@@ -3751,7 +3761,7 @@
             </tr>
             <tr class="light-false">
                <td>433</td>
-               <td class="mon-id">479</td>
+               <td>Rotom (Mow)</td>
                <td>Electric</td>
                <td>60</td>
                <td>Grass</td>
@@ -3759,7 +3769,7 @@
             </tr>
             <tr class="light-true">
                <td>434</td>
-               <td class="mon-id">487</td>
+               <td>Giratina</td>
                <td>Ghost</td>
                <td>180</td>
                <td>Dragon</td>
@@ -3786,7 +3796,7 @@
          </thead>
          <tbody>
             <tr class="light-false">
-               <td class="mon-id">1</td>
+               <td>Bulbasaur</td>
                <td>Grass</td>
                <td>Poison</td>
                <td>0</td>
@@ -3799,7 +3809,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">4</td>
+               <td>Charmander</td>
                <td>Fire</td>
                <td>N/A</td>
                <td>0</td>
@@ -3812,7 +3822,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">7</td>
+               <td>Squirtle</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -3825,7 +3835,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">10</td>
+               <td>Caterpie</td>
                <td>Bug</td>
                <td>N/A</td>
                <td>0</td>
@@ -3838,7 +3848,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">13</td>
+               <td>Weedle</td>
                <td>Bug</td>
                <td>Poison</td>
                <td>0</td>
@@ -3851,7 +3861,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">19</td>
+               <td>Rattata</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>0</td>
@@ -3864,7 +3874,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">20</td>
+               <td>Raticate</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>0</td>
@@ -3877,7 +3887,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">23</td>
+               <td>Ekans</td>
                <td>Poison</td>
                <td>N/A</td>
                <td>0</td>
@@ -3890,7 +3900,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">27</td>
+               <td>Sandshrew</td>
                <td>Ground</td>
                <td>N/A</td>
                <td>0</td>
@@ -3903,7 +3913,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">28</td>
+               <td>Sandslash</td>
                <td>Ground</td>
                <td>N/A</td>
                <td>1</td>
@@ -3916,7 +3926,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">29</td>
+               <td>Nidoran♀</td>
                <td>Poison</td>
                <td>N/A</td>
                <td>0</td>
@@ -3929,7 +3939,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">30</td>
+               <td>Nidorina</td>
                <td>Poison</td>
                <td>N/A</td>
                <td>0</td>
@@ -3942,7 +3952,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">32</td>
+               <td>Nidoran♂</td>
                <td>Poison</td>
                <td>N/A</td>
                <td>0</td>
@@ -3955,7 +3965,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">33</td>
+               <td>Nidorino</td>
                <td>Poison</td>
                <td>N/A</td>
                <td>0</td>
@@ -3968,7 +3978,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">37</td>
+               <td>Vulpix</td>
                <td>Fire</td>
                <td>N/A</td>
                <td>0</td>
@@ -3981,7 +3991,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">41</td>
+               <td>Zubat</td>
                <td>Poison</td>
                <td>Flying</td>
                <td>0</td>
@@ -3994,7 +4004,7 @@
                <td>10</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">42</td>
+               <td>Golbat</td>
                <td>Poison</td>
                <td>Flying</td>
                <td>2</td>
@@ -4007,7 +4017,7 @@
                <td>10</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">43</td>
+               <td>Oddish</td>
                <td>Grass</td>
                <td>Poison</td>
                <td>0</td>
@@ -4020,7 +4030,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">44</td>
+               <td>Gloom</td>
                <td>Grass</td>
                <td>Poison</td>
                <td>0</td>
@@ -4033,7 +4043,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">46</td>
+               <td>Paras</td>
                <td>Bug</td>
                <td>Grass</td>
                <td>0</td>
@@ -4046,7 +4056,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">48</td>
+               <td>Venonat</td>
                <td>Bug</td>
                <td>Poison</td>
                <td>1</td>
@@ -4059,7 +4069,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">49</td>
+               <td>Venomoth</td>
                <td>Bug</td>
                <td>Poison</td>
                <td>1</td>
@@ -4072,7 +4082,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">54</td>
+               <td>Psyduck</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -4085,20 +4095,7 @@
                <td>10</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">55</td>
-               <td>Water</td>
-               <td>N/A</td>
-               <td>2</td>
-               <td>1</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>50</td>
-               <td>40</td>
-               <td>10</td>
-            </tr>
-            <tr class="light-false">
-               <td class="mon-id">56</td>
+               <td>Mankey</td>
                <td>Fighting</td>
                <td>N/A</td>
                <td>0</td>
@@ -4110,8 +4107,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">57</td>
+            <tr class="light-false">
+               <td>Primeape</td>
                <td>Fighting</td>
                <td>N/A</td>
                <td>1</td>
@@ -4123,8 +4120,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">58</td>
+            <tr class="light-true">
+               <td>Growlithe</td>
                <td>Fire</td>
                <td>N/A</td>
                <td>0</td>
@@ -4136,8 +4133,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">60</td>
+            <tr class="light-false">
+               <td>Poliwag</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -4149,8 +4146,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">61</td>
+            <tr class="light-true">
+               <td>Poliwhirl</td>
                <td>Water</td>
                <td>N/A</td>
                <td>1</td>
@@ -4162,8 +4159,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">64</td>
+            <tr class="light-false">
+               <td>Kadabra</td>
                <td>Psychic</td>
                <td>N/A</td>
                <td>1</td>
@@ -4175,8 +4172,8 @@
                <td>35</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">66</td>
+            <tr class="light-true">
+               <td>Machop</td>
                <td>Fighting</td>
                <td>N/A</td>
                <td>0</td>
@@ -4188,8 +4185,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">67</td>
+            <tr class="light-false">
+               <td>Machoke</td>
                <td>Fighting</td>
                <td>N/A</td>
                <td>1</td>
@@ -4201,8 +4198,8 @@
                <td>35</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">69</td>
+            <tr class="light-true">
+               <td>Bellsprout</td>
                <td>Grass</td>
                <td>Poison</td>
                <td>0</td>
@@ -4214,8 +4211,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">70</td>
+            <tr class="light-false">
+               <td>Weepinbell</td>
                <td>Grass</td>
                <td>Poison</td>
                <td>1</td>
@@ -4227,8 +4224,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">72</td>
+            <tr class="light-true">
+               <td>Tentacool</td>
                <td>Water</td>
                <td>Poison</td>
                <td>0</td>
@@ -4240,8 +4237,8 @@
                <td>40</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">73</td>
+            <tr class="light-false">
+               <td>Tentacruel</td>
                <td>Water</td>
                <td>Poison</td>
                <td>2</td>
@@ -4253,8 +4250,8 @@
                <td>40</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">74</td>
+            <tr class="light-true">
+               <td>Geodude</td>
                <td>Rock</td>
                <td>Ground</td>
                <td>0</td>
@@ -4266,8 +4263,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">75</td>
+            <tr class="light-false">
+               <td>Graveler</td>
                <td>Rock</td>
                <td>Ground</td>
                <td>1</td>
@@ -4279,8 +4276,8 @@
                <td>35</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">77</td>
+            <tr class="light-true">
+               <td>Ponyta</td>
                <td>Fire</td>
                <td>N/A</td>
                <td>0</td>
@@ -4292,8 +4289,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">79</td>
+            <tr class="light-false">
+               <td>Slowpoke</td>
                <td>Water</td>
                <td>Psychic</td>
                <td>1</td>
@@ -4305,8 +4302,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">81</td>
+            <tr class="light-true">
+               <td>Magnemite</td>
                <td>Electric</td>
                <td>Steel</td>
                <td>0</td>
@@ -4318,8 +4315,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">83</td>
+            <tr class="light-false">
+               <td>Farfetch'd</td>
                <td>Normal</td>
                <td>Flying</td>
                <td>0</td>
@@ -4331,8 +4328,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">84</td>
+            <tr class="light-true">
+               <td>Doduo</td>
                <td>Normal</td>
                <td>Flying</td>
                <td>1</td>
@@ -4344,8 +4341,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">86</td>
+            <tr class="light-false">
+               <td>Seel</td>
                <td>Water</td>
                <td>N/A</td>
                <td>1</td>
@@ -4357,8 +4354,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">87</td>
+            <tr class="light-true">
+               <td>Dewgong</td>
                <td>Water</td>
                <td>Ice</td>
                <td>2</td>
@@ -4370,8 +4367,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">88</td>
+            <tr class="light-false">
+               <td>Grimer</td>
                <td>Poison</td>
                <td>N/A</td>
                <td>0</td>
@@ -4383,8 +4380,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">90</td>
+            <tr class="light-true">
+               <td>Shellder</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -4396,8 +4393,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">92</td>
+            <tr class="light-false">
+               <td>Gastly</td>
                <td>Ghost</td>
                <td>Poison</td>
                <td>1</td>
@@ -4409,21 +4406,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">93</td>
-               <td>Ghost</td>
-               <td>Poison</td>
-               <td>2</td>
-               <td>1</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>50</td>
-               <td>10</td>
-            </tr>
             <tr class="light-true">
-               <td class="mon-id">95</td>
+               <td>Onix</td>
                <td>Rock</td>
                <td>Ground</td>
                <td>2</td>
@@ -4436,7 +4420,7 @@
                <td>10</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">96</td>
+               <td>Drowzee</td>
                <td>Psychic</td>
                <td>N/A</td>
                <td>1</td>
@@ -4449,7 +4433,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">98</td>
+               <td>Krabby</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -4462,7 +4446,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">100</td>
+               <td>Voltorb</td>
                <td>Electric</td>
                <td>N/A</td>
                <td>0</td>
@@ -4475,7 +4459,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">104</td>
+               <td>Cubone</td>
                <td>Ground</td>
                <td>N/A</td>
                <td>0</td>
@@ -4488,7 +4472,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">108</td>
+               <td>Lickitung</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>1</td>
@@ -4501,7 +4485,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">110</td>
+               <td>Weezing</td>
                <td>Poison</td>
                <td>N/A</td>
                <td>1</td>
@@ -4514,7 +4498,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">111</td>
+               <td>Rhyhorn</td>
                <td>Ground</td>
                <td>Rock</td>
                <td>1</td>
@@ -4527,7 +4511,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">112</td>
+               <td>Rhydon</td>
                <td>Ground</td>
                <td>Rock</td>
                <td>2</td>
@@ -4540,7 +4524,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">114</td>
+               <td>Tangela</td>
                <td>Grass</td>
                <td>N/A</td>
                <td>1</td>
@@ -4553,7 +4537,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">116</td>
+               <td>Horsea</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -4566,7 +4550,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">120</td>
+               <td>Staryu</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -4579,7 +4563,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">122</td>
+               <td>Mr. Mime</td>
                <td>Psychic</td>
                <td>Fairy</td>
                <td>1</td>
@@ -4592,7 +4576,7 @@
                <td>10</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">123</td>
+               <td>Scyther</td>
                <td>Bug</td>
                <td>Flying</td>
                <td>1</td>
@@ -4605,7 +4589,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">127</td>
+               <td>Pinsir</td>
                <td>Bug</td>
                <td>N/A</td>
                <td>1</td>
@@ -4618,7 +4602,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">128</td>
+               <td>Tauros</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>1</td>
@@ -4631,7 +4615,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">132</td>
+               <td>Ditto</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>0</td>
@@ -4644,7 +4628,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">147</td>
+               <td>Dratini</td>
                <td>Dragon</td>
                <td>N/A</td>
                <td>0</td>
@@ -4657,7 +4641,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">152</td>
+               <td>Chikorita</td>
                <td>Grass</td>
                <td>N/A</td>
                <td>0</td>
@@ -4670,7 +4654,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">155</td>
+               <td>Cyndaquil</td>
                <td>Fire</td>
                <td>N/A</td>
                <td>0</td>
@@ -4683,7 +4667,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">158</td>
+               <td>Totodile</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -4696,7 +4680,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">161</td>
+               <td>Sentret</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>0</td>
@@ -4709,7 +4693,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">162</td>
+               <td>Furret</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>1</td>
@@ -4722,7 +4706,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">163</td>
+               <td>Hoothoot</td>
                <td>Normal</td>
                <td>Flying</td>
                <td>0</td>
@@ -4735,7 +4719,7 @@
                <td>10</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">166</td>
+               <td>Ledian</td>
                <td>Bug</td>
                <td>Flying</td>
                <td>1</td>
@@ -4748,7 +4732,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">168</td>
+               <td>Ariados</td>
                <td>Bug</td>
                <td>Poison</td>
                <td>1</td>
@@ -4761,7 +4745,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">170</td>
+               <td>Chinchou</td>
                <td>Water</td>
                <td>Electric</td>
                <td>0</td>
@@ -4774,7 +4758,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">171</td>
+               <td>Lanturn</td>
                <td>Water</td>
                <td>Electric</td>
                <td>1</td>
@@ -4787,7 +4771,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">175</td>
+               <td>Togepi</td>
                <td>Fairy</td>
                <td>N/A</td>
                <td>0</td>
@@ -4800,7 +4784,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">177</td>
+               <td>Natu</td>
                <td>Psychic</td>
                <td>Flying</td>
                <td>0</td>
@@ -4813,7 +4797,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">179</td>
+               <td>Mareep</td>
                <td>Electric</td>
                <td>N/A</td>
                <td>0</td>
@@ -4826,7 +4810,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">180</td>
+               <td>Flaaffy</td>
                <td>Electric</td>
                <td>N/A</td>
                <td>0</td>
@@ -4839,7 +4823,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">187</td>
+               <td>Hoppip</td>
                <td>Grass</td>
                <td>Flying</td>
                <td>0</td>
@@ -4852,7 +4836,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">188</td>
+               <td>Skiploom</td>
                <td>Grass</td>
                <td>Flying</td>
                <td>0</td>
@@ -4865,7 +4849,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">190</td>
+               <td>Aipom</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>0</td>
@@ -4878,7 +4862,7 @@
                <td>10</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">191</td>
+               <td>Sunkern</td>
                <td>Grass</td>
                <td>N/A</td>
                <td>0</td>
@@ -4891,7 +4875,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">194</td>
+               <td>Wooper</td>
                <td>Water</td>
                <td>Ground</td>
                <td>0</td>
@@ -4904,7 +4888,7 @@
                <td>10</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">195</td>
+               <td>Quagsire</td>
                <td>Water</td>
                <td>Ground</td>
                <td>1</td>
@@ -4917,7 +4901,7 @@
                <td>10</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">198</td>
+               <td>Murkrow</td>
                <td>Dark</td>
                <td>Flying</td>
                <td>0</td>
@@ -4930,7 +4914,7 @@
                <td>10</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">200</td>
+               <td>Misdreavus</td>
                <td>Ghost</td>
                <td>N/A</td>
                <td>0</td>
@@ -4943,7 +4927,7 @@
                <td>10</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">202</td>
+               <td>Wobbuffet</td>
                <td>Psychic</td>
                <td>N/A</td>
                <td>1</td>
@@ -4956,7 +4940,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">203</td>
+               <td>Girafarig</td>
                <td>Normal</td>
                <td>Psychic</td>
                <td>1</td>
@@ -4969,7 +4953,7 @@
                <td>10</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">204</td>
+               <td>Pineco</td>
                <td>Bug</td>
                <td>N/A</td>
                <td>0</td>
@@ -4982,7 +4966,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">207</td>
+               <td>Gligar</td>
                <td>Ground</td>
                <td>Flying</td>
                <td>1</td>
@@ -4995,7 +4979,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">209</td>
+               <td>Snubbull</td>
                <td>Fairy</td>
                <td>N/A</td>
                <td>0</td>
@@ -5008,7 +4992,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">211</td>
+               <td>Qwilfish</td>
                <td>Water</td>
                <td>Poison</td>
                <td>0</td>
@@ -5021,7 +5005,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">213</td>
+               <td>Shuckle</td>
                <td>Bug</td>
                <td>Rock</td>
                <td>0</td>
@@ -5034,7 +5018,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">215</td>
+               <td>Sneasel</td>
                <td>Dark</td>
                <td>Ice</td>
                <td>0</td>
@@ -5047,7 +5031,7 @@
                <td>10</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">216</td>
+               <td>Teddiursa</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>0</td>
@@ -5060,20 +5044,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">217</td>
-               <td>Normal</td>
-               <td>N/A</td>
-               <td>2</td>
-               <td>1</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>15</td>
-            </tr>
-            <tr class="light-true">
-               <td class="mon-id">218</td>
+               <td>Slugma</td>
                <td>Fire</td>
                <td>N/A</td>
                <td>0</td>
@@ -5085,8 +5056,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">219</td>
+            <tr class="light-true">
+               <td>Magcargo</td>
                <td>Fire</td>
                <td>Rock</td>
                <td>0</td>
@@ -5098,8 +5069,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">220</td>
+            <tr class="light-false">
+               <td>Swinub</td>
                <td>Ice</td>
                <td>Ground</td>
                <td>0</td>
@@ -5111,8 +5082,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">222</td>
+            <tr class="light-true">
+               <td>Corsola</td>
                <td>Water</td>
                <td>Rock</td>
                <td>0</td>
@@ -5124,8 +5095,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">224</td>
+            <tr class="light-false">
+               <td>Octillery</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -5137,8 +5108,8 @@
                <td>50</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">225</td>
+            <tr class="light-true">
+               <td>Delibird</td>
                <td>Ice</td>
                <td>Flying</td>
                <td>0</td>
@@ -5150,8 +5121,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">229</td>
+            <tr class="light-false">
+               <td>Houndoom</td>
                <td>Dark</td>
                <td>Fire</td>
                <td>0</td>
@@ -5163,8 +5134,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">231</td>
+            <tr class="light-true">
+               <td>Phanpy</td>
                <td>Ground</td>
                <td>N/A</td>
                <td>0</td>
@@ -5176,8 +5147,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">236</td>
+            <tr class="light-false">
+               <td>Tyrogue</td>
                <td>Fighting</td>
                <td>N/A</td>
                <td>0</td>
@@ -5189,8 +5160,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">238</td>
+            <tr class="light-true">
+               <td>Smoochum</td>
                <td>Ice</td>
                <td>Psychic</td>
                <td>0</td>
@@ -5202,8 +5173,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">239</td>
+            <tr class="light-false">
+               <td>Elekid</td>
                <td>Electric</td>
                <td>N/A</td>
                <td>0</td>
@@ -5215,8 +5186,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">240</td>
+            <tr class="light-true">
+               <td>Magby</td>
                <td>Fire</td>
                <td>N/A</td>
                <td>0</td>
@@ -5228,8 +5199,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">241</td>
+            <tr class="light-false">
+               <td>Miltank</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>1</td>
@@ -5241,8 +5212,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">246</td>
+            <tr class="light-true">
+               <td>Larvitar</td>
                <td>Rock</td>
                <td>Ground</td>
                <td>0</td>
@@ -5254,8 +5225,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">247</td>
+            <tr class="light-false">
+               <td>Pupitar</td>
                <td>Rock</td>
                <td>Ground</td>
                <td>1</td>
@@ -5267,8 +5238,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">252</td>
+            <tr class="light-true">
+               <td>Treecko</td>
                <td>Grass</td>
                <td>N/A</td>
                <td>0</td>
@@ -5280,8 +5251,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">255</td>
+            <tr class="light-false">
+               <td>Torchic</td>
                <td>Fire</td>
                <td>N/A</td>
                <td>0</td>
@@ -5293,8 +5264,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">258</td>
+            <tr class="light-true">
+               <td>Mudkip</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -5306,8 +5277,21 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
+            <tr class="light-false">
+               <td>Poochyena</td>
+               <td>Dark</td>
+               <td>N/A</td>
+               <td>0</td>
+               <td>1</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>15</td>
+            </tr>
             <tr class="light-true">
-               <td class="mon-id">261</td>
+               <td>Mightyena</td>
                <td>Dark</td>
                <td>N/A</td>
                <td>0</td>
@@ -5320,20 +5304,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">262</td>
-               <td>Dark</td>
-               <td>N/A</td>
-               <td>0</td>
-               <td>1</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>15</td>
-            </tr>
-            <tr class="light-true">
-               <td class="mon-id">263</td>
+               <td>Zigzagoon</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>0</td>
@@ -5345,21 +5316,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">265</td>
-               <td>Bug</td>
-               <td>N/A</td>
-               <td>0</td>
-               <td>1</td>
-               <td>50</td>
-               <td>40</td>
-               <td>35</td>
-               <td>30</td>
-               <td>30</td>
-               <td>10</td>
-            </tr>
             <tr class="light-true">
-               <td class="mon-id">266</td>
+               <td>Wurmple</td>
                <td>Bug</td>
                <td>N/A</td>
                <td>0</td>
@@ -5372,7 +5330,7 @@
                <td>10</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">268</td>
+               <td>Silcoon</td>
                <td>Bug</td>
                <td>N/A</td>
                <td>0</td>
@@ -5385,7 +5343,20 @@
                <td>10</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">270</td>
+               <td>Cascoon</td>
+               <td>Bug</td>
+               <td>N/A</td>
+               <td>0</td>
+               <td>1</td>
+               <td>50</td>
+               <td>40</td>
+               <td>35</td>
+               <td>30</td>
+               <td>30</td>
+               <td>10</td>
+            </tr>
+            <tr class="light-false">
+               <td>Lotad</td>
                <td>Water</td>
                <td>Grass</td>
                <td>0</td>
@@ -5397,8 +5368,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">271</td>
+            <tr class="light-true">
+               <td>Lombre</td>
                <td>Water</td>
                <td>Grass</td>
                <td>1</td>
@@ -5410,8 +5381,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">273</td>
+            <tr class="light-false">
+               <td>Seedot</td>
                <td>Grass</td>
                <td>N/A</td>
                <td>0</td>
@@ -5423,8 +5394,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">274</td>
+            <tr class="light-true">
+               <td>Nuzleaf</td>
                <td>Grass</td>
                <td>Dark</td>
                <td>1</td>
@@ -5436,8 +5407,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">278</td>
+            <tr class="light-false">
+               <td>Wingull</td>
                <td>Water</td>
                <td>Flying</td>
                <td>0</td>
@@ -5449,8 +5420,8 @@
                <td>35</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">279</td>
+            <tr class="light-true">
+               <td>Pelipper</td>
                <td>Water</td>
                <td>Flying</td>
                <td>1</td>
@@ -5462,21 +5433,8 @@
                <td>40</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">280</td>
-               <td>Psychic</td>
-               <td>Fairy</td>
-               <td>0</td>
-               <td>1</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>15</td>
-            </tr>
             <tr class="light-false">
-               <td class="mon-id">281</td>
+               <td>Ralts</td>
                <td>Psychic</td>
                <td>Fairy</td>
                <td>0</td>
@@ -5489,7 +5447,20 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">283</td>
+               <td>Kirlia</td>
+               <td>Psychic</td>
+               <td>Fairy</td>
+               <td>0</td>
+               <td>1</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>15</td>
+            </tr>
+            <tr class="light-false">
+               <td>Surskit</td>
                <td>Bug</td>
                <td>Water</td>
                <td>0</td>
@@ -5501,8 +5472,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">290</td>
+            <tr class="light-true">
+               <td>Nincada</td>
                <td>Bug</td>
                <td>Ground</td>
                <td>0</td>
@@ -5514,8 +5485,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">300</td>
+            <tr class="light-false">
+               <td>Skitty</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>0</td>
@@ -5527,8 +5498,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">302</td>
+            <tr class="light-true">
+               <td>Sableye</td>
                <td>Dark</td>
                <td>Ghost</td>
                <td>0</td>
@@ -5540,8 +5511,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">303</td>
+            <tr class="light-false">
+               <td>Mawile</td>
                <td>Steel</td>
                <td>Fairy</td>
                <td>0</td>
@@ -5553,8 +5524,21 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
+            <tr class="light-true">
+               <td>Aron</td>
+               <td>Steel</td>
+               <td>Rock</td>
+               <td>0</td>
+               <td>1</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>15</td>
+            </tr>
             <tr class="light-false">
-               <td class="mon-id">304</td>
+               <td>Lairon</td>
                <td>Steel</td>
                <td>Rock</td>
                <td>0</td>
@@ -5567,20 +5551,7 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">305</td>
-               <td>Steel</td>
-               <td>Rock</td>
-               <td>0</td>
-               <td>1</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>15</td>
-            </tr>
-            <tr class="light-false">
-               <td class="mon-id">307</td>
+               <td>Meditite</td>
                <td>Fighting</td>
                <td>Psychic</td>
                <td>0</td>
@@ -5592,8 +5563,21 @@
                <td>30</td>
                <td>10</td>
             </tr>
+            <tr class="light-false">
+               <td>Volbeat</td>
+               <td>Bug</td>
+               <td>N/A</td>
+               <td>0</td>
+               <td>1</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>15</td>
+            </tr>
             <tr class="light-true">
-               <td class="mon-id">313</td>
+               <td>Illumise</td>
                <td>Bug</td>
                <td>N/A</td>
                <td>0</td>
@@ -5606,20 +5590,7 @@
                <td>15</td>
             </tr>
             <tr class="light-false">
-               <td class="mon-id">314</td>
-               <td>Bug</td>
-               <td>N/A</td>
-               <td>0</td>
-               <td>1</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>15</td>
-            </tr>
-            <tr class="light-true">
-               <td class="mon-id">315</td>
+               <td>Roselia</td>
                <td>Grass</td>
                <td>Poison</td>
                <td>0</td>
@@ -5631,8 +5602,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">318</td>
+            <tr class="light-true">
+               <td>Carvanha</td>
                <td>Water</td>
                <td>Dark</td>
                <td>0</td>
@@ -5644,8 +5615,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">322</td>
+            <tr class="light-false">
+               <td>Numel</td>
                <td>Fire</td>
                <td>Ground</td>
                <td>0</td>
@@ -5657,8 +5628,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">323</td>
+            <tr class="light-true">
+               <td>Camerupt</td>
                <td>Fire</td>
                <td>Ground</td>
                <td>2</td>
@@ -5670,8 +5641,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">324</td>
+            <tr class="light-false">
+               <td>Torkoal</td>
                <td>Fire</td>
                <td>N/A</td>
                <td>0</td>
@@ -5683,8 +5654,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">328</td>
+            <tr class="light-true">
+               <td>Trapinch</td>
                <td>Ground</td>
                <td>N/A</td>
                <td>0</td>
@@ -5696,8 +5667,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">329</td>
+            <tr class="light-false">
+               <td>Vibrava</td>
                <td>Ground</td>
                <td>Dragon</td>
                <td>1</td>
@@ -5709,8 +5680,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">331</td>
+            <tr class="light-true">
+               <td>Cacnea</td>
                <td>Grass</td>
                <td>N/A</td>
                <td>0</td>
@@ -5722,8 +5693,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">332</td>
+            <tr class="light-false">
+               <td>Cacturne</td>
                <td>Grass</td>
                <td>Dark</td>
                <td>1</td>
@@ -5735,8 +5706,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">333</td>
+            <tr class="light-true">
+               <td>Swablu</td>
                <td>Normal</td>
                <td>Flying</td>
                <td>0</td>
@@ -5748,8 +5719,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">335</td>
+            <tr class="light-false">
+               <td>Zangoose</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>1</td>
@@ -5761,8 +5732,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">336</td>
+            <tr class="light-true">
+               <td>Seviper</td>
                <td>Poison</td>
                <td>Poison</td>
                <td>2</td>
@@ -5774,21 +5745,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">337</td>
-               <td>Rock</td>
-               <td>Psychic</td>
-               <td>1</td>
-               <td>1</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>15</td>
-            </tr>
             <tr class="light-false">
-               <td class="mon-id">338</td>
+               <td>Lunatone</td>
                <td>Rock</td>
                <td>Psychic</td>
                <td>1</td>
@@ -5801,7 +5759,20 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">339</td>
+               <td>Solrock</td>
+               <td>Rock</td>
+               <td>Psychic</td>
+               <td>1</td>
+               <td>1</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>15</td>
+            </tr>
+            <tr class="light-false">
+               <td>Barboach</td>
                <td>Water</td>
                <td>Ground</td>
                <td>0</td>
@@ -5813,8 +5784,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">340</td>
+            <tr class="light-true">
+               <td>Whiscash</td>
                <td>Water</td>
                <td>Ground</td>
                <td>1</td>
@@ -5826,8 +5797,8 @@
                <td>50</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">341</td>
+            <tr class="light-false">
+               <td>Corphish</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -5839,8 +5810,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">342</td>
+            <tr class="light-true">
+               <td>Crawdaunt</td>
                <td>Water</td>
                <td>Dark</td>
                <td>1</td>
@@ -5852,8 +5823,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">343</td>
+            <tr class="light-false">
+               <td>Baltoy</td>
                <td>Ground</td>
                <td>Psychic</td>
                <td>0</td>
@@ -5865,8 +5836,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">352</td>
+            <tr class="light-true">
+               <td>Kecleon</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>1</td>
@@ -5878,8 +5849,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">354</td>
+            <tr class="light-false">
+               <td>Banette</td>
                <td>Ghost</td>
                <td>N/A</td>
                <td>1</td>
@@ -5891,8 +5862,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">355</td>
+            <tr class="light-true">
+               <td>Duskull</td>
                <td>Ghost</td>
                <td>N/A</td>
                <td>0</td>
@@ -5904,8 +5875,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">356</td>
+            <tr class="light-false">
+               <td>Dusclops</td>
                <td>Ghost</td>
                <td>N/A</td>
                <td>2</td>
@@ -5917,8 +5888,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">357</td>
+            <tr class="light-true">
+               <td>Tropius</td>
                <td>Grass</td>
                <td>Flying</td>
                <td>2</td>
@@ -5930,8 +5901,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">359</td>
+            <tr class="light-false">
+               <td>Absol</td>
                <td>Dark</td>
                <td>N/A</td>
                <td>0</td>
@@ -5943,8 +5914,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">361</td>
+            <tr class="light-true">
+               <td>Snorunt</td>
                <td>Ice</td>
                <td>N/A</td>
                <td>0</td>
@@ -5956,8 +5927,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">362</td>
+            <tr class="light-false">
+               <td>Glalie</td>
                <td>Ice</td>
                <td>N/A</td>
                <td>1</td>
@@ -5969,8 +5940,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">363</td>
+            <tr class="light-true">
+               <td>Spheal</td>
                <td>Ice</td>
                <td>Water</td>
                <td>0</td>
@@ -5982,21 +5953,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">364</td>
-               <td>Ice</td>
-               <td>Water</td>
-               <td>1</td>
-               <td>1</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>N/A</td>
-               <td>15</td>
-            </tr>
             <tr class="light-false">
-               <td class="mon-id">365</td>
+               <td>Sealeo</td>
                <td>Ice</td>
                <td>Water</td>
                <td>1</td>
@@ -6009,7 +5967,20 @@
                <td>15</td>
             </tr>
             <tr class="light-true">
-               <td class="mon-id">366</td>
+               <td>Walrein</td>
+               <td>Ice</td>
+               <td>Water</td>
+               <td>1</td>
+               <td>1</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>N/A</td>
+               <td>15</td>
+            </tr>
+            <tr class="light-false">
+               <td>Clamperl</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -6021,8 +5992,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">371</td>
+            <tr class="light-true">
+               <td>Bagon</td>
                <td>Dragon</td>
                <td>N/A</td>
                <td>0</td>
@@ -6034,8 +6005,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">372</td>
+            <tr class="light-false">
+               <td>Shelgon</td>
                <td>Dragon</td>
                <td>N/A</td>
                <td>1</td>
@@ -6047,8 +6018,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">374</td>
+            <tr class="light-true">
+               <td>Beldum</td>
                <td>Steel</td>
                <td>Psychic</td>
                <td>0</td>
@@ -6060,8 +6031,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">387</td>
+            <tr class="light-false">
+               <td>Turtwig</td>
                <td>Grass</td>
                <td>N/A</td>
                <td>0</td>
@@ -6073,8 +6044,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">390</td>
+            <tr class="light-true">
+               <td>Chimchar</td>
                <td>Fire</td>
                <td>N/A</td>
                <td>0</td>
@@ -6086,8 +6057,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">393</td>
+            <tr class="light-false">
+               <td>Piplup</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -6099,8 +6070,8 @@
                <td>N/A</td>
                <td>15</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">399</td>
+            <tr class="light-true">
+               <td>Bidoof</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>0</td>
@@ -6112,8 +6083,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">400</td>
+            <tr class="light-false">
+               <td>Bibarel</td>
                <td>Normal</td>
                <td>Water</td>
                <td>1</td>
@@ -6125,8 +6096,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">401</td>
+            <tr class="light-true">
+               <td>Kricketot</td>
                <td>Bug</td>
                <td>N/A</td>
                <td>0</td>
@@ -6138,8 +6109,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">403</td>
+            <tr class="light-false">
+               <td>Shinx</td>
                <td>Electric</td>
                <td>N/A</td>
                <td>0</td>
@@ -6151,8 +6122,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">404</td>
+            <tr class="light-true">
+               <td>Luxio</td>
                <td>Electric</td>
                <td>N/A</td>
                <td>0</td>
@@ -6164,8 +6135,8 @@
                <td>40</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">406</td>
+            <tr class="light-false">
+               <td>Budew</td>
                <td>Grass</td>
                <td>Poison</td>
                <td>0</td>
@@ -6177,8 +6148,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">415</td>
+            <tr class="light-true">
+               <td>Combee</td>
                <td>Bug</td>
                <td>Flying</td>
                <td>0</td>
@@ -6190,8 +6161,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">417</td>
+            <tr class="light-false">
+               <td>Pachirisu</td>
                <td>Electric</td>
                <td>N/A</td>
                <td>0</td>
@@ -6203,8 +6174,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">418</td>
+            <tr class="light-true">
+               <td>Buizel</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -6216,8 +6187,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">420</td>
+            <tr class="light-false">
+               <td>Cherubi</td>
                <td>Grass</td>
                <td>N/A</td>
                <td>0</td>
@@ -6229,8 +6200,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">422</td>
+            <tr class="light-true">
+               <td>Shellos</td>
                <td>Water</td>
                <td>N/A</td>
                <td>0</td>
@@ -6242,8 +6213,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">423</td>
+            <tr class="light-false">
+               <td>Gastrodon</td>
                <td>Water</td>
                <td>Ground</td>
                <td>1</td>
@@ -6255,8 +6226,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">427</td>
+            <tr class="light-true">
+               <td>Buneary</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>0</td>
@@ -6268,8 +6239,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">431</td>
+            <tr class="light-false">
+               <td>Glameow</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>0</td>
@@ -6281,8 +6252,8 @@
                <td>40</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">432</td>
+            <tr class="light-true">
+               <td>Purugly</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>1</td>
@@ -6294,8 +6265,8 @@
                <td>35</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">433</td>
+            <tr class="light-false">
+               <td>Chingling</td>
                <td>Psychic</td>
                <td>N/A</td>
                <td>0</td>
@@ -6307,8 +6278,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">434</td>
+            <tr class="light-true">
+               <td>Stunky</td>
                <td>Poison</td>
                <td>Dark</td>
                <td>0</td>
@@ -6320,8 +6291,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">435</td>
+            <tr class="light-false">
+               <td>Skuntank</td>
                <td>Poison</td>
                <td>Dark</td>
                <td>1</td>
@@ -6333,8 +6304,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">436</td>
+            <tr class="light-true">
+               <td>Bronzor</td>
                <td>Steel</td>
                <td>Psychic</td>
                <td>0</td>
@@ -6346,8 +6317,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">443</td>
+            <tr class="light-false">
+               <td>Gible</td>
                <td>Dragon</td>
                <td>Ground</td>
                <td>0</td>
@@ -6359,8 +6330,8 @@
                <td>40</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">444</td>
+            <tr class="light-true">
+               <td>Gabite</td>
                <td>Dragon</td>
                <td>Ground</td>
                <td>1</td>
@@ -6372,8 +6343,8 @@
                <td>50</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">446</td>
+            <tr class="light-false">
+               <td>Munchlax</td>
                <td>Normal</td>
                <td>N/A</td>
                <td>0</td>
@@ -6385,8 +6356,8 @@
                <td>35</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">449</td>
+            <tr class="light-true">
+               <td>Hippopotas</td>
                <td>Ground</td>
                <td>N/A</td>
                <td>1</td>
@@ -6398,8 +6369,8 @@
                <td>35</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">451</td>
+            <tr class="light-false">
+               <td>Skorupi</td>
                <td>Poison</td>
                <td>Bug</td>
                <td>0</td>
@@ -6411,8 +6382,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">453</td>
+            <tr class="light-true">
+               <td>Croagunk</td>
                <td>Poison</td>
                <td>Fighting</td>
                <td>0</td>
@@ -6424,8 +6395,8 @@
                <td>30</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">458</td>
+            <tr class="light-false">
+               <td>Mantyke</td>
                <td>Water</td>
                <td>Flying</td>
                <td>1</td>
@@ -6437,8 +6408,8 @@
                <td>50</td>
                <td>10</td>
             </tr>
-            <tr class="light-false">
-               <td class="mon-id">459</td>
+            <tr class="light-true">
+               <td>Snover</td>
                <td>Grass</td>
                <td>Ice</td>
                <td>1</td>
@@ -6450,8 +6421,8 @@
                <td>40</td>
                <td>10</td>
             </tr>
-            <tr class="light-true">
-               <td class="mon-id">465</td>
+            <tr class="light-false">
+               <td>Tangrowth</td>
                <td>Grass</td>
                <td>N/A</td>
                <td>2</td>
