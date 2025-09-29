@@ -731,7 +731,7 @@ $(function() {
 				gameName = "Brilliant Diamond";
 			else if (gameName == "ShiningPearl")
 				gameName = "Shining Pearl";
-			newTableStartText = newTableStartText + "<th class='" + this.toLowerCase() + "-true' colspan='2'>" + this + "</th>";
+			newTableStartText = newTableStartText + "<th class='" + this.toLowerCase() + "-true' colspan='2'>" + gameName + "</th>";
 		});
 		newTableStartText = newTableStartText + "<th>Condition</th></tr></thead><tbody>";
 		var newTableMiddleText = "";
