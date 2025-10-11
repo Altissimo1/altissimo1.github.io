@@ -1,4 +1,22 @@
+// This function controls clicking the language buttons
+var langButton = function languageClick() {
+	var lang = $(this).attr("id");
+	
+	$(".langArea").each(function() {
+		if ($(this).hasClass(lang)) {
+			$(this).show();
+		}
+		else
+			$(this).hide();
+	});		
+}
+
 $(function() {
+	var languageButtons = $("input[type=radio][name=language]");
+	languageButtons.each(function() {
+		if ($(this).is(":checked"))
+			$(this).trigger("click");
+	});
 	
 	// Variables.
 	// Check icon.
