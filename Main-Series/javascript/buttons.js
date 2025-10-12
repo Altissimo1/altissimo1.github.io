@@ -16,7 +16,7 @@ $(function() {
 	headerHider();
 });	
 
-// This function controls what happens when on of the top-level buttons are clicked.
+// This function controls what happens when one of the top-level buttons are clicked.
 var topButton = function topClick() {
 	
 	// Get the game set that was clicked

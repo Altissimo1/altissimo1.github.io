@@ -1,4 +1,28 @@
+var currentLang = "eng";
+
+// This function controls clicking the language buttons
+var langButton = function languageClick() {
+	var lang = $(this).attr("id");
+	currentLang = lang;
+	$(".langArea").each(function() {
+		if ($(this).hasClass(lang)) {
+			$(this).show();
+		}
+		else
+			$(this).hide();
+	});
+}
+
 $(function() {
+	setLanguageButton();
+	
+	var languageButtons = $("input[type=radio][name=language]");
+	languageButtons.each(function() {
+		if ($(this).is(":checked")) {
+			$(this).trigger("click");
+			currentLang = $(this).attr("id");
+		}
+	});
 	
 	// Variables.
 
@@ -90,7 +114,11 @@ $(function() {
 	});
 	
 	// Set up click event for pokemon dropdown.
-	$("#pokemon-dropdown").change(function() {
+	$("#pokemon-dropdown-eng").change(function() {
+		pokemon = this.value;		
+		updateImage();
+	});
+	$("#pokemon-dropdown-jpn").change(function() {
 		pokemon = this.value;		
 		updateImage();
 	});
@@ -155,15 +183,25 @@ $(function() {
 	}
 	
 	// Add pokemon to the dropdown, using the JSON.
-	function appendPokemon(data) {
-		var pokeDropdown = $("#pokemon-dropdown");
+	function appendPokemon(data) {	
+		var pokeDropdownEng = $("#pokemon-dropdown-eng");
 		$.each(data, function() {
 			// Create a new option element for each pokemon.
 			var pokeOption = document.createElement("option");
 			pokeOption.value = this.id;
-			pokeOption.textContent = this.name;
+			pokeOption.textContent = this.engName;
 			// Append it to the dropdown.
-			pokeDropdown.append(pokeOption);
+			pokeDropdownEng.append(pokeOption);
+		});
+		
+		var pokeDropdownJpn = $("#pokemon-dropdown-jpn");
+		$.each(data, function() {
+			// Create a new option element for each pokemon.
+			var pokeOption = document.createElement("option");
+			pokeOption.value = this.id;
+			pokeOption.textContent = this.jpnName;
+			// Append it to the dropdown.
+			pokeDropdownJpn.append(pokeOption);
 		});
 	}
 	
@@ -235,12 +273,18 @@ $(function() {
 						// Set the background.						
 						var color = true;
 						var time = "day";
-						if (this.heading.includes("Night"))
+						if (this.headingEng.includes("Night"))
 							time = "night";
 						
 						// Set the table headers.
-						table += "<caption>" + this.heading + "</caption>";
-						table += "<thead><tr class='" + time + "-" + color + "'><th>Pokémon</th><th>Spawn Rate</th><th>Levels</th></tr></thead>";
+						if (currentLang == "eng") {
+							table += "<caption>" + this.headingEng + "</caption>";
+							table += "<thead><tr class='" + time + "-" + color + "'><th>Pokémon</th><th>Spawn Rate</th><th>Levels</th></tr></thead>";
+						}
+						else if (currentLang == "jpn") {
+							table += "<caption>" + this.headingJpn + "</caption>";
+							table += "<thead><tr class='" + time + "-" + color + "' style='font-size:11px;'><th>ポケモン</th><th>出現率</th><th>レベル</th></tr></thead>";
+						}						
 						color = !color;
 						var htmlBlock;
 						// Iterate over all the contained pokemon
@@ -289,9 +333,12 @@ $(function() {
 					// Set the location of the div. I try to make it so that this is icon + 3%.
 					$(container).css("top", subtagGroup.displayTop);
 					$(container).css("left", subtagGroup.displayLeft);
-					
-					// Append all spawn data text into the div.
-					$(container).html(subtagGroup.display.join("<br>"));	
+					if (currentLang == "eng") {
+						$(container).html(subtagGroup.displayEng.join("<br>"));
+					}
+					else if (currentLang == "jpn") {
+						$(container).html(subtagGroup.displayJpn.join("<br>"));						
+					}
 					// Show the container.
 					$(container).show();					
 				});
@@ -313,3 +360,16 @@ $(function() {
 		}
 	};	
 });
+
+function setLanguageButton() {
+	var url = window.location.href;
+	
+	var lang = url.substring(url.indexOf("?") + 1);
+	
+	var languageButtons = $("input[type=radio][name=language]");
+	
+	languageButtons.each(function() {
+		if (this.id == lang)
+			$(this).prop("checked", true);
+	});
+}
