@@ -22,6 +22,7 @@
          <li><a href="#areatable">Area Data</a></li>
          <li><a href="#statuetable">Statue Data</a></li>
          <li><a href="#pokemontable">Pokémon Data</a></li>
+         <li><a href="#itemtable">Digging Item Data</a></li>
       </ul>
       <p>The actual code and data that I looked at to identify how the game is handling encounters can be found as part of <a href="https://github.com/SteveCookTU/bdsp_ug_generator/tree/master">this</a> GitHub project, an RNG tool for Grand Underground encounters. The following parts of the project were used to understand this logic:</p>
       <ul>
@@ -6433,6 +6434,873 @@
                <td>N/A</td>
                <td>N/A</td>
                <td>15</td>
+            </tr>
+         </tbody>
+      </table>
+      <h3 class="itemtable"><u>Item Data</u></h3>
+      <p>The information about item spawn rates is sourced from <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_lWppNo-hlbGeq5rmYD_mFqicp1hRRr6dmoTMQVojkOHhO2SAttmShgA_8xgTVpaLWISnutqJR1ZS/pubhtml">this spreadsheet</a>.</p>
+      <p>The items that can be found by digging vary depending on the player's story progress. There are two points at which the available items change, or their probabilities change: 1) once the player has completed the events at Spear Pillar, and 2) after the player has obtained the National Pokédex.</p>
+      <p>Some items only become available at all once one of these milestones has been reached. These items are:</p>
+      <ul>
+         <li>Odd Keystone (after Spear Pillar)</li>
+         <li>Root, Claw, Helix, and Dome Fossils, and the Old Amber (after Spear Pillar)</li>
+         <li>Mysterious Shard S and Mysterious Shard L (after obtaining the National Pokédex)</li>
+      </ul>
+      <p>Yes, this does mean that you can get the Kanto and Hoenn Fossil Pokémon before even receiving the National Dex.</p>
+      <p>I mentioned this above in the Statue Data section, but the source linked above indicates that any given digging session has a 50% chance to have a Box. This appearance rate appears to be separate from the spawn rates used by the 'regular' items shown below.</p>
+      <table>
+         <caption>Before Spear Pillar</caption>
+         <thead>
+            <tr>
+               <th class="light-true">Item</th>
+               <th class="brilliantdiamond-true">Brilliant Diamond</th>
+               <th class="shiningpearl-true">Shining Pearl</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td class="light-false">Red Sphere S</td>
+               <td class="brilliantdiamond-false">16.35%</td>
+               <td class="shiningpearl-false">18.95%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Blue Sphere S</td>
+               <td class="brilliantdiamond-true">18.92%</td>
+               <td class="shiningpearl-true">16.39%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Green Sphere S</td>
+               <td class="brilliantdiamond-false">14.78%</td>
+               <td class="shiningpearl-false">14.81%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Prism Sphere S</td>
+               <td class="brilliantdiamond-true">2.96%</td>
+               <td class="shiningpearl-true">2.17%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Pale Sphere S</td>
+               <td class="brilliantdiamond-false">2.17%</td>
+               <td class="shiningpearl-false">2.96%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Red Sphere L</td>
+               <td class="brilliantdiamond-true">8.18%</td>
+               <td class="shiningpearl-true">9.48%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Blue Sphere L</td>
+               <td class="brilliantdiamond-false">9.46%</td>
+               <td class="shiningpearl-false">8.19%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Green Sphere L</td>
+               <td class="brilliantdiamond-true">7.39%</td>
+               <td class="shiningpearl-true">7.40%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Prism Sphere L</td>
+               <td class="brilliantdiamond-false">1.48%</td>
+               <td class="shiningpearl-false">1.28%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Pale Sphere L</td>
+               <td class="brilliantdiamond-true">1.28%</td>
+               <td class="shiningpearl-true">1.48%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Revive</td>
+               <td class="brilliantdiamond-false">0.99%</td>
+               <td class="shiningpearl-false">0.99%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Max Revive</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Red Shard</td>
+               <td class="brilliantdiamond-false">0.99%</td>
+               <td class="shiningpearl-false">1.48%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Blue Shard</td>
+               <td class="brilliantdiamond-true">1.48%</td>
+               <td class="shiningpearl-true">0.99%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Yellow Shard</td>
+               <td class="brilliantdiamond-false">1.48%</td>
+               <td class="shiningpearl-false">0.99%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Green Shard</td>
+               <td class="brilliantdiamond-true">0.99%</td>
+               <td class="shiningpearl-true">1.48%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Sun Stone</td>
+               <td class="brilliantdiamond-false">0.39%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Moon Stone</td>
+               <td class="brilliantdiamond-true">0.20%</td>
+               <td class="shiningpearl-true">0.39%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Fire Stone</td>
+               <td class="brilliantdiamond-false">0.39%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Thunder Stone</td>
+               <td class="brilliantdiamond-true">0.39%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Water Stone</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.39%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Leaf Stone</td>
+               <td class="brilliantdiamond-true">0.20%</td>
+               <td class="shiningpearl-true">0.39%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Everstone</td>
+               <td class="brilliantdiamond-false">0.39%</td>
+               <td class="shiningpearl-false">0.39%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Star Piece</td>
+               <td class="brilliantdiamond-true">0.20%</td>
+               <td class="shiningpearl-true">0.20%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Heart Scale</td>
+               <td class="brilliantdiamond-false">3.25%</td>
+               <td class="shiningpearl-false">3.26%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Rare Bone</td>
+               <td class="brilliantdiamond-true">0.20%</td>
+               <td class="shiningpearl-true">0.20%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Light Clay</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Iron Ball</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Icy Rock</td>
+               <td class="brilliantdiamond-false">0.20%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Smooth Rock</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.20%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Heat Rock</td>
+               <td class="brilliantdiamond-false">0.20%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Damp Rock</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.20%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Hard Stone</td>
+               <td class="brilliantdiamond-false">0.39%</td>
+               <td class="shiningpearl-false">0.39%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Flame Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Splash Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Zap Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Meadow Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Icicle Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Fist Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Toxic Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Earth Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Sky Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Mind Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Insect Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Stone Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Spooky Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Draco Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Dread Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Iron Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Pixie Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+         </tbody>
+      </table>
+      <table>
+         <caption>After Spear Pillar</caption>
+         <thead>
+            <tr>
+               <th class="light-true">Item</th>
+               <th class="brilliantdiamond-true">Brilliant Diamond</th>
+               <th class="shiningpearl-true">Shining Pearl</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td class="light-false">Red Sphere S</td>
+               <td class="brilliantdiamond-false">12.16%</td>
+               <td class="shiningpearl-false">14.90%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Blue Sphere S</td>
+               <td class="brilliantdiamond-true">14.96%</td>
+               <td class="shiningpearl-true">12.12%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Green Sphere S</td>
+               <td class="brilliantdiamond-false">10.57%</td>
+               <td class="shiningpearl-false">10.53%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Prism Sphere S</td>
+               <td class="brilliantdiamond-true">2.69%</td>
+               <td class="shiningpearl-true">1.99%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Pale Sphere S</td>
+               <td class="brilliantdiamond-false">1.99%</td>
+               <td class="shiningpearl-false">2.68%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Red Sphere L</td>
+               <td class="brilliantdiamond-true">6.08%</td>
+               <td class="shiningpearl-true">7.45%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Blue Sphere L</td>
+               <td class="brilliantdiamond-false">7.48%</td>
+               <td class="shiningpearl-false">6.06%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Green Sphere L</td>
+               <td class="brilliantdiamond-true">5.28%</td>
+               <td class="shiningpearl-true">5.26%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Prism Sphere L</td>
+               <td class="brilliantdiamond-false">1.30%</td>
+               <td class="shiningpearl-false">0.99%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Pale Sphere L</td>
+               <td class="brilliantdiamond-true">1.00%</td>
+               <td class="shiningpearl-true">1.29%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Revive</td>
+               <td class="brilliantdiamond-false">1.00%</td>
+               <td class="shiningpearl-false">0.99%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Max Revive</td>
+               <td class="brilliantdiamond-true">0.20%</td>
+               <td class="shiningpearl-true">0.20%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Red Shard</td>
+               <td class="brilliantdiamond-false">1.20%</td>
+               <td class="shiningpearl-false">2.18%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Blue Shard</td>
+               <td class="brilliantdiamond-true">2.49%</td>
+               <td class="shiningpearl-true">1.49%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Yellow Shard</td>
+               <td class="brilliantdiamond-false">2.19%</td>
+               <td class="shiningpearl-false">1.19%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Green Shard</td>
+               <td class="brilliantdiamond-true">1.20%</td>
+               <td class="shiningpearl-true">2.18%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Sun Stone</td>
+               <td class="brilliantdiamond-false">1.50%</td>
+               <td class="shiningpearl-false">0.30%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Moon Stone</td>
+               <td class="brilliantdiamond-true">0.30%</td>
+               <td class="shiningpearl-true">1.49%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Fire Stone</td>
+               <td class="brilliantdiamond-false">2.99%</td>
+               <td class="shiningpearl-false">0.50%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Thunder Stone</td>
+               <td class="brilliantdiamond-true">2.99%</td>
+               <td class="shiningpearl-true">0.50%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Water Stone</td>
+               <td class="brilliantdiamond-false">0.50%</td>
+               <td class="shiningpearl-false">2.98%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Leaf Stone</td>
+               <td class="brilliantdiamond-true">0.50%</td>
+               <td class="shiningpearl-true">2.98%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Everstone</td>
+               <td class="brilliantdiamond-false">1.99%</td>
+               <td class="shiningpearl-false">1.99%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Odd Keystone</td>
+               <td class="brilliantdiamond-true">0.40%</td>
+               <td class="shiningpearl-true">0.40%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Star Piece</td>
+               <td class="brilliantdiamond-false">1.00%</td>
+               <td class="shiningpearl-false">0.99%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Heart Scale</td>
+               <td class="brilliantdiamond-true">2.99%</td>
+               <td class="shiningpearl-true">2.98%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Root Fossil</td>
+               <td class="brilliantdiamond-false">0.40%</td>
+               <td class="shiningpearl-false">1.19%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Claw Fossil</td>
+               <td class="brilliantdiamond-true">1.20%</td>
+               <td class="shiningpearl-true">0.40%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Helix Fossil</td>
+               <td class="brilliantdiamond-false">1.20%</td>
+               <td class="shiningpearl-false">0.40%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Dome Fossil</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">1.29%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Old Amber</td>
+               <td class="brilliantdiamond-false">0.40%</td>
+               <td class="shiningpearl-false">0.40%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Rare Bone</td>
+               <td class="brilliantdiamond-true">1.00%</td>
+               <td class="shiningpearl-true">0.99%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Light Clay</td>
+               <td class="brilliantdiamond-false">0.50%</td>
+               <td class="shiningpearl-false">0.20%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Iron Ball</td>
+               <td class="brilliantdiamond-true">0.20%</td>
+               <td class="shiningpearl-true">0.50%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Icy Rock</td>
+               <td class="brilliantdiamond-false">1.10%</td>
+               <td class="shiningpearl-false">0.50%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Smooth Rock</td>
+               <td class="brilliantdiamond-true">0.50%</td>
+               <td class="shiningpearl-true">1.09%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Heat Rock</td>
+               <td class="brilliantdiamond-false">1.10%</td>
+               <td class="shiningpearl-false">0.50%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Damp Rock</td>
+               <td class="brilliantdiamond-true">0.50%</td>
+               <td class="shiningpearl-true">1.09%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Hard Stone</td>
+               <td class="brilliantdiamond-false">1.99%</td>
+               <td class="shiningpearl-false">1.99%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Flame Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Splash Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Zap Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Meadow Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Icicle Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Fist Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Toxic Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Earth Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Sky Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Mind Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Insect Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Stone Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Spooky Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Draco Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Dread Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Iron Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Pixie Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+         </tbody>
+      </table>
+      <table>
+         <caption>After National Dex</caption>
+         <thead>
+            <tr>
+               <th class="light-true">Item</th>
+               <th class="brilliantdiamond-true">Brilliant Diamond</th>
+               <th class="shiningpearl-true">Shining Pearl</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td class="light-false">Red Sphere S</td>
+               <td class="brilliantdiamond-false">11.70%</td>
+               <td class="shiningpearl-false">14.33%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Blue Sphere S</td>
+               <td class="brilliantdiamond-true">14.38%</td>
+               <td class="shiningpearl-true">11.65%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Green Sphere S</td>
+               <td class="brilliantdiamond-false">10.16%</td>
+               <td class="shiningpearl-false">10.12%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Prism Sphere S</td>
+               <td class="brilliantdiamond-true">2.59%</td>
+               <td class="shiningpearl-true">1.91%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Pale Sphere S</td>
+               <td class="brilliantdiamond-false">1.92%</td>
+               <td class="shiningpearl-false">2.58%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Red Sphere L</td>
+               <td class="brilliantdiamond-true">5.85%</td>
+               <td class="shiningpearl-true">7.16%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Blue Sphere L</td>
+               <td class="brilliantdiamond-false">7.19%</td>
+               <td class="shiningpearl-false">5.83%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Green Sphere L</td>
+               <td class="brilliantdiamond-true">5.08%</td>
+               <td class="shiningpearl-true">5.06%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Prism Sphere L</td>
+               <td class="brilliantdiamond-false">1.25%</td>
+               <td class="shiningpearl-false">0.96%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Pale Sphere L</td>
+               <td class="brilliantdiamond-true">0.96%</td>
+               <td class="shiningpearl-true">1.24%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Revive</td>
+               <td class="brilliantdiamond-false">0.96%</td>
+               <td class="shiningpearl-false">0.96%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Max Revive</td>
+               <td class="brilliantdiamond-true">0.19%</td>
+               <td class="shiningpearl-true">0.19%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Red Shard</td>
+               <td class="brilliantdiamond-false">1.15%</td>
+               <td class="shiningpearl-false">2.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Blue Shard</td>
+               <td class="brilliantdiamond-true">2.40%</td>
+               <td class="shiningpearl-true">1.43%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Yellow Shard</td>
+               <td class="brilliantdiamond-false">2.11%</td>
+               <td class="shiningpearl-false">1.15%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Green Shard</td>
+               <td class="brilliantdiamond-true">1.15%</td>
+               <td class="shiningpearl-true">2.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Sun Stone</td>
+               <td class="brilliantdiamond-false">1.44%</td>
+               <td class="shiningpearl-false">0.29%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Moon Stone</td>
+               <td class="brilliantdiamond-true">0.29%</td>
+               <td class="shiningpearl-true">1.43%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Fire Stone</td>
+               <td class="brilliantdiamond-false">2.88%</td>
+               <td class="shiningpearl-false">0.48%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Thunder Stone</td>
+               <td class="brilliantdiamond-true">2.88%</td>
+               <td class="shiningpearl-true">0.48%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Water Stone</td>
+               <td class="brilliantdiamond-false">0.48%</td>
+               <td class="shiningpearl-false">2.87%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Leaf Stone</td>
+               <td class="brilliantdiamond-true">0.48%</td>
+               <td class="shiningpearl-true">2.87%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Everstone</td>
+               <td class="brilliantdiamond-false">1.92%</td>
+               <td class="shiningpearl-false">1.91%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Odd Keystone</td>
+               <td class="brilliantdiamond-true">0.38%</td>
+               <td class="shiningpearl-true">0.38%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Star Piece</td>
+               <td class="brilliantdiamond-false">0.96%</td>
+               <td class="shiningpearl-false">0.96%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Heart Scale</td>
+               <td class="brilliantdiamond-true">2.88%</td>
+               <td class="shiningpearl-true">2.87%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Root Fossil</td>
+               <td class="brilliantdiamond-false">0.38%</td>
+               <td class="shiningpearl-false">1.15%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Claw Fossil</td>
+               <td class="brilliantdiamond-true">1.15%</td>
+               <td class="shiningpearl-true">0.38%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Helix Fossil</td>
+               <td class="brilliantdiamond-false">1.15%</td>
+               <td class="shiningpearl-false">0.38%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Dome Fossil</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">1.24%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Old Amber</td>
+               <td class="brilliantdiamond-false">0.38%</td>
+               <td class="shiningpearl-false">0.38%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Rare Bone</td>
+               <td class="brilliantdiamond-true">0.96%</td>
+               <td class="shiningpearl-true">0.96%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Light Clay</td>
+               <td class="brilliantdiamond-false">0.48%</td>
+               <td class="shiningpearl-false">0.19%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Iron Ball</td>
+               <td class="brilliantdiamond-true">0.19%</td>
+               <td class="shiningpearl-true">0.48%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Icy Rock</td>
+               <td class="brilliantdiamond-false">1.05%</td>
+               <td class="shiningpearl-false">0.48%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Smooth Rock</td>
+               <td class="brilliantdiamond-true">0.48%</td>
+               <td class="shiningpearl-true">1.05%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Heat Rock</td>
+               <td class="brilliantdiamond-false">1.05%</td>
+               <td class="shiningpearl-false">0.48%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Damp Rock</td>
+               <td class="brilliantdiamond-true">0.48%</td>
+               <td class="shiningpearl-true">1.05%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Mysterious Shard S</td>
+               <td class="brilliantdiamond-false">2.88%</td>
+               <td class="shiningpearl-false">2.87%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Mysterious Shard L</td>
+               <td class="brilliantdiamond-true">0.96%</td>
+               <td class="shiningpearl-true">0.96%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Hard Stone</td>
+               <td class="brilliantdiamond-false">1.92%</td>
+               <td class="shiningpearl-false">1.91%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Flame Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Splash Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Zap Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Meadow Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Icicle Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Fist Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Toxic Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Earth Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Sky Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Mind Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Insect Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Stone Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Spooky Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Draco Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Dread Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-false">Iron Plate</td>
+               <td class="brilliantdiamond-false">0.10%</td>
+               <td class="shiningpearl-false">0.10%</td>
+            </tr>
+            <tr>
+               <td class="light-true">Pixie Plate</td>
+               <td class="brilliantdiamond-true">0.10%</td>
+               <td class="shiningpearl-true">0.10%</td>
             </tr>
          </tbody>
       </table>
