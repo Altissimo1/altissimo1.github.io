@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Snowpoint Temple</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Sinnoh Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="dppt" type="radio" onclick="topButton.call(this)" name="games" value="DPPt" checked="checked">
+         <label for="dppt" class="right">DPPt</label>
+         <input id="bdsp" type="radio" onclick="topButton.call(this)" name="games" value="BDSP">
+         <label for="bdsp" class="right">BDSP</label>
+      </div>
+      <h2>Snowpoint Temple</h2>
+      <div id="notes" class="bottom">
+         <p id="dppt-notes" class="dppt">
+            <strong>Access to:</strong><br>
+            Exit on 1F: <a class="location-link" href="snowpoint-city.html">Snowpoint City</a><br><br>
+            <strong>Utility:</strong><br>
+            Strength is required to access a NeverMeltIce in Diamond and Pearl and a Full Heal in Platinum.
+         </p>
+         <p id="bdsp-notes" class="bdsp" style="display:none;">
+            <strong>Access to:</strong><br>
+            Exit on 1F: <a class="location-link" href="snowpoint-city.html">Snowpoint City</a><br><br>
+            <strong>Utility:</strong><br>
+            Strength is required to access a Never-Melt Ice.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-dppt-buttons" class="button-set dppt">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-diamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Diamond (Full)">
+                        <label for="pokemon-dppt-full-diamond">Diamond (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-diamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Diamond (Compressed)">
+                        <label for="pokemon-dppt-compressed-diamond">Diamond (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-pearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Pearl (Full)">
+                        <label for="pokemon-dppt-full-pearl">Pearl (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-pearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Pearl (Compressed)">
+                        <label for="pokemon-dppt-compressed-pearl">Pearl (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-platinum" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Platinum (Full)">
+                        <label for="pokemon-dppt-full-platinum">Platinum (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-platinum" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Platinum (Compressed)">
+                        <label for="pokemon-dppt-compressed-platinum">Platinum (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Combined (Full)">
+                        <label for="pokemon-dppt-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-dppt-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Separate (Full)">
+                        <label for="pokemon-dppt-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Separate (Compressed)">
+                        <label for="pokemon-dppt-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-bdsp-buttons" class="button-set bdsp" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-brilliantdiamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Brilliant Diamond (Full)">
+                        <label for="pokemon-bdsp-full-brilliantdiamond">Brilliant Diamond (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-brilliantdiamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Brilliant Diamond (Compressed)">
+                        <label for="pokemon-bdsp-compressed-brilliantdiamond">Brilliant Diamond (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-shiningpearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Shining Pearl (Full)">
+                        <label for="pokemon-bdsp-full-shiningpearl">Shining Pearl (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-shiningpearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Shining Pearl (Compressed)">
+                        <label for="pokemon-bdsp-compressed-shiningpearl">Shining Pearl (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Combined (Full)">
+                        <label for="pokemon-bdsp-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-bdsp-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Separate (Full)">
+                        <label for="pokemon-bdsp-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Separate (Compressed)">
+                        <label for="pokemon-bdsp-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-dppt" class="game-container dppt">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Graveler have a 5% chance of holding an Everstone.</li>
+                  <li>Wild Steelix have a 5% chance of holding a Metal Coat.</li>
+                  <li>Wild Sneasel have a 50% chance of holding a Grip Claw and a 5% chance of holding a Quick Claw.</li>
+                  <li>Wild Smoochum and Jynx always hold an Aspear Berry.</li>
+               </ul>
+               <div id="pokemon-dppt-static" class="table-collection static">
+                  <h4>Static</h4>
+                  <div id="pokemon-dppt-all-combined-static-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="3">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/regigigas.png" alt="Regigigas"></div>
+                              </td>
+                              <td class="light-false">Regigigas</td>
+                              <td class="light-false">70</td>
+                              <td class="diamond-false">D</td>
+                              <td class="pearl-false">P</td>
+                              <td class="light-false">Pt</td>
+                              <td class="light-false">On B5F. Only if the player has Regirock, Regice, and Registeel in the party.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/regigigas.png" alt="Regigigas"></div>
+                              </td>
+                              <td class="light-true">Regigigas</td>
+                              <td class="light-true">1</td>
+                              <td class="light-true">D</td>
+                              <td class="light-true">P</td>
+                              <td class="platinum-true">Pt</td>
+                              <td class="light-true">On B5F. Only if the player has Regirock, Regice, and Registeel in the party. If defeated or run from, it will reappear after defeating the Elite Four.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-dppt-all-diamond-static-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Diamond</caption>
+                        <thead>
+                           <tr class="diamond-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="diamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/regigigas.png" alt="Regigigas"></div>
+                              </td>
+                              <td>Regigigas</td>
+                              <td>70</td>
+                              <td>On B5F. Only if the player has Regirock, Regice, and Registeel in the party.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-dppt-all-pearl-static-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Pearl</caption>
+                        <thead>
+                           <tr class="pearl-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="pearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/regigigas.png" alt="Regigigas"></div>
+                              </td>
+                              <td>Regigigas</td>
+                              <td>70</td>
+                              <td>On B5F. Only if the player has Regirock, Regice, and Registeel in the party.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-dppt-all-platinum-static-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Platinum</caption>
+                        <thead>
+                           <tr class="platinum-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="platinum-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/regigigas.png" alt="Regigigas"></div>
+                              </td>
+                              <td>Regigigas</td>
+                              <td>1</td>
+                              <td>On B5F. Only if the player has Regirock, Regice, and Registeel in the party. If defeated or run from, it will reappear after defeating the Elite Four.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-bdsp" class="game-container bdsp" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Sneasel have a 5% chance of holding a Quick Claw.</li>
+                  <li>Wild Graveler have a 5% chance of holding an Everstone.</li>
+                  <li>Wild Steelix have a 5% chance of holding a Metal Coat.</li>
+               </ul>
+               <div id="pokemon-bdsp-walking" class="table-collection walking">
+                  <h4>Walking (1F)</h4>
+                  <div id="pokemon-bdsp-full-brilliantdiamond-walking-table-1f" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Full)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>51</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>51</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>51</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>50</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>50</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>50</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>50</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-shiningpearl-walking-table-1f" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Full)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>51</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>51</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>51</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>50</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>50</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>50</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>50</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-combined-walking-table-1f" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="brilliantdiamond-true" colspan="3">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="3">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">20%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Golbat</td>
+                              <td class="brilliantdiamond-false">lv. 51</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="shiningpearl-false">Golbat</td>
+                              <td class="shiningpearl-false">lv. 51</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">20%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Sneasel</td>
+                              <td class="brilliantdiamond-true">lv. 51</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="shiningpearl-true">Sneasel</td>
+                              <td class="shiningpearl-true">lv. 51</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Graveler</td>
+                              <td class="brilliantdiamond-false">lv. 52</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="shiningpearl-false">Graveler</td>
+                              <td class="shiningpearl-false">lv. 52</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Golbat</td>
+                              <td class="brilliantdiamond-true">lv. 52</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Golbat</td>
+                              <td class="shiningpearl-true">lv. 52</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Sneasel</td>
+                              <td class="brilliantdiamond-false">lv. 52</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="shiningpearl-false">Sneasel</td>
+                              <td class="shiningpearl-false">lv. 52</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Onix</td>
+                              <td class="brilliantdiamond-true">lv. 51</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="shiningpearl-true">Onix</td>
+                              <td class="shiningpearl-true">lv. 51</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">6</td>
+                              <td class="light-false">5%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Sneasel</td>
+                              <td class="brilliantdiamond-false">lv. 50</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="shiningpearl-false">Sneasel</td>
+                              <td class="shiningpearl-false">lv. 50</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">7</td>
+                              <td class="light-true">5%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Steelix</td>
+                              <td class="brilliantdiamond-true">lv. 52</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="shiningpearl-true">Steelix</td>
+                              <td class="shiningpearl-true">lv. 52</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">8</td>
+                              <td class="light-false">4%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Onix</td>
+                              <td class="brilliantdiamond-false">lv. 52</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="shiningpearl-false">Onix</td>
+                              <td class="shiningpearl-false">lv. 52</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">9</td>
+                              <td class="light-true">4%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Golbat</td>
+                              <td class="brilliantdiamond-true">lv. 50</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Golbat</td>
+                              <td class="shiningpearl-true">lv. 50</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">10</td>
+                              <td class="light-false">1%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Onix</td>
+                              <td class="brilliantdiamond-false">lv. 50</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="shiningpearl-false">Onix</td>
+                              <td class="shiningpearl-false">lv. 50</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">11</td>
+                              <td class="light-true">1%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Golbat</td>
+                              <td class="brilliantdiamond-true">lv. 50</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Golbat</td>
+                              <td class="shiningpearl-true">lv. 50</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-brilliantdiamond-walking-table-1f" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Compressed)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>35%</td>
+                              <td>50-52</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>35%</td>
+                              <td>50-52</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>15%</td>
+                              <td>50-52</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>10%</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>5%</td>
+                              <td>52</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-shiningpearl-walking-table-1f" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Compressed)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>35%</td>
+                              <td>50-52</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>35%</td>
+                              <td>50-52</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>15%</td>
+                              <td>50-52</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>10%</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>5%</td>
+                              <td>52</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-combined-walking-table-1f" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="brilliantdiamond-true" colspan="2">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="2">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="light-false">Golbat</td>
+                              <td class="brilliantdiamond-false">35%</td>
+                              <td class="brilliantdiamond-false">lv. 50-52</td>
+                              <td class="shiningpearl-false">35%</td>
+                              <td class="shiningpearl-false">lv. 50-52</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="light-true">Sneasel</td>
+                              <td class="brilliantdiamond-true">35%</td>
+                              <td class="brilliantdiamond-true">lv. 50-52</td>
+                              <td class="shiningpearl-true">35%</td>
+                              <td class="shiningpearl-true">lv. 50-52</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="light-false">Onix</td>
+                              <td class="brilliantdiamond-false">15%</td>
+                              <td class="brilliantdiamond-false">lv. 50-52</td>
+                              <td class="shiningpearl-false">15%</td>
+                              <td class="shiningpearl-false">lv. 50-52</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="light-true">Graveler</td>
+                              <td class="brilliantdiamond-true">10%</td>
+                              <td class="brilliantdiamond-true">lv. 52</td>
+                              <td class="shiningpearl-true">10%</td>
+                              <td class="shiningpearl-true">lv. 52</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="light-false">Steelix</td>
+                              <td class="brilliantdiamond-false">5%</td>
+                              <td class="brilliantdiamond-false">lv. 52</td>
+                              <td class="shiningpearl-false">5%</td>
+                              <td class="shiningpearl-false">lv. 52</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h4>Walking (B1F, B2F, and B3F)</h4>
+                  <div id="pokemon-bdsp-full-brilliantdiamond-walking-table-b1f" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Full)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>53</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>53</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>53</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>53</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>52</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-shiningpearl-walking-table-b1f" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Full)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>53</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>53</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>53</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>53</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>52</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>52</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-combined-walking-table-b1f" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="brilliantdiamond-true" colspan="3">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="3">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">20%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Golbat</td>
+                              <td class="brilliantdiamond-false">lv. 53</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="shiningpearl-false">Golbat</td>
+                              <td class="shiningpearl-false">lv. 53</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">20%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Sneasel</td>
+                              <td class="brilliantdiamond-true">lv. 53</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="shiningpearl-true">Sneasel</td>
+                              <td class="shiningpearl-true">lv. 53</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Graveler</td>
+                              <td class="brilliantdiamond-false">lv. 54</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="shiningpearl-false">Graveler</td>
+                              <td class="shiningpearl-false">lv. 54</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Golbat</td>
+                              <td class="brilliantdiamond-true">lv. 54</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Golbat</td>
+                              <td class="shiningpearl-true">lv. 54</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Sneasel</td>
+                              <td class="brilliantdiamond-false">lv. 54</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="shiningpearl-false">Sneasel</td>
+                              <td class="shiningpearl-false">lv. 54</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Steelix</td>
+                              <td class="brilliantdiamond-true">lv. 53</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="shiningpearl-true">Steelix</td>
+                              <td class="shiningpearl-true">lv. 53</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">6</td>
+                              <td class="light-false">5%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Sneasel</td>
+                              <td class="brilliantdiamond-false">lv. 52</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="shiningpearl-false">Sneasel</td>
+                              <td class="shiningpearl-false">lv. 52</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">7</td>
+                              <td class="light-true">5%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Steelix</td>
+                              <td class="brilliantdiamond-true">lv. 54</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="shiningpearl-true">Steelix</td>
+                              <td class="shiningpearl-true">lv. 54</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">8</td>
+                              <td class="light-false">4%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Onix</td>
+                              <td class="brilliantdiamond-false">lv. 53</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="shiningpearl-false">Onix</td>
+                              <td class="shiningpearl-false">lv. 53</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">9</td>
+                              <td class="light-true">4%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Golbat</td>
+                              <td class="brilliantdiamond-true">lv. 52</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Golbat</td>
+                              <td class="shiningpearl-true">lv. 52</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">10</td>
+                              <td class="light-false">1%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Onix</td>
+                              <td class="brilliantdiamond-false">lv. 52</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="shiningpearl-false">Onix</td>
+                              <td class="shiningpearl-false">lv. 52</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">11</td>
+                              <td class="light-true">1%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Golbat</td>
+                              <td class="brilliantdiamond-true">lv. 52</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Golbat</td>
+                              <td class="shiningpearl-true">lv. 52</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-brilliantdiamond-walking-table-b1f" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Compressed)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>35%</td>
+                              <td>52-54</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>35%</td>
+                              <td>52-54</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>15%</td>
+                              <td>53, 54</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>10%</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>5%</td>
+                              <td>52, 53</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-shiningpearl-walking-table-b1f" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Compressed)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>35%</td>
+                              <td>52-54</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>35%</td>
+                              <td>52-54</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>15%</td>
+                              <td>53, 54</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>10%</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>5%</td>
+                              <td>52, 53</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-combined-walking-table-b1f" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="brilliantdiamond-true" colspan="2">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="2">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="light-false">Golbat</td>
+                              <td class="brilliantdiamond-false">35%</td>
+                              <td class="brilliantdiamond-false">lv. 52-54</td>
+                              <td class="shiningpearl-false">35%</td>
+                              <td class="shiningpearl-false">lv. 52-54</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="light-true">Sneasel</td>
+                              <td class="brilliantdiamond-true">35%</td>
+                              <td class="brilliantdiamond-true">lv. 52-54</td>
+                              <td class="shiningpearl-true">35%</td>
+                              <td class="shiningpearl-true">lv. 52-54</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="light-false">Steelix</td>
+                              <td class="brilliantdiamond-false">15%</td>
+                              <td class="brilliantdiamond-false">lv. 53, 54</td>
+                              <td class="shiningpearl-false">15%</td>
+                              <td class="shiningpearl-false">lv. 53, 54</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="light-true">Graveler</td>
+                              <td class="brilliantdiamond-true">10%</td>
+                              <td class="brilliantdiamond-true">lv. 54</td>
+                              <td class="shiningpearl-true">10%</td>
+                              <td class="shiningpearl-true">lv. 54</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="light-false">Onix</td>
+                              <td class="brilliantdiamond-false">5%</td>
+                              <td class="brilliantdiamond-false">lv. 52, 53</td>
+                              <td class="shiningpearl-false">5%</td>
+                              <td class="shiningpearl-false">lv. 52, 53</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h4>Walking (B4F and B5F)</h4>
+                  <div id="pokemon-bdsp-full-brilliantdiamond-walking-table-b4f" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Full)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>55</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>55</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>56</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>56</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>56</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>55</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>56</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>54</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-shiningpearl-walking-table-b4f" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Full)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>55</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>55</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>56</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>56</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>56</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>55</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>56</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>54</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>54</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-combined-walking-table-b4f" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="brilliantdiamond-true" colspan="3">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="3">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">20%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Golbat</td>
+                              <td class="brilliantdiamond-false">lv. 55</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="shiningpearl-false">Golbat</td>
+                              <td class="shiningpearl-false">lv. 55</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">20%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Sneasel</td>
+                              <td class="brilliantdiamond-true">lv. 55</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="shiningpearl-true">Sneasel</td>
+                              <td class="shiningpearl-true">lv. 55</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Graveler</td>
+                              <td class="brilliantdiamond-false">lv. 56</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="shiningpearl-false">Graveler</td>
+                              <td class="shiningpearl-false">lv. 56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Golbat</td>
+                              <td class="brilliantdiamond-true">lv. 56</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Golbat</td>
+                              <td class="shiningpearl-true">lv. 56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Sneasel</td>
+                              <td class="brilliantdiamond-false">lv. 56</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="shiningpearl-false">Sneasel</td>
+                              <td class="shiningpearl-false">lv. 56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Steelix</td>
+                              <td class="brilliantdiamond-true">lv. 55</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="shiningpearl-true">Steelix</td>
+                              <td class="shiningpearl-true">lv. 55</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">6</td>
+                              <td class="light-false">5%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Sneasel</td>
+                              <td class="brilliantdiamond-false">lv. 54</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="shiningpearl-false">Sneasel</td>
+                              <td class="shiningpearl-false">lv. 54</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">7</td>
+                              <td class="light-true">5%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Steelix</td>
+                              <td class="brilliantdiamond-true">lv. 56</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="shiningpearl-true">Steelix</td>
+                              <td class="shiningpearl-true">lv. 56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">8</td>
+                              <td class="light-false">4%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Steelix</td>
+                              <td class="brilliantdiamond-false">lv. 54</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="shiningpearl-false">Steelix</td>
+                              <td class="shiningpearl-false">lv. 54</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">9</td>
+                              <td class="light-true">4%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Golbat</td>
+                              <td class="brilliantdiamond-true">lv. 54</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Golbat</td>
+                              <td class="shiningpearl-true">lv. 54</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">10</td>
+                              <td class="light-false">1%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Steelix</td>
+                              <td class="brilliantdiamond-false">lv. 54</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="shiningpearl-false">Steelix</td>
+                              <td class="shiningpearl-false">lv. 54</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">11</td>
+                              <td class="light-true">1%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Golbat</td>
+                              <td class="brilliantdiamond-true">lv. 54</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Golbat</td>
+                              <td class="shiningpearl-true">lv. 54</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-brilliantdiamond-walking-table-b4f" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Compressed)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>35%</td>
+                              <td>54-56</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>35%</td>
+                              <td>54-56</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>20%</td>
+                              <td>54-56</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>10%</td>
+                              <td>56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-shiningpearl-walking-table-b4f" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Compressed)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td>Golbat</td>
+                              <td>35%</td>
+                              <td>54-56</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>35%</td>
+                              <td>54-56</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td>Steelix</td>
+                              <td>20%</td>
+                              <td>54-56</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td>Graveler</td>
+                              <td>10%</td>
+                              <td>56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-combined-walking-table-b4f" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="brilliantdiamond-true" colspan="2">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="2">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golbat-f.png" alt="Golbat"></div>
+                              </td>
+                              <td class="light-false">Golbat</td>
+                              <td class="brilliantdiamond-false">35%</td>
+                              <td class="brilliantdiamond-false">lv. 54-56</td>
+                              <td class="shiningpearl-false">35%</td>
+                              <td class="shiningpearl-false">lv. 54-56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="light-true">Sneasel</td>
+                              <td class="brilliantdiamond-true">35%</td>
+                              <td class="brilliantdiamond-true">lv. 54-56</td>
+                              <td class="shiningpearl-true">35%</td>
+                              <td class="shiningpearl-true">lv. 54-56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
+                              </td>
+                              <td class="light-false">Steelix</td>
+                              <td class="brilliantdiamond-false">20%</td>
+                              <td class="brilliantdiamond-false">lv. 54-56</td>
+                              <td class="shiningpearl-false">20%</td>
+                              <td class="shiningpearl-false">lv. 54-56</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/graveler.png" alt="Graveler"></div>
+                              </td>
+                              <td class="light-true">Graveler</td>
+                              <td class="brilliantdiamond-true">10%</td>
+                              <td class="brilliantdiamond-true">lv. 56</td>
+                              <td class="shiningpearl-true">10%</td>
+                              <td class="shiningpearl-true">lv. 56</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <div id="pokemon-bdsp-static" class="table-collection static">
+                  <h4>Static</h4>
+                  <div id="pokemon-bdsp-all-combined-static-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/regigigas.png" alt="Regigigas"></div>
+                              </td>
+                              <td class="light-false">Regigigas</td>
+                              <td class="light-false">70</td>
+                              <td class="brilliantdiamond-false">BD</td>
+                              <td class="shiningpearl-false">SP</td>
+                              <td class="light-false">On B5F. Only if the player has Regirock, Regice, and Registeel in the party. If defeated or run from, it reappears after defeating the Elite Four.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-all-brilliantdiamond-static-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/regigigas.png" alt="Regigigas"></div>
+                              </td>
+                              <td>Regigigas</td>
+                              <td>70</td>
+                              <td>On B5F. Only if the player has Regirock, Regice, and Registeel in the party. If defeated or run from, it reappears after defeating the Elite Four.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-all-shiningpearl-static-table" class="pokemon-table all" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/regigigas.png" alt="Regigigas"></div>
+                              </td>
+                              <td>Regigigas</td>
+                              <td>70</td>
+                              <td>On B5F. Only if the player has Regirock, Regice, and Registeel in the party. If defeated or run from, it reappears after defeating the Elite Four.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-dppt-items" class="game-container dppt">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Calcium</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">On B1F, in the southeast</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">On B3F, on the rock between the stairs</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">NeverMeltIce</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">On B4F, to the south</td>
+                     <td class="light-false">Requires Strength.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Heal</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">On B4F, to the south</td>
+                     <td class="light-true">Requires Strength.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-bdsp-items" class="game-container bdsp" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Calcium</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">On B1F, in the southeast</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">On B3F, on the rock between the stairs</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Never-Melt Ice</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">On B4F, to the south</td>
+                     <td class="light-false">Requires Strength.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

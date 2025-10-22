@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Trophy Garden</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Sinnoh Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="dppt" type="radio" onclick="topButton.call(this)" name="games" value="DPPt" checked="checked">
+         <label for="dppt" class="right">DPPt</label>
+         <input id="bdsp" type="radio" onclick="topButton.call(this)" name="games" value="BDSP">
+         <label for="bdsp" class="right">BDSP</label>
+      </div>
+      <h2>Trophy Garden</h2>
+      <div id="notes" class="bottom">
+         <p id="dppt-notes" class="dppt">
+            <strong>Access to:</strong><br>
+            Southern exit: <a class="location-link" href="pokemon-mansion.html">Pokémon Mansion</a><br><br>
+            <strong>Places of interest:</strong><br>
+            The wild Pokémon found here can be changed by speaking to Mr. Backlot. The exact mechanics are described below.
+         </p>
+         <p id="bdsp-notes" class="bdsp" style="display:none;">
+            <strong>Access to:</strong><br>
+            Southern exit: <a class="location-link" href="pokemon-mansion.html">Pokémon Mansion</a><br><br>
+            <strong>Places of interest:</strong><br>
+            The wild Pokémon found here can be changed by speaking to Mr. Backlot. The exact mechanics are described below.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-dppt-buttons" class="button-set dppt">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-diamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Diamond (Full)">
+                        <label for="pokemon-dppt-full-diamond">Diamond (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-diamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Diamond (Compressed)">
+                        <label for="pokemon-dppt-compressed-diamond">Diamond (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-pearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Pearl (Full)">
+                        <label for="pokemon-dppt-full-pearl">Pearl (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-pearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Pearl (Compressed)">
+                        <label for="pokemon-dppt-compressed-pearl">Pearl (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-platinum" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Platinum (Full)">
+                        <label for="pokemon-dppt-full-platinum">Platinum (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-platinum" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Platinum (Compressed)">
+                        <label for="pokemon-dppt-compressed-platinum">Platinum (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Combined (Full)">
+                        <label for="pokemon-dppt-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-dppt-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Separate (Full)">
+                        <label for="pokemon-dppt-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Separate (Compressed)">
+                        <label for="pokemon-dppt-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-bdsp-buttons" class="button-set bdsp" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-brilliantdiamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Brilliant Diamond (Full)">
+                        <label for="pokemon-bdsp-full-brilliantdiamond">Brilliant Diamond (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-brilliantdiamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Brilliant Diamond (Compressed)">
+                        <label for="pokemon-bdsp-compressed-brilliantdiamond">Brilliant Diamond (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-shiningpearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Shining Pearl (Full)">
+                        <label for="pokemon-bdsp-full-shiningpearl">Shining Pearl (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-shiningpearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Shining Pearl (Compressed)">
+                        <label for="pokemon-bdsp-compressed-shiningpearl">Shining Pearl (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Combined (Full)">
+                        <label for="pokemon-bdsp-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-bdsp-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Separate (Full)">
+                        <label for="pokemon-bdsp-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Separate (Compressed)">
+                        <label for="pokemon-bdsp-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-dppt" class="game-container dppt">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Staravia have a 5% chance of holding a Yache Berry.</li>
+                  <li>Wild Roselia have a 5% chance of holding a Poison Barb.</li>
+                  <li>Wild Pichu have a 5% chance of holding an Oran Berry.</li>
+                  <li>Wild Kricketune have a 5% chance of holding a Metronome.</li>
+                  <li>Wild Pikachu have a 50% chance of holding an Oran Berry and a 5% chance of holding a Light Ball.</li>
+                  <li>Wild Cleffa and Clefairy have a 50% chance of holding a Leppa Berry and a 5% chance of holding a Moon Stone.</li>
+                  <li>Wild Meowth have a 5% chance of holding a Quick Claw.</li>
+                  <li>Wild Happiny have a 50% chance of holding an Oval Stone and a 5% chance of holding a Lucky Punch.</li>
+                  <li>Wild Chansey have a 50% chance of holding an Oval Stone and a 5% chance of holding a Lucky Egg.</li>
+                  <li>Wild Ditto have a 50% chance of holding Quick Powder and a 5% chance of holding Metal Powder.</li>
+                  <li>Wild Castform always hold Mystic Water.</li>
+                  <li>Wild Mime Jr. have a 5% chance of holding a Leppa Berry.</li>
+               </ul>
+               <p class="dppt">After obtaining the National Dex, the player can speak to Mr. Backlot inside the Pokémon Mansion. He will mention a species of Pokémon that he saw in the Trophy Garden, and that species will be added to the garden. If the player speaks to him again after 24 hours have passed, he will mention a second species, and that species will be added to the garden alongside the first species. If the player speaks to him a third time, the species of Pokémon he mentions will replace the first species that was placed in the garden, and so on. He will never mention a species of Pokémon that exists currently in the garden.</p>
+               <p class="dppt">The first Pokémon added to the garden this way will replace slot 6 (in reference to the "Full" version of the encounter table above). When a second Pokémon is added, the first Pokémon will move to slot 7, and the second Pokémon will be placed in slot 6. Any subsequent Pokémon will be added to slot 6 first in this way. This has the effect of giving each special Pokémon a 5% chance and reducing the appearance rate of Pikachu and Pichu by 5% each. The Pokémon will have the same level as the slot that it replaces: 18 (slot 6) or 16 (slot 7) in Diamond and Pearl and 22 for both slots in Platinum.</p>
+               <p class="dppt">Any Pokémon added to the garden this way will remain in the garden until the player replaces it by speaking to Mr. Backlot twice after it is added.</p>
+               <p class="dppt">The list of available Pokémon is shown below.</p>
+               <table>
+                  <tbody>
+                     <tr class="light-true">
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/cleffa.png" alt="Cleffa"></div>
+                        </td>
+                        <td>Cleffa</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/clefairy.png" alt="Clefairy"></div>
+                        </td>
+                        <td>Clefairy</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/igglybuff.png" alt="Igglybuff"></div>
+                        </td>
+                        <td>Igglybuff</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/jigglypuff.png" alt="Jigglypuff"></div>
+                        </td>
+                        <td>Jigglypuff</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/meowth.png" alt="Meowth"></div>
+                        </td>
+                        <td>Meowth</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/happiny.png" alt="Happiny"></div>
+                        </td>
+                        <td>Happiny</td>
+                     </tr>
+                     <tr class="light-false">
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/chansey.png" alt="Chansey"></div>
+                        </td>
+                        <td>Chansey</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/porygon.png" alt="Porygon"></div>
+                        </td>
+                        <td>Porygon<br>(Diamond/Pearl)</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/ditto.png" alt="Ditto"></div>
+                        </td>
+                        <td>Ditto<br>(Platinum)</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/eevee-f.png" alt="Eevee"></div>
+                        </td>
+                        <td>Eevee</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/azurill.png" alt="Azurill"></div>
+                        </td>
+                        <td>Azurill</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/marill.png" alt="Marill"></div>
+                        </td>
+                        <td>Marill</td>
+                     </tr>
+                     <tr class="light-true">
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                        </td>
+                        <td>Plusle</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/minun.png" alt="Minun"></div>
+                        </td>
+                        <td>Minun</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/castform.png" alt="Castform"></div>
+                        </td>
+                        <td>Castform</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bonsly.png" alt="Bonsly"></div>
+                        </td>
+                        <td>Bonsly</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/mime-jr.png" alt="Mime Jr."></div>
+                        </td>
+                        <td>Mime Jr.</td>
+                        <td colspan="2"></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div id="pokemon-bdsp" class="game-container bdsp" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Roselia have a 5% chance of holding a Poison Barb.</li>
+                  <li>Wild Kricketune have a 5% chance of holding a Metronome.</li>
+                  <li>Wild Pikachu have a 5% chance of holding a Light Ball.</li>
+                  <li>Wild Cleffa, Clefairy, and Jigglypuff have a 5% chance of holding a Moon Stone.</li>
+                  <li>Wild Meowth have a 5% chance of holding a Quick Claw.</li>
+                  <li>Wild Castform always hold Mystic Water.</li>
+                  <li>Wild Happiny have a 50% chance of holding an Oval Stone.</li>
+               </ul>
+               <div id="pokemon-bdsp-walking" class="table-collection walking">
+                  <h4>Walking</h4>
+                  <div id="pokemon-bdsp-full-brilliantdiamond-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Full)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Condition(s)</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td>Staravia</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/roselia-f.png" alt="Roselia"></div>
+                              </td>
+                              <td>Roselia</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td rowspan="3">2</td>
+                              <td rowspan="3">10%</td>
+                              <td>Morning</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td>Pichu</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td>Staravia</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td>Kricketune</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td rowspan="3">3</td>
+                              <td rowspan="3">10%</td>
+                              <td>Morning</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td>Pichu</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td>Staravia</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td>Kricketune</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/roselia-f.png" alt="Roselia"></div>
+                              </td>
+                              <td>Roselia</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td>Kricketune</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td>Pikachu</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td>Pichu</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td>Pikachu</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td>Pichu</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td>Pikachu</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td>Pichu</td>
+                              <td>16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-shiningpearl-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Full)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Condition(s)</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td>Staravia</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/roselia-f.png" alt="Roselia"></div>
+                              </td>
+                              <td>Roselia</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td rowspan="3">2</td>
+                              <td rowspan="3">10%</td>
+                              <td>Morning</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td>Pichu</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td>Staravia</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td>Kricketune</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td rowspan="3">3</td>
+                              <td rowspan="3">10%</td>
+                              <td>Morning</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td>Pichu</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td>Staravia</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td>Kricketune</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/roselia-f.png" alt="Roselia"></div>
+                              </td>
+                              <td>Roselia</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td>Kricketune</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td>Pikachu</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td>Pichu</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td>Pikachu</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td>Pichu</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td>Pikachu</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td>Pichu</td>
+                              <td>16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-combined-walking-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="light-true">Condition(s)</th>
+                              <th class="brilliantdiamond-true" colspan="3">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="3">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">20%</td>
+                              <td class="light-false">Anytime</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Staravia</td>
+                              <td class="brilliantdiamond-false">lv. 17</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td class="shiningpearl-false">Staravia</td>
+                              <td class="shiningpearl-false">lv. 17</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">20%</td>
+                              <td class="light-true">Anytime</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/roselia-f.png" alt="Roselia"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Roselia</td>
+                              <td class="brilliantdiamond-true">lv. 16</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/roselia-f.png" alt="Roselia"></div>
+                              </td>
+                              <td class="shiningpearl-true">Roselia</td>
+                              <td class="shiningpearl-true">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td rowspan="3" class="light-false">2</td>
+                              <td rowspan="3" class="light-false">10%</td>
+                              <td class="light-false">Morning</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Pichu</td>
+                              <td class="brilliantdiamond-false">lv. 16</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td class="shiningpearl-false">Pichu</td>
+                              <td class="shiningpearl-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Day</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Staravia</td>
+                              <td class="brilliantdiamond-false">lv. 16</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td class="shiningpearl-false">Staravia</td>
+                              <td class="shiningpearl-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Night</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Kricketune</td>
+                              <td class="brilliantdiamond-false">lv. 16</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td class="shiningpearl-false">Kricketune</td>
+                              <td class="shiningpearl-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td rowspan="3" class="light-true">3</td>
+                              <td rowspan="3" class="light-true">10%</td>
+                              <td class="light-true">Morning</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Pichu</td>
+                              <td class="brilliantdiamond-true">lv. 16</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td class="shiningpearl-true">Pichu</td>
+                              <td class="shiningpearl-true">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Day</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Staravia</td>
+                              <td class="brilliantdiamond-true">lv. 16</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td class="shiningpearl-true">Staravia</td>
+                              <td class="shiningpearl-true">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Night</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Kricketune</td>
+                              <td class="brilliantdiamond-true">lv. 16</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td class="shiningpearl-true">Kricketune</td>
+                              <td class="shiningpearl-true">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">10%</td>
+                              <td class="light-false">Anytime</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/roselia-f.png" alt="Roselia"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Roselia</td>
+                              <td class="brilliantdiamond-false">lv. 17</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/roselia-f.png" alt="Roselia"></div>
+                              </td>
+                              <td class="shiningpearl-false">Roselia</td>
+                              <td class="shiningpearl-false">lv. 17</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">10%</td>
+                              <td class="light-true">Anytime</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Kricketune</td>
+                              <td class="brilliantdiamond-true">lv. 17</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td class="shiningpearl-true">Kricketune</td>
+                              <td class="shiningpearl-true">lv. 17</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">6</td>
+                              <td class="light-false">5%</td>
+                              <td class="light-false">Anytime</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Pikachu</td>
+                              <td class="brilliantdiamond-false">lv. 18</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td class="shiningpearl-false">Pikachu</td>
+                              <td class="shiningpearl-false">lv. 18</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">7</td>
+                              <td class="light-true">5%</td>
+                              <td class="light-true">Anytime</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Pichu</td>
+                              <td class="brilliantdiamond-true">lv. 16</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td class="shiningpearl-true">Pichu</td>
+                              <td class="shiningpearl-true">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">8</td>
+                              <td class="light-false">4%</td>
+                              <td class="light-false">Anytime</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Pikachu</td>
+                              <td class="brilliantdiamond-false">lv. 18</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td class="shiningpearl-false">Pikachu</td>
+                              <td class="shiningpearl-false">lv. 18</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">9</td>
+                              <td class="light-true">4%</td>
+                              <td class="light-true">Anytime</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Pichu</td>
+                              <td class="brilliantdiamond-true">lv. 16</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td class="shiningpearl-true">Pichu</td>
+                              <td class="shiningpearl-true">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">10</td>
+                              <td class="light-false">1%</td>
+                              <td class="light-false">Anytime</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Pikachu</td>
+                              <td class="brilliantdiamond-false">lv. 18</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td class="shiningpearl-false">Pikachu</td>
+                              <td class="shiningpearl-false">lv. 18</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">11</td>
+                              <td class="light-true">1%</td>
+                              <td class="light-true">Anytime</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Pichu</td>
+                              <td class="brilliantdiamond-true">lv. 16</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td class="shiningpearl-true">Pichu</td>
+                              <td class="shiningpearl-true">lv. 16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-brilliantdiamond-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Compressed)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                              <th>Condition(s)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td rowspan="2">Staravia</td>
+                              <td>20%</td>
+                              <td>17</td>
+                              <td>Morning, Night</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>40%</td>
+                              <td>16, 17</td>
+                              <td>Day</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/roselia-f.png" alt="Roselia"></div>
+                              </td>
+                              <td>Roselia</td>
+                              <td>30%</td>
+                              <td>16, 17</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td rowspan="2">Pichu</td>
+                              <td>30%</td>
+                              <td>16</td>
+                              <td>Morning</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>10%</td>
+                              <td>16</td>
+                              <td>Day, Night</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td rowspan="2">Kricketune</td>
+                              <td>10%</td>
+                              <td>17</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>30%</td>
+                              <td>16, 17</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td>Pikachu</td>
+                              <td>10%</td>
+                              <td>18</td>
+                              <td>Anytime</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-shiningpearl-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Compressed)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                              <th>Condition(s)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td rowspan="2">Staravia</td>
+                              <td>20%</td>
+                              <td>17</td>
+                              <td>Morning, Night</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>40%</td>
+                              <td>16, 17</td>
+                              <td>Day</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/roselia-f.png" alt="Roselia"></div>
+                              </td>
+                              <td>Roselia</td>
+                              <td>30%</td>
+                              <td>16, 17</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td rowspan="2">Pichu</td>
+                              <td>30%</td>
+                              <td>16</td>
+                              <td>Morning</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>10%</td>
+                              <td>16</td>
+                              <td>Day, Night</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td rowspan="2">Kricketune</td>
+                              <td>10%</td>
+                              <td>17</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>30%</td>
+                              <td>16, 17</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td>Pikachu</td>
+                              <td>10%</td>
+                              <td>18</td>
+                              <td>Anytime</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-combined-walking-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="brilliantdiamond-true" colspan="2">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="2">Shining Pearl</th>
+                              <th class="light-true">Condition(s)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false" rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/staravia-f.png" alt="Staravia"></div>
+                              </td>
+                              <td class="light-false" rowspan="2">Staravia</td>
+                              <td class="brilliantdiamond-false">20%</td>
+                              <td class="brilliantdiamond-false">lv. 17</td>
+                              <td class="shiningpearl-false">20%</td>
+                              <td class="shiningpearl-false">lv. 17</td>
+                              <td class="light-false">Morning, Night</td>
+                           </tr>
+                           <tr>
+                              <td class="brilliantdiamond-false">40%</td>
+                              <td class="brilliantdiamond-false">lv. 16, 17</td>
+                              <td class="shiningpearl-false">40%</td>
+                              <td class="shiningpearl-false">lv. 16, 17</td>
+                              <td class="light-false">Day</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/roselia-f.png" alt="Roselia"></div>
+                              </td>
+                              <td class="light-true">Roselia</td>
+                              <td class="brilliantdiamond-true">30%</td>
+                              <td class="brilliantdiamond-true">lv. 16, 17</td>
+                              <td class="shiningpearl-true">30%</td>
+                              <td class="shiningpearl-true">lv. 16, 17</td>
+                              <td class="light-true">Anytime</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false" rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/pichu.png" alt="Pichu"></div>
+                              </td>
+                              <td class="light-false" rowspan="2">Pichu</td>
+                              <td class="brilliantdiamond-false">30%</td>
+                              <td class="brilliantdiamond-false">lv. 16</td>
+                              <td class="shiningpearl-false">30%</td>
+                              <td class="shiningpearl-false">lv. 16</td>
+                              <td class="light-false">Morning</td>
+                           </tr>
+                           <tr>
+                              <td class="brilliantdiamond-false">10%</td>
+                              <td class="brilliantdiamond-false">lv. 16</td>
+                              <td class="shiningpearl-false">10%</td>
+                              <td class="shiningpearl-false">lv. 16</td>
+                              <td class="light-false">Day, Night</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true" rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
+                              </td>
+                              <td class="light-true" rowspan="2">Kricketune</td>
+                              <td class="brilliantdiamond-true">10%</td>
+                              <td class="brilliantdiamond-true">lv. 17</td>
+                              <td class="shiningpearl-true">10%</td>
+                              <td class="shiningpearl-true">lv. 17</td>
+                              <td class="light-true">Morning, Day</td>
+                           </tr>
+                           <tr>
+                              <td class="brilliantdiamond-true">30%</td>
+                              <td class="brilliantdiamond-true">lv. 16, 17</td>
+                              <td class="shiningpearl-true">30%</td>
+                              <td class="shiningpearl-true">lv. 16, 17</td>
+                              <td class="light-true">Night</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
+                              </td>
+                              <td class="light-false">Pikachu</td>
+                              <td class="brilliantdiamond-false">10%</td>
+                              <td class="brilliantdiamond-false">lv. 18</td>
+                              <td class="shiningpearl-false">10%</td>
+                              <td class="shiningpearl-false">lv. 18</td>
+                              <td class="light-false">Anytime</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               <p class="bdsp">After obtaining the National Dex, the player can speak to Mr. Backlot inside the Pokémon Mansion. He will mention the first species of Pokémon shown in the table below, and that species will be added to the garden. If the player speaks to him again after 24 hours have passed, he will mention the second species, and that species will be added to the garden alongside the first species. If the player speaks to him a third time, the third species in the table will replace the first species, and so on. When the end of the table is reached, the cycle will begin again.</p>
+               <p class="bdsp">The first Pokémon added to the garden this way will replace slot 6 (in reference to the "Full" version of the encounter table above). When a second Pokémon is added, the first Pokémon will move to slot 7, and the second Pokémon will be placed in slot 6. Any subsequent Pokémon will be added to slot 6 first in this way. This has the effect of giving each special Pokémon a 5% chance and reducing the appearance rate of Pikachu and Pichu by 5% each. The Pokémon will have the same level as the slot that it replaces: 18 for slot 6 and 16 for slot 7.</p>
+               <p class="bdsp">Any Pokémon added to the garden this way will remain in the garden until the player replaces it by speaking to Mr. Backlot twice after it is added.</p>
+               <p class="bdsp">The list of available Pokémon is shown below.</p>
+               <table>
+                  <tbody>
+                     <tr class="light-true">
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/clefairy.png" alt="Clefairy"></div>
+                        </td>
+                        <td>Clefairy</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/jigglypuff.png" alt="Jigglypuff"></div>
+                        </td>
+                        <td>Jigglypuff</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/meowth.png" alt="Meowth"></div>
+                        </td>
+                        <td>Meowth</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/chansey.png" alt="Chansey"></div>
+                        </td>
+                        <td>Chansey</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/eevee-f.png" alt="Eevee"></div>
+                        </td>
+                        <td>Eevee</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/porygon.png" alt="Porygon"></div>
+                        </td>
+                        <td>Porygon</td>
+                     </tr>
+                     <tr class="light-false">
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/cleffa.png" alt="Cleffa"></div>
+                        </td>
+                        <td>Cleffa</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/igglybuff.png" alt="Igglybuff"></div>
+                        </td>
+                        <td>Igglybuff</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/marill.png" alt="Marill"></div>
+                        </td>
+                        <td>Marill</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/azurill.png" alt="Azurill"></div>
+                        </td>
+                        <td>Azurill</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/plusle.png" alt="Plusle"></div>
+                        </td>
+                        <td>Plusle</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/minun.png" alt="Minun"></div>
+                        </td>
+                        <td>Minun</td>
+                     </tr>
+                     <tr class="light-true">
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/castform.png" alt="Castform"></div>
+                        </td>
+                        <td>Castform</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bonsly.png" alt="Bonsly"></div>
+                        </td>
+                        <td>Bonsly</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/mime-jr.png" alt="Mime Jr."></div>
+                        </td>
+                        <td>Mime Jr.</td>
+                        <td>
+                           <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/happiny.png" alt="Happiny"></div>
+                        </td>
+                        <td>Happiny</td>
+                        <td colspan="4"></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

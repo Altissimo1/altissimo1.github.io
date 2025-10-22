@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Wayward Cave</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/game-sets.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script src="../javascript/conditions.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Sinnoh Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="dppt" type="radio" onclick="topButton.call(this)" name="games" value="DPPt" checked="checked">
+         <label for="dppt" class="right">DPPt</label>
+         <input id="bdsp" type="radio" onclick="topButton.call(this)" name="games" value="BDSP">
+         <label for="bdsp" class="right">BDSP</label>
+      </div>
+      <h2>Wayward Cave</h2>
+      <div id="notes" class="bottom">
+         <p id="dppt-notes" class="dppt">
+            <strong>Access to:</strong><br>
+            Exits on 1F: <a class="location-link" href="route-206.html">Route 206</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Mira is located at the northern dead end in the main area of the cave. She will request to accompany the player to the exit. Every wild and Trainer battle that the player engages in while she is present will be a Double Battle. She has a level 18 (Diamond/Pearl) or 26 (Platinum) Kadabra. The player's Pokémon will be healed after every encounter while she is present.<br><br>
+            <strong>Utility:</strong><br>
+            Cut is required to access both entrances to the cave.<br>
+            Rock Smash is required to navigate the main area of the cave.<br>
+            The Bicycle is required to navigate the secret area of the cave.<br>
+            In Diamond and Pearl, Strength is required to access B1F of the secret area of the cave.<br>
+            Flash is recommended in the main area of the cave.
+         </p>
+         <p id="bdsp-notes" class="bdsp" style="display:none;">
+            <strong>Access to:</strong><br>
+            Exits on 1F: <a class="location-link" href="route-206.html">Route 206</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Mira is located at the northern dead end in the main area of the cave. She will request to accompany the player to the exit. Every wild and Trainer battle that the player engages in while she is present will be a Double Battle. She has a level 18 Kadabra. The player's Pokémon will be healed after every encounter while she is present.<br><br>
+            <strong>Utility:</strong><br>
+            Cut is required to access both entrances to the cave.<br>
+            Rock Smash is required to navigate the main area of the cave.<br>
+            The Bicycle is required to navigate the secret area of the cave.<br>
+            Strength is required to access B1F of the secret area of the cave.<br>
+            Flash is recommended in the main area of the cave.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-dppt-buttons" class="button-set dppt">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-diamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Diamond (Full)">
+                        <label for="pokemon-dppt-full-diamond">Diamond (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-diamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Diamond (Compressed)">
+                        <label for="pokemon-dppt-compressed-diamond">Diamond (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-pearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Pearl (Full)">
+                        <label for="pokemon-dppt-full-pearl">Pearl (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-pearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Pearl (Compressed)">
+                        <label for="pokemon-dppt-compressed-pearl">Pearl (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-platinum" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Platinum (Full)">
+                        <label for="pokemon-dppt-full-platinum">Platinum (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-platinum" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Platinum (Compressed)">
+                        <label for="pokemon-dppt-compressed-platinum">Platinum (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Combined (Full)">
+                        <label for="pokemon-dppt-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-dppt-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-dppt-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Separate (Full)">
+                        <label for="pokemon-dppt-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-dppt-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Separate (Compressed)">
+                        <label for="pokemon-dppt-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-bdsp-buttons" class="button-set bdsp" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-brilliantdiamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Brilliant Diamond (Full)">
+                        <label for="pokemon-bdsp-full-brilliantdiamond">Brilliant Diamond (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-brilliantdiamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Brilliant Diamond (Compressed)">
+                        <label for="pokemon-bdsp-compressed-brilliantdiamond">Brilliant Diamond (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-shiningpearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Shining Pearl (Full)">
+                        <label for="pokemon-bdsp-full-shiningpearl">Shining Pearl (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-shiningpearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Shining Pearl (Compressed)">
+                        <label for="pokemon-bdsp-compressed-shiningpearl">Shining Pearl (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Combined (Full)">
+                        <label for="pokemon-bdsp-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-bdsp-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Separate (Full)">
+                        <label for="pokemon-bdsp-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Separate (Compressed)">
+                        <label for="pokemon-bdsp-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-dppt" class="game-container dppt">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Bronzor have a 5% chance of holding a Metal Coat.</li>
+                  <li>Wild Geodude have a 5% chance of holding an Everstone.</li>
+                  <li>Wild Sandshrew have a 5% chance of holding a Quick Claw.</li>
+                  <li>Wild Gible have a 5% chance of holding a Haban Berry.</li>
+               </ul>
+            </div>
+            <div id="pokemon-bdsp" class="game-container bdsp" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Bronzor have a 5% chance of holding a Metal Coat.</li>
+                  <li>Wild Geodude have a 5% chance of holding an Everstone.</li>
+               </ul>
+               <div id="pokemon-bdsp-walking" class="table-collection walking">
+                  <h4>Walking (1F)</h4>
+                  <div id="pokemon-bdsp-full-brilliantdiamond-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Full)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-shiningpearl-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Full)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-combined-walking-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="brilliantdiamond-true" colspan="3">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="3">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">20%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Bronzor</td>
+                              <td class="brilliantdiamond-false">lv. 14</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="shiningpearl-false">Bronzor</td>
+                              <td class="shiningpearl-false">lv. 14</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">20%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Zubat</td>
+                              <td class="brilliantdiamond-true">lv. 14</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Zubat</td>
+                              <td class="shiningpearl-true">lv. 14</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Geodude</td>
+                              <td class="brilliantdiamond-false">lv. 15</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-false">Geodude</td>
+                              <td class="shiningpearl-false">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Zubat</td>
+                              <td class="brilliantdiamond-true">lv. 15</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Zubat</td>
+                              <td class="shiningpearl-true">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Bronzor</td>
+                              <td class="brilliantdiamond-false">lv. 15</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="shiningpearl-false">Bronzor</td>
+                              <td class="shiningpearl-false">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Zubat</td>
+                              <td class="brilliantdiamond-true">lv. 15</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Zubat</td>
+                              <td class="shiningpearl-true">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">6</td>
+                              <td class="light-false">5%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Bronzor</td>
+                              <td class="brilliantdiamond-false">lv. 16</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="shiningpearl-false">Bronzor</td>
+                              <td class="shiningpearl-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">7</td>
+                              <td class="light-true">5%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Bronzor</td>
+                              <td class="brilliantdiamond-true">lv. 14</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="shiningpearl-true">Bronzor</td>
+                              <td class="shiningpearl-true">lv. 14</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">8</td>
+                              <td class="light-false">4%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Geodude</td>
+                              <td class="brilliantdiamond-false">lv. 16</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-false">Geodude</td>
+                              <td class="shiningpearl-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">9</td>
+                              <td class="light-true">4%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Zubat</td>
+                              <td class="brilliantdiamond-true">lv. 16</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Zubat</td>
+                              <td class="shiningpearl-true">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">10</td>
+                              <td class="light-false">1%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Geodude</td>
+                              <td class="brilliantdiamond-false">lv. 16</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-false">Geodude</td>
+                              <td class="shiningpearl-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">11</td>
+                              <td class="light-true">1%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Zubat</td>
+                              <td class="brilliantdiamond-true">lv. 16</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Zubat</td>
+                              <td class="shiningpearl-true">lv. 16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-brilliantdiamond-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Compressed)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>45%</td>
+                              <td>14-16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>40%</td>
+                              <td>14-16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>15%</td>
+                              <td>15, 16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-shiningpearl-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Compressed)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>45%</td>
+                              <td>14-16</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>40%</td>
+                              <td>14-16</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>15%</td>
+                              <td>15, 16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-combined-walking-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="brilliantdiamond-true" colspan="2">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="2">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="light-false">Zubat</td>
+                              <td class="brilliantdiamond-false">45%</td>
+                              <td class="brilliantdiamond-false">lv. 14-16</td>
+                              <td class="shiningpearl-false">45%</td>
+                              <td class="shiningpearl-false">lv. 14-16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="light-true">Bronzor</td>
+                              <td class="brilliantdiamond-true">40%</td>
+                              <td class="brilliantdiamond-true">lv. 14-16</td>
+                              <td class="shiningpearl-true">40%</td>
+                              <td class="shiningpearl-true">lv. 14-16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="light-false">Geodude</td>
+                              <td class="brilliantdiamond-false">15%</td>
+                              <td class="brilliantdiamond-false">lv. 15, 16</td>
+                              <td class="shiningpearl-false">15%</td>
+                              <td class="shiningpearl-false">lv. 15, 16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h4>Walking (B1F)</h4>
+                  <div id="pokemon-bdsp-full-brilliantdiamond-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Full)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td>Gible</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td>Gible</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td>Gible</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>17</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-shiningpearl-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Full)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td>Gible</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td>Gible</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td>Gible</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>17</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-combined-walking-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="brilliantdiamond-true" colspan="3">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="3">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">20%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Bronzor</td>
+                              <td class="brilliantdiamond-false">lv. 15</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="shiningpearl-false">Bronzor</td>
+                              <td class="shiningpearl-false">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">20%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Zubat</td>
+                              <td class="brilliantdiamond-true">lv. 15</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Zubat</td>
+                              <td class="shiningpearl-true">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Geodude</td>
+                              <td class="brilliantdiamond-false">lv. 16</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-false">Geodude</td>
+                              <td class="shiningpearl-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Zubat</td>
+                              <td class="brilliantdiamond-true">lv. 16</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Zubat</td>
+                              <td class="shiningpearl-true">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Bronzor</td>
+                              <td class="brilliantdiamond-false">lv. 16</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="shiningpearl-false">Bronzor</td>
+                              <td class="shiningpearl-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Gible</td>
+                              <td class="brilliantdiamond-true">lv. 15</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td class="shiningpearl-true">Gible</td>
+                              <td class="shiningpearl-true">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">6</td>
+                              <td class="light-false">5%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Bronzor</td>
+                              <td class="brilliantdiamond-false">lv. 15</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="shiningpearl-false">Bronzor</td>
+                              <td class="shiningpearl-false">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">7</td>
+                              <td class="light-true">5%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Bronzor</td>
+                              <td class="brilliantdiamond-true">lv. 17</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="shiningpearl-true">Bronzor</td>
+                              <td class="shiningpearl-true">lv. 17</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">8</td>
+                              <td class="light-false">4%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Gible</td>
+                              <td class="brilliantdiamond-false">lv. 16</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td class="shiningpearl-false">Gible</td>
+                              <td class="shiningpearl-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">9</td>
+                              <td class="light-true">4%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Zubat</td>
+                              <td class="brilliantdiamond-true">lv. 17</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Zubat</td>
+                              <td class="shiningpearl-true">lv. 17</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">10</td>
+                              <td class="light-false">1%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Gible</td>
+                              <td class="brilliantdiamond-false">lv. 17</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td class="shiningpearl-false">Gible</td>
+                              <td class="shiningpearl-false">lv. 17</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">11</td>
+                              <td class="light-true">1%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Zubat</td>
+                              <td class="brilliantdiamond-true">lv. 17</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Zubat</td>
+                              <td class="shiningpearl-true">lv. 17</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-brilliantdiamond-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Compressed)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>40%</td>
+                              <td>15-17</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>35%</td>
+                              <td>15-17</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td>Gible</td>
+                              <td>15%</td>
+                              <td>15-17</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>10%</td>
+                              <td>16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-shiningpearl-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Compressed)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td>Bronzor</td>
+                              <td>40%</td>
+                              <td>15-17</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>35%</td>
+                              <td>15-17</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td>Gible</td>
+                              <td>15%</td>
+                              <td>15-17</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>10%</td>
+                              <td>16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-combined-walking-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="brilliantdiamond-true" colspan="2">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="2">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+                              </td>
+                              <td class="light-false">Bronzor</td>
+                              <td class="brilliantdiamond-false">40%</td>
+                              <td class="brilliantdiamond-false">lv. 15-17</td>
+                              <td class="shiningpearl-false">40%</td>
+                              <td class="shiningpearl-false">lv. 15-17</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="light-true">Zubat</td>
+                              <td class="brilliantdiamond-true">35%</td>
+                              <td class="brilliantdiamond-true">lv. 15-17</td>
+                              <td class="shiningpearl-true">35%</td>
+                              <td class="shiningpearl-true">lv. 15-17</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/gible-f.png" alt="Gible"></div>
+                              </td>
+                              <td class="light-false">Gible</td>
+                              <td class="brilliantdiamond-false">15%</td>
+                              <td class="brilliantdiamond-false">lv. 15-17</td>
+                              <td class="shiningpearl-false">15%</td>
+                              <td class="shiningpearl-false">lv. 15-17</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="light-true">Geodude</td>
+                              <td class="brilliantdiamond-true">10%</td>
+                              <td class="brilliantdiamond-true">lv. 16</td>
+                              <td class="shiningpearl-true">10%</td>
+                              <td class="shiningpearl-true">lv. 16</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-dppt-items" class="game-container dppt">
+            <h3><u>Items</u></h3>
+            <h4>1F</h4>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items (1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Potion</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">At the second intersection north of the entrance, on the middle rock of the eastern rock blockage</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Green Shard</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">At the second intersection north of the entrance, on the middle rock of the eastern rock blockage</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Escape Rope</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">At the intersection south of the southeast path from the back wall</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Nugget</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">In the open area with Mira, on the rock on the southern wall</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Yellow Shard</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In the open area with Mira, on the rock on the southern wall</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TinyMushroom</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">In the southeast area, on the middle rock south of Collector Terry and Ruin Maniac Gerald</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Blue Shard</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In the southeast area, on the middle rock south of Collector Terry and Ruin Maniac Gerald</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Burn Heal</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">In the easternmost blocked intersection, on the northernmost rock south of Picnicker Ana and Camper Parker</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Great Ball</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In the easternmost blocked intersection, on the northernmost rock south of Picnicker Ana and Camper Parker</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">In the western bend of the S-shaped path on the center eastern side of the cave, on the westernmost rock</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In the western bend of the S-shaped path on the center eastern side of the cave, on the westernmost rock</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Rare Candy</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">In the northwest corner, at the southern end of the chamber there</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In the northwest corner, at the southern end of the chamber there</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Potion</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">In the blocked passage in the southwest, on the southwestern rock of the rock blockage south of Hiker Reginald and Hiker Lorenzo</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Red Shard</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In the blocked passage in the southwest, on the southwestern rock of the rock blockage south of Hiker Reginald and Hiker Lorenzo</td>
+                     <td class="light-false">Hidden. Due to a glitch, if the player picks up this Red Shard, they cannot also get the Red Shard on <a class="location-link" href="route-207.html">Route 207</a>.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM32 Double Team</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">At the eastern end of the southwestern chamber</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM26 Earthquake</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In the small room accessed from B1F</td>
+                     <td class="light-false">In Diamond and Pearl, accessing this area requires Strength.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>B1F</h4>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items (B1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Stardust</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">In the southwest corner</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Dusk Stone</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">In the southwest corner</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Ether</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">At the end of the southernmost series of Bike ramps</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Revive</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">In the northwest area, in a dead-end</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Stardust</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In the northwest area</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Revive</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">In the northeast area, under a Bike ramp</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rare Candy</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In the northeast area, under a Bike ramp</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Grip Claw</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Between the two Bike bridges</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-bdsp-items" class="game-container bdsp" style="display:none;">
+            <h3><u>Items</u></h3>
+            <h4>1F</h4>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Items (1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Potion</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">At the second intersection north of the entrance, on the middle rock of the eastern rock blockage</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">At the intersection south of the southeast path from the back wall</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Nugget</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">In the open area with Mira, on the rock on the southern wall</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Tiny Mushroom</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">In the southeast area, on the middle rock south of Collector Terry and Ruin Maniac Gerald</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">In the easternmost blocked intersection, on the northernmost rock south of Picnicker Ana and Camper Parker</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">In the western bend of the S-shaped path on the center eastern side of the cave, on the rock southwest of the breakable rock</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rare Candy</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">In the northwest corner, at the southern end of the chamber there</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Potion</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">In the blocked passage in the southwest, on the southwestern rock of the rock blockage south of Hiker Reginald and Hiker Lorenzo</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM32 Double Team</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">At the eastern end of the southwestern chamber</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM26 Earthquake</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">In the small room accessed from B1F</td>
+                     <td class="light-true">Accessing this area requires Strength.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>B1F</h4>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Items (B1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Stardust</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">In the southwest corner</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Ether</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">At the end of the southernmost series of Bike ramps</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">In the northwest area, in a dead-end</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Revive</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">In the northeast area, under a Bike ramp</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Grip Claw</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Between the two Bike bridges</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-dppt-trainers" class="game-container dppt">
+            <h3><u>Trainers</u></h3>
+            <p class="dppt">All Trainers are in the main area. Any Double Battle while Mira is accompanying the player will be a Multi Battle with Mira as the player's partner Trainer.</p>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Hiker Reginald</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Geodude lv.15<br>Machop lv.15</td>
+                     <td class="light-false">He can potentially be battled in a Double Battle with Hiker Lorenzo.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hiker Lorenzo</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">Onix lv.17</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Hiker Reginald.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Hiker Reginald</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Geodude lv.20<br>Geodude lv.20</td>
+                     <td class="light-false">He can potentially be battled in a Double Battle with Hiker Lorenzo.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hiker Lorenzo</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Onix lv.22</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Hiker Reginald.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Lass Cassidy</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Buneary lv.17</td>
+                     <td class="light-false">She can potentially be battled in a Double Battle with Youngster Wayne.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Youngster Wayne</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">Bidoof lv.13<br>Zubat lv.14<br>Aipom lv.15</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Lass Cassidy.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Lass Cassidy</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Buneary lv.22</td>
+                     <td class="light-false">She can potentially be battled in a Double Battle with Youngster Wayne.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Youngster Wayne</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Staravia lv.17<br>Ponyta lv.20<br>Shellos lv.20</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Lass Cassidy.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Picnicker Tori</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Silcoon lv.15<br>Beautifly lv.15</td>
+                     <td class="light-false">She can potentially be battled in a Double Battle with Camper Diego.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Camper Diego</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">Cascoon lv.13<br>Dustox lv.17</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Picnicker Tori.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Picnicker Tori</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Psyduck lv.22</td>
+                     <td class="light-false">She can potentially be battled in a Double Battle with Camper Diego.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Camper Diego</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Aipom lv.22</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Picnicker Tori</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Picnicker Ana</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Meditite lv.17</td>
+                     <td class="light-false">She can potentially be battled in a Double Battle with Camper Parker.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Camper Parker</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">Buizel lv.15<br>Shinx lv.15</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Picnicker Ana.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Picnicker Ana</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Hoothoot lv.22</td>
+                     <td class="light-false">She can potentially be battled in a Double Battle with Camper Parker.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Camper Parker</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Buizel lv.20<br>Shinx lv.20</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Picnicker Ana.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Collector Terry</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Gastly lv.12<br>Gastly lv.13<br>Gastly lv.17</td>
+                     <td class="light-false">He can potentially be battled in a Double Battle with Ruin Maniac Gerald.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ruin Maniac Gerald</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">Geodude lv.15<br>Bronzor lv.17</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Collector Terry.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Collector Terry</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Gible lv.22</td>
+                     <td class="light-false">He can potentially be battled in a Double Battle with Ruin Maniac Gerald.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ruin Maniac Gerald</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Geodude lv.19<br>Bronzor lv.21</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Collector Terry.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-bdsp-trainers" class="game-container bdsp" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <p class="bdsp">All Trainers are in the main area. Any Double Battle while Mira is accompanying the player will be a Multi Battle with Mira as the player's partner Trainer.</p>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Hiker Reginald</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Geodude lv.15<br>Machop lv.15</td>
+                     <td class="light-false">He can potentially be battled in a Double Battle with Hiker Lorenzo.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hiker Lorenzo</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Onix lv.17</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Hiker Reginald.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Lass Cassidy</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Buneary lv.17</td>
+                     <td class="light-false">She can potentially be battled in a Double Battle with Youngster Wayne.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Youngster Wayne</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Bidoof lv.13<br>Zubat lv.14<br>Aipom lv.15</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Lass Cassidy.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Picnicker Tori</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Silcoon lv.15<br>Beautifly lv.15</td>
+                     <td class="light-false">She can potentially be battled in a Double Battle with Camper Diego.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Camper Diego</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Cascoon lv.13<br>Dustox lv.17</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Picnicker Tori.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Picnicker Ana</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Meditite lv.17</td>
+                     <td class="light-false">She can potentially be battled in a Double Battle with Camper Parker.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Camper Parker</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Buizel lv.15<br>Shinx lv.15</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Picnicker Ana.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Collector Terry</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Gastly lv.12<br>Gastly lv.13<br>Gastly lv.17</td>
+                     <td class="light-false">He can potentially be battled in a Double Battle with Ruin Maniac Gerald.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ruin Maniac Gerald</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Geodude lv.15<br>Bronzor lv.17</td>
+                     <td class="light-true">He can potentially be battled in a Double Battle with Collector Terry.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>
