@@ -14,12 +14,90 @@
     const SWARM_FLAGS = new Set(["swarm", "no-swarm"]);
     const SLOT2_PREFIX = "slot-2-";
 
+    // Class helpers
+    const gamePrefix = g => g.toLowerCase();
+    const headerClass = g => (g ? `${gamePrefix(g)}-true` : 'light-true');
+    const zebra = (prefix, rowIndex) => `${prefix}-${(rowIndex % 2 === 0) ? 'false' : 'true'}`;
+
+
+    const TIME_ORDER = ["morning", "day", "night"];
+
+    const toTimeOnly = (conds) => {
+        const arr = Array.isArray(conds) ? conds : Array.from(conds || []);
+        const uniq = Array.from(new Set(arr.filter(c => TIME_FLAGS.has(c))));
+        return uniq.sort((a, b) => TIME_ORDER.indexOf(a) - TIME_ORDER.indexOf(b));
+    };
+
+
+    function timeLabelList(timeConds) {
+        if (!timeConds || timeConds.length === 0) return [];
+        return timeConds.map(formatCondition);
+    }
+
+
+    function processConditions(conds) {
+        const c = Array.from(conds || []);
+        const times = c.filter(x => TIME_FLAGS.has(x));
+        // If all three, drop them (no time restriction)
+        const uniqTimes = Array.from(new Set(times));
+        const keepTimes = (uniqTimes.length === TIME_FLAGS.size) ? [] : uniqTimes;
+
+        const sortedTimes = keepTimes.sort(
+            (a, b) => TIME_ORDER.indexOf(a) - TIME_ORDER.indexOf(b)
+        );
+
+        const others = c.filter(x => !TIME_FLAGS.has(x));
+        return [...sortedTimes, ...others];
+    }
+
+
+    // Optional global overrides: window.DPPT_CONDITION_OVERRIDES = { 'no-swarm': 'No Swarm' , ... }
+    // Keys are the RAW condition tokens (e.g., "no-swarm", "pokeradar", "slot-2-emerald")
+    const DEFAULT_CONDITION_OVERRIDES = {
+        'pokeradar': 'Poké Radar',
+        'no-pokeradar': 'No Poké Radar',
+        'swarm': 'Swarm',
+        'no-swarm': 'No Swarm',
+    };
+
+    function humanizeWords(s) {
+        // Replace dashes/underscores, then Capitalize Words
+        return String(s)
+            .replace(/[-_]+/g, ' ')
+            .replace(/\b\w/g, m => m.toUpperCase());
+    }
+
+    function formatCondition(cond) {
+        if (!cond) return '';
+        // If already a composed label (e.g., "Slot2: Ruby, Sapphire"), leave as-is
+        if (cond.includes(':')) return cond;
+
+        const overrides = Object.assign({}, DEFAULT_CONDITION_OVERRIDES, (window.DPPT_CONDITION_OVERRIDES || {}));
+
+        // Exact override wins
+        if (overrides[cond]) return overrides[cond];
+
+        if (cond.startsWith(SLOT2_PREFIX)) {
+            const v = cond.slice(SLOT2_PREFIX.length);
+            return `Slot2: ${titleCaseSlot2(v)}`;
+        }
+
+        // Fallback: generic humanization
+        return humanizeWords(cond);
+    }
+
+
+
     function pickMountNode() { return document.querySelector('#pokemon-dppt-walking .table-collection.walking'); }
     function inferLocationId(mount) { const hinted = mount?.getAttribute('data-location-id'); if (hinted) return hinted; const fname = (location.pathname.split('/').pop() || '').toLowerCase(); const base = fname.replace(/\.html?$/, ''); const FLOOR_GUESSES = { "oreburgh-mine": "oreburgh-mine_1f" }; return FLOOR_GUESSES[base] || base; }
     const byName = (a, b) => a.localeCompare(b);
     function extractWalking(location) { return (location?.pokemon?.encounters || []).filter(b => b?.type === 'walking'); }
     function gamesForEncounter(enc) { return (enc?.games || []).filter(g => GAME_KEYS.has(g)); }
-    function labelConditions(conds) { return !conds?.length ? '—' : conds.join(', '); }
+    function labelConditions(conds) {
+        const list = (conds || []).map(formatCondition).filter(Boolean);
+        return !list.length ? '—' : list.join(', ');
+    }
+
     function normalizeTimeKey(conds) {
         const has = (conds || []).filter(c => TIME_FLAGS.has(c));
         if (has.length === 0) return 'anytime';
@@ -66,7 +144,6 @@
     }
 
 
-    // FULL view now groups by Slot + timeKey + all non-time conditions
     function buildFullRows(location, s) {
         const map = new Map();
 
@@ -75,34 +152,26 @@
             for (const opt of (encounters || [])) {
                 if (!encounterOptionMatches(opt.conditions || [], s)) continue;
 
-                const conds = opt.conditions || [];
-                const timeKey = normalizeTimeKey(conds);
-                const nonTimeConds = conds.filter(c => !TIME_FLAGS.has(c)); // includes swarm/pokeradar/slot-2-*
-
-                // Group key: Slot + time slice + ALL non-time conditions (sorted)
-                const condKey = nonTimeConds.slice().sort().join('|');
-                const key = `${slot}|${timeKey}|${condKey}`;
+                const conds = processConditions(opt.conditions || []);
+                // Canonical grouping key: time (in fixed order) + other conds (alpha), but we already
+                // fixed the time order in processConditions, so just join:
+                const condKey = conds.join('|');
+                const key = `${slot}|${condKey}`;
 
                 if (!map.has(key)) {
                     map.set(key, {
                         key,
                         slot,
-                        rate,               // slot's % (same across games for that slot)
-                        timeKey,
-                        rawConditions: nonTimeConds, // displayed in the Conditions column
-                        perGame: Object.fromEntries(
-                            GAMES.map(g => [g, { name: null, levels: new Set() }])
-                        ),
+                        rate,
+                        rawConditions: conds,
+                        perGame: Object.fromEntries(GAMES.map(g => [g, { name: null, levels: new Set() }])),
                     });
                 }
 
                 const rec = map.get(key);
-
-                // Fill per-game species + levels (one species per game for a given slot+conds)
                 for (const g of gamesForEncounter(opt)) {
                     const pg = rec.perGame[g];
                     if (pg.name && pg.name !== opt.name) {
-                        // Extremely rare: multiple names under same slot+conds+game — keep both
                         pg.name = `${pg.name} / ${opt.name}`;
                     } else if (!pg.name) {
                         pg.name = opt.name;
@@ -112,24 +181,21 @@
             }
         }
 
-        // Finalize levels to arrays
         const out = [];
         for (const [, rec] of map) {
             rec.perGame = Object.fromEntries(
-                GAMES.map(g => [g, {
-                    name: rec.perGame[g].name,
-                    levels: [...rec.perGame[g].levels].sort(),
-                }])
+                GAMES.map(g => [g, { name: rec.perGame[g].name, levels: [...rec.perGame[g].levels].sort() }])
             );
+            rec.timeConds = toTimeOnly(rec.rawConditions || []);
             out.push(rec);
         }
 
-        // Sort by slot, then by a stable string of conditions
         return out.sort((a, b) =>
-            (a.slot - b.slot) ||
-            a.rawConditions.join(',').localeCompare(b.rawConditions.join(','))
+            (a.slot - b.slot) || a.rawConditions.join(',').localeCompare(b.rawConditions.join(','))
         );
     }
+
+
 
     function titleCaseSlot2(v) {
         const map = {
@@ -139,47 +205,46 @@
         return map[v] || (v ? (v[0].toUpperCase() + v.slice(1)) : v);
     }
 
-
     function buildCompressedRows(location, s) {
-        // Pass 1: collect by species + time + non-slot2 conds + slot2 variant
-        const perVariant = new Map(); // key -> { perGame, levels, meta... }
+        // Pass 1: collect by species + (non-slot2 conds incl. time) + slot2 variant
+        const perVariant = new Map();
 
         for (const block of extractWalking(location)) {
             const { rate, encounters } = block;
             for (const opt of (encounters || [])) {
                 if (!encounterOptionMatches(opt.conditions || [], s)) continue;
 
-                const conds = opt.conditions || [];
-                const timeKey = normalizeTimeKey(conds);
+                const allConds = processConditions(opt.conditions || []);
+                const slot2 = (allConds.find(c => c.startsWith(SLOT2_PREFIX)) || null);
+                const slot2Val = slot2 ? slot2.slice(SLOT2_PREFIX.length) : null;
 
-                // break out slot2 and non-slot2
-                const slot2 = (conds.find(c => c.startsWith(SLOT2_PREFIX)) || null);
-                const slot2Val = slot2 ? slot2.slice(SLOT2_PREFIX.length) : null; // e.g. 'ruby', 'none', etc.
+                // Non-slot2 conditions (includes Morning/Day/Night if present)
+                const nonSlot2Conds = allConds.filter(c => !c.startsWith(SLOT2_PREFIX));
+                const nonSlot2Key = nonSlot2Conds.join('|');
 
-                const nonSlot2Conds = conds.filter(c => !TIME_FLAGS.has(c) && !c.startsWith(SLOT2_PREFIX));
-                const nonSlot2Key = nonSlot2Conds.slice().sort().join('|');
-
-                const key = `${opt.name}|${timeKey}|${nonSlot2Key}|${slot2Val ?? '__no_slot2__'}`;
+                const key = `${opt.name}|${nonSlot2Key}|${slot2Val ?? '__no_slot2__'}`;
 
                 if (!perVariant.has(key)) {
                     perVariant.set(key, {
                         name: opt.name,
-                        timeKey,
                         nonSlot2Conds: new Set(nonSlot2Conds),
-                        slot2Val, // may be null
+                        slot2Val,
                         perGame: Object.fromEntries(GAMES.map(g => [g, { rate: 0, levels: new Set() }])),
+                        slot2PerGame: Object.fromEntries(GAMES.map(g => [g, new Set()])),
                     });
                 }
 
                 const rec = perVariant.get(key);
-                for (const g of gamesForEncounter(opt)) {
+                const games = gamesForEncounter(opt);
+                for (const g of games) {
                     rec.perGame[g].rate += (Number(rate) || 0);
                     rec.perGame[g].levels.add(String(opt.level));
+                    if (slot2Val) rec.slot2PerGame[g].add(slot2Val);
                 }
             }
         }
 
-        // helper: stable signature for "are these rows identical across games?"
+        // helper: per-game signature for merging slot2 variants
         function signatureFor(rec) {
             const parts = [];
             for (const g of GAMES) {
@@ -190,67 +255,112 @@
             return parts.join(';');
         }
 
-        // Pass 2: merge variants that have identical per-game signatures
-        const merged = new Map(); // key -> combined row with slot2 variants list
+        // Pass 2: merge variants with identical per-game signatures
+        const merged = new Map();
         for (const [, rec] of perVariant) {
             const sig = signatureFor(rec);
-            const nonSlot2Key = [...rec.nonSlot2Conds].sort().join('|');
-            const groupKey = `${rec.name}|${rec.timeKey}|${nonSlot2Key}|${sig}`;
+            const nonSlot2Key = [...rec.nonSlot2Conds].join('|');
+            const groupKey = `${rec.name}|${nonSlot2Key}|${sig}`;
 
             if (!merged.has(groupKey)) {
-                // clone perGame with arrays instead of sets
-                const perGameFinal = Object.fromEntries(GAMES.map(g => [
-                    g,
-                    {
-                        rate: rec.perGame[g].rate,
-                        levels: [...rec.perGame[g].levels].sort(),
-                    }
-                ]));
+                const perGameFinal = Object.fromEntries(
+                    GAMES.map(g => [g, { rate: rec.perGame[g].rate, levels: [...rec.perGame[g].levels].sort() }])
+                );
+
+                const slot2PerGameFinal = Object.fromEntries(GAMES.map(g => [g, new Set()]));
 
                 merged.set(groupKey, {
                     key: groupKey,
                     name: rec.name,
-                    timeKey: rec.timeKey,
                     perGame: perGameFinal,
                     nonSlot2Conds: new Set(rec.nonSlot2Conds),
-                    slot2Variants: new Set(), // accumulate variants that share the same signature
+                    // union across variants as they merge
+                    slot2PerGame: slot2PerGameFinal,
                 });
             }
 
             const tgt = merged.get(groupKey);
-            if (rec.slot2Val) {
-                tgt.slot2Variants.add(rec.slot2Val);
-            } else {
-                // If there was truly no slot2 condition, do NOT add a Slot2 label.
-                // (Many datasets use explicit 'slot-2-none'; those will display as 'None'.)
+            for (const g of GAMES) {
+                for (const v of rec.slot2PerGame[g]) tgt.slot2PerGame[g].add(v);
             }
         }
 
-        // Finalize rows: compose rawConditions (non-slot2 + combined Slot2 list if any)
+        // Finalize rows: keep non-slot2 (incl. time) and compute union of slot2 variants across all games
         const out = [];
         for (const [, row] of merged) {
-            const rawConditions = [...row.nonSlot2Conds];
-
-            if (row.slot2Variants.size > 0) {
-                const slot2List = [...row.slot2Variants]
-                    .sort((a, b) => a.localeCompare(b))
-                    .map(titleCaseSlot2)
-                    .join(', ');
-                rawConditions.push(`Slot2 ${slot2List}`);
+            const slot2All = new Set();
+            for (const g of GAMES) {
+                for (const v of row.slot2PerGame[g]) slot2All.add(v);
             }
 
             out.push({
                 key: row.key,
                 name: row.name,
-                timeKey: row.timeKey,
                 perGame: row.perGame,
-                rawConditions,
+                nonSlot2Conds: [...row.nonSlot2Conds],
+                slot2PerGame: row.slot2PerGame,
+                slot2All,
+                // Default: rawConditions = non-slot2 only (Slot2 text added at render-time if needed)
+                rawConditions: [...row.nonSlot2Conds],
+                // Time-only flags derived from base (non-slot2) conds
+                timeConds: toTimeOnly(Array.isArray(row.nonSlot2Conds) ? row.nonSlot2Conds : [...row.nonSlot2Conds]),
             });
         }
 
         return out.sort((a, b) => byName(a.name, b.name));
+
     }
 
+
+    function buildCompressedRowsFiltered(location, s) {
+        // Group by species + time-of-day ONLY; sum rates, union levels (per game).
+        const map = new Map();
+
+        for (const block of extractWalking(location)) {
+            const { rate, encounters } = block;
+            for (const opt of (encounters || [])) {
+                if (!encounterOptionMatches(opt.conditions || [], s)) continue;
+
+                const all = processConditions(opt.conditions || []);
+                const times = toTimeOnly(all);
+                const timeKey = times.join('+') || 'anytime';
+                const key = `${opt.name}|${timeKey}`;
+
+                if (!map.has(key)) {
+                    map.set(key, {
+                        key,
+                        name: opt.name,
+                        timeConds: times,
+                        perGame: Object.fromEntries(GAMES.map(g => [g, { rate: 0, levels: new Set() }]))
+                    });
+                }
+
+                const rec = map.get(key);
+                for (const g of gamesForEncounter(opt)) {
+                    rec.perGame[g].rate += (Number(rate) || 0);
+                    rec.perGame[g].levels.add(String(opt.level));
+                }
+            }
+        }
+
+        // finalize
+        const out = [];
+        for (const [, rec] of map) {
+            out.push({
+                key: rec.key,
+                name: rec.name,
+                timeConds: rec.timeConds,
+                rawConditions: timeLabelList(rec.timeConds),
+                perGame: Object.fromEntries(
+                    GAMES.map(g => [g, {
+                        rate: rec.perGame[g].rate,
+                        levels: [...rec.perGame[g].levels].sort()
+                    }])
+                ),
+            });
+        }
+        return out.sort((a, b) => byName(a.name, b.name));
+    }
 
 
     // selection present helpers
@@ -270,10 +380,8 @@
     function HelpTag(props) { return h('span', { title: 'Mutually exclusive with other time-of-day variants', style: { fontSize: 12, padding: '2px 6px', border: '1px solid #ccc', borderRadius: 8, marginLeft: 6 } }, props.children); }
     function ConditionsCell(props) { return h('span', null, labelConditions(props.conds)); }
 
-    // --- Sprite helpers & component (replace your current spritePath & Sprite) ---
-
     // Order of generations to try when falling back.
-    // You can override via:
+    // Override via:
     //   - <div data-sprite-gens="gen-4,gen-3,gen-2,gen-1">
     //   - or window.POKEMON_SPRITE_GENS = ["gen-4","gen-3","gen-2","gen-1"];
     const DEFAULT_GEN_ORDER = ["gen-4", "gen-3", "gen-2", "gen-1"];
@@ -311,7 +419,6 @@
         }
     }
 
-    // Build the candidate URL list in the exact order you requested:
     // name-f.png → name-m.png → name.png, across each gen in order.
     function spriteCandidates(name, mount) {
         const nm = normalizedName(name);
@@ -325,7 +432,7 @@
     }
 
     function Sprite(props) {
-        const ReactRef = React; // keep minifier-friendly
+        const ReactRef = React;
         const useState = ReactRef.useState, useMemo = ReactRef.useMemo, useEffect = ReactRef.useEffect;
         const nm = normalizedName(props.name);
         var hardcodedOverride = "";
@@ -342,10 +449,8 @@
             return h('img', {
                 src: hardcodedOverride,
                 alt: props.name,
-                width: 40,
-                height: 40,
                 loading: 'lazy',
-                style: { width: 40, height: 40, objectFit: 'contain', opacity: 1 },
+                className: 'flex-img'
             });
         }
 
@@ -370,16 +475,11 @@
         // If props.name changes, reset to the first candidate.
         useEffect(() => { setIdx(0); }, [props.name]);
 
-        // If we’ve exhausted candidates, fade the img.
-        const style = { width: 40, height: 40, objectFit: 'contain', opacity: src ? 1 : 0.25 };
-
         return h('img', {
             src,
             alt: props.name,
-            width: 40,
-            height: 40,
             loading: 'lazy',
-            style,
+            className: 'flex-img',
             onLoad: () => {
                 if (src) SPRITE_URL_CACHE.set(nm, src);
             },
@@ -388,7 +488,6 @@
                 setIdx(i => (i + 1 < candidates.length ? i + 1 : i));
                 if (idx + 1 >= candidates.length) {
                     // Final fallback: no sprite found—let opacity drop via style.
-                    // (Optional) You could set a placeholder here instead.
                 }
             }
         });
@@ -404,7 +503,11 @@
                 label: 'Game',
                 value: state.game,
                 onChange: v => set({ game: v }),
-                options: [{ value: 'All', label: 'All' }, ...GAMES.map(g => ({ value: g, label: g }))]
+                options: [
+                    { value: 'All', label: 'All' },
+                    { value: 'separate', label: 'Separate' },
+                    ...GAMES.map(g => ({ value: g, label: g }))
+                ]
             }),
             h(Select, {
                 label: 'View',
@@ -454,93 +557,220 @@
             document.head.appendChild(s);
         });
     }
+    const ALL_SLOT2_VALS = ['none', 'ruby', 'sapphire', 'emerald', 'firered', 'leafgreen'];
+
+    function makeCondKey(name, baseConds, slot2Label) {
+        return `${name}|${(baseConds || []).join('|')}|${slot2Label || ''}`;
+    }
+
+    function prettySlot2List(values) {
+        return `Slot2: ${values.slice().sort((a, b) => a.localeCompare(b)).map(titleCaseSlot2).join(', ')}`;
+    }
+
 
     function Table(props) {
+        const onlyTimeMode = !!props.onlyTimeMode;
+
         const rows = props.rows;
         const gameFilter = props.gameFilter;
         const mount = props.mount;
         const view = props.view;
         const showGames = gameFilter === 'All' ? GAMES : [gameFilter];
 
-        // FULL header: Slot, Rate, Conditions, then each game spans 3 cols
+        const viewLabel = view === 'compressed' ? 'Compressed' : 'Full';
+        const tableLabel = (gameFilter === 'All' ? 'Combined' : gameFilter) + ` (${viewLabel})`;
+
+        // Existing filter for single-game tables (keeps only rows with data for that game)
+        const renderRows = (gameFilter && gameFilter !== 'All')
+            ? rows.filter(r => {
+                const g = gameFilter;
+                const cell = r.perGame?.[g];
+                return view === 'full'
+                    ? !!(cell && cell.name)
+                    : !!(cell && ((cell.rate || 0) > 0 || (cell.levels && cell.levels.length)));
+            })
+            : rows;
+
+        // --- Single-game + COMPRESSED: collapse Slot2 variants correctly
+        let processedRows = renderRows;
+        if (view === 'compressed' && gameFilter && gameFilter !== 'All') {
+            const g = gameFilter;
+
+            // group1: by (name + base non-slot2 conditions)
+            const group1 = new Map(); // baseKey -> Map(signature -> accumulator)
+
+            for (const r of renderRows) {
+                const cell = r.perGame?.[g];
+                if (!cell) continue;
+
+                const baseConds = (r.nonSlot2Conds || r.rawConditions || []).slice();
+                const baseKey = `${r.name}|${baseConds.join('|')}`;
+
+                // per-row slot2 variants for this game (from builder)
+                const perGameSet = r.slot2PerGame?.[g] || new Set();
+                const slot2Vals = Array.isArray(perGameSet) ? perGameSet : [...perGameSet];
+
+                // signature = identical outcome for this game
+                const sig = `${cell.rate}|${(cell.levels || []).slice().sort().join(',')}`;
+
+                if (!group1.has(baseKey)) group1.set(baseKey, new Map());
+                const bySig = group1.get(baseKey);
+                if (!bySig.has(sig)) {
+                    bySig.set(sig, {
+                        name: r.name,
+                        baseConds,
+                        rate: cell.rate || 0,
+                        levels: new Set(cell.levels || []),
+                        slot2Union: new Set(),
+                    });
+                }
+                const acc = bySig.get(sig);
+                // (rate/levels are identical for this sig; do NOT add rate)
+                for (const lv of (cell.levels || [])) acc.levels.add(lv);
+                for (const v of slot2Vals) acc.slot2Union.add(v);
+            }
+
+            // materialize rows
+            const out = [];
+            for (const [, bySig] of group1) {
+                for (const [, acc] of bySig) {
+                    const union = [...acc.slot2Union].sort((a, b) => a.localeCompare(b));
+                    const coversAll = ALL_SLOT2_VALS.every(v => acc.slot2Union.has(v));
+                    const slot2Label = (union.length > 0 && !coversAll)
+                        ? `Slot2: ${union.map(titleCaseSlot2).join(', ')}`
+                        : '';
+
+                    const lvArr = [...acc.levels].sort();
+                    out.push({
+                        key: `${acc.name}|${acc.baseConds.join('|')}|${acc.rate}|${lvArr.join(',')}|${slot2Label}`,
+                        name: acc.name,
+                        perGame: { [g]: { rate: acc.rate, levels: lvArr } },
+                        rawConditions: slot2Label ? [...acc.baseConds, slot2Label] : acc.baseConds,
+                        nonSlot2Conds: acc.baseConds,
+                    });
+                }
+            }
+
+            const merged = new Map(); // condKey -> accumulator
+            for (const row of out) {
+                const condKey = `${row.name}|${(row.rawConditions || []).join('|')}`;
+                if (!merged.has(condKey)) {
+                    merged.set(condKey, {
+                        name: row.name,
+                        rawConditions: row.rawConditions.slice(),
+                        levels: new Set(row.perGame[g].levels || []),
+                        rate: 0,
+                    });
+                }
+                const acc = merged.get(condKey);
+                acc.rate += row.perGame[g].rate || 0;
+                for (const lv of (row.perGame[g].levels || [])) acc.levels.add(lv);
+            }
+
+            processedRows = Array.from(merged.values())
+                .map(m => ({
+                    key: `${m.name}|${m.rawConditions.join('|')}|${m.rate}|${[...m.levels].sort().join(',')}`,
+                    name: m.name,
+                    perGame: { [g]: { rate: m.rate, levels: [...m.levels].sort() } },
+                    rawConditions: m.rawConditions,
+                    nonSlot2Conds: m.rawConditions.filter(c => !/^Slot2:/.test(c)),
+                }))
+                .sort((a, b) => byName(a.name, b.name));
+
+        }
+
+
+
         function FullHeader() {
             return h('thead', null,
                 h('tr', null,
-                    h('th', { style: th }, 'Slot'),
-                    h('th', { style: th }, 'Rate'),
-                    h('th', { style: th }, 'Conditions'),
-                    ...showGames.map(g => h('th', { key: g, style: th, colSpan: 3 }, g))
+                    h('th', { className: headerClass(null) }, 'Slot'),
+                    h('th', { className: headerClass(null) }, 'Rate'),
+                    h('th', { className: headerClass(null) }, 'Conditions'),
+                    ...showGames.map(g => h('th', { key: g, colSpan: 3, className: headerClass(g) }, g))
                 )
             );
         }
 
-        // COMPRESSED header (2-row, games span 2 cols: % + Lv) — unchanged
         function CompressedHeader() {
             return h('thead', null,
                 h('tr', null,
-                    h('th', { style: th }, 'Pokémon'),
-                    h('th', { style: th }, 'Sprite'),
-                    ...showGames.map(g => h('th', { key: g, style: th, colSpan: 2 }, g)),
-                    h('th', { style: th }, 'Conditions')
+                    h('th', { colSpan: 2, className: headerClass(null) }, 'Pokémon'),
+                    ...showGames.map(g => h('th', { key: g, colSpan: 2, className: headerClass(g) }, g)),
+                    h('th', { className: headerClass(null) }, 'Conditions')
                 )
             );
         }
 
+
         return h('div', { style: { overflowX: 'auto' } },
-            h('table', { style: { width: '100%', borderCollapse: 'collapse' } },
+            h('table', { className: `pokemon-table ${view === 'compressed' ? 'compressed' : 'full'} combined` },
+                h('caption', { className: 'pokemon-table-caption' }, tableLabel),
                 view === 'compressed' ? CompressedHeader() : FullHeader(),
                 h('tbody', null,
-                    rows.map(r => h('tr', { key: r.key },
+                    processedRows.map((r, rowIndex) => h('tr', { key: r.key },
                         ...(view === 'full'
                             ? [
-                                // FULL view cells
-                                h('td', { style: tdMono }, String(r.slot)),
-                                h('td', { style: tdMono }, `${r.rate}%`),
-                                h('td', { style: td }, [
-                                    h(ConditionsCell, { conds: r.rawConditions }),
-                                    r.timeKey !== 'anytime' && h(HelpTag, { key: 't' }, r.timeKey)
+                                h('td', { className: zebra('light', rowIndex) }, String(r.slot)),
+                                h('td', { className: zebra('light', rowIndex) }, `${r.rate}%`),
+                                h('td', { className: zebra('light', rowIndex) }, [
+                                    h(ConditionsCell, { conds: r.rawConditions })
                                 ]),
+
                                 ...showGames.flatMap(g => {
+                                    const gp = gamePrefix(g);
                                     const cell = r.perGame?.[g];
                                     const has = !!(cell && cell.name);
                                     const lv = has ? formatLevels(cell.levels) : '';
                                     return [
-                                        h('td', { key: g + ':sprite', style: td }, has ? h(Sprite, { name: cell.name.split(' / ')[0], mount }) : '—'),
-                                        h('td', { key: g + ':name', style: td },
+                                        h('td', { key: g + ':sprite', className: zebra(gp, rowIndex) },
+                                            has ? h(Sprite, { name: cell.name.split(' / ')[0], mount }) : '—'
+                                        ),
+                                        h('td', { key: g + ':name', className: zebra(gp, rowIndex) },
                                             has ? cell.name : '—'
                                         ),
-                                        h('td', { key: g + ':lv', style: tdMono }, has ? (`Lv. ${lv}` || '—') : '—'),
+                                        h('td', { key: g + ':lv', className: zebra(gp, rowIndex) },
+                                            has ? (`lv. ${lv}` || '—') : '—'
+                                        ),
                                     ];
                                 }),
-
                             ]
                             : [
-                                // COMPRESSED view cells (unchanged from your latest)
-                                h('td', { style: td }, r.name),
-                                h('td', { style: td }, h(Sprite, { name: r.name, mount })),
+                                // COMPRESSED
+                                h('td', { className: zebra('light', rowIndex) }, r.name),
+                                h('td', { className: zebra('light', rowIndex) }, h(Sprite, { name: r.name, mount })),
                                 ...showGames.flatMap(g => {
+                                    const gp = gamePrefix(g);
                                     const cell = r.perGame?.[g];
                                     const pct = cell?.rate || 0;
                                     const lvStr = (cell && cell.levels && cell.levels.length) ? formatLevels(cell.levels) : '';
                                     const hasData = !!pct || !!lvStr;
                                     return [
-                                        h('td', { key: g + ':pct', style: tdMono }, hasData ? (pct ? `${pct}%` : '—') : '—'),
-                                        h('td', { key: g + ':lv', style: tdMono }, hasData ? (lvStr || '—') : '—'),
+                                        h('td', { key: g + ':pct', className: zebra(gp, rowIndex) }, hasData ? (pct ? `${pct}%` : '—') : '—'),
+                                        h('td', { key: g + ':lv', className: zebra(gp, rowIndex) }, hasData ? (`lv. ${lvStr}` || '—') : '—'),
                                     ];
                                 }),
-                                h('td', { style: td }, [
-                                    h(ConditionsCell, { conds: r.rawConditions }),
-                                    r.timeKey !== 'anytime' && h(HelpTag, { key: 't' }, r.timeKey)
-                                ]),
+                                h('td', { className: zebra('light', rowIndex) }, (function () {
+                                    const isSingleGameCompressed = (view === 'compressed' && gameFilter && gameFilter !== 'All');
+                                    if (isSingleGameCompressed) {
+                                        return h(ConditionsCell, { conds: r.rawConditions });
+                                    }
+
+                                    const base = (r.nonSlot2Conds || []).slice();
+                                    const parts = base.map(formatCondition);
+                                    const slot2Set = r.slot2All;
+                                    if (slot2Set && slot2Set.size > 0) {
+                                        const slot2List = [...slot2Set].sort((a, b) => a.localeCompare(b)).map(titleCaseSlot2).join(', ');
+                                        parts.push(`Slot2: ${slot2List}`);
+                                    }
+                                    return h(ConditionsCell, { conds: parts });
+                                })()),
+
                             ]
                         )
                     ))
                 )
-            ),
-            h('p', { style: { fontSize: 12, color: '#666', marginTop: 6 } },
-                view === 'compressed'
-                    ? 'Note: In compressed view, rates and level ranges are shown per game; mutually exclusive variants remain separate.'
-                    : 'Note: Slot Rate is the overall encounter chance for the row; per-game cells show sprite, name, and level.'
+
             )
         );
     }
@@ -551,7 +781,10 @@
     function App(props) {
         const mount = props.mount;
         const useState = React.useState, useEffect = React.useEffect, useMemo = React.useMemo;
-        const [error, setError] = useState(null); const [loading, setLoading] = useState(true); const [data, setData] = useState([]);
+
+        const [error, setError] = useState(null);
+        const [loading, setLoading] = useState(true);
+        const [data, setData] = useState([]);
         const [state, setState] = useState({
             view: 'full',
             game: 'All',
@@ -561,10 +794,30 @@
             showAllConditions: true,
             collapsed: false,
         });
+
+        // 1) Which location file to load
         const locationId = inferLocationId(mount);
-        useEffect(function () {
+
+        // 2) Pick active location from loaded data
+        const activeLocation = useMemo(() => {
+            return data.find(loc =>
+                (loc && (loc.name || '').toLowerCase() === String(locationId).toLowerCase())
+            ) || null;
+        }, [data, locationId]);
+
+        // 3) Build rows (after activeLocation exists)
+        const rows = useMemo(() => {
+            if (!activeLocation) return [];
+            if (state.view === 'full') return buildFullRows(activeLocation, state);
+            return state.showAllConditions
+                ? buildCompressedRows(activeLocation, state)
+                : buildCompressedRowsFiltered(activeLocation, state);
+        }, [activeLocation, state]);
+
+        // Load the location file
+        useEffect(() => {
             let alive = true;
-            (async function () {
+            (async () => {
                 try {
                     const locId = inferLocationId(mount);
                     const LOC_BASE = window.DPPT_LOCATION_BASE || '../javascript/Sinnoh-Locations/';
@@ -574,52 +827,48 @@
                     delete window.DPPT_DATA;
                 } catch (e) {
                     console.error(e);
-                    if (alive) setError(String(e && e.message || e));
+                    if (alive) setError(String((e && e.message) || e));
                 } finally {
                     if (alive) setLoading(false);
                 }
             })();
-            return function () { alive = false; };
+            return () => { alive = false; };
         }, []);
 
-        const location = useMemo(function () { return data.find(function (loc) { return (loc && (loc.name || '').toLowerCase() === String(locationId).toLowerCase()); }) || null; }, [data, locationId]);
-        const rows = useMemo(function () { if (!location) return []; return state.view === 'full' ? buildFullRows(location, state) : buildCompressedRows(location, state); }, [location, state]);
-        return h('div', { style: { fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial' } },
-            // Header bar with title + Hide/Show button
-            h('div', {
-                style: {
-                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                    padding: '6px 0 4px'
-                }
-            },
-                h('h3', { style: { margin: 0 } },
-                    'DPPT Walking Encounters',
-                    location && [' — ', h('span', { key: 'n', style: { fontWeight: 400 } }, location.name)]
-                ),
-                h('button', {
-                    type: 'button',
-                    onClick: () => setState(prev => Object.assign({}, prev, { collapsed: !prev.collapsed })),
-                    style: {
-                        font: 'inherit', padding: '4px 10px', border: '1px solid #ccc',
-                        borderRadius: 6, background: '#f7f7f7', cursor: 'pointer'
-                    },
-                    'aria-expanded': !state.collapsed
-                }, state.collapsed ? 'Show' : 'Hide')
-            ),
-
-            // When collapsed, stop here (no controls or table)
-            state.collapsed
-                ? null
-                : (
-                    // existing content stays the same under here
-                    h('div', { style: { fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial' } },
-            h(ViewControls, { state, setState }),
-            loading ? h('p', null, 'Loading…') : error ? h('p', { style: { color: 'red' } }, 'Error: ', error) : !location ? h('p', null, 'No matching location for ', h('code', null, String(locationId)), '.') : h(Table, { rows, gameFilter: state.game, mount, view: state.view })
-        )
-                )
+        return h('div', {},
+            h('div', {},
+                h(ViewControls, { state, setState }),
+                loading ? h('p', null, 'Loading…')
+                    : error ? h('p', { style: { color: 'red' } }, 'Error: ', error)
+                        : !activeLocation ? h('p', null, 'No matching location for ', h('code', null, String(locationId)), '.')
+                            : (
+                                state.game === 'separate'
+                                    ? h('div', {},
+                                        GAMES.map(g =>
+                                            h('div', { key: g, style: { marginTop: 12 } }, [
+                                                h(Table, {
+                                                    rows,
+                                                    gameFilter: g,
+                                                    mount,
+                                                    view: state.view,
+                                                    onlyTimeMode: !state.showAllConditions,
+                                                })
+                                            ])
+                                        )
+                                    )
+                                    : h(Table, {
+                                        rows,
+                                        gameFilter: state.game,
+                                        mount,
+                                        view: state.view,
+                                        onlyTimeMode: !state.showAllConditions
+                                    })
+                            )
+            )
         );
-
     }
+
+
     (function boot() {
         // Support both the new class and (optionally) the old id for backwards compat
         const SELECTOR = '.pokemon-dppt-walking-replace-me';
@@ -663,8 +912,5 @@
             root.render(React.createElement(App, { mount: container }));
         }
     })();
-
-
-
 })();
 
