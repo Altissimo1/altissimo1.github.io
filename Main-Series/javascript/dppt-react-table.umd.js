@@ -749,14 +749,7 @@
 								r.key == processedRows.find(x => x.name == r.name).key
 									? h('td', { rowSpan: processedRows.filter(x => x.name == r.name).length, className: zebra('light', rowIndex),  }, r.name)
 									: null,
-									//h('td', { className: zebra('light', rowIndex) }, r.name)
 									
-								
-								// console.log(r),
-								// console.log(r.name),
-								//console.log(processedRows.find(x => x.name == "Buizel")),
-                                //h('td', { className: zebra('light', rowIndex) }, h(Sprite, { name: r.name, mount })),
-                                //h('td', { className: zebra('light', rowIndex) }, r.name),
                                 ...showGames.flatMap(g => {
                                     const gp = gamePrefix(g);
                                     const cell = r.perGame?.[g];
