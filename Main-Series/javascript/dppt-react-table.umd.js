@@ -293,19 +293,19 @@
                 for (const v of row.slot2PerGame[g]) slot2All.add(v);
             }
 
+            const baseConds = [...row.nonSlot2Conds];   // canonical non-slot2 (includes time tokens)
             out.push({
                 key: row.key,
                 name: row.name,
                 perGame: row.perGame,
-                nonSlot2Conds: [...row.nonSlot2Conds],
+                nonSlot2Conds: baseConds,
                 slot2PerGame: row.slot2PerGame,
                 slot2All,
-                // Default: rawConditions = non-slot2 only (Slot2 text added at render-time if needed)
-                rawConditions: [...row.nonSlot2Conds],
-                // Time-only flags derived from base (non-slot2) conds
-                timeConds: toTimeOnly(Array.isArray(row.nonSlot2Conds) ? row.nonSlot2Conds : [...row.nonSlot2Conds]),
+                rawConditions: baseConds,
+                timeConds: toTimeOnly(baseConds)
             });
         }
+
 
         return out.sort((a, b) => byName(a.name, b.name));
 
@@ -647,6 +647,7 @@
                         perGame: { [g]: { rate: acc.rate, levels: lvArr } },
                         rawConditions: slot2Label ? [...acc.baseConds, slot2Label] : acc.baseConds,
                         nonSlot2Conds: acc.baseConds,
+                        timeConds: toTimeOnly(acc.baseConds)
                     });
                 }
             }
@@ -668,13 +669,19 @@
             }
 
             processedRows = Array.from(merged.values())
-                .map(m => ({
-                    key: `${m.name}|${m.rawConditions.join('|')}|${m.rate}|${[...m.levels].sort().join(',')}`,
-                    name: m.name,
-                    perGame: { [g]: { rate: m.rate, levels: [...m.levels].sort() } },
-                    rawConditions: m.rawConditions,
-                    nonSlot2Conds: m.rawConditions.filter(c => !/^Slot2:/.test(c)),
-                }))
+                .map(m => {
+                    const levels = [...m.levels].sort();
+                    const rawConds = m.rawConditions;
+                    const baseOnly = rawConds.filter(c => !/^Slot2:/.test(c));
+                    return {
+                        key: `${m.name}|${rawConds.join('|')}|${m.rate}|${levels.join(',')}`,
+                        name: m.name,
+                        perGame: { [g]: { rate: m.rate, levels } },
+                        rawConditions: rawConds,
+                        nonSlot2Conds: baseOnly,
+                        timeConds: toTimeOnly(baseOnly)
+                    };
+                })
                 .sort((a, b) => byName(a.name, b.name));
 
         }
@@ -751,16 +758,24 @@
                                     ];
                                 }),
                                 h('td', { className: zebra('light', rowIndex) }, (function () {
-                                    const isSingleGameCompressed = (view === 'compressed' && gameFilter && gameFilter !== 'All');
-                                    if (isSingleGameCompressed) {
-                                        return h(ConditionsCell, { conds: r.rawConditions });
+                                    if (onlyTimeMode) {
+                                        return h(ConditionsCell, { conds: r.timeConds || [] });
                                     }
 
+                                    // For single-game processed rows, r.rawConditions is already correct.
+                                    if (gameFilter && gameFilter !== 'All') {
+                                        return h(ConditionsCell, { conds: r.rawConditions || [] });
+                                    }
+
+                                    // Combined/All: base + union of Slot2 across games
                                     const base = (r.nonSlot2Conds || []).slice();
                                     const parts = base.map(formatCondition);
                                     const slot2Set = r.slot2All;
                                     if (slot2Set && slot2Set.size > 0) {
-                                        const slot2List = [...slot2Set].sort((a, b) => a.localeCompare(b)).map(titleCaseSlot2).join(', ');
+                                        const slot2List = [...slot2Set]
+                                            .sort((a, b) => a.localeCompare(b))
+                                            .map(titleCaseSlot2)
+                                            .join(', ');
                                         parts.push(`Slot2: ${slot2List}`);
                                     }
                                     return h(ConditionsCell, { conds: parts });
