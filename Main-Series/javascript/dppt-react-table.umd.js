@@ -17,7 +17,7 @@
     // Class helpers
     const gamePrefix = g => g.toLowerCase();
     const headerClass = g => (g ? `${gamePrefix(g)}-true` : 'light-true');
-    const zebra = (prefix, rowIndex) => `${prefix}-${(rowIndex % 2 === 0) ? 'false' : 'true'}`;
+    const zebra = (prefix, rowIndex) =>  prefix ? `${prefix}-${(rowIndex % 2 === 0) ? 'false' : 'true'}` : `light-${(rowIndex % 2 === 0) ? 'false' : 'true'}`;
 
 
     const TIME_ORDER = ["morning", "day", "night"];
@@ -51,13 +51,13 @@
     }
 
 
-    // Optional global overrides: window.DPPT_CONDITION_OVERRIDES = { 'no-swarm': 'No Swarm' , ... }
+    // Optional global overrides: window.DPPT_CONDITION_OVERRIDES = { 'no-swarm': 'No swarm' , ... }
     // Keys are the RAW condition tokens (e.g., "no-swarm", "pokeradar", "slot-2-emerald")
     const DEFAULT_CONDITION_OVERRIDES = {
         'pokeradar': 'Poké Radar',
         'no-pokeradar': 'No Poké Radar',
         'swarm': 'Swarm',
-        'no-swarm': 'No Swarm',
+        'no-swarm': 'No swarm',
     };
 
     function humanizeWords(s) {
@@ -79,7 +79,7 @@
 
         if (cond.startsWith(SLOT2_PREFIX)) {
             const v = cond.slice(SLOT2_PREFIX.length);
-            return `Slot2: ${titleCaseSlot2(v)}`;
+            return `Slot 2: ${titleCaseSlot2(v)}`;
         }
 
         // Fallback: generic humanization
@@ -683,7 +683,6 @@
                     };
                 })
                 .sort((a, b) => byName(a.name, b.name));
-
         }
 
 
@@ -744,8 +743,20 @@
                             ]
                             : [
                                 // COMPRESSED
-                                h('td', { className: zebra('light', rowIndex) }, r.name),
-                                h('td', { className: zebra('light', rowIndex) }, h(Sprite, { name: r.name, mount })),
+								r.key == processedRows.find(x => x.name == r.name).key
+									? h('td', { rowSpan: processedRows.filter(x => x.name == r.name).length, className: zebra('light', rowIndex) }, h(Sprite, { name: r.name, mount }))
+									: null,
+								r.key == processedRows.find(x => x.name == r.name).key
+									? h('td', { rowSpan: processedRows.filter(x => x.name == r.name).length, className: zebra('light', rowIndex),  }, r.name)
+									: null,
+									//h('td', { className: zebra('light', rowIndex) }, r.name)
+									
+								
+								// console.log(r),
+								// console.log(r.name),
+								//console.log(processedRows.find(x => x.name == "Buizel")),
+                                //h('td', { className: zebra('light', rowIndex) }, h(Sprite, { name: r.name, mount })),
+                                //h('td', { className: zebra('light', rowIndex) }, r.name),
                                 ...showGames.flatMap(g => {
                                     const gp = gamePrefix(g);
                                     const cell = r.perGame?.[g];
@@ -753,8 +764,10 @@
                                     const lvStr = (cell && cell.levels && cell.levels.length) ? formatLevels(cell.levels) : '';
                                     const hasData = !!pct || !!lvStr;
                                     return [
-                                        h('td', { key: g + ':pct', className: zebra(gp, rowIndex) }, hasData ? (pct ? `${pct}%` : '—') : '—'),
-                                        h('td', { key: g + ':lv', className: zebra(gp, rowIndex) }, hasData ? (`lv. ${lvStr}` || '—') : '—'),
+                                        h('td', { key: g + ':pct', colSpan: hasData ? 1 : 2, className: hasData ? zebra(gp, rowIndex) : zebra(null, rowIndex) }, hasData ? (pct ? `${pct}%` : '—') : 'N/A'),
+										hasData ?
+											h('td', { key: g + ':lv', className: zebra(gp, rowIndex) }, (`lv. ${lvStr}` || '—'))
+											: null,
                                     ];
                                 }),
                                 h('td', { className: zebra('light', rowIndex) }, (function () {
