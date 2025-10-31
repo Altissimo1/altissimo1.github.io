@@ -226,6 +226,95 @@
         }
         return arr;
     }
+    function hasAny(arr, set) {
+        return (arr || []).some(c => set.has(c));
+    }
+
+    function rowHasSlot2Evidence(r) {
+        // strongest signals first
+        if (r && r.kind === 'slot2') return true;
+
+        // after merges we carry per-game sets and a union set
+        if (r && r.slot2All && typeof r.slot2All.size === 'number' && r.slot2All.size > 0) return true;
+        for (const g of GAMES) {
+            const s = r?.slot2PerGame?.[g];
+            if (s && (Array.isArray(s) ? s.length : s.size > 0)) return true;
+        }
+
+        // some rows still keep a display token
+        const raw = r?.rawConditions || [];
+        if (raw.some(c => String(c).startsWith('Slot2:') || String(c).startsWith(SLOT2_PREFIX))) return true;
+
+        // f nonSlot2Conds accidentally kept a raw slot2 token
+        const base = r?.nonSlot2Conds || [];
+        if (base.some(c => String(c).startsWith(SLOT2_PREFIX))) return true;
+
+        return false;
+    }
+
+    function timeRankForRow(r) {
+        const times = toTimeOnly(r?.nonSlot2Conds || []);
+        if (!times.length) return -1; // Anytime first
+        return Math.min(...times.map(t => TIME_ORDER.indexOf(t)));
+    }
+
+    // lower = earlier
+    function compressedRowSortTuple(r) {
+        const base = r?.nonSlot2Conds || [];
+        const nonTime = base.filter(c => !TIME_FLAGS.has(c));
+        const onlyTime = nonTime.length === 0;
+        const hasS2 = rowHasSlot2Evidence(r);
+
+        // 0: time-of-day rows (incl. "Anytime")
+        // 1: swarm
+        // 2: pokeradar
+        // 3: other
+        // 4: slot2
+        let macro;
+
+        if (hasS2) {
+            macro = 4; // force slot2 to the end
+        } else if (onlyTime) {
+            macro = 0;
+        } else if (hasAny(nonTime, SWARM_FLAGS)) {
+            macro = 1;
+        } else if (hasAny(nonTime, RADAR_FLAGS)) {
+            macro = 2;
+        } else {
+            macro = 3;
+        }
+
+        // Sub-ranks
+        let subA = 0;
+        if (macro === 0) {
+            // time rows: Anytime (-1) < Morning (0) < Day (1) < Night (2)
+            subA = timeRankForRow(r);
+        } else if (macro === 1) {
+            subA = base.includes('swarm') ? 0 : base.includes('no-swarm') ? 1 : 2;
+        } else if (macro === 2) {
+            subA = base.includes('pokeradar') ? 0 : base.includes('no-pokeradar') ? 1 : 2;
+        } else if (macro === 4) {
+            // stable Slot-2 order when tokens available
+            const s2tok = (r.rawConditions || []).find(c => String(c).startsWith(SLOT2_PREFIX));
+            subA = (s2tok && (SLOT2_RANK[s2tok] ?? 999)) ?? 999;
+        }
+
+        const tail = (r.rawConditions || r.nonSlot2Conds || []).join('|');
+        return [macro, subA, tail];
+    }
+
+    function compressedRowComparator(a, b) {
+        const ta = compressedRowSortTuple(a);
+        const tb = compressedRowSortTuple(b);
+        for (let i = 0; i < Math.max(ta.length, tb.length); i++) {
+            const va = ta[i], vb = tb[i];
+            if (va === vb) continue;
+            if (typeof va === 'number' && typeof vb === 'number') return va - vb;
+            return String(va).localeCompare(String(vb));
+        }
+        return 0;
+    }
+
 
 
     function pickMountNode() { return document.querySelector('#pokemon-dppt-walking .table-collection.walking'); }
@@ -607,12 +696,12 @@
             }
 
             function mergeOneGameSum(dstPerGame, g, srcPerGame) {
-  const dst = dstPerGame[g] || (dstPerGame[g] = { rate: 0, levels: [] });
-  const src = (srcPerGame[g] || { rate: 0, levels: [] });
-  dst.rate = (dst.rate || 0) + (src.rate || 0); 
-  const set = new Set([...(dst.levels || []), ...(src.levels || [])]);
-  dst.levels = [...set].sort();
-}
+                const dst = dstPerGame[g] || (dstPerGame[g] = { rate: 0, levels: [] });
+                const src = (srcPerGame[g] || { rate: 0, levels: [] });
+                dst.rate = (dst.rate || 0) + (src.rate || 0);
+                const set = new Set([...(dst.levels || []), ...(src.levels || [])]);
+                dst.levels = [...set].sort();
+            }
 
             // helper: MAX rate + union levels into a single game's cell
             function mergeOneGameMax(dstPerGame, g, srcPerGame) {
@@ -1684,7 +1773,9 @@
             // Flatten in that species order, preserving each species’ internal row order
             renderList = [];
             for (const name of orderedNames) {
-                renderList.push(...buckets.get(name));
+                const arr = buckets.get(name).slice();
+                arr.sort(compressedRowComparator);
+                renderList.push(...arr);
             }
         }
 
