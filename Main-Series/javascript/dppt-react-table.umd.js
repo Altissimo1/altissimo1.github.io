@@ -2237,8 +2237,8 @@
         }
 
         return h('div', { style: { overflowX: 'auto' } },
-            h('table', { className: `pokemon-table ${view === 'compressed' ? 'compressed' : 'full'} combined` },
-                h('caption', { className: 'pokemon-table-caption' }, tableLabel),
+            h('table',
+                h('caption', tableLabel),
                 view === 'compressed' ? CompressedHeader() : FullHeader(),
                 h('tbody', null,
                     view === 'full'
