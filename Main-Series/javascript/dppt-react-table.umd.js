@@ -13,6 +13,7 @@
     const RADAR_FLAGS = new Set(["pokeradar", "no-pokeradar"]);
     const SWARM_FLAGS = new Set(["swarm", "no-swarm"]);
     const SLOT2_PREFIX = "slot-2-";
+	SHELLOS = "";
 
     const SLOT2_ORDER = [
         'slot-2-ruby',
@@ -1487,14 +1488,15 @@
         const useState = ReactRef.useState, useMemo = ReactRef.useMemo, useEffect = ReactRef.useEffect;
         const nm = normalizedName(props.name);
         var hardcodedOverride = "";
-
         //hardcoded bleh
         const hardcodedListLookup = [
-            { name: 'shellos', path: "../../Resources/images/home-renders/gen-4/shellos-east.png" },
-            { name: 'gastrodon', path: "../../Resources/images/home-renders/gen-4/gastrodon-east.png" },
+            { key: "east", name: 'shellos', path: "../../Resources/images/home-renders/gen-4/shellos-east.png" },
+            { key: "east", name: 'gastrodon', path: "../../Resources/images/home-renders/gen-4/gastrodon-east.png" },
+            { key: "west", name: 'shellos', path: "../../Resources/images/home-renders/gen-4/shellos-west.png" },
+            { key: "west", name: 'gastrodon', path: "../../Resources/images/home-renders/gen-4/gastrodon-west.png" },
         ];
         if (hardcodedListLookup.some(e => e.name === nm)) {
-            hardcodedOverride = hardcodedListLookup.find(e => e.name === nm).path;
+            hardcodedOverride = hardcodedListLookup.find(e => e.name === nm && e.key == SHELLOS).path;
         }
         if (hardcodedOverride !== "") {
             return h('img', {
@@ -2171,6 +2173,9 @@
                 (loc && (loc.name || '').toLowerCase() === String(locationId).toLowerCase())
             ) || null;
         }, [data, locationId]);
+		
+		//SHELLOS = activeLocation.shellos;
+		if (activeLocation != null && activeLocation.shellos) SHELLOS = activeLocation.shellos;
 
         // 3) Build rows (after activeLocation exists)
         const rows = useMemo(() => {
@@ -2180,6 +2185,7 @@
                 ? buildCompressedRows(activeLocation, state)
                 : buildCompressedRowsFiltered(activeLocation, state);
         }, [activeLocation, state]);
+		
 
         // Load the location file
         useEffect(() => {
