@@ -1158,6 +1158,16 @@
                 : `light-${isTrue ? 'true' : 'false'}`;
         }
 
+        //(0=false, 1=true, ...)
+        function zebraBySlot(prefix, slot) {
+            const s = Number(slot) || 0;
+            const isTrue = (s % 2) === 1;
+            return prefix
+                ? `${prefix}-${isTrue ? 'true' : 'false'}`
+                : `light-${isTrue ? 'true' : 'false'}`;
+        }
+
+
         function FullHeader() {
             return h('thead', null,
                 h('tr', null,
@@ -1187,25 +1197,24 @@
                     processedRows.map((r, rowIndex) => h('tr', { key: r.key },
                         ...(view === 'full'
                             ? [
-                                h('td', { className: zebraByBlock('light', rowIndex) }, String(r.slot)),
-                                h('td', { className: zebraByBlock('light', rowIndex) }, `${r.rate}%`),
-                                h('td', { className: zebraByBlock('light', rowIndex) }, [
+                                h('td', { className: zebraBySlot('light', r.slot) }, String(r.slot)),
+                                h('td', { className: zebraBySlot('light', r.slot) }, `${r.rate}%`),
+                                h('td', { className: zebraBySlot('light', r.slot) }, [
                                     h(ConditionsCell, { conds: r.rawConditions })
                                 ]),
-
                                 ...showGames.flatMap(g => {
                                     const gp = gamePrefix(g);
                                     const cell = r.perGame?.[g];
                                     const has = !!(cell && cell.name);
                                     const lv = has ? formatLevels(cell.levels) : '';
                                     return [
-                                        h('td', { key: g + ':sprite', className: zebraByBlock(gp, rowIndex) },
+                                        h('td', { key: g + ':sprite', className: zebraBySlot(gp, r.slot) },
                                             has ? h(Sprite, { name: cell.name.split(' / ')[0], mount }) : '—'
                                         ),
-                                        h('td', { key: g + ':name', className: zebraByBlock(gp, rowIndex) },
+                                        h('td', { key: g + ':name', className: zebraBySlot(gp, r.slot) },
                                             has ? cell.name : '—'
                                         ),
-                                        h('td', { key: g + ':lv', className: zebraByBlock(gp, rowIndex) },
+                                        h('td', { key: g + ':lv', className: zebraBySlot(gp, r.slot) },
                                             has ? (`lv. ${lv}` || '—') : '—'
                                         ),
                                     ];
