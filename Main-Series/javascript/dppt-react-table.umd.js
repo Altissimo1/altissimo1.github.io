@@ -207,6 +207,25 @@
         return [s2rank, swarmW, radarW, tail];
     }
 
+    function stripFullTimeTriplet(conds) {
+        const arr = Array.isArray(conds) ? conds.slice() : [];
+        const isTime = (t) => {
+            const v = String(t).trim().toLowerCase();
+            return v === 'morning' || v === 'day' || v === 'night';
+        };
+        let hasM = false, hasD = false, hasN = false;
+        for (const t of arr) {
+            const v = String(t).trim().toLowerCase();
+            if (v === 'morning') hasM = true;
+            else if (v === 'day') hasD = true;
+            else if (v === 'night') hasN = true;
+        }
+        if (hasM && hasD && hasN) {
+            // Remove the three time tokens; if nothing remains, caller will display "Anytime".
+            return arr.filter(t => !isTime(t));
+        }
+        return arr;
+    }
 
 
     function pickMountNode() { return document.querySelector('#pokemon-dppt-walking .table-collection.walking'); }
@@ -215,9 +234,13 @@
     function extractWalking(location) { return (location?.pokemon?.encounters || []).filter(b => b?.type === 'walking'); }
     function gamesForEncounter(enc) { return (enc?.games || []).filter(g => GAME_KEYS.has(g)); }
     function labelConditions(conds) {
-        const list = (conds || []).map(formatCondition).filter(Boolean);
+        const cleaned = stripFullTimeTriplet(conds);
+
+        const list = (cleaned || []).map(formatCondition).filter(Boolean);
+        // If nothing left after stripping, it's effectively Anytime.
         return !list.length ? 'Anytime' : list.join(', ');
     }
+
 
     function normalizeTimeKey(conds) {
         const has = (conds || []).filter(c => TIME_FLAGS.has(c));
@@ -1328,6 +1351,151 @@
             }
 
         }
+
+        if (view === 'full' && gameFilter === 'All') {
+            // Build a stable base-no-time key for a row's conditions
+            const baseNoTimeKey = (r) => (r.rawConditions || [])
+                .filter(c => !TIME_FLAGS.has(c))
+                .join('|');
+
+            // For a list of rows that share base-no-time conditions inside the same slot group,
+            // compute per-time aggregated per-game outputs (names + levels union).
+            function aggregatePerTime(items) {
+                // perTime[time][game] = { names:Set, levels:Set }
+                const perTime = {
+                    morning: Object.fromEntries(GAMES.map(g => [g, { names: new Set(), levels: new Set() }])),
+                    day: Object.fromEntries(GAMES.map(g => [g, { names: new Set(), levels: new Set() }])),
+                    night: Object.fromEntries(GAMES.map(g => [g, { names: new Set(), levels: new Set() }])),
+                };
+
+                for (const r of items) {
+                    const tks = toTimeOnly(r.rawConditions || []);
+                    const times = tks.length ? tks : ['morning', 'day', 'night'];
+                    for (const t of times) {
+                        for (const g of GAMES) {
+                            const cell = r.perGame?.[g];
+                            if (!cell) continue;
+                            const nm = cell.name;
+                            if (nm) {
+                                // split multi-name "A / B" into parts to keep uniqueness
+                                nm.split('/').map(s => s.trim()).filter(Boolean).forEach(p => perTime[t][g].names.add(p));
+                            }
+                            (cell.levels || []).forEach(lv => perTime[t][g].levels.add(String(lv)));
+                        }
+                    }
+                }
+
+                // materialize combined per-game objects with sorted names and levels
+                const combined = {};
+                for (const t of ['morning', 'day', 'night']) {
+                    combined[t] = Object.fromEntries(GAMES.map(g => {
+                        const names = [...perTime[t][g].names].sort((a, b) => a.localeCompare(b));
+                        const levels = [...perTime[t][g].levels].sort((a, b) => a.localeCompare(b));
+                        const nameStr = names.length ? names.join(' / ') : null;
+                        return [g, { name: nameStr, levels }];
+                    }));
+                }
+                return combined;
+            }
+
+            // Signature string for a per-time per-game map (so equal signatures → merge times)
+            function signatureForPerGame(pg) {
+                // Include names + levels (levels joined) for each game
+                return GAMES.map(g => {
+                    const name = pg[g]?.name || '';
+                    const lvls = (pg[g]?.levels || []).join(',');
+                    return `${g}:${name}|${lvls}`;
+                }).join(';');
+            }
+
+            // Rebuild each (slot|rate) group
+            for (const [groupKey, groupRows] of fullGroups) {
+                // 1) Bucket by base-no-time conditions so swarm/radar/slot2 are not crossed
+                const byBase = new Map();
+                for (const r of groupRows) {
+                    const key = baseNoTimeKey(r);
+                    if (!byBase.has(key)) byBase.set(key, []);
+                    byBase.get(key).push(r);
+                }
+
+                const rebuiltForGroup = [];
+
+                for (const [baseKey, items] of byBase) {
+                    // 2) Aggregate per-time names+levels (expand "anytime" rows to M/D/N)
+                    const perTimePG = aggregatePerTime(items);
+
+                    // 3) Make signatures and group times whose per-game outputs are identical
+                    const sigToTimes = new Map(); // sig -> times[]
+                    for (const t of ['morning', 'day', 'night']) {
+                        const sig = signatureForPerGame(perTimePG[t]);
+                        if (!sigToTimes.has(sig)) sigToTimes.set(sig, []);
+                        sigToTimes.get(sig).push(t);
+                    }
+
+                    // We'll need the non-time tokens back to build rawConditions for the display row
+                    const baseTokens = baseKey ? baseKey.split('|').filter(Boolean) : [];
+
+                    // 4) Emit rows per signature group; if all 3 times present → "Anytime" (empty time tokens)
+                    for (const [sig, times] of sigToTimes) {
+                        // Skip groups with no actual data across all games
+                        const anyData = times.some(t =>
+                            GAMES.some(g => (perTimePG[t][g]?.name) || (perTimePG[t][g]?.levels?.length))
+                        );
+                        if (!anyData) continue;
+
+                        // Choose representative time to copy rates (names are the same by signature).
+                        const firstT = times[0];
+
+                        // Build perGame with union of levels across the grouped times (names are identical)
+                        const perGame = Object.fromEntries(GAMES.map(g => {
+                            const name = perTimePG[firstT][g]?.name || null; // identical across times by sig
+                            const lvlUnion = new Set();
+                            for (const t of times) (perTimePG[t][g]?.levels || []).forEach(lv => lvlUnion.add(String(lv)));
+                            return [g, { name, levels: [...lvlUnion].sort((a, b) => a.localeCompare(b)) }];
+                        }));
+
+                        // Time tokens for the Conditions cell (empty array ⇒ "Anytime" via labelConditions)
+                        const timeTokens = (times.length === 3) ? [] : times.slice().sort((a, b) => TIME_ORDER.indexOf(a) - TIME_ORDER.indexOf(b));
+
+                        // Use slot/rate from any item (same within this (slot|rate) group)
+                        const ref = items[0];
+
+                        rebuiltForGroup.push({
+                            key: `${ref.slot}|${ref.rate}|${baseKey}|${timeTokens.join('+')}|recombined`,
+                            slot: ref.slot,
+                            rate: ref.rate,
+                            rawConditions: [...baseTokens, ...timeTokens], // what we display
+                            perGame,
+                        });
+                    }
+                }
+
+                // 5) Order inside group: by earliest time in the row (Anytime first), then condition priorities
+                rebuiltForGroup.sort((a, b) => {
+                    const aTimes = toTimeOnly(a.rawConditions);
+                    const bTimes = toTimeOnly(b.rawConditions);
+                    const aRank = aTimes.length ? TIME_ORDER.indexOf(aTimes[0]) : -1; // Anytime first
+                    const bRank = bTimes.length ? TIME_ORDER.indexOf(bTimes[0]) : -1;
+                    if (aRank !== bRank) return aRank - bRank;
+
+                    // Maintain your swarm/radar/slot2 ordering preferences
+                    const ta = fullRowSortTuple(a);
+                    const tb = fullRowSortTuple(b);
+                    for (let i = 0; i < Math.max(ta.length, tb.length); i++) {
+                        const va = ta[i], vb = tb[i];
+                        if (va === vb) continue;
+                        if (typeof va === 'number' && typeof vb === 'number') return va - vb;
+                        return String(va).localeCompare(String(vb));
+                    }
+                    return 0;
+                });
+
+                // Replace the original group with the rebuilt time-aware rows
+                fullGroups.set(groupKey, rebuiltForGroup);
+            }
+        }
+
+
 
         // helper to get zebra class by Pokémon block parity
         function zebraByBlock(prefix, rowIndex) {
