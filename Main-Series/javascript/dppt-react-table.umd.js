@@ -13,7 +13,7 @@
     const RADAR_FLAGS = new Set(["pokeradar", "no-pokeradar"]);
     const SWARM_FLAGS = new Set(["swarm", "no-swarm"]);
     const SLOT2_PREFIX = "slot-2-";
-	SHELLOS = "";
+    SHELLOS = "";
 
     const SLOT2_ORDER = [
         'slot-2-ruby',
@@ -1641,6 +1641,29 @@
         return acc;
     }
 
+    function GameTable({ game, baseState, location, mount }) {
+        // Force the game, keep all other toggles from parent
+        const s = React.useMemo(() => ({ ...baseState, game }), [baseState, game]);
+
+        const rows = React.useMemo(() => {
+            if (!location) return [];
+            if (s.view === 'full') return buildFullRows(location, s);
+            return s.showAllConditions
+                ? buildCompressedRows(location, s)
+                : buildCompressedRowsFiltered(location, s);
+        }, [location, s.view, s.showAllConditions, s.swarm, s.pokeradar, s.slot2, s.game]);
+
+        return React.createElement(Table, {
+            rows,
+            gameFilter: game,
+            mount,
+            view: s.view,
+            onlyTimeMode: !s.showAllConditions,
+            // Flag so Table knows these rows are already per-game
+            prebuiltForGame: game,
+        });
+    }
+
 
     function Table(props) {
         const onlyTimeMode = !!props.onlyTimeMode;
@@ -1667,7 +1690,8 @@
 
         // --- Single-game + COMPRESSED: collapse Slot2 variants correctly
         let processedRows = renderRows;
-        if (view === 'compressed' && gameFilter && gameFilter !== 'All') {
+        const isPrebuiltSingle = props.prebuiltForGame && props.prebuiltForGame === gameFilter;
+        if (!isPrebuiltSingle && view === 'compressed' && gameFilter && gameFilter !== 'All') {
             const g = gameFilter;
 
             // group1: by (name + base non-slot2 conditions)
@@ -1715,13 +1739,16 @@
                         : '';
 
                     const lvArr = [...acc.levels].sort();
+                    const slot2Vals = union;
                     out.push({
                         key: `${acc.name}|${acc.baseConds.join('|')}|${acc.rate}|${lvArr.join(',')}|${slot2Label}`,
                         name: acc.name,
                         perGame: { [g]: { rate: acc.rate, levels: lvArr } },
                         rawConditions: slot2Label ? [...acc.baseConds, slot2Label] : acc.baseConds,
                         nonSlot2Conds: acc.baseConds,
-                        timeConds: toTimeOnly(acc.baseConds)
+                        timeConds: toTimeOnly(acc.baseConds),
+                        slot2PerGame: { [g]: new Set(slot2Vals) },
+                        __slot2Vals: slot2Vals,
                     });
                 }
             }
@@ -1735,11 +1762,13 @@
                         rawConditions: row.rawConditions.slice(),
                         levels: new Set(row.perGame[g].levels || []),
                         rate: 0,
+                        slot2Union: new Set(),
                     });
                 }
                 const acc = merged.get(condKey);
                 acc.rate += row.perGame[g].rate || 0;
                 for (const lv of (row.perGame[g].levels || [])) acc.levels.add(lv);
+                for (const v of (row.__slot2Vals || [])) acc.slot2Union.add(v);
             }
 
             processedRows = Array.from(merged.values())
@@ -1755,11 +1784,10 @@
                         perGame: { [g]: { rate: m.rate, levels } },
                         rawConditions: rawConds,
                         nonSlot2Conds: baseOnly,
-                        // Prefer original tokens if present (from buildCompressedRowsFiltered),
-                        // otherwise safely derive from baseOnly tokens.
                         timeConds: (m.timeConds && m.timeConds.length)
                             ? m.timeConds.slice()
                             : toTimeOnly(baseOnly),
+                        slot2PerGame: { [g]: new Set([...m.slot2Union]) },
                     };
                 })
                 .sort((a, b) => byName(a.name, b.name));
@@ -2117,11 +2145,42 @@
                                 if (onlyTimeMode) {
                                     return h(ConditionsCell, { conds: r.timeConds || [] });
                                 }
+
                                 if (gameFilter && gameFilter !== 'All') {
-                                    return h(ConditionsCell, { conds: r.rawConditions || [] });
+                                    const raw = (r.nonSlot2Conds || []).slice();
+
+                                    // derive per-game Slot2 values for this table
+                                    const sset = r.slot2PerGame?.[gameFilter] || new Set();
+                                    let slot2Arr = Array.isArray(sset) ? sset : [...sset];
+
+                                    // fallback: if builder didn't carry slot2PerGame but we have a composed "Slot2: ..." in rawConditions
+                                    if (!slot2Arr.length && Array.isArray(r.rawConditions)) {
+                                        const slot2Tok = r.rawConditions.find(x => /^Slot2:\s*/i.test(String(x)));
+                                        if (slot2Tok) {
+                                            slot2Arr = slot2Tok
+                                                .replace(/^Slot2:\s*/i, '')
+                                                .split(',')
+                                                .map(s => s.trim().toLowerCase());
+                                        }
+                                    }
+
+                                    if (slot2Arr.length) {
+                                        const coversAll = ALL_SLOT2_VALS.every(v => slot2Arr.includes(v));
+                                        if (!coversAll) {
+                                            raw.push(
+                                                `Slot2: ${slot2Arr
+                                                    .slice()
+                                                    .sort((a, b) => a.localeCompare(b))
+                                                    .map(titleCaseSlot2)
+                                                    .join(', ')}`
+                                            );
+                                        }
+                                    }
+
+                                    return h(ConditionsCell, { conds: raw });
                                 }
-                                const base = (r.nonSlot2Conds || []).slice();
-                                const parts = base.map(formatCondition);
+
+                                const raw = (r.nonSlot2Conds || []).slice();
 
                                 if (r.kind === 'slot2') {
                                     const inter = slot2IntersectionForRow(r);
@@ -2130,11 +2189,10 @@
                                             .sort((a, b) => a.localeCompare(b))
                                             .map(titleCaseSlot2)
                                             .join(', ');
-                                        parts.push(`Slot2: ${slot2List}`);
+                                        raw.push(`Slot2: ${slot2List}`);
                                     }
                                 }
-                                return h(ConditionsCell, { conds: parts });
-
+                                return h(ConditionsCell, { conds: raw });
                             })())
                         ))
                         )
@@ -2173,9 +2231,9 @@
                 (loc && (loc.name || '').toLowerCase() === String(locationId).toLowerCase())
             ) || null;
         }, [data, locationId]);
-		
-		//SHELLOS = activeLocation.shellos;
-		if (activeLocation != null && activeLocation.shellos) SHELLOS = activeLocation.shellos;
+
+        //SHELLOS = activeLocation.shellos;
+        if (activeLocation != null && activeLocation.shellos) SHELLOS = activeLocation.shellos;
 
         // 3) Build rows (after activeLocation exists)
         const rows = useMemo(() => {
@@ -2185,7 +2243,7 @@
                 ? buildCompressedRows(activeLocation, state)
                 : buildCompressedRowsFiltered(activeLocation, state);
         }, [activeLocation, state]);
-		
+
 
         // Load the location file
         useEffect(() => {
@@ -2218,15 +2276,14 @@
                                 state.game === 'separate'
                                     ? h('div', {},
                                         GAMES.map(g =>
-                                            h('div', { key: g, style: { marginTop: 12 } }, [
-                                                h(Table, {
-                                                    rows,
-                                                    gameFilter: g,
-                                                    mount,
-                                                    view: state.view,
-                                                    onlyTimeMode: !state.showAllConditions,
+                                            h('div', { key: g, style: { marginTop: 12 } },
+                                                h(GameTable, {
+                                                    game: g,
+                                                    baseState: state,
+                                                    location: activeLocation,
+                                                    mount
                                                 })
-                                            ])
+                                            )
                                         )
                                     )
                                     : h(Table, {
