@@ -1875,7 +1875,173 @@
 
         }
 
-        if (view === 'full' && gameFilter === 'All') {
+        if (view === 'full') {
+            // The games/columns shown in this FULL table:
+            const SHOWN_GAMES = (gameFilter === 'All') ? GAMES : [gameFilter];
+
+            // Strip only the given tokens from a condition array, keep everything else
+            function withoutTokens(arr, tokensSet) {
+                return (arr || []).filter(x => !tokensSet.has(x));
+            }
+
+            // Compare per-game outputs for SHOWN_GAMES: identical names AND identical level sets
+            function sameOutputsForShownGames(rowA, rowB) {
+                for (const g of SHOWN_GAMES) {
+                    const a = rowA.perGame?.[g] || {};
+                    const b = rowB.perGame?.[g] || {};
+                    const nameEqual = String(a.name || '') === String(b.name || '');
+                    const la = (a.levels || []).map(String).sort().join(',');
+                    const lb = (b.levels || []).map(String).sort().join(',');
+                    if (!nameEqual || la !== lb) return false;
+                }
+                return true;
+            }
+
+            // Emit a shallow clone of a row with rawConditions replaced
+            function withRawConds(row, rawConds) {
+                return Object.assign({}, row, {
+                    rawConditions: rawConds.slice(),
+                });
+            }
+
+            // Collapse pairs (e.g., swarm/no-swarm or pokeradar/no-pokeradar)
+            // If, for the same mon+time within this slot group, A and B produce identical outputs
+            // in the SHOWN_GAMES, replace them with a single "no-flag" row.
+            function collapseFlagPairInGroup(groupRows, flagA, flagB) {
+                const PAIR = new Set([flagA, flagB]);
+                const buckets = new Map();
+                for (const r of groupRows) {
+                    const baseNoPair = withoutTokens(r.rawConditions || [], PAIR);
+                    const name = (function getFirstName(row) {
+                        for (const g of SHOWN_GAMES) {
+                            const nm = row.perGame?.[g]?.name;
+                            if (nm) return nm;
+                        }
+                        return ''; // NA-only rows still get grouped
+                    })(r);
+                    const key = `${name}|${baseNoPair.join('|')}`;
+                    if (!buckets.has(key)) buckets.set(key, { baseNoPair, items: [] });
+                    buckets.get(key).items.push(r);
+                }
+
+                const out = [];
+                for (const { baseNoPair, items } of buckets.values()) {
+                    const withA = items.filter(r => (r.rawConditions || []).includes(flagA));
+                    const withB = items.filter(r => (r.rawConditions || []).includes(flagB));
+                    const withNone = items.filter(r => !((r.rawConditions || []).some(x => x === flagA || x === flagB)));
+
+                    // Build map by time signature so we don't mix times here.
+                    const byTime = new Map();
+                    function timeSig(row) {
+                        const t = toTimeOnly(row.rawConditions || []);
+                        return (t.length ? t : ['morning', 'day', 'night']).join('+');
+                    }
+                    for (const r of items) {
+                        const k = timeSig(r);
+                        if (!byTime.has(k)) byTime.set(k, []);
+                        byTime.get(k).push(r);
+                    }
+
+                    for (const [tkey, rowsAtTime] of byTime) {
+                        const A = rowsAtTime.filter(r => (r.rawConditions || []).includes(flagA));
+                        const B = rowsAtTime.filter(r => (r.rawConditions || []).includes(flagB));
+                        const N = rowsAtTime.filter(r => !((r.rawConditions || []).some(x => x === flagA || x === flagB)));
+
+                        // If both A and B exist and ANY pair (A_i,B_j) matches outputs, we can collapse
+                        let canCollapse = false;
+                        outer: for (const ra of A) for (const rb of B) {
+                            if (sameOutputsForShownGames(ra, rb)) { canCollapse = true; break outer; }
+                        }
+
+                        if (canCollapse) {
+                            // Keep the "none" rows as-is (they already represent 'Any'), and
+                            // **add exactly one** synthetic "none" row for this time derived from A (or B).
+                            // Choose one representative (prefer an existing none; else A[0] or B[0]).
+                            const seed = N[0] || A[0] || B[0];
+                            const collapsed = withRawConds(seed, baseNoPair);
+                            out.push(collapsed);
+                            // plus any existing "none" rows at this same time
+                            for (const rNone of N) out.push(rNone);
+                        } else {
+                            // No collapse possible, keep all rows at this time
+                            out.push(...rowsAtTime);
+                        }
+                    }
+                }
+                return out;
+            }
+
+            // Collapse Slot-2 when ALL 6 variants exist and outputs match for the SHOWN_GAMES
+            function collapseSlot2InvariantInGroup(groupRows) {
+                // Group by species + non-slot2 conditions (keep time and other flags)
+                const S2SET = new Set(ALL_SLOT2_VALS.map(v => `${SLOT2_PREFIX}${v}`));
+                const byKey = new Map();
+                for (const r of groupRows) {
+                    const baseNoS2 = withoutTokens(r.rawConditions || [], S2SET);
+                    const name = (function getFirstName(row) {
+                        for (const g of SHOWN_GAMES) {
+                            const nm = row.perGame?.[g]?.name;
+                            if (nm) return nm;
+                        }
+                        return '';
+                    })(r);
+                    const key = `${name}|${baseNoS2.join('|')}`;
+                    if (!byKey.has(key)) byKey.set(key, { baseNoS2, items: [] });
+                    byKey.get(key).items.push(r);
+                }
+
+                const out = [];
+                for (const { baseNoS2, items } of byKey.values()) {
+                    // Partition by time (don't cross times)
+                    const byTime = new Map();
+                    function timeSig(row) {
+                        const t = toTimeOnly(row.rawConditions || []);
+                        return (t.length ? t : ['morning', 'day', 'night']).join('+');
+                    }
+                    for (const r of items) {
+                        const k = timeSig(r);
+                        if (!byTime.has(k)) byTime.set(k, []);
+                        byTime.get(k).push(r);
+                    }
+
+                    for (const [tkey, rowsAtTime] of byTime) {
+                        // Collect per Slot-2 token rows for this time
+                        const byS2 = new Map(); // s2token (like 'slot-2-emerald' or '' if none), rows[]
+                        for (const r of rowsAtTime) {
+                            const s2tok = (r.rawConditions || []).find(x => String(x).startsWith(SLOT2_PREFIX)) || '';
+                            if (!byS2.has(s2tok)) byS2.set(s2tok, []);
+                            byS2.get(s2tok).push(r);
+                        }
+
+                        // If we have ALL 6 explicit tokens present (not counting ''), and they all match outputs,
+                        // we can collapse to a single "no-slot2" row for this time.
+                        const s2TokensPresent = [...byS2.keys()].filter(k => k && k.startsWith(SLOT2_PREFIX));
+                        const hasAllSix = ALL_SLOT2_VALS.every(v => byS2.has(`${SLOT2_PREFIX}${v}`));
+
+                        let canCollapse = false;
+                        if (hasAllSix) {
+                            // Pick one representative row per slot2 token (same time bucket by construction)
+                            const reps = s2TokensPresent.map(tok => byS2.get(tok)[0]);
+                            canCollapse = reps.every(r => sameOutputsForShownGames(r, reps[0]));
+                        }
+
+                        if (canCollapse) {
+                            // Create a single row with slot2 removed from conditions for this time
+                            const seed = byS2.get(`${SLOT2_PREFIX}${ALL_SLOT2_VALS[0]}`)[0];
+                            const collapsed = withRawConds(seed, baseNoS2);
+                            // Also keep any already-no-slot2 rows (if any) at this time
+                            const noneRows = byS2.get('') || [];
+                            out.push(collapsed, ...noneRows);
+                        } else {
+                            // No collapse, keep everything
+                            out.push(...rowsAtTime);
+                        }
+                    }
+                }
+                return out;
+            }
+
+
             // Build a stable base-no-time key for a row's conditions
             const baseNoTimeKey = (r) => (r.rawConditions || [])
                 .filter(c => !TIME_FLAGS.has(c))
@@ -1923,8 +2089,7 @@
 
             // Signature string for a per-time per-game map (so equal signatures → merge times)
             function signatureForPerGame(pg) {
-                // Include names + levels (levels joined) for each game
-                return GAMES.map(g => {
+                return SHOWN_GAMES.map(g => {
                     const name = pg[g]?.name || '';
                     const lvls = (pg[g]?.levels || []).join(',');
                     return `${g}:${name}|${lvls}`;
@@ -1933,9 +2098,21 @@
 
             // Rebuild each (slot|rate) group
             for (const [groupKey, groupRows] of fullGroups) {
+                // 0) Start from the current group rows
+                let rowsG = groupRows.slice();
+
+                // 1) Collapse swarm/no-swarm where identical for SHOWN_GAMES
+                rowsG = collapseFlagPairInGroup(rowsG, 'swarm', 'no-swarm');
+
+                // 2) Collapse pokeradar/no-pokeradar where identical for SHOWN_GAMES
+                rowsG = collapseFlagPairInGroup(rowsG, 'pokeradar', 'no-pokeradar');
+
+                // 3) Collapse Slot-2 invariants when ALL 6 variants produce identical outputs
+                rowsG = collapseSlot2InvariantInGroup(rowsG);
+
                 // 1) Bucket by base-no-time conditions so swarm/radar/slot2 are not crossed
                 const byBase = new Map();
-                for (const r of groupRows) {
+                for (const r of rowsG) {
                     const key = baseNoTimeKey(r);
                     if (!byBase.has(key)) byBase.set(key, []);
                     byBase.get(key).push(r);
