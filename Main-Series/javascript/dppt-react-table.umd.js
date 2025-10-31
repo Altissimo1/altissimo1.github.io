@@ -25,6 +25,18 @@
     ];
     const SLOT2_RANK = Object.fromEntries(SLOT2_ORDER.map((k, i) => [k, i]));
 
+    // Bare-value order for display (no prefix)
+    const SLOT2_ORDER_RAW = ['ruby', 'sapphire', 'emerald', 'firered', 'leafgreen', 'none'];
+    const SLOT2_RANK_RAW = Object.fromEntries(SLOT2_ORDER_RAW.map((k, i) => [k, i]));
+
+    // Normalize and sort any slot2 value list to the display order above
+    function sortSlot2ValuesForDisplay(values) {
+        const norm = (v) => String(v).toLowerCase().replace(/^slot-2-/, '');
+        return [...new Set(values.map(norm))]
+            .sort((a, b) => (SLOT2_RANK_RAW[a] ?? 999) - (SLOT2_RANK_RAW[b] ?? 999));
+    }
+
+
 
     // Class helpers
     const gamePrefix = g => g.toLowerCase();
@@ -329,6 +341,20 @@
         const list = (cleaned || []).map(formatCondition).filter(Boolean);
         // If nothing left after stripping, it's effectively Anytime.
         return !list.length ? 'Anytime' : list.join(', ');
+    }
+    function detectAvailableFilters(location) {
+        const seen = new Set();
+        for (const block of extractWalking(location)) {
+            for (const opt of (block.encounters || [])) {
+                for (const c of (opt.conditions || [])) {
+                    seen.add(String(c));
+                }
+            }
+        }
+        const hasSwarm = seen.has('swarm') || seen.has('no-swarm');
+        const hasRadar = seen.has('pokeradar') || seen.has('no-pokeradar');
+        const hasSlot2 = [...seen].some(c => String(c).startsWith(SLOT2_PREFIX));
+        return { hasSwarm, hasRadar, hasSlot2 };
     }
 
 
@@ -1549,6 +1575,7 @@
 
     function ViewControls(props) {
         const state = props.state;
+        const flags = props.flags || { hasSwarm: true, hasRadar: true, hasSlot2: true };
         const set = p => props.setState(prev => Object.assign({}, prev, p));
 
         return h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', margin: '8px 0 12px' } },
@@ -1573,17 +1600,17 @@
                 checked: state.showAllConditions,
                 onChange: v => set({ showAllConditions: v })
             }),
-            !state.showAllConditions && h(Toggle, {
+            (!state.showAllConditions && flags.hasSwarm) && h(Toggle, {
                 label: 'Swarm active',
                 checked: state.swarm,
                 onChange: v => set({ swarm: v })
             }),
-            !state.showAllConditions && h(Toggle, {
+            (!state.showAllConditions && flags.hasRadar) && h(Toggle, {
                 label: 'Poké Radar active',
                 checked: state.pokeradar,
                 onChange: v => set({ pokeradar: v })
             }),
-            !state.showAllConditions && h(Select, {
+            (!state.showAllConditions && flags.hasSlot2) && h(Select, {
                 label: 'GBA dual-slot',
                 value: state.slot2,
                 onChange: v => set({ slot2: v }),
@@ -1598,6 +1625,7 @@
             })
         );
     }
+
 
 
     // helper: load a JS file and wait for it
@@ -1617,7 +1645,8 @@
     }
 
     function prettySlot2List(values) {
-        return `Slot2: ${values.slice().sort((a, b) => a.localeCompare(b)).map(titleCaseSlot2).join(', ')}`;
+        const ordered = sortSlot2ValuesForDisplay(values);
+        return `Slot2: ${ordered.map(titleCaseSlot2).join(', ')}`;
     }
 
     function slot2IntersectionForRow(row) {
@@ -2344,15 +2373,10 @@
                                     if (slot2Arr.length) {
                                         const coversAll = ALL_SLOT2_VALS.every(v => slot2Arr.includes(v));
                                         if (!coversAll) {
-                                            raw.push(
-                                                `Slot2: ${slot2Arr
-                                                    .slice()
-                                                    .sort((a, b) => a.localeCompare(b))
-                                                    .map(titleCaseSlot2)
-                                                    .join(', ')}`
-                                            );
+                                            raw.push(prettySlot2List(slot2Arr));
                                         }
                                     }
+
 
                                     return h(ConditionsCell, { conds: raw });
                                 }
@@ -2362,13 +2386,10 @@
                                 if (r.kind === 'slot2') {
                                     const inter = slot2IntersectionForRow(r);
                                     if (inter.size > 0) {
-                                        const slot2List = [...inter]
-                                            .sort((a, b) => a.localeCompare(b))
-                                            .map(titleCaseSlot2)
-                                            .join(', ');
-                                        raw.push(`Slot2: ${slot2List}`);
+                                        raw.push(prettySlot2List([...inter]));
                                     }
                                 }
+
                                 return h(ConditionsCell, { conds: raw });
                             })())
                         ))
@@ -2390,7 +2411,7 @@
         const [loading, setLoading] = useState(true);
         const [data, setData] = useState([]);
         const [state, setState] = useState({
-            view: 'full',
+            view: 'compressed',
             game: 'All',
             swarm: false,
             pokeradar: false,
@@ -2408,6 +2429,10 @@
                 (loc && (loc.name || '').toLowerCase() === String(locationId).toLowerCase())
             ) || null;
         }, [data, locationId]);
+        const filterFlags = useMemo(() => {
+            return activeLocation ? detectAvailableFilters(activeLocation) : { hasSwarm: false, hasRadar: false, hasSlot2: false };
+        }, [activeLocation]);
+
 
         //SHELLOS = activeLocation.shellos;
         if (activeLocation != null && activeLocation.shellos) SHELLOS = activeLocation.shellos;
@@ -2445,7 +2470,7 @@
 
         return h('div', {},
             h('div', {},
-                h(ViewControls, { state, setState }),
+                h(ViewControls, { state, setState, flags: filterFlags }),
                 loading ? h('p', null, 'Loading…')
                     : error ? h('p', { style: { color: 'red' } }, 'Error: ', error)
                         : !activeLocation ? h('p', null, 'No matching location for ', h('code', null, String(locationId)), '.')
