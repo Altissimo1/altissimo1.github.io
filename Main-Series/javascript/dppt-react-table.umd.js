@@ -369,6 +369,60 @@
         const FLAGS_RADAR = new Set(['pokeradar', 'no-pokeradar']);
         const FLAGS_SWARM = new Set(['swarm', 'no-swarm']);
 
+        function addIntoPerGameMax(target, source) {
+            for (const g of GAMES) {
+                const t = target[g] || (target[g] = { rate: 0, levels: [] });
+                const s = source[g] || { rate: 0, levels: [] };
+
+                t.rate = Math.max(t.rate || 0, s.rate || 0);
+
+                // union levels (keep all)
+                const set = new Set([...(t.levels || []), ...(s.levels || [])]);
+                t.levels = [...set].sort();
+            }
+        }
+
+        // Merge whole perGame maps: SUM vs MAX (keeps levels as UNION)
+        function mergePerGameInto(target, source, useMax) {
+            for (const g of GAMES) {
+                const dst = target[g] || (target[g] = { rate: 0, levels: [] });
+                const src = (source[g] || { rate: 0, levels: [] });
+                dst.rate = useMax
+                    ? Math.max(dst.rate || 0, src.rate || 0)
+                    : (dst.rate || 0) + (src.rate || 0);
+                const set = new Set([...(dst.levels || []), ...(src.levels || [])]);
+                dst.levels = [...set].sort();
+            }
+        }
+
+        // Merge a single game's bucket: SUM vs MAX (keeps levels as UNION)
+        function mergeOneGameInto(targetPerGame, g, sourcePerGame, useMax) {
+            const dst = targetPerGame[g] || (targetPerGame[g] = { rate: 0, levels: [] });
+            const src = (sourcePerGame[g] || { rate: 0, levels: [] });
+            dst.rate = useMax
+                ? Math.max(dst.rate || 0, src.rate || 0)
+                : (dst.rate || 0) + (src.rate || 0);
+            const set = new Set([...(dst.levels || []), ...(src.levels || [])]);
+            dst.levels = [...set].sort();
+        }
+
+        function normalizeSlot2Val(v) {
+            return v === 'firered' ? 'firered' : 'non-firered';
+        }
+
+        // Build a per-game slot2 signature string using the normalizer.
+        function slot2NormalizedSignature(row) {
+            return GAMES.map(g => {
+                const sset = row.slot2PerGame?.[g] || new Set();
+                const arr = Array.isArray(sset) ? sset : [...sset];
+                if (!arr.length) return `${g}:-`;
+                const norm = [...new Set(arr.map(normalizeSlot2Val))].sort().join(',');
+                return `${g}:${norm}`;
+            }).join(';');
+        }
+
+
+
         function perGameSignature(perGame) {
             // stable string signature: Diamond:rate|levels;Pearl:...;Platinum:...
             const parts = [];
@@ -471,9 +525,18 @@
                 const lvls = [...rec.perGame[g].levels].sort().join(',');
                 sigParts.push(`${g}:${r}|${lvls}`);
             }
+
             const sig = sigParts.join(';');
             const nonSlot2Key = [...rec.nonSlot2Conds].join('|');
-            const groupKey = `${rec.name}|${nonSlot2Key}|${sig}`;
+
+            // IMPORTANT: In Compressed + All games + Show all conditions
+            // do NOT merge different Slot-2 variants here.
+            // Keep each slot2Val in its own bucket so we can recombine later by signature.
+            const keepVariantsSeparate = s.showAllConditions && s.game === 'All';
+            const slot2TagPart = keepVariantsSeparate ? `|slot2:${rec.slot2Val ?? '__no_slot2__'}` : '';
+
+            const groupKey = `${rec.name}|${nonSlot2Key}|${sig}${slot2TagPart}`;
+
 
             if (!merged.has(groupKey)) {
                 const perGameFinal = Object.fromEntries(
@@ -502,6 +565,9 @@
             for (const g of GAMES) for (const v of row.slot2PerGame[g]) slot2All.add(v);
 
             const baseConds = [...row.nonSlot2Conds]; // includes any time tokens if present
+
+            const hasSlot2 = slot2All.size > 0;
+
             rows.push({
                 key: row.key,
                 name: row.name,
@@ -509,10 +575,137 @@
                 nonSlot2Conds: baseConds,
                 slot2PerGame: row.slot2PerGame,
                 slot2All,
-                rawConditions: baseConds,          // used in "show all conditions" mode
-                timeConds: toTimeOnly(baseConds),  // used in time-only mode
+                rawConditions: baseConds,
+                timeConds: toTimeOnly(baseConds),
+                kind: hasSlot2 ? 'slot2' : 'base',
             });
+
         }
+
+        // ========= Pass 2.5: Demote slot-2–invariant games into base ("any") rows =========
+        // Do this early so later passes (swarm/radar/time) see the already-folded data.
+        if (s.showAllConditions) {
+            // group only slot2 rows by (species + full nonSlot2Conds incl. time)
+            const groups = new Map(); // key -> rows[]
+            const passthrough = [];
+
+            for (const r of rows) {
+                if (r.kind !== 'slot2') { passthrough.push(r); continue; }
+                const key = `${r.name}|${(r.nonSlot2Conds || []).join('|')}`;
+                if (!groups.has(key)) groups.set(key, []);
+                groups.get(key).push(r);
+            }
+
+            // accumulates per-game values to add into the corresponding base row
+            const baseAgg = new Map(); // key -> perGame
+
+            function getAgg(key) {
+                if (!baseAgg.has(key)) {
+                    baseAgg.set(key, Object.fromEntries(GAMES.map(g => [g, { rate: 0, levels: [] }])));
+                }
+                return baseAgg.get(key);
+            }
+
+            function mergeOneGameSum(dstPerGame, g, srcPerGame) {
+  const dst = dstPerGame[g] || (dstPerGame[g] = { rate: 0, levels: [] });
+  const src = (srcPerGame[g] || { rate: 0, levels: [] });
+  dst.rate = (dst.rate || 0) + (src.rate || 0); 
+  const set = new Set([...(dst.levels || []), ...(src.levels || [])]);
+  dst.levels = [...set].sort();
+}
+
+            // helper: MAX rate + union levels into a single game's cell
+            function mergeOneGameMax(dstPerGame, g, srcPerGame) {
+                const dst = dstPerGame[g] || (dstPerGame[g] = { rate: 0, levels: [] });
+                const src = (srcPerGame[g] || { rate: 0, levels: [] });
+                dst.rate = Math.max(dst.rate || 0, src.rate || 0);
+                const set = new Set([...(dst.levels || []), ...(src.levels || [])]);
+                dst.levels = [...set].sort();
+            }
+
+            // For each (species + base conditions incl. time) group…
+            for (const [key, list] of groups) {
+                // For each game, check if slot2 is "pointless" (covers all options with identical outcome)
+                for (const g of GAMES) {
+                    // rows in this group that actually have data for game g
+                    const withData = list.filter(r =>
+                        (r.perGame?.[g]?.rate || 0) > 0 || (r.perGame?.[g]?.levels || []).length > 0
+                    );
+                    if (withData.length === 0) continue;
+
+                    // union of slot2 values observed for this game across the group
+                    const union = new Set();
+                    for (const r of withData) {
+                        const sset = r.slot2PerGame?.[g] || new Set();
+                        const arr = Array.isArray(sset) ? sset : [...sset];
+                        for (const v of arr) union.add(v);
+                    }
+                    const coversAll = ALL_SLOT2_VALS.every(v => union.has(v));
+
+                    // identical signature check (rate + sorted levels)
+                    const sigs = new Set(withData.map(r => {
+                        const cell = r.perGame[g] || { rate: 0, levels: [] };
+                        const lv = (cell.levels || []).slice().sort().join(',');
+                        return `${cell.rate || 0}|${lv}`;
+                    }));
+
+                    if (coversAll && sigs.size === 1) {
+                        // Move this game's contribution into the base row
+                        const acc = getAgg(key);
+                        mergeOneGameMax(acc, g, withData[0].perGame);
+
+                        // Blank out this game in each slot2 row (so those rows show N/A for g)
+                        for (const r of withData) r.perGame[g] = { rate: 0, levels: [] };
+                    }
+                }
+            }
+
+            // Drop slot2 rows that became completely empty
+            const keptSlot2 = [];
+            for (const r of rows) {
+                if (r.kind !== 'slot2') continue;
+                const hasAny = GAMES.some(g =>
+                    (r.perGame?.[g]?.rate || 0) > 0 || (r.perGame?.[g]?.levels || []).length > 0
+                );
+                if (hasAny) keptSlot2.push(r);
+            }
+
+            // Materialize/merge the base ("any") rows for each affected group
+            for (const [key, perGame] of baseAgg) {
+                const [name, ...condParts] = key.split('|');
+                const nonSlot2Conds = condParts.filter(Boolean);
+
+                // find existing base row for this (species + same base conditions incl. time)
+                let baseRow = passthrough.find(r =>
+                    r.kind === 'base' &&
+                    r.name === name &&
+                    (r.nonSlot2Conds || []).join('|') === nonSlot2Conds.join('|')
+                );
+
+                if (!baseRow) {
+                    baseRow = {
+                        key: `${key}|slot2-invariant-any`,
+                        name,
+                        perGame: Object.fromEntries(GAMES.map(g => [g, { rate: 0, levels: [] }])),
+                        nonSlot2Conds: nonSlot2Conds.slice(),
+                        rawConditions: nonSlot2Conds.slice(),
+                        timeConds: toTimeOnly(nonSlot2Conds),
+                        slot2PerGame: Object.fromEntries(GAMES.map(g => [g, new Set()])),
+                        slot2All: new Set(),
+                        kind: 'base',
+                    };
+                    passthrough.push(baseRow);
+                }
+
+                // merge by MAX (mutually exclusive) + union levels
+                for (const g of GAMES) mergeOneGameSum(baseRow.perGame, g, perGame);
+            }
+
+            // Rebuild rows for next passes
+            rows = [...passthrough, ...keptSlot2];
+        }
+
+
         // ========= Pass 3: Show-all collapse for Radar / Swarm into "no-flag" (Any) =========
         // If, for a given Pokémon + base conditions (time kept!), the Pokeradar-on and Pokeradar-off
         // outcomes have *identical appearance rates* (levels don't matter) for a game,
@@ -520,13 +713,24 @@
         // Same for Swarm / No-swarm.
         if (s.showAllConditions) {
             function collapsePair(flagA, flagB) {
+                function slot2SignatureForRow(rr) {
+                    if ((rr.kind || 'base') !== 'slot2') return '';
+                    return GAMES.map(g => {
+                        const sset = rr.slot2PerGame?.[g] || new Set();
+                        const arr = Array.isArray(sset) ? sset : [...sset];
+                        return `${g}:${arr.slice().sort().join(',')}`;
+                    }).join(';');
+                }
+
+
                 const FLAG_SET = new Set([flagA, flagB]);
 
                 // group by species + base (keep time & other conds; just remove the pair flags)
                 const byGroup = new Map();
                 for (const r of rows) {
                     const baseNoFlag = (r.nonSlot2Conds || []).filter(c => !FLAG_SET.has(c));
-                    const key = `${r.name}|${baseNoFlag.join('|')}`;
+                    const key = `${r.name}|${baseNoFlag.join('|')}|${r.kind || 'base'}|${slot2SignatureForRow(r)}`;
+
                     if (!byGroup.has(key)) byGroup.set(key, { name: r.name, baseNoFlag, items: [] });
                     byGroup.get(key).items.push(r);
                 }
@@ -564,22 +768,32 @@
                         else acc.none.push(r);
                     }
 
-                    // Build aggregators per flag (sum rates, union levels/slot2)
                     function fold(rowsList) {
+                        // If ANY row in this bucket is a Slot2 row, we must not sum mutually-exclusive variants.
+                        const useMax = rowsList.some(r => (r.kind === 'slot2'));
+
                         const out = {
-                            perGame: makeEmptyPerGame(),
+                            perGame: Object.fromEntries(GAMES.map(g => [g, { rate: 0, levels: [] }])),
                             slot2PerGame: Object.fromEntries(GAMES.map(g => [g, new Set()])),
                             timeConds: new Set(),
+                            useMax, // keep an aggregated note
                         };
+
                         for (const row of rowsList) {
-                            for (const g of GAMES) addOneGame(out.perGame, row, g);
+                            // rates: SUM or MAX depending on useMax
+                            mergePerGameInto(out.perGame, row.perGame, useMax);
+
+                            // keep times & slot2 provenance
                             for (const t of (row.timeConds || [])) out.timeConds.add(t);
-                            for (const g of GAMES) for (const v of (row.slot2PerGame?.[g] || [])) {
-                                out.slot2PerGame[g].add(v);
+                            for (const g of GAMES) {
+                                const sset = row.slot2PerGame?.[g] || new Set();
+                                const arr = Array.isArray(sset) ? sset : [...sset];
+                                for (const v of arr) out.slot2PerGame[g].add(v);
                             }
                         }
                         return out;
                     }
+
 
                     const aggA = fold(acc[flagA]);
                     const aggB = fold(acc[flagB]);
@@ -588,7 +802,7 @@
                     // Prepare output candidates
                     const outNone = {
                         name,
-                        nonSlot2Conds: baseNoFlag.slice(), // <-- no flag token
+                        nonSlot2Conds: baseNoFlag.slice(),
                         perGame: makeEmptyPerGame(),
                         slot2PerGame: Object.fromEntries(GAMES.map(g => [g, new Set()])),
                         timeConds: new Set(toTimeOnly(baseNoFlag))
@@ -608,47 +822,51 @@
                         timeConds: new Set(toTimeOnly(baseNoFlag))
                     };
 
+                    const sharedKind = (items[0]?.kind) || 'base';
+                    outNone.kind = sharedKind;
+                    outA.kind = sharedKind;
+                    outB.kind = sharedKind;
+
                     // Per-game redistribution
                     for (const g of GAMES) {
                         const hasA = (aggA.perGame[g].rate || 0) > 0;
                         const hasB = (aggB.perGame[g].rate || 0) > 0;
 
-                        // equal means identical *appearance rates*; levels intentionally ignored
-                        const equalAB = hasA && hasB && (sigRate(aggA.perGame, g) === sigRate(aggB.perGame, g));
+                        // equal means identical appearance rates (levels ignored)
+                        const equalAB = hasA && hasB &&
+                            (String(aggA.perGame[g].rate || 0) === String(aggB.perGame[g].rate || 0));
 
                         if (equalAB) {
-                            // A and B are identical -> treat as "regardless of the toggle"
-                            // Add NONE once + ONE COPY of the flag bucket (use A), but still union Slot2/levels from both.
-                            addOneGame(outNone.perGame, { perGame: { [g]: aggN.perGame[g] } }, g);
-                            addOneGame(outNone.perGame, { perGame: { [g]: aggA.perGame[g] } }, g); // <-- only A, not B
+                            // NONE + exactly one copy of (A or B). Use MAX for slot2 groups, SUM otherwise.
+                            mergeOneGameInto(outNone.perGame, g, aggN.perGame, aggN.useMax);
+                            mergeOneGameInto(outNone.perGame, g, aggA.perGame, (aggA.useMax || aggN.useMax));
 
-                            // union Slot2 sources from N, A, and B (levels are already unioned by addOneGame)
                             for (const v of aggN.slot2PerGame[g]) outNone.slot2PerGame[g].add(v);
                             for (const v of aggA.slot2PerGame[g]) outNone.slot2PerGame[g].add(v);
                             for (const v of aggB.slot2PerGame[g]) outNone.slot2PerGame[g].add(v);
                         } else {
-
-                            // keep whatever exists in their own rows; none stays in no-flag
-                            addOneGame(outNone.perGame, { perGame: { [g]: aggN.perGame[g] } }, g);
+                            // keep separate; NONE stays in outNone
+                            mergeOneGameInto(outNone.perGame, g, aggN.perGame, aggN.useMax);
                             for (const v of aggN.slot2PerGame[g]) outNone.slot2PerGame[g].add(v);
 
                             if (hasA) {
-                                addOneGame(outA.perGame, { perGame: { [g]: aggA.perGame[g] } }, g);
+                                mergeOneGameInto(outA.perGame, g, aggA.perGame, aggA.useMax);
                                 for (const v of aggA.slot2PerGame[g]) outA.slot2PerGame[g].add(v);
                             }
                             if (hasB) {
-                                addOneGame(outB.perGame, { perGame: { [g]: aggB.perGame[g] } }, g);
+                                mergeOneGameInto(outB.perGame, g, aggB.perGame, aggB.useMax);
                                 for (const v of aggB.slot2PerGame[g]) outB.slot2PerGame[g].add(v);
                             }
                         }
                     }
+
 
                     // Emit rows that actually have any data
                     function pushIfAny(r) {
                         const total = GAMES.reduce((s, g) => s + (r.perGame[g]?.rate || 0), 0);
                         if (total > 0) {
                             rebuilt.push({
-                                key: `${r.name}|${r.nonSlot2Conds.join('|')}|showall-collapse`,
+                                key: `${r.name}|${r.nonSlot2Conds.join('|')}|showall-collapse|${r.kind || 'base'}`,
                                 name: r.name,
                                 perGame: r.perGame,
                                 nonSlot2Conds: r.nonSlot2Conds.slice(),
@@ -660,6 +878,7 @@
                                 })(),
                                 rawConditions: r.nonSlot2Conds.slice(),
                                 timeConds: [...r.timeConds].sort((a, b) => TIME_ORDER.indexOf(a) - TIME_ORDER.indexOf(b)),
+                                kind: r.kind || 'base',
                             });
                         }
                     }
@@ -672,6 +891,7 @@
                 rows = rebuilt;
             }
 
+
             // Apply for both pairs
             collapsePair('pokeradar', 'no-pokeradar');
             collapsePair('swarm', 'no-swarm');
@@ -681,11 +901,22 @@
         // Combine times when the encounter RATES match (levels may differ).
         // Works for both Combined ("All") and single-game views.
         {
+            function slot2Signature(r) {
+                if (r.kind !== 'slot2') return '';
+                return GAMES.map(g => {
+                    const set = r.slot2PerGame?.[g] || new Set();
+                    const arr = Array.isArray(set) ? set : [...set];
+                    return `${g}:${arr.slice().sort().join(',')}`;
+                }).join(';');
+            }
+
             // Group rows by species + base conditions WITHOUT times (keep other conditions intact)
             const groups = new Map();
             for (const r of rows) {
                 const baseNoTime = noTimeConds(r.nonSlot2Conds);
-                const key = `${r.name}|${baseNoTime.join('|')}`;
+                const s2sig = slot2Signature(r);
+                const key = `${r.name}|${baseNoTime.join('|')}|${r.kind || 'base'}|${s2sig}`;
+
                 if (!groups.has(key)) groups.set(key, { baseNoTime, name: r.name, items: [] });
                 groups.get(key).items.push(r);
             }
@@ -713,7 +944,7 @@
                     const times = toTimeOnly(r.nonSlot2Conds).length
                         ? toTimeOnly(r.nonSlot2Conds)
                         : ['morning', 'day', 'night'];
-                    for (const t of times) addIntoPerGame(perTime[t], r.perGame);
+                    for (const t of times) addIntoPerGameMax(perTime[t], r.perGame);
                 }
 
                 // Choose signature rule: All -> all games' rates; single game -> that game's rate only.
@@ -760,7 +991,7 @@
                     const nonSlot2Conds = [...baseNoTime, ...timePart];
 
                     rebuilt.push({
-                        key: `${name}|${nonSlot2Conds.join('|')}|${sig}|times`,
+                        key: `${name}|${nonSlot2Conds.join('|')}|${sig}|times|${items[0]?.kind || 'base'}`,
                         name,
                         perGame: combinedPerGame,
                         nonSlot2Conds,
@@ -768,7 +999,9 @@
                         timeConds: timePart,
                         slot2PerGame: Object.fromEntries(GAMES.map(g => [g, new Set()])),
                         slot2All: new Set(),
+                        kind: items[0]?.kind || 'base',
                     });
+
                 }
 
 
@@ -784,6 +1017,153 @@
             }
 
             rows = rebuilt;
+        }
+
+        // ========= Pass 5: Slot-2–aware recombine by per-game rate signature (Compressed · All · Show-all) =========
+        if (s.showAllConditions && s.game === 'All') {
+            // Group rows by (species + full nonSlot2Conds including time tokens).
+            // Only slot2-kind rows participate; base-kind rows pass through.
+            const passthrough = [];
+            const groups = new Map(); // key -> rows[]
+
+            for (const r of rows) {
+                if (r.kind !== 'slot2') {
+                    passthrough.push(r);
+                    continue;
+                }
+                const key = `${r.name}|${(r.nonSlot2Conds || []).join('|')}`;
+                if (!groups.has(key)) groups.set(key, []);
+                groups.get(key).push(r);
+            }
+
+            const rebuilt5 = [];
+            const anyAgg = new Map(); // key -> { name, nonSlot2Conds, timeConds, perGame }
+
+            // helper: get/create the ANY aggregator for a (species + base conds)
+            function getAnyAgg(key, name, nonSlot2Conds, timeConds) {
+                if (!anyAgg.has(key)) {
+                    anyAgg.set(key, {
+                        name,
+                        nonSlot2Conds: (nonSlot2Conds || []).slice(),
+                        timeConds: (timeConds || []).slice(),
+                        perGame: Object.fromEntries(GAMES.map(g => [g, { rate: 0, levels: [] }]))
+                    });
+                }
+                return anyAgg.get(key);
+            }
+
+            // Merge a single game's bucket into another, using MAX for rate and union for levels.
+            function mergeOneGameMax(dstPerGame, g, srcPerGame) {
+                const dst = dstPerGame[g] || (dstPerGame[g] = { rate: 0, levels: [] });
+                const src = (srcPerGame[g] || { rate: 0, levels: [] });
+                dst.rate = Math.max(dst.rate || 0, src.rate || 0);
+                const set = new Set([...(dst.levels || []), ...(src.levels || [])]);
+                dst.levels = [...set].sort();
+            }
+
+            for (const [key, items] of groups) {
+                // Re-bucket by per-game RATE signature — identical rate tuples -> one row
+                const bySig = new Map(); // sig -> { rows:[], perGame, nonSlot2Conds, timeConds, slot2PerGame }
+
+                const rateSig = (pg) => GAMES.map(g => String(pg[g]?.rate || 0)).join('|');
+
+                for (const r of items) {
+                    const sig = rateSig(r.perGame);
+                    if (!bySig.has(sig)) {
+                        bySig.set(sig, {
+                            rows: [],
+                            perGame: Object.fromEntries(GAMES.map(g => [
+                                g,
+                                { rate: r.perGame[g]?.rate || 0, levels: (r.perGame[g]?.levels || []).slice() }
+                            ])),
+                            nonSlot2Conds: (r.nonSlot2Conds || []).slice(),
+                            timeConds: (r.timeConds || []).slice(),
+                            slot2PerGame: Object.fromEntries(GAMES.map(g => [g, new Set()]))
+                        });
+                    }
+                    const acc = bySig.get(sig);
+                    acc.rows.push(r);
+
+                    // Union per-game slot2 sets
+                    for (const g of GAMES) {
+                        const sset = r.slot2PerGame?.[g] || new Set();
+                        const arr = Array.isArray(sset) ? sset : [...sset];
+                        for (const v of arr) acc.slot2PerGame[g].add(v);
+                    }
+
+                    // Union levels for safety (rates are identical by signature)
+                    for (const g of GAMES) {
+                        const lvUnion = new Set([...(acc.perGame[g].levels || []), ...((r.perGame[g]?.levels) || [])]);
+                        acc.perGame[g].levels = [...lvUnion].sort();
+                    }
+                }
+
+                // Materialize rows, with slot2-invariant folding into ANY row per game
+                for (const [, acc] of bySig) {
+                    const anyKey = `${acc.rows[0].name}|${acc.nonSlot2Conds.join('|')}`;
+                    const anyRow = getAnyAgg(anyKey, acc.rows[0].name, acc.nonSlot2Conds, acc.timeConds);
+
+                    // Determine, per game, whether slot2 covers ALL options (invariant)
+                    const slot2CoversAll = Object.fromEntries(GAMES.map(g => {
+                        const set = acc.slot2PerGame[g] || new Set();
+                        const arr = Array.isArray(set) ? set : [...set];
+                        const covers = ALL_SLOT2_VALS.every(v => arr.includes(v));
+                        return [g, covers];
+                    }));
+
+                    // Build a copy for the slot2 row where we blank invariant games
+                    const slot2PerGameOut = Object.fromEntries(GAMES.map(g => {
+                        const cell = acc.perGame[g] || { rate: 0, levels: [] };
+                        const invariant = slot2CoversAll[g] && (cell.rate || 0) > 0;
+                        // If invariant, blank here (so it renders N/A) and push into ANY row
+                        if (invariant) {
+                            mergeOneGameMax(anyRow.perGame, g, acc.perGame); // fold into ANY using MAX
+                            return [g, { rate: 0, levels: [] }];
+                        }
+                        return [g, { rate: cell.rate || 0, levels: (cell.levels || []).slice() }];
+                    }));
+
+                    // Only emit the slot2 row if it still has any non-zero game
+                    const stillHasData = GAMES.some(g => (slot2PerGameOut[g]?.rate || 0) > 0 || (slot2PerGameOut[g]?.levels || []).length > 0);
+                    if (stillHasData) {
+                        const slot2All = new Set();
+                        for (const g of GAMES) for (const v of acc.slot2PerGame[g]) slot2All.add(v);
+
+                        rebuilt5.push({
+                            key: `${anyKey}|sig:${rateSig(slot2PerGameOut)}|slot2-recombine`,
+                            name: acc.rows[0].name,
+                            perGame: slot2PerGameOut,
+                            nonSlot2Conds: acc.nonSlot2Conds.slice(),
+                            rawConditions: acc.nonSlot2Conds.slice(),
+                            timeConds: acc.timeConds.slice(),
+                            slot2PerGame: acc.slot2PerGame,
+                            slot2All,
+                            kind: 'slot2',
+                        });
+                    }
+                }
+            }
+
+            // Materialize ANY rows that actually have data
+            const anyRows = [];
+            for (const [, a] of anyAgg) {
+                const total = GAMES.reduce((s, g) => s + (a.perGame[g]?.rate || 0), 0);
+                if (total > 0) {
+                    anyRows.push({
+                        key: `${a.name}|${a.nonSlot2Conds.join('|')}|slot2-any-fold`,
+                        name: a.name,
+                        perGame: a.perGame,
+                        nonSlot2Conds: a.nonSlot2Conds.slice(),
+                        rawConditions: a.nonSlot2Conds.slice(),
+                        timeConds: a.timeConds.slice(),
+                        slot2PerGame: Object.fromEntries(GAMES.map(g => [g, new Set()])),
+                        slot2All: new Set(),
+                        kind: 'base'
+                    });
+                }
+            }
+
+            rows = [...passthrough, ...rebuilt5, ...anyRows];
         }
 
 
@@ -1148,6 +1528,28 @@
     function prettySlot2List(values) {
         return `Slot2: ${values.slice().sort((a, b) => a.localeCompare(b)).map(titleCaseSlot2).join(', ')}`;
     }
+
+    function slot2IntersectionForRow(row) {
+        // build an intersection of slot2 sets across games that have data in this row
+        const sets = [];
+        for (const g of GAMES) {
+            const cell = row.perGame?.[g];
+            const hasData = !!(cell && ((cell.rate || 0) > 0 || (cell.levels || []).length));
+            if (!hasData) continue;
+
+            const s = row.slot2PerGame?.[g] || new Set();
+            const a = Array.isArray(s) ? s : [...s];
+            sets.push(new Set(a));
+        }
+        if (sets.length === 0) return new Set();
+
+        let acc = new Set(sets[0]);
+        for (let i = 1; i < sets.length; i++) {
+            acc = new Set([...acc].filter(v => sets[i].has(v)));
+        }
+        return acc;
+    }
+
 
     function Table(props) {
         const onlyTimeMode = !!props.onlyTimeMode;
@@ -1627,15 +2029,19 @@
                                 }
                                 const base = (r.nonSlot2Conds || []).slice();
                                 const parts = base.map(formatCondition);
-                                const slot2Set = r.slot2All;
-                                if (slot2Set && slot2Set.size > 0) {
-                                    const slot2List = [...slot2Set]
-                                        .sort((a, b) => a.localeCompare(b))
-                                        .map(titleCaseSlot2)
-                                        .join(', ');
-                                    parts.push(`Slot2: ${slot2List}`);
+
+                                if (r.kind === 'slot2') {
+                                    const inter = slot2IntersectionForRow(r);
+                                    if (inter.size > 0) {
+                                        const slot2List = [...inter]
+                                            .sort((a, b) => a.localeCompare(b))
+                                            .map(titleCaseSlot2)
+                                            .join(', ');
+                                        parts.push(`Slot2: ${slot2List}`);
+                                    }
                                 }
                                 return h(ConditionsCell, { conds: parts });
+
                             })())
                         ))
                         )
