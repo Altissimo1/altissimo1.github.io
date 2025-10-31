@@ -944,7 +944,7 @@
                     const times = toTimeOnly(r.nonSlot2Conds).length
                         ? toTimeOnly(r.nonSlot2Conds)
                         : ['morning', 'day', 'night'];
-                    for (const t of times) addIntoPerGameMax(perTime[t], r.perGame);
+                    for (const t of times) addIntoPerGame(perTime[t], r.perGame);
                 }
 
                 // Choose signature rule: All -> all games' rates; single game -> that game's rate only.
