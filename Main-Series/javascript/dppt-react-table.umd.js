@@ -86,6 +86,107 @@
         return humanizeWords(cond);
     }
 
+    function condPriorityKey(conds) {
+        const set = new Set(conds || []);
+        // Lower is earlier
+        const swarmRank = set.has('swarm') ? 0 : set.has('no-swarm') ? 1 : 2;
+        const radarRank = set.has('pokeradar') ? 0 : set.has('no-pokeradar') ? 1 : 2;
+        // Keep a stable tail for ties (time flags already normalized)
+        return [swarmRank, radarRank, (conds || []).join('|')].join('|');
+    }
+
+    // Map games → bit positions for availability mask
+    const GAME_BIT = { Diamond: 0, Pearl: 1, Platinum: 2 };
+
+    function bitCount3(mask) {
+        return ((mask & 1) + ((mask >> 1) & 1) + ((mask >> 2) & 1));
+    }
+
+    function bucketRowsByName(rows) {
+        const m = new Map();
+        for (const r of rows) {
+            if (!m.has(r.name)) m.set(r.name, []);
+            m.get(r.name).push(r);
+        }
+        return m;
+    }
+
+    // Order species keys using the same comparator
+    function orderSpeciesNames(buckets, showGames) {
+        const rows = Array.from(buckets.values()).flat();
+        const meta = buildCompressedOrderingMeta(rows, showGames);
+
+        // Sort species by the comparator that uses meta
+        return Array.from(buckets.keys()).sort((na, nb) => {
+            return compressedSpeciesCompare({ name: na }, { name: nb }, meta);
+        });
+    }
+
+    // Rank within same-size availability groups:
+    //  - For 2-game: DP (rank 0) < DPl (1) < PPl (2)
+    //  - For 1-game: D (0) < P (1) < Pl (2)
+    function availabilityComboRank(mask) {
+        switch (mask) {
+            case 0b011: return 0; // Diamond + Pearl
+            case 0b101: return 1; // Diamond + Platinum
+            case 0b110: return 2; // Pearl + Platinum
+            case 0b001: return 0; // Diamond only
+            case 0b010: return 1; // Pearl only
+            case 0b100: return 2; // Platinum only
+            default: return 3;
+        }
+    }
+
+    // Build species-level ordering metadata from the rows that will be rendered
+    function buildCompressedOrderingMeta(rows, showGames) {
+        const meta = new Map(); 
+
+        for (const r of rows) {
+            const name = r.name;
+            let m = meta.get(name);
+            if (!m) { m = { mask: 0, totalPct: 0 }; meta.set(name, m); }
+
+            for (const g of showGames) {
+                const cell = r.perGame?.[g];
+                const pct = cell?.rate || 0;
+                const hasLevels = !!(cell && cell.levels && cell.levels.length);
+                const hasData = (pct > 0) || hasLevels;
+
+                if (hasData) m.mask |= (1 << GAME_BIT[g]);
+                m.totalPct += pct;
+            }
+        }
+
+        // finalize derived fields
+        for (const info of meta.values()) {
+            info.count = bitCount3(info.mask);
+            info.rank = availabilityComboRank(info.mask);
+        }
+        return meta;
+    }
+
+    // Comparator using the meta
+    function compressedSpeciesCompare(a, b, meta) {
+        const A = meta.get(a.name) || { count: 0, rank: 3, totalPct: 0 };
+        const B = meta.get(b.name) || { count: 0, rank: 3, totalPct: 0 };
+
+        // 1) More games available first
+        if (A.count !== B.count) return B.count - A.count;
+
+        // 2–3) Within same-size groups, prefer DP over D+Pl over P+Pl (for 2),
+        //      and D > P > Pl (for 1)
+        if (A.count === 2 || A.count === 1) {
+            if (A.rank !== B.rank) return A.rank - B.rank;
+        }
+
+        // 4) Higher combined % next
+        if (A.totalPct !== B.totalPct) return B.totalPct - A.totalPct;
+
+        // default: alphabetical by name
+        return a.name.localeCompare(b.name);
+    }
+
+
 
 
     function pickMountNode() { return document.querySelector('#pokemon-dppt-walking .table-collection.walking'); }
@@ -95,7 +196,7 @@
     function gamesForEncounter(enc) { return (enc?.games || []).filter(g => GAME_KEYS.has(g)); }
     function labelConditions(conds) {
         const list = (conds || []).map(formatCondition).filter(Boolean);
-        return !list.length ? '—' : list.join(', ');
+        return !list.length ? 'Anytime' : list.join(', ');
     }
 
     function normalizeTimeKey(conds) {
@@ -191,8 +292,10 @@
         }
 
         return out.sort((a, b) =>
-            (a.slot - b.slot) || a.rawConditions.join(',').localeCompare(b.rawConditions.join(','))
+            (a.slot - b.slot) ||
+            condPriorityKey(a.rawConditions).localeCompare(condPriorityKey(b.rawConditions))
         );
+
     }
 
 
@@ -759,7 +862,7 @@
                 }
             }
 
-            // Emit rows (use "—" when all three times are covered)
+            // Emit rows (use "Anytime" when all three times are covered)
             for (const { times, perGame } of sigMap.values()) {
                 const timePart = times.slice().sort((a, b) => TIME_ORDER.indexOf(a) - TIME_ORDER.indexOf(b));
                 const isAllThree = timePart.length === 3;
@@ -1111,19 +1214,33 @@
                 })
                 .sort((a, b) => byName(a.name, b.name));
         }
+        // Decide which list we actually render
+        let renderList = processedRows;
+
+        if (view === 'compressed') {
+            // Order species per your rules (1–4) for ANY compressed table
+            const buckets = bucketRowsByName(processedRows);
+            const orderedNames = orderSpeciesNames(buckets, showGames);
+
+            // Flatten in that species order, preserving each species’ internal row order
+            renderList = [];
+            for (const name of orderedNames) {
+                renderList.push(...buckets.get(name));
+            }
+        }
 
         // ---- Stripe map by Pokémon block (works for both views)
         const rowStripeTrue = new Map();
         let blockByStart = null;
 
         if (view === 'compressed') {
-            // contiguous blocks by r.name (already guaranteed in compressed)
+            // contiguous blocks by r.name using the *ordered* list
             const blocks = [];
             let i = 0, blockIdx = 0;
-            while (i < processedRows.length) {
-                const name = processedRows[i].name;
+            while (i < renderList.length) {
+                const name = renderList[i].name;
                 let j = i + 1;
-                while (j < processedRows.length && processedRows[j].name === name) j++;
+                while (j < renderList.length && renderList[j].name === name) j++;
                 const stripeTrue = (blockIdx % 2) === 1; // first block = false
                 for (let k = i; k < j; k++) rowStripeTrue.set(k, stripeTrue);
                 blocks.push({ name, start: i, count: j - i });
@@ -1147,6 +1264,21 @@
                 const stripeTrue = (blockIdx % 2) === 1;
                 for (let k = i; k < j; k++) rowStripeTrue.set(k, stripeTrue);
                 i = j; blockIdx++;
+            }
+        }
+
+        // Build full view slot logic groups
+        let fullGroups = null;
+        if (view === 'full') {
+            fullGroups = new Map();
+            for (const r of processedRows) {
+                const k = `${r.slot}|${r.rate}`;
+                if (!fullGroups.has(k)) fullGroups.set(k, []);
+                fullGroups.get(k).push(r);
+            }
+            // Order rows inside each group with the condition priority
+            for (const [, arr] of fullGroups) {
+                arr.sort((a, b) => condPriorityKey(a.rawConditions).localeCompare(condPriorityKey(b.rawConditions)));
             }
         }
 
@@ -1194,34 +1326,55 @@
                 h('caption', { className: 'pokemon-table-caption' }, tableLabel),
                 view === 'compressed' ? CompressedHeader() : FullHeader(),
                 h('tbody', null,
-                    processedRows.map((r, rowIndex) => h('tr', { key: r.key },
-                        ...(view === 'full'
-                            ? [
-                                h('td', { className: zebraBySlot('light', r.slot) }, String(r.slot)),
-                                h('td', { className: zebraBySlot('light', r.slot) }, `${r.rate}%`),
-                                h('td', { className: zebraBySlot('light', r.slot) }, [
-                                    h(ConditionsCell, { conds: r.rawConditions })
-                                ]),
-                                ...showGames.flatMap(g => {
-                                    const gp = gamePrefix(g);
-                                    const cell = r.perGame?.[g];
-                                    const has = !!(cell && cell.name);
-                                    const lv = has ? formatLevels(cell.levels) : '';
-                                    return [
-                                        h('td', { key: g + ':sprite', className: zebraBySlot(gp, r.slot) },
-                                            has ? h(Sprite, { name: cell.name.split(' / ')[0], mount }) : '—'
-                                        ),
-                                        h('td', { key: g + ':name', className: zebraBySlot(gp, r.slot) },
-                                            has ? cell.name : '—'
-                                        ),
-                                        h('td', { key: g + ':lv', className: zebraBySlot(gp, r.slot) },
-                                            has ? (`lv. ${lv}` || '—') : '—'
-                                        ),
-                                    ];
-                                }),
-                            ]
-                            : [
-                                // COMPRESSED
+                    view === 'full'
+                        ? ( // FULL (uses fullGroups)
+                            (() => {
+                                const rowsOut = [];
+                                for (const [, group] of fullGroups) {
+                                    const rowspan = group.length;
+                                    group.forEach((r, iInGroup) => {
+                                        rowsOut.push(
+                                            h('tr', { key: r.key },
+                                                // Shared Slot & Rate only on first row of the group
+                                                ...(iInGroup === 0
+                                                    ? [
+                                                        h('td', { rowSpan: rowspan, className: zebraBySlot('light', r.slot) }, String(r.slot)),
+                                                        h('td', { rowSpan: rowspan, className: zebraBySlot('light', r.slot) }, `${r.rate}%`),
+                                                    ]
+                                                    : []
+                                                ),
+                                                // Conditions
+                                                h('td', { className: zebraBySlot('light', r.slot) },
+                                                    h(ConditionsCell, { conds: r.rawConditions })
+                                                ),
+                                                // game cells (3 per game)
+                                                ...showGames.flatMap(g => {
+                                                    const gp = gamePrefix(g);
+                                                    const cell = r.perGame?.[g];
+                                                    const has = !!(cell && cell.name);
+                                                    const lv = has ? formatLevels(cell.levels) : '';
+                                                    return [
+                                                        h('td', { key: g + ':sprite:' + r.key, className: zebraBySlot(gp, r.slot) },
+                                                            has ? h(Sprite, { name: cell.name.split(' / ')[0], mount }) : '—'
+                                                        ),
+                                                        h('td', { key: g + ':name:' + r.key, className: zebraBySlot(gp, r.slot) },
+                                                            has ? cell.name : '—'
+                                                        ),
+                                                        h('td', { key: g + ':lv:' + r.key, className: zebraBySlot(gp, r.slot) },
+                                                            has ? (`lv. ${lv}` || '—') : '—'
+                                                        ),
+                                                    ];
+                                                })
+                                            )
+                                        );
+                                    });
+                                }
+                                return rowsOut;
+                            })()
+                        )
+                        : 
+                        // COMPRESSED
+                        (renderList.map((r, rowIndex) => h('tr', { key: r.key },
                                 (function () {
                                     const block = blockByStart.get(rowIndex);
                                     return block
@@ -1254,13 +1407,9 @@
                                     if (onlyTimeMode) {
                                         return h(ConditionsCell, { conds: r.timeConds || [] });
                                     }
-
-                                    // For single-game processed rows, r.rawConditions is already correct.
                                     if (gameFilter && gameFilter !== 'All') {
                                         return h(ConditionsCell, { conds: r.rawConditions || [] });
                                     }
-
-                                    // Combined/All: base + union of Slot2 across games
                                     const base = (r.nonSlot2Conds || []).slice();
                                     const parts = base.map(formatCondition);
                                     const slot2Set = r.slot2All;
@@ -1272,10 +1421,9 @@
                                         parts.push(`Slot2: ${slot2List}`);
                                     }
                                     return h(ConditionsCell, { conds: parts });
-                                })()),
-                            ]
+                                })())
+                            ))
                         )
-                    ))
                 )
             )
         );
