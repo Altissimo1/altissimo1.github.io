@@ -14,6 +14,17 @@
     const SWARM_FLAGS = new Set(["swarm", "no-swarm"]);
     const SLOT2_PREFIX = "slot-2-";
 
+    const SLOT2_ORDER = [
+        'slot-2-ruby',
+        'slot-2-sapphire',
+        'slot-2-emerald',
+        'slot-2-firered',
+        'slot-2-leafgreen',
+        'slot-2-none'
+    ];
+    const SLOT2_RANK = Object.fromEntries(SLOT2_ORDER.map((k, i) => [k, i]));
+
+
     // Class helpers
     const gamePrefix = g => g.toLowerCase();
     const headerClass = g => (g ? `${gamePrefix(g)}-true` : 'light-true');
@@ -86,15 +97,6 @@
         return humanizeWords(cond);
     }
 
-    function condPriorityKey(conds) {
-        const set = new Set(conds || []);
-        // Lower is earlier
-        const swarmRank = set.has('swarm') ? 0 : set.has('no-swarm') ? 1 : 2;
-        const radarRank = set.has('pokeradar') ? 0 : set.has('no-pokeradar') ? 1 : 2;
-        // Keep a stable tail for ties (time flags already normalized)
-        return [swarmRank, radarRank, (conds || []).join('|')].join('|');
-    }
-
     // Map games → bit positions for availability mask
     const GAME_BIT = { Diamond: 0, Pearl: 1, Platinum: 2 };
 
@@ -139,7 +141,7 @@
 
     // Build species-level ordering metadata from the rows that will be rendered
     function buildCompressedOrderingMeta(rows, showGames) {
-        const meta = new Map(); 
+        const meta = new Map();
 
         for (const r of rows) {
             const name = r.name;
@@ -186,6 +188,24 @@
         return a.name.localeCompare(b.name);
     }
 
+    function fullRowSortTuple(rec) {
+        const conds = rec.rawConditions || [];
+
+        // Slot-2 rank (lower is earlier); rows without Slot-2 go to the end of the slot group
+        const s2 = conds.find(c => c.startsWith(SLOT2_PREFIX));
+        const s2rank = (s2 && (SLOT2_RANK[s2] ?? 999)) ?? 999;
+
+        // Keep your requested priorities: Swarm first, then No Swarm, then none
+        const swarmW = conds.includes('swarm') ? 0 : (conds.includes('no-swarm') ? 1 : 2);
+
+        // Poké Radar first, then No Poké Radar, then none
+        const radarW = conds.includes('pokeradar') ? 0 : (conds.includes('no-pokeradar') ? 1 : 2);
+
+        // Fallback tiebreaker to keep things stable
+        const tail = conds.join('|');
+
+        return [s2rank, swarmW, radarW, tail];
+    }
 
 
 
@@ -291,10 +311,24 @@
             out.push(rec);
         }
 
-        return out.sort((a, b) =>
-            (a.slot - b.slot) ||
-            condPriorityKey(a.rawConditions).localeCompare(condPriorityKey(b.rawConditions))
-        );
+        return out.sort((a, b) => {
+            // primary: slot number
+            if (a.slot !== b.slot) return a.slot - b.slot;
+
+            // secondary: Slot-2 order, then swarm/pokeradar priorities, then stable fallback
+            const ta = fullRowSortTuple(a);
+            const tb = fullRowSortTuple(b);
+
+            for (let i = 0; i < Math.max(ta.length, tb.length); i++) {
+                const va = ta[i], vb = tb[i];
+                if (va === vb) continue;
+                // numeric compare when both are numbers; otherwise string compare
+                if (typeof va === 'number' && typeof vb === 'number') return va - vb;
+                return String(va).localeCompare(String(vb));
+            }
+            return 0;
+        });
+
 
     }
 
@@ -1276,10 +1310,23 @@
                 if (!fullGroups.has(k)) fullGroups.set(k, []);
                 fullGroups.get(k).push(r);
             }
-            // Order rows inside each group with the condition priority
-            for (const [, arr] of fullGroups) {
-                arr.sort((a, b) => condPriorityKey(a.rawConditions).localeCompare(condPriorityKey(b.rawConditions)));
+            // Slot-2 + Swarm + Radar priority inside each (slot|rate) group
+            function compareFullRows(a, b) {
+                const ta = fullRowSortTuple(a);
+                const tb = fullRowSortTuple(b);
+                for (let i = 0; i < Math.max(ta.length, tb.length); i++) {
+                    const va = ta[i], vb = tb[i];
+                    if (va === vb) continue;
+                    if (typeof va === 'number' && typeof vb === 'number') return va - vb;
+                    return String(va).localeCompare(String(vb));
+                }
+                return 0;
             }
+
+            for (const [, arr] of fullGroups) {
+                arr.sort(compareFullRows);
+            }
+
         }
 
         // helper to get zebra class by Pokémon block parity
@@ -1372,57 +1419,57 @@
                                 return rowsOut;
                             })()
                         )
-                        : 
+                        :
                         // COMPRESSED
                         (renderList.map((r, rowIndex) => h('tr', { key: r.key },
-                                (function () {
-                                    const block = blockByStart.get(rowIndex);
-                                    return block
-                                        ? h(React.Fragment, null,
-                                            h('td', { rowSpan: block.count, className: zebraByBlock('light', rowIndex) },
-                                                h(Sprite, { name: r.name, mount })
-                                            ),
-                                            h('td', { rowSpan: block.count, className: zebraByBlock('light', rowIndex) }, r.name)
-                                        )
-                                        : null;
-                                })(),
-                                ...showGames.flatMap(g => {
-                                    const gp = gamePrefix(g);
-                                    const cell = r.perGame?.[g];
-                                    const pct = cell?.rate || 0;
-                                    const lvStr = (cell && cell.levels && cell.levels.length) ? formatLevels(cell.levels) : '';
-                                    const hasData = !!pct || !!lvStr;
-                                    return [
-                                        h('td', {
-                                            key: g + ':pct',
-                                            colSpan: hasData ? 1 : 2,
-                                            className: hasData ? zebraByBlock(gp, rowIndex) : zebraByBlock(null, rowIndex)
-                                        }, hasData ? (pct ? `${pct}%` : '—') : 'N/A'),
-                                        hasData
-                                            ? h('td', { key: g + ':lv', className: zebraByBlock(gp, rowIndex) }, (`lv. ${lvStr}` || '—'))
-                                            : null,
-                                    ];
-                                }),
-                                h('td', { className: zebraByBlock('light', rowIndex) }, (function () {
-                                    if (onlyTimeMode) {
-                                        return h(ConditionsCell, { conds: r.timeConds || [] });
-                                    }
-                                    if (gameFilter && gameFilter !== 'All') {
-                                        return h(ConditionsCell, { conds: r.rawConditions || [] });
-                                    }
-                                    const base = (r.nonSlot2Conds || []).slice();
-                                    const parts = base.map(formatCondition);
-                                    const slot2Set = r.slot2All;
-                                    if (slot2Set && slot2Set.size > 0) {
-                                        const slot2List = [...slot2Set]
-                                            .sort((a, b) => a.localeCompare(b))
-                                            .map(titleCaseSlot2)
-                                            .join(', ');
-                                        parts.push(`Slot2: ${slot2List}`);
-                                    }
-                                    return h(ConditionsCell, { conds: parts });
-                                })())
-                            ))
+                            (function () {
+                                const block = blockByStart.get(rowIndex);
+                                return block
+                                    ? h(React.Fragment, null,
+                                        h('td', { rowSpan: block.count, className: zebraByBlock('light', rowIndex) },
+                                            h(Sprite, { name: r.name, mount })
+                                        ),
+                                        h('td', { rowSpan: block.count, className: zebraByBlock('light', rowIndex) }, r.name)
+                                    )
+                                    : null;
+                            })(),
+                            ...showGames.flatMap(g => {
+                                const gp = gamePrefix(g);
+                                const cell = r.perGame?.[g];
+                                const pct = cell?.rate || 0;
+                                const lvStr = (cell && cell.levels && cell.levels.length) ? formatLevels(cell.levels) : '';
+                                const hasData = !!pct || !!lvStr;
+                                return [
+                                    h('td', {
+                                        key: g + ':pct',
+                                        colSpan: hasData ? 1 : 2,
+                                        className: hasData ? zebraByBlock(gp, rowIndex) : zebraByBlock(null, rowIndex)
+                                    }, hasData ? (pct ? `${pct}%` : '—') : 'N/A'),
+                                    hasData
+                                        ? h('td', { key: g + ':lv', className: zebraByBlock(gp, rowIndex) }, (`lv. ${lvStr}` || '—'))
+                                        : null,
+                                ];
+                            }),
+                            h('td', { className: zebraByBlock('light', rowIndex) }, (function () {
+                                if (onlyTimeMode) {
+                                    return h(ConditionsCell, { conds: r.timeConds || [] });
+                                }
+                                if (gameFilter && gameFilter !== 'All') {
+                                    return h(ConditionsCell, { conds: r.rawConditions || [] });
+                                }
+                                const base = (r.nonSlot2Conds || []).slice();
+                                const parts = base.map(formatCondition);
+                                const slot2Set = r.slot2All;
+                                if (slot2Set && slot2Set.size > 0) {
+                                    const slot2List = [...slot2Set]
+                                        .sort((a, b) => a.localeCompare(b))
+                                        .map(titleCaseSlot2)
+                                        .join(', ');
+                                    parts.push(`Slot2: ${slot2List}`);
+                                }
+                                return h(ConditionsCell, { conds: parts });
+                            })())
+                        ))
                         )
                 )
             )
