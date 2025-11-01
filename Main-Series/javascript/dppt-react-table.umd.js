@@ -403,6 +403,22 @@
         return ranges.join(',');
     }
 
+    function computeAvailableConditionFilters(location) {
+        const out = { hasSwarm: false, hasRadar: false, hasSlot2: false };
+        if (!location) return out;
+
+        for (const block of extractWalking(location)) {
+            for (const opt of (block.encounters || [])) {
+                const conds = opt.conditions || [];
+                if (conds.includes('swarm') || conds.includes('no-swarm')) out.hasSwarm = true;
+                if (conds.includes('pokeradar') || conds.includes('no-pokeradar')) out.hasRadar = true;
+                if (conds.some(c => String(c).startsWith(SLOT2_PREFIX))) out.hasSlot2 = true;
+            }
+        }
+        return out;
+    }
+
+
 
     function buildFullRows(location, s) {
         const map = new Map();
@@ -1575,7 +1591,6 @@
 
     function ViewControls(props) {
         const state = props.state;
-        const flags = props.flags || { hasSwarm: true, hasRadar: true, hasSlot2: true };
         const set = p => props.setState(prev => Object.assign({}, prev, p));
 
         return h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', margin: '8px 0 12px' } },
@@ -1593,24 +1608,29 @@
                 label: 'View',
                 value: state.view,
                 onChange: v => set({ view: v }),
-                options: [{ value: 'full', label: 'Full (slots)' }, { value: 'compressed', label: 'Compressed' }]
+                options: [
+                    { value: 'full', label: 'Full (slots)' },
+                    { value: 'compressed', label: 'Compressed' }
+                ]
             }),
-            h(Toggle, {
+            // Hide this toggle entirely if there are no meaningful conditions in this table
+            !props.hideShowAllToggle && h(Toggle, {
                 label: 'Show all conditions',
                 checked: state.showAllConditions,
                 onChange: v => set({ showAllConditions: v })
             }),
-            (!state.showAllConditions && flags.hasSwarm) && h(Toggle, {
+            // The per-filter controls only appear when NOT showing-all and only if the data actually contains that filter.
+            (!state.showAllConditions && props.hasSwarm) && h(Toggle, {
                 label: 'Swarm active',
                 checked: state.swarm,
                 onChange: v => set({ swarm: v })
             }),
-            (!state.showAllConditions && flags.hasRadar) && h(Toggle, {
+            (!state.showAllConditions && props.hasRadar) && h(Toggle, {
                 label: 'Poké Radar active',
                 checked: state.pokeradar,
                 onChange: v => set({ pokeradar: v })
             }),
-            (!state.showAllConditions && flags.hasSlot2) && h(Select, {
+            (!state.showAllConditions && props.hasSlot2) && h(Select, {
                 label: 'GBA dual-slot',
                 value: state.slot2,
                 onChange: v => set({ slot2: v }),
@@ -1625,6 +1645,7 @@
             })
         );
     }
+
 
 
 
@@ -1670,7 +1691,7 @@
         return acc;
     }
 
-    function GameTable({ game, baseState, location, mount }) {
+    function GameTable({ game, baseState, location, mount, noConditions }) {
         // Force the game, keep all other toggles from parent
         const s = React.useMemo(() => ({ ...baseState, game }), [baseState, game]);
 
@@ -1690,6 +1711,7 @@
             onlyTimeMode: !s.showAllConditions,
             // Flag so Table knows these rows are already per-game
             prebuiltForGame: game,
+            noConditions,
         });
     }
 
@@ -1705,6 +1727,22 @@
 
         const viewLabel = view === 'compressed' ? 'Compressed' : 'Full';
         const tableLabel = (gameFilter === 'All' ? 'Combined' : gameFilter) + ` (${viewLabel})`;
+
+
+        function getBaseStripePrefix() {
+            return (props.noConditions && gameFilter && gameFilter !== 'All')
+                ? gamePrefix(gameFilter)
+                : 'light';
+        }
+
+        // Local header class that uses the dynamic base for non-game headers
+        const headerClassLocal = g => (g ? `${gamePrefix(g)}-true` : `${getBaseStripePrefix()}-true`);
+
+
+        function isAnytimeCondsList(conds) {
+            return !conds || conds.length === 0;
+        }
+
 
         // Existing filter for single-game tables (keeps only rows with data for that game)
         const renderRows = (gameFilter && gameFilter !== 'All')
@@ -1837,6 +1875,65 @@
                 renderList.push(...arr);
             }
         }
+
+        // Decide if a compressed row would show anything other than "Anytime"
+        function rowHasNonAnytimeConditionsCompressed(r) {
+            if (onlyTimeMode) {
+                // In time-only mode, any explicit time tokens mean "not anytime"
+                return Array.isArray(r.timeConds) && r.timeConds.length > 0;
+            }
+
+            // Single-game compressed table
+            if (gameFilter && gameFilter !== 'All') {
+                const base = (r.nonSlot2Conds || []).slice();
+                const baseNonTime = base.filter(c => !TIME_FLAGS.has(c));
+                if (baseNonTime.length > 0) return true;
+
+                // Derive per-game Slot-2 list for this table
+                const sset = r.slot2PerGame?.[gameFilter] || new Set();
+                let slot2Arr = Array.isArray(sset) ? sset : [...sset];
+
+                // Fallback: parse composed "Slot2: ..." token if present
+                if (!slot2Arr.length && Array.isArray(r.rawConditions)) {
+                    const slot2Tok = r.rawConditions.find(x => /^Slot2:\s*/i.test(String(x)));
+                    if (slot2Tok) {
+                        slot2Arr = slot2Tok
+                            .replace(/^Slot2:\s*/i, '')
+                            .split(',')
+                            .map(s => s.trim().toLowerCase());
+                    }
+                }
+
+                // If there are Slot-2 values and they don't cover all 6, it's a condition
+                if (slot2Arr.length) {
+                    const coversAll = ALL_SLOT2_VALS.every(v => slot2Arr.includes(v));
+                    if (!coversAll) return true;
+                }
+                return false;
+            }
+
+            // Combined compressed table
+            {
+                const base = (r.nonSlot2Conds || []).slice();
+                const baseNonTime = base.filter(c => !TIME_FLAGS.has(c));
+                if (baseNonTime.length > 0) return true;
+
+                // For combined + slot2 rows we show the intersection if any => it's a condition
+                if (r.kind === 'slot2') {
+                    const inter = slot2IntersectionForRow(r);
+                    if (inter.size > 0) return true;
+                }
+                return false;
+            }
+        }
+
+        // Hide the whole Conditions column if every row would be "Anytime"
+        const hideConditionsColumn = renderList.length > 0
+            ? renderList.every(r => !rowHasNonAnytimeConditionsCompressed(r))
+            : true; // no rows → hide
+
+
+
 
         // ---- Stripe map by Pokémon block (works for both views)
         const rowStripeTrue = new Map();
@@ -2224,33 +2321,28 @@
             }
         }
 
-
-
-        // helper to get zebra class by Pokémon block parity
         function zebraByBlock(prefix, rowIndex) {
             const isTrue = !!rowStripeTrue.get(rowIndex);
-            return prefix
-                ? `${prefix}-${isTrue ? 'true' : 'false'}`
-                : `light-${isTrue ? 'true' : 'false'}`;
+            const p = prefix || getBaseStripePrefix();
+            return `${p}-${isTrue ? 'true' : 'false'}`;
         }
 
-        //(0=false, 1=true, ...)
         function zebraBySlot(prefix, slot) {
             const s = Number(slot) || 0;
             const isTrue = (s % 2) === 1;
-            return prefix
-                ? `${prefix}-${isTrue ? 'true' : 'false'}`
-                : `light-${isTrue ? 'true' : 'false'}`;
+            const p = prefix || getBaseStripePrefix();
+            return `${p}-${isTrue ? 'true' : 'false'}`;
         }
+
 
 
         function FullHeader() {
             return h('thead', null,
                 h('tr', null,
-                    h('th', { className: headerClass(null) }, 'Slot'),
-                    h('th', { className: headerClass(null) }, 'Rate'),
-                    h('th', { className: headerClass(null) }, 'Conditions'),
-                    ...showGames.map(g => h('th', { key: g, colSpan: 3, className: headerClass(g) }, g))
+                    h('th', { className: headerClassLocal(null) }, 'Slot'),
+                    h('th', { className: headerClassLocal(null) }, 'Rate'),
+                    !hideConditionsColumn && h('th', { className: headerClassLocal(null) }, 'Conditions'),
+                    ...showGames.map(g => h('th', { key: g, colSpan: 3, className: headerClassLocal(g) }, g))
                 )
             );
         }
@@ -2258,12 +2350,13 @@
         function CompressedHeader() {
             return h('thead', null,
                 h('tr', null,
-                    h('th', { colSpan: 2, className: headerClass(null) }, 'Pokémon'),
-                    ...showGames.map(g => h('th', { key: g, colSpan: 2, className: headerClass(g) }, g)),
-                    h('th', { className: headerClass(null) }, 'Conditions')
+                    h('th', { colSpan: 2, className: headerClassLocal(null) }, 'Pokémon'),
+                    ...showGames.map(g => h('th', { key: g, colSpan: 2, className: headerClassLocal(g) }, g)),
+                    !hideConditionsColumn && h('th', { className: headerClassLocal(null) }, 'Conditions')
                 )
             );
         }
+
 
         return h('div', { style: { overflowX: 'auto' } },
             h('table',
@@ -2282,13 +2375,13 @@
                                                 // Shared Slot & Rate only on first row of the group
                                                 ...(iInGroup === 0
                                                     ? [
-                                                        h('td', { rowSpan: rowspan, className: zebraBySlot('light', r.slot) }, String(r.slot)),
-                                                        h('td', { rowSpan: rowspan, className: zebraBySlot('light', r.slot) }, `${r.rate}%`),
+                                                        h('td', { rowSpan: rowspan, className: zebraBySlot(null, r.slot) }, String(r.slot)),
+                                                        h('td', { rowSpan: rowspan, className: zebraBySlot(null, r.slot) }, `${r.rate}%`),
                                                     ]
                                                     : []
                                                 ),
                                                 // Conditions
-                                                h('td', { className: zebraBySlot('light', r.slot) },
+                                                !hideConditionsColumn && h('td', { className: zebraBySlot(null, r.slot) },
                                                     h(ConditionsCell, { conds: r.rawConditions })
                                                 ),
                                                 // game cells (3 per game)
@@ -2317,16 +2410,15 @@
                             })()
                         )
                         :
-                        // COMPRESSED
                         (renderList.map((r, rowIndex) => h('tr', { key: r.key },
                             (function () {
                                 const block = blockByStart.get(rowIndex);
                                 return block
                                     ? h(React.Fragment, null,
-                                        h('td', { rowSpan: block.count, className: zebraByBlock('light', rowIndex) },
+                                        h('td', { rowSpan: block.count, className: zebraByBlock(null, rowIndex) },
                                             h(Sprite, { name: r.name, mount })
                                         ),
-                                        h('td', { rowSpan: block.count, className: zebraByBlock('light', rowIndex) }, r.name)
+                                        h('td', { rowSpan: block.count, className: zebraByBlock(null, rowIndex) }, r.name)
                                     )
                                     : null;
                             })(),
@@ -2347,7 +2439,7 @@
                                         : null,
                                 ];
                             }),
-                            h('td', { className: zebraByBlock('light', rowIndex) }, (function () {
+                            !hideConditionsColumn && h('td', { className: zebraByBlock(null, rowIndex) }, (function () {
                                 if (onlyTimeMode) {
                                     return h(ConditionsCell, { conds: r.timeConds || [] });
                                 }
@@ -2373,10 +2465,9 @@
                                     if (slot2Arr.length) {
                                         const coversAll = ALL_SLOT2_VALS.every(v => slot2Arr.includes(v));
                                         if (!coversAll) {
-                                            raw.push(prettySlot2List(slot2Arr));
+                                            raw.push(prettySlot2List(slot2Arr)); // keeps canonical order ruby..none
                                         }
                                     }
-
 
                                     return h(ConditionsCell, { conds: raw });
                                 }
@@ -2386,14 +2477,14 @@
                                 if (r.kind === 'slot2') {
                                     const inter = slot2IntersectionForRow(r);
                                     if (inter.size > 0) {
-                                        raw.push(prettySlot2List([...inter]));
+                                        raw.push(prettySlot2List([...inter])); // canonical order
                                     }
                                 }
 
                                 return h(ConditionsCell, { conds: raw });
                             })())
-                        ))
-                        )
+                        )))
+
                 )
             )
         );
@@ -2433,6 +2524,14 @@
             return activeLocation ? detectAvailableFilters(activeLocation) : { hasSwarm: false, hasRadar: false, hasSlot2: false };
         }, [activeLocation]);
 
+        const filterAvailability = React.useMemo(() => {
+            return computeAvailableConditionFilters(activeLocation);
+        }, [activeLocation]);
+
+        const hideShowAllToggle = !(filterAvailability.hasSwarm || filterAvailability.hasRadar || filterAvailability.hasSlot2);
+
+        const noConditions = hideShowAllToggle;
+
 
         //SHELLOS = activeLocation.shellos;
         if (activeLocation != null && activeLocation.shellos) SHELLOS = activeLocation.shellos;
@@ -2470,7 +2569,14 @@
 
         return h('div', {},
             h('div', {},
-                h(ViewControls, { state, setState, flags: filterFlags }),
+                h(ViewControls, {
+                    state,
+                    setState,
+                    hasSwarm: filterAvailability.hasSwarm,
+                    hasRadar: filterAvailability.hasRadar,
+                    hasSlot2: filterAvailability.hasSlot2,
+                    hideShowAllToggle,
+                }),
                 loading ? h('p', null, 'Loading…')
                     : error ? h('p', { style: { color: 'red' } }, 'Error: ', error)
                         : !activeLocation ? h('p', null, 'No matching location for ', h('code', null, String(locationId)), '.')
@@ -2483,7 +2589,8 @@
                                                     game: g,
                                                     baseState: state,
                                                     location: activeLocation,
-                                                    mount
+                                                    mount,
+                                                    noConditions,
                                                 })
                                             )
                                         )
@@ -2493,7 +2600,8 @@
                                         gameFilter: state.game,
                                         mount,
                                         view: state.view,
-                                        onlyTimeMode: !state.showAllConditions
+                                        onlyTimeMode: !state.showAllConditions,
+                                        noConditions,
                                     })
                             )
             )
