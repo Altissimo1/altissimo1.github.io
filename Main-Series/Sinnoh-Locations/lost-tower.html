@@ -7,6 +7,9 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../../colors.js"></script>
       <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/dppt-react-table.umd.js"></script>
       <link rel="stylesheet" id="common" href="../../common.css">
       <link rel="stylesheet" id="style">
    </head>
@@ -32,66 +35,12 @@
          </p>
          <p id="bdsp-notes" class="bdsp" style="display:none;">
             <strong>Access to:</strong><br>
-            Exit on 1F: <a class="location-link" href="oreburgh-city.html">Oreburgh City</a>
+            Exit on 1F: <a class="location-link" href="route-209.html">Route 209</a><br>
          </p>
       </div>
       <div id="pokemon-container">
          <div id="pokemon-buttons">
-            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
-            <div id="pokemon-dppt-buttons" class="button-set dppt">
-               <div class="flex-buttons">
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-diamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Diamond (Full)">
-                        <label for="pokemon-dppt-full-diamond">Diamond (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-diamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Diamond (Compressed)">
-                        <label for="pokemon-dppt-compressed-diamond">Diamond (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-pearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Pearl (Full)">
-                        <label for="pokemon-dppt-full-pearl">Pearl (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-pearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Pearl (Compressed)">
-                        <label for="pokemon-dppt-compressed-pearl">Pearl (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-platinum" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Platinum (Full)">
-                        <label for="pokemon-dppt-full-platinum">Platinum (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-platinum" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Platinum (Compressed)">
-                        <label for="pokemon-dppt-compressed-platinum">Platinum (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Combined (Full)">
-                        <label for="pokemon-dppt-full-combined">Combined (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Combined (Compressed)" checked="checked">
-                        <label for="pokemon-dppt-compressed-combined">Combined (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Separate (Full)">
-                        <label for="pokemon-dppt-full-separate">Separate (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Separate (Compressed)">
-                        <label for="pokemon-dppt-compressed-separate">Separate (Compressed)</label>
-                     </div>
-                  </div>
-               </div>
-            </div>
+            <p class="bdsp only buttondisplay">Choose display option for Pokémon tables:</p>
             <div id="pokemon-bdsp-buttons" class="button-set bdsp" style="display:none;">
                <div class="flex-buttons">
                   <div class="right">
@@ -143,6 +92,23 @@
                <ul>
                   <li>Wild Duskull have a 5% chance of holding a Kasib Berry.</li>
                </ul>
+               <div id="pokemon-dppt-walking" class="table-collection walking">
+                  <h4>Walking (1F)</h4>
+                  <div data-location-id="lost-tower_1f" class="pokemon-dppt-walking-replace-me">
+                  </div>
+                  <h4>Walking (2F)</h4>
+                  <div data-location-id="lost-tower_2f" class="pokemon-dppt-walking-replace-me">
+                  </div>
+                  <h4>Walking (3F)</h4>
+                  <div data-location-id="lost-tower_3f" class="pokemon-dppt-walking-replace-me">
+                  </div>
+                  <h4>Walking (4F)</h4>
+                  <div data-location-id="lost-tower_4f" class="pokemon-dppt-walking-replace-me">
+                  </div>
+                  <h4>Walking (5F)</h4>
+                  <div data-location-id="lost-tower_5f" class="pokemon-dppt-walking-replace-me">
+                  </div>
+               </div>
             </div>
             <div id="pokemon-bdsp" class="game-container bdsp" style="display:none;">
                <h3><u>Pokémon</u></h3>

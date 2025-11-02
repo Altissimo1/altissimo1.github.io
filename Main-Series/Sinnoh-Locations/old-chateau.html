@@ -9,6 +9,9 @@
       <script src="../javascript/game-sets.js"></script>
       <script src="../javascript/buttons.js"></script>
       <script src="../javascript/conditions.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/dppt-react-table.umd.js"></script>
       <link rel="stylesheet" id="common" href="../../common.css">
       <link rel="stylesheet" id="style">
    </head>
@@ -41,61 +44,7 @@
       </div>
       <div id="pokemon-container">
          <div id="pokemon-buttons">
-            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
-            <div id="pokemon-dppt-buttons" class="button-set dppt">
-               <div class="flex-buttons">
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-diamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Diamond (Full)">
-                        <label for="pokemon-dppt-full-diamond">Diamond (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-diamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Diamond (Compressed)">
-                        <label for="pokemon-dppt-compressed-diamond">Diamond (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-pearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Pearl (Full)">
-                        <label for="pokemon-dppt-full-pearl">Pearl (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-pearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Pearl (Compressed)">
-                        <label for="pokemon-dppt-compressed-pearl">Pearl (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-platinum" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Platinum (Full)">
-                        <label for="pokemon-dppt-full-platinum">Platinum (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-platinum" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Platinum (Compressed)">
-                        <label for="pokemon-dppt-compressed-platinum">Platinum (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Combined (Full)">
-                        <label for="pokemon-dppt-full-combined">Combined (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Combined (Compressed)" checked="checked">
-                        <label for="pokemon-dppt-compressed-combined">Combined (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Separate (Full)">
-                        <label for="pokemon-dppt-full-separate">Separate (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Separate (Compressed)">
-                        <label for="pokemon-dppt-compressed-separate">Separate (Compressed)</label>
-                     </div>
-                  </div>
-               </div>
-            </div>
+            <p class="bdsp only buttondisplay">Choose display option for Pokémon tables:</p>
             <div id="pokemon-bdsp-buttons" class="button-set bdsp" style="display:none;">
                <div class="flex-buttons">
                   <div class="right">
@@ -144,6 +93,14 @@
          <div id="pokemon-tables">
             <div id="pokemon-dppt" class="game-container dppt">
                <h3><u>Pokémon</u></h3>
+               <div id="pokemon-dppt-walking" class="table-collection walking">
+                  <h4>Walking (all rooms except the one with the haunted portrait)</h4>
+                  <div data-location-id="old-chateau_2f" class="pokemon-dppt-walking-replace-me">
+                  </div>
+                  <h4>Walking (the room with the haunted portrait)</h4>
+                  <div data-location-id="old-chateau_2f-right-room" class="pokemon-dppt-walking-replace-me">
+                  </div>
+               </div>
                <div id="pokemon-dppt-static" class="table-collection static">
                   <h4>Static</h4>
                   <div id="pokemon-dppt-all-combined-static-table" class="pokemon-table all combined">
@@ -179,72 +136,6 @@
                               <td class="light-true">P</td>
                               <td class="platinum-true">Pt</td>
                               <td class="light-true">In the haunted TV on 2F. It only appears at night. If defeated or run from, it will reappear the next night.</td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-                  <div id="pokemon-dppt-all-diamond-static-table" class="pokemon-table all" style="display:none;">
-                     <table>
-                        <caption>Diamond</caption>
-                        <thead>
-                           <tr class="diamond-true">
-                              <th colspan="2">Pokémon</th>
-                              <th>Level</th>
-                              <th>Notes</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr class="diamond-false">
-                              <td>
-                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/rotom.png" alt="Rotom"></div>
-                              </td>
-                              <td>Rotom</td>
-                              <td>15</td>
-                              <td>In the haunted TV on 2F. It only appears at night after obtaining the National Pokédex.</td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-                  <div id="pokemon-dppt-all-pearl-static-table" class="pokemon-table all" style="display:none;">
-                     <table>
-                        <caption>Pearl</caption>
-                        <thead>
-                           <tr class="pearl-true">
-                              <th colspan="2">Pokémon</th>
-                              <th>Level</th>
-                              <th>Notes</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr class="pearl-false">
-                              <td>
-                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/rotom.png" alt="Rotom"></div>
-                              </td>
-                              <td>Rotom</td>
-                              <td>15</td>
-                              <td>In the haunted TV on 2F. It only appears at night after obtaining the National Pokédex.</td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-                  <div id="pokemon-dppt-all-platinum-static-table" class="pokemon-table all" style="display:none;">
-                     <table>
-                        <caption>Platinum</caption>
-                        <thead>
-                           <tr class="platinum-true">
-                              <th colspan="2">Pokémon</th>
-                              <th>Level</th>
-                              <th>Notes</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr class="platinum-false">
-                              <td>
-                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/rotom.png" alt="Rotom"></div>
-                              </td>
-                              <td>Rotom</td>
-                              <td>20</td>
-                              <td>In the haunted TV on 2F. It only appears at night. If defeated or run from, it will reappear the next night.</td>
                            </tr>
                         </tbody>
                      </table>

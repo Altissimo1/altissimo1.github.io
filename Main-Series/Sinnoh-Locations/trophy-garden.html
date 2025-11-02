@@ -7,6 +7,9 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../../colors.js"></script>
       <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/dppt-react-table.umd.js"></script>
       <link rel="stylesheet" id="common" href="../../common.css">
       <link rel="stylesheet" id="style">
    </head>
@@ -39,61 +42,7 @@
       </div>
       <div id="pokemon-container">
          <div id="pokemon-buttons">
-            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
-            <div id="pokemon-dppt-buttons" class="button-set dppt">
-               <div class="flex-buttons">
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-diamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Diamond (Full)">
-                        <label for="pokemon-dppt-full-diamond">Diamond (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-diamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Diamond (Compressed)">
-                        <label for="pokemon-dppt-compressed-diamond">Diamond (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-pearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Pearl (Full)">
-                        <label for="pokemon-dppt-full-pearl">Pearl (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-pearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Pearl (Compressed)">
-                        <label for="pokemon-dppt-compressed-pearl">Pearl (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-platinum" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Platinum (Full)">
-                        <label for="pokemon-dppt-full-platinum">Platinum (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-platinum" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Platinum (Compressed)">
-                        <label for="pokemon-dppt-compressed-platinum">Platinum (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Combined (Full)">
-                        <label for="pokemon-dppt-full-combined">Combined (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Combined (Compressed)" checked="checked">
-                        <label for="pokemon-dppt-compressed-combined">Combined (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Separate (Full)">
-                        <label for="pokemon-dppt-full-separate">Separate (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Separate (Compressed)">
-                        <label for="pokemon-dppt-compressed-separate">Separate (Compressed)</label>
-                     </div>
-                  </div>
-               </div>
-            </div>
+            <p class="bdsp only buttondisplay">Choose display option for Pokémon tables:</p>
             <div id="pokemon-bdsp-buttons" class="button-set bdsp" style="display:none;">
                <div class="flex-buttons">
                   <div class="right">
@@ -144,9 +93,9 @@
                <h3><u>Pokémon</u></h3>
                <ul>
                   <li>Wild Staravia have a 5% chance of holding a Yache Berry.</li>
-                  <li>Wild Roselia have a 5% chance of holding a Poison Barb.</li>
                   <li>Wild Pichu have a 5% chance of holding an Oran Berry.</li>
                   <li>Wild Kricketune have a 5% chance of holding a Metronome.</li>
+                  <li>Wild Roselia have a 5% chance of holding a Poison Barb.</li>
                   <li>Wild Pikachu have a 50% chance of holding an Oran Berry and a 5% chance of holding a Light Ball.</li>
                   <li>Wild Cleffa and Clefairy have a 50% chance of holding a Leppa Berry and a 5% chance of holding a Moon Stone.</li>
                   <li>Wild Meowth have a 5% chance of holding a Quick Claw.</li>
@@ -156,6 +105,11 @@
                   <li>Wild Castform always hold Mystic Water.</li>
                   <li>Wild Mime Jr. have a 5% chance of holding a Leppa Berry.</li>
                </ul>
+               <div id="pokemon-dppt-walking" class="table-collection walking">
+                  <h4>Walking</h4>
+                  <div data-location-id="trophy-garden" class="pokemon-dppt-walking-replace-me">
+                  </div>
+               </div>
                <p class="dppt">After obtaining the National Dex, the player can speak to Mr. Backlot inside the Pokémon Mansion. He will mention a species of Pokémon that he saw in the Trophy Garden, and that species will be added to the garden. If the player speaks to him again after 24 hours have passed, he will mention a second species, and that species will be added to the garden alongside the first species. If the player speaks to him a third time, the species of Pokémon he mentions will replace the first species that was placed in the garden, and so on. He will never mention a species of Pokémon that exists currently in the garden.</p>
                <p class="dppt">The first Pokémon added to the garden this way will replace slot 6 (in reference to the "Full" version of the encounter table above). When a second Pokémon is added, the first Pokémon will move to slot 7, and the second Pokémon will be placed in slot 6. Any subsequent Pokémon will be added to slot 6 first in this way. This has the effect of giving each special Pokémon a 5% chance and reducing the appearance rate of Pikachu and Pichu by 5% each. The Pokémon will have the same level as the slot that it replaces: 18 (slot 6) or 16 (slot 7) in Diamond and Pearl and 22 for both slots in Platinum.</p>
                <p class="dppt">Any Pokémon added to the garden this way will remain in the garden until the player replaces it by speaking to Mr. Backlot twice after it is added.</p>

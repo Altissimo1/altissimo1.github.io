@@ -1484,6 +1484,8 @@
     const SPRITE_URL_CACHE = new Map(); // key: normalized name -> url string
 
     function normalizedName(name) {
+		if (name.indexOf("Nidoran") > -1)
+			return String(name).toLowerCase();
         return String(name)
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')
@@ -1535,10 +1537,16 @@
             { key: "east", name: 'shellos', path: "../../Resources/images/home-renders/gen-4/shellos-east.png" },
             { key: "east", name: 'gastrodon', path: "../../Resources/images/home-renders/gen-4/gastrodon-east.png" },
             { key: "west", name: 'shellos', path: "../../Resources/images/home-renders/gen-4/shellos-west.png" },
-            { key: "west", name: 'gastrodon', path: "../../Resources/images/home-renders/gen-4/gastrodon-west.png" },
+            { key: "", name: 'nidoran♀', path: "../../Resources/images/home-renders/gen-1/nidoran-f.png" },
+            { key: "", name: 'nidoran♂', path: "../../Resources/images/home-renders/gen-1/nidoran-m.png" },
         ];
         if (hardcodedListLookup.some(e => e.name === nm)) {
-            hardcodedOverride = hardcodedListLookup.find(e => e.name === nm && e.key == SHELLOS).path;
+			if (nm.indexOf("nidoran") > -1) {
+				hardcodedOverride = hardcodedListLookup.find(e => e.name === nm).path;				
+			}
+			else {
+				hardcodedOverride = hardcodedListLookup.find(e => e.name === nm && e.key == SHELLOS).path;
+			}
         }
         if (hardcodedOverride !== "") {
             return h('img', {
