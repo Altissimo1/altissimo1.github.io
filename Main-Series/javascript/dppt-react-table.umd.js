@@ -1300,6 +1300,10 @@
 
 
         // ========= Finish: stable order by species then by conditions =========
+
+        // Sanity: drop any nameless rows so sorting/labeling is safe
+        rows = rows.filter(r => r && typeof r.name === 'string' && r.name.trim().length);
+
         rows.sort((a, b) => {
             const n = byName(a.name, b.name);
             if (n !== 0) return n;
@@ -1307,6 +1311,7 @@
         });
 
         return rows;
+
     }
 
     function buildCompressedRowsFiltered(location, s) {
@@ -1447,8 +1452,9 @@
             }
         }
 
+        const clean = rebuiltAll.filter(r => r && typeof r.name === 'string' && r.name.trim().length);
         // Sort final rows
-        return rebuiltAll.sort((a, b) => {
+        return clean.sort((a, b) => {
             const n = byName(a.name, b.name);
             if (n !== 0) return n;
             return (a.timeConds.join(',')).localeCompare(b.timeConds.join(','));
@@ -1484,8 +1490,8 @@
     const SPRITE_URL_CACHE = new Map(); // key: normalized name -> url string
 
     function normalizedName(name) {
-		if (name.indexOf("Nidoran") > -1)
-			return String(name).toLowerCase();
+        if (name.indexOf("Nidoran") > -1)
+            return String(name).toLowerCase();
         return String(name)
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')
@@ -1542,12 +1548,12 @@
             { key: "", name: 'nidoran♂', path: "../../Resources/images/home-renders/gen-1/nidoran-m.png" },
         ];
         if (hardcodedListLookup.some(e => e.name === nm)) {
-			if (nm.indexOf("nidoran") > -1) {
-				hardcodedOverride = hardcodedListLookup.find(e => e.name === nm).path;				
-			}
-			else {
-				hardcodedOverride = hardcodedListLookup.find(e => e.name === nm && e.key == SHELLOS).path;
-			}
+            if (nm.indexOf("nidoran") > -1) {
+                hardcodedOverride = hardcodedListLookup.find(e => e.name === nm).path;
+            }
+            else {
+                hardcodedOverride = hardcodedListLookup.find(e => e.name === nm && e.key == SHELLOS).path;
+            }
         }
         if (hardcodedOverride !== "") {
             return h('img', {
@@ -1707,9 +1713,11 @@
         const rows = React.useMemo(() => {
             if (!location) return [];
             if (s.view === 'full') return buildFullRows(location, s);
-            return s.showAllConditions
+            const built = s.showAllConditions
                 ? buildCompressedRows(location, s)
                 : buildCompressedRowsFiltered(location, s);
+            // Guard: drop nameless rows
+            return built.filter(r => r && typeof r.name === 'string' && r.name.trim().length);
         }, [location, s.view, s.showAllConditions, s.swarm, s.pokeradar, s.slot2, s.game]);
 
         return React.createElement(Table, {
@@ -1750,6 +1758,10 @@
 
         function isAnytimeCondsList(conds) {
             return !conds || conds.length === 0;
+        }
+
+        function hasSpeciesName(r) {
+            return !!(r && typeof r.name === 'string' && r.name.trim().length);
         }
 
 
@@ -1868,42 +1880,48 @@
                 })
                 .sort((a, b) => byName(a.name, b.name));
         }
+
+        debugger;
+        // ==== FINAL SANITY: drop nameless rows BEFORE any compressed bucketing ====
+        const sanitizedRows = (processedRows || []).filter(
+            r => r && typeof r.name === 'string' && r.name.trim().length > 0
+        );
+
         // Decide which list we actually render
-        let renderList = processedRows;
+        let renderList;
 
         if (view === 'compressed') {
-            // Order species per your rules (1–4) for ANY compressed table
-            const buckets = bucketRowsByName(processedRows);
+            const buckets = bucketRowsByName(sanitizedRows);
             const orderedNames = orderSpeciesNames(buckets, showGames);
-
-            // Flatten in that species order, preserving each species’ internal row order
             renderList = [];
             for (const name of orderedNames) {
                 const arr = buckets.get(name).slice();
                 arr.sort(compressedRowComparator);
                 renderList.push(...arr);
             }
+        } else {
+            renderList = sanitizedRows;
         }
 
         // Decide if a compressed row would show anything other than "Anytime"
         function rowHasNonAnytimeConditions(r) {
-			// Any time tokens whatsoever mean that a row should be shown
-			if (Array.isArray(r.timeConds) && r.timeConds.length > 0) return true;
-			
-			// In full view, any conditions also mean that a row should be shown
-			if (view == 'full') return r.rawConditions.length > 0;
+            // Any time tokens whatsoever mean that a row should be shown
+            if (Array.isArray(r.timeConds) && r.timeConds.length > 0) return true;
+
+            // In full view, any conditions also mean that a row should be shown
+            if (view == 'full') return r.rawConditions.length > 0;
 
             // Single-game compressed table
             if (gameFilter && gameFilter !== 'All') {
                 const base = (r.nonSlot2Conds || []).slice();
-				console.log(r);
+                console.log(r);
                 const baseNonTime = base.filter(c => !TIME_FLAGS.has(c));
                 if (baseNonTime.length > 0) return true;
 
                 // Derive per-game Slot-2 list for this table
                 const sset = r.slot2PerGame?.[gameFilter] || new Set();
                 let slot2Arr = Array.isArray(sset) ? sset : [...sset];
-				
+
                 // Fallback: parse composed "Slot2: ..." token if present
                 if (!slot2Arr.length && Array.isArray(r.rawConditions)) {
                     var slot2Tok = r.rawConditions.find(x => /^Slot2:\s*/i.test(String(x)));
@@ -1913,18 +1931,18 @@
                             .split(',')
                             .map(s => s.trim().toLowerCase());
                     }
-					// in the case of full view be sure to double check that the 'slot-2-' version is also not present
-					// originally added before i decided on line 1894 to just return the conditions, kept here in
-					// case it's needed at some other time
-					else {
-						slot2Tok = r.rawConditions.find(x => /^slot-2\s*/i.test(String(x)));
-						if (slot2Tok) {
-							slot2Arr = slot2Tok
-                            .replace(/^slot-2\s*/i, '')
-                            .split(',')
-                            .map(s => s.trim().toLowerCase());
-						}
-					}
+                    // in the case of full view be sure to double check that the 'slot-2-' version is also not present
+                    // originally added before i decided on line 1894 to just return the conditions, kept here in
+                    // case it's needed at some other time
+                    else {
+                        slot2Tok = r.rawConditions.find(x => /^slot-2\s*/i.test(String(x)));
+                        if (slot2Tok) {
+                            slot2Arr = slot2Tok
+                                .replace(/^slot-2\s*/i, '')
+                                .split(',')
+                                .map(s => s.trim().toLowerCase());
+                        }
+                    }
                 }
 
                 // If there are Slot-2 values and they don't cover all 6, it's a condition
@@ -1950,10 +1968,8 @@
             }
         }
 
-        // Hide the whole Conditions column if every row would be "Anytime"
-        const hideConditionsColumn = renderList.length > 0
-            ? renderList.every(r => !rowHasNonAnytimeConditions(r))
-            : true; // no rows → hide
+      // We'll decide this after we know which rows are actually rendered.
+let hideConditionsColumn;
 
 
 
@@ -2343,6 +2359,22 @@
             }
         }
 
+        // Decide whether to hide the Conditions column, now that we know the final rows
+if (view === 'full') {
+  // Flatten the rows that will actually render in FULL view
+  const flat = fullGroups ? Array.from(fullGroups.values()).flat() : [];
+  // Hide only if every row has no condition tokens (i.e., would display "Anytime")
+  hideConditionsColumn = flat.length > 0
+    ? flat.every(r => !(Array.isArray(r.rawConditions) && r.rawConditions.length))
+    : true;
+} else {
+  // Compressed view: keep the existing logic
+  hideConditionsColumn = renderList.length > 0
+    ? renderList.every(r => !rowHasNonAnytimeConditions(r))
+    : true;
+}
+
+
         function zebraByBlock(prefix, rowIndex) {
             const isTrue = !!rowStripeTrue.get(rowIndex);
             const p = prefix || getBaseStripePrefix();
@@ -2393,7 +2425,8 @@
                                     const rowspan = group.length;
                                     group.forEach((r, iInGroup) => {
                                         rowsOut.push(
-                                            h('tr', { key: r.key },
+                                            h('tr', { key: `${r.key}::${iInGroup}` },
+
                                                 // Shared Slot & Rate only on first row of the group
                                                 ...(iInGroup === 0
                                                     ? [
@@ -2432,81 +2465,79 @@
                             })()
                         )
                         :
-                        (renderList.map((r, rowIndex) => h('tr', { key: r.key },
-                            (function () {
-                                const block = blockByStart.get(rowIndex);
-                                return block
-                                    ? h(React.Fragment, null,
-                                        h('td', { rowSpan: block.count, className: zebraByBlock(null, rowIndex) },
-                                            h(Sprite, { name: r.name, mount })
-                                        ),
-                                        h('td', { rowSpan: block.count, className: zebraByBlock(null, rowIndex) }, r.name)
-                                    )
-                                    : null;
-                            })(),
-                            ...showGames.flatMap(g => {
-                                const gp = gamePrefix(g);
-                                const cell = r.perGame?.[g];
-                                const pct = cell?.rate || 0;
-                                const lvStr = (cell && cell.levels && cell.levels.length) ? formatLevels(cell.levels) : '';
-                                const hasData = !!pct || !!lvStr;
-                                return [
-                                    h('td', {
-                                        key: g + ':pct',
-                                        colSpan: hasData ? 1 : 2,
-                                        className: hasData ? zebraByBlock(gp, rowIndex) : zebraByBlock(null, rowIndex)
-                                    }, hasData ? (pct ? `${pct}%` : '—') : 'N/A'),
-                                    hasData
-                                        ? h('td', { key: g + ':lv', className: zebraByBlock(gp, rowIndex) }, (`lv. ${lvStr}` || '—'))
-                                        : null,
-                                ];
-                            }),
-                            !hideConditionsColumn && h('td', { className: zebraByBlock(null, rowIndex) }, (function () {
-                                if (onlyTimeMode) {
-                                    return h(ConditionsCell, { conds: r.timeConds || [] });
-                                }
-
-                                if (gameFilter && gameFilter !== 'All') {
-                                    const raw = (r.nonSlot2Conds || []).slice();
-
-                                    // derive per-game Slot2 values for this table
-                                    const sset = r.slot2PerGame?.[gameFilter] || new Set();
-                                    let slot2Arr = Array.isArray(sset) ? sset : [...sset];
-
-                                    // fallback: if builder didn't carry slot2PerGame but we have a composed "Slot2: ..." in rawConditions
-                                    if (!slot2Arr.length && Array.isArray(r.rawConditions)) {
-                                        const slot2Tok = r.rawConditions.find(x => /^Slot2:\s*/i.test(String(x)));
-                                        if (slot2Tok) {
-                                            slot2Arr = slot2Tok
-                                                .replace(/^Slot2:\s*/i, '')
-                                                .split(',')
-                                                .map(s => s.trim().toLowerCase());
+                        (
+                            renderList.map((r, rowIndex) => {
+                                const rowKey = `${r.key}::${rowIndex}`; // unique per render
+                                return h('tr', { key: rowKey },
+                                    (function () {
+                                        const block = blockByStart.get(rowIndex);
+                                        return block
+                                            ? h(React.Fragment, null,
+                                                h('td', { rowSpan: block.count, className: zebraByBlock(null, rowIndex) },
+                                                    h(Sprite, { name: r.name, mount })
+                                                ),
+                                                h('td', { rowSpan: block.count, className: zebraByBlock(null, rowIndex) }, r.name)
+                                            )
+                                            : null;
+                                    })(),
+                                    ...showGames.flatMap(g => {
+                                        const gp = gamePrefix(g);
+                                        const cell = r.perGame?.[g];
+                                        const pct = cell?.rate || 0;
+                                        const lvStr = (cell && cell.levels && cell.levels.length) ? formatLevels(cell.levels) : '';
+                                        const hasData = !!pct || !!lvStr;
+                                        return [
+                                            h('td', {
+                                                key: g + ':pct',
+                                                colSpan: hasData ? 1 : 2,
+                                                className: hasData ? zebraByBlock(gp, rowIndex) : zebraByBlock(null, rowIndex)
+                                            }, hasData ? (pct ? `${pct}%` : '—') : 'N/A'),
+                                            hasData
+                                                ? h('td', { key: g + ':lv', className: zebraByBlock(gp, rowIndex) }, (`lv. ${lvStr}` || '—'))
+                                                : null,
+                                        ];
+                                    }),
+                                    !hideConditionsColumn && h('td', { className: zebraByBlock(null, rowIndex) }, (function () {
+                                        if (onlyTimeMode) {
+                                            return h(ConditionsCell, { conds: r.timeConds || [] });
                                         }
-                                    }
 
-                                    if (slot2Arr.length) {
-                                        const coversAll = ALL_SLOT2_VALS.every(v => slot2Arr.includes(v));
-                                        if (!coversAll) {
-                                            raw.push(prettySlot2List(slot2Arr)); // keeps canonical order ruby..none
+                                        if (gameFilter && gameFilter !== 'All') {
+                                            const raw = (r.nonSlot2Conds || []).slice();
+
+                                            // derive per-game Slot2 values for this table
+                                            const sset = r.slot2PerGame?.[gameFilter] || new Set();
+                                            let slot2Arr = Array.isArray(sset) ? sset : [...sset];
+
+                                            // fallback: composed "Slot2: ..." token
+                                            if (!slot2Arr.length && Array.isArray(r.rawConditions)) {
+                                                const slot2Tok = r.rawConditions.find(x => /^Slot2:\s*/i.test(String(x)));
+                                                if (slot2Tok) {
+                                                    slot2Arr = slot2Tok
+                                                        .replace(/^Slot2:\s*/i, '')
+                                                        .split(',')
+                                                        .map(s => s.trim().toLowerCase());
+                                                }
+                                            }
+
+                                            if (slot2Arr.length) {
+                                                const coversAll = ALL_SLOT2_VALS.every(v => slot2Arr.includes(v));
+                                                if (!coversAll) raw.push(prettySlot2List(slot2Arr));
+                                            }
+
+                                            return h(ConditionsCell, { conds: raw });
                                         }
-                                    }
 
-                                    return h(ConditionsCell, { conds: raw });
-                                }
-
-                                const raw = (r.nonSlot2Conds || []).slice();
-
-                                if (r.kind === 'slot2') {
-                                    const inter = slot2IntersectionForRow(r);
-                                    if (inter.size > 0) {
-                                        raw.push(prettySlot2List([...inter])); // canonical order
-                                    }
-                                }
-
-                                return h(ConditionsCell, { conds: raw });
-                            })())
-                        )))
-
+                                        const raw = (r.nonSlot2Conds || []).slice();
+                                        if (r.kind === 'slot2') {
+                                            const inter = slot2IntersectionForRow(r);
+                                            if (inter.size > 0) raw.push(prettySlot2List([...inter]));
+                                        }
+                                        return h(ConditionsCell, { conds: raw });
+                                    })())
+                                );
+                            })
+                        )
                 )
             )
         );
