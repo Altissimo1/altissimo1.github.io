@@ -103,7 +103,7 @@
 
         if (cond.startsWith(SLOT2_PREFIX)) {
             const v = cond.slice(SLOT2_PREFIX.length);
-            return `Slot 2: ${titleCaseSlot2(v)}`;
+            return `Slot2: ${titleCaseSlot2(v)}`;
         }
 
         // Fallback: generic humanization
@@ -1537,6 +1537,7 @@
             { key: "east", name: 'shellos', path: "../../Resources/images/home-renders/gen-4/shellos-east.png" },
             { key: "east", name: 'gastrodon', path: "../../Resources/images/home-renders/gen-4/gastrodon-east.png" },
             { key: "west", name: 'shellos', path: "../../Resources/images/home-renders/gen-4/shellos-west.png" },
+            { key: "west", name: 'gastrodon', path: "../../Resources/images/home-renders/gen-4/gastrodon-west.png" },
             { key: "", name: 'nidoran♀', path: "../../Resources/images/home-renders/gen-1/nidoran-f.png" },
             { key: "", name: 'nidoran♂', path: "../../Resources/images/home-renders/gen-1/nidoran-m.png" },
         ];
@@ -1603,6 +1604,15 @@
 
         return h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', margin: '8px 0 12px' } },
             h(Select, {
+                label: 'View',
+                value: state.view,
+                onChange: v => set({ view: v }),
+                options: [
+                    { value: 'full', label: 'Full (slots)' },
+                    { value: 'compressed', label: 'Compressed' }
+                ]
+            }),
+            h(Select, {
                 label: 'Game',
                 value: state.game,
                 onChange: v => set({ game: v }),
@@ -1610,15 +1620,6 @@
                     { value: 'All', label: 'All' },
                     { value: 'separate', label: 'Separate' },
                     ...GAMES.map(g => ({ value: g, label: g }))
-                ]
-            }),
-            h(Select, {
-                label: 'View',
-                value: state.view,
-                onChange: v => set({ view: v }),
-                options: [
-                    { value: 'full', label: 'Full (slots)' },
-                    { value: 'compressed', label: 'Compressed' }
                 ]
             }),
             // Hide this toggle entirely if there are no meaningful conditions in this table
@@ -1885,31 +1886,45 @@
         }
 
         // Decide if a compressed row would show anything other than "Anytime"
-        function rowHasNonAnytimeConditionsCompressed(r) {
-            if (onlyTimeMode) {
-                // In time-only mode, any explicit time tokens mean "not anytime"
-                return Array.isArray(r.timeConds) && r.timeConds.length > 0;
-            }
+        function rowHasNonAnytimeConditions(r) {
+			// Any time tokens whatsoever mean that a row should be shown
+			if (Array.isArray(r.timeConds) && r.timeConds.length > 0) return true;
+			
+			// In full view, any conditions also mean that a row should be shown
+			if (view == 'full') return r.rawConditions.length > 0;
 
             // Single-game compressed table
             if (gameFilter && gameFilter !== 'All') {
                 const base = (r.nonSlot2Conds || []).slice();
+				console.log(r);
                 const baseNonTime = base.filter(c => !TIME_FLAGS.has(c));
                 if (baseNonTime.length > 0) return true;
 
                 // Derive per-game Slot-2 list for this table
                 const sset = r.slot2PerGame?.[gameFilter] || new Set();
                 let slot2Arr = Array.isArray(sset) ? sset : [...sset];
-
+				
                 // Fallback: parse composed "Slot2: ..." token if present
                 if (!slot2Arr.length && Array.isArray(r.rawConditions)) {
-                    const slot2Tok = r.rawConditions.find(x => /^Slot2:\s*/i.test(String(x)));
+                    var slot2Tok = r.rawConditions.find(x => /^Slot2:\s*/i.test(String(x)));
                     if (slot2Tok) {
                         slot2Arr = slot2Tok
                             .replace(/^Slot2:\s*/i, '')
                             .split(',')
                             .map(s => s.trim().toLowerCase());
                     }
+					// in the case of full view be sure to double check that the 'slot-2-' version is also not present
+					// originally added before i decided on line 1894 to just return the conditions, kept here in
+					// case it's needed at some other time
+					else {
+						slot2Tok = r.rawConditions.find(x => /^slot-2\s*/i.test(String(x)));
+						if (slot2Tok) {
+							slot2Arr = slot2Tok
+                            .replace(/^slot-2\s*/i, '')
+                            .split(',')
+                            .map(s => s.trim().toLowerCase());
+						}
+					}
                 }
 
                 // If there are Slot-2 values and they don't cover all 6, it's a condition
@@ -1937,9 +1952,8 @@
 
         // Hide the whole Conditions column if every row would be "Anytime"
         const hideConditionsColumn = renderList.length > 0
-            ? renderList.every(r => !rowHasNonAnytimeConditionsCompressed(r))
+            ? renderList.every(r => !rowHasNonAnytimeConditions(r))
             : true; // no rows → hide
-
 
 
 
@@ -2540,8 +2554,6 @@
 
         const noConditions = hideShowAllToggle;
 
-
-        //SHELLOS = activeLocation.shellos;
         if (activeLocation != null && activeLocation.shellos) SHELLOS = activeLocation.shellos;
 
         // 3) Build rows (after activeLocation exists)
