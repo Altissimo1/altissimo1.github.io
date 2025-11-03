@@ -1556,9 +1556,12 @@
             else hardcodedOverride = hardcodedListLookup.find(e => e.name === nm && e.key == SHELLOS).path;
         }
         if (hardcodedOverride !== "") {
+			var nameToUse = props.name;
+			if (nameToUse == "Shellos") nameToUse = "Shellos (" + SHELLOS.charAt(0).toUpperCase() + SHELLOS.slice(1) + ")";
+			if (nameToUse == "Gastrodon") nameToUse = "Gastrodon (" + SHELLOS.charAt(0).toUpperCase() + SHELLOS.slice(1) + ")";
             return h('img', {
                 src: hardcodedOverride,
-                alt: props.name,
+                alt: nameToUse,
                 loading: 'lazy',
                 className: 'flex-img'
             });
@@ -2443,12 +2446,19 @@ if (view === 'full') {
                                                     const cell = r.perGame?.[g];
                                                     const has = !!(cell && cell.name);
                                                     const lv = has ? formatLevels(cell.levels) : '';
+													var cellName = has 
+														? (cell.name == "Shellos"
+															? "Shellos (" + SHELLOS.charAt(0).toUpperCase() + SHELLOS.slice(1) + ")"
+															: cell.name == "Gastrodon"
+																? "Gastrodon (" + SHELLOS.charAt(0).toUpperCase() + SHELLOS.slice(1) + ")"
+																: cell.name)
+														: '-';
                                                     return [
                                                         h('td', { key: g + ':sprite:' + r.key, className: zebraBySlot(gp, r.slot) },
                                                             has ? h(Sprite, { name: cell.name.split(' / ')[0], mount }) : '—'
                                                         ),
                                                         h('td', { key: g + ':name:' + r.key, className: zebraBySlot(gp, r.slot) },
-                                                            has ? cell.name : '—'
+                                                            cellName
                                                         ),
                                                         h('td', { key: g + ':lv:' + r.key, className: zebraBySlot(gp, r.slot) },
                                                             has ? (`lv. ${lv}` || '—') : '—'
@@ -2469,12 +2479,18 @@ if (view === 'full') {
                                 return h('tr', { key: rowKey },
                                     (function () {
                                         const block = blockByStart.get(rowIndex);
+										var monName = r.name == "Shellos"
+											? "Shellos (" + SHELLOS.charAt(0).toUpperCase() + SHELLOS.slice(1) + ")"
+											: r.name == "Gastrodon"
+												? "Gastrodon (" + SHELLOS.charAt(0).toUpperCase() + SHELLOS.slice(1) + ")"
+												: r.name;
+												
                                         return block
                                             ? h(React.Fragment, null,
                                                 h('td', { rowSpan: block.count, className: zebraByBlock(null, rowIndex) },
                                                     h(Sprite, { name: r.name, mount })
                                                 ),
-                                                h('td', { rowSpan: block.count, className: zebraByBlock(null, rowIndex) }, r.name)
+                                                h('td', { rowSpan: block.count, className: zebraByBlock(null, rowIndex) }, monName)
                                             )
                                             : null;
                                     })(),
