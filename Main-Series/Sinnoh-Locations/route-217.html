@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Route 217</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/game-sets.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script src="../javascript/conditions.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/dppt-react-table.umd.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Sinnoh Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="dppt" type="radio" onclick="topButton.call(this)" name="games" value="DPPt" checked="checked">
+         <label for="dppt" class="right">DPPt</label>
+         <input id="bdsp" type="radio" onclick="topButton.call(this)" name="games" value="BDSP">
+         <label for="bdsp" class="right">BDSP</label>
+      </div>
+      <h2>Route 217</h2>
+      <div id="notes" class="bottom">
+         <p id="dppt-notes" class="dppt">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="acuity-lakefront.html">Acuity Lakefront</a><br>
+            South: <a class="location-link" href="route-216.html">Route 216</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Eevee will evolve into Glaceon here due to the Ice Rock in the northeast.<br>
+            The Vs. Seeker can be used in this area to rematch Trainers.
+         </p>
+         <p id="bdsp-notes" class="bdsp" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="acuity-lakefront.html">Acuity Lakefront</a><br>
+            South: <a class="location-link" href="route-216.html">Route 216</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Eevee will evolve into Glaceon here due to the Ice Rock in the northeast.<br>
+            The Vs. Seeker can be used in this area to rematch Trainers.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="bdsp only buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-bdsp-buttons" class="button-set bdsp" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-brilliantdiamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Brilliant Diamond (Full)">
+                        <label for="pokemon-bdsp-full-brilliantdiamond">Brilliant Diamond (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-brilliantdiamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Brilliant Diamond (Compressed)">
+                        <label for="pokemon-bdsp-compressed-brilliantdiamond">Brilliant Diamond (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-shiningpearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Shining Pearl (Full)">
+                        <label for="pokemon-bdsp-full-shiningpearl">Shining Pearl (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-shiningpearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Shining Pearl (Compressed)">
+                        <label for="pokemon-bdsp-compressed-shiningpearl">Shining Pearl (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Combined (Full)">
+                        <label for="pokemon-bdsp-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-bdsp-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Separate (Full)">
+                        <label for="pokemon-bdsp-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Separate (Compressed)">
+                        <label for="pokemon-bdsp-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-dppt" class="game-container dppt">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Snover have a 5% chance of holding NeverMeltIce.</li>
+                  <li>Wild Sneasel have a 50% chance of holding a Grip Claw and a 5% chance of holding a Quick Claw.</li>
+                  <li>Wild Snorunt have a 5% chance of holding a Babiri Berry.</li>
+               </ul>
+               <div id="pokemon-dppt-walking" class="table-collection walking">
+                  <h4>Walking</h4>
+                  <div data-location-id="sinnoh-route-217" class="pokemon-dppt-walking-replace-me">
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-bdsp" class="game-container bdsp" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Snover have a 5% chance of holding Never-Melt Ice.</li>
+                  <li>Wild Sneasel have a 5% chance of holding a Quick Claw.</li>
+                  <li>Wild Snorunt have a 5% chance of holding a Snowball.</li>
+                  <li>Wild Machoke have a 5% chance of holding a Focus Band.</li>
+               </ul>
+               <div id="pokemon-bdsp-walking" class="table-collection walking">
+                  <h4>Walking</h4>
+                  <div class="flex-row">
+                     <div style="margin-right:2ex;padding-bottom:2ex;">
+                        <div class="flex-row">
+                           <input type="radio" class="show-all-conditions" id="show-all-conditions-bdsp" name="conditions-radio-bdsp" value="Show all conditions" checked>
+                           <label for="show-all-conditions-bdsp">Show all conditions</label>
+                        </div>
+                        <div class="flex-row">
+                           <input type="radio" class="set-conditions" id="set-conditions-bdsp" name="conditions-radio-bdsp" value="Set conditions">
+                           <label for="set-conditions-bdsp">Set conditions</label>
+                        </div>
+                     </div>
+                     <div class="condition-checkboxes" id="condition-checkboxes-bdsp" style="display:none;">
+                        <div class="empty-div">
+                        </div>
+                        <div class="flex-row">
+                           <input id="swarm-bdsp" class="condition-check" type="checkbox" data-condition="swarm">
+                           <label for="swarm-bdsp">Swarm active</label>
+                        </div>
+                        <div class="flex-row">
+                           <input id="pokeradar-bdsp" class="condition-check" type="checkbox" data-condition="pokeradar">
+                           <label for="pokeradar-bdsp">Poké Radar active</label>
+                        </div>
+                     </div>
+                  </div>
+                  <div id="pokemon-bdsp-full-brilliantdiamond-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Full)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Condition(s)</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false swarm-true base">
+                              <td rowspan="2" class="swarm-base">0</td>
+                              <td rowspan="2" class="swarm-base">20%</td>
+                              <td>Swarm</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/swinub.png" alt="Swinub"></div>
+                              </td>
+                              <td>Swinub</td>
+                              <td>34</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false swarm-false">
+                              <td style="display:none;" class="swarm-base">0</td>
+                              <td style="display:none;" class="swarm-base">20%</td>
+                              <td>No swarm</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/snover-f.png" alt="Snover"></div>
+                              </td>
+                              <td>Snover</td>
+                              <td>34</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true swarm-true base">
+                              <td rowspan="2" class="swarm-base">1</td>
+                              <td rowspan="2" class="swarm-base">20%</td>
+                              <td>Swarm</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/swinub.png" alt="Swinub"></div>
+                              </td>
+                              <td>Swinub</td>
+                              <td>34</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true swarm-false">
+                              <td style="display:none;" class="swarm-base">1</td>
+                              <td style="display:none;" class="swarm-base">20%</td>
+                              <td>No swarm</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>34</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false base">
+                              <td rowspan="2">2</td>
+                              <td rowspan="2">10%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/meditite-f.png" alt="Meditite"></div>
+                              </td>
+                              <td>Meditite</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true base">
+                              <td rowspan="2">3</td>
+                              <td rowspan="2">10%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/machoke.png" alt="Machoke"></div>
+                              </td>
+                              <td>Machoke</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/noctowl.png" alt="Noctowl"></div>
+                              </td>
+                              <td>Noctowl</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false pokeradar-true base">
+                              <td rowspan="2" class="pokeradar-base">4</td>
+                              <td rowspan="2" class="pokeradar-base">10%</td>
+                              <td>Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td>Snorunt</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false pokeradar-false">
+                              <td style="display:none;" class="pokeradar-base">4</td>
+                              <td style="display:none;" class="pokeradar-base">10%</td>
+                              <td>No Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td>Medicham</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true pokeradar-true base">
+                              <td rowspan="2" class="pokeradar-base">5</td>
+                              <td rowspan="2" class="pokeradar-base">10%</td>
+                              <td>Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td>Snorunt</td>
+                              <td>36</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true pokeradar-false">
+                              <td style="display:none;" class="pokeradar-base">5</td>
+                              <td style="display:none;" class="pokeradar-base">10%</td>
+                              <td>No Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/machoke.png" alt="Machoke"></div>
+                              </td>
+                              <td>Machoke</td>
+                              <td>36</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false base">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/snover-f.png" alt="Snover"></div>
+                              </td>
+                              <td>Snover</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true base">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false base">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td>Medicham</td>
+                              <td>36</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true base">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td>Medicham</td>
+                              <td>36</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false pokeradar-true base">
+                              <td rowspan="2" class="pokeradar-base">10</td>
+                              <td rowspan="2" class="pokeradar-base">1%</td>
+                              <td>Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td>Snorunt</td>
+                              <td>36</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false pokeradar-false">
+                              <td style="display:none;" class="pokeradar-base">10</td>
+                              <td style="display:none;" class="pokeradar-base">1%</td>
+                              <td>No Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td>Medicham</td>
+                              <td>36</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true pokeradar-true base">
+                              <td rowspan="2" class="pokeradar-base">11</td>
+                              <td rowspan="2" class="pokeradar-base">1%</td>
+                              <td>Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td>Snorunt</td>
+                              <td>36</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true pokeradar-false">
+                              <td style="display:none;" class="pokeradar-base">11</td>
+                              <td style="display:none;" class="pokeradar-base">1%</td>
+                              <td>No Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td>Medicham</td>
+                              <td>36</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-shiningpearl-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Full)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th>Condition(s)</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false swarm-true base">
+                              <td rowspan="2" class="swarm-base">0</td>
+                              <td rowspan="2" class="swarm-base">20%</td>
+                              <td>Swarm</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/swinub.png" alt="Swinub"></div>
+                              </td>
+                              <td>Swinub</td>
+                              <td>34</td>
+                           </tr>
+                           <tr class="shiningpearl-false swarm-false">
+                              <td style="display:none;" class="swarm-base">0</td>
+                              <td style="display:none;" class="swarm-base">20%</td>
+                              <td>No swarm</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/snover-f.png" alt="Snover"></div>
+                              </td>
+                              <td>Snover</td>
+                              <td>34</td>
+                           </tr>
+                           <tr class="shiningpearl-true swarm-true base">
+                              <td rowspan="2" class="swarm-base">1</td>
+                              <td rowspan="2" class="swarm-base">20%</td>
+                              <td>Swarm</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/swinub.png" alt="Swinub"></div>
+                              </td>
+                              <td>Swinub</td>
+                              <td>34</td>
+                           </tr>
+                           <tr class="shiningpearl-true swarm-false">
+                              <td style="display:none;" class="swarm-base">1</td>
+                              <td style="display:none;" class="swarm-base">20%</td>
+                              <td>No swarm</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>34</td>
+                           </tr>
+                           <tr class="shiningpearl-false base">
+                              <td rowspan="2">2</td>
+                              <td rowspan="2">10%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/meditite-f.png" alt="Meditite"></div>
+                              </td>
+                              <td>Meditite</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="shiningpearl-true base">
+                              <td rowspan="2">3</td>
+                              <td rowspan="2">10%</td>
+                              <td>Morning, Day</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/machoke.png" alt="Machoke"></div>
+                              </td>
+                              <td>Machoke</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>Night</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/noctowl.png" alt="Noctowl"></div>
+                              </td>
+                              <td>Noctowl</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="shiningpearl-false pokeradar-true base">
+                              <td rowspan="2" class="pokeradar-base">4</td>
+                              <td rowspan="2" class="pokeradar-base">10%</td>
+                              <td>Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td>Snorunt</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="shiningpearl-false pokeradar-false">
+                              <td style="display:none;" class="pokeradar-base">4</td>
+                              <td style="display:none;" class="pokeradar-base">10%</td>
+                              <td>No Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td>Medicham</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="shiningpearl-true pokeradar-true base">
+                              <td rowspan="2" class="pokeradar-base">5</td>
+                              <td rowspan="2" class="pokeradar-base">10%</td>
+                              <td>Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td>Snorunt</td>
+                              <td>36</td>
+                           </tr>
+                           <tr class="shiningpearl-true pokeradar-false">
+                              <td style="display:none;" class="pokeradar-base">5</td>
+                              <td style="display:none;" class="pokeradar-base">10%</td>
+                              <td>No Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/machoke.png" alt="Machoke"></div>
+                              </td>
+                              <td>Machoke</td>
+                              <td>36</td>
+                           </tr>
+                           <tr class="shiningpearl-false base">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/snover-f.png" alt="Snover"></div>
+                              </td>
+                              <td>Snover</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="shiningpearl-true base">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td>Sneasel</td>
+                              <td>35</td>
+                           </tr>
+                           <tr class="shiningpearl-false base">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td>Medicham</td>
+                              <td>36</td>
+                           </tr>
+                           <tr class="shiningpearl-true base">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>Anytime</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td>Medicham</td>
+                              <td>36</td>
+                           </tr>
+                           <tr class="shiningpearl-false pokeradar-true base">
+                              <td rowspan="2" class="pokeradar-base">10</td>
+                              <td rowspan="2" class="pokeradar-base">1%</td>
+                              <td>Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td>Snorunt</td>
+                              <td>36</td>
+                           </tr>
+                           <tr class="shiningpearl-false pokeradar-false">
+                              <td style="display:none;" class="pokeradar-base">10</td>
+                              <td style="display:none;" class="pokeradar-base">1%</td>
+                              <td>No Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td>Medicham</td>
+                              <td>36</td>
+                           </tr>
+                           <tr class="shiningpearl-true pokeradar-true base">
+                              <td rowspan="2" class="pokeradar-base">11</td>
+                              <td rowspan="2" class="pokeradar-base">1%</td>
+                              <td>Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td>Snorunt</td>
+                              <td>36</td>
+                           </tr>
+                           <tr class="shiningpearl-true pokeradar-false">
+                              <td style="display:none;" class="pokeradar-base">11</td>
+                              <td style="display:none;" class="pokeradar-base">1%</td>
+                              <td>No Poké Radar</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td>Medicham</td>
+                              <td>36</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-combined-walking-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="light-true">Condition(s)</th>
+                              <th class="brilliantdiamond-true" colspan="3">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="3">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="swarm-true base">
+                              <td rowspan="2" class="light-false swarm-base">0</td>
+                              <td rowspan="2" class="light-false swarm-base">20%</td>
+                              <td class="light-false">Swarm</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/swinub.png" alt="Swinub"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Swinub</td>
+                              <td class="brilliantdiamond-false">lv. 34</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/swinub.png" alt="Swinub"></div>
+                              </td>
+                              <td class="shiningpearl-false">Swinub</td>
+                              <td class="shiningpearl-false">lv. 34</td>
+                           </tr>
+                           <tr class="swarm-false">
+                              <td style="display:none;" class="light-false swarm-base">0</td>
+                              <td style="display:none;" class="light-false swarm-base">20%</td>
+                              <td class="light-false">No swarm</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/snover-f.png" alt="Snover"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Snover</td>
+                              <td class="brilliantdiamond-false">lv. 34</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/snover-f.png" alt="Snover"></div>
+                              </td>
+                              <td class="shiningpearl-false">Snover</td>
+                              <td class="shiningpearl-false">lv. 34</td>
+                           </tr>
+                           <tr class="swarm-true base">
+                              <td rowspan="2" class="light-true swarm-base">1</td>
+                              <td rowspan="2" class="light-true swarm-base">20%</td>
+                              <td class="light-true">Swarm</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/swinub.png" alt="Swinub"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Swinub</td>
+                              <td class="brilliantdiamond-true">lv. 34</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/swinub.png" alt="Swinub"></div>
+                              </td>
+                              <td class="shiningpearl-true">Swinub</td>
+                              <td class="shiningpearl-true">lv. 34</td>
+                           </tr>
+                           <tr class="swarm-false">
+                              <td style="display:none;" class="light-true swarm-base">1</td>
+                              <td style="display:none;" class="light-true swarm-base">20%</td>
+                              <td class="light-true">No swarm</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Sneasel</td>
+                              <td class="brilliantdiamond-true">lv. 34</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="shiningpearl-true">Sneasel</td>
+                              <td class="shiningpearl-true">lv. 34</td>
+                           </tr>
+                           <tr class="base">
+                              <td rowspan="2" class="light-false">2</td>
+                              <td rowspan="2" class="light-false">10%</td>
+                              <td class="light-false">Morning, Day</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/meditite-f.png" alt="Meditite"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Meditite</td>
+                              <td class="brilliantdiamond-false">lv. 35</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/meditite-f.png" alt="Meditite"></div>
+                              </td>
+                              <td class="shiningpearl-false">Meditite</td>
+                              <td class="shiningpearl-false">lv. 35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">Night</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Zubat</td>
+                              <td class="brilliantdiamond-false">lv. 35</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="shiningpearl-false">Zubat</td>
+                              <td class="shiningpearl-false">lv. 35</td>
+                           </tr>
+                           <tr class="base">
+                              <td rowspan="2" class="light-true">3</td>
+                              <td rowspan="2" class="light-true">10%</td>
+                              <td class="light-true">Morning, Day</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/machoke.png" alt="Machoke"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Machoke</td>
+                              <td class="brilliantdiamond-true">lv. 35</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/machoke.png" alt="Machoke"></div>
+                              </td>
+                              <td class="shiningpearl-true">Machoke</td>
+                              <td class="shiningpearl-true">lv. 35</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">Night</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/noctowl.png" alt="Noctowl"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Noctowl</td>
+                              <td class="brilliantdiamond-true">lv. 35</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/noctowl.png" alt="Noctowl"></div>
+                              </td>
+                              <td class="shiningpearl-true">Noctowl</td>
+                              <td class="shiningpearl-true">lv. 35</td>
+                           </tr>
+                           <tr class="pokeradar-true base">
+                              <td rowspan="2" class="light-false pokeradar-base">4</td>
+                              <td rowspan="2" class="light-false pokeradar-base">10%</td>
+                              <td class="light-false">Poké Radar</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Snorunt</td>
+                              <td class="brilliantdiamond-false">lv. 35</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td class="shiningpearl-false">Snorunt</td>
+                              <td class="shiningpearl-false">lv. 35</td>
+                           </tr>
+                           <tr class="pokeradar-false">
+                              <td style="display:none;" class="light-false pokeradar-base">4</td>
+                              <td style="display:none;" class="light-false pokeradar-base">10%</td>
+                              <td class="light-false">No Poké Radar</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Medicham</td>
+                              <td class="brilliantdiamond-false">lv. 35</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td class="shiningpearl-false">Medicham</td>
+                              <td class="shiningpearl-false">lv. 35</td>
+                           </tr>
+                           <tr class="pokeradar-true base">
+                              <td rowspan="2" class="light-true pokeradar-base">5</td>
+                              <td rowspan="2" class="light-true pokeradar-base">10%</td>
+                              <td class="light-true">Poké Radar</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Snorunt</td>
+                              <td class="brilliantdiamond-true">lv. 36</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td class="shiningpearl-true">Snorunt</td>
+                              <td class="shiningpearl-true">lv. 36</td>
+                           </tr>
+                           <tr class="pokeradar-false">
+                              <td style="display:none;" class="light-true pokeradar-base">5</td>
+                              <td style="display:none;" class="light-true pokeradar-base">10%</td>
+                              <td class="light-true">No Poké Radar</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/machoke.png" alt="Machoke"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Machoke</td>
+                              <td class="brilliantdiamond-true">lv. 36</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/machoke.png" alt="Machoke"></div>
+                              </td>
+                              <td class="shiningpearl-true">Machoke</td>
+                              <td class="shiningpearl-true">lv. 36</td>
+                           </tr>
+                           <tr class="base">
+                              <td class="light-false">6</td>
+                              <td class="light-false">5%</td>
+                              <td class="light-false">Anytime</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/snover-f.png" alt="Snover"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Snover</td>
+                              <td class="brilliantdiamond-false">lv. 35</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/snover-f.png" alt="Snover"></div>
+                              </td>
+                              <td class="shiningpearl-false">Snover</td>
+                              <td class="shiningpearl-false">lv. 35</td>
+                           </tr>
+                           <tr class="base">
+                              <td class="light-true">7</td>
+                              <td class="light-true">5%</td>
+                              <td class="light-true">Anytime</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Sneasel</td>
+                              <td class="brilliantdiamond-true">lv. 35</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="shiningpearl-true">Sneasel</td>
+                              <td class="shiningpearl-true">lv. 35</td>
+                           </tr>
+                           <tr class="base">
+                              <td class="light-false">8</td>
+                              <td class="light-false">4%</td>
+                              <td class="light-false">Anytime</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Medicham</td>
+                              <td class="brilliantdiamond-false">lv. 36</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td class="shiningpearl-false">Medicham</td>
+                              <td class="shiningpearl-false">lv. 36</td>
+                           </tr>
+                           <tr class="base">
+                              <td class="light-true">9</td>
+                              <td class="light-true">4%</td>
+                              <td class="light-true">Anytime</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Medicham</td>
+                              <td class="brilliantdiamond-true">lv. 36</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td class="shiningpearl-true">Medicham</td>
+                              <td class="shiningpearl-true">lv. 36</td>
+                           </tr>
+                           <tr class="pokeradar-true base">
+                              <td rowspan="2" class="light-false pokeradar-base">10</td>
+                              <td rowspan="2" class="light-false pokeradar-base">1%</td>
+                              <td class="light-false">Poké Radar</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Snorunt</td>
+                              <td class="brilliantdiamond-false">lv. 36</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td class="shiningpearl-false">Snorunt</td>
+                              <td class="shiningpearl-false">lv. 36</td>
+                           </tr>
+                           <tr class="pokeradar-false">
+                              <td style="display:none;" class="light-false pokeradar-base">10</td>
+                              <td style="display:none;" class="light-false pokeradar-base">1%</td>
+                              <td class="light-false">No Poké Radar</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Medicham</td>
+                              <td class="brilliantdiamond-false">lv. 36</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td class="shiningpearl-false">Medicham</td>
+                              <td class="shiningpearl-false">lv. 36</td>
+                           </tr>
+                           <tr class="pokeradar-true base">
+                              <td rowspan="2" class="light-true pokeradar-base">11</td>
+                              <td rowspan="2" class="light-true pokeradar-base">1%</td>
+                              <td class="light-true">Poké Radar</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Snorunt</td>
+                              <td class="brilliantdiamond-true">lv. 36</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td class="shiningpearl-true">Snorunt</td>
+                              <td class="shiningpearl-true">lv. 36</td>
+                           </tr>
+                           <tr class="pokeradar-false">
+                              <td style="display:none;" class="light-true pokeradar-base">11</td>
+                              <td style="display:none;" class="light-true pokeradar-base">1%</td>
+                              <td class="light-true">No Poké Radar</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Medicham</td>
+                              <td class="brilliantdiamond-true">lv. 36</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td class="shiningpearl-true">Medicham</td>
+                              <td class="shiningpearl-true">lv. 36</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-brilliantdiamond-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table class="condition-table">
+                        <caption>Brilliant Diamond (Compressed)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                              <th>Condition(s)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/swinub.png" alt="Swinub"></div>
+                              </td>
+                              <td>Swinub</td>
+                              <td>40%</td>
+                              <td>34</td>
+                              <td>Swarm</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/snover-f.png" alt="Snover"></div>
+                              </td>
+                              <td rowspan="2">Snover</td>
+                              <td>5%</td>
+                              <td>35</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>20%</td>
+                              <td>34</td>
+                              <td>No swarm</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td rowspan="2">Sneasel</td>
+                              <td>5%</td>
+                              <td>35</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>20%</td>
+                              <td>34</td>
+                              <td>No swarm</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td>Snorunt</td>
+                              <td>22%</td>
+                              <td>35, 36</td>
+                              <td>Poké Radar</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/machoke.png" alt="Machoke"></div>
+                              </td>
+                              <td rowspan="2">Machoke</td>
+                              <td>10%</td>
+                              <td>35</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>10%</td>
+                              <td>36</td>
+                              <td>No Poké Radar</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td rowspan="2">Medicham</td>
+                              <td>8%</td>
+                              <td>36</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>12%</td>
+                              <td>35, 36</td>
+                              <td>No Poké Radar</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/meditite-f.png" alt="Meditite"></div>
+                              </td>
+                              <td>Meditite</td>
+                              <td>10%</td>
+                              <td>35</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>10%</td>
+                              <td>35</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/noctowl.png" alt="Noctowl"></div>
+                              </td>
+                              <td>Noctowl</td>
+                              <td>10%</td>
+                              <td>35</td>
+                              <td>Night</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-shiningpearl-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table class="condition-table">
+                        <caption>Shining Pearl (Compressed)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                              <th>Condition(s)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/swinub.png" alt="Swinub"></div>
+                              </td>
+                              <td>Swinub</td>
+                              <td>40%</td>
+                              <td>34</td>
+                              <td>Swarm</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/snover-f.png" alt="Snover"></div>
+                              </td>
+                              <td rowspan="2">Snover</td>
+                              <td>5%</td>
+                              <td>35</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>20%</td>
+                              <td>34</td>
+                              <td>No swarm</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td rowspan="2">Sneasel</td>
+                              <td>5%</td>
+                              <td>35</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>20%</td>
+                              <td>34</td>
+                              <td>No swarm</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td>Snorunt</td>
+                              <td>22%</td>
+                              <td>35, 36</td>
+                              <td>Poké Radar</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/machoke.png" alt="Machoke"></div>
+                              </td>
+                              <td rowspan="2">Machoke</td>
+                              <td>10%</td>
+                              <td>35</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>10%</td>
+                              <td>36</td>
+                              <td>No Poké Radar</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td rowspan="2">Medicham</td>
+                              <td>8%</td>
+                              <td>36</td>
+                              <td>Anytime</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>12%</td>
+                              <td>35, 36</td>
+                              <td>No Poké Radar</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/meditite-f.png" alt="Meditite"></div>
+                              </td>
+                              <td>Meditite</td>
+                              <td>10%</td>
+                              <td>35</td>
+                              <td>Morning, Day</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>10%</td>
+                              <td>35</td>
+                              <td>Night</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/noctowl.png" alt="Noctowl"></div>
+                              </td>
+                              <td>Noctowl</td>
+                              <td>10%</td>
+                              <td>35</td>
+                              <td>Night</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-combined-walking-table" class="pokemon-table combined compressed">
+                     <table class="condition-table">
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="brilliantdiamond-true" colspan="2">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="2">Shining Pearl</th>
+                              <th class="light-true">Condition(s)</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/swinub.png" alt="Swinub"></div>
+                              </td>
+                              <td class="light-false">Swinub</td>
+                              <td class="brilliantdiamond-false">40%</td>
+                              <td class="brilliantdiamond-false">lv. 34</td>
+                              <td class="shiningpearl-false">40%</td>
+                              <td class="shiningpearl-false">lv. 34</td>
+                              <td class="light-false">Swarm</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true" rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/snover-f.png" alt="Snover"></div>
+                              </td>
+                              <td class="light-true" rowspan="2">Snover</td>
+                              <td class="brilliantdiamond-true">5%</td>
+                              <td class="brilliantdiamond-true">lv. 35</td>
+                              <td class="shiningpearl-true">5%</td>
+                              <td class="shiningpearl-true">lv. 35</td>
+                              <td class="light-true">Anytime</td>
+                           </tr>
+                           <tr>
+                              <td class="brilliantdiamond-true">20%</td>
+                              <td class="brilliantdiamond-true">lv. 34</td>
+                              <td class="shiningpearl-true">20%</td>
+                              <td class="shiningpearl-true">lv. 34</td>
+                              <td class="light-true">No swarm</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false" rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/sneasel-f.png" alt="Sneasel"></div>
+                              </td>
+                              <td class="light-false" rowspan="2">Sneasel</td>
+                              <td class="brilliantdiamond-false">5%</td>
+                              <td class="brilliantdiamond-false">lv. 35</td>
+                              <td class="shiningpearl-false">5%</td>
+                              <td class="shiningpearl-false">lv. 35</td>
+                              <td class="light-false">Anytime</td>
+                           </tr>
+                           <tr>
+                              <td class="brilliantdiamond-false">20%</td>
+                              <td class="brilliantdiamond-false">lv. 34</td>
+                              <td class="shiningpearl-false">20%</td>
+                              <td class="shiningpearl-false">lv. 34</td>
+                              <td class="light-false">No swarm</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/snorunt.png" alt="Snorunt"></div>
+                              </td>
+                              <td class="light-true">Snorunt</td>
+                              <td class="brilliantdiamond-true">22%</td>
+                              <td class="brilliantdiamond-true">lv. 35, 36</td>
+                              <td class="shiningpearl-true">22%</td>
+                              <td class="shiningpearl-true">lv. 35, 36</td>
+                              <td class="light-true">Poké Radar</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false" rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/machoke.png" alt="Machoke"></div>
+                              </td>
+                              <td class="light-false" rowspan="2">Machoke</td>
+                              <td class="brilliantdiamond-false">10%</td>
+                              <td class="brilliantdiamond-false">lv. 35</td>
+                              <td class="shiningpearl-false">10%</td>
+                              <td class="shiningpearl-false">lv. 35</td>
+                              <td class="light-false">Morning, Day</td>
+                           </tr>
+                           <tr>
+                              <td class="brilliantdiamond-false">10%</td>
+                              <td class="brilliantdiamond-false">lv. 36</td>
+                              <td class="shiningpearl-false">10%</td>
+                              <td class="shiningpearl-false">lv. 36</td>
+                              <td class="light-false">No Poké Radar</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true" rowspan="2">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+                              </td>
+                              <td class="light-true" rowspan="2">Medicham</td>
+                              <td class="brilliantdiamond-true">8%</td>
+                              <td class="brilliantdiamond-true">lv. 36</td>
+                              <td class="shiningpearl-true">8%</td>
+                              <td class="shiningpearl-true">lv. 36</td>
+                              <td class="light-true">Anytime</td>
+                           </tr>
+                           <tr>
+                              <td class="brilliantdiamond-true">12%</td>
+                              <td class="brilliantdiamond-true">lv. 35, 36</td>
+                              <td class="shiningpearl-true">12%</td>
+                              <td class="shiningpearl-true">lv. 35, 36</td>
+                              <td class="light-true">No Poké Radar</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/meditite-f.png" alt="Meditite"></div>
+                              </td>
+                              <td class="light-false">Meditite</td>
+                              <td class="brilliantdiamond-false">10%</td>
+                              <td class="brilliantdiamond-false">lv. 35</td>
+                              <td class="shiningpearl-false">10%</td>
+                              <td class="shiningpearl-false">lv. 35</td>
+                              <td class="light-false">Morning, Day</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="light-true">Zubat</td>
+                              <td class="brilliantdiamond-true">10%</td>
+                              <td class="brilliantdiamond-true">lv. 35</td>
+                              <td class="shiningpearl-true">10%</td>
+                              <td class="shiningpearl-true">lv. 35</td>
+                              <td class="light-true">Night</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/noctowl.png" alt="Noctowl"></div>
+                              </td>
+                              <td class="light-false">Noctowl</td>
+                              <td class="brilliantdiamond-false">10%</td>
+                              <td class="brilliantdiamond-false">lv. 35</td>
+                              <td class="shiningpearl-false">10%</td>
+                              <td class="shiningpearl-false">lv. 35</td>
+                              <td class="light-false">Night</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-dppt-items" class="game-container dppt">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">PP Up</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Southwest of Ninja Boy Antonio</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Revival Herb</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Northwest of Ace Trainer Dalton</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Blue Shard</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Southwest of the Revival Herb</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ultra Ball</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Next to Ninja Boy Matthew</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Near Skier Shawn</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Nugget</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Northwest of Skier Madison</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Calcium</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">South of Ninja Boy Ethan</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Iron</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">South of Ninja Boy Ethan</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Iron</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">West of the southernmost pair of trees</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ultra Ball</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">North of the southernmost pair of trees</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Southwest of Skier Lexie</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Protein</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Southwest of TM07</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM07 Hail</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In the snow southeast of the Hiker's house</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Repel</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">East of the Hiker's house</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">HM08 Rock Climb</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Northeast of the Hiker's house</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Icicle Plate</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Obtained from the Hiker in the house</td>
+                     <td class="light-true">Only after picking up HM08 Rock Climb.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rare Candy</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">South of Skier Bjorn</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Revive</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Near Skier Bjorn</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Southeast of the Max Revive</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Spell Tag</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Obtained from the woman in the northernmost house</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-bdsp-items" class="game-container bdsp" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">PP Up</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Southwest of Ninja Boy Antonio</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Heal</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Near Skier Shawn</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Nugget</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Northwest of Skier Madison</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Calcium</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">South of Ninja Boy Ethan</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Iron</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">West of the southernmost pair of trees</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ultra Ball</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">North of the southernmost pair of trees</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Southwest of Skier Lexie</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Protein</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Southwest of TM07</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM07 Hail</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">In the snow southeast of the Hiker's house</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Repel</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">East of the Hiker's house</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">TM100 Rock Climb & Hidden Moves (Rock Climb)</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Northeast of the Hiker's house</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Icicle Plate</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Obtained from the Hiker in the house</td>
+                     <td class="light-true">Only after picking up TM100 Rock Climb.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Revive</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Near Skier Bjorn</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Potion</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Southeast of the Max Revive</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Spell Tag</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Obtained from the woman in the northernmost house</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-dppt-trainers" class="game-container dppt">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ace Trainer Dalton</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Raichu lv.34<br>Pelipper lv.36<br>Hippopotas lv.38</td>
+                     <td class="light-false">He can have a higher-leveled team if rematched with the Vs. Seeker.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ace Trainer Dalton</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Electabuz lv.40<br>Magmar lv.40</td>
+                     <td class="light-true">He can have a higher-leveled team if rematched with the Vs. Seeker.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Skier Shawn</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Snover lv.34<br>Snover lv.33<br>Golduck lv.34<br>Snover lv.35</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Skier Shawn</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Snover lv.35<br>Snover lv.36<br>Snover lv.37</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ninja Boy Antonio</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Zubat lv.33<br>Golbat lv.33<br>Zubat lv.34<br>Croagunk lv.36</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ninja Boy Matthew</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Golbat lv.39</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Skier Madison</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Snover lv.37</td>
+                     <td class="light-false">She can have a higher-leveled team if rematched with the Vs. Seeker.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Skier Madison</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Snorunt lv.39</td>
+                     <td class="light-true">She can have a higher-leveled team if rematched with the Vs. Seeker.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ninja Boy Ethan</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Skorupi lv.35<br>Golbat lv.35</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ninja Boy Ethan</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Skorupi lv.37<br>Golbat lv.37</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Skier Bjorn</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Mantyke lv.36<br>Sneasel lv.38</td>
+                     <td class="light-false">He can have a higher-leveled team if rematched with the Vs. Seeker.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Skier Bjorn</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Swinub lv.36<br>Sneasel lv.38</td>
+                     <td class="light-true">He can have a higher-leveled team if rematched with the Vs. Seeker.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Skier Lexie</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Marill lv.35<br>Clefairy lv.35</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Skier Lexie</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Piloswine lv.37<br>Glaceon lv.37</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Black Belt Luke</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Croagunk lv.36<br>Onix lv.35<br>Machoke lv.37</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Black Belt Luke</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Croagunk lv.37<br>Machoke lv.37<br>Riolu lv.37</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ace Trainer Olivia</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Roselia lv.37<br>Seaking lv.37</td>
+                     <td class="light-false">She can have a higher-leveled team if rematched with the Vs. Seeker.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ace Trainer Olivia</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Kirlia lv.38<br>Buneary lv.38<br>Seaking lv.39</td>
+                     <td class="light-true">She can have a higher-leveled team if rematched with the Vs. Seeker.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rematches</h4>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Rematches</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ace Trainer Dalton</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Raichu lv.54<br>Pelipper lv.54<br>Hippopotas lv.54</td>
+                     <td class="light-false">Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ace Trainer Dalton</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Electivire lv.54<br>Magmortar lv.54</td>
+                     <td class="light-true">Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Skier Madison</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Snover lv.40</td>
+                     <td class="light-false">Only after completing the events at <a class="location-link" href="spear-pillar.html">Spear Pillar</a>.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Skier Madison</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Snorunt lv.45</td>
+                     <td class="light-true">Only after completing the events at Spear Pillar.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Skier Madison</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Snover lv.55</td>
+                     <td class="light-false">Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Skier Madison</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Froslass lv.54</td>
+                     <td class="light-true">Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Skier Bjorn</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Mantine lv.37<br>Sneasel lv.39</td>
+                     <td class="light-false">Only after completing the events at Spear Pillar.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Skier Bjorn</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Piloswine lv.43<br>Sneasel lv.43</td>
+                     <td class="light-true">Only after completing the events at Spear Pillar.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Skier Bjorn</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Mantine lv.58<br>Sneasel lv.58</td>
+                     <td class="light-false">Only after completing the events at <a class="location-link" href="stark-mountain.html">Stark Mountain</a>.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Skier Bjorn</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Delibird lv.56<br>Weavile lv.58<br>Mamoswine lv.60</td>
+                     <td class="light-true">Only after completing the events at Stark Mountain.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ace Trainer Olivia</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Roselia lv.55<br>Seaking lv.55</td>
+                     <td class="light-false">Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ace Trainer Olivia</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Gardevoir lv.52<br>Seaking lv.56<br>Lopunny lv.52</td>
+                     <td class="light-true">Only after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-bdsp-trainers" class="game-container bdsp" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ace Trainer Dalton</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Raichu lv.34<br>Pelipper lv.36<br>Hippopotas lv.38</td>
+                     <td class="light-false">He can have a higher-leveled team if rematched with the Vs. Seeker.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Skier Shawn</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Snover lv.34<br>Snover lv.33<br>Golduck lv.34<br>Snover lv.35</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ninja Boy Antonio</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Zubat lv.33<br>Golbat lv.33<br>Zubat lv.34<br>Croagunk lv.36</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Skier Madison</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Snover lv.37</td>
+                     <td class="light-true">She can have a higher-leveled team if rematched with the Vs. Seeker.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ninja Boy Ethan</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Skorupi lv.35<br>Golbat lv.35</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Skier Bjorn</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Mantyke lv.36<br>Sneasel lv.38</td>
+                     <td class="light-true">He can have a higher-leveled team if rematched with the Vs. Seeker.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Skier Lexie</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Marill lv.35<br>Clefairy lv.35</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Black Belt Luke</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Croagunk lv.36<br>Onix lv.35<br>Machoke lv.37</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ace Trainer Olivia</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Roselia lv.37<br>Seaking lv.37</td>
+                     <td class="light-false">She can have a higher-leveled team if rematched with the Vs. Seeker.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rematches</h4>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Rematches</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ace Trainer Dalton</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Raichu lv.54<br>Pelipper lv.54<br>Hippopotas lv.54</td>
+                     <td class="light-false">Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Skier Madison</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Snover lv.40</td>
+                     <td class="light-true">Only after completing the events at <a class="location-link" href="spear-pillar.html">Spear Pillar</a>.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Skier Madison</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Snover lv.55</td>
+                     <td class="light-false">Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Skier Bjorn</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Mantine lv.37<br>Sneasel lv.39</td>
+                     <td class="light-true">Only after completing the events at Spear Pillar.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Skier Bjorn</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Mantine lv.58<br>Sneasel lv.58</td>
+                     <td class="light-false">Only after completing the events at <a class="location-link" href="stark-mountain.html">Stark Mountain</a></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ace Trainer Olivia</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Roselia lv.55<br>Seaking lv.55</td>
+                     <td class="light-true">Only after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

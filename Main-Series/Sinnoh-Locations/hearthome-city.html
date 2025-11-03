@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Hearthome City</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Sinnoh Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="dppt" type="radio" onclick="topButton.call(this)" name="games" value="DPPt" checked="checked">
+         <label for="dppt" class="right">DPPt</label>
+         <input id="bdsp" type="radio" onclick="topButton.call(this)" name="games" value="BDSP">
+         <label for="bdsp" class="right">BDSP</label>
+      </div>
+      <h2>Hearthome City</h2>
+      <div id="notes" class="bottom">
+         <p id="dppt-notes" class="dppt">
+            <strong>Access to:</strong><br>
+            West: <a class="location-link" href="route-208.html">Route 208</a><br>
+            South: <a class="location-link" href="route-212.html">Route 212</a><br>
+            East: <a class="location-link" href="route-209.html">Route 209</a><br>
+            Accessible in the city: <a class="location-link" href="amity-square.html">Amity Square</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Super Contest Hall<br>
+            Pokémon Fan Club
+            Friendship Checker<br>
+            Poffin House<br>
+            Hearthome Gym: The fifth (Diamond/Pearl) or third (Platinum) Gym. It specializes in Ghost-types.<br>
+            Poké Mart
+         </p>
+         <p id="bdsp-notes" class="bdsp" style="display:none;">
+            <strong>Access to:</strong><br>
+            West: <a class="location-link" href="route-208.html">Route 208</a><br>
+            South: <a class="location-link" href="route-212.html">Route 212</a><br>
+            East: <a class="location-link" href="route-209.html">Route 209</a><br>
+            Accessible in the city: <a class="location-link" href="amity-square.html">Amity Square</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Super Contest Hall<br>
+            Pokémon Fan Club
+            Friendship Checker<br>
+            Poffin House<br>
+            Hearthome Gym: The fifth Gym. It specializes in Ghost-types.<br>
+            Poké Mart
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-tables">
+            <div id="pokemon-dppt" class="game-container dppt">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-dppt-gift" class="table-collection gift">
+                  <h4>Gift</h4>
+                  <div id="pokemon-dppt-all-combined-gift-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="3">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/eevee-f.png" alt="Eevee"></div>
+                              </td>
+                              <td class="light-false">Eevee</td>
+                              <td class="light-false">5</td>
+                              <td class="diamond-false">D</td>
+                              <td class="pearl-false">P</td>
+                              <td class="light-false">Pt</td>
+                              <td class="light-false">Obtained from Bebe after obtaining the National Pokédex.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/eevee-f.png" alt="Eevee"></div>
+                              </td>
+                              <td class="light-true">Eevee</td>
+                              <td class="light-true">20</td>
+                              <td class="light-true">D</td>
+                              <td class="light-true">P</td>
+                              <td class="platinum-true">Pt</td>
+                              <td class="light-true">Obtained from Bebe.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/happiny.png" alt="Happiny"></div>
+                              </td>
+                              <td class="light-false">Happiny</td>
+                              <td class="light-false">1</td>
+                              <td class="diamond-false">D</td>
+                              <td class="pearl-false">P</td>
+                              <td class="platinum-false">Pt</td>
+                              <td class="light-false">Obtained as an Egg from a Hiker.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-bdsp" class="game-container bdsp" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-bdsp-gift" class="table-collection gift">
+                  <h4>Gift</h4>
+                  <div id="pokemon-bdsp-all-combined-gift-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/eevee-f.png" alt="Eevee"></div>
+                              </td>
+                              <td class="light-false">Eevee</td>
+                              <td class="light-false">5</td>
+                              <td class="brilliantdiamond-false">BD</td>
+                              <td class="shiningpearl-false">SP</td>
+                              <td class="light-false">Obtained from Bebe after obtaining the National Pokédex.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/happiny.png" alt="Happiny"></div>
+                              </td>
+                              <td class="light-true">Happiny</td>
+                              <td class="light-true">1</td>
+                              <td class="brilliantdiamond-true">BD</td>
+                              <td class="shiningpearl-true">SP</td>
+                              <td class="light-true">Obtained as an Egg from a Hiker.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-dppt-items" class="game-container dppt">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Shell Bell</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Obtained from a woman in the Pokémon Hotel</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TinyMushroom</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">Beyond the fence near the Amity Square western gate</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Big Mushroom</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Beyond the fence near the Amity Square western gate</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Poffin Case</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Obtained from the Pokémon Fan Club Chairman</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Super Contest Hall</h4>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items (Super Contest Hall)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Glitter Powder</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Obtained from Keira upon first entering the Contest Hall</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Tuxedo/Dress</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Obtained from Johanna upon first entering the Contest Hall</td>
+                     <td class="light-true">The Tuxedo will be obtained if the player character is male and the Dress if they are female.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Mild Poffin</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Obtained from Jordan</td>
+                     <td class="light-false">Only after obtaining the Poffin Case.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Cool Ribbon (normal, Great, Ultra, or Master)</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Obtained on a Pokémon that wins a Cool Contest in the respective rank</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Beauty Ribbon (normal, Great, Ultra, or Master)</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Obtained on a Pokémon that wins a Beauty Contest in the respective rank</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Cute Ribbon (normal, Great, Ultra, or Master)</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Obtained on a Pokémon that wins a Cute Contest in the respective rank</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Smart Ribbon (normal, Great, Ultra, or Master)</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Obtained on a Pokémon that wins a Smart Contest in the respective rank</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Tough Ribbon (normal, Great, Ultra, or Master)</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Obtained on a Pokémon that wins a Tough Contest in the respective rank</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Hearthome Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items (Hearthome Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM65 Shadow Claw</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Obtained from Fantina</td>
+                     <td class="light-false">Only after defeating her.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Mr. Goods</h4>
+            <p class="dppt">Mr. Goods is a man standing on the street north of the Poffin House. He will give the player decorations for their Underground Secret Base when spoken to, if the player has achieved specific milestones.</p>
+            <table class="left-align">
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Requirement</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Cool Cup</td>
+                     <td>Win a Master Rank Cool Contest</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Beauty Cup</td>
+                     <td>Win a Master Rank Beauty Contest</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Cute Cup</td>
+                     <td>Win a Master Rank Cute Contest</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Smart Cup</td>
+                     <td>Win a Master Rank Smart Contest</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Tough Cup</td>
+                     <td>Win a Master Rank Tough Contest</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Blue Crystal</td>
+                     <td>Meet 100 players in the Underground</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Pink Crystal</td>
+                     <td>Give 100 items to players in the Underground</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Red Crystal</td>
+                     <td>Dig up 100 Fossils in the Underground</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Yellow Crystal</td>
+                     <td>Affect players with Traps 100 times in the Underground</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Gym Statue</td>
+                     <td>Defeat all 8 Gyms</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Globe</td>
+                     <td>Activate a Wi-Fi Connection and access the Global Trade System</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Left vendor</h4>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Heart Mail</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">50</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Heal Ball</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Net Ball</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">1000</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Nest Ball</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">1000</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Right vendor</h4>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">200</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">600</td>
+                     <td class="light-true">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">1200</td>
+                     <td class="light-false">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">300</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">700</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">1200</td>
+                     <td class="light-true">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">2500</td>
+                     <td class="light-false">Only after obtaining 7 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">3000</td>
+                     <td class="light-true">Only after obtaining 8 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">1500</td>
+                     <td class="light-false">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">100</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parlyz Heal</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">200</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">250</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">250</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ice Heal</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">250</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">600</td>
+                     <td class="light-false">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">550</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">350</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Repel</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">500</td>
+                     <td class="light-true">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">700</td>
+                     <td class="light-false">Only after obtaining 7 Badges.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-bdsp-items" class="game-container bdsp" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Shell Bell</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Obtained from a woman in the Pokémon Hotel</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Tiny Mushroom</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Beyond the fence near the Amity Square western gate</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Poffin Case</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Obtained from the Pokémon Fan Club Chairman</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Best Friends Ribbon</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Obtained from the Friendship Checker</td>
+                     <td class="light-true">Only if the player's first Pokémon has maximum Affection.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Super Contest Hall</h4>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Items (Super Contest Hall)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ethereal Sticker C</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Obtained from Keira upon first entering the Contest Hall</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Tuxedo/Dress</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Obtained from Johanna upon first entering the Contest Hall</td>
+                     <td class="light-true">The Tuxedo will be obtained if the player character is male and the Dress if they are female.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Mild Poffin</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Obtained from Jordan</td>
+                     <td class="light-false">Only after obtaining the Poffin Case.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Coolness Master Ribbon</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Obtained on a Pokémon that wins a Master Rank Cool Contest</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Beauty Master Ribbon</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Obtained on a Pokémon that wins a Master Rank Beauty Contest</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Cuteness Master Ribbon</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Obtained on a Pokémon that wins a Master Rank Cute Contest</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Cleverness Master Ribbon</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Obtained on a Pokémon that wins a Master Rank Clever Contest</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Toughness Master Ribbon</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Obtained on a Pokémon that wins a Master Rank Tough Contest</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Contest Star Ribbon</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Obtained on a Pokémon that wins Master Rank Contests in all five categories</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Twinkling Star Ribbon</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Obtained on a Pokémon that wins a Master Rank Brilliant/Shining Contest</td>
+                     <td class="light-true">These Contests are only available after obtaining the Contest Star Ribbon.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Hearthome Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Items (Hearthome Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM65 Shadow Claw (5x)</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Obtained from Fantina</td>
+                     <td class="light-false">Only after defeating her.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">200</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">600</td>
+                     <td class="light-true">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">1200</td>
+                     <td class="light-false">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Heal Ball</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">300</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Net Ball</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">1000</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Nest Ball</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">1000</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Potion</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">300</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Potion</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">700</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Hyper Potion</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">1200</td>
+                     <td class="light-false">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Potion</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">2500</td>
+                     <td class="light-true">Only after obtaining 7 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Restore</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">3000</td>
+                     <td class="light-false">Only after obtaining 8 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Revive</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">1500</td>
+                     <td class="light-true">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Antidote</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">100</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Paralyze Heal</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">200</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Awakening</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">250</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Burn Heal</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">250</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ice Heal</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">250</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Heal</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">600</td>
+                     <td class="light-true">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Escape Rope</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">550</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Repel</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">350</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Repel</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">500</td>
+                     <td class="light-false">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Max Repel</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">700</td>
+                     <td class="light-true">Only after obtaining 7 Badges.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-dppt-trainers" class="game-container dppt">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Rival</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Starly lv.19<br>Elemental 1 lv.20<br>Elemental 2 lv.20<br>Starter (2nd stage) lv.21</td>
+                     <td class="light-false">Elemental 1 is one of Roselia, Ponyta, or Buizel, whichever is the same type as the player's starter.<br>Elemental 2 is one of Roselia, Ponyta, or Buizel, whichever is weak against the player's starter.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Reporter Kinsey</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Drifloon lv.22<br>Shinx lv.22</td>
+                     <td class="light-true">In the Pokémon Center on Tuesdays and Fridays.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Cameraman Tevin</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Mime Jr. lv.20<br>Machop lv.22</td>
+                     <td class="light-false">In the Pokémon Center on Tuesdays and Fridays.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Clown Lee</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Mime Jr. lv.23</td>
+                     <td class="light-true">In the Pokémon Center on Saturdays and Sundays.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Hearthome Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Trainers (Hearthome Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Youngster Donny</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Gastly lv.27<br>Haunter lv.29</td>
+                     <td class="light-false">On 2F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Youngster Donny</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Gastly lv.20<br>Drifloon lv.22</td>
+                     <td class="light-true">In the second room.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Lass Molly</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Misdreavus lv.30</td>
+                     <td class="light-false">On 2F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lass Molly</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Misdreavus lv.23</td>
+                     <td class="light-true">In the second room.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Camper Drew</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Gastly lv.27<br>Gastly lv.27<br>Gastly lv.27</td>
+                     <td class="light-false">On 3F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Picnicker Cheyenne</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">Drifloon lv.28<br>Misdreavus lv.28</td>
+                     <td class="light-true">On 3F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">School Kid Chance</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Haunter lv.30</td>
+                     <td class="light-false">On 4F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">School Kid Chance</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Gastly lv.23</td>
+                     <td class="light-true">In the third room.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">School Kid Mackenzie</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Drifloon lv.28<br>Drifloon lv.28</td>
+                     <td class="light-false">On 4F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">School Kid Mackenzie</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Drifloon lv.21<br>Drifloon lv.21</td>
+                     <td class="light-true">In the third room.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ace Trainer Allen</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Gastly lv.26<br>Haunter lv.28<br>Gengar lv.30</td>
+                     <td class="light-false">On 5F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ace Trainer Allen</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Gastly lv.21<br>Gastly lv.22<br>Haunter lv.24</td>
+                     <td class="light-true">In the third room.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ace Trainer Catherine</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Misdreavus lv.30<br>Drifblim lv.30</td>
+                     <td class="light-false">On 5F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ace Trainer Catherine</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Haunter lv.23<br>Misdreavus lv.24</td>
+                     <td class="light-true">In the third room.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Fantina</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Drifblim lv.32<br>Gengar lv.34<br>Mismagius lv.36 @ Sitrus Berry</td>
+                     <td class="light-false">She will give the player TM65 Shadow Claw after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Fantina</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Duskull lv.24<br>Haunter lv.24<br>Mismagius lv.26 @ Sitrus Berry</td>
+                     <td class="light-true">She will give the player TM65 Shadow Claw after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rematches</h4>
+            <table class="left-align">
+               <caption>Platinum Trainers (Rematches)</caption>
+               <thead>
+                  <tr class="platinum-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="platinum-false">
+                     <td>Reporter Kinsey</td>
+                     <td>Drifloon lv.33<br>Luxio lv.33</td>
+                     <td>Only after reaching <a class="location-link" href="celestic-town.html">Celestic Town</a>.</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Reporter Kinsey</td>
+                     <td>Drifblim lv.45<br>Luxray lv.45</td>
+                     <td>Only after completing the events at <a class="location-link" href="spear-pillar.html">Spear Pillar</a>.</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Reporter Kinsey</td>
+                     <td>Drifblim lv.51<br>Luxray lv.51</td>
+                     <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Reporter Kinsey</td>
+                     <td>Drifblim lv.57<br>Luxray lv.57</td>
+                     <td>Only after completing the events at <a class="location-link" href="stark-mountain.html">Stark Mountain</a>.</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Cameraman Tevin</td>
+                     <td>Magnemite lv.30<br>Mr. Mime lv.32<br>Machoke lv.34</td>
+                     <td>Only after reaching Celestic Town.</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Cameraman Tevin</td>
+                     <td>Magnemite lv.42<br>Magneton lv.42<br>Mr. Mime lv.43<br>Machoke lv.45</td>
+                     <td>Only after completing the events at Spear Pillar.</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Cameraman Tevin</td>
+                     <td>Magneton lv.48<br>Magneton lv.48<br>Mr. Mime lv.49<br>Machamp lv.51</td>
+                     <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Cameraman Tevin</td>
+                     <td>Magneton lv.54<br>Magneton lv.54<br>Mr. Mime lv.55<br>Machamp lv.57</td>
+                     <td>Only after completing the events at Stark Mountain.</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Clown Lee</td>
+                     <td>Mr. Mime lv.33<br>Kadabra lv.33</td>
+                     <td>Only after reaching Celestic Town.</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Clown Lee</td>
+                     <td>Mr. Mime lv.44<br>Kadabra lv.44<br>Ambipom lv.44</td>
+                     <td>Only after completing the events at Spear Pillar.</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Clown Lee</td>
+                     <td>Mr. Mime lv.50<br>Alakazam lv.50<br>Ambipom lv.50</td>
+                     <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Clown Lee</td>
+                     <td>Mr. Mime lv.56<br>Alakazam lv.56<br>Ambipom lv.56</td>
+                     <td>Only after completing the events at Stark Mountain.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-bdsp-trainers" class="game-container bdsp" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Rival</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Starly lv.19<br>Elemental 1 lv.20<br>Elemental 2 lv.20<br>Starter (2nd stage) lv.21</td>
+                     <td class="light-false">Elemental 1 is one of Roselia, Ponyta, or Buizel, whichever is the same type as the player's starter.<br>Elemental 2 is one of Roselia, Ponyta, or Buizel, whichever is weak against the player's starter.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Hearthome Gym</h4>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Trainers (Hearthome Gym)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Youngster Donny</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Gastly lv.27<br>Haunter lv.29</td>
+                     <td class="light-false">On 2F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Lass Molly</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Misdreavus lv.30</td>
+                     <td class="light-true">On 2F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Camper Drew</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Gastly lv.27<br>Gastly lv.27<br>Gastly lv.27</td>
+                     <td class="light-false">On 3F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Picnicker Cheyenne</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Drifloon lv.28<br>Misdreavus lv.28</td>
+                     <td class="light-true">On 3F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">School Kid Chance</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Haunter lv.30</td>
+                     <td class="light-false">On 4F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">School Kid Mackenzie</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Drifloon lv.28<br>Drifloon lv.28</td>
+                     <td class="light-true">On 4F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ace Trainer Allen</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Gastly lv.26<br>Haunter lv.28<br>Gengar lv.30</td>
+                     <td class="light-false">On 5F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ace Trainer Catherine</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Misdreavus lv.30<br>Drifblim lv.30</td>
+                     <td class="light-true">On 5F.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Fantina</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Drifblim lv.32 @ Zoom Lens<br>Gengar lv.34 @ Colbur Berry<br>Mismagius lv.36 @ Expert Belt</td>
+                     <td class="light-false">On 5F. She will give the player five copies of TM65 Shadow Claw after the battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Fantina</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Drifblim lv.68 @ Flame Orb<br>Banette lv.65 @ Iron Ball<br>Dusknoir lv.70 @ Sitrus Berry<br>Mismagius lv.70 @ Expert Belt<br>Froslass lv.72 @ Focus Sash<br>Gengar lv.72 @ Life Orb</td>
+                     <td class="light-true">Rematch after obtaining the National Pokédex. She can be rematched every day.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>
