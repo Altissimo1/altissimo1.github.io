@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Floaroma Town</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Sinnoh Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="dppt" type="radio" onclick="topButton.call(this)" name="games" value="DPPt" checked="checked">
+         <label for="dppt" class="right">DPPt</label>
+         <input id="bdsp" type="radio" onclick="topButton.call(this)" name="games" value="BDSP">
+         <label for="bdsp" class="right">BDSP</label>
+      </div>
+      <h2>Floaroma Town</h2>
+      <div id="notes" class="bottom">
+         <p id="dppt-notes" class="dppt">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="floaroma-meadow.html">Floaroma Meadow</a><br>
+            South: <a class="location-link" href="route-204.html">Route 204</a><br>
+            East: <a class="location-link" href="route-205.html">Route 205</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Pick a Peck of Colors Flower Shop<br>
+            Poké Mart
+         </p>
+         <p id="bdsp-notes" class="bdsp" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="floaroma-meadow.html">Floaroma Meadow</a><br>
+            South: <a class="location-link" href="route-204.html">Route 204</a><br>
+            East: <a class="location-link" href="route-205.html">Route 205</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Pick a Peck of Colors Flower Shop<br>
+            Poké Mart
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-tables">
+            <div id="pokemon-bdsp" class="game-container bdsp" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-bdsp-gift" class="table-collection gift">
+                  <h4>Gift</h4>
+                  <div id="pokemon-bdsp-all-combined-gift-table" class="pokemon-table all combined">
+                     <table class="bold-contents">
+                        <caption>All Versions</caption>
+                        <thead>
+                           <tr class="light-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                              <th colspan="2">Games</th>
+                              <th>Notes</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/mew.png" alt="Mew"></div>
+                              </td>
+                              <td class="light-false">Mew</td>
+                              <td class="light-false">1</td>
+                              <td class="brilliantdiamond-false">BD</td>
+                              <td class="shiningpearl-false">SP</td>
+                              <td class="light-false">Only if the player has save data for Let's Go Pikachu or Eevee on the same system.</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/jirachi.png" alt="Jirachi"></div>
+                              </td>
+                              <td class="light-true">Jirachi</td>
+                              <td class="light-true">5</td>
+                              <td class="brilliantdiamond-true">BD</td>
+                              <td class="shiningpearl-true">SP</td>
+                              <td class="light-true">Only if the player has save data for Sword or Shield on the same system.</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-dppt-items" class="game-container dppt">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM88 Pluck</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Obtained from a girl in the house west of the Flower Shop</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Gracidea</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Obtained from a woman on the dirt path</td>
+                     <td class="light-true">Only if the player has a Shaymin obtained in a fateful encounter in their party.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Oran Berry</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">On the Berry tree in the soil near the Flower Shop</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Cheri Berry</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">On the Berry tree in the soil near the Flower Shop</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Flower Shop</h4>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items (Flower Shop)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Sprayduck</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">Obtained from a woman in the shop</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Random Berries</h4>
+            <p class="dppt">A girl in the Flower Shop will give out a random Berry once per day. The list of Berries is given below.</p>
+            <table>
+               <tbody>
+                  <tr class="light-true">
+                     <td>Cheri Berry</td>
+                     <td>Chesto Berry</td>
+                     <td>Pecha Berry</td>
+                     <td>Rawst Berry</td>
+                     <td>Aspear Berry</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Berry Exchange</h4>
+            <p class="dppt">In the Flower Shop, the player can exchange their Berries for Accessories. The requirements for purchasing Accessories differ between Diamond/Pearl and Platinum. The list of Accessories and the required Berries are shown below.</p>
+            <table>
+               <thead>
+                  <tr class="light-true">
+                     <th>Accessory</th>
+                     <th>Diamond/Pearl<br>Requirement</th>
+                     <th>Platinum<br>Requirement</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Red Flower</td>
+                     <td>10x Razz Berry</td>
+                     <td>1x Cheri Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Pink Flower</td>
+                     <td>10x Bluk Berry</td>
+                     <td>1x Chesto Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>White Flower</td>
+                     <td>10x Nanab Berry</td>
+                     <td>1x Pecha Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Blue Flower</td>
+                     <td>10x Cornn Berry</td>
+                     <td>1x Oran Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Orange Flower</td>
+                     <td>15x Magost Berry</td>
+                     <td>1x Rawst Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Yellow Flower</td>
+                     <td>15x Rabuta Berry</td>
+                     <td>1x Aspear Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Googly Specs</td>
+                     <td>20x Nomel Berry</td>
+                     <td>1x Leppa Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Black Specs</td>
+                     <td>20x Wepear Berry</td>
+                     <td>1x Persim Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Gorgeous Specs</td>
+                     <td>40x Pinap Berry</td>
+                     <td>10x Razz Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Sweet Candy</td>
+                     <td>30x Nanab Berry</td>
+                     <td>10x Bluk Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Confetti</td>
+                     <td>30x Razz Berry</td>
+                     <td>10x Nanab Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Colored Parasol</td>
+                     <td>50x Magost Berry</td>
+                     <td>10x Wepear Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Old Umbrella</td>
+                     <td>50x Pamtre Berry</td>
+                     <td>10x Pinap Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Spotlight</td>
+                     <td>80x Nomel Berry</td>
+                     <td>50x Cornn Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Cape</td>
+                     <td>250x Cornn Berry</td>
+                     <td>100x Pamtre Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Standing Mike</td>
+                     <td>80x Bluk Berry</td>
+                     <td>50x Magost Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Surfboard</td>
+                     <td>180x Wepear Berry</td>
+                     <td>100x Watmel Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Carpet</td>
+                     <td>100x Spelon Berry</td>
+                     <td>50x Rabuta Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Retro Pipe</td>
+                     <td>120x Pamtre Berry</td>
+                     <td>50x Nomel Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Fluffy Bed</td>
+                     <td>150x Watmel Berry</td>
+                     <td>100x Durin Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Mirror Ball</td>
+                     <td>250x Durin Berry</td>
+                     <td>100x Spelon Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Photo Board</td>
+                     <td>200x Belue Berry</td>
+                     <td>100x Belue Berry</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Left vendor</h4>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Bloom Mail</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">50</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Heal Ball</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">300</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Net Ball</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">1000</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Right vendor</h4>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Price</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">200</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">600</td>
+                     <td class="light-true">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">1200</td>
+                     <td class="light-false">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">300</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">700</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">1200</td>
+                     <td class="light-true">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">2500</td>
+                     <td class="light-false">Only after obtaining 7 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">3000</td>
+                     <td class="light-true">Only after obtaining 8 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">1500</td>
+                     <td class="light-false">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">100</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Parlyz Heal</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">200</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">250</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">250</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ice Heal</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">250</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">600</td>
+                     <td class="light-false">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">550</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">350</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Repel</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">500</td>
+                     <td class="light-true">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">700</td>
+                     <td class="light-false">Only after obtaining 7 Badges.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-bdsp-items" class="game-container bdsp" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM88 Pluck (3x)</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Obtained from a girl in the house west of the Flower Shop</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Gracidea</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Obtained from a woman on the dirt path</td>
+                     <td class="light-true">Only if the player has a Shaymin in their party.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Oran Berry (2x)</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">On the Berry tree in the soil near the Flower Shop</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Cheri Berry (2x)</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">On the Berry tree in the soil near the Flower Shop</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Flower Shop</h4>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Items (Flower Shop)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Sprayduck</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Obtained from a woman in the shop</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Random Berries</h4>
+            <p class="bdsp">A girl in the Flower Shop will give out a random Berry once per day. The list of Berries is given below.</p>
+            <table>
+               <tbody>
+                  <tr class="light-true">
+                     <td>Cheri Berry</td>
+                     <td>Chesto Berry</td>
+                     <td>Pecha Berry</td>
+                     <td>Rawst Berry</td>
+                     <td>Aspear Berry</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Berry Exchange</h4>
+            <p class="bdsp">In the Flower Shop, the player can exchange their Berries for Stickers. The list of Stickers and the required Berries are shown below.</p>
+            <table>
+               <thead>
+                  <tr class="light-true">
+                     <th>Sticker</th>
+                     <th>Requirement</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Electricity Sticker</td>
+                     <td>3x Cheri Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Song Sticker D</td>
+                     <td>3x Chesto Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Heart Sticker A</td>
+                     <td>3x Pecha Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Fire Sticker D</td>
+                     <td>3x Rawst Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Bubble Sticker D</td>
+                     <td>3x Aspear Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Smoke Sticker B</td>
+                     <td>3x Leppa Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Flora Sticker F</td>
+                     <td>3x Oran Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Party Sticker B</td>
+                     <td>3x Persim Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Star Sticker E</td>
+                     <td>3x Lum Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ribbon Sticker B</td>
+                     <td>3x Sitrus Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burning Sticker A</td>
+                     <td>10x Razz Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ethereal Sticker A</td>
+                     <td>10x Bluk Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Leaf Sticker C</td>
+                     <td>10x Nanab Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Stone Sticker B</td>
+                     <td>10x Wepear Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Cool Sticker C</td>
+                     <td>10x Cornn Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Sinister Sticker A</td>
+                     <td>10x Magost Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Sky Sticker C</td>
+                     <td>10x Rabuta Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Spark Sticker C</td>
+                     <td>10x Nomel Berry</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart</h4>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Price</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">200</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">600</td>
+                     <td class="light-true">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">1200</td>
+                     <td class="light-false">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Heal Ball</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">300</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Net Ball</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">1000</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Potion</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">300</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Super Potion</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">700</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Hyper Potion</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">1200</td>
+                     <td class="light-true">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Potion</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">2500</td>
+                     <td class="light-false">Only after obtaining 7 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Restore</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">3000</td>
+                     <td class="light-true">Only after obtaining 8 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Revive</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">1500</td>
+                     <td class="light-false">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Antidote</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">100</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Paralyze Heal</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">200</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Awakening</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">250</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">250</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ice Heal</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">250</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Full Heal</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">600</td>
+                     <td class="light-false">Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">550</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">350</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Super Repel</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">500</td>
+                     <td class="light-true">Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Repel</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">700</td>
+                     <td class="light-false">Only after obtaining 7 Badges.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-dppt-trainers" class="game-container dppt">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Platinum Trainers</caption>
+               <thead>
+                  <tr class="platinum-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="platinum-false">
+                     <td>Poké Kid Ariel</td>
+                     <td>Pichu lv.19<br>Pikachu lv.19<br>Pikachu lv.19</td>
+                     <td>In the Pokémon Center on Mondays and Thursdays after obtaining the Vs. Seeker.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rematches</h4>
+            <table class="left-align">
+               <caption>Platinum Trainers (Rematches)</caption>
+               <thead>
+                  <tr class="platinum-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="platinum-false">
+                     <td>Poké Kid Ariel</td>
+                     <td>Pichu lv.31<br>Pikachu lv.31<br>Pikachu lv.31</td>
+                     <td>Only after reaching <a class="location-link" href="celestic-town.html">Celestic Town</a>.</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Poké Kid Ariel</td>
+                     <td>Pichu lv.43<br>Pikachu lv.43<br>Pikachu lv.43</td>
+                     <td>Only after completing the events at <a class="location-link" href="spear-pillar.html">Spear Pillar</a>.</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Poké Kid Ariel</td>
+                     <td>Pichu lv.49<br>Pikachu lv.49<br>Raichu lv.49</td>
+                     <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Poké Kid Ariel</td>
+                     <td>Pichu lv.55<br>Pikachu lv.55<br>Raichu lv.55</td>
+                     <td>Only after completing the events at <a class="location-link" href="stark-mountain.html">Stark Mountain</a>.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>
