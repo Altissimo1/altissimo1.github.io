@@ -1,0 +1,2 @@
+// generated
+window.DPPT_DATA = {"name": "hearthome-city", "games": ["Diamond", "Pearl", "Platinum"], "pokemon": {"purchase": null, "trade": null, "statics": [{"level": "5", "notes": null, "type": "gift", "name": "Eevee", "games": ["Diamond", "Pearl"]}, {"level": "20", "notes": null, "type": "gift", "name": "Eevee", "games": ["Platinum"]}], "encounters": null, "fishing": null}, "items": null, "trainers": null};

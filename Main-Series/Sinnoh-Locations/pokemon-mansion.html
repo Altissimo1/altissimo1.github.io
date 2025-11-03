@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Pokémon Mansion</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Sinnoh Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="dppt" type="radio" onclick="topButton.call(this)" name="games" value="DPPt" checked="checked">
+         <label for="dppt" class="right">DPPt</label>
+         <input id="bdsp" type="radio" onclick="topButton.call(this)" name="games" value="BDSP">
+         <label for="bdsp" class="right">BDSP</label>
+      </div>
+      <h2>Pokémon Mansion</h2>
+      <div id="notes" class="bottom">
+         <p id="dppt-notes" class="dppt">
+            <strong>Access to:</strong><br>
+            Front exit: <a class="location-link" href="route-212.html">Route 212</a><br>
+            Back exit: <a class="location-link" href="trophy-garden.html">Trophy Garden</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Speaking to Mr. Backlot in his office changes the Pokémon available in the Trophy Garden.<br>
+            The book in Mr. Backlot's office contains a picture of Manaphy. In Platinum, examining this picture is required to mark Manaphy as "seen" in the Pokédex, which is required to obtain the National Pokédex.<br>
+            The beds in the rooms in the west wing can be used to heal the player's Pokémon.<br>
+            In Platinum, the player may speak to the maid near the door to the west wing to take the 5-Maid Knockout Exact-Turn Attack Challenge; information about this challenge is given below.
+         </p>
+         <p id="bdsp-notes" class="bdsp" style="display:none;">
+            <strong>Access to:</strong><br>
+            Front exit: <a class="location-link" href="route-212.html">Route 212</a><br>
+            Back exit: <a class="location-link" href="trophy-garden.html">Trophy Garden</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Speaking to Mr. Backlot in his office changes the Pokémon available in the Trophy Garden.<br>
+            The beds in the rooms in the west wing can be used to heal the player's Pokémon.
+         </p>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-dppt-items" class="game-container dppt">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM87 Swagger</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In Mr. Backlot's office</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">In the third room west of the entrance</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Luxury Ball</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In the third room west of the entrance</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Soothe Bell</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Obtained from a Maid in the second room west of the entrance</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Heal</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">In a trash can in the room west of the entrance</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Protein</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">In a trash can in the room west of the entrance</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-bdsp-items" class="game-container bdsp" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">TM87 Swagger</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">In Mr. Backlot's office</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Great Ball</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">In the third room west of the entrance</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Soothe Bell</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Obtained from a Maid in the second room west of the entrance</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Burn Heal</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">In a trash can in the room west of the entrance</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-dppt-trainers" class="game-container dppt">
+            <h3><u>Platinum Trainers</u></h3>
+            <p class="dppt">These trainers are battled as part of the 5-Maid Knockout Exact-Turn Attack Challenge, only available in Platinum. When the challenge is started, a random number between 5 and 9 is selected. The player must defeat all five Maids in the exact number of turns requested (that is, the player's <em>cumulative</em> number of turns taken for all five Maids must match the requested number) to win the challenge. If the player wins the challenge, their reward is that they can battle against Rich Boy Liam or Lady Celeste.</p>
+            <p class="dppt">The challenge can be taken once per day.</p>
+            <table class="left-align">
+               <caption>Platinum Trainers</caption>
+               <thead>
+                  <tr class="platinum-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="platinum-false">
+                     <td>Maid Belinda</td>
+                     <td>Clefairy lv.25</td>
+                     <td></td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Maid Sophie</td>
+                     <td>Clefairy lv.27</td>
+                     <td></td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Maid Emily</td>
+                     <td>Clefairy lv.29</td>
+                     <td></td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Maid Elena</td>
+                     <td>Clefairy lv.31</td>
+                     <td></td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Maid Clare</td>
+                     <td>Clefairy lv.33</td>
+                     <td></td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Rich Boy Liam</td>
+                     <td>Blissey lv.35 @ Rare Candy</td>
+                     <td>The player will fight either him or Lady Celeste for winning the challenge.</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Lady Celeste</td>
+                     <td>Blissey lv.35 @ Rare Candy</td>
+                     <td>The player will fight either her or Rich Boy Liam for winning the challenge.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Solaceon Ruins</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/dppt-react-table.umd.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Sinnoh Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="dppt" type="radio" onclick="topButton.call(this)" name="games" value="DPPt" checked="checked">
+         <label for="dppt" class="right">DPPt</label>
+         <input id="bdsp" type="radio" onclick="topButton.call(this)" name="games" value="BDSP">
+         <label for="bdsp" class="right">BDSP</label>
+      </div>
+      <h2>Solaceon Ruins</h2>
+      <div id="notes" class="bottom">
+         <p id="dppt-notes" class="dppt">
+            <strong>Access to:</strong><br>
+            Exit on 1F: <a class="location-link" href="solaceon-town.html">Solaceon Town</a><br>
+            A 2F area can only be accessed through <a class="location-link" href="maniac-tunnel.html">Maniac Tunnel</a> after encountering the 26 alphabet Unown
+         </p>
+         <p id="bdsp-notes" class="bdsp" style="display:none;">
+            <strong>Access to:</strong><br>
+            Exit on 1F: <a class="location-link" href="solaceon-town.html">Solaceon Town</a><br>
+            A 2F area can only be accessed through <a class="location-link" href="maniac-tunnel.html">Maniac Tunnel</a> after encountering the 26 alphabet Unown
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="bdsp only buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-bdsp-buttons" class="button-set bdsp" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-brilliantdiamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Brilliant Diamond (Full)">
+                        <label for="pokemon-bdsp-full-brilliantdiamond">Brilliant Diamond (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-brilliantdiamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Brilliant Diamond (Compressed)">
+                        <label for="pokemon-bdsp-compressed-brilliantdiamond">Brilliant Diamond (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-shiningpearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Shining Pearl (Full)">
+                        <label for="pokemon-bdsp-full-shiningpearl">Shining Pearl (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-shiningpearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Shining Pearl (Compressed)">
+                        <label for="pokemon-bdsp-compressed-shiningpearl">Shining Pearl (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Combined (Full)">
+                        <label for="pokemon-bdsp-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-bdsp-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Separate (Full)">
+                        <label for="pokemon-bdsp-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Separate (Compressed)">
+                        <label for="pokemon-bdsp-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-dppt" class="game-container dppt">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-dppt-walking" class="table-collection walking">
+                  <h4>Walking</h4>
+                  <p class="dppt">The following Unown letters can be found in the following locations:</p>
+                  <ul>
+                     <li>Unown F in the room accessible by going northeast from the first room</li>
+                     <li>Unown R in the room accessible by going northeast, southwest from the first room</li>
+                     <li>Unown I in the room accessible by going northeast, southwest, northeast from the first room</li>
+                     <li>Unown E in the room accessible by going northeast, southwest, northeast, northwest from the first room</li>
+                     <li>Unown N in the room accessible by going northeast, southwest, northeast, northwest, northwest from the first room</li>
+                     <li>Unown D in the room accessible by going northeast, southwest, northeast, northwest, northwest, southwest from the first room</li>
+                     <li>Unown ? and ! in the area accessible from Maniac Tunnel; each has a 50% chance of appearing</li>
+                     <li>All 20 other Unown in any other room not mentioned; each has a 5% chance of appearing</li>
+                  </ul>
+                  <div data-location-id="solaceon-ruins_1f" class="pokemon-dppt-walking-replace-me">
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-bdsp" class="game-container bdsp" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <div id="pokemon-bdsp-walking" class="table-collection walking">
+                  <h4>Walking</h4>
+                  <p class="bdsp">The following Unown letters can be found in the following locations:</p>
+                  <ul>
+                     <li>Unown F in the room accessible by going northeast from the first room</li>
+                     <li>Unown R in the room accessible by going northeast, southwest from the first room</li>
+                     <li>Unown I in the room accessible by going northeast, southwest, northeast from the first room</li>
+                     <li>Unown E in the room accessible by going northeast, southwest, northeast, northwest from the first room</li>
+                     <li>Unown N in the room accessible by going northeast, southwest, northeast, northwest, northwest from the first room</li>
+                     <li>Unown D in the room accessible by going northeast, southwest, northeast, northwest, northwest, southwest from the first room</li>
+                     <li>Unown ? and ! in the area accessible from Maniac Tunnel; each has a 50% chance of appearing</li>
+                     <li>All 20 other Unown in any other room not mentioned; each has a 5% chance of appearing</li>
+                  </ul>
+                  <div id="pokemon-bdsp-full-brilliantdiamond-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Full)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>19</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>21</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>22</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>23</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>24</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>25</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-shiningpearl-walking-table" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Full)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>19</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>20</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>18</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>21</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>17</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>22</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>16</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>23</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>15</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>24</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>14</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>25</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-combined-walking-table" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="brilliantdiamond-true" colspan="3">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="3">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">20%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Unown</td>
+                              <td class="brilliantdiamond-false">lv. 19</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="shiningpearl-false">Unown</td>
+                              <td class="shiningpearl-false">lv. 19</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">20%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Unown</td>
+                              <td class="brilliantdiamond-true">lv. 20</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="shiningpearl-true">Unown</td>
+                              <td class="shiningpearl-true">lv. 20</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Unown</td>
+                              <td class="brilliantdiamond-false">lv. 18</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="shiningpearl-false">Unown</td>
+                              <td class="shiningpearl-false">lv. 18</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Unown</td>
+                              <td class="brilliantdiamond-true">lv. 21</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="shiningpearl-true">Unown</td>
+                              <td class="shiningpearl-true">lv. 21</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Unown</td>
+                              <td class="brilliantdiamond-false">lv. 17</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="shiningpearl-false">Unown</td>
+                              <td class="shiningpearl-false">lv. 17</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Unown</td>
+                              <td class="brilliantdiamond-true">lv. 22</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="shiningpearl-true">Unown</td>
+                              <td class="shiningpearl-true">lv. 22</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">6</td>
+                              <td class="light-false">5%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Unown</td>
+                              <td class="brilliantdiamond-false">lv. 16</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="shiningpearl-false">Unown</td>
+                              <td class="shiningpearl-false">lv. 16</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">7</td>
+                              <td class="light-true">5%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Unown</td>
+                              <td class="brilliantdiamond-true">lv. 23</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="shiningpearl-true">Unown</td>
+                              <td class="shiningpearl-true">lv. 23</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">8</td>
+                              <td class="light-false">4%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Unown</td>
+                              <td class="brilliantdiamond-false">lv. 15</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="shiningpearl-false">Unown</td>
+                              <td class="shiningpearl-false">lv. 15</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">9</td>
+                              <td class="light-true">4%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Unown</td>
+                              <td class="brilliantdiamond-true">lv. 24</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="shiningpearl-true">Unown</td>
+                              <td class="shiningpearl-true">lv. 24</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">10</td>
+                              <td class="light-false">1%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Unown</td>
+                              <td class="brilliantdiamond-false">lv. 14</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="shiningpearl-false">Unown</td>
+                              <td class="shiningpearl-false">lv. 14</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">11</td>
+                              <td class="light-true">1%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Unown</td>
+                              <td class="brilliantdiamond-true">lv. 25</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="shiningpearl-true">Unown</td>
+                              <td class="shiningpearl-true">lv. 25</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-brilliantdiamond-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Compressed)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>100%</td>
+                              <td>14-25</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-shiningpearl-walking-table" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Compressed)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td>Unown</td>
+                              <td>100%</td>
+                              <td>14-25</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-combined-walking-table" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="brilliantdiamond-true" colspan="2">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="2">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/unown-a.png" alt="Unown"></div>
+                              </td>
+                              <td class="light-false">Unown</td>
+                              <td class="brilliantdiamond-false">100%</td>
+                              <td class="brilliantdiamond-false">lv. 14-25</td>
+                              <td class="shiningpearl-false">100%</td>
+                              <td class="shiningpearl-false">lv. 14-25</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-dppt-items" class="game-container dppt">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">From the first room, accessible by going northwest, on the rock</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Fire Stone</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">From the first room, accessible by going northwest, on the rock</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Escape Rope</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">From the first room, accessible by going northeast, southwest, southwest, on the rock</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Water Stone</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">From the first room, accessible by going northeast, southwest, southwest, on the rock</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Big Mushroom</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">From the first room, accessible by going northeast, southwest, northeast, northwest, southeast, on the rock</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Thunderstone</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">From the first room, accessible by going northeast, southwest, northeast, northwest, southeast, on the rock</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Nugget</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In the final room, accessible by going northeast, southwest, northeast, northwest, northwest, southwest from the first room</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Mind Plate</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">In the final room, accessible by going northeast, southwest, northeast, northwest, northwest, southwest from the first room</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Odd Incense</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In the final room, accessible by going northeast, southwest, northeast, northwest, northwest, southwest from the first room</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Rare Candy</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">In the final room, accessible by going northeast, southwest, northeast, northwest, northwest, southwest from the first room</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">HM05 Defog</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">In the final room, accessible by going northeast, southwest, northeast, northwest, northwest, southwest from the first room</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Green Shard</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Obtained from the man in the second room, accessible by going northeast from the first room</td>
+                     <td class="light-true">Only after showing him HM05 Defog.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rare Candy</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">On the outside ledge, accessible by accessing the ruins via Maniac Tunnel</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-bdsp-items" class="game-container bdsp" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Repel</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">From the first room, accessible by going northwest, on the rock</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">From the first room, accessible by going northeast, southwest, southwest, on the rock</td>
+                     <td class="light-true">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Big Mushroom</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">From the first room, accessible by going northeast, southwest, northeast, northwest, southeast, on the rock</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Nugget</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">In the final room, accessible by going northeast, southwest, northeast, northwest, northwest, southwest from the first room</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Mind Plate</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">In the final room, accessible by going northeast, southwest, northeast, northwest, northwest, southwest from the first room</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Odd Incense</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">In the final room, accessible by going northeast, southwest, northeast, northwest, northwest, southwest from the first room</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Rare Candy</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">In the final room, accessible by going northeast, southwest, northeast, northwest, northwest, southwest from the first room</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-dppt-trainers" class="game-container dppt">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ruin Maniac Karl</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Geodude lv.16<br>Geodude lv.17<br>Bronzor lv.18</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Ruin Maniac Karl</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Geodude lv.19<br>Geodude lv.21<br>Bronzor lv.23</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-bdsp-trainers" class="game-container bdsp" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ruin Maniac Karl</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Geodude lv.16<br>Geodude lv.17<br>Bronzor lv.18</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

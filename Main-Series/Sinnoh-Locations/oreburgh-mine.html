@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Oreburgh Mine</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/dppt-react-table.umd.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Sinnoh Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="dppt" type="radio" onclick="topButton.call(this)" name="games" value="DPPt" checked="checked">
+         <label for="dppt" class="right">DPPt</label>
+         <input id="bdsp" type="radio" onclick="topButton.call(this)" name="games" value="BDSP">
+         <label for="bdsp" class="right">BDSP</label>
+      </div>
+      <h2>Oreburgh Mine</h2>
+      <div id="notes" class="bottom">
+         <p id="dppt-notes" class="dppt">
+            <strong>Access to:</strong><br>
+            Exit on 1F: <a class="location-link" href="oreburgh-city.html">Oreburgh City</a>
+         </p>
+         <p id="bdsp-notes" class="bdsp" style="display:none;">
+            <strong>Access to:</strong><br>
+            Exit on 1F: <a class="location-link" href="oreburgh-city.html">Oreburgh City</a>
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-buttons">
+            <p class="bdsp only buttondisplay">Choose display option for Pokémon tables:</p>
+            <div id="pokemon-bdsp-buttons" class="button-set bdsp" style="display:none;">
+               <div class="flex-buttons">
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-brilliantdiamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Brilliant Diamond (Full)">
+                        <label for="pokemon-bdsp-full-brilliantdiamond">Brilliant Diamond (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-brilliantdiamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Brilliant Diamond (Compressed)">
+                        <label for="pokemon-bdsp-compressed-brilliantdiamond">Brilliant Diamond (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-shiningpearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Shining Pearl (Full)">
+                        <label for="pokemon-bdsp-full-shiningpearl">Shining Pearl (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-shiningpearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Shining Pearl (Compressed)">
+                        <label for="pokemon-bdsp-compressed-shiningpearl">Shining Pearl (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Combined (Full)">
+                        <label for="pokemon-bdsp-full-combined">Combined (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Combined (Compressed)" checked="checked">
+                        <label for="pokemon-bdsp-compressed-combined">Combined (Compressed)</label>
+                     </div>
+                  </div>
+                  <div class="right">
+                     <div class="small-margin-bottom">
+                        <input id="pokemon-bdsp-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Separate (Full)">
+                        <label for="pokemon-bdsp-full-separate">Separate (Full)</label>
+                     </div>
+                     <div>
+                        <input id="pokemon-bdsp-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-bdsp-games" value="Separate (Compressed)">
+                        <label for="pokemon-bdsp-compressed-separate">Separate (Compressed)</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="pokemon-tables">
+            <div id="pokemon-dppt" class="game-container dppt">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Geodude have a 5% chance of holding an Everstone.</li>
+               </ul>
+               <div id="pokemon-dppt-walking" class="table-collection walking">
+                  <h4>Walking (1F)</h4>
+                  <div data-location-id="oreburgh-mine_1f" class="pokemon-dppt-walking-replace-me">
+                  </div>
+                  <h4>Walking (B1F)</h4>
+                  <div data-location-id="oreburgh-mine_b1f" class="pokemon-dppt-walking-replace-me">
+                  </div>
+               </div>
+            </div>
+            <div id="pokemon-bdsp" class="game-container bdsp" style="display:none;">
+               <h3><u>Pokémon</u></h3>
+               <ul>
+                  <li>Wild Geodude have a 5% chance of holding an Everstone.</li>
+               </ul>
+               <div id="pokemon-bdsp-walking" class="table-collection walking">
+                  <h4>Walking (1F)</h4>
+                  <div id="pokemon-bdsp-full-brilliantdiamond-walking-table-1f" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Full)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>6</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>6</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>9</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>9</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-shiningpearl-walking-table-1f" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Full)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>6</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>6</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>9</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>9</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>5</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-combined-walking-table-1f" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="brilliantdiamond-true" colspan="3">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="3">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">20%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Geodude</td>
+                              <td class="brilliantdiamond-false">lv. 6</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-false">Geodude</td>
+                              <td class="shiningpearl-false">lv. 6</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">20%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Geodude</td>
+                              <td class="brilliantdiamond-true">lv. 6</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-true">Geodude</td>
+                              <td class="shiningpearl-true">lv. 6</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Zubat</td>
+                              <td class="brilliantdiamond-false">lv. 7</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="shiningpearl-false">Zubat</td>
+                              <td class="shiningpearl-false">lv. 7</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Zubat</td>
+                              <td class="brilliantdiamond-true">lv. 7</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Zubat</td>
+                              <td class="shiningpearl-true">lv. 7</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Geodude</td>
+                              <td class="brilliantdiamond-false">lv. 7</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-false">Geodude</td>
+                              <td class="shiningpearl-false">lv. 7</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Geodude</td>
+                              <td class="brilliantdiamond-true">lv. 7</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-true">Geodude</td>
+                              <td class="shiningpearl-true">lv. 7</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">6</td>
+                              <td class="light-false">5%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Onix</td>
+                              <td class="brilliantdiamond-false">lv. 8</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="shiningpearl-false">Onix</td>
+                              <td class="shiningpearl-false">lv. 8</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">7</td>
+                              <td class="light-true">5%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Onix</td>
+                              <td class="brilliantdiamond-true">lv. 8</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="shiningpearl-true">Onix</td>
+                              <td class="shiningpearl-true">lv. 8</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">8</td>
+                              <td class="light-false">4%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Geodude</td>
+                              <td class="brilliantdiamond-false">lv. 9</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-false">Geodude</td>
+                              <td class="shiningpearl-false">lv. 9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">9</td>
+                              <td class="light-true">4%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Geodude</td>
+                              <td class="brilliantdiamond-true">lv. 9</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-true">Geodude</td>
+                              <td class="shiningpearl-true">lv. 9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">10</td>
+                              <td class="light-false">1%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Geodude</td>
+                              <td class="brilliantdiamond-false">lv. 5</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-false">Geodude</td>
+                              <td class="shiningpearl-false">lv. 5</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">11</td>
+                              <td class="light-true">1%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Geodude</td>
+                              <td class="brilliantdiamond-true">lv. 5</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-true">Geodude</td>
+                              <td class="shiningpearl-true">lv. 5</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-brilliantdiamond-walking-table-1f" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Compressed)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>70%</td>
+                              <td>5-7, 9</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>20%</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>10%</td>
+                              <td>8</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-shiningpearl-walking-table-1f" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Compressed)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>70%</td>
+                              <td>5-7, 9</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>20%</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>10%</td>
+                              <td>8</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-combined-walking-table-1f" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="brilliantdiamond-true" colspan="2">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="2">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="light-false">Geodude</td>
+                              <td class="brilliantdiamond-false">70%</td>
+                              <td class="brilliantdiamond-false">lv. 5-7, 9</td>
+                              <td class="shiningpearl-false">70%</td>
+                              <td class="shiningpearl-false">lv. 5-7, 9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="light-true">Zubat</td>
+                              <td class="brilliantdiamond-true">20%</td>
+                              <td class="brilliantdiamond-true">lv. 7</td>
+                              <td class="shiningpearl-true">20%</td>
+                              <td class="shiningpearl-true">lv. 7</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="light-false">Onix</td>
+                              <td class="brilliantdiamond-false">10%</td>
+                              <td class="brilliantdiamond-false">lv. 8</td>
+                              <td class="shiningpearl-false">10%</td>
+                              <td class="shiningpearl-false">lv. 8</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <h4>Walking (B1F)</h4>
+                  <div id="pokemon-bdsp-full-brilliantdiamond-walking-table-b1f" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Full)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>9</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>9</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>10</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>10</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>6</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>6</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-shiningpearl-walking-table-b1f" class="pokemon-table full" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Full)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th>Slot</th>
+                              <th>Rate</th>
+                              <th colspan="2">Pokémon</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>0</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>1</td>
+                              <td>20%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>7</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>2</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>3</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>4</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>5</td>
+                              <td>10%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>6</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>9</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>7</td>
+                              <td>5%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>9</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>8</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>10</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>9</td>
+                              <td>4%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>10</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>10</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>6</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>11</td>
+                              <td>1%</td>
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>6</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-full-combined-walking-table-b1f" class="pokemon-table full combined" style="display:none;">
+                     <table>
+                        <caption>Combined (Full)</caption>
+                        <thead>
+                           <tr>
+                              <th class="light-true">Slot</th>
+                              <th class="light-true">Rate</th>
+                              <th class="brilliantdiamond-true" colspan="3">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="3">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">0</td>
+                              <td class="light-false">20%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Geodude</td>
+                              <td class="brilliantdiamond-false">lv. 7</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-false">Geodude</td>
+                              <td class="shiningpearl-false">lv. 7</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">1</td>
+                              <td class="light-true">20%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Geodude</td>
+                              <td class="brilliantdiamond-true">lv. 7</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-true">Geodude</td>
+                              <td class="shiningpearl-true">lv. 7</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">2</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Zubat</td>
+                              <td class="brilliantdiamond-false">lv. 8</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="shiningpearl-false">Zubat</td>
+                              <td class="shiningpearl-false">lv. 8</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">3</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Zubat</td>
+                              <td class="brilliantdiamond-true">lv. 8</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="shiningpearl-true">Zubat</td>
+                              <td class="shiningpearl-true">lv. 8</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">4</td>
+                              <td class="light-false">10%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Geodude</td>
+                              <td class="brilliantdiamond-false">lv. 8</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-false">Geodude</td>
+                              <td class="shiningpearl-false">lv. 8</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">5</td>
+                              <td class="light-true">10%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Geodude</td>
+                              <td class="brilliantdiamond-true">lv. 8</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-true">Geodude</td>
+                              <td class="shiningpearl-true">lv. 8</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">6</td>
+                              <td class="light-false">5%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Onix</td>
+                              <td class="brilliantdiamond-false">lv. 9</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="shiningpearl-false">Onix</td>
+                              <td class="shiningpearl-false">lv. 9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">7</td>
+                              <td class="light-true">5%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Onix</td>
+                              <td class="brilliantdiamond-true">lv. 9</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="shiningpearl-true">Onix</td>
+                              <td class="shiningpearl-true">lv. 9</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">8</td>
+                              <td class="light-false">4%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Geodude</td>
+                              <td class="brilliantdiamond-false">lv. 10</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-false">Geodude</td>
+                              <td class="shiningpearl-false">lv. 10</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">9</td>
+                              <td class="light-true">4%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Geodude</td>
+                              <td class="brilliantdiamond-true">lv. 10</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-true">Geodude</td>
+                              <td class="shiningpearl-true">lv. 10</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">10</td>
+                              <td class="light-false">1%</td>
+                              <td class="brilliantdiamond-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-false">Geodude</td>
+                              <td class="brilliantdiamond-false">lv. 6</td>
+                              <td class="shiningpearl-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-false">Geodude</td>
+                              <td class="shiningpearl-false">lv. 6</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">11</td>
+                              <td class="light-true">1%</td>
+                              <td class="brilliantdiamond-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="brilliantdiamond-true">Geodude</td>
+                              <td class="brilliantdiamond-true">lv. 6</td>
+                              <td class="shiningpearl-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="shiningpearl-true">Geodude</td>
+                              <td class="shiningpearl-true">lv. 6</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-brilliantdiamond-walking-table-b1f" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Brilliant Diamond (Compressed)</caption>
+                        <thead>
+                           <tr class="brilliantdiamond-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>70%</td>
+                              <td>6-8, 10</td>
+                           </tr>
+                           <tr class="brilliantdiamond-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>20%</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="brilliantdiamond-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>10%</td>
+                              <td>9</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-shiningpearl-walking-table-b1f" class="pokemon-table compressed" style="display:none;">
+                     <table>
+                        <caption>Shining Pearl (Compressed)</caption>
+                        <thead>
+                           <tr class="shiningpearl-true">
+                              <th colspan="2">Pokémon</th>
+                              <th>Rate</th>
+                              <th>Level</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td>Geodude</td>
+                              <td>70%</td>
+                              <td>6-8, 10</td>
+                           </tr>
+                           <tr class="shiningpearl-true">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td>Zubat</td>
+                              <td>20%</td>
+                              <td>8</td>
+                           </tr>
+                           <tr class="shiningpearl-false">
+                              <td>
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td>Onix</td>
+                              <td>10%</td>
+                              <td>9</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div id="pokemon-bdsp-compressed-combined-walking-table-b1f" class="pokemon-table combined compressed">
+                     <table>
+                        <caption>Combined (Compressed)</caption>
+                        <thead>
+                           <tr>
+                              <th colspan="2" class="light-true">Pokémon</th>
+                              <th class="brilliantdiamond-true" colspan="2">Brilliant Diamond</th>
+                              <th class="shiningpearl-true" colspan="2">Shining Pearl</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/geodude.png" alt="Geodude"></div>
+                              </td>
+                              <td class="light-false">Geodude</td>
+                              <td class="brilliantdiamond-false">70%</td>
+                              <td class="brilliantdiamond-false">lv. 6-8, 10</td>
+                              <td class="shiningpearl-false">70%</td>
+                              <td class="shiningpearl-false">lv. 6-8, 10</td>
+                           </tr>
+                           <tr>
+                              <td class="light-true">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/zubat-f.png" alt="Zubat"></div>
+                              </td>
+                              <td class="light-true">Zubat</td>
+                              <td class="brilliantdiamond-true">20%</td>
+                              <td class="brilliantdiamond-true">lv. 8</td>
+                              <td class="shiningpearl-true">20%</td>
+                              <td class="shiningpearl-true">lv. 8</td>
+                           </tr>
+                           <tr>
+                              <td class="light-false">
+                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
+                              </td>
+                              <td class="light-false">Onix</td>
+                              <td class="brilliantdiamond-false">10%</td>
+                              <td class="brilliantdiamond-false">lv. 9</td>
+                              <td class="shiningpearl-false">10%</td>
+                              <td class="shiningpearl-false">lv. 9</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-dppt-items" class="game-container dppt">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="3">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Flame Plate</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">On B1F, obtained from a Hiker near the entrance</td>
+                     <td class="light-false">Only if the player has obtained Arceus.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">X Defend</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="light-true">Pt</td>
+                     <td class="light-true">On B1F, east of the main entrance</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Poké Ball</td>
+                     <td class="light-false">D</td>
+                     <td class="light-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">On B1F, east of the main entrance</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="diamond-true">D</td>
+                     <td class="pearl-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">On B2F, south of the western ledge</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Potion</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="platinum-false">Pt</td>
+                     <td class="light-false">On B2F, on the east side of the coal slab</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-bdsp-items" class="game-container bdsp" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">X Defense</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">On B1F, east of the main entrance</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Escape Rope</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">On B2F, south of the western ledge</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Potion</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">On B2F, on the east side of the coal slab</td>
+                     <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-dppt-trainers" class="game-container dppt">
+            <h3><u>Trainers</u></h3>
+            <h4>B2F</h4>
+            <table class="bold-contents left-align">
+               <caption>Diamond, Pearl, and Platinum Trainers (B2F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="3">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Worker Mason</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Machop lv.9</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Worker Mason</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Geodude lv.9</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Worker Colin</td>
+                     <td class="diamond-false">D</td>
+                     <td class="pearl-false">P</td>
+                     <td class="light-false">Pt</td>
+                     <td class="light-false">Geodude lv.7<br>Onix lv.7</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Worker Colin</td>
+                     <td class="light-true">D</td>
+                     <td class="light-true">P</td>
+                     <td class="platinum-true">Pt</td>
+                     <td class="light-true">Geodude lv.6<br>Machop lv.8</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-bdsp-trainers" class="game-container bdsp" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>B2F</h4>
+            <table class="bold-contents left-align">
+               <caption>Brilliant Diamond and Shining Pearl Trainers (B2F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th colspan="2">Games</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Worker Mason</td>
+                     <td class="brilliantdiamond-false">BD</td>
+                     <td class="shiningpearl-false">SP</td>
+                     <td class="light-false">Machop lv.9</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Worker Colin</td>
+                     <td class="brilliantdiamond-true">BD</td>
+                     <td class="shiningpearl-true">SP</td>
+                     <td class="light-true">Geodude lv.7<br>Onix lv.7</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

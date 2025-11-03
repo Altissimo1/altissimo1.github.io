@@ -5,21 +5,37 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Battle Frontier</title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	  <script src="../../colors.js"></script>
+      <script src="../../colors.js"></script>
       <script src="../javascript/buttons.js"></script>
       <link rel="stylesheet" id="common" href="../../common.css">
-	  <link rel="stylesheet" id="style">
+      <link rel="stylesheet" id="style">
    </head>
    <body>
       <div class="flex-row" style="align-items:center;margin-top:2ex;">
-		 <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4> <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
       </div>
-	  <h4><a href="../index.html">Main Series Home</a> | <a href="../Johto-Locations/index.html">Johto Locations Home</a> | <a href="../HGSS/index.html">HeartGold and SoulSilver Home</a></h4>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Sinnoh Locations Home</a> | <a href="../Johto-Locations/index.html">Johto Locations Home</a> | <a href="../DPPt/index.html">Diamond, Pearl, and Platinum Home</a> | <a href="../HGSS/index.html">HeartGold and SoulSilver Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="dppt" type="radio" onclick="topButton.call(this)" name="games" value="DPPt" checked="checked">
+         <label for="dppt" class="right">Platinum</label>
+         <input id="hgss" type="radio" onclick="topButton.call(this)" name="games" value="HGSS">
+         <label for="hgss" class="right">HGSS</label>
+      </div>
       <h2>Battle Frontier</h2>
       <div id="notes" class="bottom">
-         <p id="hgss-notes" class="hgss">
+         <p id="dppt-notes" class="dppt">
             <strong>Access to:</strong><br>
-            South: <a href="../Johto-Locations/frontier-access.html">Frontier Access</a><br><br>
+            South: <a class="location-link" href="fight-area.html">Fight Area</a><br><br>
+            <strong>Places of interest:</strong><br>
+            The five Battle Facilities available in Sinnoh can be found here.<br>
+            Stats judge: The stats judge is the man standing near the PC in the Battle Tower lobby.<br>
+            Exchange Service Corner<br>
+            Pokémon Scratch-Off Corner<br>
+         </p>
+         <p id="hgss-notes" class="hgss" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a class="location-link" href="../Johto-Locations/frontier-access.html">Frontier Access</a><br><br>
             <strong>Places of interest:</strong><br>
             The five Battle Facilities available in Johto can be found here.<br>
             Stats judge: The stats judge is the man standing near the PC in the Battle Tower lobby.<br>
@@ -47,7 +63,7 @@
          <li>Enemy Pokémon will always take their Nature, Item, moves, and EVs from predetermined 'sets'.</li>
          <li>Enemy Pokémon that can have two Abilities will always have a random Ability. Enemy Pokémon that can be male or female will have their gender randomly determined.</li>
          <li>Any Pokémon holding a Soul Dew cannot enter.</li>
-         <li>Heat, Wash, Frost, Fan, and Mow Rotom will revert back to Rotom's default form when entered. All enemy Rotom will also be in their default form.</li>
+         <li>Heat, Wash, Frost, Fan, and Mow Rotom will revert back to Rotom's default form when entered. All enemy Rotom will also be in their default form. However, a glitch in Platinum only will allow the player to use a Rotom form in Doubles in the Battle Tower if it is entered as the player's fourth Pokémon.</li>
          <li>Some Pokémon cannot be entered altogether, and will never be encountered on an opponent's team:</li>
       </ul>
       <table>
@@ -84,16 +100,268 @@
       </table>
       <p class="permanent">Specific data about the mechanics of each facility are given on those facilities' pages. Here are some more general resources:</p>
       <ul>
-		 <li><a href="../DPPt/battle-frontier-pokemon.html">Pokémon that can appear in the Battle Tower, Castle, Arcade, and Factory</a></li>
-		 <li><a href="../DPPt/battle-hall-pokemon.html">Pokémon that can appear in the Battle Hall</a></li>
-		 <li><a href="../DPPt/battle-frontier-trainers.html">Trainers, and associated Pokémon rosters, that can appear in the Battle Tower, Castle, Arcade, and Factory</a></li>
+         <li><a href="../DPPt/battle-frontier-pokemon.html">Pokémon that can appear in the Battle Tower, Castle, Arcade, and Factory</a></li>
+         <li><a href="../DPPt/battle-hall-pokemon.html">Pokémon that can appear in the Battle Hall</a></li>
+         <li><a href="../DPPt/battle-frontier-trainers.html">Trainers, and associated Pokémon rosters, that can appear in the Battle Tower, Castle, Arcade, and Factory</a></li>
          <li><a href="https://www.smogon.com/forums/threads/platinum-hg-ss-battle-frontier-and-dp-battle-tower-records.52858/">Smogon's original Battle Frontier records & discussion topic</a> (lasted from 4 Apr 2009 - 31 Dec 2011)</li>
          <li><a href="https://www.smogon.com/forums/threads/4th-generation-battle-facilities-discussion-and-records.3663294/">Smogon's current Battle Frontier records & discussion topic</a> (started 29 Apr 2020)</li>
          <li><a href="https://www.smogon.com/forums/threads/4th-generation-battle-facilities-discussion-and-records.3663294/#post-8527610">turskain's Frontier Resources spreadsheet</a>, which combines posts and data dumps accumulated over the years from various Smogon posts</li>
          <li><a href="http://turskain.github.io/">turskain's damage calculator</a>, with the possible opposing movesets built in</li>
       </ul>
       <div id="items-container">
-         <div id="pokemon-hgss-items" class="game-container hgss">
+         <div id="pokemon-dppt-items" class="game-container dppt">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Platinum Items</caption>
+               <thead>
+                  <tr class="platinum-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="platinum-false">
+                     <td>Frontier Record</td>
+                     <td>Obtained from the women at the entrance when first entering the area</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Exchange Service Corner</h4>
+            <p class="hgss">Items here are purchased using BP won through the Battle Facilities.</p>
+            <h4>Left counter</h4>
+            <table class="left-align">
+               <caption>Platinum Items (Left counter)</caption>
+               <thead>
+                  <tr class="platinum-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="platinum-false">
+                     <td>Protein</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Calcium</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Iron</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Zinc</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Carbos</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>HP Up</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Power Bracer</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Power Belt</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Power Lens</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Power Band</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Power Anklet</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Power Weight</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Toxic Orb</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Flame Orb</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>White Herb</td>
+                     <td>32 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Power Herb</td>
+                     <td>32 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>BrightPowder</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Choice Band</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Focus Band</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Scope Lens</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Muscle Band</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Focus Sash</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Choice Scarf</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Razor Claw</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>Razor Fang</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>Rare Candy</td>
+                     <td>48 BP</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Right counter</h4>
+            <table class="left-align">
+               <caption>Platinum Items (Right counter)</caption>
+               <thead>
+                  <tr class="platinum-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="platinum-false">
+                     <td>TM06 Toxic</td>
+                     <td>32 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>TM73 Thunder Wave</td>
+                     <td>32 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>TM61 Will-O-Wisp</td>
+                     <td>32 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>TM45 Attract</td>
+                     <td>32 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>TM40 Aerial Ace</td>
+                     <td>40 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>TM31 Brick Break</td>
+                     <td>40 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>TM08 Bulk Up</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>TM04 Calm Mind</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>TM81 X-Scissor</td>
+                     <td>64 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>TM30 Shadow Ball</td>
+                     <td>64 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>TM53 Energy Ball</td>
+                     <td>64 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>TM36 Sludge Bomb</td>
+                     <td>80 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>TM59 Dragon Pulse</td>
+                     <td>80 BP</td>
+                  </tr>
+                  <tr class="platinum-true">
+                     <td>TM71 Stone Edge</td>
+                     <td>80 BP</td>
+                  </tr>
+                  <tr class="platinum-false">
+                     <td>TM26 Earthquake</td>
+                     <td>80 BP</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Pokémon Scratch-Off Corner</h4>
+            <p class="dppt">Three scratch-off cards can be purchased for 1BP. Each card has nine blocks, and the player can scratch three. Matching three of the same Pokémon, or two of the same and a Ditto, will give the player the prize shown on the top screen. A Nugget is always available as one of the prizes, and the other prizes will all be Berries, selected from the list below. If the player wins a Berry, they will win three of that Berry.</p>
+            <table>
+               <tbody>
+                  <tr class="light-true">
+                     <td>Qualot Berry</td>
+                     <td>Tamato Berry</td>
+                     <td>Wacan Berry</td>
+                     <td>Chople Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Coba Berry</td>
+                     <td>Pomeg Berry</td>
+                     <td>Hondew Berry</td>
+                     <td>Occa Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rindo Berry</td>
+                     <td>Kebia Berry</td>
+                     <td>Payapa Berry</td>
+                     <td>Kelpsy Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Grepa Berry</td>
+                     <td>Passho Berry</td>
+                     <td>Yache Berry</td>
+                     <td>Shuca Berry</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Tanga Berry</td>
+                     <td>Charti Berry</td>
+                     <td>Colbur Berry</td>
+                     <td>Kasib Berry</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Babiri Berry</td>
+                     <td>Haban Berry</td>
+                     <td>Chilan Berry</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-hgss-items" class="game-container hgss" style="display:none;">
             <h3><u>Items</u></h3>
             <table class="bold-contents left-align">
                <caption>HeartGold and SoulSilver Items</caption>

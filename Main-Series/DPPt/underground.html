@@ -18,7 +18,7 @@
       <h2>Underground</h2>
       <p>The Underground, introduced in Diamond, Pearl, and Platinum, allows the player to set up a Secret Base, dig for items, and communicate with other players. This page contains documentation about the mechanics behind digging for items.</p>
       <h3><u>Overview</u></h3>
-      <p>The items that can appear while Digging in the Underground are dependent on the version of the game the player is using. Diamond and Pearl use different tables to determine possible items and their rarity. Platinum uses the tables for Diamond if the player's Trainer ID is odd, and the tables for Pearl if their ID is even.</p>
+      <p>The items that can appear while digging in the Underground are dependent on the version of the game the player is using. Diamond and Pearl use different tables to determine possible items and their rarity. Platinum uses the tables for Diamond if the player's Trainer ID is odd, and the tables for Pearl if their ID is even.</p>
       <p>There are two different tables used by the game: one is used before the player receives the National Pokédex, and the other is used afterward. Additionally, a change occurs to the rarity of Prism Spheres after picking up the Adamant Orb at Spear Pillar in Diamond, or to the rarity of Pale Spheres after picking up the Lustrous Orb in Pearl. This doesn't happen in Platinum.</p>
       <h3><u>Generating Dig Spots</u></h3>
       <p>Every day at midnight, the game will reset all of the dig spots in the Underground. The dig spots, once generated, are always consistent regardless of where the player enters the Underground from. The player will be able to see spots nearby them as sparkles on the map.</p>
@@ -34,9 +34,9 @@
       <p>When a random treasure is selected to add to the current session, the game follows the following process:</p>
       <ol>
          <li>The game picks a random X and Y coordinate inside the minigame grid, and attempts to place the top-left corner of the treasure on the selected coordinate.</li>
-         <li>If the chosen coordinates result in the treasure being outside of the minigame grid, or if there is an overlap with an existing treasure, the game will choose a brand-new treasure and start the process of placing it again. This means that practically speaking, smaller treasures are actually more likely to appear than their rates in the tables below would suggest.</li>
+         <li>If the chosen coordinates result in the treasure being (fully or partially) outside of the minigame grid, or if there is an overlap with an existing treasure, the game will choose a brand-new treasure and start the process of placing it again. This means that practically speaking, smaller treasures are actually more likely to appear than their rates in the tables below would suggest.</li>
          <li>If the chosen treasure is a Plate, and the player has already found that Plate by digging, or the Plate has already been placed on the current grid, the game will fail the attempt to place the Plate and pick a new item.</li>
-         <li>Once all chosen Treasures are placed, the game will make 100 attempts to place undiggable rocks, using the same process by which treasures are placed. Once the 100 attempts are finished, or the game has placed 12 total items (treasures plus rocks), the game will cease trying to place rocks.</li>
+         <li>Once all chosen treasures are placed, the game will make 100 attempts to place undiggable rocks, using the same process by which treasures are placed. Once the 100 attempts are finished, or the game has placed 12 total items (treasures plus rocks), the game will cease trying to place rocks.</li>
       </ol>
       <p>The very first time the player attempts to Dig, a "tutorial mode" is entered, which will always contain 3 treasures and no undiggable rocks.</p>
       <p>Some treasures have rotated versions that are rotated 90, 180, or 270 degrees from the 'initial' position that can be used in place of the initial positions. The list of potentially rotated items, and their angles of rotation, is shown below.</p>
@@ -82,12 +82,12 @@
       <h3><u>Clearing the Wall</u></h3>
       <p>The player can use a pickaxe and a hammer to clear rocks on the minigame grid and expose the treasures, but each use of either tool causes the wall to get closer to collapsing. The minigame session ends when the wall collapses or all placed treasures have been dug up, whichever happens first.</p>
       <p>The wall starts with 196 health and collapses when it reaches 0. The pickaxe decreases health by 4, and the hammer decreases it by 8.</p>
-      <p>Each tile on the wall has its own health, between 0 and 6, and indicated visually by the appearance of the tile. A tile whose health is 0 exposes any treasures, undiggable rocks, or blank wall behind it, meaning the tile has been fully excavated. When first beginning a minigame session, all tiles have a health of 2, 4, or 6.</p>
+      <p>Each tile on the wall has its own health, between 0 and 6, indicated visually by the appearance of the tile. A tile whose health is 0 exposes any treasures, undiggable rocks, or blank wall behind it, meaning the tile has been fully excavated. When first beginning a minigame session, all tiles have a health of 2, 4, or 6.</p>
       <p>When generating the minigame grid's surface, the game follows the following process:</p>
       <ol>
          <li>Fill the entire surface with tiles with 2 health.</li>
-         <li>The game will take an 8x7 crescent shape and attempt to apply it to the surface 10 times. It is OK if this shape overhangs the edge of the mining area. All tiles in the affected areas are upgraded to 4 health.</li>
-         <li>The game will take a 5x5 circle shape and attempt to apply it to the surface 15 times. It is OK if this shape overhangs the edge of the mining area. All tiles in the affected areas are upgraded to 6 health. However, <strong>this upgrade only applies to tiles that were 4 health prior to the circle shape being applied</strong>, which means that an overlap between the crescent and circle <em>must</em> occur for any 6-health tiles to be generated. A programming error regarding this overlap means that two 4-health tiles that should be replaced with 6-health tiles are not replaced, and two tiles may be replaced with 6-health tiles even if they are not 4-health tiles.</li>
+         <li>The game will take an 8x7 crescent shape and attempt to apply it to the surface 10 times. It is OK if this shape overhangs the edge of the minigame grid. All tiles in the affected areas are upgraded to 4 health.</li>
+         <li>The game will take a 5x5 circle shape and attempt to apply it to the surface 15 times. It is OK if this shape overhangs the edge of the minigame grid. All tiles in the affected areas are upgraded to 6 health. However, <strong>this upgrade only applies to tiles that were 4 health prior to the circle shape being applied</strong>, which means that an overlap between the crescent and circle <em>must</em> occur for any 6-health tiles to be generated. A programming error regarding this overlap means that two 4-health tiles that should be replaced with 6-health tiles are not replaced, and two tiles may be replaced with 6-health tiles even if they are not 4-health tiles.</li>
       </ol>
       <p>When using a tool on a tile, the selected tile will first have its health decreased by two. Following the health decrease, the game will then decrease the health of adjacent tiles, but <strong>only if the selected tile is not showing an undiggable rock.</strong> The following patterns demonstrate the total health decreases (including the initial 2 on the selected tile) surrounding the selected tile, with the bolded number representing the selected tile.</p>
       <h4>Pickaxe</h4>
@@ -134,7 +134,7 @@
       <p>The Sphere items can be Small or Large, and within those categories, can be different numerical sizes.</p>
       <p>A Sphere starts with a random size within a certain range. Red, Green, and Blue Spheres have an initial size between 1 and 4 (inclusive), and Prism and Pale Spheres always start with a size of 1.</p>
       <p>If the Sphere is a Large Sphere, 10 is added to the initial size.</p>
-      <p>A size increase will be applied to all Spheres obtained from one mining session, but only if all treasures were dug up in that session. The exact size bonus depends on the amount of health that the wall has remaining at the time all treasures are cleared:</p>
+      <p>A size increase will be applied to all Spheres obtained from one minigame session, but only if all treasures were dug up in that session. The exact size bonus depends on the amount of health that the wall has remaining at the time all treasures are cleared:</p>
       <table class="left-align">
          <thead>
             <tr class="light-true">
@@ -169,18 +169,18 @@
             </tr>
          </tbody>
       </table>
-      <p>It's impossible to get a bonus size of 9, though, because you cannot finish a dig session while keeping the wall at full health.</p>
+      <p>It's impossible to get a bonus size of 9, though, because you cannot dig up all treasures while simultaneously keeping the wall at full health.</p>
       <h3><u>Item Table</u></h3>
       <p>Every item in a given table is assigned a weight. To calculate the exact appearance rate of any given items, you would add the weights of the available items together, then take the weight of the individual item, multiply it by 100, and divide it by the total weight. My tables below give both the raw weight values of each item and the calculated appearance rate of the item, calculated using the calculation described in the last sentence. However, <strong>the calculated rates are not always 100% accurate to what the game will use.</strong> There are two reasons for this:</p>
       <ol>
          <li>As mentioned in the "Overview" section, Prism Spheres in Diamond and Pale Spheres in Pearl have their weights changed once the Adamant/Lustrous Orb has been picked up. The tables below assume that the player has never picked up their game's Orb. If the player has picked up the Orb, small Prism (Diamond) and Pale (Pearl) Spheres have their weight increased by 66, and large ones have their weight increased by 33.</li>
-         <li>The player can only ever get one of each elemental Plate from the Underground. Once a Plate has been picked up, its weight effectively becomes 0, making every other item a tiny bit more likely.</li>
+         <li>The player can only ever get one of each elemental Plate from the Underground. Once a Plate has been obtained in the Underground, its weight effectively becomes 0, making every other item a tiny bit more likely.</li>
       </ol>
       <h4>Calculated Rates</h4>
       <p>In this section, items that have rotations will have all their rotations' weights combined into one instance of the item.</p>
       <p>Remember that Platinum uses the Diamond rates if the player's Trainer ID is odd and the Pearl rates if the ID is even.</p>
       <table class="left-align">
-         <caption>Before National Dex</caption>
+         <caption>Before National Pokédex</caption>
          <thead>
             <tr>
                <th class="light-true">Item</th>
@@ -447,7 +447,7 @@
          </tbody>
       </table>
       <table class="left-align">
-         <caption>After National Dex</caption>
+         <caption>After National Pokédex</caption>
          <thead>
             <tr>
                <th class="light-true">Item</th>
@@ -750,15 +750,15 @@
          <thead>
             <tr>
                <th class="light-true" rowspan="2">Item</th>
-               <th class="light-true" colspan="2">Before National Dex</th>
-               <th class="light-true" colspan="2">After National Dex</th>
+               <th class="light-true" colspan="2">Before National Pokédex</th>
+               <th class="light-true" colspan="2">After National Pokédex</th>
             </tr>
             <tr>
                <th class="diamond-true">Diamond</th>
                <th class="pearl-true">Pearl</th>
                <th class="diamond-true">Diamond</th>
                <th class="pearl-true">Pearl</th>
-		   </tr>
+            </tr>
          </thead>
          <tbody>
             <tr>
