@@ -7,6 +7,9 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../../colors.js"></script>
       <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/dppt-react-table.umd.js"></script>
       <link rel="stylesheet" id="common" href="../../common.css">
       <link rel="stylesheet" id="style">
    </head>
@@ -28,7 +31,7 @@
             <strong>Access to:</strong><br>
             Exit on 1F: <a class="location-link" href="snowpoint-city.html">Snowpoint City</a><br><br>
             <strong>Utility:</strong><br>
-            Strength is required to access a NeverMeltIce in Diamond and Pearl and a Full Heal in Platinum.
+            In Diamond and Pearl, Strength is required to access a NeverMeltIce. In Platinum, Strength is required to access a Full Heal.
          </p>
          <p id="bdsp-notes" class="bdsp" style="display:none;">
             <strong>Access to:</strong><br>
@@ -39,61 +42,7 @@
       </div>
       <div id="pokemon-container">
          <div id="pokemon-buttons">
-            <p class="buttondisplay">Choose display option for Pokémon tables:</p>
-            <div id="pokemon-dppt-buttons" class="button-set dppt">
-               <div class="flex-buttons">
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-diamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Diamond (Full)">
-                        <label for="pokemon-dppt-full-diamond">Diamond (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-diamond" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Diamond (Compressed)">
-                        <label for="pokemon-dppt-compressed-diamond">Diamond (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-pearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Pearl (Full)">
-                        <label for="pokemon-dppt-full-pearl">Pearl (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-pearl" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Pearl (Compressed)">
-                        <label for="pokemon-dppt-compressed-pearl">Pearl (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-platinum" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Platinum (Full)">
-                        <label for="pokemon-dppt-full-platinum">Platinum (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-platinum" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Platinum (Compressed)">
-                        <label for="pokemon-dppt-compressed-platinum">Platinum (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Combined (Full)">
-                        <label for="pokemon-dppt-full-combined">Combined (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-combined" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Combined (Compressed)" checked="checked">
-                        <label for="pokemon-dppt-compressed-combined">Combined (Compressed)</label>
-                     </div>
-                  </div>
-                  <div class="right">
-                     <div class="small-margin-bottom">
-                        <input id="pokemon-dppt-full-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Separate (Full)">
-                        <label for="pokemon-dppt-full-separate">Separate (Full)</label>
-                     </div>
-                     <div>
-                        <input id="pokemon-dppt-compressed-separate" class="pokemon-button" type="radio" onclick="gameButton.call(this)" name="pokemon-dppt-games" value="Separate (Compressed)">
-                        <label for="pokemon-dppt-compressed-separate">Separate (Compressed)</label>
-                     </div>
-                  </div>
-               </div>
-            </div>
+            <p class="bdsp only buttondisplay">Choose display option for Pokémon tables:</p>
             <div id="pokemon-bdsp-buttons" class="button-set bdsp" style="display:none;">
                <div class="flex-buttons">
                   <div class="right">
@@ -143,11 +92,25 @@
             <div id="pokemon-dppt" class="game-container dppt">
                <h3><u>Pokémon</u></h3>
                <ul>
+                  <li>Wild Sneasel have a 50% chance of holding a Grip Claw and a 5% chance of holding a Quick Claw.</li>
                   <li>Wild Graveler have a 5% chance of holding an Everstone.</li>
                   <li>Wild Steelix have a 5% chance of holding a Metal Coat.</li>
-                  <li>Wild Sneasel have a 50% chance of holding a Grip Claw and a 5% chance of holding a Quick Claw.</li>
                   <li>Wild Smoochum and Jynx always hold an Aspear Berry.</li>
                </ul>
+               <div id="pokemon-dppt-walking" class="table-collection walking">
+                  <h4>Walking (1F)</h4>
+                  <div data-location-id="snowpoint-temple_1f" class="pokemon-dppt-walking-replace-me">
+                  </div>
+                  <h4>Walking (B1F)</h4>
+                  <div data-location-id="snowpoint-temple_b1f" class="pokemon-dppt-walking-replace-me">
+                  </div>
+                  <h4>Walking (B2F and B3F)</h4>
+                  <div data-location-id="snowpoint-temple_b2f" class="pokemon-dppt-walking-replace-me">
+                  </div>
+                  <h4>Walking (B4F and B5F)</h4>
+                  <div data-location-id="snowpoint-temple_b4f" class="pokemon-dppt-walking-replace-me">
+                  </div>
+               </div>
                <div id="pokemon-dppt-static" class="table-collection static">
                   <h4>Static</h4>
                   <div id="pokemon-dppt-all-combined-static-table" class="pokemon-table all combined">
@@ -183,72 +146,6 @@
                               <td class="light-true">P</td>
                               <td class="platinum-true">Pt</td>
                               <td class="light-true">On B5F. Only if the player has Regirock, Regice, and Registeel in the party. If defeated or run from, it will reappear after defeating the Elite Four.</td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-                  <div id="pokemon-dppt-all-diamond-static-table" class="pokemon-table all" style="display:none;">
-                     <table>
-                        <caption>Diamond</caption>
-                        <thead>
-                           <tr class="diamond-true">
-                              <th colspan="2">Pokémon</th>
-                              <th>Level</th>
-                              <th>Notes</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr class="diamond-false">
-                              <td>
-                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/regigigas.png" alt="Regigigas"></div>
-                              </td>
-                              <td>Regigigas</td>
-                              <td>70</td>
-                              <td>On B5F. Only if the player has Regirock, Regice, and Registeel in the party.</td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-                  <div id="pokemon-dppt-all-pearl-static-table" class="pokemon-table all" style="display:none;">
-                     <table>
-                        <caption>Pearl</caption>
-                        <thead>
-                           <tr class="pearl-true">
-                              <th colspan="2">Pokémon</th>
-                              <th>Level</th>
-                              <th>Notes</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr class="pearl-false">
-                              <td>
-                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/regigigas.png" alt="Regigigas"></div>
-                              </td>
-                              <td>Regigigas</td>
-                              <td>70</td>
-                              <td>On B5F. Only if the player has Regirock, Regice, and Registeel in the party.</td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-                  <div id="pokemon-dppt-all-platinum-static-table" class="pokemon-table all" style="display:none;">
-                     <table>
-                        <caption>Platinum</caption>
-                        <thead>
-                           <tr class="platinum-true">
-                              <th colspan="2">Pokémon</th>
-                              <th>Level</th>
-                              <th>Notes</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr class="platinum-false">
-                              <td>
-                                 <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/regigigas.png" alt="Regigigas"></div>
-                              </td>
-                              <td>Regigigas</td>
-                              <td>1</td>
-                              <td>On B5F. Only if the player has Regirock, Regice, and Registeel in the party. If defeated or run from, it will reappear after defeating the Elite Four.</td>
                            </tr>
                         </tbody>
                      </table>

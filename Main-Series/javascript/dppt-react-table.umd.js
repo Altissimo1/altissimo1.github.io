@@ -1492,6 +1492,8 @@
     function normalizedName(name) {
         if (name.indexOf("Nidoran") > -1)
             return String(name).toLowerCase();
+		if (name.indexOf("Farfetch") > -1)
+			return "farfetchd";
         return String(name)
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')
@@ -1546,14 +1548,12 @@
             { key: "west", name: 'gastrodon', path: "../../Resources/images/home-renders/gen-4/gastrodon-west.png" },
             { key: "", name: 'nidoran♀', path: "../../Resources/images/home-renders/gen-1/nidoran-f.png" },
             { key: "", name: 'nidoran♂', path: "../../Resources/images/home-renders/gen-1/nidoran-m.png" },
+			{ key: "", name: 'unown', path: "../../Resources/images/home-renders/gen-2/unown-a.png" },
         ];
         if (hardcodedListLookup.some(e => e.name === nm)) {
-            if (nm.indexOf("nidoran") > -1) {
-                hardcodedOverride = hardcodedListLookup.find(e => e.name === nm).path;
-            }
-            else {
-                hardcodedOverride = hardcodedListLookup.find(e => e.name === nm && e.key == SHELLOS).path;
-            }
+			if (nm.indexOf("unown") > -1) hardcodedOverride = hardcodedListLookup.find(e => e.name === nm).path;
+            else if (nm.indexOf("nidoran") > -1) hardcodedOverride = hardcodedListLookup.find(e => e.name === nm).path;
+            else hardcodedOverride = hardcodedListLookup.find(e => e.name === nm && e.key == SHELLOS).path;
         }
         if (hardcodedOverride !== "") {
             return h('img', {
@@ -1881,7 +1881,6 @@
                 .sort((a, b) => byName(a.name, b.name));
         }
 
-        debugger;
         // ==== FINAL SANITY: drop nameless rows BEFORE any compressed bucketing ====
         const sanitizedRows = (processedRows || []).filter(
             r => r && typeof r.name === 'string' && r.name.trim().length > 0
@@ -1914,7 +1913,6 @@
             // Single-game compressed table
             if (gameFilter && gameFilter !== 'All') {
                 const base = (r.nonSlot2Conds || []).slice();
-                console.log(r);
                 const baseNonTime = base.filter(c => !TIME_FLAGS.has(c));
                 if (baseNonTime.length > 0) return true;
 
