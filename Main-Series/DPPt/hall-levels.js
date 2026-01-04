@@ -60,10 +60,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    function calculateHallLevel(userLevel, round, rank) {
+    function calculateHallLevel(userLevel, typesEntered, rank) {
         const baseValue = userLevel - 3 * Math.sqrt(userLevel);
         const increment = Math.sqrt(userLevel) / 5;
-        const rawValue = baseValue + ((round - 1) / 2.0) + (rank - 1) * increment;
+        const rawValue = baseValue + ((typesEntered - 1) / 2.0) + (rank - 1) * increment;
         const level = Math.min(userLevel, Math.ceil(rawValue));
         return {
             baseValue,
@@ -73,16 +73,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function updateHallInfoTable() {
-        const userLevel = parseInt(document.getElementById("inputUserLevel").value);
-        const round = parseInt(document.getElementById("inputRound").value);
+        const userLevel = parseInt(document.getElementById("inputUserLevelHallInfo").value);
+        const typesEntered = parseInt(document.getElementById("inputTypesEnteredHallInfo").value);
         const tableRows = document.getElementById("tableHallInfoBody").children;
 
-        const baseValueDisplay = document.getElementById("baseValueDisplay");
-        const incrementDisplay = document.getElementById("incrementDisplay");
+        const baseValueDisplay = document.getElementById("baseLevelHallInfo");
+        const incrementDisplay = document.getElementById("incrementHallInfo");
 
         if (
             isNaN(userLevel) || userLevel < 30 || userLevel > 100 ||
-            isNaN(round) || round < 1 || round > 17
+            isNaN(typesEntered) || typesEntered < 1 || typesEntered > 17
         ) {
             baseValueDisplay.textContent = "-";
             incrementDisplay.textContent = "-";
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const { baseValue, increment } = calculateHallLevel(userLevel, round, 1);
+        const { baseValue, increment } = calculateHallLevel(userLevel, typesEntered, 1);
 
         baseValueDisplay.textContent = baseValue.toFixed(2);
         incrementDisplay.textContent = increment.toFixed(2);
@@ -103,13 +103,13 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let i = 0; i < tableRows.length; i++) {
             const rank = i + 1;
             const levelCell = tableRows[i].children[1];
-            const { level } = calculateHallLevel(userLevel, round, rank);
+            const { level } = calculateHallLevel(userLevel, typesEntered, rank);
             levelCell.textContent = level;
         }
     }
 
-    document.getElementById("inputUserLevel").addEventListener("input", updateHallInfoTable);
-    document.getElementById("inputRound").addEventListener("input", updateHallInfoTable);
+    document.getElementById("inputUserLevelHallInfo").addEventListener("input", updateHallInfoTable);
+    document.getElementById("inputTypesEnteredHallInfo").addEventListener("input", updateHallInfoTable);
 
     prefillHallInfoTable();
     updateHallInfoTable();
