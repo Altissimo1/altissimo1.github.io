@@ -6,6 +6,7 @@
       <title>Battle Hall</title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../../colors.js"></script>
+      <script src="./hall-levels.js"></script>
       <link rel="stylesheet" id="common" href="../../common.css">
       <link rel="stylesheet" id="style">
    </head>
@@ -46,8 +47,36 @@
       <p>When the player first begins a streak in the Battle Hall, they will see that all types are set to Rank 1. After a player successfully completes a battle, the rank will increase by 1, up to a maximum of 10. When Rank 10 is reached, the player will be unable to select that type again until all types have achieved Rank 10.</p>
       <p>Upon achieving Rank 10 in all types, when a player starts a round, they will be able to select from any type at Rank 10. After completing the battle, the type is unselectable until the player has defeated every type. At that point, all types become available again. Because rounds are conducted in sets of ten battles, but there are seventeen types, this means the point at which the types 'reset' may occur in the middle of a round.</p>
       <p>In Multi Battles, the player will always start a streak facing Rank 10 enemies. Upon finishing a round of ten battles, the types will reset, meaning that in Multi Battles, the player only ever needs to face ten of the seventeen types if they so choose.</p>
+      <p>The rank the player is facing determines the following factors with regards to the opponent; the level, IVs, AI Flags, & the group from which they will be selected from.</p>
+      <p>There is an exception to the rule for the AI flags, in Rank 7 if the trainers name begins with 'I', or 'J', the user will have Basic + Smart + Expert (smart AI), as documented by Mow <a href="https://www.youtube.com/watch?v=wZGUaluem_A" target="_blank" rel="noopener noreferrer">here.</a></p>
+      <p>This information is summarised in the following table, along with user inputs to allow for adjusting the level of your Pokémon, and the number of types you have entered.</p>
+      <div style="display: flex; align-items: center; margin-bottom: 10px;">
+         <label for="inputUserLevelHallInfo" style="min-width: 120px;">User Level:</label>
+         <input type="number" id="inputUserLevelHallInfo" min="30" max="100" value="30" class="light-true">
+      </div>
+      <div style="display: flex; align-items: center; margin-bottom: 10px;">
+         <label for="inputTypesEnteredHallInfo" style="min-width: 120px;">Types Entered:</label>
+         <input type="number" id="inputTypesEnteredHallInfo" min="1" max="17" value="1" class="light-true">
+      </div>
+      <p>Opponent Base Level: <span id="baseLevelHallInfo">-</span>
+      <br/>
+      <p>Per Rank Increment: <span id="incrementHallInfo">-</span></p>
+      <table>
+         <thead>
+               <tr class="light-true">
+                  <th>Rank</th>
+                  <th>Level</th>
+                  <th>IVs</th>
+                  <th>AI</th>
+                  <th>Opponents</th>
+               </tr>
+         </thead>
+         <tbody id="tableHallInfoBody">
+         </tbody>
+      </table>
       <h3><u>Frontier Brain</u></h3>
       <p>The Frontier Brain, Argenta, is battled first after 49 battles and again after 169. For her Silver Print battle, she will use a random Pokémon from the same Group as the player's (see the <a href="battle-hall-pokemon.html">Battle Hall Pokémon</a> page for an explanation of groups). For her Gold Print battle, she will use a random Pokémon from Group 4. In both cases, the type of the Pokémon does not need to match the type selected by the player. In both battles, her Pokémon will have 31 IVs and match the level of the player's Pokémon.</p>
+      <p>The AI flags that Argenta will use depend on the Rank of the battle which they are replacing, this is important to note only for silver print where it can be any rank.</p>
       <h3><u>Pokémon</u></h3>
       <p>The list of Pokémon that can be encountered is located <a href="battle-hall-pokemon.html">here</a>.</p>
       <h3><u>Battle Points</u></h3>
