@@ -142,8 +142,7 @@ $(function() {
 				var icon = document.createElement("img");
 				icon.src = src;
 				icon.className = type;
-				if (type == "wisp" || type == "unown")
-					icon.classList.add("hover-img");
+				icon.classList.add("hover-img");
 				icon.classList.add("click-img");
 				icon.id = type + "-" + point;
 				icon.alt = alt;
@@ -282,17 +281,16 @@ $(function() {
 		}					
 	}
 	
+	function setLanguageButton() {
+		var url = window.location.href;
+		
+		var lang = url.substring(url.indexOf("?") + 1);
+		
+		var languageButtons = $("input[type=radio][name=language]");
+		
+		languageButtons.each(function() {
+			if (this.id == lang)
+				$(this).prop("checked", true);
+		});
+	}
 });
-
-function setLanguageButton() {
-	var url = window.location.href;
-	
-	var lang = url.substring(url.indexOf("?") + 1);
-	
-	var languageButtons = $("input[type=radio][name=language]");
-	
-	languageButtons.each(function() {
-		if (this.id == lang)
-			$(this).prop("checked", true);
-	});
-}

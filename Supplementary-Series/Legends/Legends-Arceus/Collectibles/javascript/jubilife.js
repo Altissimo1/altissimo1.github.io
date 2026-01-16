@@ -262,17 +262,17 @@ $(function() {
 				setCookie(cookiePrefix + type + point, false);
 		}					
 	}
+	
+	function setLanguageButton() {
+		var url = window.location.href;
+		
+		var lang = url.substring(url.indexOf("?") + 1);
+		
+		var languageButtons = $("input[type=radio][name=language]");
+		
+		languageButtons.each(function() {
+			if (this.id == lang)
+				$(this).prop("checked", true);
+		});
+	}
 });
-
-function setLanguageButton() {
-	var url = window.location.href;
-	
-	var lang = url.substring(url.indexOf("?") + 1);
-	
-	var languageButtons = $("input[type=radio][name=language]");
-	
-	languageButtons.each(function() {
-		if (this.id == lang)
-			$(this).prop("checked", true);
-	});
-}
