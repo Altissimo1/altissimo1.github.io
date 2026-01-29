@@ -115,7 +115,7 @@ var mons = [
 	{value: "Pidgeot", data: "pidgeot"},
 	{value: "Pidgeotto", data: "pidgeotto"},
 	{value: "Pidgey", data: "pidgey"},
-	{value: "Pikachu", data: "pikaachu"},
+	{value: "Pikachu", data: "pikachu"},
 	{value: "Pinsir", data: "pinsir"},
 	{value: "Poliwag", data: "poliwag"},
 	{value: "Poliwhirl", data: "poliwhirl"},
