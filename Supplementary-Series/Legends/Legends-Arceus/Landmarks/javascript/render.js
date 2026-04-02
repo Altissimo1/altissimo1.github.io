@@ -5,6 +5,11 @@ $(function() {
 	// The spawn type filter values
 	var tree = true;
 	var ore = true;
+	var hay = true;
+	var leaf = true;
+	var chest = true;
+	var box = true;
+	var snow = true;
 		
 	// The item filter value
 	var items = "all";
@@ -59,6 +64,16 @@ $(function() {
 					tree = checked;
 				else if (this.value == "ore")
 					ore = checked;
+				else if (this.value == "hay")
+					hay = checked;
+				else if (this.value == "leaf")
+					leaf = checked;
+				else if (this.value == "chest")
+					chest = checked;
+				else if (this.value == "box")
+					box = checked;
+				else if (this.value == "snow")
+					snow = checked;
 			}
 			// Update the image.
 			updateImage();
@@ -91,6 +106,16 @@ $(function() {
 		if (tree && $(icon).hasClass("tree"))
 			return true;
 		else if (ore && $(icon).hasClass("ore"))
+			return true;
+		else if (hay && $(icon).hasClass("hay"))
+			return true;
+		else if (leaf && $(icon).hasClass("leaf"))
+			return true;
+		else if (chest && $(icon).hasClass("chest"))
+			return true;
+		else if (box && $(icon).hasClass("box"))
+			return true;
+		else if (snow && $(icon).hasClass("snow"))
 			return true;
 		return false;
 	}
