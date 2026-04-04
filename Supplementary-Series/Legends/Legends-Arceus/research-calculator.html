@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Legends: Arceus Research Calculator</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../../colors.js"></script>
+      <link rel="stylesheet" id="common" href="../../../common.css">
+      <link rel="stylesheet" id="style">
+      <link rel="stylesheet" href="pla-research.css">
+      <script src="pla-research.js"></script>
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../../index.html">Home</a> | <a href="../../../Maintenance/contact.html">Contact Me</a> | <a href="../../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../../index.html">Supplementary Series Home</a> | <a href="index.html">Legends: Arceus Home</a></h4>
+      <p>This calculator was adapted from an existing one located <a href="https://ranger.maybreak.com/arceus/research" target="_blank">here</a> by request of the Legends: Arceus speedrunning community, who asked that I add Pokémon icons to the page to control and track research, using a layout similar to that used by <a href="https://pco.bobchao87.com/" target="_blank">the BobChao tracker</a>. <em>I do not claim to be the original creator of either tracker.</em></p>
+      <div class="app">
+         <!-- Sidebar -->
+         <div class="sidebar">
+            <div class="sidebar-header">
+               <h2>Legends: Arceus<br>Research Calculator</h2>
+               <div style="display:flex;gap:0.4rem;">
+                  <button class="btn" id="exportBtn">Export</button>
+                  <input type="file" accept=".json" id="importInput" style="display:none;">
+               </div>
+            </div>
+            <div class="import-error" id="importError" style="display:none;"></div>
+            <div class="total-points" id="totalPoints">0 total research points.</div>
+            <div class="rank-data" id="rankData">Rank 0. Points to next rank: 500.</div>
+            <div class="entry-summary" id="entrySummary"></div>
+            <div class="help-text">
+               Drag an exported research file anywhere onto this page to import it.
+            </div>
+            <div class="help-text">
+               Tip: Start your search with <code>task:</code> to filter by task instead of Pokémon name. (e.g. <code>task: food</code>)
+            </div>
+            <div class="help-text">
+               Tip: You can filter to multiple Pokémon by providing all of their names in the search box.
+            </div>
+         </div>
+         <!-- Main panel -->
+         <div class="main-panel">
+            <div class="action-row">
+               <input type="text" id="searchInput" placeholder="Filter..." autocomplete="off">
+               <label class="checkbox-container">
+               <input type="checkbox" id="showCompletedTasks" checked>
+               Show completed tasks
+               </label>
+               <button class="btn" id="resetBtn">Reset</button>
+            </div>
+            <div class="task-grid" id="taskGrid">
+               <div class="loading">Loading research data…</div>
+            </div>
+         </div>
+      </div>
+      <!-- Drop overlay -->
+      <div class="drop-overlay" id="dropOverlay">Drop JSON file to import</div>
+   </body>
+</html>
