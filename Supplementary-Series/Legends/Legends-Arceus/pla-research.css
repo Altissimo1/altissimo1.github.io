@@ -32,6 +32,7 @@ body {
 	grid-template-columns: 26rem 1fr;
 	flex: 1 1 0;
 	min-height: 0;
+	overflow: hidden;
 }
 
 /* Scrollbar styling */
@@ -310,4 +311,100 @@ body {
 	  border-right: none;
 	  border-bottom: 1px solid var(--border);
 	}
+}
+
+/* ── Icon panel ── */
+#iconPanel {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+}
+
+.icon-radio-row {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+	font-size: 0.82rem;
+}
+
+.icon-radio-row label {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	cursor: pointer;
+	user-select: none;
+}
+
+.swatch-row {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+}
+
+.swatch-wrap {
+	position: relative;
+	display: inline-flex;
+}
+
+.swatch {
+	width: 28px;
+	height: 28px;
+	border-radius: 4px;
+	border: 2px solid var(--border);
+	cursor: pointer;
+	transition: border-color 0.15s, box-shadow 0.15s;
+	display: block;
+}
+
+.swatch:hover {
+	border-color: var(--text-muted);
+	box-shadow: 0 0 0 2px rgba(255,255,255,0.15);
+}
+
+.swatch-color-input {
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+	top: 0;
+	left: 0;
+}
+
+.pokemon-icon-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 3px;
+}
+
+.pokemon-icon-wrapper {
+	width: 36px;
+	height: 36px;
+	border-radius: 4px;
+	border: 1px solid var(--border);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	cursor: default;
+	transition: border-color 0.1s;
+	background: #ffffff;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.pokemon-icon-wrapper.clickable {
+	cursor: pointer;
+}
+
+.pokemon-icon-wrapper.clickable:hover {
+	border-color: var(--text-muted);
+}
+
+.pokemon-icon-img {
+	width: 48px;
+	height: 48px;
+	object-fit: contain;
+	display: block;
 }
