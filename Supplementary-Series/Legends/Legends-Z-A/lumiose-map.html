@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Lumiose Map</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	  <script src="../../../colors.js"></script>
+      <link rel="stylesheet" id="common" href="../../../common.css">
+	  <link rel="stylesheet" id="style">
+      <link rel="stylesheet" href="map.css">
+	  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+	  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+	  <script src="javascript/leaflet-rastercoords.js"></script>
+	  <script src="javascript/map.js"></script>
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../../Maintenance/contact.html">Contact Me</a> | <a href="../../../Maintenance/support.html">Support the Site</a> |</h4> <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+	  <h4><a href="../../index.html">Supplementary Series Home</a> | <a href="index.html">Legends: Z-A Home</a></h4>
+      <h2>Lumiose Map</h2>
+      <p>An interactive map of Lumiose, displaying items, Colorful Screws, and ladder locations. Click an item or Colorful Screw icon to see a short description of its location below the map.</p>
+	  <p><strong>This is a work in progress and, currently, only shows the locations of all items obtainable when the open world opens up during Mission 05. I plan to add more icons as I go, and also add icons for Holovators, Pokémon Centers, Fly locations, and (when I am able to properly source this information) wild Pokémon.</strong></p>
+	  <div id="filter-controls">
+		  <div id="filter-header" class="light-true">Filter Markers</div>
+		  <div class="filter-section light-false">
+			  <span class="filter-section-label">Icons</span>
+			  <label class="filter-pill"><input type="checkbox" id="filter-screws" checked> Colorful Screws</label>
+			  <label class="filter-pill"><input type="checkbox" id="filter-ladders" checked> Ladders</label>
+		  </div>
+		  <div class="filter-section light-false">
+			  <span class="filter-section-label">Items</span>
+			  <label class="filter-pill" id="label-items-all"><input type="checkbox" id="filter-items-all" checked> All</label>
+			  <span class="filter-pill-divider"></span>
+			  <label class="filter-pill"><input type="checkbox" class="filter-item-group" data-group="ball" checked> Poké Balls</label>
+			  <label class="filter-pill"><input type="checkbox" class="filter-item-group" data-group="boosters" checked> Stat Boosters</label>
+			  <label class="filter-pill"><input type="checkbox" class="filter-item-group" data-group="candy" checked> Candies</label>
+			  <label class="filter-pill"><input type="checkbox" class="filter-item-group" data-group="evo" checked> Evolution Items</label>
+			  <label class="filter-pill"><input type="checkbox" class="filter-item-group" data-group="healing" checked> Healing Items</label>
+			  <label class="filter-pill"><input type="checkbox" class="filter-item-group" data-group="revival" checked> Revival Items</label>
+			  <label class="filter-pill"><input type="checkbox" class="filter-item-group" data-group="status" checked> Status Items</label>
+			  <label class="filter-pill"><input type="checkbox" class="filter-item-group" data-group="tm" checked> TMs</label>
+			  <label class="filter-pill"><input type="checkbox" class="filter-item-group" data-group="treasure" checked> Treasure</label>
+		  </div>
+	  </div>
+	  <div id="map"></div>
+	  <table id="table-img" class="left-align" style="display:none;margin-top:2ex;">
+		<thead>
+			<tr class="light-true">
+				<th>Item</th>
+				<th>Area</th>
+				<th>Location</th>
+				<th>Notes</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="light-false">
+				<td id="item-name"></td>
+				<td id="item-area"></td>
+				<td id="item-location"></td>
+				<td id="item-notes"></td>
+			</tr>
+		</tbody>
+	  </table>
+   </body>
+</html>
