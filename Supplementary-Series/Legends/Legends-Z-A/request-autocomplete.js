@@ -12,7 +12,10 @@
 var requests = [
 	{value: "Side Mission 001: A Big Ol' Bunnelby", data: "request-1"},
 	{value: "Side Mission 002: A Use for an Evolution Stone!", data: "request-2"},
-	{value: "Side Mission 003: Sableye in the Cemetery", data: "request-3"}
+	{value: "Side Mission 003: Sableye in the Cemetery", data: "request-3"},
+	{value: "Side Mission 004: A Break Time Battle", data: "request-4"},
+	{value: "Side Mission 007: A Feisty Chespin", data: "request-7"},
+	{value: "Side Mission 008: Get Well, Fennekin", data: "request-8"}
 ];
 
 
