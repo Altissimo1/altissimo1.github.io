@@ -14,8 +14,11 @@ var requests = [
 	{value: "Side Mission 002: A Use for an Evolution Stone!", data: "request-2"},
 	{value: "Side Mission 003: Sableye in the Cemetery", data: "request-3"},
 	{value: "Side Mission 004: A Break Time Battle", data: "request-4"},
+	{value: "Side Mission 005: I'd Like to See an Ekans!", data: "request-5"},
+	{value: "Side Mission 006: Long-Range Moves Have Style", data: "request-6"},
 	{value: "Side Mission 007: A Feisty Chespin", data: "request-7"},
-	{value: "Side Mission 008: Get Well, Fennekin", data: "request-8"}
+	{value: "Side Mission 008: Get Well, Fennekin", data: "request-8"},
+	{value: "Side Mission 009: A Challenge from Froakie", data: "request-9"}
 ];
 
 
