@@ -18,7 +18,19 @@ var requests = [
 	{value: "Side Mission 006: Long-Range Moves Have Style", data: "request-6"},
 	{value: "Side Mission 007: A Feisty Chespin", data: "request-7"},
 	{value: "Side Mission 008: Get Well, Fennekin", data: "request-8"},
-	{value: "Side Mission 009: A Challenge from Froakie", data: "request-9"}
+	{value: "Side Mission 009: A Challenge from Froakie", data: "request-9"},
+	{value: "Side Mission 010: Skiddo's Fragrant Leaves", data: "request-10"},
+	{value: "Side Mission 011: The Kakuna Master", data: "request-11"},
+	{value: "Side Mission 012: The Many Flowers of Flabébé", data: "request-12"},
+	{value: "Side Mission 013: Stumped at the Fountain", data: "request-13"},
+	{value: "Side Mission 014: Slurpuff's Café Visit", data: "request-14"},
+	{value: "Side Mission 015: A Sensitive Audino", data: "request-15"},
+	{value: "Side Mission 016: The Budew Show", data: "request-16"},
+	{value: "Side Mission 017: A Shiny Mareep?", data: "request-17"},
+	{value: "Side Mission 018: A Pan-tastic Pot of Tea", data: "request-18"},
+	{value: "Side Mission 019: Poisonous, Paralyzing Strategies", data: "request-19"},
+	{value: "Side Mission 021: Spewpa in the Museum", data: "request-21"},
+	{value: "Side Mission 022: A Call from Mable", data: "request-22"}
 ];
 
 
