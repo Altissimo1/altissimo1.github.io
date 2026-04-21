@@ -29,6 +29,7 @@ var requests = [
 	{value: "Side Mission 017: A Shiny Mareep?", data: "request-17"},
 	{value: "Side Mission 018: A Pan-tastic Pot of Tea", data: "request-18"},
 	{value: "Side Mission 019: Poisonous, Paralyzing Strategies", data: "request-19"},
+	{value: "Side Mission 020: A Berry Clever Plan", data: "request-20"},
 	{value: "Side Mission 021: Spewpa in the Museum", data: "request-21"},
 	{value: "Side Mission 022: A Call from Mable", data: "request-22"}
 ];
