@@ -31,7 +31,22 @@ var requests = [
 	{value: "Side Mission 019: Poisonous, Paralyzing Strategies", data: "request-19"},
 	{value: "Side Mission 020: A Berry Clever Plan", data: "request-20"},
 	{value: "Side Mission 021: Spewpa in the Museum", data: "request-21"},
-	{value: "Side Mission 022: A Call from Mable", data: "request-22"}
+	{value: "Side Mission 022: A Call from Mable", data: "request-22"},
+	{value: "Side Mission 023: Underneath the Holovator", data: "request-23"},
+	{value: "Side Mission 024: An Abra Playmate", data: "request-24"},
+	{value: "Side Mission 025: Troublesome Patrons", data: "request-25"},
+	{value: "Side Mission 026: Burn, Litleo, Burn", data: "request-26"},
+	{value: "Side Mission 027: Restored from a Fossil", data: "request-27"},
+	{value: "Side Mission 028: Who Says Normal Is Weak?", data: "request-28"},
+	{value: "Side Mission 029: Full Course of Battles: One Star", data: "request-29"},
+	{value: "Side Mission 030: Show Me a Mega Camerupt!", data: "request-30"},
+	{value: "Side Mission 031: Show Me a Mega Sableye!", data: "request-31"},
+	{value: "Side Mission 032: Show Me a Mega Medicham!", data: "request-32"},
+	{value: "Side Mission 033: Who Has the Bigger Magikarp?", data: "request-33"},
+	{value: "Side Mission 034: Moves that Put Up a Wall", data: "request-34"},
+	{value: "Side Mission 035: Guidance from a Yoga Master", data: "request-35"},
+	{value: "Side Mission 036: Some Friendly Competition", data: "request-36"},
+	{value: "Side Mission 037: Binacle by the Boatload", data: "request-37"},
 ];
 
 
