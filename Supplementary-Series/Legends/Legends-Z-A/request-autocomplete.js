@@ -47,6 +47,12 @@ var requests = [
 	{value: "Side Mission 035: Guidance from a Yoga Master", data: "request-35"},
 	{value: "Side Mission 036: Some Friendly Competition", data: "request-36"},
 	{value: "Side Mission 037: Binacle by the Boatload", data: "request-37"},
+	{value: "Side Mission 038: Chasing Status", data: "request-38"},
+	{value: "Side Mission 039: Slowpoke for Slowpoke", data: "request-39"},
+	{value: "Side Mission 040: A Holovator Without Power", data: "request-40"},
+	{value: "Side Mission 041: Watch Out for Traps", data: "request-41"},
+	{value: "Side Mission 042: A Fan of Fairy Types", data: "request-42"},
+	{value: "Side Mission 043: A Big Weedle Problem", data: "request-43"},
 ];
 
 

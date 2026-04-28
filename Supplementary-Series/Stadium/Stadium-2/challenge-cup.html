@@ -3,7 +3,7 @@
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Stadium 2 Challenge Cup</title>
+      <title>Challenge Cup</title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../../../colors.js"></script>
       <link rel="stylesheet" id="common" href="../../../common.css">
@@ -14,10 +14,10 @@
          <h4 style="margin:0px;"><a href="../../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../../Maintenance/contact.html">Contact Me</a> | <a href="../../../Maintenance/support.html">Support the Site</a> |</h4>
          <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
       </div>
-      <h4><a href="../../index.html">Supplementary Series Home</a> | <a href="../index.html">Stadium Home</a> | <a href="index.html">Stadium 2 Home</a></h4>
-      <h2>Stadium 2 Challenge Cup</h2>
-      <p>The Challenge Cup is a ... challenge cup ... in Pokémon Stadium 2, where both the player and the opposing Trainers use randomly chosen teams. The cup features four divisions, named for each of the four basic Poké Ball types, and two difficulty modes, Round 1 and Round 2.</p>
-      <p>Unlike other cups, the player is specifically forbidden from using Pokémon from a connected Game Boy game. The player can only use the randomly selected team they are assigned.</p>
+      <h4><a href="../../index.html">Supplementary Series Home</a> | <a href="../index.html">Stadium Series Home</a> | <a href="index.html">Stadium 2 Home</a></h4>
+      <h2>Challenge Cup</h2>
+      <p>The Challenge Cup is a challenge cup in Pokémon Stadium 2, where both the player and the opposing Trainers use randomly chosen teams. The cup features four divisions, named for each of the four basic Poké Ball types, and two difficulty modes, Round 1 and Round 2.</p>
+      <p>Unlike other cups, the player is specifically forbidden from using Pokémon from a connected Game Boy game, and can only use the randomly selected team they are assigned.</p>
       <p>The rules in this cup are as follows:</p>
       <ul>
          <li>The player will select three of their six Pokémon to battle with.</li>
@@ -115,21 +115,29 @@
             </tr>
          </tbody>
       </table>
-      <ul>
+      <h4>Team Generation</h4>
+	  <ul>
          <li><a href="#mechanics">Team Generation Mechanics</a></li>
          <li><a href="#pokeballpokemon">Poké Ball Pokémon</a></li>
          <li><a href="#greatballpokemon">Great Ball Pokémon</a></li>
          <li><a href="#ultraballpokemon">Ultra Ball Pokémon</a></li>
          <li><a href="#masterballpokemon">Master Ball Pokémon</a></li>
+	 </ul>
+	 <h4>Round 1</h4>
+	 <ul>
          <li><a href="#pokeball">Poké Ball</a></li>
          <li><a href="#greatball">Great Ball</a></li>
          <li><a href="#ultraball">Ultra Ball</a></li>
          <li><a href="#masterball">Master Ball</a></li>
-         <li><a href="#pokeball-round2">Poké Ball (Round 2)</a></li>
-         <li><a href="#greatball-round2">Great Ball (Round 2)</a></li>
-         <li><a href="#ultraball-round2">Ultra Ball (Round 2)</a></li>
-         <li><a href="#masterball-round2">Master Ball (Round 2)</a></li>
+	 </ul>
+	 <h4>Round 2</h4>
+	 <ul>
+         <li><a href="#pokeball-round2">Poké Ball</a></li>
+         <li><a href="#greatball-round2">Great Ball</a></li>
+         <li><a href="#ultraball-round2">Ultra Ball</a></li>
+         <li><a href="#masterball-round2">Master Ball</a></li>
       </ul>
+	  <br>
       <div class="flex-row">
          <input type="checkbox" id="type-checkbox" name="type" value="Show Type Colors" checked="checked">
          <label for="type-checkbox"> Show moves in a color corresponding to their type</label>
@@ -140,13 +148,12 @@
       </div>
       <div>
          <h3 id="mechanics"><u>Team Generation Mechanics</u></h3>
-         <p>A very thorough explanation of how exactly the game generates a full team, including Pokémon species, items, and moves, can be found <a href="https://genericmadscientist.github.io/posts/challenge-cup/">here</a>, and I fully encourage the interested reader to consult this article to learn more if they are so inclined.</p>
-         <p>This page will focus on providing a broad overview of how teams are generated.</p>
-         <p>Each of the four divisions has a list of Pokémon can that be chosen for generation. The divisions generally move from weaker to stronger Pokémon, but there can be some overlap in base stat total (BST) between the highest BST species in one division and the lowest BST species in the next. When generating either the player's team or the opponent's team, only Pokémon from that division's pool can be selected.</p>
+         <p>A very thorough explanation of how exactly the game generates a full team, including Pokémon species, items, and moves, can be found <a href="https://genericmadscientist.github.io/posts/challenge-cup/">here</a>, and I fully encourage the interested reader to consult this article to learn more if they are so inclined. My section will focus on providing a broad overview of how teams are generated.</p>
+         <p>Each of the four divisions has a list of Pokémon can that be chosen for generation. The divisions generally move from weaker to stronger Pokémon, but there can be some overlap in base stat total (BST) between the highest-BST species in one division and the lowest-BST species in the next. When generating either the player's team or the opponent's team, only Pokémon from that division's pool can be selected.</p>
          <h4>Templates</h4>
          <p>Every Trainer, including the player, has a template for their team. For instance, the first Trainer in Poké Ball (Round 1), Camper Marcus, has a template specifying that he must use two Fire-type Pokémon and four Ground-type Pokémon. The team generation will always ensure that he has Pokémon of these types on his team, and there are enough Fire-types and Ground-types in the pool of selectable Pokémon to ensure that there are no issues with making sure he has these types. So every time you fight Camper Marcus in Round 1 Poké Ball, you can be assured that a Water-type on your team probably has an easy advantage.</p>
-         <p>In the case of Camper Marcus, there are four possible Fire-types and six possible Ground-types, so no Fire-type or Ground-type is guaranteed to be on his team. However, Medium Peggy's template requires three Psychic-types, and there are only three Psychic-types in the pool of selectable Pokémon. This means that Medium Peggy not only always has three Psychic-types, but always has specifically Slowpoke, Exeggcute, and Drowzee on her team. I will make note of where Trainers are forced into having specific species as a result of this quirk.</p>
-         <p>Some templates include wildcard spots where a Pokémon of any type can be used. The game will specifically ensure that a wildcard Pokémon does not share a type with any team member already selected. Thus, if a template includes a specification for a Fire-type Pokémon, you can be assured that you will never see a Fire-type Pokémon in a wildcard spot in the same template. If the selected Fire-type happens to be Charizard, you can also be assured that you will not see a Flying-type Pokémon in the wildcard spot.</p>
+         <p>Medium Peggy's template requires three Psychic-types, and there are only three Psychic-types in the pool of selectable Pokémon. This means that Medium Peggy not only always has three Psychic-types, but always has specifically Slowpoke, Exeggcute, and Drowzee on her team. Medium Peggy is not the only Trainer affected by this, so I will make note below of which Trainers are affected and which species they are guaranteed to use.</p>
+         <p>Some templates include 'wildcard' spots where a Pokémon of any type can be used. The game will specifically ensure that a wildcard Pokémon does not share a type with any team member already selected. Thus, if a template includes a specification for a Fire-type Pokémon, you can be assured that you will never see a Fire-type Pokémon in a wildcard spot in the same template. If the selected Fire-type happens to be Charizard, you can also be assured that you will not see a Flying-type Pokémon in the wildcard spot.</p>
          <p>The player's template is always selected randomly from six options, shown below.</p>
          <table>
             <tbody>
@@ -201,33 +208,60 @@
             </tbody>
          </table>
          <h4>BST</h4>
-         <p>Every division has a BST value associated with it. For instance, Poké Ball has a BST value of 280. The game will attempt to generate teams for Poké Ball such that the average BST of all Pokémon is 280. It will accomplish this by checking the average BST of the team after every Pokémon is generated. If the current average BST is greater than 280, it will select exclusively from Pokémon with a BST lower than 280 for the next slot, and select from higher BSTs when the average is lower than 280.</p>
-         <p>That said, it sometimes isn't possible for the game to fulfill its template obligation and try to alter the average BST at the same time. The aforementioned case of Medium Peggy is one such case. All three Psychic-types she can use have a BST higher than 280, meaning the game cannot attempt to generate Pokémon with lower BSTs until it has generated all three Psychic-types. This has the side effect of ensuring that the last three Pokémon in Medium Peggy's team are likely to have BSTs lower than 280 in order to force the average down, giving you the ability to partially predict some of her Pokémon.</p>
+         <p>Every division has a BST value associated with it. For instance, Poké Ball has a BST value of 280. The game will attempt to generate teams for Poké Ball such that the <em>average</em> BST of all Pokémon is 280. It will accomplish this by checking the average BST of the team after every Pokémon is generated. If the current average BST is greater than 280, it will select exclusively from Pokémon with a BST lower than 280 for the next slot, and select from higher BSTs when the average is lower than 280.</p>
+         <p>That said, it sometimes isn't possible for the game to fulfill its template obligation and try to alter the average BST at the same time. The aforementioned case of Medium Peggy is one such case. The first three slots on her team are the Psychic-type slots, and all three Psychic-types she can use have a BST higher than 280. Because the three Psychic-types are generated first, the game cannot attempt to generate Pokémon with lower BSTs until it has generated all three Psychic-types. This has the effect of ensuring that the last three Pokémon in Medium Peggy's team are likely to have BSTs lower than 280 in order to force the average down, giving you the ability to partially predict some of her Pokémon.</p>
          <p>There are other cases of "BST forcing" influencing Pokémon generation, too. The source linked above includes this paragraph:</p>
          <q>This type of thing can happen in a less obvious way as well though, like with Roberto in Great Ball. There is only one Dark and one Ghost in Great Ball, so he will always have Houndour and Gastly. Up to this point his average base stat total is thus 320. Now there are four eligible Psychics in Great Ball: Abra, Natu, Smoochum, and Wobbuffet. Only Natu and Wobbuffet have a base stat total of at least 320. If the game gives him Natu for the first Psychic, then his average will still be 320 so he will be forced to have Wobbuffet as his fourth team member. Thus, no matter what, Great Ball Roberto will always have Wobbuffet.</q>
          <h4>Stats</h4>
-         <p>Every generated Pokémon will have random DVs, which control their gender, and can also mean it's possible to see shiny Pokémon. Every generated Pokémon also has a random Friendship value (for the case when Metronome calls Return or Frustration).</p>
-         <p>Stat Exp. for each stat is generated with the formula (680 - BST) * 65535 / 500. I've included the Stat Exp. values for each of the possible Pokémon, and what it would translate to in terms of a modern EV value (for the benefit of the player who doesn't really know how the older generations handled stats), in the Possible Pokémon tables below. (Shoutout to SadisticMystic for doing this calculation first; I've just copied his work as I find it useful.)</p>
+         <p>Every generated Pokémon will have random DVs. This means they will have a random gender and can possibly be shiny. Every generated Pokémon also has a random Friendship value (for the case when Metronome calls Return or Frustration).</p>
+         <p>Stat Exp. for each stat is generated with the formula (680 - BST) * 65535 / 500. I've included the Stat Exp. values for each of the possible Pokémon, and what it would translate to in terms of a modern EV value, in the Possible Pokémon tables below. (SadisticMystic is responsible for doing this calculation first; I've just copied his work as I find it useful.)</p>
          <p>Each Trainer has a Stat Exp. value associated with them, which applies to all six of their Pokémon. That value is given below for each Trainer.</p>
          <h4>Moves</h4>
          <p>The source above goes into great detail about move selection. Here's a few key points:</p>
          <ul>
-            <li>Ditto always has Transform. Wobbuffet always has Counter, Destiny Bond, Mirror Coat, and Safeguard. Smeargle can have any move except Baton Pass, Metronome, Mimic, Mirror Move, Sketch, Sleep Talk, Transform, and the other unused moves listed below.</li>
             <li>The following moves will never be used: Absorb, Bind, Bubble, Constrict, Dream Eater, Fire Spin, Fissure, Frustration, Guillotine, Hidden Power, Horn Drill, Leech Life, Lick, Milk Drink, Moonlight, Morning Sun, Nightmare, Poison Sting, Rage, Rapid Spin, Recover, Rest, Return, Rock Smash, Sketch, Sleep Talk, Smog, Snore, Softboiled, Sonicboom, Splash, Synthesis, Teleport, Whirlpool, and Wrap.</li>
-            <li>Some enemy Trainers have a "signature move" (or couple of moves) that will be assigned to all of their Pokémon if possible. Those moves are given with the rest of the Trainer data below.</li>
-            <li>In Round 1, a Pokémon's moves will be selected from its level-up movepool and TM movepool in Gold and Silver. Each division has a maximum level, and the Pokémon will not be able to have level-up moves that are learned at a higher level than this maximum level. The exception is if the Pokémon could have been hatched from an Egg, where its entire level-up movepool can be considered. If the Pokémon is evolved, moves learned by its pre-evolution(s) can be used (so stone evolutions aren't locked to their tiny level-up movepools).</li>
-            <li>In Round 2, a Pokémon's moves will be selected from all legal movepools: Red, Green, Blue, and Yellow level-up and TM movepools and Gold, Silver, and Crystal level-up, TM, Tutor, and and Egg movepools. Again, though, the level restriction applies.</li>
-            <li>The game will usually try to give every Pokémon a STAB attack, where possible.</li>
-            <li>If the game generates the first move of something it considers a "combo" (like Solarbeam for a Sunny Day & Solarbeam combo), it will increase the other combo move's likelihood of being selected.</li>
+            <li>Ditto always has Transform. Wobbuffet always has Counter, Destiny Bond, Mirror Coat, and Safeguard. Smeargle can have any move except Baton Pass, Metronome, Mimic, Mirror Move, Sketch, Sleep Talk, Transform, and the other unused moves listed above.</li>
+            <li>Some enemy Trainers have a "signature move" (or moves) that will be assigned to all of their Pokémon if possible. Those moves are given with the rest of the Trainer data below.</li>
+            <li>In Round 1, a Pokémon's moves will be selected from its level-up movepool and TM movepool as it is in Gold and Silver. Each division has a maximum level, and the Pokémon will not be able to have level-up moves that are learned at a higher level than this maximum level. The exception is if the Pokémon could have been hatched from an Egg, where its entire level-up movepool can be considered. If the Pokémon is evolved, moves learned by its pre-evolution(s) can be used.</li>
+            <li>In Round 2, a Pokémon's moves will be selected from all legal movepools: Red, Green, Blue, and Yellow level-up and TM movepools and Gold, Silver, and Crystal level-up, TM, Tutor, and Egg movepools. Again, though, the level restriction applies.</li>
+            <li>The game will usually try to give every Pokémon a STAB attack where possible.</li>
+            <li>If the game generates the first move of something it considers a "combo" (such as Solarbeam for a Sunny Day & Solarbeam combo), it will increase the other combo move's likelihood of being selected.</li>
          </ul>
-         <p>The generation of the moves is much more involved than what I've stated here; again, see the source above for more information.</p>
+         <p>The generation of the moves is much more involved than what I've stated here. See the source linked above for more information.</p>
          <h4>Items</h4>
-         <p>The item types that can be selected are as follows: Berries (including Berry Juice) (45%), stat-boosting item that matches the Pokémon's first move (35%), "hax item" (Brightpowder, King's Rock, Quick Claw, Scope Lens) (15%), or species-specific item (only for the species it applies to) (5%). If the species has no species-specific item, then the "hax item" probability is 20%. The game will never generate two Pokémon holding the same item.</p>
-      </div>
+         <p>The item types that can be selected are as follows:</p>
+		 <table class="left-align">
+			<thead>
+				<tr class="light-true">
+					<th>Item type</th>
+					<th>Rate</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="light-false">
+					<td>Berries or Berry Juice</td>
+					<td>45%</td>
+				</tr>
+				<tr class="light-true">
+					<td>Type-boosting item that matches the Pokémon's first move's type</td>
+					<td>35%</td>
+				</tr>
+				<tr class="light-false">
+					<td>"Hax item": Brightpowder, King's Rock, Quick Claw, Scope Lens</td>
+					<td>15%</td>
+				</tr>
+				<tr class="light-true">
+					<td>Species-specific item, if the species has one</td>
+					<td>5%</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>If the species has no species-specific item, then the "hax item" probability is raised to 20%. The game will never generate two Pokémon holding the same item.</p>
+	  </div>
       <div>
          <h3 id="pokeballpokemon"><u>Poké Ball Possible Pokémon</u></h3>
          <p>All Pokémon in this cup are level 30. Team generation will attempt to force an average BST of 280.</p>
-         <p>The EV's column in the table below is the Stat Exp. value, recalculated to match what the same value would be in the modern EV system. This is just to make it easier for the player to read.</p>
+         <p>The EV column in the table below is the Stat Exp. value, recalculated to match what the same value would be in the modern EV system.</p>
          <p>Pokémon are ordered from lowest BST to highest.</p>
          <table>
             <caption>Poké Ball Pokémon</caption>
@@ -874,7 +908,7 @@
       <div>
          <h3 id="greatballpokemon"><u>Great Ball Possible Pokémon</u></h3>
          <p>All Pokémon in this cup are level 45. Team generation will attempt to force an average BST of 360.</p>
-         <p>The EV's column in the table below is the Stat Exp. value, recalculated to match what the same value would be in the modern EV system. This is just to make it easier for the player to read.</p>
+         <p>The EV column in the table below is the Stat Exp. value, recalculated to match what the same value would be in the modern EV system.</p>
          <p>Pokémon are ordered from lowest BST to highest.</p>
          <table>
             <caption>Great Ball Pokémon</caption>
@@ -1532,7 +1566,7 @@
       <div>
          <h3 id="ultraballpokemon"><u>Ultra Ball Possible Pokémon</u></h3>
          <p>All Pokémon in this cup are level 60. Team generation will attempt to force an average BST of 447.</p>
-         <p>The EV's column in the table below is the Stat Exp. value, recalculated to match what the same value would be in the modern EV system. This is just to make it easier for the player to read.</p>
+         <p>The EV column in the table below is the Stat Exp. value, recalculated to match what the same value would be in the modern EV system.</p>
          <p>Pokémon are ordered from lowest BST to highest.</p>
          <table>
             <caption>Ultra Ball Pokémon</caption>
@@ -2190,7 +2224,7 @@
       <div>
          <h3 id="masterballpokemon"><u>Master Ball Possible Pokémon</u></h3>
          <p>All Pokémon in this cup are level 75. Team generation will attempt to force an average BST of 507.</p>
-         <p>The EV's column in the table below is the Stat Exp. value, recalculated to match what the same value would be in the modern EV system. This is just to make it easier for the player to read.</p>
+         <p>The EV column in the table below is the Stat Exp. value, recalculated to match what the same value would be in the modern EV system.</p>
          <p>Pokémon are ordered from lowest BST to highest.</p>
          <table>
             <caption>Master Ball Pokémon</caption>
@@ -2983,7 +3017,7 @@
       </div>
       <div>
          <h3 id="masterball"><u>Master Ball</u></h3>
-         <h4>Twins Jan & Jane</h4>
+         <h4>Twins Jan&Jane</h4>
          <p>They will use three Bug-types, two Flying-types, and one wildcard.</p>
          <p>There are four Bug-types in Master Ball: Heracross, Pinsir, Scizor, and Scyther.</p>
          <p>There are seven Flying-types in Master Ball: Dodrio, Xatu, Scyther, Aerodactyl, Charizard, Crobat, and Gyarados.</p>
