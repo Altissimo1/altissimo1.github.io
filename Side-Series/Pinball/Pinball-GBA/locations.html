@@ -102,7 +102,7 @@
       <p>The Ruins can only be accessed after the player travels seven times (in any direction).</p>
       <h3><u>Rarity Mechanics</u></h3>
       <p>When entering Catch 'em Mode by entering Sharpedo (Ruby field) or Wailmer (Blue field), the Pokémon generated will be chosen from either the 2-Light group or the 3-Light group. Which group is used depends on how many of the GET lights are lit on the right loop. If the player activates Catch 'em Mode via the slots, the game will use the 3-Light group if three GET lights are lit, and the 2-Light group otherwise.</p>
-      <p>Unlike in the GameBoy Pinball, Pokémon do not have static percentages that govern how frequently they appear. Instead, their rarities are calculated on a weighting system, which can change depending on the player's most recent catch and the Pokémon they have in their Pokédex already. The mechanics are described below.</p>
+      <p>Unlike in the Game Boy version of Pokémon Pinball, Pokémon do not have static percentages that govern how frequently they appear. Instead, their rarities are calculated on a weighting system. The mechanics are described below.</p>
       <p>First, every location, except the Ruins, has one Pokémon that is designated as that field's 'Rare Pokémon'. The list is given below.</p>
       <table>
          <thead>
@@ -205,29 +205,60 @@
          </tbody>
       </table>
       <p>When the player starts a new game on either field, the first Pokémon encountered - whether through Catch Mode or Hatch Mode - will always be a Pokémon that can evolve, and it will never be a Rare Pokémon.</p>
-      <p>In general, the rarity weighting works as follows:</p>
-      <ul>
-         <li>If the Pokémon is not a Rare Pokémon, or is a hatched Pokémon, and the player does <em>not</em> already have it and its evolution(s) registered in the Pokédex, its weight is 10.</li>
-         <li>If the Pokémon is not a Rare Pokémon, or is a hatched Pokémon, and the player <em>does</em> have it and its evolution(s) registered in the Pokédex, its weight is 2.</li>
-         <li>If the Pokémon is a Rare Pokémon, and the player does <em>not</em> already have it and its evolution(s) registered, its weight is 1.</li>
-         <li>If the Pokémon is a Rare Pokémon, and the player <em>does</em> already have it and its evolution(s) registered, its weight is 2.</li>
-         <li>If the Pokémon is the same species as the one the player just caught last time they played Catch or Hatch Mode, its weight is 0, meaning two of the same Pokémon will never appear back-to-back.</li>
-      </ul>
-      <p>Latios, Latias, and Pichu are exempt from this weighting system. More details are given on the <a href="special-encounters.html">Special Encounters</a> page, but the gist of it is that the game will check for these three before doing any other calculations. Latios and Latias naturally have a 1% chance of appearing, and Pichu has a 2% chance.</p>
-      <p>If the player has defeated Rayquaza at least one time, the following changes are made to weights:</p>
-      <ul>
-         <li>Rare Pokémon have double their weight.</li>
-         <li>Latios and Latias increase from a 1% chance to a 2% chance.</li>
-         <li>Pichu decreases from a 2% chance to a 1% chance. (This may be the result of a bug, since early strategy guides claimed that Pichu's odds <em>increase</em> instead.)</li>
-      </ul>
-      <p>Oddish is considered 'fully evolved' if Vileplume has been caught and the player is playing the Ruby field, or Bellossom is caught and the player is playing the Sapphire field.</p>
-      <p>As a hypothetical example, consider the case where the player is playing the Forest location on the Ruby map. Assume the following are all true:</p>
+      <p>When an encounter is generated, every Pokémon is given a weight value. This weight value can be dependent on three things:</p>
+	  <ol>
+		<li>How the player has interacted with the Pokémon: if they have not seen it; if they have seen it but not caught it; if they have received data on it from linking with a friend; and if they have caught it</li>
+		<li>Whether the player has caught the Pokémon's evolved form(s), if any</li>
+		<li>Whether the player has defeated Rayquaza at least one time or used the e-Reader card that boosts encounter rates</li>
+	  </ol>
+	  <p>The following table, originally compiled by 'red' of the pret discord and modified by me to add an extra row, indicates what each Pokémon's weight in each scenario is.</p>
+	  <table>
+		<thead>
+			<tr class="light-true">
+				<th></th>
+				<th>Common</th>
+				<th>Rare<br>(no encounter boost)</th>
+				<th>Rare<br>(encounter boost)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="light-false">
+				<td><strong>Pokémon not seen, or seen but not caught</strong></td>
+				<td>10</td>
+				<td>1</td>
+				<td>2</td>
+			</tr>
+			<tr class="light-true">
+				<td><strong>Pokémon shared through Link Cable</strong></td>
+				<td>15</td>
+				<td>2</td>
+				<td>4</td>
+			</tr>
+			<tr class="light-false">
+				<td><strong>Pokémon caught</strong></td>
+				<td>10</td>
+				<td>2</td>
+				<td>4</td>
+			</tr>
+			<tr class="light-true">
+				<td><strong>Pokémon's evolutionary line caught</strong></td>
+				<td>2</td>
+				<td>2</td>
+				<td>4</td>
+			</tr>
+		</tbody>
+	  </table>
+	  <p>If the Pokémon is the same species as the one the player just caught last time they played Catch or Hatch Mode, its weight is 0, meaning two of the same Pokémon will never appear back-to-back.</p>
+      <p>Oddish's evolutionary line is considered to have been completed if Gloom and Vileplume have been caught and the player is playing the Ruby field, or if Gloom and Bellossom have been caught and the player is playing the Sapphire field.</p>
+      <p>Once every weight has been determined, an individual percentage can be calculated by adding the weights, dividing the Pokémon's weight by the total weight, and multiplying the result by 100.</p>
+	  <p>As a hypothetical example, consider the case where the player is playing the Forest location on the Ruby map. Assume the following are all true:</p>
       <ol>
          <li>The player has already made a catch this game.</li>
          <li>The previous catch was on a different map (meaning it won't be a duplicate).</li>
          <li>Two lights are lit.</li>
-         <li>Rayquaza has not been defeated.</li>
-         <li>The player has Zigzagoon, Linoone, Duskull, and Dusclops already.</li>
+         <li>Rayquaza has not been defeated and the e-Reader encounter rate boost card has not been used.</li>
+         <li>The player has caught Zigzagoon, Linoone, Duskull, and Dusclops already.</li>
+		 <li>The player has not linked with any other player.</li>
       </ol>
       <p>In this example, the weights should be calculated like this:</p>
       <table>
@@ -244,7 +275,7 @@
                   <div class="flex-img"><img src="../../../Resources/images/pinball-icons/pinball-gba/nuzleaf.png" alt="Nuzleaf"></div>
                </td>
                <td>Nuzleaf</td>
-               <td>10 (non-Rare & dex not complete)</td>
+               <td>10 (Common & not caught)</td>
                <td>~28.5%</td>
             </tr>
             <tr class="light-true">
@@ -252,7 +283,7 @@
                   <div class="flex-img"><img src="../../../Resources/images/pinball-icons/pinball-gba/zigzagoon.png" alt="Zigzagoon"></div>
                </td>
                <td>Zigzagoon</td>
-               <td>2 (non-Rare & dex complete)</td>
+               <td>2 (Common & evo line caught)</td>
                <td>~5.7%</td>
             </tr>
             <tr class="light-false">
@@ -260,7 +291,7 @@
                   <div class="flex-img"><img src="../../../Resources/images/pinball-icons/pinball-gba/silcoon.png" alt="Silcoon"></div>
                </td>
                <td>Silcoon</td>
-               <td>10 (non-Rare & dex not complete)</td>
+               <td>10 (Common & not caught)</td>
                <td>~28.5%</td>
             </tr>
             <tr class="light-true">
@@ -268,7 +299,7 @@
                   <div class="flex-img"><img src="../../../Resources/images/pinball-icons/pinball-gba/cascoon.png" alt="Cascoon"></div>
                </td>
                <td>Cascoon</td>
-               <td>10 (non-Rare & dex not complete)</td>
+               <td>10 (Common & not caught)</td>
                <td>~28.5%</td>
             </tr>
             <tr class="light-false">
@@ -276,7 +307,7 @@
                   <div class="flex-img"><img src="../../../Resources/images/pinball-icons/pinball-gba/duskull.png" alt="Duskull"></div>
                </td>
                <td>Duskull</td>
-               <td>2 (non-Rare & dex complete)</td>
+               <td>2 (Common & evo line caught)</td>
                <td>~5.7%</td>
             </tr>
             <tr class="light-true">
@@ -284,12 +315,13 @@
                   <div class="flex-img"><img src="../../../Resources/images/pinball-icons/pinball-gba/kecleon.png" alt="Kecleon"></div>
                </td>
                <td>Kecleon</td>
-               <td>1 (Rare & dex not complete & no Rayquaza)</td>
+               <td>1 (Common, not caught, & no encounter boost)</td>
                <td>~2.8%</td>
             </tr>
          </tbody>
       </table>
       <p>The percentages are calculated by adding up the weight values, and then dividing the Pokémon's individual weight by the total weight (in this case 35).</p>
+      <p>Latios, Latias, and Pichu are exempt from this weighting system. More details are given on the <a href="special-encounters.html">Special Encounters</a> page, but the gist of it is that the game will check for these three before doing any other calculations. Latios and Latias naturally have a 1% chance of appearing, and Pichu has a 2% chance. If the player has defeated Rayquaza at least once, Latios and Latias have their chance raised to 2%, and Pichu has its rate lowered to 1% (possibly due to a bug).</p>
       <h3><u>Locations</u></h3>
       <h4>Both Fields</h4>
       <p>The Jirachi Arrival slot machine option is only available in the Ruins location, in both Ruby and Sapphire fields.</p>
