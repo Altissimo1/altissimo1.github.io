@@ -25,7 +25,7 @@
       <p>Pichu is obtainable as a Hatch Mode catch on either field. It will only be a Hatch option once the player has captured 5 Pokémon in the current game (indicated by the number at the bottom of the screen). Pichu is also generated as the Hatch encounter separately from all other Hatch Pokémon. The mechanics for encountering Pichu work as follows:</p>
       <ol>
          <li>The game first generates a random number between 0 and 99, inclusive.</li>
-         <li>The game will divide this number by 50 and take the remainder. If the player has beaten Rayquaza in the current game, or is using an e-Reader card to increase special Pokémon's encounter rates, then the game will divide by 100 instead.</li>
+         <li>The game will divide this number by 50 and take the remainder. If the player has beaten Rayquaza in the current game, or is using the 'Encounter Rate Up' e-Reader card, then the game will divide by 100 instead.</li>
          <li>If the last Pokémon species encountered via egg is Pichu, the game will manually set the remainder value to 1, regardless of what it actually is. (This has the effect of preventing the player from being able to encounter two Pichu in a row.)</li>
          <li>The game will check if the remainder value is equal to 0 and the number of caught Pokémon is 5. If both are true, the egg species is set to Pichu.</li>
          <li>Otherwise, the game will generate an egg Pokémon normally based on the mechanics described on the Locations page.</li>
@@ -33,25 +33,23 @@
       <p>In order for the remainder of 0 divided by 50 to be 0, only 2 values of the possible 100 work: 0 and 50 itself. This means that Pichu has a 2% chance before the player has defeated Rayquaza. After defeating Rayquaza, 100 is used instead of 50, and only 1 value will result in a 0 remainder: 0 itself, meaning Pichu has a 1% chance after defeating Rayquaza.</p>
       <p>This information is based on my interpretation of the still-in-progress pret decompilation project for Pinball Ruby & Sapphire; the relevant part of the code is located <a href="https://github.com/pret/pokepinballrs/blob/5c35766f7f0aabd9aa76e88d72d3df846f845096/src/rom_31F6C.c#L298">here</a>. If I am misunderstanding what I'm reading, please <a href="../../../Maintenance/contact.html">contact me</a> to issue a correction.</p>
       <h4>Special Catch Mode Encounters (Aerodactyl, Chikorita, Totodile, Cyndaquil, Latios, and Latias)</h4>
-      <p>There is a group of six special Pokémon, consisting of the Lati twins, the Johto starters, and Aerodactyl, who are all generated using the same function in the code. Because they are all generated the same way, they are all discussed in this section. <strong>However, the Johto starters and Aerodactyl <em>cannot</em> be obtained without the use of an e-Reader card or hacking the game.</strong> <a href="https://www.youtube.com/watch?v=qMn8j6u6uvA">This video</a> by gmedley goes into the details and shows off the process of catching them, and it helped me understand how to interpret the code such that I can provide the description below explaining why.</p>
-      <p>When the player enters Catch Mode, the game has a chance of generating a special Catch Mode encounter instead of a normal encounter. Whether a special encounter is used is determined through the following process:</p>
-      <ol>
-         <li>The game first generates a random number between 0 and 99, inclusive.</li>
-         <li>The game will divide this number by 100 and take the remainder. If the player has beaten Rayquaza in the current game, or is using an e-Reader card to increase special Pokémon's encounter rates, then the game will divide by 50 instead.</li>
-         <li>If the player has fewer than 100 Pokémon registered as caught in the Pokédex, the game will manually set the remainder value to 1, regardless of what it actually is. (This has the effect that special encounters will never be generated if the player has caught fewer than 100 Pokémon.)</li>
-         <li>The game will check if the remainder value is equal to 0 and the number of caught Pokémon is 5. If both are true, the game will decide to use a special encounter.</li>
-      </ol>
-      <p>In order for the remainder of 0 divided by 100 to be 0, only 1 value of the possible 100 works: 0 itself. This means that any special encounter has a 1% chance before the player has defeated Rayquaza. After defeating Rayquaza, 50 is used instead of 100, and 2 values will result in a 0 remainder: 0 and 50, meaning special encounters have a 2% chance after defeating Rayquaza.</p>
-      <p>Once the game decides to use a special encounter, it will select which encounter to use in the following manner:</p>
-      <ol>
-         <li>The game starts by creating a pool of special Pokémon that can possibly be encountered by the player. It will add to this list as it checks each Pokémon in turn.</li>
-         <li>The game will check Aerodactyl, Chikorita, Totodile, and Cyndaquil, in that order. It will first check if the Pokémon has any entry in the Pokédex, whether seen or caught. If it does, the game will add it to the list. If the Pokémon has been seen but not caught, the game will set the species of the upcoming encounter to that Pokémon.</li>
-         <li>The game will then check Latios and Latias. It will first check the board: if it is Ruby, Latios is added to the list, and if it is Sapphire, Latias is added. If the Pokémon has been seen but not caught, the game will set the species of the upcoming encounter to that Pokémon.</li>
-         <li>If, at this point, the list of Pokémon has been populated <em>but</em> an encounter has not yet been chosen, the game will choose a random Pokémon from the list to spawn. (This is only possible if the player has seen <em>and</em> caught all special Pokémon or none of them.)</li>
-      </ol>
-      <p>As mentioned above, the game will check each special encounter to see if it has been seen but not caught, and automatically set the species to spawn if this is true. The game will also overwrite its own setting if it encounters another Pokémon the player has seen but not caught. For example, if the player has seen but not caught Aerodactyl, the game will set Aerodactyl as the Pokémon to appear, but if the game gets to Totodile and sees it's also seen but not caught, then Totodile overwrites Aerodactyl. Therefore, if the player has seen but not caught all special Pokémon, they will encounter them in reverse order from how they are checked in the code: Latias/Latios, Cyndaquil, Totodile, Chikorita, and Aerodactyl, until all of them have been caught.</p>
-      <p>The game requires the player to have registered the Johto starters and Aerodactyl as "seen" in the Pokédex in order to possibly spawn them. However, there is no way to register them as "seen" without the use of e-Reader cards or hacking. <strong>This means that the Johto starters and Aerodactyl are impossible to acquire without hacking or using the e-Reader to add them to the Pokédex.</strong></p>
-      <p>According to WhenGryphonsFly on the pret project, there is also an e-Reader card that can force the Johto starters and Aerodactyl to be the next Pokémon generated by the game, skipping this entire process. There is not a card that does the same for Latias or Latios.</p>
-      <p>This information is based on my interpretation & discussions about the still-in-progress pret decompilation project for Pinball Ruby & Sapphire; the relevant part of the code is located <a href="https://github.com/pret/pokepinballrs/blob/5c35766f7f0aabd9aa76e88d72d3df846f845096/src/rom_31F6C.c#L156">here</a>. If I am misunderstanding what I'm reading, please <a href="../../../Maintenance/contact.html">contact me</a> to issue a correction.</p>
+	  <p><em>Text of this section largely written by Retn of the pret discord and modified by me. Used with permission.</em></p>
+	  <p>A special encounter is checked for every time the player enters Catch Mode. To be able to trigger a special encounter, the following conditions must be met:</p>
+	  <ol>
+		<li>The player must have 100 Pokémon registered as 'caught' in the Pokédex.</li>
+		<li>The player must have caught 5 or more Pokémon in the current game (using the number at the bottom of the screen).</li>
+	  </ol>
+	  <p>If both conditions are met, then a special encounter has a 1% chance of being selected in Catch Mode. This chance is raised to 2% if the player has beaten Rayquaza in the current game or if they are using the 'Encounter Rate Up' e-Reader card.</p>
+	  <p>If a special encounter is chosen, the game will select from the available Pokémon: Aerodactyl, Chikorita, Totodile, Cyndaquil, Latios (Ruby board), and Latias (Sapphire board). If the player has not yet registered all available special encounters as 'caught', the game will select the first species that has not yet been caught, in the order listed below:</p>
+	  <ol>
+		<li>Latios/Latias</li>
+		<li>Cyndaquil</li>
+		<li>Totodile</li>
+		<li>Chikorita</li>
+		<li>Aerodactyl</li>
+	  </ol>
+	  <p>If all available special encounters have been caught, the species selected is random.</p>
+	  <p><strong>Note</strong>: Aerodactyl, Chikorita, Totodile, and Cyndaquil require the player to have registered them as 'seen' or 'caught' in order for them to be available as special encounters. The only way to register them as 'seen' is to use the 'Special Guests' e-Reader card, or to use link play to connect to someone else who has them registered. <strong>Therefore, these four Pokémon are completely inaccessible without the use of the e-Reader card, link play, or hacking.</strong></p>
+	  <p>If the 'Special Guests' e-Reader card is used, the first catch the player makes on the board is guaranteed to be one of these four Pokémon, selected at random by the game. If the player has registered at least one as 'caught' but not all four, the game will only select a Pokémon that the player has not yet caught. Otherwise, if the player has not caught any or has caught all four, they have an equal chance of being selected.</p>
    </body>
 </html>
