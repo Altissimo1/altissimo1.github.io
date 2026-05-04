@@ -53,6 +53,16 @@ var requests = [
 	{value: "Side Mission 041: Watch Out for Traps", data: "request-41"},
 	{value: "Side Mission 042: A Fan of Fairy Types", data: "request-42"},
 	{value: "Side Mission 043: A Big Weedle Problem", data: "request-43"},
+	{value: "Side Mission 044: Vanillite's Fragrant Snow", data: "request-44"},
+	{value: "Side Mission 045: On Maintenance Duty", data: "request-45"},
+	{value: "Side Mission 046: Pidgeot Soaring High", data: "request-46"},
+	{value: "Side Mission 047: Becoming a Furfrou Trimmer", data: "request-47"},
+	{value: "Side Mission 048: All Tied Up", data: "request-48"},
+	{value: "Side Mission 049: Hit and Heal", data: "request-49"},
+	{value: "Side Mission 050: Just a Few Questions For You...", data: "request-50"},
+	{value: "Side Mission 051: Floette Frolicking with Flowers", data: "request-51"},
+	{value: "Side Mission 052: Numel Frozen Solid", data: "request-52"},
+	{value: "Side Mission 053: The Most Electrifying Eelektrik", data: "request-53"},
 ];
 
 
