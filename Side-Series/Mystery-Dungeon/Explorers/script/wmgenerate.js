@@ -603,7 +603,7 @@ WMSGen = {
 
 		// Dungeon/floor
 		var dungeon = parseInt(this.getComboBoxValue("dungeonBox"), 10);
-		struct.dungeon = dungeon || 1;
+		struct.dungeon = dungeon;
 		var floor = parseInt(this.form.floor.value, 10);
 		struct.floor = (floor >= 0 && floor <= 99) ? floor : 1;
 

@@ -63,6 +63,7 @@ var requests = [
 	{value: "Side Mission 051: Floette Frolicking with Flowers", data: "request-51"},
 	{value: "Side Mission 052: Numel Frozen Solid", data: "request-52"},
 	{value: "Side Mission 053: The Most Electrifying Eelektrik", data: "request-53"},
+	{value: "Side Mission 054: Get ENERGIZED!", data: "request-54"},
 ];
 
 
