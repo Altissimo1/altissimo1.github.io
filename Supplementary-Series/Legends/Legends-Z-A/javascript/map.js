@@ -95,6 +95,7 @@ $(function() {
 			"sunStone": new ImageIcon({iconUrl: 'images/item-icons/sun-stone.png'}),
 			"moonStone": new ImageIcon({iconUrl: 'images/item-icons/moon-stone.png'}),
 			"pearlString": new ImageIcon({iconUrl: 'images/item-icons/pearl-string.png'}),
+			"seedOfMastery": new ImageIcon({iconUrl: 'images/item-icons/seed-of-mastery.png'}),
 		};
 
 		// Fetch the item data from the JSON
