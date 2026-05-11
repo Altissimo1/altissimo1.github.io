@@ -64,6 +64,9 @@ var requests = [
 	{value: "Side Mission 052: Numel Frozen Solid", data: "request-52"},
 	{value: "Side Mission 053: The Most Electrifying Eelektrik", data: "request-53"},
 	{value: "Side Mission 054: Get ENERGIZED!", data: "request-54"},
+	{value: "Side Mission 055: Carvanha, Menace of the Deep!", data: "request-55"},
+	{value: "Side Mission 056: We'll Just Muscle Our Way Through!", data: "request-56"},
+	{value: "Side Mission 057: The Camerupt Entrepreneur", data: "request-57"},
 ];
 
 
