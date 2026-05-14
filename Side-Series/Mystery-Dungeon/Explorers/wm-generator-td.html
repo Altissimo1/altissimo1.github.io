@@ -1,0 +1,642 @@
+<html><head><title>Wonder Mail Generator</title></head><body>
+
+<div id="contentarea">
+
+
+<script src="script/intl/items-en.js" type="text/javascript"></script>
+<script src="script/intl/dungeons-en.js" type="text/javascript"></script>
+<script src="script/intl/pokemon-en.js" type="text/javascript"></script>
+<script  type="text/javascript">
+var FriendRescue="Friend Rescue"
+var RescueType0="Help me."
+var RescueType1="Find XXPKMN."
+var RescueType2="Escort to XXPKMN."
+var RescueType3="Find XXITEM."
+var RescueType4="Deliver XXITEM."
+var BasementFloor="BXXF"
+var AboveGroundFloor="XXF"
+var SpecialMission="Special mission"
+var ChooseClient="Please choose a client."
+var ChooseTarget="Please choose a target Pokemon."
+var ChooseItem="Please choose an item to find or deliver."
+var ItemNotFound="The XX can't be found in the YY dungeon."
+var FriendAreaError="To receive a Friend Area reward, the mission must have at least D difficulty."
+var InvalidPassword="The password is invalid."
+var FriendAreaReward="Friend Area [XX]"
+var NearPlace="Near XX"
+var DifficultyLine="Difficulty:"
+var PlusReward="XX + ?"
+var PlusRewardBrackets="XX + ? [YY]"
+var RewardLine="Reward:"
+var PlaceLine="Place:"
+var ClientLine="Client:"
+var ObjectiveLine="Objective:"
+var WonderMailLine="Wonder Mail:"
+</script>
+<script src="script/sosmail.js" type="text/javascript"></script>
+<script src="script/dungitems.js" type="text/javascript"></script>
+<script src="script/diff.js" type="text/javascript"></script>
+
+<script type="text/javascript">//<![CDATA[
+
+var AboveGround=[
+0,0,1,1,0,1,1,1,0,1,1,1,1,1,1,0,0,1,1,0,0,0,
+1,0,0,0,0,0,0,1,0,1,0,1,1,1,0,1,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,1,0
+]
+function IsAboveGround(d){
+ if(d>=AboveGround.length)return 1
+ return AboveGround[d]
+}
+function showitems(name){
+ document.write("<select name=\""+name+"\">");
+ for(var i=0;i<items.length;i++){
+  document.write("<option value=\"\">"+items[i]+" ["+i.toString(16)+"]</option>");  
+ } 
+ document.write("</select>");
+}
+
+function entrytopass(x){
+ x=x.replace(/[\n\s\r\'\"]/g,"").toUpperCase()
+ return x
+}
+
+
+function formatpass(x){
+ x=entrytopass(x)
+ return x.substr(0,4)+" "
+       +x.substr(4,4)+" "
+       +x.substr(8,4)+"\r\n"
+       +x.substr(12,4)+" "
+       +x.substr(16,4)+" "
+       +x.substr(20,4)+"\r\n"
+}
+
+var debug=0
+var floors=
+"030401060901080C09050E050B050807"+
+"010A09010F0A0A010B0D01080F080601"+
+"080C140905010F08010D0A010D01140A"+
+"04011412040103010301040105011311"+
+"0F09010F0E011E011331010901130113"+
+"011D0131011D01080D06050A05191414"+
+"1212194B282863356301323232323232"+
+"32323232323232323232323232323232"
+
+onload=function(){
+ showfloors(document.s)
+ showfind2(document.s)
+}
+
+
+function isbaditem(x){
+ var baditems=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 43, 68, 98, 104, 105,
+ 106, 107, 113, 114, 116, 117, 118, 137, 138, 166, 167, 168, 169, 170, 171, 172, 175,
+ 176, 177, 178, 179, 180, 181, 183, 184, 185, 187, 194, 198, 205, 219, 224, 226, 236, 
+258, 259, 293, 294, 295, 296, 297, 298, 299, 300, 324, 339, 345, 349, 353, 360, 361, 
+363, 769, 825, 998, 999]
+ for(var i=0;i<baditems.length;i++){
+  if(x==baditems[i])return 1
+//  if(items[i].charAt(0)=="$")return 1
+ }
+ return 0
+}
+
+function numfloors(x){
+ if(x>=0x8b)return 0x31
+ if(x==0x8a)return 2
+ if(x>=0x80 && x<=0x89)return 6
+ return c2c(floors,x)+1
+}
+badfloors=[]
+badpokemon=[0]
+fullybadpokemon=[0, 384, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 
+546, 547, 548, 549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 
+565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, 579, 580, 581, 582, 583, 
+584, 585, 586, 587, 588, 589, 590, 591, 592, 593, 594, 595, 596, 597, 598, 599, 600, 629, 630,
+ 631, 632, 633, 634, 681, 682, 700, 701, 706, 707, 713, 715, 720, 721, 724, 728, 732, 737, 744, 
+745, 746, 750, 751, 801, 802, 803, 804, 805, 806, 807, 808, 809, 810, 811, 812, 813, 814, 815, 
+816, 817, 818, 819, 820, 821, 822, 823, 824, 825, 826, 827, 828, 860, 863, 864, 865, 868, 869, 
+870, 871, 872, 876, 877, 878, 879, 920, 941, 942, 965, 966, 971, 972, 984, 1006, 1007, 1008,
+ 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1050, 1051, 
+1052, 1053, 1055, 1078, 1079, 1082, 1104, 1116, 1117, 1120, 1121, 1122, 1123, 1124, 1125, 1126, 
+1128, 1129, 1130, 1131, 1132, 1133, 1134, 1135, 1136, 1137, 1138, 1139, 1140, 1141, 1142, 1143,
+ 1144, 1145, 1146, 1147, 1148, 1149, 1150, 1151, 1152]
+function isbadfloor(dungeon,floor){
+ for(var i=0;i<badfloors.length;i++){
+  if(dungeon==badfloors[i][0] && floor==badfloors[i][1])return 1
+ }
+ return 0
+}
+
+function isbaddungeon(x){
+ if(x>0x80||x==0)return 0
+ if(x>floors.length)return 0
+ if(c2c(floors,x)<=0)return 0
+ return 0
+}
+function getspecies(id){
+ if(id==0x17B||id==0x17C||id==0x17D||id==0x17E)
+  return 0x17B
+ if(id==0x1A3||id==0x1A4||id==0x1A5)
+  return 0x17B
+ if(id==0x3D4||id==0x3D5)
+  return 0x3D3
+ if((id>=0xca&&id<=0xe4))
+  return 0xc9
+ if(id==0x3D6)return 0x3D3
+ if(id==0x424)return 0x424
+ if(id==0x425)return 0x424
+ if(id==0x1CD)return 0x1CC
+ if(id==0x1CD)return 0x1CC
+ return id
+}
+
+function isbadpokemon(x){
+ var species=getspecies(x)
+ if(species!=x){
+  return 2
+ }
+ if(species>=0x482||species==0)
+  return 2
+ if(species>=0x216&&species<=0x227)
+  return 2
+ if(species>=0x216+600&&species<=0x227+600)
+  return 2
+ if(species>=fullybadpokemon[0]){
+  for(var i=0;i<fullybadpokemon.length;i++){
+   if(species==fullybadpokemon[i])return 2
+  }
+ }
+ for(var i=0;i<badpokemon.length;i++){
+  if(species==badpokemon[i])return 1
+ }
+ return 0
+}
+
+function option(x){
+ return parseInt(x[x.selectedIndex].value)
+}
+
+function radio(x){
+ for(var i=0;i<x.length;i++){
+  if(x[i].checked)return parseInt(x[i].value)
+ }
+ return 0
+}
+
+
+function optionarray(x){
+ if(x.selectedIndex<0){
+  return []
+ } else {
+  var v=x[x.selectedIndex].value.split(",")
+  for(var i=0;i<v.length;i++){
+   v[i]=parseInt(v[i])
+  }
+  return v
+ }
+}
+
+function showfloors(f){
+ var dungeon=option(f.dungeon)
+ var numf=numfloors(dungeon);
+ f.floor.options.length=0
+ for(var i=1;i<numf;i++){
+  f.floor.options[i]=new Option(i+"",i+"")
+ }
+}
+
+function showdungeon(name){
+ dw="<select name=\""+name+"\" onchange=\"showfloors(this.form);updateform(this.form);\">";
+ for(var i=0;i<dungeons.length;i++){
+  if(!isbaddungeon(i)){
+   dw+="<option value=\""+i+"\">"+dungeons[i]+"</option>";  
+  }
+ } 
+ dw+="</select>";
+ document.write(dw)
+}
+
+function pkmnsort(a,b){
+ if(a[1]==b[1])return 0
+ return (a[1]<b[1])?-1:1
+}
+
+function showpkmnhtml(level){
+ if(level==null)level=2
+ var poke=[]
+ dw=""
+ for(var i=0;i<pokemon.length;i++){
+  if(i==0||isbadpokemon(i)<level||isbadpokemon(i+600)<level){
+   poke[poke.length]=[i,pokemon[i]]
+  }
+ }
+ poke=poke.sort(pkmnsort)
+ for(var i=0;i<poke.length;i++){
+  dw+="<option value=\""+poke[i][0]+"\">"+poke[i][1]+"</option>";  
+ } 
+ dw+="</select>";
+ return dw
+}
+
+function showpkmn(name,level){
+ dw="<select name=\""+name+"\">";
+ dw+=showpkmnhtml(level)
+ dw+="</select>"
+ document.write(dw)
+}
+
+function showpkmn2(elem,level){
+ if(level==null)level=2
+ var poke=[]
+ oldsel=option(elem)
+ for(var i=0;i<pokemon.length;i++){
+  if(i==0||isbadpokemon(i)<level||isbadpokemon(i+600)<level){
+   poke[poke.length]=[i,pokemon[i]]
+  }
+ }
+ oldlength=elem.options.length
+ selindex=-1
+ if(oldlength!=poke.length){
+  for(var i=0;i<poke.length;i++){
+   elem.options[i]=new Option(poke[i][1]+"",poke[i][0]+"")
+   if(poke[i][0]==oldsel){
+    selindex=i
+   }
+  }
+ }
+ if(oldlength!=poke.length){
+  elem.options.length=poke.length
+ }
+ if(selindex>=0){
+  elem.options.selectedIndex=selindex
+ }
+}
+
+function showareas(name){
+ document.write("<select name=\""+name+"\">");
+ document.write("<option value=\"-1\">\-\-\-\-\-\-</a>");
+ for(var i=0;i<friendareas.length;i++){
+  if(i==10||i==14||i==35||i==36){
+   document.write("<option value=\""+i+"\">"+friendareas[i]+"</option>");  
+  }
+ } 
+ document.write("</select>");
+}
+
+function showfind2(f){
+ var dungeon=option(f.dungeon)
+ f.item.options.length=0
+ var len=0
+ for(var i=0;i<items.length;i++){
+  if(!isbaditem(i)){
+   if(f.type.selectedIndex!=3||true/*ItemInDungeon(i,dungeon)*/){
+    f.item.options[len++]=new Option(items[i],i+"")
+   }
+  }
+ }
+}
+
+function updateform(f){
+// showfind2(f)
+ if(f.type.selectedIndex==11){
+  showpkmn2(f.client,2)
+ } else {
+  showpkmn2(f.client,1)
+ }
+}
+
+function updateform2(f){
+ showfind2(f)
+}
+
+function showrewards(name){
+ document.write("<select name=\""+name+"\">");
+ for(var i=0;i<items.length;i++){
+  if(!isbaditem(i)){
+   document.write("<option value=\""+i+"\">"+items[i]+"</option>");  
+  }
+ } 
+ document.write("</select>");
+}
+
+function setpass(f,pass){
+ var headinfo=optionarray(f.mhead)
+ var line1=optionarray(f.mline1)
+ PassSetFlavorText(pass,headinfo[0],headinfo[1],headinfo[2],
+   line1[2]);
+}
+
+/*
+recr
+C4RF CMYS 5NN6
+4RTJ 8Y#- 1SXC
+
+Y1TX 7T+% T97%
+9#5# %002 3JPS
+outlaw
+J7J& F@TF 7MH7
+52+3 =P@7 +66Y
+with egg
+7J-2 #PC& &9#7
+73C9 1#QF FQ&M
+
+*/
+
+function selectedpoke(selbox,chkbox){
+ var v=option(selbox)
+ if(chkbox && chkbox.checked && v>0 && v<0x258)
+  v+=0x258
+ return v
+}
+
+function genwonder(f){
+ var pass=[]
+ for(var i=0;i<26;i++){
+  pass[i]=0
+ }
+ pass[0]=4
+ pass[1]=[0,1,2,3,3,3,3,4,5,6,6,7,8,8,9,10,12][f.type.selectedIndex]
+ pass[4]=option(f.dungeon)
+ pass[5]=option(f.floor)
+ pass[2]=[0,0,0,0,1,2,3,0,0,0,4,0,0,15,0, 0, 0][f.type.selectedIndex]
+ pass[3]=0
+ if(isbadfloor(pass[4],pass[5])){
+  alert("You can't generate a Wonder Mail in the specified dungeon and floor.")
+  return 0 
+ }
+/*
+FN01HWN-00%F 8678 +XY@ &%#3
+*/
+ if(pass[1]==12){
+  if(pass[4]==77) // Mt. Avalanche
+   pass[2]=1
+  else if(pass[4]==79) // Giant Volcano
+   pass[2]=2
+  else if(pass[4]==75) // Shimmer Desert
+   pass[2]=3
+  else if(pass[4]==73) // Bottomless Sea
+   pass[2]=4
+  else if(pass[4]==81) // World Abyss
+   pass[2]=5
+  else if(pass[4]==85) // Mystery Jungle
+   pass[2]=6
+  else if(pass[4]==83) // Sky Stairway
+   pass[2]=7
+  else {
+   alert("You can't generate a Wonder Mail in the specified dungeon.  Only the following dungeons are valid:\r\n"+
+         "Mt. Avalanche, Giant Volcano, Shimmer Desert, Bottomless Sea, World Abyss, Mystery Jungle, Sky Stairway")
+   return 0
+  }
+ }
+ if(debug){
+  pass[8]=0xFF
+  pass[9]=0xFF
+  pass[10]=0xFF
+ } else {
+  pass[8]=Math.floor(Math.random()*255)
+  pass[9]=Math.floor(Math.random()*255)
+  pass[10]=Math.floor(Math.random()*255)
+ }
+ pass[22]=radio(f.restrict)
+ if(pass[22]==1){
+  pass[22]=0
+  pass[24]=option(f.restricttype)
+ } else if(pass[22]==2){
+  pass[22]=1
+  poke=option(f.restrictpkmn)
+  if(poke==0){
+   alert("Please choose a restriction Pokemon.")
+   return 0
+  }
+  pass[24]=poke&0xFF
+  pass[25]=(poke>>8)&0xFF
+ }
+// setpass(f,pass)
+ var client=selectedpoke(f.client,f.clientfemale)
+ var otherpoke=selectedpoke(f.poke,f.pokefemale)
+ if(client==0){
+  alert(ChooseClient)
+  return 0
+ }
+ if(isbadpokemon(client)>0 && pass[1]!=12){
+  alert("The chosen client and gender is invalid for Wonder Mail.")
+  return 0
+ }
+ pass[12]=client&0xFF
+ pass[13]=(client>>8)&0xFF
+ if(pass[1]==1||pass[1]==2||pass[1]==8||pass[1]==9||pass[1]==10||pass[1]==12||pass[1]==13){
+  var poke=otherpoke
+  if(poke==0){
+   alert(ChooseTarget)
+   return 0
+  }
+  if(isbadpokemon(poke)>0){
+   if(pass[1]!=12){
+    alert("The chosen target Pokemon is invalid for Wonder Mail.  Passwords involving this Pokemon would either be incorrect or freeze the game.")
+    return 0
+   }
+  }
+  pass[14]=poke&0xFF
+  pass[15]=(poke>>8)&0xFF
+ } else {
+  pass[14]=pass[12]
+  pass[15]=pass[13]
+ }
+ if(pass[1]==4||pass[1]==6||pass[1]==7||pass[1]==9){
+  item=option(f.item)
+  if(item==0){
+   alert(ChooseItem)
+   return 0
+  } else if(pass[1]==3&&false){
+   alert(ItemNotFound.replace("XX",items[item]).replace("YY",dungeons[pass[4]]))
+   return 0
+  }
+  pass[16]=item&0xFF
+  pass[17]=(item>>8)&0xFF
+ } else {
+  pass[16]=0x10
+  pass[17]=0
+ }
+ if(f.rewardtype.selectedIndex==3){
+  pass[18]=6
+  reward=selectedpoke(f.client,f.clientfemale)
+  pass[20]=reward&0xFF
+  pass[21]=(reward>>8)&0xFF
+ } else if(f.rewardtype.selectedIndex==4){
+  pass[18]=5
+ } else if(
+   (f.rewardtype.selectedIndex==0||f.rewardtype.selectedIndex==1) &&
+   f.reward.selectedIndex>0
+ ){
+/*
+0=Money
+1=Money + ?
+2=Item
+3=Item + ?
+*/
+  pass[18]=(f.rewardtype.selectedIndex==0)?1:2
+  reward=option(f.reward)
+  pass[20]=reward&0xFF
+  pass[21]=(reward>>8)&0xFF
+ } else {
+  pass[18]=0
+  pass[20]=0
+  pass[21]=0
+ }
+ var wonder=datatowonderpass(pass)
+ f.wonder.value=formatpass(wonder)
+}
+
+function decwonder(f){
+ var x=entrytopass(f.wonder.value)
+ var pass=[]
+ if(!convertwonderpass(x,pass)
+//   ||pass[0]!=4
+//   ||pass[1]>4
+ ){
+  alert(InvalidPassword)
+ } else {
+  x=datatowonderpass(pass)
+  f.wonder.value=formatpass(x)
+  if(debug){
+   f.data.value=tostr(pass)
+  } else {
+  }
+ }
+}
+
+function encwonder(f){
+ var pass=f.data.value.split(",")
+ for(var i=0;i<pass.length;i++){//>
+  pass[i]=parseInt(pass[i],16)
+ }
+ x=datatowonderpass(pass)
+ f.wonder.value=formatpass(x)
+ if(debug){
+  f.data.value=tostr(pass)
+  alert(maildata(pass))
+ }
+}
+//job lists: 22af3e0
+//todo: eggs
+//]]>
+</script>
+<p><em>Code for this page provided to me by SaltedNeos.</em></p>
+<p>Use this tool to generate a Wonder Mail for an exploration mission.</p>
+<p>If an egg reward is chosen, it will be of a random species on the dungeon floor chosen. The species can't be chosen using Wonder Mail, unfortunately.</p>
+<p>From <a href="http://www.upokecenter.com/">The Ultimate Pokemon Center</a>.</p>
+<form name="s" action="javascript:void(null)">
+Mission Type:<br/>
+<select name="type" onchange="updateform(this.form);">
+<option value="">Help me</option>
+
+<option value="">Rescue someone</option>
+<option value="">Escort</option>
+<option value="">Explore</option>
+<option value="">Explore (Sealed Chamber)</option>
+<option value="">Explore (Golden Chamber)</option>
+<option value="">Explore (New Dungeon)</option>
+<option value="">Prospect item</option>
+<option value="">Guide someone</option>
+<option value="">Find item</option>
+<option value="">Find item (Gabite Scale mission)</option>
+<option value="">Deliver item</option>
+<option value="">Search for someone</option>
+<option value="">Search for someone (Event type, freezes on console)</option>
+<option value="">Outlaw (Stolen item)</option>
+<option value="">Outlaw (Arrest)</option>
+<option value="">Special Search</option>
+</select><br/>
+Client:<br/>
+<script type="text/javascript"><!--
+showpkmn("client",1);
+//--></script>
+<input type="checkbox" name="clientfemale" id="clientfemale"/> <label for="clientfemale">Female [uncheck if male]</label>
+
+<br/>
+Other Pokemon:<br/>
+<script type="text/javascript">
+showpkmn("poke");
+</script>
+<input type="checkbox" name="pokefemale" id="pokefemale"/> <label for="pokefemale">Female [uncheck if male]</label>
+<br/>
+Dungeon:<br/>
+<script type="text/javascript"><!--
+showdungeon("dungeon");
+//--></script><br/>
+Floor:<br/>
+<select name="floor" onchange="">
+<option value=""></option></select><br/>
+
+Item to find/deliver:<br/>
+<select name="item" onchange="">
+<option value=""></option></select><br/>
+Reward type:<br/>
+<select name="rewardtype" onchange="updateform(this.form);">
+<option value="">Item and money</option>
+<option value="">Item</option>
+<!--option value="">Item and random other items</option-->
+<option value="">Money</option>
+<option value="">Recruit client</option>
+<option value="">Egg</option>
+
+</select><br/>
+Item reward:<br/>
+<script type="text/javascript"><!--
+showrewards("reward");
+//--></script>
+<!--
+Friend Area reward:<br/>
+<script type="text/javascript">
+showareas("area");
+</script><br/>
+--><br/>
+Restrictions:<br/>
+<input type="radio" name="restrict" checked="checked" id="restrict0" value="0"/><label for="restrict0"/>None</label><br/>
+<input type="radio" name="restrict" id="restrict1" value="1"/><label for="restrict1"/>With </label>
+<select name="restricttype">
+<option value="1">Normal</option>
+<option value="2">Fire</option>
+
+<option value="3">Water</option>
+<option value="4">Grass</option>
+<option value="5">Electric</option>
+<option value="6">Ice</option>
+<option value="7">Fighting</option>
+<option value="8">Poison</option>
+<option value="9">Ground</option>
+<option value="10">Flying</option>
+<option value="11">Psychic</option>
+
+<option value="12">Bug</option>
+<option value="13">Rock</option>
+<option value="14">Ghost</option>
+<option value="15">Dragon</option>
+<option value="16">Dark</option>
+<option value="17">Steel</option>
+</select><label for="restrict1"/>-type partner</label><br/>
+<input type="radio" name="restrict" id="restrict2" value="2"/><label for="restrict2"/>With </label>
+<script type="text/javascript"><!--
+showpkmn("restrictpkmn",1);
+//--></script><br/>
+
+<input type="button" value="Generate Wonder Mail" onclick="genwonder(this.form)"/><br/>
+Wonder Mail Password:<br/>
+<textarea name="wonder" cols="30" rows="5"></textarea><br/>
+<!---->
+<script type="text/javascript">
+ if(debug){
+  document.write('<input type="button" value="Decode Wonder Mail" onclick="decwonder(this.form)"/><br/>')
+  document.write('Wonder Mail Data:<br/><textarea name="data" cols="50" rows="5"></textarea><br/>')
+  document.write('<input type="button" value="Encode Wonder Mail" onclick="encwonder(this.form)"/><br/>')
+ }
+</script><br/>
+<!---->
+</form>
+
+</div>
+
+</body></html>
+
