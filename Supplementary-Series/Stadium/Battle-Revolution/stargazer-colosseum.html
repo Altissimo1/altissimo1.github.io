@@ -6,6 +6,9 @@
       <title>Stargazer Colosseum</title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../../../colors.js"></script>
+      <script>const STAT_TOGGLE_CONFIG = { defaultLevel: 50, showLevelWidget: false };</script>
+      <script src="../../../Resources/javascript/base-stats-gen4.js"></script>
+      <script src="../../../Resources/javascript/stat-toggle.js"></script>
       <link href="../../../common.css" id="common" rel="stylesheet">
       <link id="style" rel="stylesheet">
    </head>
@@ -16,9 +19,12 @@
       </div>
       <h4><a href="../../index.html">Supplementary Series Home</a> | <a href="../index.html">Stadium Series Home</a> | <a href="index.html">Battle Revolution Home</a></h4>
       <h2>Stargazer Colosseum</h2>
-      <p>This colosseum becomes available to the player after they clear <a href="courtyard-colosseum.html">Courtyard Colosseum</a>. In this colosseum, the player must defeat six Trainers, followed by the Colosseum Leader, in Knockout Battles.</p>
+      <p>In this colosseum, the player must defeat six Trainers, followed by the Pokétopia Master, in Knockout Battles. The six Trainers the player fights are identical to the Colosseum Leaders of <a href="main-street-colosseum.html">Main Street</a>, <a href="waterfall-colosseum.html">Waterfall</a>, Neon, Crystal, Magma, and Sunset Colosseums. The player can use a <a href="rentals.html">Rental Pass</a> with rental Pokémon or a custom Battle Pass with Pokémon from a connected copy of the DS games Diamond, Pearl, Platinum, HeartGold, and SoulSilver.</p>
       <p>The first time the player challenges this colosseum, they will have to face Double Battles, using the Level 30 Open ruleset.</p>
+      <p>After the colosseum has been completed for the first time, the type of battle used in this colosseum changes to Masters Battle, starting from Set 1. In Masters Battles, all battles are Double Battles, and the only level rule available is Level 50 All. In each set of Masters Battles, the player will fight three Trainers, followed by one of the Colosseum Masters from <a href="gateway-colosseum.html">Gateway Colosseum</a>, Sunny Park Colosseum, or Courtyard Colosseum, or Master of Masters Mysterial himself, all with new teams. The Pokémon used in these sets are not random and use specific IVs and Natures, unlike most other opposing Pokémon in the game. There are eight sets total. After completing a set, the player will gain access to the next set. If they wish, they can also choose to challenge previously-cleared sets. This is different from other colosseums, which prevent the player from returning to a previous rank once it is cleared.</p>
       <p>In Double Battles, the player and opponent will each enter with six Pokémon, and must choose four to participate in the battle with.</p>
+      <p>Completing Stargazer Colosseum for the first time unlocks the Level 50 All mode for all colosseums except Gateway, Sunny Park, Courtyard, and Stargazer itself. It also unlocks the Rental Battle ruleset for Gateway Colosseum, the Little Battle ruleset for Sunny Park Colosseum, and the Survival Battle ruleset for Courtyard Colosseum. At that time, the player will be prevented from returning to the previous rulesets on those three colosseums.</p>
+      <p>The Pokémon and Trainers used in all challenges at this Colosseum are the same every time, and are listed below.</p>
       <ul>
          <li><a href="#championship">Pokétopia Championship</a></li>
          <li><a href="#masters-1">Masters Battle Set 1</a></li>
@@ -39,9 +45,10 @@
          <input checked="checked" id="status-checkbox" name="status" type="checkbox" value="Show Status">
          <label for="status-checkbox"> Show status moves in a different color from damaging moves</label>
       </div>
+	  <div class="flex-row"><div id="stat-toggle-container"></div><span style="margin-left:1ex;"><em>(only for the Masters battles)</em></span></div>
       <div>
          <h3 id="championship"><u>Pokétopia Championship Trainers</u></h3>
-         <p>All Pokémon have random IVs, gender, and Nature. Hidden Power is therefore always a different type and power.</p>
+         <p>The Trainers and their Pokémon seen during the player's first challenge always have the same moves and item, but random IVs and Natures.</p>
          <h4>Colosseum Leader Taylor</h4>
          <table>
             <caption>Colosseum Leader Taylor</caption>
@@ -2056,9 +2063,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/wormadam-sandy.png" alt="Wormadam (Sandy)"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Wormadam (Sandy) ♀</td>
+                  <td class="light-false" rowspan="2" data-species="wormadam-sandy">Wormadam (Sandy) ♀</td>
                   <td class="light-false" rowspan="2">Anticipation</td>
-                  <td class="light-false" rowspan="2">Impish</td>
+                  <td class="light-false" rowspan="2" data-nature="impish">Impish</td>
                   <td class="light-false" rowspan="2">Quick Claw</td>
                   <td class="type-false ground" colspan="2">Earthquake</td>
                   <td class="type-false rock" colspan="2">Rock Blast</td>
@@ -2107,9 +2114,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/beautifly-f.png" alt="Beautifly"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Beautifly ♀</td>
+                  <td class="light-true" rowspan="2" data-species="beautifly">Beautifly ♀</td>
                   <td class="light-true" rowspan="2">Swarm</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Power Herb</td>
                   <td class="type-true bug" colspan="2">Bug Buzz</td>
                   <td class="type-true grass" colspan="2">Solarbeam</td>
@@ -2158,9 +2165,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/dustox-m.png" alt="Dustox"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Dustox ♂</td>
+                  <td class="light-false" rowspan="2" data-species="dustox">Dustox ♂</td>
                   <td class="light-false" rowspan="2">Shield Dust</td>
-                  <td class="light-false" rowspan="2">Bold</td>
+                  <td class="light-false" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-false" rowspan="2">Leftovers</td>
                   <td class="type-false poison status-move" colspan="2">Toxic</td>
                   <td class="type-false psychic status-move" colspan="2">Light Screen</td>
@@ -2209,9 +2216,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/kricketune-f.png" alt="Kricketune"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Kricketune ♂</td>
+                  <td class="light-true" rowspan="2" data-species="kricketune">Kricketune ♂</td>
                   <td class="light-true" rowspan="2">Swarm</td>
-                  <td class="light-true" rowspan="2">Impish</td>
+                  <td class="light-true" rowspan="2" data-nature="impish">Impish</td>
                   <td class="light-true" rowspan="2">Focus Band</td>
                   <td class="type-true bug" colspan="2">X-Scissor</td>
                   <td class="type-true normal status-move" colspan="2">Substitute</td>
@@ -2260,9 +2267,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/mothim.png" alt="Mothim"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Mothim ♂</td>
+                  <td class="light-false" rowspan="2" data-species="mothim">Mothim ♂</td>
                   <td class="light-false" rowspan="2">Swarm</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Focus Sash</td>
                   <td class="type-false flying" colspan="2">Air Slash</td>
                   <td class="type-false flying status-move" colspan="2">Roost</td>
@@ -2311,9 +2318,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/vespiquen.png" alt="Vespiquen"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Vespiquen ♀</td>
+                  <td class="light-true" rowspan="2" data-species="vespiquen">Vespiquen ♀</td>
                   <td class="light-true" rowspan="2">Pressure</td>
-                  <td class="light-true" rowspan="2">Calm</td>
+                  <td class="light-true" rowspan="2" data-nature="calm">Calm</td>
                   <td class="light-true" rowspan="2">Charti Berry</td>
                   <td class="type-true ghost status-move" colspan="2">Confuse Ray</td>
                   <td class="type-true bug" colspan="2">Attack Order</td>
@@ -2361,7 +2368,7 @@
             </tbody>
          </table>
          <h4>Master Class Kerry</h4>
-		 <table>
+         <table>
             <caption>Master Class Kerry</caption>
             <thead>
                <tr class="light-true">
@@ -2383,9 +2390,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/medicham-m.png" alt="Medicham"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Medicham ♂</td>
+                  <td class="light-false" rowspan="2" data-species="medicham">Medicham ♂</td>
                   <td class="light-false" rowspan="2">Pure Power</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Colbur Berry</td>
                   <td class="type-false normal" colspan="2">Natural Gift</td>
                   <td class="type-false normal status-move" colspan="2">Recycle</td>
@@ -2434,9 +2441,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/machamp.png" alt="Machamp"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Machamp ♂</td>
+                  <td class="light-true" rowspan="2" data-species="machamp">Machamp ♂</td>
                   <td class="light-true" rowspan="2">No Guard</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Iron Ball</td>
                   <td class="type-true dark" colspan="2">Fling</td>
                   <td class="type-true fighting" colspan="2">DynamicPunch</td>
@@ -2485,9 +2492,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/lopunny.png" alt="Lopunny"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Lopunny ♀</td>
+                  <td class="light-false" rowspan="2" data-species="lopunny">Lopunny ♀</td>
                   <td class="light-false" rowspan="2">Klutz</td>
-                  <td class="light-false" rowspan="2">Jolly</td>
+                  <td class="light-false" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-false" rowspan="2">Flame Orb</td>
                   <td class="type-false dark" colspan="2">Fling</td>
                   <td class="type-false normal" colspan="2">Dizzy Punch</td>
@@ -2536,9 +2543,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/quagsire-f.png" alt="Quagsire"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Quagsire ♀</td>
+                  <td class="light-true" rowspan="2" data-species="quagsire">Quagsire ♀</td>
                   <td class="light-true" rowspan="2">Damp</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Earth Plate</td>
                   <td class="type-true dark" colspan="2">Fling</td>
                   <td class="type-true ground" colspan="2">Earthquake</td>
@@ -2587,9 +2594,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Pelipper ♂</td>
+                  <td class="light-false" rowspan="2" data-species="pelipper">Pelipper ♂</td>
                   <td class="light-false" rowspan="2">Keen Eye</td>
-                  <td class="light-false" rowspan="2">Jolly</td>
+                  <td class="light-false" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-false" rowspan="2">King's Rock</td>
                   <td class="type-false dark" colspan="2">Fling</td>
                   <td class="type-false flying status-move" colspan="2">Roost</td>
@@ -2638,9 +2645,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/sudowoodo-f.png" alt="Sudowoodo"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Sudowoodo ♀</td>
+                  <td class="light-true" rowspan="2" data-species="sudowoodo">Sudowoodo ♀</td>
                   <td class="light-true" rowspan="2">Rock Head</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Hard Stone</td>
                   <td class="type-true dark" colspan="2">Fling</td>
                   <td class="type-true normal status-move" colspan="2">Protect</td>
@@ -2688,7 +2695,7 @@
             </tbody>
          </table>
          <h4>Joe's Groupie Kelsey</h4>
-		 <table>
+         <table>
             <caption>Joe's Groupie Kelsey</caption>
             <thead>
                <tr class="light-true">
@@ -2710,9 +2717,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/purugly.png" alt="Purugly"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Purugly ♀</td>
+                  <td class="light-false" rowspan="2" data-species="purugly">Purugly ♀</td>
                   <td class="light-false" rowspan="2">Own Tempo</td>
-                  <td class="light-false" rowspan="2">Jolly</td>
+                  <td class="light-false" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-false" rowspan="2">Scope Lens</td>
                   <td class="type-false normal" colspan="2">Fake Out</td>
                   <td class="type-false normal" colspan="2">Slash</td>
@@ -2761,9 +2768,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/drifblim.png" alt="Drifblim"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Drifblim ♂</td>
+                  <td class="light-true" rowspan="2" data-species="drifblim">Drifblim ♂</td>
                   <td class="light-true" rowspan="2">Unburden</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Lum Berry</td>
                   <td class="type-true ghost status-move" colspan="2">Destiny Bond</td>
                   <td class="type-true electric" colspan="2">Charge Beam</td>
@@ -2812,9 +2819,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/mr-mime.png" alt="Mr. Mime"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Mr. Mime ♂</td>
+                  <td class="light-false" rowspan="2" data-species="mr-mime">Mr. Mime ♂</td>
                   <td class="light-false" rowspan="2">Filter</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Expert Belt</td>
                   <td class="type-false normal status-move" colspan="2">Safeguard</td>
                   <td class="type-false psychic" colspan="2">Psychic</td>
@@ -2863,9 +2870,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/luxray-m.png" alt="Luxray"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Luxray ♂</td>
+                  <td class="light-true" rowspan="2" data-species="luxray">Luxray ♂</td>
                   <td class="light-true" rowspan="2">Intimidate</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Persim Berry</td>
                   <td class="type-true electric" colspan="2">Thunder Fang</td>
                   <td class="type-true ice" colspan="2">Ice Fang</td>
@@ -2914,9 +2921,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/girafarig.png" alt="Girafarig"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Girafarig ♂</td>
+                  <td class="light-false" rowspan="2" data-species="girafarig">Girafarig ♂</td>
                   <td class="light-false" rowspan="2">Inner Focus</td>
-                  <td class="light-false" rowspan="2">Jolly</td>
+                  <td class="light-false" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-false" rowspan="2">Sitrus Berry</td>
                   <td class="type-false normal status-move" colspan="2">Swagger</td>
                   <td class="type-false dark" colspan="2">Assurance</td>
@@ -2965,9 +2972,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/pachirisu-f.png" alt="Pachirisu"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Pachirisu ♀</td>
+                  <td class="light-true" rowspan="2" data-species="pachirisu">Pachirisu ♀</td>
                   <td class="light-true" rowspan="2">Run Away</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Focus Sash</td>
                   <td class="type-true dark status-move" colspan="2">Flatter</td>
                   <td class="type-true normal" colspan="2">Super Fang</td>
@@ -3015,7 +3022,7 @@
             </tbody>
          </table>
          <h4>Master Junior Joe</h4>
-		 <table>
+         <table>
             <caption>Master Junior Joe</caption>
             <thead>
                <tr class="light-true">
@@ -3037,9 +3044,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/infernape.png" alt="Infernape"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Infernape ♂</td>
+                  <td class="light-false" rowspan="2" data-species="infernape">Infernape ♂</td>
                   <td class="light-false" rowspan="2">Blaze</td>
-                  <td class="light-false" rowspan="2">Hasty</td>
+                  <td class="light-false" rowspan="2" data-nature="hasty">Hasty</td>
                   <td class="light-false" rowspan="2">BrightPowder</td>
                   <td class="type-false normal status-move" colspan="2">Protect</td>
                   <td class="type-false fighting" colspan="2">Focus Blast</td>
@@ -3088,9 +3095,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/torterra.png" alt="Torterra"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Torterra ♀</td>
+                  <td class="light-true" rowspan="2" data-species="torterra">Torterra ♀</td>
                   <td class="light-true" rowspan="2">Overgrow</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Yache Berry</td>
                   <td class="type-true ground" colspan="2">Earthquake</td>
                   <td class="type-true grass" colspan="2">Seed Bomb</td>
@@ -3139,9 +3146,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/empoleon.png" alt="Empoleon"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Empoleon ♀</td>
+                  <td class="light-false" rowspan="2" data-species="empoleon">Empoleon ♀</td>
                   <td class="light-false" rowspan="2">Torrent</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Leftovers</td>
                   <td class="type-false water" colspan="2">Surf</td>
                   <td class="type-false steel" colspan="2">Flash Cannon</td>
@@ -3190,9 +3197,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/pikachu-m.png" alt="Pikachu"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Pikachu ♂</td>
+                  <td class="light-true" rowspan="2" data-species="pikachu">Pikachu ♂</td>
                   <td class="light-true" rowspan="2">Static</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Light Ball</td>
                   <td class="type-true electric" colspan="2">Volt Tackle</td>
                   <td class="type-true steel" colspan="2">Iron Tail</td>
@@ -3241,9 +3248,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/aipom-m.png" alt="Aipom"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Aipom ♂</td>
+                  <td class="light-false" rowspan="2" data-species="aipom">Aipom ♂</td>
                   <td class="light-false" rowspan="2">Run Away</td>
-                  <td class="light-false" rowspan="2">Impish</td>
+                  <td class="light-false" rowspan="2" data-nature="impish">Impish</td>
                   <td class="light-false" rowspan="2">King's Rock</td>
                   <td class="type-false electric status-move" colspan="2">Thunder Wave</td>
                   <td class="type-false normal" colspan="2">Fury Swipes</td>
@@ -3292,9 +3299,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/staraptor-f.png" alt="Staraptor"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Staraptor ♀</td>
+                  <td class="light-true" rowspan="2" data-species="staraptor">Staraptor ♀</td>
                   <td class="light-true" rowspan="2">Intimidate</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Focus Sash</td>
                   <td class="type-true flying" colspan="2">Pluck</td>
                   <td class="type-true bug" colspan="2">U-turn</td>
@@ -3342,10 +3349,10 @@
             </tbody>
          </table>
       </div>
-	  <div>
+      <div>
          <h3 id="masters-2"><u>Masters Battle Set 2</u></h3>
-		 <h4>Master Class Erica</h4>
-		 <table>
+         <h4>Master Class Erica</h4>
+         <table>
             <caption>Master Class Erica</caption>
             <thead>
                <tr class="light-true">
@@ -3367,9 +3374,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/noctowl.png" alt="Noctowl"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Noctowl ♀</td>
+                  <td class="light-false" rowspan="2" data-species="noctowl">Noctowl ♀</td>
                   <td class="light-false" rowspan="2">Insomnia</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Wide Lens</td>
                   <td class="type-false psychic status-move" colspan="2">Hypnosis</td>
                   <td class="type-false flying status-move" colspan="2">Roost</td>
@@ -3418,9 +3425,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/carnivine.png" alt="Carnivine"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Carnivine ♂</td>
+                  <td class="light-true" rowspan="2" data-species="carnivine">Carnivine ♂</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Big Root</td>
                   <td class="type-true normal status-move" colspan="2">Stockpile</td>
                   <td class="type-true poison status-move" colspan="2">Toxic</td>
@@ -3469,9 +3476,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/roserade-m.png" alt="Roserade"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Roserade ♂</td>
+                  <td class="light-false" rowspan="2" data-species="roserade">Roserade ♂</td>
                   <td class="light-false" rowspan="2">Natural Cure</td>
-                  <td class="light-false" rowspan="2">Bold</td>
+                  <td class="light-false" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-false" rowspan="2">Focus Sash</td>
                   <td class="type-false poison status-move" colspan="2">Toxic Spikes</td>
                   <td class="type-false normal status-move" colspan="2">Flash</td>
@@ -3520,9 +3527,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/steelix-f.png" alt="Steelix"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Steelix ♀</td>
+                  <td class="light-true" rowspan="2" data-species="steelix">Steelix ♀</td>
                   <td class="light-true" rowspan="2">Sturdy</td>
-                  <td class="light-true" rowspan="2">Careful</td>
+                  <td class="light-true" rowspan="2" data-nature="careful">Careful</td>
                   <td class="light-true" rowspan="2">Zoom Lens</td>
                   <td class="type-true rock status-move" colspan="2">Stealth Rock</td>
                   <td class="type-true normal status-move" colspan="2">Swagger</td>
@@ -3571,9 +3578,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/lopunny.png" alt="Lopunny"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Lopunny ♀</td>
+                  <td class="light-false" rowspan="2" data-species="lopunny">Lopunny ♀</td>
                   <td class="light-false" rowspan="2">Klutz</td>
-                  <td class="light-false" rowspan="2">Jolly</td>
+                  <td class="light-false" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-false" rowspan="2">Toxic Orb</td>
                   <td class="type-false dark status-move" colspan="2">Switcheroo</td>
                   <td class="type-false fighting" colspan="2">Drain Punch</td>
@@ -3622,9 +3629,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/blissey.png" alt="Blissey"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Blissey ♀</td>
+                  <td class="light-true" rowspan="2" data-species="blissey">Blissey ♀</td>
                   <td class="light-true" rowspan="2">Serene Grace</td>
-                  <td class="light-true" rowspan="2">Bold</td>
+                  <td class="light-true" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true normal status-move" colspan="2">Heal Bell</td>
                   <td class="type-true electric" colspan="2">Charge Beam</td>
@@ -3672,7 +3679,7 @@
             </tbody>
          </table>
          <h4>Master Class Jaden</h4>
-		 <table>
+         <table>
             <caption>Master Class Jaden</caption>
             <thead>
                <tr class="light-true">
@@ -3694,9 +3701,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/drapion.png" alt="Drapion"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Drapion ♂</td>
+                  <td class="light-false" rowspan="2" data-species="drapion">Drapion ♂</td>
                   <td class="light-false" rowspan="2">Battle Armor</td>
-                  <td class="light-false" rowspan="2">Careful</td>
+                  <td class="light-false" rowspan="2" data-nature="careful">Careful</td>
                   <td class="light-false" rowspan="2">Shuca Berry</td>
                   <td class="type-false normal status-move" colspan="2">Acupressure</td>
                   <td class="type-false psychic status-move" colspan="2">Rest</td>
@@ -3745,9 +3752,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/bibarel-f.png" alt="Bibarel"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Bibarel ♀</td>
+                  <td class="light-true" rowspan="2" data-species="bibarel">Bibarel ♀</td>
                   <td class="light-true" rowspan="2">Simple</td>
-                  <td class="light-true" rowspan="2">Careful</td>
+                  <td class="light-true" rowspan="2" data-nature="careful">Careful</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true normal status-move" colspan="2">Protect</td>
                   <td class="type-true water" colspan="2">Waterfall</td>
@@ -3796,9 +3803,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/tentacruel.png" alt="Tentacruel"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Tentacruel ♂</td>
+                  <td class="light-false" rowspan="2" data-species="tentacruel">Tentacruel ♂</td>
                   <td class="light-false" rowspan="2">Clear Body</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Focus Sash</td>
                   <td class="type-false normal status-move" colspan="2">Acupressure</td>
                   <td class="type-false ghost status-move" colspan="2">Confuse Ray</td>
@@ -3847,9 +3854,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/ambipom-m.png" alt="Ambipom"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Ambipom ♂</td>
+                  <td class="light-true" rowspan="2" data-species="ambipom">Ambipom ♂</td>
                   <td class="light-true" rowspan="2">Technician</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">King's Rock</td>
                   <td class="type-true normal" colspan="2">Double Hit</td>
                   <td class="type-true normal" colspan="2">Fake Out</td>
@@ -3898,9 +3905,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/seaking-f.png" alt="Seaking"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Seaking ♀</td>
+                  <td class="light-false" rowspan="2" data-species="seaking">Seaking ♀</td>
                   <td class="light-false" rowspan="2">Water Veil</td>
-                  <td class="light-false" rowspan="2">Careful</td>
+                  <td class="light-false" rowspan="2" data-nature="careful">Careful</td>
                   <td class="light-false" rowspan="2">Focus Band</td>
                   <td class="type-false water" colspan="2">Surf</td>
                   <td class="type-false bug" colspan="2">Megahorn</td>
@@ -3949,9 +3956,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/chimecho.png" alt="Chimecho"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Chimecho ♀</td>
+                  <td class="light-true" rowspan="2" data-species="chimecho">Chimecho ♀</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Calm</td>
+                  <td class="light-true" rowspan="2" data-nature="calm">Calm</td>
                   <td class="light-true" rowspan="2">Starf Berry</td>
                   <td class="type-true psychic" colspan="2">Psychic</td>
                   <td class="type-true ghost" colspan="2">Shadow Ball</td>
@@ -3999,7 +4006,7 @@
             </tbody>
          </table>
          <h4>Sashay Fan Club Joy</h4>
-		 <table>
+         <table>
             <caption>Sashay Fan Club Joy</caption>
             <thead>
                <tr class="light-true">
@@ -4021,9 +4028,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/crobat.png" alt="Crobat"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Crobat ♀</td>
+                  <td class="light-false" rowspan="2" data-species="crobat">Crobat ♀</td>
                   <td class="light-false" rowspan="2">Inner Focus</td>
-                  <td class="light-false" rowspan="2">Impish</td>
+                  <td class="light-false" rowspan="2" data-nature="impish">Impish</td>
                   <td class="light-false" rowspan="2">Black Sludge</td>
                   <td class="type-false normal status-move" colspan="2">Mean Look</td>
                   <td class="type-false normal status-move" colspan="2">Double Team</td>
@@ -4072,9 +4079,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/milotic-m.png" alt="Milotic"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Milotic ♂</td>
+                  <td class="light-true" rowspan="2" data-species="milotic">Milotic ♂</td>
                   <td class="light-true" rowspan="2">Marvel Scale</td>
-                  <td class="light-true" rowspan="2">Bold</td>
+                  <td class="light-true" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true normal" colspan="2">Wrap</td>
                   <td class="type-true poison status-move" colspan="2">Toxic</td>
@@ -4123,9 +4130,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/golduck.png" alt="Golduck"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Golduck ♂</td>
+                  <td class="light-false" rowspan="2" data-species="golduck">Golduck ♂</td>
                   <td class="light-false" rowspan="2">Damp</td>
-                  <td class="light-false" rowspan="2">Jolly</td>
+                  <td class="light-false" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-false" rowspan="2">Wide Lens</td>
                   <td class="type-false water" colspan="2">Hydro Pump</td>
                   <td class="type-false normal status-move" colspan="2">Disable</td>
@@ -4174,9 +4181,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/pelipper.png" alt="Pelipper"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Pelipper ♂</td>
+                  <td class="light-true" rowspan="2" data-species="pelipper">Pelipper ♂</td>
                   <td class="light-true" rowspan="2">Keen Eye</td>
-                  <td class="light-true" rowspan="2">Calm</td>
+                  <td class="light-true" rowspan="2" data-nature="calm">Calm</td>
                   <td class="light-true" rowspan="2">Focus Sash</td>
                   <td class="type-true water" colspan="2">Hydro Pump</td>
                   <td class="type-true dragon" colspan="2">Twister</td>
@@ -4225,9 +4232,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/cherrim.png" alt="Cherrim"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Cherrim ♀</td>
+                  <td class="light-false" rowspan="2" data-species="cherrim">Cherrim ♀</td>
                   <td class="light-false" rowspan="2">Flower Gift</td>
-                  <td class="light-false" rowspan="2">Bold</td>
+                  <td class="light-false" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-false" rowspan="2">Occa Berry</td>
                   <td class="type-false normal status-move" colspan="2">Double Team</td>
                   <td class="type-false grass status-move" colspan="2">Leech Seed</td>
@@ -4276,9 +4283,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/rapidash.png" alt="Rapidash"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Rapidash ♀</td>
+                  <td class="light-true" rowspan="2" data-species="rapidash">Rapidash ♀</td>
                   <td class="light-true" rowspan="2">Flash Fire</td>
-                  <td class="light-true" rowspan="2">Impish</td>
+                  <td class="light-true" rowspan="2" data-nature="impish">Impish</td>
                   <td class="light-true" rowspan="2">BrightPowder</td>
                   <td class="type-true fire" colspan="2">Fire Blast</td>
                   <td class="type-true flying" colspan="2">Bounce</td>
@@ -4326,7 +4333,7 @@
             </tbody>
          </table>
          <h4>Master Middle Sashay</h4>
-		 <table>
+         <table>
             <caption>Master Middle Sashay</caption>
             <thead>
                <tr class="light-true">
@@ -4348,9 +4355,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/raichu-m.png" alt="Raichu"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Raichu ♂</td>
+                  <td class="light-false" rowspan="2" data-species="raichu">Raichu ♂</td>
                   <td class="light-false" rowspan="2">Static</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Focus Sash</td>
                   <td class="type-false normal status-move" colspan="2">Double Team</td>
                   <td class="type-false normal status-move" colspan="2">Swagger</td>
@@ -4399,9 +4406,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/gengar.png" alt="Gengar"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Gengar ♂</td>
+                  <td class="light-true" rowspan="2" data-species="gengar">Gengar ♂</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Focus Band</td>
                   <td class="type-true normal status-move" colspan="2">Protect</td>
                   <td class="type-true ghost status-move" colspan="2">Spite</td>
@@ -4450,9 +4457,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/weavile-f.png" alt="Weavile"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Weavile ♀</td>
+                  <td class="light-false" rowspan="2" data-species="weavile">Weavile ♀</td>
                   <td class="light-false" rowspan="2">Pressure</td>
-                  <td class="light-false" rowspan="2">Jolly</td>
+                  <td class="light-false" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-false" rowspan="2">BrightPowder</td>
                   <td class="type-false normal status-move" colspan="2">Protect</td>
                   <td class="type-false ghost status-move" colspan="2">Spite</td>
@@ -4501,9 +4508,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/mismagius.png" alt="Mismagius"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Mismagius ♀</td>
+                  <td class="light-true" rowspan="2" data-species="mismagius">Mismagius ♀</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Lax Incense</td>
                   <td class="type-true normal status-move" colspan="2">Protect</td>
                   <td class="type-true normal status-move" colspan="2">Pain Split</td>
@@ -4552,9 +4559,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/vespiquen.png" alt="Vespiquen"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Vespiquen ♀</td>
+                  <td class="light-false" rowspan="2" data-species="vespiquen">Vespiquen ♀</td>
                   <td class="light-false" rowspan="2">Pressure</td>
-                  <td class="light-false" rowspan="2">Calm</td>
+                  <td class="light-false" rowspan="2" data-nature="calm">Calm</td>
                   <td class="light-false" rowspan="2">Quick Claw</td>
                   <td class="type-false normal status-move" colspan="2">Protect</td>
                   <td class="type-false bug" colspan="2">Attack Order</td>
@@ -4603,9 +4610,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/spiritomb.png" alt="Spiritomb"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Spiritomb ♂</td>
+                  <td class="light-true" rowspan="2" data-species="spiritomb">Spiritomb ♂</td>
                   <td class="light-true" rowspan="2">Pressure</td>
-                  <td class="light-true" rowspan="2">Impish</td>
+                  <td class="light-true" rowspan="2" data-nature="impish">Impish</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true ghost status-move" colspan="2">Curse</td>
                   <td class="type-true ghost status-move" colspan="2">Spite</td>
@@ -4653,11 +4660,11 @@
             </tbody>
          </table>
       </div>
-	  <div>
+      <div>
          <h3 id="masters-3"><u>Masters Battle Set 3</u></h3>
-		 <h4>Master Class Lincoln</h4>
-		 <table>
-			<caption>Master Class Lincoln</caption>
+         <h4>Master Class Lincoln</h4>
+         <table>
+            <caption>Master Class Lincoln</caption>
             <thead>
                <tr class="light-true">
                   <th colspan="2">Pokémon</th>
@@ -4678,9 +4685,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/azumarill.png" alt="Azumarill"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Azumarill ♀</td>
+                  <td class="light-false" rowspan="2" data-species="azumarill">Azumarill ♀</td>
                   <td class="light-false" rowspan="2">Huge Power</td>
-                  <td class="light-false" rowspan="2">Careful</td>
+                  <td class="light-false" rowspan="2" data-nature="careful">Careful</td>
                   <td class="light-false" rowspan="2">Sitrus Berry</td>
                   <td class="type-false normal status-move" colspan="2">Belly Drum</td>
                   <td class="type-false water" colspan="2">Waterfall</td>
@@ -4729,9 +4736,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/sudowoodo-m.png" alt="Sudowoodo"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Sudowoodo ♂</td>
+                  <td class="light-true" rowspan="2" data-species="sudowoodo">Sudowoodo ♂</td>
                   <td class="light-true" rowspan="2">Rock Head</td>
-                  <td class="light-true" rowspan="2">Careful</td>
+                  <td class="light-true" rowspan="2" data-nature="careful">Careful</td>
                   <td class="light-true" rowspan="2">Passho Berry</td>
                   <td class="type-true normal status-move" colspan="2">Psych Up</td>
                   <td class="type-true rock" colspan="2">Stone Edge</td>
@@ -4780,9 +4787,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/clefable.png" alt="Clefable"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Clefable ♀</td>
+                  <td class="light-false" rowspan="2" data-species="clefable">Clefable ♀</td>
                   <td class="light-false" rowspan="2">Cute Charm</td>
-                  <td class="light-false" rowspan="2">Careful</td>
+                  <td class="light-false" rowspan="2" data-nature="careful">Careful</td>
                   <td class="light-false" rowspan="2">BrightPowder</td>
                   <td class="type-false normal status-move" colspan="2">Belly Drum</td>
                   <td class="type-false fighting" colspan="2">Drain Punch</td>
@@ -4831,9 +4838,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/roserade-m.png" alt="Roserade"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Roserade ♂</td>
+                  <td class="light-true" rowspan="2" data-species="roserade">Roserade ♂</td>
                   <td class="light-true" rowspan="2">Poison Point</td>
-                  <td class="light-true" rowspan="2">Hasty</td>
+                  <td class="light-true" rowspan="2" data-nature="hasty">Hasty</td>
                   <td class="light-true" rowspan="2">Lax Incense</td>
                   <td class="type-true normal status-move" colspan="2">Psych Up</td>
                   <td class="type-true grass" colspan="2">Energy Ball</td>
@@ -4882,9 +4889,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/purugly.png" alt="Purugly"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Purugly ♀</td>
+                  <td class="light-false" rowspan="2" data-species="purugly">Purugly ♀</td>
                   <td class="light-false" rowspan="2">Thick Fat</td>
-                  <td class="light-false" rowspan="2">Careful</td>
+                  <td class="light-false" rowspan="2" data-nature="careful">Careful</td>
                   <td class="light-false" rowspan="2">Scope Lens</td>
                   <td class="type-false normal" colspan="2">Fake Out</td>
                   <td class="type-false normal status-move" colspan="2">Psych Up</td>
@@ -4933,9 +4940,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/spiritomb.png" alt="Spiritomb"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Spiritomb ♂</td>
+                  <td class="light-true" rowspan="2" data-species="spiritomb">Spiritomb ♂</td>
                   <td class="light-true" rowspan="2">Pressure</td>
-                  <td class="light-true" rowspan="2">Bold</td>
+                  <td class="light-true" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true dark" colspan="2">Dark Pulse</td>
                   <td class="type-true ghost" colspan="2">Shadow Ball</td>
@@ -4983,7 +4990,7 @@
             </tbody>
          </table>
          <h4>Master Class Lyle</h4>
-		 <table>
+         <table>
             <caption>Master Class Lyle</caption>
             <thead>
                <tr class="light-true">
@@ -5005,9 +5012,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/drifblim.png" alt="Drifblim"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Drifblim ♀</td>
+                  <td class="light-false" rowspan="2" data-species="drifblim">Drifblim ♀</td>
                   <td class="light-false" rowspan="2">Aftermath</td>
-                  <td class="light-false" rowspan="2">Calm</td>
+                  <td class="light-false" rowspan="2" data-nature="calm">Calm</td>
                   <td class="light-false" rowspan="2">Lax Incense</td>
                   <td class="type-false normal status-move" colspan="2">Focus Energy</td>
                   <td class="type-false normal status-move" colspan="2">Baton Pass</td>
@@ -5056,9 +5063,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/golem.png" alt="Golem"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Golem ♂</td>
+                  <td class="light-true" rowspan="2" data-species="golem">Golem ♂</td>
                   <td class="light-true" rowspan="2">Sturdy</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Choice Scarf</td>
                   <td class="type-true normal" colspan="2">Explosion</td>
                   <td class="type-true rock" colspan="2">Stone Edge</td>
@@ -5107,9 +5114,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/octillery-m.png" alt="Octillery"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Octillery ♂</td>
+                  <td class="light-false" rowspan="2" data-species="octillery">Octillery ♂</td>
                   <td class="light-false" rowspan="2">Sniper</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Scope Lens</td>
                   <td class="type-false water" colspan="2">Octazooka</td>
                   <td class="type-false steel" colspan="2">Flash Cannon</td>
@@ -5158,9 +5165,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/mismagius.png" alt="Mismagius"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Mismagius ♀</td>
+                  <td class="light-true" rowspan="2" data-species="mismagius">Mismagius ♀</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Bold</td>
+                  <td class="light-true" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true ghost" colspan="2">Shadow Ball</td>
                   <td class="type-true psychic" colspan="2">Psychic</td>
@@ -5209,9 +5216,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/steelix-m.png" alt="Steelix"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Steelix ♂</td>
+                  <td class="light-false" rowspan="2" data-species="steelix">Steelix ♂</td>
                   <td class="light-false" rowspan="2">Sturdy</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Quick Claw</td>
                   <td class="type-false normal" colspan="2">Explosion</td>
                   <td class="type-false steel" colspan="2">Iron Tail</td>
@@ -5260,9 +5267,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/crobat.png" alt="Crobat"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Crobat ♀</td>
+                  <td class="light-true" rowspan="2" data-species="crobat">Crobat ♀</td>
                   <td class="light-true" rowspan="2">Inner Focus</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">BrightPowder</td>
                   <td class="type-true poison" colspan="2">Cross Poison</td>
                   <td class="type-true flying" colspan="2">Aerial Ace</td>
@@ -5310,7 +5317,7 @@
             </tbody>
          </table>
          <h4>Kruger Family Jonathan</h4>
-		 <table>
+         <table>
             <caption>Kruger Family Jonathan</caption>
             <thead>
                <tr class="light-true">
@@ -5332,9 +5339,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Gyarados ♀</td>
+                  <td class="light-false" rowspan="2" data-species="gyarados">Gyarados ♀</td>
                   <td class="light-false" rowspan="2">Intimidate</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Wacan Berry</td>
                   <td class="type-false normal" colspan="2">Frustration</td>
                   <td class="type-false water" colspan="2">Aqua Tail</td>
@@ -5383,9 +5390,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/torterra.png" alt="Torterra"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Torterra ♀</td>
+                  <td class="light-true" rowspan="2" data-species="torterra">Torterra ♀</td>
                   <td class="light-true" rowspan="2">Overgrow</td>
-                  <td class="light-true" rowspan="2">Careful</td>
+                  <td class="light-true" rowspan="2" data-nature="careful">Careful</td>
                   <td class="light-true" rowspan="2">Yache Berry</td>
                   <td class="type-true grass" colspan="2">Wood Hammer</td>
                   <td class="type-true ghost status-move" colspan="2">Curse</td>
@@ -5434,9 +5441,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/bastiodon.png" alt="Bastiodon"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Bastiodon ♂</td>
+                  <td class="light-false" rowspan="2" data-species="bastiodon">Bastiodon ♂</td>
                   <td class="light-false" rowspan="2">Sturdy</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Quick Claw</td>
                   <td class="type-false ground" colspan="2">Fissure</td>
                   <td class="type-false rock" colspan="2">Stone Edge</td>
@@ -5485,9 +5492,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/bronzong.png" alt="Bronzong"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Bronzong</td>
+                  <td class="light-true" rowspan="2" data-species="bronzong">Bronzong</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Modest</td>
+                  <td class="light-true" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-true" rowspan="2">Scope Lens</td>
                   <td class="type-true electric" colspan="2">Charge Beam</td>
                   <td class="type-true steel" colspan="2">Flash Cannon</td>
@@ -5536,9 +5543,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/whiscash.png" alt="Whiscash"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Whiscash ♂</td>
+                  <td class="light-false" rowspan="2" data-species="whiscash">Whiscash ♂</td>
                   <td class="light-false" rowspan="2">Anticipation</td>
-                  <td class="light-false" rowspan="2">Sassy</td>
+                  <td class="light-false" rowspan="2" data-nature="sassy">Sassy</td>
                   <td class="light-false" rowspan="2">Sitrus Berry</td>
                   <td class="type-false ground" colspan="2">Fissure</td>
                   <td class="type-false normal status-move" colspan="2">Swagger</td>
@@ -5587,9 +5594,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/luxray-f.png" alt="Luxray"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Luxray ♀</td>
+                  <td class="light-true" rowspan="2" data-species="luxray">Luxray ♀</td>
                   <td class="light-true" rowspan="2">Intimidate</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Choice Scarf</td>
                   <td class="type-true normal" colspan="2">Giga Impact</td>
                   <td class="type-true dark" colspan="2">Crunch</td>
@@ -5637,7 +5644,7 @@
             </tbody>
          </table>
          <h4>Master Senior Kruger</h4>
-		 <table>
+         <table>
             <caption>Master Senior Kruger</caption>
             <thead>
                <tr class="light-true">
@@ -5659,9 +5666,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/drapion.png" alt="Drapion"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Drapion ♂</td>
+                  <td class="light-false" rowspan="2" data-species="drapion">Drapion ♂</td>
                   <td class="light-false" rowspan="2">Sniper</td>
-                  <td class="light-false" rowspan="2">Jolly</td>
+                  <td class="light-false" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-false" rowspan="2">Scope Lens</td>
                   <td class="type-false poison" colspan="2">Cross Poison</td>
                   <td class="type-false dark" colspan="2">Night Slash</td>
@@ -5710,9 +5717,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/ambipom-f.png" alt="Ambipom"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Ambipom ♀</td>
+                  <td class="light-true" rowspan="2" data-species="ambipom">Ambipom ♀</td>
                   <td class="light-true" rowspan="2">Technician</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Lansat Berry</td>
                   <td class="type-true normal" colspan="2">Fake Out</td>
                   <td class="type-true dark" colspan="2">Fling</td>
@@ -5761,9 +5768,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/honchkrow.png" alt="Honchkrow"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Honchkrow ♂</td>
+                  <td class="light-false" rowspan="2" data-species="honchkrow">Honchkrow ♂</td>
                   <td class="light-false" rowspan="2">Super Luck</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Razor Claw</td>
                   <td class="type-false flying" colspan="2">Drill Peck</td>
                   <td class="type-false dark" colspan="2">Night Slash</td>
@@ -5812,9 +5819,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/skuntank.png" alt="Skuntank"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Skuntank ♀</td>
+                  <td class="light-true" rowspan="2" data-species="skuntank">Skuntank ♀</td>
                   <td class="light-true" rowspan="2">Aftermath</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Shuca Berry</td>
                   <td class="type-true normal status-move" colspan="2">Focus Energy</td>
                   <td class="type-true dark" colspan="2">Night Slash</td>
@@ -5863,9 +5870,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/machamp.png" alt="Machamp"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Machamp ♂</td>
+                  <td class="light-false" rowspan="2" data-species="machamp">Machamp ♂</td>
                   <td class="light-false" rowspan="2">Guts</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Toxic Orb</td>
                   <td class="type-false normal status-move" colspan="2">Protect</td>
                   <td class="type-false fighting" colspan="2">Cross Chop</td>
@@ -5914,9 +5921,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Medicham ♀</td>
+                  <td class="light-true" rowspan="2" data-species="medicham">Medicham ♀</td>
                   <td class="light-true" rowspan="2">Pure Power</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Salac Berry</td>
                   <td class="type-true normal status-move" colspan="2">Psych Up</td>
                   <td class="type-true psychic" colspan="2">Psycho Cut</td>
@@ -5963,11 +5970,11 @@
                </tr>
             </tbody>
          </table>
-	  </div>
-	  <div>
+      </div>
+      <div>
          <h3 id="masters-4"><u>Masters Battle Set 4</u></h3>
-		 <h4>Master Class Eva</h4>
-		 <table>
+         <h4>Master Class Eva</h4>
+         <table>
             <caption>Master Class Eva</caption>
             <thead>
                <tr class="light-true">
@@ -5989,9 +5996,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/mantine.png" alt="Mantine"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Mantine ♂</td>
+                  <td class="light-false" rowspan="2" data-species="mantine">Mantine ♂</td>
                   <td class="light-false" rowspan="2">Swift Swim</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Wacan Berry</td>
                   <td class="type-false water" colspan="2">Hydro Pump</td>
                   <td class="type-false ice" colspan="2">Ice Beam</td>
@@ -6040,9 +6047,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/toxicroak-f.png" alt="Toxicroak"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Toxicroak ♀</td>
+                  <td class="light-true" rowspan="2" data-species="toxicroak">Toxicroak ♀</td>
                   <td class="light-true" rowspan="2">Dry Skin</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Payapa Berry</td>
                   <td class="type-true poison" colspan="2">Poison Jab</td>
                   <td class="type-true fighting" colspan="2">Brick Break</td>
@@ -6091,9 +6098,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/quagsire-m.png" alt="Quagsire"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Quagsire ♂</td>
+                  <td class="light-false" rowspan="2" data-species="quagsire">Quagsire ♂</td>
                   <td class="light-false" rowspan="2">Damp</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Rindo Berry</td>
                   <td class="type-false water" colspan="2">Waterfall</td>
                   <td class="type-false rock" colspan="2">Stone Edge</td>
@@ -6142,9 +6149,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/scizor-f.png" alt="Scizor"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Scizor ♀</td>
+                  <td class="light-true" rowspan="2" data-species="scizor">Scizor ♀</td>
                   <td class="light-true" rowspan="2">Swarm</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Occa Berry</td>
                   <td class="type-true bug" colspan="2">X-Scissor</td>
                   <td class="type-true steel" colspan="2">Iron Head</td>
@@ -6193,9 +6200,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/bastiodon.png" alt="Bastiodon"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Bastiodon ♂</td>
+                  <td class="light-false" rowspan="2" data-species="bastiodon">Bastiodon ♂</td>
                   <td class="light-false" rowspan="2">Sturdy</td>
-                  <td class="light-false" rowspan="2">Careful</td>
+                  <td class="light-false" rowspan="2" data-nature="careful">Careful</td>
                   <td class="light-false" rowspan="2">Shuca Berry</td>
                   <td class="type-false ground" colspan="2">Fissure</td>
                   <td class="type-false dark status-move" colspan="2">Taunt</td>
@@ -6244,9 +6251,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/weavile-f.png" alt="Weavile"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Weavile ♀</td>
+                  <td class="light-true" rowspan="2" data-species="weavile">Weavile ♀</td>
                   <td class="light-true" rowspan="2">Pressure</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Chople Berry</td>
                   <td class="type-true ice" colspan="2">Ice Punch</td>
                   <td class="type-true dark" colspan="2">Night Slash</td>
@@ -6294,7 +6301,7 @@
             </tbody>
          </table>
          <h4>Master Class Kaden</h4>
-		 <table>
+         <table>
             <caption>Master Class Kaden</caption>
             <thead>
                <tr class="light-true">
@@ -6316,9 +6323,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/rotom.png" alt="Rotom"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Rotom</td>
+                  <td class="light-false" rowspan="2" data-species="rotom">Rotom</td>
                   <td class="light-false" rowspan="2">Levitate</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Kasib Berry</td>
                   <td class="type-false electric" colspan="2">Charge Beam</td>
                   <td class="type-false ghost" colspan="2">Shadow Ball</td>
@@ -6367,9 +6374,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/clefable.png" alt="Clefable"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Clefable ♀</td>
+                  <td class="light-true" rowspan="2" data-species="clefable">Clefable ♀</td>
                   <td class="light-true" rowspan="2">Magic Guard</td>
-                  <td class="light-true" rowspan="2">Calm</td>
+                  <td class="light-true" rowspan="2" data-nature="calm">Calm</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true normal status-move" colspan="2">Follow Me</td>
                   <td class="type-true psychic status-move" colspan="2">Cosmic Power</td>
@@ -6418,9 +6425,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/floatzel-m.png" alt="Floatzel"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Floatzel ♂</td>
+                  <td class="light-false" rowspan="2" data-species="floatzel">Floatzel ♂</td>
                   <td class="light-false" rowspan="2">Swift Swim</td>
-                  <td class="light-false" rowspan="2">Jolly</td>
+                  <td class="light-false" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-false" rowspan="2">Scope Lens</td>
                   <td class="type-false fighting status-move" colspan="2">Bulk Up</td>
                   <td class="type-false water" colspan="2">Waterfall</td>
@@ -6469,9 +6476,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/staraptor-m.png" alt="Staraptor"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Staraptor ♂</td>
+                  <td class="light-true" rowspan="2" data-species="staraptor">Staraptor ♂</td>
                   <td class="light-true" rowspan="2">Intimidate</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Choice Band</td>
                   <td class="type-true flying" colspan="2">Brave Bird</td>
                   <td class="type-true normal" colspan="2">Double-Edge</td>
@@ -6520,9 +6527,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/bronzong.png" alt="Bronzong"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Bronzong</td>
+                  <td class="light-false" rowspan="2" data-species="bronzong">Bronzong</td>
                   <td class="light-false" rowspan="2">Levitate</td>
-                  <td class="light-false" rowspan="2">Bold</td>
+                  <td class="light-false" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-false" rowspan="2">Quick Claw</td>
                   <td class="type-false psychic status-move" colspan="2">Calm Mind</td>
                   <td class="type-false psychic" colspan="2">Psychic</td>
@@ -6571,9 +6578,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/heracross-m.png" alt="Heracross"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Heracross ♂</td>
+                  <td class="light-true" rowspan="2" data-species="heracross">Heracross ♂</td>
                   <td class="light-true" rowspan="2">Guts</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Coba Berry</td>
                   <td class="type-true bug" colspan="2">Megahorn</td>
                   <td class="type-true fighting" colspan="2">Close Combat</td>
@@ -6621,7 +6628,7 @@
             </tbody>
          </table>
          <h4>Magician's Apprentice Keira</h4>
-		 <table>
+         <table>
             <caption>Magician's Apprentice Keira</caption>
             <thead>
                <tr class="light-true">
@@ -6643,9 +6650,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/gastrodon-west.png" alt="Gastrodon"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Gastrodon ♂</td>
+                  <td class="light-false" rowspan="2" data-species="gastrodon">Gastrodon ♂</td>
                   <td class="light-false" rowspan="2">Storm Drain</td>
-                  <td class="light-false" rowspan="2">Bold</td>
+                  <td class="light-false" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-false" rowspan="2">Rindo Berry</td>
                   <td class="type-false normal status-move" colspan="2">Stockpile</td>
                   <td class="type-false normal status-move" colspan="2">Recover</td>
@@ -6694,9 +6701,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/golem.png" alt="Golem"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Golem ♀</td>
+                  <td class="light-true" rowspan="2" data-species="golem">Golem ♀</td>
                   <td class="light-true" rowspan="2">Rock Head</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Quick Claw</td>
                   <td class="type-true ground" colspan="2">Earthquake</td>
                   <td class="type-true rock" colspan="2">Stone Edge</td>
@@ -6745,9 +6752,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/rampardos.png" alt="Rampardos"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Rampardos ♂</td>
+                  <td class="light-false" rowspan="2" data-species="rampardos">Rampardos ♂</td>
                   <td class="light-false" rowspan="2">Mold Breaker</td>
-                  <td class="light-false" rowspan="2">Jolly</td>
+                  <td class="light-false" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-false" rowspan="2">Choice Scarf</td>
                   <td class="type-false rock" colspan="2">Head Smash</td>
                   <td class="type-false psychic" colspan="2">Zen Headbutt</td>
@@ -6796,9 +6803,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/lumineon-f.png" alt="Lumineon"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Lumineon ♀</td>
+                  <td class="light-true" rowspan="2" data-species="lumineon">Lumineon ♀</td>
                   <td class="light-true" rowspan="2">Storm Drain</td>
-                  <td class="light-true" rowspan="2">Bold</td>
+                  <td class="light-true" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-true" rowspan="2">BrightPowder</td>
                   <td class="type-true normal status-move" colspan="2">Charm</td>
                   <td class="type-true normal status-move" colspan="2">Double Team</td>
@@ -6847,9 +6854,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/probopass.png" alt="Probopass"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Probopass ♀</td>
+                  <td class="light-false" rowspan="2" data-species="probopass">Probopass ♀</td>
                   <td class="light-false" rowspan="2">Sturdy</td>
-                  <td class="light-false" rowspan="2">Calm</td>
+                  <td class="light-false" rowspan="2" data-nature="calm">Calm</td>
                   <td class="light-false" rowspan="2">Leftovers</td>
                   <td class="type-false electric" colspan="2">Discharge</td>
                   <td class="type-false normal status-move" colspan="2">Substitute</td>
@@ -6898,9 +6905,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/hippowdon-f.png" alt="Hippowdon"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Hippowdon ♀</td>
+                  <td class="light-true" rowspan="2" data-species="hippowdon">Hippowdon ♀</td>
                   <td class="light-true" rowspan="2">Sand Stream</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Focus Band</td>
                   <td class="type-true ground" colspan="2">Earthquake</td>
                   <td class="type-true ice" colspan="2">Ice Fang</td>
@@ -6948,8 +6955,8 @@
             </tbody>
          </table>
          <h4>Master of Masters Mysterial</h4>
-		 <p>This team is used if the player has never copied Pokémon from any connected DS game.</p>
-		 <table>
+         <p>This team is used if the player has never copied Pokémon from any connected DS game.</p>
+         <table>
             <caption>Master of Masters Mysterial</caption>
             <thead>
                <tr class="light-true">
@@ -6971,9 +6978,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/cresselia.png" alt="Cresselia"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Cresselia ♀</td>
+                  <td class="light-false" rowspan="2" data-species="cresselia">Cresselia ♀</td>
                   <td class="light-false" rowspan="2">Levitate</td>
-                  <td class="light-false" rowspan="2">Bold</td>
+                  <td class="light-false" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-false" rowspan="2">Lum Berry</td>
                   <td class="type-false psychic status-move" colspan="2">Calm Mind</td>
                   <td class="type-false ghost" colspan="2">Shadow Ball</td>
@@ -7022,9 +7029,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/garchomp-m.png" alt="Garchomp"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Garchomp ♂</td>
+                  <td class="light-true" rowspan="2" data-species="garchomp">Garchomp ♂</td>
                   <td class="light-true" rowspan="2">Sand Veil</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Yache Berry</td>
                   <td class="type-true dragon" colspan="2">Dragon Claw</td>
                   <td class="type-true ground" colspan="2">Earthquake</td>
@@ -7073,9 +7080,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/lucario.png" alt="Lucario"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Lucario ♂</td>
+                  <td class="light-false" rowspan="2" data-species="lucario">Lucario ♂</td>
                   <td class="light-false" rowspan="2">Inner Focus</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Scope Lens</td>
                   <td class="type-false fighting" colspan="2">Aura Sphere</td>
                   <td class="type-false dark" colspan="2">Dark Pulse</td>
@@ -7124,9 +7131,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/snorlax.png" alt="Snorlax"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Snorlax ♀</td>
+                  <td class="light-true" rowspan="2" data-species="snorlax">Snorlax ♀</td>
                   <td class="light-true" rowspan="2">Thick Fat</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true normal" colspan="2">Body Slam</td>
                   <td class="type-true dark" colspan="2">Crunch</td>
@@ -7175,9 +7182,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/empoleon.png" alt="Empoleon"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Empoleon ♀</td>
+                  <td class="light-false" rowspan="2" data-species="empoleon">Empoleon ♀</td>
                   <td class="light-false" rowspan="2">Torrent</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Quick Claw</td>
                   <td class="type-false water" colspan="2">Hydro Cannon</td>
                   <td class="type-false ice" colspan="2">Ice Beam</td>
@@ -7226,9 +7233,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/mesprit.png" alt="Mesprit"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Mesprit</td>
+                  <td class="light-true" rowspan="2" data-species="mesprit">Mesprit</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Modest</td>
+                  <td class="light-true" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-true" rowspan="2">Expert Belt</td>
                   <td class="type-true psychic" colspan="2">Psychic</td>
                   <td class="type-true ghost" colspan="2">Shadow Ball</td>
@@ -7275,9 +7282,9 @@
                </tr>
             </tbody>
          </table>
-		 <h4>Master of Masters Mysterial</h4>
-		 <p>This team is used if the player has copied Pokémon from Diamond, Platinum, HeartGold, or SoulSilver.</p>
-		 <table>
+         <h4>Master of Masters Mysterial</h4>
+         <p>This team is used if the player has copied Pokémon from Diamond, Platinum, HeartGold, or SoulSilver.</p>
+         <table>
             <caption>Master of Masters Mysterial</caption>
             <thead>
                <tr class="light-true">
@@ -7299,9 +7306,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/palkia.png" alt="Palkia"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Palkia</td>
+                  <td class="light-false" rowspan="2" data-species="palkia">Palkia</td>
                   <td class="light-false" rowspan="2">Pressure</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">White Herb</td>
                   <td class="type-false dragon" colspan="2">Draco Meteor</td>
                   <td class="type-false water" colspan="2">Surf</td>
@@ -7350,9 +7357,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/garchomp-m.png" alt="Garchomp"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Garchomp ♂</td>
+                  <td class="light-true" rowspan="2" data-species="garchomp">Garchomp ♂</td>
                   <td class="light-true" rowspan="2">Sand Veil</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Yache Berry</td>
                   <td class="type-true dragon" colspan="2">Dragon Claw</td>
                   <td class="type-true rock" colspan="2">Stone Edge</td>
@@ -7401,9 +7408,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/lucario.png" alt="Lucario"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Lucario ♂</td>
+                  <td class="light-false" rowspan="2" data-species="lucario">Lucario ♂</td>
                   <td class="light-false" rowspan="2">Inner Focus</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Scope Lens</td>
                   <td class="type-false fighting" colspan="2">Aura Sphere</td>
                   <td class="type-false dark" colspan="2">Dark Pulse</td>
@@ -7452,9 +7459,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/snorlax.png" alt="Snorlax"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Snorlax ♀</td>
+                  <td class="light-true" rowspan="2" data-species="snorlax">Snorlax ♀</td>
                   <td class="light-true" rowspan="2">Thick Fat</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true normal" colspan="2">Body Slam</td>
                   <td class="type-true dark" colspan="2">Crunch</td>
@@ -7503,9 +7510,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/charizard.png" alt="Charizard"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Charizard ♀</td>
+                  <td class="light-false" rowspan="2" data-species="charizard">Charizard ♀</td>
                   <td class="light-false" rowspan="2">Blaze</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">BrightPowder</td>
                   <td class="type-false fire" colspan="2">Blast Burn</td>
                   <td class="type-false fighting" colspan="2">Focus Blast</td>
@@ -7554,9 +7561,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/uxie.png" alt="Uxie"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Uxie</td>
+                  <td class="light-true" rowspan="2" data-species="uxie">Uxie</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Modest</td>
+                  <td class="light-true" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-true" rowspan="2">Lax Incense</td>
                   <td class="type-true psychic" colspan="2">Psychic</td>
                   <td class="type-true ghost" colspan="2">Shadow Ball</td>
@@ -7603,9 +7610,9 @@
                </tr>
             </tbody>
          </table>
-		 <h4>Master of Masters Mysterial</h4>
-		 <p>This team is used if the player has copied Pokémon from Pearl.</li>
-		 <table>
+         <h4>Master of Masters Mysterial</h4>
+         <p>This team is used if the player has copied Pokémon from Pearl.</p>
+         <table>
             <caption>Master of Masters Mysterial</caption>
             <thead>
                <tr class="light-true">
@@ -7627,9 +7634,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/dialga.png" alt="Dialga"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Dialga</td>
+                  <td class="light-false" rowspan="2" data-species="dialga">Dialga</td>
                   <td class="light-false" rowspan="2">Pressure</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Adamant Orb</td>
                   <td class="type-false dragon" colspan="2">Roar of Time</td>
                   <td class="type-false electric" colspan="2">Thunderbolt</td>
@@ -7678,9 +7685,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/garchomp-m.png" alt="Garchomp"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Garchomp ♂</td>
+                  <td class="light-true" rowspan="2" data-species="garchomp">Garchomp ♂</td>
                   <td class="light-true" rowspan="2">Sand Veil</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Yache Berry</td>
                   <td class="type-true dragon" colspan="2">Dragon Claw</td>
                   <td class="type-true ground" colspan="2">Earthquake</td>
@@ -7729,9 +7736,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/snorlax.png" alt="Snorlax"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Snorlax ♀</td>
+                  <td class="light-false" rowspan="2" data-species="snorlax">Snorlax ♀</td>
                   <td class="light-false" rowspan="2">Thick Fat</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Leftovers</td>
                   <td class="type-false normal" colspan="2">Body Slam</td>
                   <td class="type-false dark" colspan="2">Crunch</td>
@@ -7780,9 +7787,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/lucario.png" alt="Lucario"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Lucario ♂</td>
+                  <td class="light-true" rowspan="2" data-species="lucario">Lucario ♂</td>
                   <td class="light-true" rowspan="2">Inner Focus</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Scope Lens</td>
                   <td class="type-true fighting" colspan="2">Aura Sphere</td>
                   <td class="type-true dark" colspan="2">Dark Pulse</td>
@@ -7831,9 +7838,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/meganium-f.png" alt="Meganium"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Meganium ♀</td>
+                  <td class="light-false" rowspan="2" data-species="meganium">Meganium ♀</td>
                   <td class="light-false" rowspan="2">Overgrow</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Quick Claw</td>
                   <td class="type-false grass" colspan="2">Frenzy Plant</td>
                   <td class="type-false rock" colspan="2">AncientPower</td>
@@ -7882,9 +7889,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/azelf.png" alt="Azelf"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Azelf</td>
+                  <td class="light-true" rowspan="2" data-species="azelf">Azelf</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">BrightPowder</td>
                   <td class="type-true psychic" colspan="2">Psychic</td>
                   <td class="type-true ghost" colspan="2">Shadow Ball</td>
@@ -7932,10 +7939,10 @@
             </tbody>
          </table>
       </div>
-	  <div>
+      <div>
          <h3 id="masters-5"><u>Masters Battle Set 5</u></h3>
-		 <h4>Master Class Kinsey</h4>
-		 <table>
+         <h4>Master Class Kinsey</h4>
+         <table>
             <caption>Master Class Kinsey</caption>
             <thead>
                <tr class="light-true">
@@ -7957,9 +7964,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/hitmonchan.png" alt="Hitmonchan"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Hitmonchan ♂</td>
+                  <td class="light-false" rowspan="2" data-species="hitmonchan">Hitmonchan ♂</td>
                   <td class="light-false" rowspan="2">Iron Fist</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Quick Claw</td>
                   <td class="type-false fighting" colspan="2">Sky Uppercut</td>
                   <td class="type-false fire" colspan="2">Fire Punch</td>
@@ -8008,9 +8015,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/camerupt-m.png" alt="Camerupt"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Camerupt ♂</td>
+                  <td class="light-true" rowspan="2" data-species="camerupt">Camerupt ♂</td>
                   <td class="light-true" rowspan="2">Solid Rock</td>
-                  <td class="light-true" rowspan="2">Modest</td>
+                  <td class="light-true" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-true" rowspan="2">Passho Berry</td>
                   <td class="type-true fire" colspan="2">Flamethrower</td>
                   <td class="type-true ground" colspan="2">Earth Power</td>
@@ -8059,9 +8066,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/kangaskhan.png" alt="Kangaskhan"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Kangaskhan ♀</td>
+                  <td class="light-false" rowspan="2" data-species="kangaskhan">Kangaskhan ♀</td>
                   <td class="light-false" rowspan="2">Scrappy</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Focus Band</td>
                   <td class="type-false normal" colspan="2">Return</td>
                   <td class="type-false normal" colspan="2">Fake Out</td>
@@ -8110,9 +8117,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/venomoth.png" alt="Venomoth"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Venomoth ♀</td>
+                  <td class="light-true" rowspan="2" data-species="venomoth">Venomoth ♀</td>
                   <td class="light-true" rowspan="2">Tinted Lens</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Choice Specs</td>
                   <td class="type-true bug" colspan="2">Bug Buzz</td>
                   <td class="type-true poison" colspan="2">Sludge Bomb</td>
@@ -8161,9 +8168,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/absol.png" alt="Absol"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Absol ♂</td>
+                  <td class="light-false" rowspan="2" data-species="absol">Absol ♂</td>
                   <td class="light-false" rowspan="2">Super Luck</td>
-                  <td class="light-false" rowspan="2">Jolly</td>
+                  <td class="light-false" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-false" rowspan="2">Choice Scarf</td>
                   <td class="type-false dark" colspan="2">Night Slash</td>
                   <td class="type-false bug" colspan="2">X-Scissor</td>
@@ -8212,9 +8219,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/ursaring-f.png" alt="Ursaring"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Ursaring ♀</td>
+                  <td class="light-true" rowspan="2" data-species="ursaring">Ursaring ♀</td>
                   <td class="light-true" rowspan="2">Quick Feet</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Toxic Orb</td>
                   <td class="type-true normal status-move" colspan="2">Protect</td>
                   <td class="type-true normal" colspan="2">Facade</td>
@@ -8262,7 +8269,7 @@
             </tbody>
          </table>
          <h4>Master Class Jackson</h4>
-		 <table>
+         <table>
             <caption>Master Class Jackson</caption>
             <thead>
                <tr class="light-true">
@@ -8284,9 +8291,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/gallade.png" alt="Gallade"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Gallade ♂</td>
+                  <td class="light-false" rowspan="2" data-species="gallade">Gallade ♂</td>
                   <td class="light-false" rowspan="2">Steadfast</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">White Herb</td>
                   <td class="type-false psychic" colspan="2">Psycho Cut</td>
                   <td class="type-false fighting" colspan="2">Close Combat</td>
@@ -8335,9 +8342,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/magnezone.png" alt="Magnezone"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Magnezone</td>
+                  <td class="light-true" rowspan="2" data-species="magnezone">Magnezone</td>
                   <td class="light-true" rowspan="2">Sturdy</td>
-                  <td class="light-true" rowspan="2">Modest</td>
+                  <td class="light-true" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-true" rowspan="2">Shuca Berry</td>
                   <td class="type-true electric" colspan="2">Thunderbolt</td>
                   <td class="type-true normal" colspan="2">Tri Attack</td>
@@ -8386,9 +8393,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/magmortar.png" alt="Magmortar"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Magmortar ♂</td>
+                  <td class="light-false" rowspan="2" data-species="magmortar">Magmortar ♂</td>
                   <td class="light-false" rowspan="2">Flame Body</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Passho Berry</td>
                   <td class="type-false fire" colspan="2">Fire Blast</td>
                   <td class="type-false fighting" colspan="2">Focus Blast</td>
@@ -8437,9 +8444,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/lickilicky.png" alt="Lickilicky"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Lickilicky ♀</td>
+                  <td class="light-true" rowspan="2" data-species="lickilicky">Lickilicky ♀</td>
                   <td class="light-true" rowspan="2">Own Tempo</td>
-                  <td class="light-true" rowspan="2">Impish</td>
+                  <td class="light-true" rowspan="2" data-nature="impish">Impish</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true normal" colspan="2">Body Slam</td>
                   <td class="type-true grass" colspan="2">Power Whip</td>
@@ -8488,9 +8495,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/porygon-z.png" alt="Porygon-Z"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Porygon-Z</td>
+                  <td class="light-false" rowspan="2" data-species="porygon-z">Porygon-Z</td>
                   <td class="light-false" rowspan="2">Adaptability</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Choice Specs</td>
                   <td class="type-false normal" colspan="2">Tri Attack</td>
                   <td class="type-false ghost" colspan="2">Shadow Ball</td>
@@ -8539,9 +8546,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/tangrowth-f.png" alt="Tangrowth"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Tangrowth ♀</td>
+                  <td class="light-true" rowspan="2" data-species="tangrowth">Tangrowth ♀</td>
                   <td class="light-true" rowspan="2">Leaf Guard</td>
-                  <td class="light-true" rowspan="2">Modest</td>
+                  <td class="light-true" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-true" rowspan="2">Quick Claw</td>
                   <td class="type-true grass" colspan="2">Energy Ball</td>
                   <td class="type-true poison" colspan="2">Sludge Bomb</td>
@@ -8589,7 +8596,7 @@
             </tbody>
          </table>
          <h4>Joe's Groupie Kaitlyn</h4>
-		 <table>
+         <table>
             <caption>Joe's Groupie Kaitlyn</caption>
             <thead>
                <tr class="light-true">
@@ -8611,9 +8618,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/espeon.png" alt="Espeon"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Espeon ♀</td>
+                  <td class="light-false" rowspan="2" data-species="espeon">Espeon ♀</td>
                   <td class="light-false" rowspan="2">Synchronize</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Lum Berry</td>
                   <td class="type-false psychic" colspan="2">Psychic</td>
                   <td class="type-false ghost" colspan="2">Shadow Ball</td>
@@ -8662,9 +8669,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/jolteon.png" alt="Jolteon"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Jolteon ♂</td>
+                  <td class="light-true" rowspan="2" data-species="jolteon">Jolteon ♂</td>
                   <td class="light-true" rowspan="2">Volt Absorb</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Shuca Berry</td>
                   <td class="type-true electric" colspan="2">Thunderbolt</td>
                   <td class="type-true ghost" colspan="2">Shadow Ball</td>
@@ -8713,9 +8720,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/glaceon.png" alt="Glaceon"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Glaceon ♀</td>
+                  <td class="light-false" rowspan="2" data-species="glaceon">Glaceon ♀</td>
                   <td class="light-false" rowspan="2">Snow Cloak</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Focus Band</td>
                   <td class="type-false ice" colspan="2">Ice Beam</td>
                   <td class="type-false ghost" colspan="2">Shadow Ball</td>
@@ -8764,9 +8771,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/leafeon.png" alt="Leafeon"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Leafeon ♂</td>
+                  <td class="light-true" rowspan="2" data-species="leafeon">Leafeon ♂</td>
                   <td class="light-true" rowspan="2">Leaf Guard</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Scope Lens</td>
                   <td class="type-true grass" colspan="2">Leaf Blade</td>
                   <td class="type-true bug" colspan="2">X-Scissor</td>
@@ -8815,9 +8822,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/vaporeon.png" alt="Vaporeon"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Vaporeon ♀</td>
+                  <td class="light-false" rowspan="2" data-species="vaporeon">Vaporeon ♀</td>
                   <td class="light-false" rowspan="2">Water Absorb</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Leftovers</td>
                   <td class="type-false water" colspan="2">Hydro Pump</td>
                   <td class="type-false ice" colspan="2">Ice Beam</td>
@@ -8866,9 +8873,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/flareon.png" alt="Flareon"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Flareon ♂</td>
+                  <td class="light-true" rowspan="2" data-species="flareon">Flareon ♂</td>
                   <td class="light-true" rowspan="2">Flash Fire</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Quick Claw</td>
                   <td class="type-true fire" colspan="2">Fire Fang</td>
                   <td class="type-true steel" colspan="2">Iron Tail</td>
@@ -8916,7 +8923,7 @@
             </tbody>
          </table>
          <h4>Master Junior Joe</h4>
-		 <table>
+         <table>
             <caption>Master Junior Joe</caption>
             <thead>
                <tr class="light-true">
@@ -8938,9 +8945,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/arcanine.png" alt="Arcanine"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Arcanine ♂</td>
+                  <td class="light-false" rowspan="2" data-species="arcanine">Arcanine ♂</td>
                   <td class="light-false" rowspan="2">Flash Fire</td>
-                  <td class="light-false" rowspan="2">Jolly</td>
+                  <td class="light-false" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-false" rowspan="2">Passho Berry</td>
                   <td class="type-false fire" colspan="2">Flare Blitz</td>
                   <td class="type-false dark" colspan="2">Crunch</td>
@@ -8989,9 +8996,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/entei.png" alt="Entei"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Entei</td>
+                  <td class="light-true" rowspan="2" data-species="entei">Entei</td>
                   <td class="light-true" rowspan="2">Pressure</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Sitrus Berry</td>
                   <td class="type-true fire" colspan="2">Lava Plume</td>
                   <td class="type-true psychic" colspan="2">Extrasensory</td>
@@ -9040,9 +9047,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/lapras.png" alt="Lapras"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Lapras ♀</td>
+                  <td class="light-false" rowspan="2" data-species="lapras">Lapras ♀</td>
                   <td class="light-false" rowspan="2">Water Absorb</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Quick Claw</td>
                   <td class="type-false water" colspan="2">Hydro Pump</td>
                   <td class="type-false electric" colspan="2">Thunderbolt</td>
@@ -9091,9 +9098,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/suicune.png" alt="Suicune"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Suicune</td>
+                  <td class="light-true" rowspan="2" data-species="suicune">Suicune</td>
                   <td class="light-true" rowspan="2">Pressure</td>
-                  <td class="light-true" rowspan="2">Bold</td>
+                  <td class="light-true" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true water" colspan="2">Surf</td>
                   <td class="type-true ice" colspan="2">Ice Beam</td>
@@ -9142,9 +9149,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/electivire.png" alt="Electivire"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Electivire ♀</td>
+                  <td class="light-false" rowspan="2" data-species="electivire">Electivire ♀</td>
                   <td class="light-false" rowspan="2">Motor Drive</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Shuca Berry</td>
                   <td class="type-false electric" colspan="2">ThunderPunch</td>
                   <td class="type-false ground" colspan="2">Earthquake</td>
@@ -9193,9 +9200,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/raikou.png" alt="Raikou"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Raikou</td>
+                  <td class="light-true" rowspan="2" data-species="raikou">Raikou</td>
                   <td class="light-true" rowspan="2">Pressure</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">BrightPowder</td>
                   <td class="type-true electric" colspan="2">Discharge</td>
                   <td class="type-true ghost" colspan="2">Shadow Ball</td>
@@ -9242,11 +9249,11 @@
                </tr>
             </tbody>
          </table>
-	  </div>
-	  <div>
+      </div>
+      <div>
          <h3 id="masters-6"><u>Masters Battle Set 6</u></h3>
-		 <h4>Master Class Tiffany</h4>
-		 <table>
+         <h4>Master Class Tiffany</h4>
+         <table>
             <caption>Master Class Tiffany</caption>
             <thead>
                <tr class="light-true">
@@ -9268,9 +9275,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/houndoom-f.png" alt="Houndoom"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Houndoom ♀</td>
+                  <td class="light-false" rowspan="2" data-species="houndoom">Houndoom ♀</td>
                   <td class="light-false" rowspan="2">Flash Fire</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Focus Sash</td>
                   <td class="type-false dark status-move" colspan="2">Nasty Plot</td>
                   <td class="type-false psychic" colspan="2">Dream Eater</td>
@@ -9319,9 +9326,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/blastoise.png" alt="Blastoise"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Blastoise ♂</td>
+                  <td class="light-true" rowspan="2" data-species="blastoise">Blastoise ♂</td>
                   <td class="light-true" rowspan="2">Torrent</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true normal status-move" colspan="2">Double Team</td>
                   <td class="type-true normal" colspan="2">Fake Out</td>
@@ -9370,9 +9377,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/yanmega.png" alt="Yanmega"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Yanmega ♀</td>
+                  <td class="light-false" rowspan="2" data-species="yanmega">Yanmega ♀</td>
                   <td class="light-false" rowspan="2">Speed Boost</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Wide Lens</td>
                   <td class="type-false psychic status-move" colspan="2">Hypnosis</td>
                   <td class="type-false psychic" colspan="2">Dream Eater</td>
@@ -9421,9 +9428,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/persian.png" alt="Persian"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Persian ♂</td>
+                  <td class="light-true" rowspan="2" data-species="persian">Persian ♂</td>
                   <td class="light-true" rowspan="2">Technician</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">King's Rock</td>
                   <td class="type-true normal" colspan="2">Fake Out</td>
                   <td class="type-true psychic status-move" colspan="2">Hypnosis</td>
@@ -9472,9 +9479,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/jynx.png" alt="Jynx"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Jynx ♀</td>
+                  <td class="light-false" rowspan="2" data-species="jynx">Jynx ♀</td>
                   <td class="light-false" rowspan="2">Oblivious</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">BrightPowder</td>
                   <td class="type-false normal status-move" colspan="2">Substitute</td>
                   <td class="type-false normal status-move" colspan="2">Lovely Kiss</td>
@@ -9523,9 +9530,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/altaria.png" alt="Altaria"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Altaria ♂</td>
+                  <td class="light-true" rowspan="2" data-species="altaria">Altaria ♂</td>
                   <td class="light-true" rowspan="2">Natural Cure</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Yache Berry</td>
                   <td class="type-true dragon status-move" colspan="2">Dragon Dance</td>
                   <td class="type-true flying" colspan="2">Pluck</td>
@@ -9573,7 +9580,7 @@
             </tbody>
          </table>
          <h4>Master Class Miriam</h4>
-		 <table>
+         <table>
             <caption>Master Class Miriam</caption>
             <thead>
                <tr class="light-true">
@@ -9595,9 +9602,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/metagross.png" alt="Metagross"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Metagross</td>
+                  <td class="light-false" rowspan="2" data-species="metagross">Metagross</td>
                   <td class="light-false" rowspan="2">Clear Body</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Occa Berry</td>
                   <td class="type-false steel" colspan="2">Meteor Mash</td>
                   <td class="type-false electric" colspan="2">ThunderPunch</td>
@@ -9646,9 +9653,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/blaziken-m.png" alt="Blaziken"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Blaziken ♂</td>
+                  <td class="light-true" rowspan="2" data-species="blaziken">Blaziken ♂</td>
                   <td class="light-true" rowspan="2">Blaze</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Focus Sash</td>
                   <td class="type-true normal" colspan="2">Feint</td>
                   <td class="type-true fire" colspan="2">Blaze Kick</td>
@@ -9697,9 +9704,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/hitmonlee.png" alt="Hitmonlee"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Hitmonlee ♂</td>
+                  <td class="light-false" rowspan="2" data-species="hitmonlee">Hitmonlee ♂</td>
                   <td class="light-false" rowspan="2">Limber</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">White Herb</td>
                   <td class="type-false rock" colspan="2">Stone Edge</td>
                   <td class="type-false fighting" colspan="2">Close Combat</td>
@@ -9748,9 +9755,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/glalie.png" alt="Glalie"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Glalie ♀</td>
+                  <td class="light-true" rowspan="2" data-species="glalie">Glalie ♀</td>
                   <td class="light-true" rowspan="2">Inner Focus</td>
-                  <td class="light-true" rowspan="2">Modest</td>
+                  <td class="light-true" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true ice" colspan="2">Blizzard</td>
                   <td class="type-true dark" colspan="2">Dark Pulse</td>
@@ -9799,9 +9806,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/electrode.png" alt="Electrode"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Electrode</td>
+                  <td class="light-false" rowspan="2" data-species="electrode">Electrode</td>
                   <td class="light-false" rowspan="2">Static</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">BrightPowder</td>
                   <td class="type-false electric status-move" colspan="2">Magnet Rise</td>
                   <td class="type-false electric" colspan="2">Thunderbolt</td>
@@ -9850,9 +9857,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/gengar.png" alt="Gengar"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Gengar ♀</td>
+                  <td class="light-true" rowspan="2" data-species="gengar">Gengar ♀</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Sitrus Berry</td>
                   <td class="type-true ghost" colspan="2">Shadow Ball</td>
                   <td class="type-true poison" colspan="2">Sludge Bomb</td>
@@ -9900,7 +9907,7 @@
             </tbody>
          </table>
          <h4>Sashay Fan Club Monica</h4>
-		 <table>
+         <table>
             <caption>Sashay Fan Club Monica</caption>
             <thead>
                <tr class="light-true">
@@ -9922,9 +9929,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/alakazam-f.png" alt="Alakazam"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Alakazam ♀</td>
+                  <td class="light-false" rowspan="2" data-species="alakazam">Alakazam ♀</td>
                   <td class="light-false" rowspan="2">Inner Focus</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Focus Sash</td>
                   <td class="type-false normal status-move" colspan="2">Protect</td>
                   <td class="type-false normal status-move" colspan="2">Disable</td>
@@ -9973,9 +9980,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/wobbuffet-f.png" alt="Wobbuffet"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Wobbuffet ♀</td>
+                  <td class="light-true" rowspan="2" data-species="wobbuffet">Wobbuffet ♀</td>
                   <td class="light-true" rowspan="2">Shadow Tag</td>
-                  <td class="light-true" rowspan="2">Impish</td>
+                  <td class="light-true" rowspan="2" data-nature="impish">Impish</td>
                   <td class="light-true" rowspan="2">Sitrus Berry</td>
                   <td class="type-true normal status-move" colspan="2">Encore</td>
                   <td class="type-true fighting" colspan="2">Counter</td>
@@ -10024,9 +10031,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/ninetales.png" alt="Ninetales"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Ninetales ♀</td>
+                  <td class="light-false" rowspan="2" data-species="ninetales">Ninetales ♀</td>
                   <td class="light-false" rowspan="2">Flash Fire</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Passho Berry</td>
                   <td class="type-false normal status-move" colspan="2">Disable</td>
                   <td class="type-false normal status-move" colspan="2">Protect</td>
@@ -10075,9 +10082,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/dewgong.png" alt="Dewgong"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Dewgong ♀</td>
+                  <td class="light-true" rowspan="2" data-species="dewgong">Dewgong ♀</td>
                   <td class="light-true" rowspan="2">Thick Fat</td>
-                  <td class="light-true" rowspan="2">Relaxed</td>
+                  <td class="light-true" rowspan="2" data-nature="relaxed">Relaxed</td>
                   <td class="light-true" rowspan="2">Zoom Lens</td>
                   <td class="type-true normal status-move" colspan="2">Encore</td>
                   <td class="type-true normal status-move" colspan="2">Disable</td>
@@ -10126,9 +10133,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/dusknoir.png" alt="Dusknoir"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Dusknoir ♂</td>
+                  <td class="light-false" rowspan="2" data-species="dusknoir">Dusknoir ♂</td>
                   <td class="light-false" rowspan="2">Pressure</td>
-                  <td class="light-false" rowspan="2">Careful</td>
+                  <td class="light-false" rowspan="2" data-nature="careful">Careful</td>
                   <td class="light-false" rowspan="2">Leftovers</td>
                   <td class="type-false normal status-move" colspan="2">Protect</td>
                   <td class="type-false normal status-move" colspan="2">Mimic</td>
@@ -10177,9 +10184,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/muk.png" alt="Muk"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Muk ♂</td>
+                  <td class="light-true" rowspan="2" data-species="muk">Muk ♂</td>
                   <td class="light-true" rowspan="2">Sticky Hold</td>
-                  <td class="light-true" rowspan="2">Impish</td>
+                  <td class="light-true" rowspan="2" data-nature="impish">Impish</td>
                   <td class="light-true" rowspan="2">Black Sludge</td>
                   <td class="type-true normal status-move" colspan="2">Mean Look</td>
                   <td class="type-true normal status-move" colspan="2">Disable</td>
@@ -10227,7 +10234,7 @@
             </tbody>
          </table>
          <h4>Master Middle Sashay</h4>
-		 <table>
+         <table>
             <caption>Master Middle Sashay</caption>
             <thead>
                <tr class="light-true">
@@ -10249,9 +10256,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/milotic-f.png" alt="Milotic"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Milotic ♀</td>
+                  <td class="light-false" rowspan="2" data-species="milotic">Milotic ♀</td>
                   <td class="light-false" rowspan="2">Marvel Scale</td>
-                  <td class="light-false" rowspan="2">Bold</td>
+                  <td class="light-false" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-false" rowspan="2">Zoom Lens</td>
                   <td class="type-false normal" colspan="2">Wrap</td>
                   <td class="type-false ghost status-move" colspan="2">Confuse Ray</td>
@@ -10300,9 +10307,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/registeel.png" alt="Registeel"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Registeel</td>
+                  <td class="light-true" rowspan="2" data-species="registeel">Registeel</td>
                   <td class="light-true" rowspan="2">Clear Body</td>
-                  <td class="light-true" rowspan="2">Calm</td>
+                  <td class="light-true" rowspan="2" data-nature="calm">Calm</td>
                   <td class="light-true" rowspan="2">Chesto Berry</td>
                   <td class="type-true electric" colspan="2">Charge Beam</td>
                   <td class="type-true normal status-move" colspan="2">Double Team</td>
@@ -10351,9 +10358,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/togekiss.png" alt="Togekiss"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Togekiss ♀</td>
+                  <td class="light-false" rowspan="2" data-species="togekiss">Togekiss ♀</td>
                   <td class="light-false" rowspan="2">Serene Grace</td>
-                  <td class="light-false" rowspan="2">Bold</td>
+                  <td class="light-false" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-false" rowspan="2">Sitrus Berry</td>
                   <td class="type-false psychic status-move" colspan="2">Reflect</td>
                   <td class="type-false psychic status-move" colspan="2">Light Screen</td>
@@ -10402,9 +10409,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/umbreon.png" alt="Umbreon"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Umbreon ♀</td>
+                  <td class="light-true" rowspan="2" data-species="umbreon">Umbreon ♀</td>
                   <td class="light-true" rowspan="2">Synchronize</td>
-                  <td class="light-true" rowspan="2">Calm</td>
+                  <td class="light-true" rowspan="2" data-nature="calm">Calm</td>
                   <td class="light-true" rowspan="2">Lum Berry</td>
                   <td class="type-true normal status-move" colspan="2">Mean Look</td>
                   <td class="type-true ghost status-move" colspan="2">Confuse Ray</td>
@@ -10453,9 +10460,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/deoxys.png" alt="Deoxys (Defense)"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Deoxys (Defense)</td>
+                  <td class="light-false" rowspan="2" data-species="deoxys-defense">Deoxys (Defense)</td>
                   <td class="light-false" rowspan="2">Pressure</td>
-                  <td class="light-false" rowspan="2">Bold</td>
+                  <td class="light-false" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-false" rowspan="2">Kasib Berry</td>
                   <td class="type-false psychic status-move" colspan="2">Calm Mind</td>
                   <td class="type-false normal status-move" colspan="2">Recover</td>
@@ -10504,9 +10511,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/giratina.png" alt="Giratina"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Giratina</td>
+                  <td class="light-true" rowspan="2" data-species="giratina">Giratina</td>
                   <td class="light-true" rowspan="2">Pressure</td>
-                  <td class="light-true" rowspan="2">Relaxed</td>
+                  <td class="light-true" rowspan="2" data-nature="relaxed">Relaxed</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true ghost" colspan="2">Shadow Force</td>
                   <td class="type-true fire status-move" colspan="2">Will-O-Wisp</td>
@@ -10553,11 +10560,11 @@
                </tr>
             </tbody>
          </table>
-	  </div>
-	  <div>
+      </div>
+      <div>
          <h3 id="masters-7"><u>Masters Battle Set 7</u></h3>
-		 <h4>Master Class Preston</h4>
-		 <table>
+         <h4>Master Class Preston</h4>
+         <table>
             <caption>Master Class Preston</caption>
             <thead>
                <tr class="light-true">
@@ -10579,9 +10586,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/blissey.png" alt="Blissey"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Blissey ♀</td>
+                  <td class="light-false" rowspan="2" data-species="blissey">Blissey ♀</td>
                   <td class="light-false" rowspan="2">Serene Grace</td>
-                  <td class="light-false" rowspan="2">Bold</td>
+                  <td class="light-false" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-false" rowspan="2">Leftovers</td>
                   <td class="type-false psychic status-move" colspan="2">Gravity</td>
                   <td class="type-false normal status-move" colspan="2">Softboiled</td>
@@ -10630,9 +10637,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/aggron.png" alt="Aggron"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Aggron ♂</td>
+                  <td class="light-true" rowspan="2" data-species="aggron">Aggron ♂</td>
                   <td class="light-true" rowspan="2">Sturdy</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Shuca Berry</td>
                   <td class="type-true steel" colspan="2">Iron Tail</td>
                   <td class="type-true rock" colspan="2">Stone Edge</td>
@@ -10681,9 +10688,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/ludicolo-f.png" alt="Ludicolo"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Ludicolo ♀</td>
+                  <td class="light-false" rowspan="2" data-species="ludicolo">Ludicolo ♀</td>
                   <td class="light-false" rowspan="2">Swift Swim</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Scope Lens</td>
                   <td class="type-false water" colspan="2">Hydro Pump</td>
                   <td class="type-false ice" colspan="2">Blizzard</td>
@@ -10732,9 +10739,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/hariyama.png" alt="Hariyama"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Hariyama ♀</td>
+                  <td class="light-true" rowspan="2" data-species="hariyama">Hariyama ♀</td>
                   <td class="light-true" rowspan="2">Thick Fat</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Quick Claw</td>
                   <td class="type-true fighting" colspan="2">DynamicPunch</td>
                   <td class="type-true rock" colspan="2">Rock Slide</td>
@@ -10783,9 +10790,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/dragonite.png" alt="Dragonite"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Dragonite ♂</td>
+                  <td class="light-false" rowspan="2" data-species="dragonite">Dragonite ♂</td>
                   <td class="light-false" rowspan="2">Inner Focus</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">White Herb</td>
                   <td class="type-false dragon" colspan="2">Draco Meteor</td>
                   <td class="type-false electric" colspan="2">Thunder</td>
@@ -10834,9 +10841,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/gardevoir.png" alt="Gardevoir"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Gardevoir ♀</td>
+                  <td class="light-true" rowspan="2" data-species="gardevoir">Gardevoir ♀</td>
                   <td class="light-true" rowspan="2">Trace</td>
-                  <td class="light-true" rowspan="2">Modest</td>
+                  <td class="light-true" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-true" rowspan="2">Focus Band</td>
                   <td class="type-true psychic status-move" colspan="2">Hypnosis</td>
                   <td class="type-true psychic" colspan="2">Dream Eater</td>
@@ -10884,7 +10891,7 @@
             </tbody>
          </table>
          <h4>Master Class Tate</h4>
-		 <table>
+         <table>
             <caption>Master Class Tate</caption>
             <thead>
                <tr class="light-true">
@@ -10906,9 +10913,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/rhyperior-m.png" alt="Rhyperior"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Rhyperior ♂</td>
+                  <td class="light-false" rowspan="2" data-species="rhyperior">Rhyperior ♂</td>
                   <td class="light-false" rowspan="2">Lightning Rod</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Passho Berry</td>
                   <td class="type-false ground" colspan="2">Earthquake</td>
                   <td class="type-false rock" colspan="2">Stone Edge</td>
@@ -10957,9 +10964,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/manectric.png" alt="Manectric"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Manectric ♀</td>
+                  <td class="light-true" rowspan="2" data-species="manectric">Manectric ♀</td>
                   <td class="light-true" rowspan="2">Lightning Rod</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Shuca Berry</td>
                   <td class="type-true electric" colspan="2">Thunderbolt</td>
                   <td class="type-true fire" colspan="2">Overheat</td>
@@ -11008,9 +11015,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/gyarados-m.png" alt="Gyarados"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Gyarados ♂</td>
+                  <td class="light-false" rowspan="2" data-species="gyarados">Gyarados ♂</td>
                   <td class="light-false" rowspan="2">Intimidate</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Wacan Berry</td>
                   <td class="type-false dragon status-move" colspan="2">Dragon Dance</td>
                   <td class="type-false water" colspan="2">Waterfall</td>
@@ -11059,9 +11066,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/aerodactyl.png" alt="Aerodactyl"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Aerodactyl ♀</td>
+                  <td class="light-true" rowspan="2" data-species="aerodactyl">Aerodactyl ♀</td>
                   <td class="light-true" rowspan="2">Pressure</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">King's Rock</td>
                   <td class="type-true rock" colspan="2">Rock Slide</td>
                   <td class="type-true ground" colspan="2">Earthquake</td>
@@ -11110,9 +11117,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/starmie.png" alt="Starmie"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Starmie</td>
+                  <td class="light-false" rowspan="2" data-species="starmie">Starmie</td>
                   <td class="light-false" rowspan="2">Natural Cure</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Expert Belt</td>
                   <td class="type-false water" colspan="2">Hydro Pump</td>
                   <td class="type-false psychic" colspan="2">Psychic</td>
@@ -11161,9 +11168,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/togekiss.png" alt="Togekiss"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Togekiss ♀</td>
+                  <td class="light-true" rowspan="2" data-species="togekiss">Togekiss ♀</td>
                   <td class="light-true" rowspan="2">Serene Grace</td>
-                  <td class="light-true" rowspan="2">Modest</td>
+                  <td class="light-true" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true fighting" colspan="2">Aura Sphere</td>
                   <td class="type-true normal" colspan="2">Tri Attack</td>
@@ -11211,7 +11218,7 @@
             </tbody>
          </table>
          <h4>Kruger Family Lonnie</h4>
-		 <table>
+         <table>
             <caption>Kruger Family Lonnie</caption>
             <thead>
                <tr class="light-true">
@@ -11233,9 +11240,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/regigigas.png" alt="Regigigas"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Regigigas</td>
+                  <td class="light-false" rowspan="2" data-species="regigigas">Regigigas</td>
                   <td class="light-false" rowspan="2">Slow Start</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Leftovers</td>
                   <td class="type-false normal" colspan="2">Return</td>
                   <td class="type-false fire" colspan="2">Fire Punch</td>
@@ -11284,9 +11291,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/slaking.png" alt="Slaking"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Slaking ♀</td>
+                  <td class="light-true" rowspan="2" data-species="slaking">Slaking ♀</td>
                   <td class="light-true" rowspan="2">Truant</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Scope Lens</td>
                   <td class="type-true normal" colspan="2">Return</td>
                   <td class="type-true ghost" colspan="2">Shadow Claw</td>
@@ -11335,9 +11342,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/alakazam-f.png" alt="Alakazam"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Alakazam ♀</td>
+                  <td class="light-false" rowspan="2" data-species="alakazam">Alakazam ♀</td>
                   <td class="light-false" rowspan="2">Inner Focus</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">BrightPowder</td>
                   <td class="type-false psychic status-move" colspan="2">Skill Swap</td>
                   <td class="type-false psychic" colspan="2">Psychic</td>
@@ -11386,9 +11393,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/sceptile.png" alt="Sceptile"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Sceptile ♂</td>
+                  <td class="light-true" rowspan="2" data-species="sceptile">Sceptile ♂</td>
                   <td class="light-true" rowspan="2">Overgrow</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Lax Incense</td>
                   <td class="type-true grass status-move" colspan="2">Worry Seed</td>
                   <td class="type-true grass" colspan="2">Energy Ball</td>
@@ -11437,9 +11444,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/mew.png" alt="Mew"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Mew</td>
+                  <td class="light-false" rowspan="2" data-species="mew">Mew</td>
                   <td class="light-false" rowspan="2">Synchronize</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Lum Berry</td>
                   <td class="type-false normal status-move" colspan="2">Transform</td>
                   <td class="type-false psychic status-move" colspan="2">Skill Swap</td>
@@ -11488,9 +11495,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/swalot-m.png" alt="Swalot"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Swalot ♂</td>
+                  <td class="light-true" rowspan="2" data-species="swalot">Swalot ♂</td>
                   <td class="light-true" rowspan="2">Sticky Hold</td>
-                  <td class="light-true" rowspan="2">Careful</td>
+                  <td class="light-true" rowspan="2" data-nature="careful">Careful</td>
                   <td class="light-true" rowspan="2">Black Sludge</td>
                   <td class="type-true poison status-move" colspan="2">Gastro Acid</td>
                   <td class="type-true normal status-move" colspan="2">Stockpile</td>
@@ -11538,7 +11545,7 @@
             </tbody>
          </table>
          <h4>Master Senior Kruger</h4>
-		 <table>
+         <table>
             <caption>Master Senior Kruger</caption>
             <thead>
                <tr class="light-true">
@@ -11560,9 +11567,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/regice.png" alt="Regice"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Regice</td>
+                  <td class="light-false" rowspan="2" data-species="regice">Regice</td>
                   <td class="light-false" rowspan="2">Clear Body</td>
-                  <td class="light-false" rowspan="2">Relaxed</td>
+                  <td class="light-false" rowspan="2" data-nature="relaxed">Relaxed</td>
                   <td class="light-false" rowspan="2">Leftovers</td>
                   <td class="type-false ice" colspan="2">Ice Beam</td>
                   <td class="type-false electric" colspan="2">Thunderbolt</td>
@@ -11611,9 +11618,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/latias.png" alt="Latias"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Latias ♀</td>
+                  <td class="light-true" rowspan="2" data-species="latias">Latias ♀</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Soul Dew</td>
                   <td class="type-true psychic" colspan="2">Psychic</td>
                   <td class="type-true ghost" colspan="2">Shadow Ball</td>
@@ -11662,9 +11669,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/zapdos.png" alt="Zapdos"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Zapdos</td>
+                  <td class="light-false" rowspan="2" data-species="zapdos">Zapdos</td>
                   <td class="light-false" rowspan="2">Pressure</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Charti Berry</td>
                   <td class="type-false electric" colspan="2">Thunderbolt</td>
                   <td class="type-false psychic" colspan="2">Extrasensory</td>
@@ -11713,9 +11720,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/heatran.png" alt="Heatran"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Heatran ♀</td>
+                  <td class="light-true" rowspan="2" data-species="heatran">Heatran ♀</td>
                   <td class="light-true" rowspan="2">Flash Fire</td>
-                  <td class="light-true" rowspan="2">Quiet</td>
+                  <td class="light-true" rowspan="2" data-nature="quiet">Quiet</td>
                   <td class="light-true" rowspan="2">Shuca Berry</td>
                   <td class="type-true normal" colspan="2">Explosion</td>
                   <td class="type-true fire" colspan="2">Magma Storm</td>
@@ -11764,9 +11771,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/regirock.png" alt="Regirock"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Regirock</td>
+                  <td class="light-false" rowspan="2" data-species="regirock">Regirock</td>
                   <td class="light-false" rowspan="2">Clear Body</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Quick Claw</td>
                   <td class="type-false normal" colspan="2">Explosion</td>
                   <td class="type-false ground" colspan="2">Earthquake</td>
@@ -11815,9 +11822,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/azelf.png" alt="Azelf"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Azelf</td>
+                  <td class="light-true" rowspan="2" data-species="azelf">Azelf</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Salac Berry</td>
                   <td class="type-true normal" colspan="2">Explosion</td>
                   <td class="type-true normal status-move" colspan="2">Protect</td>
@@ -11864,11 +11871,11 @@
                </tr>
             </tbody>
          </table>
-	  </div>
-	  <div>
+      </div>
+      <div>
          <h3 id="masters-8"><u>Masters Battle Set 8</u></h3>
-		 <h4>Master Class Cortney</h4>
-		 <table>
+         <h4>Master Class Cortney</h4>
+         <table>
             <caption>Master Class Cortney</caption>
             <thead>
                <tr class="light-true">
@@ -11890,9 +11897,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/articuno.png" alt="Articuno"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Articuno</td>
+                  <td class="light-false" rowspan="2" data-species="articuno">Articuno</td>
                   <td class="light-false" rowspan="2">Pressure</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Charti Berry</td>
                   <td class="type-false ice" colspan="2">Blizzard</td>
                   <td class="type-false flying status-move" colspan="2">Roost</td>
@@ -11941,9 +11948,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/abomasnow-m.png" alt="Abomasnow"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Abomasnow ♂</td>
+                  <td class="light-true" rowspan="2" data-species="abomasnow">Abomasnow ♂</td>
                   <td class="light-true" rowspan="2">Snow Warning</td>
-                  <td class="light-true" rowspan="2">Careful</td>
+                  <td class="light-true" rowspan="2" data-nature="careful">Careful</td>
                   <td class="light-true" rowspan="2">Occa Berry</td>
                   <td class="type-true normal status-move" colspan="2">Protect</td>
                   <td class="type-true grass status-move" colspan="2">Leech Seed</td>
@@ -11992,9 +11999,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/mamoswine-m.png" alt="Mamoswine"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Mamoswine ♂</td>
+                  <td class="light-false" rowspan="2" data-species="mamoswine">Mamoswine ♂</td>
                   <td class="light-false" rowspan="2">Snow Cloak</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Quick Claw</td>
                   <td class="type-false rock" colspan="2">Stone Edge</td>
                   <td class="type-false ice" colspan="2">Ice Fang</td>
@@ -12043,9 +12050,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/froslass.png" alt="Froslass"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Froslass ♀</td>
+                  <td class="light-true" rowspan="2" data-species="froslass">Froslass ♀</td>
                   <td class="light-true" rowspan="2">Snow Cloak</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Lax Incense</td>
                   <td class="type-true ice" colspan="2">Blizzard</td>
                   <td class="type-true ghost" colspan="2">Shadow Ball</td>
@@ -12094,9 +12101,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/walrein.png" alt="Walrein"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Walrein ♀</td>
+                  <td class="light-false" rowspan="2" data-species="walrein">Walrein ♀</td>
                   <td class="light-false" rowspan="2">Ice Body</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Leftovers</td>
                   <td class="type-false ice status-move" colspan="2">Hail</td>
                   <td class="type-false normal status-move" colspan="2">Protect</td>
@@ -12145,9 +12152,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/jirachi.png" alt="Jirachi"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Jirachi</td>
+                  <td class="light-true" rowspan="2" data-species="jirachi">Jirachi</td>
                   <td class="light-true" rowspan="2">Serene Grace</td>
-                  <td class="light-true" rowspan="2">Modest</td>
+                  <td class="light-true" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-true" rowspan="2">Shuca Berry</td>
                   <td class="type-true psychic status-move" colspan="2">Skill Swap</td>
                   <td class="type-true psychic" colspan="2">Psychic</td>
@@ -12195,7 +12202,7 @@
             </tbody>
          </table>
          <h4>Master Class Ryan</h4>
-		 <table>
+         <table>
             <caption>Master Class Ryan</caption>
             <thead>
                <tr class="light-true">
@@ -12217,9 +12224,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/tyranitar.png" alt="Tyranitar"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Tyranitar ♂</td>
+                  <td class="light-false" rowspan="2" data-species="tyranitar">Tyranitar ♂</td>
                   <td class="light-false" rowspan="2">Sand Stream</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Chople Berry</td>
                   <td class="type-false dark" colspan="2">Crunch</td>
                   <td class="type-false rock" colspan="2">Stone Edge</td>
@@ -12268,9 +12275,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/garchomp-f.png" alt="Garchomp"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Garchomp ♀</td>
+                  <td class="light-true" rowspan="2" data-species="garchomp">Garchomp ♀</td>
                   <td class="light-true" rowspan="2">Sand Veil</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Yache Berry</td>
                   <td class="type-true dragon" colspan="2">Dragon Claw</td>
                   <td class="type-true ground" colspan="2">Earthquake</td>
@@ -12319,9 +12326,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/cradily.png" alt="Cradily"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Cradily ♂</td>
+                  <td class="light-false" rowspan="2" data-species="cradily">Cradily ♂</td>
                   <td class="light-false" rowspan="2">Suction Cups</td>
-                  <td class="light-false" rowspan="2">Bold</td>
+                  <td class="light-false" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-false" rowspan="2">Leftovers</td>
                   <td class="type-false normal status-move" colspan="2">Stockpile</td>
                   <td class="type-false normal status-move" colspan="2">Recover</td>
@@ -12370,9 +12377,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/gliscor.png" alt="Gliscor"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Gliscor ♀</td>
+                  <td class="light-true" rowspan="2" data-species="gliscor">Gliscor ♀</td>
                   <td class="light-true" rowspan="2">Sand Veil</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">BrightPowder</td>
                   <td class="type-true ground" colspan="2">Earthquake</td>
                   <td class="type-true flying" colspan="2">Aerial Ace</td>
@@ -12421,9 +12428,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/armaldo.png" alt="Armaldo"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Armaldo ♂</td>
+                  <td class="light-false" rowspan="2" data-species="armaldo">Armaldo ♂</td>
                   <td class="light-false" rowspan="2">Battle Armor</td>
-                  <td class="light-false" rowspan="2">Adamant</td>
+                  <td class="light-false" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-false" rowspan="2">Quick Claw</td>
                   <td class="type-false bug" colspan="2">X-Scissor</td>
                   <td class="type-false rock" colspan="2">Stone Edge</td>
@@ -12472,9 +12479,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/omastar.png" alt="Omastar"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Omastar ♀</td>
+                  <td class="light-true" rowspan="2" data-species="omastar">Omastar ♀</td>
                   <td class="light-true" rowspan="2">Swift Swim</td>
-                  <td class="light-true" rowspan="2">Modest</td>
+                  <td class="light-true" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-true" rowspan="2">Rindo Berry</td>
                   <td class="type-true water" colspan="2">Hydro Pump</td>
                   <td class="type-true ice" colspan="2">Ice Beam</td>
@@ -12522,7 +12529,7 @@
             </tbody>
          </table>
          <h4>Magician's Apprentice Ruth</h4>
-		 <table>
+         <table>
             <caption>Magician's Apprentice Ruth</caption>
             <thead>
                <tr class="light-true">
@@ -12544,9 +12551,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/slowbro.png" alt="Slowbro"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Slowbro ♂</td>
+                  <td class="light-false" rowspan="2" data-species="slowbro">Slowbro ♂</td>
                   <td class="light-false" rowspan="2">Oblivious</td>
-                  <td class="light-false" rowspan="2">Sassy</td>
+                  <td class="light-false" rowspan="2" data-nature="sassy">Sassy</td>
                   <td class="light-false" rowspan="2">Leftovers</td>
                   <td class="type-false psychic status-move" colspan="2">Trick Room</td>
                   <td class="type-false normal status-move" colspan="2">Slack Off</td>
@@ -12595,9 +12602,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/snorlax.png" alt="Snorlax"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Snorlax ♀</td>
+                  <td class="light-true" rowspan="2" data-species="snorlax">Snorlax ♀</td>
                   <td class="light-true" rowspan="2">Thick Fat</td>
-                  <td class="light-true" rowspan="2">Relaxed</td>
+                  <td class="light-true" rowspan="2" data-nature="relaxed">Relaxed</td>
                   <td class="light-true" rowspan="2">Chesto Berry</td>
                   <td class="type-true normal" colspan="2">Return</td>
                   <td class="type-true ghost status-move" colspan="2">Curse</td>
@@ -12646,9 +12653,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/slowking.png" alt="Slowking"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Slowking ♂</td>
+                  <td class="light-false" rowspan="2" data-species="slowking">Slowking ♂</td>
                   <td class="light-false" rowspan="2">Own Tempo</td>
-                  <td class="light-false" rowspan="2">Quiet</td>
+                  <td class="light-false" rowspan="2" data-nature="quiet">Quiet</td>
                   <td class="light-false" rowspan="2">Sitrus Berry</td>
                   <td class="type-false psychic status-move" colspan="2">Trick Room</td>
                   <td class="type-false psychic" colspan="2">Psychic</td>
@@ -12697,9 +12704,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/parasect.png" alt="Parasect"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Parasect ♀</td>
+                  <td class="light-true" rowspan="2" data-species="parasect">Parasect ♀</td>
                   <td class="light-true" rowspan="2">Dry Skin</td>
-                  <td class="light-true" rowspan="2">Brave</td>
+                  <td class="light-true" rowspan="2" data-nature="brave">Brave</td>
                   <td class="light-true" rowspan="2">Focus Sash</td>
                   <td class="type-true grass status-move" colspan="2">Spore</td>
                   <td class="type-true normal" colspan="2">Flail</td>
@@ -12748,9 +12755,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/rhyperior-f.png" alt="Rhyperior"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Rhyperior</td>
+                  <td class="light-false" rowspan="2" data-species="rhyperior">Rhyperior</td>
                   <td class="light-false" rowspan="2">Lightning Rod</td>
-                  <td class="light-false" rowspan="2">Brave</td>
+                  <td class="light-false" rowspan="2" data-nature="brave">Brave</td>
                   <td class="light-false" rowspan="2">Wide Lens</td>
                   <td class="type-false rock" colspan="2">Stone Edge</td>
                   <td class="type-false fighting" colspan="2">Hammer Arm</td>
@@ -12799,9 +12806,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/marowak.png" alt="Marowak"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Marowak ♀</td>
+                  <td class="light-true" rowspan="2" data-species="marowak">Marowak ♀</td>
                   <td class="light-true" rowspan="2">Lightning Rod</td>
-                  <td class="light-true" rowspan="2">Brave</td>
+                  <td class="light-true" rowspan="2" data-nature="brave">Brave</td>
                   <td class="light-true" rowspan="2">Thick Club</td>
                   <td class="type-true ground" colspan="2">Bonemerang</td>
                   <td class="type-true rock" colspan="2">Stone Edge</td>
@@ -12849,8 +12856,8 @@
             </tbody>
          </table>
          <h4>Master of Masters Mysterial</h4>
-		 <p>This team is used if the player has never copied Pokémon from any connected DS game.</p>
-		 <table>
+         <p>This team is used if the player has never copied Pokémon from any connected DS game.</p>
+         <table>
             <caption>Master of Masters Mysterial</caption>
             <thead>
                <tr class="light-true">
@@ -12872,9 +12879,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/kyogre.png" alt="Kyogre"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Kyogre</td>
+                  <td class="light-false" rowspan="2" data-species="kyogre">Kyogre</td>
                   <td class="light-false" rowspan="2">Drizzle</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Choice Scarf</td>
                   <td class="type-false water" colspan="2">Water Spout</td>
                   <td class="type-false ice" colspan="2">Ice Beam</td>
@@ -12923,9 +12930,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/latios.png" alt="Latios"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Latios ♂</td>
+                  <td class="light-true" rowspan="2" data-species="latios">Latios ♂</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Soul Dew</td>
                   <td class="type-true electric" colspan="2">Thunder</td>
                   <td class="type-true grass" colspan="2">Solarbeam</td>
@@ -12974,9 +12981,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/mewtwo.png" alt="Mewtwo"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Mewtwo</td>
+                  <td class="light-false" rowspan="2" data-species="mewtwo">Mewtwo</td>
                   <td class="light-false" rowspan="2">Pressure</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">BrightPowder</td>
                   <td class="type-false ice" colspan="2">Ice Beam</td>
                   <td class="type-false electric" colspan="2">Thunderbolt</td>
@@ -13025,9 +13032,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/groudon.png" alt="Groudon"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Groudon</td>
+                  <td class="light-true" rowspan="2" data-species="groudon">Groudon</td>
                   <td class="light-true" rowspan="2">Drought</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Quick Claw</td>
                   <td class="type-true ground" colspan="2">Earthquake</td>
                   <td class="type-true fire" colspan="2">Fire Punch</td>
@@ -13076,9 +13083,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/lugia.png" alt="Lugia"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Lugia</td>
+                  <td class="light-false" rowspan="2" data-species="lugia">Lugia</td>
                   <td class="light-false" rowspan="2">Pressure</td>
-                  <td class="light-false" rowspan="2">Modest</td>
+                  <td class="light-false" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-false" rowspan="2">Leftovers</td>
                   <td class="type-false flying" colspan="2">Aeroblast</td>
                   <td class="type-false psychic" colspan="2">Psychic</td>
@@ -13127,9 +13134,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/cresselia.png" alt="Cresselia"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Cresselia ♀</td>
+                  <td class="light-true" rowspan="2" data-species="cresselia">Cresselia ♀</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Bold</td>
+                  <td class="light-true" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-true" rowspan="2">Chesto Berry</td>
                   <td class="type-true psychic status-move" colspan="2">Calm Mind</td>
                   <td class="type-true psychic" colspan="2">Psychic</td>
@@ -13176,9 +13183,9 @@
                </tr>
             </tbody>
          </table>
-		 <h4>Master of Masters Mysterial</h4>
-		 <p>This team is used if the player has copied Pokémon from Diamond, Platinum, HeartGold, or SoulSilver.</p>
-		 <table>
+         <h4>Master of Masters Mysterial</h4>
+         <p>This team is used if the player has copied Pokémon from Diamond, Platinum, HeartGold, or SoulSilver.</p>
+         <table>
             <caption>Master of Masters Mysterial</caption>
             <thead>
                <tr class="light-true">
@@ -13200,9 +13207,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/palkia.png" alt="Palkia"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Palkia</td>
+                  <td class="light-false" rowspan="2" data-species="palkia">Palkia</td>
                   <td class="light-false" rowspan="2">Pressure</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Lustrous Orb</td>
                   <td class="type-false dragon" colspan="2">Spacial Rend</td>
                   <td class="type-false water" colspan="2">Brine</td>
@@ -13251,9 +13258,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/kyogre.png" alt="Kyogre"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Kyogre</td>
+                  <td class="light-true" rowspan="2" data-species="kyogre">Kyogre</td>
                   <td class="light-true" rowspan="2">Drizzle</td>
-                  <td class="light-true" rowspan="2">Modest</td>
+                  <td class="light-true" rowspan="2" data-nature="modest">Modest</td>
                   <td class="light-true" rowspan="2">Choice Scarf</td>
                   <td class="type-true water" colspan="2">Water Spout</td>
                   <td class="type-true ice" colspan="2">Ice Beam</td>
@@ -13302,9 +13309,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/mewtwo.png" alt="Mewtwo"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Mewtwo</td>
+                  <td class="light-false" rowspan="2" data-species="mewtwo">Mewtwo</td>
                   <td class="light-false" rowspan="2">Pressure</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Expert Belt</td>
                   <td class="type-false psychic" colspan="2">Psychic</td>
                   <td class="type-false electric" colspan="2">Thunder</td>
@@ -13353,9 +13360,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/latios.png" alt="Latios"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Latios ♂</td>
+                  <td class="light-true" rowspan="2" data-species="latios">Latios ♂</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Soul Dew</td>
                   <td class="type-true ice" colspan="2">Ice Beam</td>
                   <td class="type-true dragon" colspan="2">Dragon Pulse</td>
@@ -13404,9 +13411,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/manaphy.png" alt="Manaphy"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Manaphy</td>
+                  <td class="light-false" rowspan="2" data-species="manaphy">Manaphy</td>
                   <td class="light-false" rowspan="2">Hydration</td>
-                  <td class="light-false" rowspan="2">Bold</td>
+                  <td class="light-false" rowspan="2" data-nature="bold">Bold</td>
                   <td class="light-false" rowspan="2">Sitrus Berry</td>
                   <td class="type-false psychic status-move" colspan="2">Calm Mind</td>
                   <td class="type-false ice" colspan="2">Ice Beam</td>
@@ -13455,9 +13462,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/lugia.png" alt="Lugia"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Lugia</td>
+                  <td class="light-true" rowspan="2" data-species="lugia">Lugia</td>
                   <td class="light-true" rowspan="2">Pressure</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Leftovers</td>
                   <td class="type-true psychic status-move" colspan="2">Calm Mind</td>
                   <td class="type-true flying" colspan="2">Aeroblast</td>
@@ -13505,8 +13512,8 @@
             </tbody>
          </table>
          <h4>Master of Masters Mysterial</h4>
-		 <p>This team is used if the player has copied Pokémon from Pearl.</li>
-		 <table>
+         <p>This team is used if the player has copied Pokémon from Pearl.</p>
+         <table>
             <caption>Master of Masters Mysterial</caption>
             <thead>
                <tr class="light-true">
@@ -13528,9 +13535,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/dialga.png" alt="Dialga"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Dialga</td>
+                  <td class="light-false" rowspan="2" data-species="dialga">Dialga</td>
                   <td class="light-false" rowspan="2">Pressure</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">Adamant Orb</td>
                   <td class="type-false dragon" colspan="2">Dragon Pulse</td>
                   <td class="type-false fighting" colspan="2">Aura Sphere</td>
@@ -13579,9 +13586,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/latios.png" alt="Latios"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Latios ♂</td>
+                  <td class="light-true" rowspan="2" data-species="latios">Latios ♂</td>
                   <td class="light-true" rowspan="2">Levitate</td>
-                  <td class="light-true" rowspan="2">Timid</td>
+                  <td class="light-true" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-true" rowspan="2">Soul Dew</td>
                   <td class="type-true grass" colspan="2">Solarbeam</td>
                   <td class="type-true ghost" colspan="2">Shadow Ball</td>
@@ -13630,9 +13637,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/mewtwo.png" alt="Mewtwo"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Mewtwo</td>
+                  <td class="light-false" rowspan="2" data-species="mewtwo">Mewtwo</td>
                   <td class="light-false" rowspan="2">Pressure</td>
-                  <td class="light-false" rowspan="2">Timid</td>
+                  <td class="light-false" rowspan="2" data-nature="timid">Timid</td>
                   <td class="light-false" rowspan="2">BrightPowder</td>
                   <td class="type-false ice" colspan="2">Ice Beam</td>
                   <td class="type-false grass" colspan="2">Solarbeam</td>
@@ -13681,9 +13688,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-3/groudon.png" alt="Groudon"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Groudon</td>
+                  <td class="light-true" rowspan="2" data-species="groudon">Groudon</td>
                   <td class="light-true" rowspan="2">Drought</td>
-                  <td class="light-true" rowspan="2">Adamant</td>
+                  <td class="light-true" rowspan="2" data-nature="adamant">Adamant</td>
                   <td class="light-true" rowspan="2">Quick Claw</td>
                   <td class="type-true ground" colspan="2">Earthquake</td>
                   <td class="type-true fire" colspan="2">Fire Punch</td>
@@ -13732,9 +13739,9 @@
                   <td class="light-false" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-4/cherrim.png" alt="Cherrim"></div>
                   </td>
-                  <td class="light-false" rowspan="2">Cherrim ♀</td>
+                  <td class="light-false" rowspan="2" data-species="cherrim">Cherrim ♀</td>
                   <td class="light-false" rowspan="2">Flower Gift</td>
-                  <td class="light-false" rowspan="2">Careful</td>
+                  <td class="light-false" rowspan="2" data-nature="careful">Careful</td>
                   <td class="light-false" rowspan="2">Leftovers</td>
                   <td class="type-false grass status-move" colspan="2">Leech Seed</td>
                   <td class="type-false normal status-move" colspan="2">Helping Hand</td>
@@ -13783,9 +13790,9 @@
                   <td class="light-true" rowspan="2">
                      <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/ho-oh.png" alt="Ho-Oh"></div>
                   </td>
-                  <td class="light-true" rowspan="2">Ho-Oh</td>
+                  <td class="light-true" rowspan="2" data-species="ho-oh">Ho-Oh</td>
                   <td class="light-true" rowspan="2">Pressure</td>
-                  <td class="light-true" rowspan="2">Jolly</td>
+                  <td class="light-true" rowspan="2" data-nature="jolly">Jolly</td>
                   <td class="light-true" rowspan="2">Power Herb</td>
                   <td class="type-true fire" colspan="2">Sacred Fire</td>
                   <td class="type-true flying" colspan="2">Sky Attack</td>
