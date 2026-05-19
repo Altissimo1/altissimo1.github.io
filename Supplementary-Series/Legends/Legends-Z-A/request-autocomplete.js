@@ -68,6 +68,8 @@ var requests = [
 	{value: "Side Mission 056: We'll Just Muscle Our Way Through!", data: "request-56"},
 	{value: "Side Mission 057: The Camerupt Entrepreneur", data: "request-57"},
 	{value: "Side Mission 058: Better to Detect Than to Protect", data: "request-58"},
+	{value: "Side Mission 059: A Rematch with Hawlucha!", data: "request-59"},
+	{value: "Side Mission 060: Full Course of Battles: Two Stars", data: "request-60"},
 ];
 
 
