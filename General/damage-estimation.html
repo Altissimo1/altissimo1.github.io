@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Mental Damage Estimation in Pokémon</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../colors.js"></script>
+      <link rel="stylesheet" id="common" href="../common.css">
+      <link rel="stylesheet" id="style">
+      <style>
+         .de-section {
+            margin: 2ex 0;
+         }
+
+         .de-callout {
+            border-left: 4px solid var(--border-color, #999);
+            padding: 0.5ex 1.5ex;
+            margin: 2ex 0;
+            background-color: var(--light-true-background, transparent);
+            border-radius: 0 4px 4px 0;
+         }
+
+         .de-callout p:first-child {
+            margin-top: 0.5ex;
+         }
+
+         .de-callout p:last-child {
+            margin-bottom: 0.5ex;
+         }
+
+         .de-collapsible {
+            margin: 2ex 0;
+         }
+
+         .de-collapsible summary {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 0.8ex 1ex;
+            background-color: var(--light-true-background, #eee);
+            border: 1px solid var(--border-color, #999);
+            border-radius: 4px;
+            user-select: none;
+         }
+
+         .de-collapsible[open] summary {
+            border-radius: 4px 4px 0 0;
+            border-bottom: none;
+         }
+
+         .de-collapsible-content {
+            border: 1px solid var(--border-color, #999);
+            border-top: none;
+            padding: 1ex 1.5ex;
+            border-radius: 0 0 4px 4px;
+         }
+
+         .ladder-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 3ex auto;
+            max-width: 560px;
+         }
+
+         .ladder-controls {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 0.8em;
+            justify-content: center;
+            margin-bottom: 2ex;
+            padding: 1.2ex;
+            border: 1px solid var(--border-color, #999);
+            border-radius: 4px;
+            background-color: var(--light-true-background, transparent);
+            width: 100%;
+            box-sizing: border-box;
+         }
+
+         .ladder-control {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            font-size: 13px;
+         }
+
+         .ladder-control label {
+            margin-bottom: 0.3ex;
+            font-weight: bold;
+         }
+
+         .ladder-control select,
+         .ladder-control input {
+            font-size: 13px;
+            padding: 0.2ex 0.4ex;
+         }
+
+         .ladder-headers {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            padding-bottom: 0.5ex;
+            padding-top: 0.5ex;
+            border-bottom: 2px solid var(--border-color, #999);
+            background-color: var(--light-true-background, #eee);
+         }
+
+         .ladder-headers .ladder-rung-label {
+            width: 60px;
+            flex-shrink: 0;
+            padding-left: 16px;
+            box-sizing: border-box;
+         }
+
+         .ladder-headers .ladder-col {
+            flex: 1;
+         }
+
+         .ladder-viewport {
+            position: relative;
+            width: 100%;
+            border: 1px solid var(--border-color, #999);
+            border-radius: 4px;
+         }
+
+         .ladder-arrow {
+            position: absolute;
+            left: 4px;
+            width: 0;
+            height: 0;
+            border-top: 9px solid transparent;
+            border-bottom: 9px solid transparent;
+            border-left: 12px solid #d94343;
+            top: 4px;
+            transition: top 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
+            z-index: 5;
+            pointer-events: none;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+         }
+
+         .ladder {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+         }
+
+         .ladder-rung {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            height: 26px;
+            border-bottom: 1px solid var(--border-color, #ccc);
+            transition: background-color 0.4s ease;
+            position: relative;
+         }
+
+         .ladder-rung.zero {
+            border-top: 2px solid var(--border-color, #999);
+            border-bottom: 2px solid var(--border-color, #999);
+         }
+
+         .ladder-rung-label {
+            width: 60px;
+            flex-shrink: 0;
+            text-align: center;
+            font-weight: bold;
+            line-height: 26px;
+            border-right: 2px solid var(--border-color, #999);
+            font-size: 13px;
+            padding-left: 16px;
+            box-sizing: border-box;
+         }
+
+         .ladder-rung-cell {
+            flex: 1;
+            text-align: center;
+            line-height: 26px;
+            font-size: 13px;
+            border-right: 1px solid var(--border-color, #ccc);
+         }
+
+         .ladder-rung-cell:last-child {
+            border-right: none;
+         }
+
+         .ladder-rung.active {
+            background-color: rgba(255, 200, 60, 0.35);
+            font-weight: bold;
+            transition: background-color 0.4s ease;
+         }
+
+         .ladder-rung.active .ladder-rung-label {
+            background-color: rgba(255, 200, 60, 0.5);
+         }
+
+         body[style*="background-color: rgb(32"] .ladder-rung.active,
+         .ladder-rung.active.dark-active {
+            background-color: rgba(255, 200, 60, 0.2);
+         }
+
+         .ladder-readout {
+            margin-top: 1.5ex;
+            padding: 1ex 1.5ex;
+            border: 1px solid var(--border-color, #999);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: var(--light-false-background, transparent);
+         }
+
+         .ladder-readout strong {
+            font-size: 16px;
+         }
+
+         .calc-container {
+            margin: 3ex auto;
+            max-width: 560px;
+            padding: 1.5ex;
+            border: 1px solid var(--border-color, #999);
+            border-radius: 4px;
+            background-color: var(--light-true-background, transparent);
+         }
+
+         .calc-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 1ex;
+            gap: 1em;
+            flex-wrap: wrap;
+         }
+
+         .calc-row label {
+            font-weight: bold;
+            min-width: 130px;
+         }
+
+         .calc-row input {
+            font-size: 14px;
+            padding: 0.3ex 0.5ex;
+            width: 80px;
+         }
+
+         .calc-row .calc-hint {
+            font-size: 12px;
+            color: var(--light-true-color, inherit);
+            opacity: 0.7;
+            font-style: italic;
+         }
+
+         .calc-readout {
+            margin-top: 1.5ex;
+            padding: 1ex 1.5ex;
+            border: 1px solid var(--border-color, #999);
+            border-radius: 4px;
+            background-color: var(--light-false-background, transparent);
+            font-family: monospace;
+            font-size: 14px;
+            line-height: 1.7;
+         }
+
+         .calc-readout .calc-final {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 0.5ex;
+            display: block;
+         }
+
+         .de-example {
+            margin: 2ex 0;
+            padding: 1.2ex 1.5ex;
+            border: 1px solid var(--border-color, #999);
+            border-radius: 4px;
+            background-color: var(--light-true-background, transparent);
+         }
+
+         .de-example h4 {
+            margin: 0 0 1ex 0;
+         }
+
+         .de-example .de-example-steps {
+            font-family: monospace;
+            font-size: 13px;
+            margin: 0.5ex 0;
+            line-height: 1.6;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../Maintenance/contact.html">Contact Me</a> | <a href="../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+
+      <h2>Mental Damage Estimation in Pokémon</h2>
+
+      <p>A lot of players feel the need to check a damage calculator before clicking any move. 
+      It works, but it has costs: it's slow, it's brittle, and over time it replaces the intuition that used to come from playing the game.</p>
+
+      <p>This page is a companion to the video on the same topic. It covers two methods for estimating damage in your head. One fast and visual,
+          one slower and more precise; along with a few thoughts on when to use a real calculator and when not to bother.</p>
+
+      <h3><u>The Danger of Dependence on Calculators</u></h3>
+
+      <p>
+         If you are competely dependent on the output of a damage calculator, then there is no protection at all against the calculator displaying the wrong information for whatever reason. This may be your fault (perhaps you forgot to select an ability, perhaps you forgot to select doubles instead of singles). It may not be your fault.
+      </p>
+      <p>
+         By having a decent feel for how damage should work, you avoid the worst of these errors.
+      </p>
+      <p>
+         As an analogy, consider going to a restaurant as a group of friends. If the bill comes in at $1000, you should know something may be wrong. Not being aware of what a reasonable bill could be just leaves you open to being tricked or making a costly mistake.
+      </p>
+
+      <p>
+         At the same time, knowing the exact bill when needed is obviously important. It would be foolish to refuse to ever use a calculator when it is superior to mental math.
+      </p>
+
+      <div class="de-callout">
+         <p><strong>The takeaway:</strong> dependence on the calculator is more risky than people think. Even if your goal is to use the calculator for every fight, you still benefit from a rough mental estimate first, because the estimate is what catches the misinputs.</p>
+      </div>
+
+      <h3><u>The Ladder</u></h3>
+
+      <p>The ladder is a fast, visual way to estimate damage. 
+         The core idea is that almost everything that affects damage in Pokémon is a multiplier, and multipliers compound. 
+         If you draw out a vertical scale where each step represents a 10% damage adjustment, every modifier in the game maps to a number of steps up or down.</p>
+
+      <p>The baseline - rung zero - is a roughly 95-power neutral, non-STAB attack from an average attacker (base 80 attack, no investment) hitting an average defender (base 80 HP and defense, no investment). That deals 25% damage. Super-effective doubles it, so the right-hand column on the ladder is always twice the left.</p>
+
+      <p>Every modifier - move power, STAB, items, base stat differences, EV investment, abilities, weather - adjusts your position on the ladder. 
+         <strong>Move power is usually the biggest single adjustment.</strong>
+         To estimate a hit, you start at zero, count every adjustment (move power first, then everything else), land on a rung, and read off the percentage.</p>
+
+      <details class="de-collapsible">
+         <summary>Common adjustments - click to expand</summary>
+         <div class="de-collapsible-content">
+            <p>The list below covers the modifiers most worth memorising. A "+1" means one rung up the ladder (a 10% damage increase, compounding); a "-1" means one rung down.</p>
+
+            <table class="left-align">
+               <caption>Move power adjustments</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Move base power</th>
+                     <th>Steps</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false"><td>200 (Flail, Reversal)</td><td>+8</td></tr>
+                  <tr class="light-true"><td>150 (Hyper Beam, Blast Burn)</td><td>+5</td></tr>
+                  <tr class="light-false"><td>140 (Draco Meteor, Overheat, Leaf Storm)</td><td>+4</td></tr>
+                  <tr class="light-true"><td>126</td><td>+3</td></tr>
+                  <tr class="light-true"><td>115</td><td>+2</td></tr>
+                  <tr class="light-false"><td>105</td><td>+1</td></tr>
+                  <tr class="light-true"><td>95 (Surf, Thunderbolt)</td><td>0</td></tr>
+                  <tr class="light-false"><td>85</td><td>-1</td></tr>
+                  <tr class="light-true"><td>80</td><td>-2</td></tr>
+                  <tr class="light-false"><td>70</td><td>-3</td></tr>
+                  <tr class="light-true"><td>65</td><td>-4</td></tr>
+                  <tr class="light-false"><td>60</td><td>-5</td></tr>
+                  <tr class="light-false"><td>50</td><td>-7</td></tr>
+                  <tr class="light-true"><td>45</td><td>-8</td></tr>
+                  <tr class="light-false"><td>40</td><td>-9</td></tr>
+               </tbody>
+            </table>
+
+            <p style="font-size: 13px; font-style: italic;">100-power moves (e.g. Earthquake) sit between +0 and +1 - close enough to either, depending on the precision you need. The ladder's baseline assumes ~95 power, so a 100-power move is essentially "the same as 95 with a tiny nudge up."</p>
+
+            <table class="left-align">
+               <caption>Offensive adjustments</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Adjustment</th>
+                     <th>Steps</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>STAB (same-type attack bonus)</td>
+                     <td>+4</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Choice Band / Choice Specs</td>
+                     <td>+4</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Life Orb</td>
+                     <td>+3</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Adaptability (replaces STAB)</td>
+                     <td>+7</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Expert Belt</td>
+                     <td>+2</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Type-boosting item (Soft Sand, Magnet, etc.)</td>
+                     <td>+2 (gen4+) , +1 (gen3)</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Dry Skin (vs Fire moves)</td>
+                     <td>+2</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Muscle Band / Wise Glasses</td>
+                     <td>+1</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Adamant/Modest nature (matching attack stat)</td>
+                     <td>+1</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Critical hit</td>
+                     <td>+7 (Gen 5 and earlier, 2×) / +4 (Gen 6+, 1.5×)</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Weather boost (Rain on Water, Sun on Fire)</td>
+                     <td>+4</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Burn (physical move)</td>
+                     <td>-7</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Reflect / Light Screen (singles)</td>
+                     <td>-7</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Weather penalty (Rain on Fire, Sun on Water)</td>
+                     <td>-7</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Doubles spread move nerf (Gen 4+)</td>
+                     <td>-3</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Solid Rock / Filter (vs super-effective)</td>
+                     <td>-3</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Attacker is 5% higher level</td>
+                     <td>+1</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Attacker 10% higher level</td>
+                     <td>+2</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Attacker 5% lower level</td>
+                     <td>-1</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Attacker 10% lower level</td>
+                     <td>-2</td>
+                  </tr>
+               </tbody>
+            </table>
+
+            <table class="left-align">
+               <caption>Stat stage changes (Swords Dance, Intimidate, etc.)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Attack stage</th>
+                     <th>Attacker steps</th>
+                     <th>Defender steps (the opposite)</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>+1 (1.5×)</td>
+                     <td>+4</td>
+                     <td>-4</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>+2 (2×)</td>
+                     <td>+7</td>
+                     <td>-7</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>+3 (2.5×)</td>
+                     <td>+10</td>
+                     <td>-10</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>+4 (3×)</td>
+                     <td>+12</td>
+                     <td>-12</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>+5 (3.5×)</td>
+                     <td>+13</td>
+                     <td>-13</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>+6 (4×)</td>
+                     <td>+14</td>
+                     <td>-14</td>
+                  </tr>
+               </tbody>
+            </table>
+
+            <p style="font-size: 13px; font-style: italic;">Attack drops (e.g. Intimidate, -1 attack) and defense boosts work as the opposite of the table above: a -1 attack stage is -4 rungs offensively; a +1 defense stage is -4 rungs for the attacker.</p>
+
+            <table class="left-align">
+               <caption>Base attack / Base Sp. Attack adjustments</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Base stat</th>
+                     <th>Steps (attacker)</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false"><td>30</td><td>-7</td></tr>
+                  <tr class="light-true"><td>35</td><td>-6</td></tr>
+                  <tr class="light-false"><td>40</td><td>-5</td></tr>
+                  <tr class="light-true"><td>50</td><td>-4</td></tr>
+                  <tr class="light-false"><td>55</td><td>-3</td></tr>
+                  <tr class="light-true"><td>63</td><td>-2</td></tr>
+                  <tr class="light-false"><td>70</td><td>-1</td></tr>
+                  <tr class="light-true"><td>80 (baseline)</td><td>0</td></tr>
+                  <tr class="light-false"><td>90</td><td>+1</td></tr>
+                  <tr class="light-true"><td>100</td><td>+2</td></tr>
+                  <tr class="light-false"><td>115</td><td>+3</td></tr>
+                  <tr class="light-true"><td>125</td><td>+4</td></tr>
+                  <tr class="light-false"><td>140</td><td>+5</td></tr>
+                  <tr class="light-true"><td>160</td><td>+6</td></tr>
+               </tbody>
+            </table>
+
+            <p style="font-size: 13px; font-style: italic;">Base defense / Sp. Defense uses the same table inverted: a base 100 defender is -2 for the attacker; a base 50 defender is +4 for the attacker.</p>
+
+            <table class="left-align">
+               <caption>Base HP adjustments (defender)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Base HP</th>
+                     <th>Steps (attacker)</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false"><td>5</td><td>+7</td></tr>
+                  <tr class="light-true"><td>10</td><td>+6</td></tr>
+                  <tr class="light-false"><td>20</td><td>+5</td></tr>
+                  <tr class="light-true"><td>30</td><td>+4</td></tr>
+                  <tr class="light-false"><td>40</td><td>+3</td></tr>
+                  <tr class="light-true"><td>55</td><td>+2</td></tr>
+                  <tr class="light-false"><td>65</td><td>+1</td></tr>
+                  <tr class="light-true"><td>80 (baseline)</td><td>0</td></tr>
+                  <tr class="light-false"><td>95</td><td>-1</td></tr>
+                  <tr class="light-true"><td>115</td><td>-2</td></tr>
+                  <tr class="light-false"><td>130</td><td>-3</td></tr>
+                  <tr class="light-true"><td>150</td><td>-4</td></tr>
+                  <tr class="light-false"><td>175</td><td>-5</td></tr>
+               </tbody>
+            </table>
+
+            <p style="font-size: 13px; font-style: italic;">Base HP gets its own table because it scales differently from base defense. Notice the range is narrower - going from base 30 HP to base 175 HP only spans nine rungs, whereas the equivalent defense range spans more than thirteen. <strong>This means base defense influences the calculation more than base HP does.</strong> A defender's defense stat is a bigger factor in whether they live a hit than their HP stat is.</p>
+
+            <table class="left-align">
+               <caption>EV investment adjustments</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Investment</th>
+                     <th>Offensive</th>
+                     <th>Defensive (Def/SpD)</th>
+                     <th>Defensive (HP)</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr class="light-false">
+                     <td>0 EVs</td>
+                     <td>0</td>
+                     <td>0</td>
+                     <td>0</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>~80 EVs</td>
+                     <td>+1</td>
+                     <td>-1</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>~120 EVs</td>
+                     <td>+1.5</td>
+                     <td>-1.5</td>
+                     <td>-1</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>~160 EVs</td>
+                     <td>+2</td>
+                     <td>-2</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>252 EVs</td>
+                     <td>+3</td>
+                     <td>-3</td>
+                     <td>-2</td>
+                  </tr>
+               </tbody>
+            </table>
+
+            <div class="de-callout">
+               <p><strong>Where the ladder breaks down.</strong> The EV and IV adjustments above are the weakest part of the system, because EVs and IVs are an <em>additive</em> change to the underlying stat - not a multiplicative one. 
+                  That means 252 Defense EVs are worth more to a Pikachu than they are to a Steelix, even though the ladder treats them the same. The lower the base stat, the bigger the impact of investment.</p>
+               <p>This is also why the ladder gets shakier at the extremes. Blissey, Shuckle, and Regirock are all examples where the base stat distribution is so unusual that the rounded ladder values miss by more than they should. For these edge cases, fall back on the true mental calc, or just use a calculator.</p>
+            </div>
+
+            <p style="font-size: 13px; font-style: italic;">Note: all of these values are approximations. The deeper you go up or down the ladder, the more rounding error you accumulate. For a quick read on whether something kills, the error rarely matters. For knowing whether a roll is 95% or 88%, use a calculator.</p>
+         </div>
+      </details>
+
+      <h4>Try it: the interactive ladder</h4>
+
+      <p>The ladder below starts at rung zero - the baseline scenario. Adjust any of the controls below it, and the highlighted rung will move. The left column reads damage % for neutral attacks; the right column reads % for super-effective ones.</p>
+
+      <div class="ladder-container">
+         <div class="ladder-controls">
+            <div class="ladder-control">
+               <label for="ladder-power">Move power</label>
+               <select id="ladder-power">
+                  <option value="-9">40 </option>
+                  <option value="-8">45</option>
+                  <option value="-7">50 </option>
+                  <option value="-6">55</option>
+                  <option value="-5">60 </option>
+                  <option value="-4">65</option>
+                  <option value="-3">70 </option>
+                  <option value="-2">80 </option>
+                  <option value="-1">85</option>
+                  <option value="0" selected>95 (Surf)</option>
+                  <option value="1">105</option>
+                  <option value="2">115</option>
+                  <option value="3">125</option>
+                  <option value="4">140 </option>
+                  <option value="5">150 </option>
+                  <option value="8">200 </option>
+               </select>
+            </div>
+            <div class="ladder-control">
+               <label for="ladder-stab">STAB</label>
+               <select id="ladder-stab">
+                  <option value="0">No</option>
+                  <option value="4">Yes (+4)</option>
+               </select>
+            </div>
+            <div class="ladder-control">
+               <label for="ladder-item">Item</label>
+               <select id="ladder-item">
+                  <option value="0">None</option>
+                  <option value="1">Muscle/Wise (+1)</option>
+                  <option value="2">Type-boost / Expert Belt (+2)</option>
+                  <option value="3">Life Orb (+3)</option>
+                  <option value="4">Choice (+4)</option>
+               </select>
+            </div>
+            <div class="ladder-control">
+               <label for="ladder-atk-nature">Attacker nature</label>
+               <select id="ladder-atk-nature">
+                  <option value="0">Neutral</option>
+                  <option value="1">Boosting (+1)</option>
+                  <option value="-1">Hindering (-1)</option>
+               </select>
+            </div>
+            <div class="ladder-control">
+               <label for="ladder-def-nature">Defender nature</label>
+               <select id="ladder-def-nature">
+                  <option value="0">Neutral</option>
+                  <option value="-1">Boosting Def/SpD (-1)</option>
+                  <option value="1">Hindering Def/SpD (+1)</option>
+               </select>
+            </div>
+            <div class="ladder-control">
+               <label for="ladder-level">Level difference</label>
+               <select id="ladder-level">
+                  <option value="-2">Attacker 10% lower (-2)</option>
+                  <option value="-1">Attacker 5% lower (-1)</option>
+                  <option value="0" selected>Same level</option>
+                  <option value="1">Attacker 5% higher (+1)</option>
+                  <option value="2">Attacker 10% higher (+2)</option>
+               </select>
+            </div>
+            <div class="ladder-control">
+               <label for="ladder-atk-base">Attacker base atk</label>
+               <select id="ladder-atk-base">
+                  <option value="-7">30</option>
+                  <option value="-6">35</option>
+                  <option value="-5">40</option>
+                  <option value="-4">50</option>
+                  <option value="-3">55</option>
+                  <option value="-2">63</option>
+                  <option value="-1">70</option>
+                  <option value="0" selected>80 (baseline)</option>
+                  <option value="1">90</option>
+                  <option value="2">100</option>
+                  <option value="3">115</option>
+                  <option value="4">125</option>
+                  <option value="5">140</option>
+                  <option value="6">160</option>
+               </select>
+            </div>
+            <div class="ladder-control">
+               <label for="ladder-atk-evs">Attacker EVs</label>
+               <select id="ladder-atk-evs">
+                  <option value="0" selected>0</option>
+                  <option value="1">~80</option>
+                  <option value="2">~160</option>
+                  <option value="3">252</option>
+               </select>
+            </div>
+            <div class="ladder-control">
+               <label for="ladder-def-base">Defender base def</label>
+               <select id="ladder-def-base">
+                  <option value="7">30</option>
+                  <option value="6">35</option>
+                  <option value="5">40</option>
+                  <option value="4">50</option>
+                  <option value="3">55</option>
+                  <option value="2">63</option>
+                  <option value="1">70</option>
+                  <option value="0" selected>80 (baseline)</option>
+                  <option value="-1">90</option>
+                  <option value="-2">100</option>
+                  <option value="-3">115</option>
+                  <option value="-4">125</option>
+                  <option value="-5">140</option>
+                  <option value="-6">160</option>
+               </select>
+            </div>
+            <div class="ladder-control">
+               <label for="ladder-def-evs">Defender def EVs</label>
+               <select id="ladder-def-evs">
+                  <option value="0" selected>0</option>
+                  <option value="-1">~80</option>
+                  <option value="-2">~160</option>
+                  <option value="-3">252</option>
+               </select>
+            </div>
+            <div class="ladder-control">
+               <label for="ladder-hp-base">Defender base HP</label>
+               <select id="ladder-hp-base">
+                  <option value="7">5</option>
+                  <option value="6">10</option>
+                  <option value="5">20</option>
+                  <option value="4">30</option>
+                  <option value="3">40</option>
+                  <option value="2">55</option>
+                  <option value="1">65</option>
+                  <option value="0" selected>80 (baseline)</option>
+                  <option value="-1">95</option>
+                  <option value="-2">115</option>
+                  <option value="-3">130</option>
+                  <option value="-4">150</option>
+                  <option value="-5">175</option>
+               </select>
+            </div>
+            <div class="ladder-control">
+               <label for="ladder-hp-evs">Defender HP EVs</label>
+               <select id="ladder-hp-evs">
+                  <option value="0" selected>0</option>
+                  <option value="-1">~120</option>
+                  <option value="-2">~240</option>
+               </select>
+            </div>
+            <div class="ladder-control">
+               <label for="ladder-extra-mult">Other multipliers</label>
+               <input type="number" id="ladder-extra-mult" value="1" min="0.1" max="10" step="0.1">
+               <span style="font-size:11px;font-style:italic;opacity:0.7;">e.g. 1.5, 2, 0.5</span>
+            </div>
+            <div class="ladder-control" style="align-self:flex-end;">
+               <button type="button" id="ladder-reset" style="padding: 0.4ex 1.2ex; font-size: 13px;">Reset</button>
+            </div>
+         </div>
+
+         <div class="ladder-viewport" id="ladder-viewport">
+            <div class="ladder-arrow" id="ladder-arrow"></div>
+            <div class="ladder-headers">
+               <div class="ladder-rung-label">Rung</div>
+               <div class="ladder-col">Neutral (1×)</div>
+               <div class="ladder-col">Super effective (2×)</div>
+            </div>
+
+            <div class="ladder" id="ladder"></div>
+         </div>
+
+         <div class="ladder-readout" id="ladder-readout">
+            Current estimate: <strong>25.0%</strong> neutral / <strong>50.0%</strong> super effective (rung <strong>0</strong>)
+         </div>
+      </div>
+
+      <h4>A vague estimate, without setting up the scenario</h4>
+
+      <p>The ladder lets you guess at a hit before you've done any precise lookup. 
+         As long as you know the rough shape of both Pokémon, you can land within 10% of the right answer in a few seconds.</p>
+
+      <p>For example: Latios uses Surf on Steelix. Let's pretend we dont know the exact base stats. 
+         </p><p>
+No EVs, no items. Surf is 95 power - no adjustment. 
+         </p><p>
+         Latios is "strong" on the special side - call that +3 or so. 
+         </p><p>
+         Steelix has "weak" special defense - call that +2 (yes, it's a step <em>up</em> for the attacker, because the defender is weak). 
+         </p><p>
+         Latios doesn't get STAB on Surf. 
+         </p><p>
+         Total: roughly +5. On the ladder, +5 in the super-effective column reads about 80.5%, though base 130 is really a bit more than +3 and Steelix's low HP nudges this further up. 
+         </p><p>
+         The actual answer lands around 86–91%. In just a few seconds, we got a very close guess.</p>
+
+      <p>You don't need to be exact. You don't even need to know the base stats precisely. You need a rough sense of "strong / average / weak" on both sides and a feel for the move power. The ladder converts that loose mental picture into a number.</p>
+
+      <h4>Worked examples</h4>
+
+      <div class="de-example">
+         <h4>Example 1: Blastoise Surf vs Charizard (no EVs, no items)</h4>
+         <p>Surf is 95 power - no adjustment. Blastoise 85 base spatk - +0. Charizard base 85 spdef and 78 HP (both +0). No EVs, no items. STAB is +4. Super effective doubles it.</p>
+         <p class="de-example-steps">+0 (move) +4 (STAB) +0 +0 = +4</p>
+         <p>+4 on the ladder, super-effective column: <strong>~73%</strong>. Real answer: <strong>71–84%.</strong> Close - and clearly not a OHKO.</p>
+      </div>
+
+      <div class="de-example">
+         <h4>Example 2: Soft Sand Adamant max-Atk Flygon Earthquake vs max-HP/Def Golem</h4>
+         <p>Earthquake is 100 power - no adjustment. Flygon: base 100 attack (+2), 252 EVs (+3), Adamant (+1), Soft Sand (+2), STAB (+4). Golem: base 130 defense (-3), 252 Def EVs (-3), base 80 HP (0), 252 HP EVs (-2). Super effective doubles it.</p>
+         <p class="de-example-steps">+2 +3 +1 +2 +4 -3 -3 -2 = +4</p>
+         <p>+4 on the ladder, super-effective column: <strong>~73.2%</strong>. Real answer: <strong>~68-80%</strong>.</p>
+      </div>
+
+      <div class="de-example">
+         <h4>Example 3: Latios Surf vs Steelix (no EVs, no items)</h4>
+         <p>Surf is 95 power - no adjustment. Latios is base 130 SpA - call that +3. Steelix has base 65 SpD - that's a step up for the attacker, call it +2. Steelix is 75 HP, call that +0. no STAB on Surf. Super effective doubles it.</p>
+         <p class="de-example-steps">+0 (move) +3 (base SpA) +2 (low base SpD) +0 (HP) = +5</p>
+         <p>+5 on the ladder, super-effective column: <strong>~81%</strong>. Real answer: <strong>~85-100%</strong>.</p>
+         <p>This is a case where the rough integer adjustments lose accuracy: 
+         </p><p>
+            base 130 SpA is actually a bit more than +3, and Steelix's low base HP (75) is also a small extra step up that we didn't add. 
+         </p><p>
+            A more precise guess factoring in these "mini steps" would be +6, which reads ~89% in the SE column - closer to the real answer. 
+         </p><p>
+            You'd check this with a damage calculator if steelix surviving mattered.</p>
+      </div>
+
+      <div class="de-example">
+         <h4>Example 4: Skarmory Aerial Ace vs Heracross (no EVs, no items)</h4>
+         <p>This one is mostly about move power. Aerial Ace is 60 - that's -5. Skarmory: base 80 attack (0). Heracross: base 75 defense (0). STAB is +4. Aerial Ace is 4x super effective; the ladder only displays 2x, so we also have to add +7 to the rungs for this manual 2x adjustment (to get to 4x overall).</p>
+         <p class="de-example-steps">-5 (move) +0 +0 +0 +4 (STAB) +7 (SE) = +6</p>
+         <p>+6 on the ladder, super-effective column: <strong>~88.6%</strong>. Real answer: <strong>94-111%</strong>. 
+         </p><p>
+            This is an example of the ladder failing slightly. We correctly estimate that its "close to an OHKO" (and indeed the true calc confirms that its not guaranteed to OHKO).
+         </p><p>
+            But our approximations of STAB and 2x stacked in the wrong direction (slight under-estimate) twice, moving the final estimate to wrong by a bit over a 10% error margin. 
+         </p>
+         
+      </div>
+
+      <h3><u>The True Mental Calculation</u></h3>
+
+      <p>The ladder is fast but rough. Useful if you want to spend only 2-3 seconds.
+          If you want an actual damage number instead of a percentage, there's a more precise method that's only slightly slower. 
+         </p><p>
+          It works best at level 50, but the resulting damage <em>percentage</em> transfers to any level. So do the level 50 math and read the percent. Beware that this can lose coherence at very low levels.</p>
+
+      <p>The simplified mental formula at level 50 is:</p>
+
+      <p style="font-family: monospace; font-size: 16px; text-align: center; margin: 2ex 0;"><strong>damage ≈ 0.4 × move_power × (attack ÷ defense) × multipliers</strong></p>
+
+      <p>Or, more practically: take 40% of the move's base power, multiply by the attacker's true attack stat divided by the defender's true defense stat, then apply STAB (×1.5), super effective (×2), and any item modifiers (×1.5 for Choice Band, ×1.3 for Life Orb, etc.).</p>
+
+      <p>That gives you the damage <em>number</em>. To turn it into a percentage, divide by the defender's HP stat.</p>
+
+      <p>Multiplication is commutative and associative, so you can multiply in any order that is convenient for mental calculation.</p>
+
+      <h4>Stat shortcuts at level 50</h4>
+
+      <p>If you know the base stat, the level-50 stat is fast to compute. With perfect IVs:</p>
+      <ul>
+         <li><strong>HP stat</strong> ≈ base + 75 (no EVs) or base + 107 (max EVs)</li>
+         <li><strong>Other stats</strong> ≈ base + 20 (no EVs) or base + 52 (max EVs)</li>
+         <li><strong>Nature</strong> applies as a final ×1.1 (boosting) or ×0.9 (hindering)</li>
+      </ul>
+
+      <p>
+         Without perfect IVs, you lose 1 stat point for each 2 IVs below 31. So base 100 attack at 31iv is 120, but at 15iv it is 112 (120 - 16/2). 
+      </p>
+
+      <p>For estimation, round generously. A "true attack of 167" is close enough as "around 170". There's no point doing precise calculations if it means the process will take more than a few seconds.</p>
+
+      <p>This is slower and takes more active thought, but since the player is in charge of rounding directly, it can be more accurate.</p>
+
+      <h4>Worked example: Flygon vs Golem again, the full mental calc:</h4>
+
+      <div class="de-example">
+         <p>Earthquake: 100 power. 40% of 100 = <strong>40</strong>.</p>
+         <p>STAB + Super effective is a 3x multiplier. 40 x 3 = <strong>120</strong></p>
+         <p>Flygon attack: base 100, max EVs, Adamant. (100+52)×1.1 = ~167, round to <strong>170</strong>.</p>
+         <p>Golem defense: base 130, max EVs. 130+52 = ~182, round to <strong>180</strong>.</p>
+         <p>(attack/defense estimation): 170 is around 5% smaller than 180. 5% of 120 is 6. so 120-6 = <strong>114</strong>.</p>
+         <p>Soft Sand is a 20% increase. 20% of 100 is 20. 114 + 20 = <strong>134</strong>.</p>
+         <p>Golem HP: base 80, max EVs. 80+107 = <strong>187</strong>.</p>
+         <p>134 is 16 less than 150. 187 is 13 less than 200. 150/200 is 75%, and we reason that it must be slightly less than this.</p>
+         <p>Answer: <strong>70%-75%</strong> as guess for average roll.</p>
+         <p>True answer: <strong>68-80%</strong>.</p>
+      </div>
+
+      <h4>Try it: the interactive estimator</h4>
+
+      <p>The widget below applies the same formula. Enter the move power, attacker, defender, and multiplier. It shows each step so you can compare it to your own mental version. Stat values are rounded to the nearest 5 (under 100) or nearest 10 (100 and above), which is how you'd round them in your head anyway. So an attack stat of 158 becomes 160 in the calculation.</p>
+
+      <div class="calc-container">
+         <div class="calc-row">
+            <label for="calc-power">Move power:</label>
+            <input type="number" id="calc-power" value="95" min="0" max="250">
+            <span class="calc-hint">e.g. Surf = 95, Earthquake = 100</span>
+         </div>
+         <div class="calc-row">
+            <label for="calc-atk">Attacker stat:</label>
+            <input type="number" id="calc-atk" value="155" min="1" max="700">
+            <span class="calc-hint">Atk or SpA, after nature</span>
+         </div>
+         <div class="calc-row">
+            <label for="calc-def">Defender stat:</label>
+            <input type="number" id="calc-def" value="108" min="1" max="700">
+            <span class="calc-hint">Def or SpD, after nature</span>
+         </div>
+         <div class="calc-row">
+            <label for="calc-hp">Defender HP:</label>
+            <input type="number" id="calc-hp" value="155" min="1" max="800">
+            <span class="calc-hint">For the % readout</span>
+         </div>
+         <div class="calc-row">
+            <label for="calc-mult">Multiplier:</label>
+            <input type="number" id="calc-mult" value="1" min="0" max="20" step="0.1">
+            <span class="calc-hint">STAB × super-effective × item, e.g. 1.5×2 = 3</span>
+         </div>
+
+         <div class="calc-readout" id="calc-readout"></div>
+      </div>
+
+      <h4>Pros and cons of the true method</h4>
+
+      <p>The true calculation is more accurate than the ladder - it'll get you within a few percent of the real answer, every time. 
+         The cost is speed. You need to be comfortable doing simple maths operations fast enough without losing track. 
+         And you need to know base stats well enough to derive the level-50 numbers without looking them up.</p>
+
+      <p>If you're going to commit to one method, 
+         the ladder is better, due to its speed. I recommend learning the ladder, and only looking up damage calculations if the ladder gives a "close" answer to an important breakpoint.
+          The ladder is also vastly superior for fast teambuilding or getting a quick overview. I put a particularly large emphasis on <strong>teambuilding</strong> though, as this is basically a key unlock to how i make viable teams so quickly.
+      </p>
+      <p>
+          The use cases for a full mental damage calculation are limited unless you are very fast or have no physical access to a proper calculator.
+      </p>
+      <p>
+         For "serious" competition (VGC tournaments, etc) - I instead recommend memorising important and common damage rolls and adjusting from there.
+      </p>
+
+      <h3><u>Knowing when to stop</u></h3>
+
+      <p>Both methods share a feature that's easy to miss: you almost never need to finish the calculation.</p>
+
+      <p>For the ladder, once you're clearly above +10 in the super-effective column, you're killing. Once you're below -4 in the neutral column, you're not. The middle range - anything between roughly +1 and +7 - is where the answer is uncertain and the calculation is worth completing. Outside that range, you can abort within a second.</p>
+
+      <p>The true method is even better for this. 
+         Lets say you know 40% of the move power is 30, and its super effective. Thats 60. Well, unless you have way more attack than their defense, you're not going to KO. It's not even going to be close. Sounds obvious, but this is what we see a lot from people trying to play without a calculator.
+         </p>
+
+      <p>This is the part of mental estimation that the calculator can't teach you. The calculator always finishes. It doesn't know when the answer is "obvious." You do.</p>
+
+      <h3><u>Memorisation and reuse</u></h3>
+
+      <p>Once you've done a few calcs on the same attacker, you stop having to redo the early work. If you know your Adamant max-Atk Flygon does 137 Earthquake damage to Golem, you already know it does <em>more</em> to Typhlosion, Rapidash, or Aerodactyl - anything physically frailer than Golem. The calc is transitive.</p>
+
+      <p>The same applies across attackers. Once you've done your Flygon calcs, switching to Kangaskhan is a 10% adjustment downward (Kangaskhan is about 10% weaker offensively than Adamant max-Atk Flygon). You don't redo every matchup; you shift your existing answers.</p>
+
+      <p>Over time, this builds a mental table of "rough damage" against the Pokémon you see often. It's why experienced Frontier players appear to read fights so quickly - they're not estimating from scratch, they're looking up answers they already have, then making small adjustments for whatever's different this time.</p>
+
+      <h3><u>Customization</u></h3>
+
+      <p>
+         The ladder above is basically just a simple nomogram, mainly centered around typical scenarios in the gen3-gen4 frontier / factory / "UU" power level. That is, fully evolved but not terribly strong pokemon, such as Glalie, Hypno, Xatu, etc.
+      </p>
+      <p>
+         Users are of course completely free to design their own for other use cases. For example, the 2026 VGC season will likely have a higher baseline for attack and defense base stats. This could even shift how EV adjustments work.
+      </p>
+      <p>
+         Likewise, a nuzlocker may want to focus a ladder around weaker moves from weaker or NFE pokemon.
+      </p>
+      <p>
+         The ladder's rung system can also be changed. The one above uses adjustments of 10%, but this could easily be 20% instead - requiring fewer rungs to memorise. Or it could be 5% - which would help reduce the error in examples like Skarmory Aerial Ace vs Heracross.
+      </p>
+
+      <h3><u>A final note on the calc-vs-no-calc debate</u></h3>
+
+      <p>This isn't a "calculators are bad, don't use them" page. Calculators are precision tools and they're useful when precision is what you need. 
+         The argument is narrower: the players who never estimate first are losing more than they realise. 
+         They're slower, they miss misinputs, they don't build intuition, and they're often dependent on a tool whose answer they can't actually verify.</p>
+
+      <p>Even if you keep the calc open for every fight, building a rough estimate first costs almost nothing and catches almost everything. That's the case for learning either of the methods on this page - not as a replacement for the calculator, but as the mental version that runs first.</p>
+
+      <script>
+         (function() {
+            // The ladder uses 1.1^n compounding. 25% is the baseline (rung 0, neutral),
+            // and the right column is always double.
+            // 0.85-1.0 random factor adjustment is baked into the rung-zero baseline at 25.0%
+            // (so the numbers shown are mid-roll).
+
+            var MAX_RUNG = 14;
+            var MIN_RUNG = -10;
+            var BASELINE_NEUTRAL = 0.25;
+
+            function rungPercent(n, multiplier) {
+               // multiplier is 1 for neutral, 2 for super effective
+               return BASELINE_NEUTRAL * Math.pow(1.1, n) * multiplier * 100;
+            }
+
+            function buildLadder() {
+               var ladder = document.getElementById('ladder');
+               ladder.innerHTML = '';
+               for (var n = MAX_RUNG; n >= MIN_RUNG; n--) {
+                  var rung = document.createElement('div');
+                  rung.className = 'ladder-rung' + (n === 0 ? ' zero' : '');
+                  rung.setAttribute('data-rung', n);
+
+                  var label = document.createElement('div');
+                  label.className = 'ladder-rung-label';
+                  label.textContent = (n > 0 ? '+' : '') + n;
+                  rung.appendChild(label);
+
+                  var neutral = document.createElement('div');
+                  neutral.className = 'ladder-rung-cell';
+                  neutral.textContent = rungPercent(n, 1).toFixed(1) + '%';
+                  rung.appendChild(neutral);
+
+                  var se = document.createElement('div');
+                  se.className = 'ladder-rung-cell';
+                  se.textContent = rungPercent(n, 2).toFixed(1) + '%';
+                  rung.appendChild(se);
+
+                  ladder.appendChild(rung);
+               }
+            }
+
+            function getLadderRung() {
+               var integerIds = [
+                  'ladder-power',
+                  'ladder-stab', 'ladder-item',
+                  'ladder-atk-nature', 'ladder-def-nature',
+                  'ladder-level',
+                  'ladder-atk-base', 'ladder-atk-evs',
+                  'ladder-def-base', 'ladder-hp-base',
+                  'ladder-def-evs', 'ladder-hp-evs'
+               ];
+               var total = 0;
+               for (var i = 0; i < integerIds.length; i++) {
+                  var el = document.getElementById(integerIds[i]);
+                  if (!el) continue;
+                  total += parseInt(el.value, 10) || 0;
+               }
+               // Convert the user's multiplier input to rungs via log base 1.1
+               var multEl = document.getElementById('ladder-extra-mult');
+               if (multEl) {
+                  var mult = parseFloat(multEl.value);
+                  if (mult > 0 && isFinite(mult)) {
+                     total += Math.round(Math.log(mult) / Math.log(1.1));
+                  }
+               }
+               // Clamp to the visible range
+               if (total > MAX_RUNG) total = MAX_RUNG;
+               if (total < MIN_RUNG) total = MIN_RUNG;
+               return total;
+            }
+
+            function updateLadder() {
+               var rung = getLadderRung();
+               document.querySelectorAll('.ladder-rung').forEach(function(el) {
+                  el.classList.remove('active');
+               });
+               var active = document.querySelector('.ladder-rung[data-rung="' + rung + '"]');
+               if (active) {
+                  active.classList.add('active');
+
+                  // Position the red arrow to line up with the active rung.
+                  // offsetTop is relative to the viewport (offsetParent).
+                  // Centre the arrow vertically on the rung: rung height is 26px,
+                  // arrow is 18px tall, so offset by (26 - 18) / 2 = 4px.
+                  var arrow = document.getElementById('ladder-arrow');
+                  if (arrow) {
+                     arrow.style.top = (active.offsetTop + 4) + 'px';
+                  }
+               }
+
+               var neutralPct = rungPercent(rung, 1).toFixed(1);
+               var sePct = rungPercent(rung, 2).toFixed(1);
+               var readout = document.getElementById('ladder-readout');
+               readout.innerHTML = 'Current estimate: <strong>' + neutralPct + '%</strong> neutral / <strong>' + sePct + '%</strong> super effective (rung <strong>' + (rung > 0 ? '+' : '') + rung + '</strong>)';
+            }
+
+            buildLadder();
+
+            // On first call, snap the arrow into place without animating
+            var arrowEl = document.getElementById('ladder-arrow');
+            if (arrowEl) {
+               arrowEl.style.transition = 'none';
+            }
+
+            var ladderInputs = document.querySelectorAll('.ladder-controls select, .ladder-controls input');
+            ladderInputs.forEach(function(el) {
+               el.addEventListener('change', updateLadder);
+               el.addEventListener('input', updateLadder);
+            });
+
+            var resetBtn = document.getElementById('ladder-reset');
+            if (resetBtn) {
+               resetBtn.addEventListener('click', function() {
+                  document.getElementById('ladder-power').value = '0';
+                  document.getElementById('ladder-stab').value = '0';
+                  document.getElementById('ladder-item').value = '0';
+                  document.getElementById('ladder-atk-nature').value = '0';
+                  document.getElementById('ladder-def-nature').value = '0';
+                  document.getElementById('ladder-level').value = '0';
+                  document.getElementById('ladder-atk-base').value = '0';
+                  document.getElementById('ladder-atk-evs').value = '0';
+                  document.getElementById('ladder-def-base').value = '0';
+                  document.getElementById('ladder-hp-base').value = '0';
+                  document.getElementById('ladder-def-evs').value = '0';
+                  document.getElementById('ladder-hp-evs').value = '0';
+                  document.getElementById('ladder-extra-mult').value = '1';
+                  updateLadder();
+               });
+            }
+
+            updateLadder();
+
+            // Re-enable the arrow transition after the first paint
+            requestAnimationFrame(function() {
+               if (arrowEl) {
+                  arrowEl.style.transition = '';
+               }
+            });
+
+            // Round a stat value the way someone doing mental maths would:
+            // nearest 5 below 100, nearest 10 at or above 100.
+            function roundStat(value) {
+               if (value < 100) {
+                  return Math.round(value / 5) * 5;
+               }
+               return Math.round(value / 10) * 10;
+            }
+
+            function updateCalc() {
+               var power = parseFloat(document.getElementById('calc-power').value) || 0;
+               var atkRaw = parseFloat(document.getElementById('calc-atk').value) || 1;
+               var defRaw = parseFloat(document.getElementById('calc-def').value) || 1;
+               var hpRaw = parseFloat(document.getElementById('calc-hp').value) || 1;
+               var mult = parseFloat(document.getElementById('calc-mult').value) || 1;
+
+               var atk = roundStat(atkRaw);
+               var def = roundStat(defRaw);
+               var hp = roundStat(hpRaw);
+
+               var basePart = 0.4 * power;
+               var ratio = atk / def;
+               var damage = basePart * ratio * mult;
+               var pct = (damage / hp) * 100;
+
+               function showRounded(raw, rounded) {
+                  if (raw === rounded) return String(rounded);
+                  return rounded + ' <span style="opacity:0.6;">(from ' + raw + ')</span>';
+               }
+
+               var html = '';
+               html += '0.4 × ' + power + ' = ' + basePart.toFixed(1) + '<br>';
+               html += basePart.toFixed(1) + ' × (' + showRounded(atkRaw, atk) + ' / ' + showRounded(defRaw, def) + ') = ' + (basePart * ratio).toFixed(1) + '<br>';
+               html += (basePart * ratio).toFixed(1) + ' × ' + mult + ' = ' + damage.toFixed(1) + ' damage<br>';
+               html += '<span class="calc-final">' + damage.toFixed(0) + ' / ' + showRounded(hpRaw, hp) + ' HP ≈ ' + pct.toFixed(1) + '%</span>';
+               document.getElementById('calc-readout').innerHTML = html;
+            }
+
+            var calcInputs = document.querySelectorAll('.calc-container input');
+            calcInputs.forEach(function(el) {
+               el.addEventListener('input', updateCalc);
+               el.addEventListener('change', updateCalc);
+            });
+
+            updateCalc();
+         })();
+      </script>
+   </body>
+</html>
