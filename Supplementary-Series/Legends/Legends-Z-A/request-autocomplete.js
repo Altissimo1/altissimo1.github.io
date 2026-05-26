@@ -70,6 +70,21 @@ var requests = [
 	{value: "Side Mission 058: Better to Detect Than to Protect", data: "request-58"},
 	{value: "Side Mission 059: A Rematch with Hawlucha!", data: "request-59"},
 	{value: "Side Mission 060: Full Course of Battles: Two Stars", data: "request-60"},
+	{value: "Side Mission 061: My Favorite Holovator", data: "request-61"},
+	{value: "Side Mission 062: Becoming a Pro Furfrou Trimmer", data: "request-62"},
+	{value: "Side Mission 063: An Extra-Large Gogoat", data: "request-63"},
+	{value: "Side Mission 064: Let It Rain, Let It Pour", data: "request-64"},
+	{value: "Side Mission 065: Apartment Block Eeriness", data: "request-65"},
+	{value: "Side Mission 066: Investigating with Shuppet", data: "request-66"},
+	{value: "Side Mission 067: Sylveon the Soother", data: "request-67"},
+	{value: "Side Mission 068: The Best Use for Leftovers", data: "request-68"},
+	{value: "Side Mission 069: A Sky Battle, for Old Times' Sake", data: "request-69"},
+	{value: "Side Mission 070: Who's the Strongest, Huh?!", data: "request-70"},
+	{value: "Side Mission 071: The Burning Gaze of Watchog", data: "request-71"},
+	{value: "Side Mission 072: Find My Galarian Stunfisk!", data: "request-72"},
+	{value: "Side Mission 073: Full Course of Battles: High Rolling", data: "request-73"},
+	{value: "Side Mission 076: Let's Learn About Mega Evolution", data: "request-76"},
+	{value: "Side Mission 077: Catch Mawile If You Can", data: "request-77"},
 ];
 
 
