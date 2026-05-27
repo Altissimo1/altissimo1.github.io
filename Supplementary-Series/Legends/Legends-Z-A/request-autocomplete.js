@@ -83,6 +83,8 @@ var requests = [
 	{value: "Side Mission 071: The Burning Gaze of Watchog", data: "request-71"},
 	{value: "Side Mission 072: Find My Galarian Stunfisk!", data: "request-72"},
 	{value: "Side Mission 073: Full Course of Battles: High Rolling", data: "request-73"},
+	{value: "Side Mission 074: Delibird Gets in a Flap", data: "request-74"},
+	{value: "Side Mission 075: Some Unusual Pokémon", data: "request-75"},
 	{value: "Side Mission 076: Let's Learn About Mega Evolution", data: "request-76"},
 	{value: "Side Mission 077: Catch Mawile If You Can", data: "request-77"},
 ];
