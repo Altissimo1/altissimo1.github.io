@@ -2617,7 +2617,7 @@ if (view === 'full') {
             (async () => {
                 try {
                     const locId = inferLocationId(mount);
-                    const LOC_BASE = window.DPPT_LOCATION_BASE || '../javascript/Sinnoh-Locations/';
+                    const LOC_BASE = window.DPPT_LOCATION_BASE || '../javascript/DPPt/';
                     await loadScript(`${LOC_BASE}${locId}.js`);
                     if (!window.DPPT_DATA) throw new Error('DPPT_DATA not found after script load');
                     if (alive) setData([window.DPPT_DATA]);
