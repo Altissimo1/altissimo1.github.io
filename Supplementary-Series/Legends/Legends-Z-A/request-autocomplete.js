@@ -87,6 +87,10 @@ var requests = [
 	{value: "Side Mission 075: Some Unusual Pokémon", data: "request-75"},
 	{value: "Side Mission 076: Let's Learn About Mega Evolution", data: "request-76"},
 	{value: "Side Mission 077: Catch Mawile If You Can", data: "request-77"},
+	{value: "Side Mission 078: Inkay's Fragrant Ink", data: "request-78"},
+	{value: "Side Mission 079: A Fateful Swing of a Metronome", data: "request-79"},
+	{value: "Side Mission 080: A Shocking Territorial Dispute", data: "request-80"},
+	{value: "Side Mission 083: Honedge's Cutting Edge", data: "request-83"},
 ];
 
 
