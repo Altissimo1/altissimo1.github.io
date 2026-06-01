@@ -90,7 +90,15 @@ var requests = [
 	{value: "Side Mission 078: Inkay's Fragrant Ink", data: "request-78"},
 	{value: "Side Mission 079: A Fateful Swing of a Metronome", data: "request-79"},
 	{value: "Side Mission 080: A Shocking Territorial Dispute", data: "request-80"},
+	{value: "Side Mission 081: Pancham the Courier", data: "request-81"},
+	{value: "Side Mission 082: Clauncher Launching Water Gun", data: "request-82"},
 	{value: "Side Mission 083: Honedge's Cutting Edge", data: "request-83"},
+	{value: "Side Mission 084: Strike First to Make 'Em Flinch!", data: "request-84"},
+	{value: "Side Mission 085: Follow Litwick!", data: "request-85"},
+	{value: "Side Mission 086: Who Messed Up the Garden?", data: "request-86"},
+	{value: "Side Mission 087: Becoming a Peerless Furfrou Trimmer", data: "request-87"},
+	{value: "Side Mission 088: The Nervous Novice Cabbie", data: "request-88"},
+	{value: "Side Mission 089: Up, Up, and Away After Emolga!", data: "request-89"},
 ];
 
 
