@@ -1447,7 +1447,25 @@
 
         if (view === 'compressed') {
             const buckets = bucketRowsByName(sanitizedRows);
-            const orderedNames = orderSpeciesNames(buckets, showGames);
+            // Build ordering meta from renderRows (which retains full perGame data
+            // for all games even in single-game view, before the rebuild strips it).
+            const _orderingMeta = buildCompressedOrderingMeta(renderRows, props.games || GAMES);
+            const orderedNames = (() => {
+                const names = Array.from(buckets.keys());
+                if (gameFilter && gameFilter !== 'All') {
+                    // Single-game: sort by that game's total rate only.
+                    return names.sort((na, nb) => {
+                        const rA = (buckets.get(na) || []).reduce((s, r) => s + (r.perGame?.[gameFilter]?.rate || 0), 0);
+                        const rB = (buckets.get(nb) || []).reduce((s, r) => s + (r.perGame?.[gameFilter]?.rate || 0), 0);
+                        if (rA !== rB) return rB - rA;
+                        return na.localeCompare(nb);
+                    });
+                }
+                // All-games: game breadth first, then rate.
+                return names.sort((na, nb) =>
+                    compressedSpeciesCompare({ name: na }, { name: nb }, _orderingMeta)
+                );
+            })();
 
             // Cross-species slot2 reordering (Ruby first, None last within same-rate groups)
             (() => {
@@ -2433,9 +2451,16 @@
 
         // Compressed view
         const compRows = buildSlotCompressedRows(slots, games);
-        const rows = isSingle
-            ? compRows.filter(r => r.perGame[gameFilter]).sort((a, b) => (b.perGame[gameFilter]?.rate || 0) - (a.perGame[gameFilter]?.rate || 0))
-            : compRows;
+        const rows = (() => {
+            if (isSingle) {
+                return compRows
+                    .filter(r => r.perGame[gameFilter])
+                    .sort((a, b) => (b.perGame[gameFilter]?.rate || 0) - (a.perGame[gameFilter]?.rate || 0));
+            }
+            const arr = compRows.slice();
+            const meta = buildCompressedOrderingMeta(arr, games);
+            return arr.sort((a, b) => compressedSpeciesCompare(a, b, meta));
+        })();
         return h('div', { style: { overflowX: 'auto' } },
             h('table', null,
                 h('caption', null, tableLabel),
@@ -2564,9 +2589,16 @@
         let globalIdx = 0;
         const sections = ROD_KEYS.map(({ key, label }) => {
             const compRows = buildSlotCompressedRows(fish[key] || [], games);
-            const filtered = isSingle
-                ? compRows.filter(r => r.perGame[gameFilter]).sort((a, b) => (b.perGame[gameFilter]?.rate || 0) - (a.perGame[gameFilter]?.rate || 0))
-                : compRows;
+            const filtered = (() => {
+                if (isSingle) {
+                    return compRows
+                        .filter(r => r.perGame[gameFilter])
+                        .sort((a, b) => (b.perGame[gameFilter]?.rate || 0) - (a.perGame[gameFilter]?.rate || 0));
+                }
+                const arr = compRows.slice();
+                const meta = buildCompressedOrderingMeta(arr, games);
+                return arr.sort((a, b) => compressedSpeciesCompare(a, b, meta));
+            })();
             const tagged = filtered.map(row => {
                 const idx = globalIdx++;
                 return { rod: label, idx, ...row };
