@@ -1,5 +1,5 @@
 window.BDSP_DATA = {
-  "name": "bdsp-route-203",
+  "name": "sinnoh-route-203",
   "encounters": {
     "walking": [
       {

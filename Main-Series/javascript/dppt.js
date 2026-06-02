@@ -2226,6 +2226,14 @@
     // Slot encounter utilities (Surfing / Fishing)
     // =========================================================
 
+    function slotFormName(name) {
+        if (name === 'Shellos' || name === 'Gastrodon') {
+            const form = SHELLOS.charAt(0).toUpperCase() + SHELLOS.slice(1);
+            return `${name} (${form})`;
+        }
+        return name;
+    }
+
     /**
      * Full view rows — one row per slot.
      * Returns: [{ slot, rate, perGame: { [game]: { name, level } } }]
@@ -2402,7 +2410,7 @@
                                         const c = row.perGame[unified ? GAMES[0] : gameFilter];
                                         return [
                                             h('td', { key: 's', className: slotCls(base, row.slot) }, c ? h(Sprite, { name: c.name, mount }) : '—'),
-                                            h('td', { key: 'n', className: slotCls(base, row.slot) }, c ? c.name : '—'),
+                                            h('td', { key: 'n', className: slotCls(base, row.slot) }, c ? slotFormName(c.name) : '—'),
                                             h('td', { key: 'l', className: slotCls(base, row.slot) }, c ? `lv. ${c.level}` : '—'),
                                         ];
                                     })()
@@ -2411,7 +2419,7 @@
                                         const c = row.perGame[g];
                                         return [
                                             h('td', { key: g + '-s', className: slotCls(gp, row.slot) }, c ? h(Sprite, { name: c.name, mount }) : '—'),
-                                            h('td', { key: g + '-n', className: slotCls(gp, row.slot) }, c ? c.name : '—'),
+                                            h('td', { key: g + '-n', className: slotCls(gp, row.slot) }, c ? slotFormName(c.name) : '—'),
                                             h('td', { key: g + '-l', className: slotCls(gp, row.slot) }, c ? `lv. ${c.level}` : '—'),
                                         ];
                                     })
@@ -2425,7 +2433,9 @@
 
         // Compressed view
         const compRows = buildSlotCompressedRows(slots, games);
-        const rows = isSingle ? compRows.filter(r => r.perGame[gameFilter]) : compRows;
+        const rows = isSingle
+            ? compRows.filter(r => r.perGame[gameFilter]).sort((a, b) => (b.perGame[gameFilter]?.rate || 0) - (a.perGame[gameFilter]?.rate || 0))
+            : compRows;
         return h('div', { style: { overflowX: 'auto' } },
             h('table', null,
                 h('caption', null, tableLabel),
@@ -2446,7 +2456,7 @@
                     rows.map((row, i) =>
                         h('tr', { key: row.name },
                             h('td', { className: rowCls(base, i) }, h(Sprite, { name: row.name, mount })),
-                            h('td', { className: rowCls(base, i) }, row.name),
+                            h('td', { className: rowCls(base, i) }, slotFormName(row.name)),
                             ...((isSingle || unified)
                                 ? (() => {
                                     const c = row.perGame[unified ? GAMES[0] : gameFilter];
@@ -2456,10 +2466,12 @@
                                     ];
                                 })()
                                 : showGames.flatMap(g => {
+                                    const gp = gamePrefix(g);
                                     const c = row.perGame[g];
+                                    if (!c) return [h('td', { key: g + '-na', colSpan: 2, className: rowCls(null, i) }, 'N/A')];
                                     return [
-                                        h('td', { key: g + '-r', className: rowCls(gamePrefix(g), i) }, c ? c.rate + '%' : '—'),
-                                        h('td', { key: g + '-l', className: rowCls(gamePrefix(g), i) }, c ? `lv. ${c.level}` : '—'),
+                                        h('td', { key: g + '-r', className: rowCls(gp, i) }, c.rate + '%'),
+                                        h('td', { key: g + '-l', className: rowCls(gp, i) }, `lv. ${c.level}`),
                                     ];
                                 })
                             )
@@ -2525,7 +2537,7 @@
                                         const c = row.perGame[unified ? GAMES[0] : gameFilter];
                                         return [
                                             h('td', { key: 's', className: rowCls(base, i) }, c ? h(Sprite, { name: c.name, mount }) : '—'),
-                                            h('td', { key: 'n', className: rowCls(base, i) }, c ? c.name : '—'),
+                                            h('td', { key: 'n', className: rowCls(base, i) }, c ? slotFormName(c.name) : '—'),
                                             h('td', { key: 'l', className: rowCls(base, i) }, c ? `lv. ${c.level}` : '—'),
                                         ];
                                     })()
@@ -2534,7 +2546,7 @@
                                         const c = row.perGame[g];
                                         return [
                                             h('td', { key: g + '-s', className: rowCls(gp, i) }, c ? h(Sprite, { name: c.name, mount }) : '—'),
-                                            h('td', { key: g + '-n', className: rowCls(gp, i) }, c ? c.name : '—'),
+                                            h('td', { key: g + '-n', className: rowCls(gp, i) }, c ? slotFormName(c.name) : '—'),
                                             h('td', { key: g + '-l', className: rowCls(gp, i) }, c ? `lv. ${c.level}` : '—'),
                                         ];
                                     })
@@ -2552,7 +2564,9 @@
         let globalIdx = 0;
         const sections = ROD_KEYS.map(({ key, label }) => {
             const compRows = buildSlotCompressedRows(fish[key] || [], games);
-            const filtered = isSingle ? compRows.filter(r => r.perGame[gameFilter]) : compRows;
+            const filtered = isSingle
+                ? compRows.filter(r => r.perGame[gameFilter]).sort((a, b) => (b.perGame[gameFilter]?.rate || 0) - (a.perGame[gameFilter]?.rate || 0))
+                : compRows;
             const tagged = filtered.map(row => {
                 const idx = globalIdx++;
                 return { rod: label, idx, ...row };
@@ -2583,7 +2597,7 @@
                         h('tr', { key: `${row.rod}-${row.name}` },
                             h('td', { className: rowCls(base, row.idx) }, row.rod),
                             h('td', { className: rowCls(base, row.idx) }, h(Sprite, { name: row.name, mount })),
-                            h('td', { className: rowCls(base, row.idx) }, row.name),
+                            h('td', { className: rowCls(base, row.idx) }, slotFormName(row.name)),
                             ...((isSingle || unified)
                                 ? (() => {
                                     const c = row.perGame[unified ? GAMES[0] : gameFilter];
@@ -2593,10 +2607,12 @@
                                     ];
                                 })()
                                 : showGames.flatMap(g => {
+                                    const gp = gamePrefix(g);
                                     const c = row.perGame[g];
+                                    if (!c) return [h('td', { key: g + '-na', colSpan: 2, className: rowCls(null, row.idx) }, 'N/A')];
                                     return [
-                                        h('td', { key: g + '-r', className: rowCls(gamePrefix(g), row.idx) }, c ? c.rate + '%' : '—'),
-                                        h('td', { key: g + '-l', className: rowCls(gamePrefix(g), row.idx) }, c ? `lv. ${c.level}` : '—'),
+                                        h('td', { key: g + '-r', className: rowCls(gp, row.idx) }, c.rate + '%'),
+                                        h('td', { key: g + '-l', className: rowCls(gp, row.idx) }, `lv. ${c.level}`),
                                     ];
                                 })
                             )
@@ -2644,6 +2660,7 @@
         if (loading) return h('p', null, 'Loading…');
         if (error) return h('p', { style: { color: 'red' } }, 'Error: ', error);
         if (!data) return null;
+		if (data.shellos) SHELLOS = data.shellos;
 
         const encounters = data.encounters || {};
         const isSeparate = state.game === 'separate';

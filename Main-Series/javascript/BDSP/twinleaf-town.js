@@ -1,105 +1,77 @@
-// generated
-window.DPPT_DATA = {
-  "name": "pastoria-city",
-  "shellos": "west",
+window.BDSP_DATA = {
+  "name": "twinleaf-town",
   "encounters": {
     "surfing": [
       {
-        "rate": 60,
         "slot": 0,
+        "rate": 60,
         "options": [
           {
             "level": "20-30",
-            "name": "Tentacool",
+            "name": "Psyduck",
             "games": [
-              "Diamond",
-              "Pearl",
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 30,
         "slot": 1,
+        "rate": 30,
         "options": [
           {
-            "level": "20-30",
-            "name": "Wingull",
+            "level": "20-40",
+            "name": "Psyduck",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "20-30",
-            "name": "Shellos",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 5,
         "slot": 2,
+        "rate": 5,
         "options": [
           {
-            "level": "20-40",
-            "name": "Tentacruel",
+            "level": "30-40",
+            "name": "Golduck",
             "games": [
-              "Diamond",
-              "Pearl",
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 4,
         "slot": 3,
+        "rate": 4,
         "options": [
           {
-            "level": "20-40",
-            "name": "Pelipper",
+            "level": "30-40",
+            "name": "Golduck",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "20-30",
-            "name": "Wingull",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 1,
         "slot": 4,
+        "rate": 1,
         "options": [
           {
             "level": "20-40",
-            "name": "Pelipper",
+            "name": "Golduck",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "20-40",
-            "name": "Gastrodon",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
@@ -109,87 +81,75 @@ window.DPPT_DATA = {
     "fishing": {
       "old": [
         {
-          "rate": 60,
           "slot": 0,
+          "rate": 60,
           "options": [
             {
               "level": "4-6",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 30,
           "slot": 1,
+          "rate": 30,
           "options": [
             {
               "level": "3-7",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 5,
           "slot": 2,
+          "rate": 5,
           "options": [
             {
               "level": "5-10",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 4,
           "slot": 3,
+          "rate": 4,
           "options": [
             {
               "level": "5-10",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 1,
           "slot": 4,
+          "rate": 1,
           "options": [
             {
               "level": "5-10",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl"
-              ],
-              "conditions": []
-            },
-            {
-              "level": "5-15",
-              "name": "Magikarp",
-              "games": [
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
@@ -198,80 +158,75 @@ window.DPPT_DATA = {
       ],
       "good": [
         {
-          "rate": 40,
           "slot": 0,
-          "options": [
-            {
-              "level": "15-20",
-              "name": "Magikarp",
-              "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
-              ],
-              "conditions": []
-            }
-          ]
-        },
-        {
           "rate": 40,
-          "slot": 1,
           "options": [
             {
               "level": "15-20",
-              "name": "Remoraid",
+              "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 15,
+          "slot": 1,
+          "rate": 40,
+          "options": [
+            {
+              "level": "15-20",
+              "name": "Goldeen",
+              "games": [
+                "Brilliant Diamond",
+                "Shining Pearl"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
           "slot": 2,
+          "rate": 15,
           "options": [
             {
               "level": "10-25",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 4,
           "slot": 3,
+          "rate": 4,
           "options": [
             {
               "level": "10-25",
-              "name": "Remoraid",
+              "name": "Goldeen",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 1,
           "slot": 4,
+          "rate": 1,
           "options": [
             {
               "level": "10-25",
-              "name": "Remoraid",
+              "name": "Goldeen",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
@@ -280,94 +235,75 @@ window.DPPT_DATA = {
       ],
       "super": [
         {
-          "rate": 40,
           "slot": 0,
-          "options": [
-            {
-              "level": "30-40",
-              "name": "Gyarados",
-              "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
-              ],
-              "conditions": []
-            }
-          ]
-        },
-        {
           "rate": 40,
-          "slot": 1,
           "options": [
             {
               "level": "30-40",
-              "name": "Octillery",
+              "name": "Gyarados",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 15,
+          "slot": 1,
+          "rate": 40,
+          "options": [
+            {
+              "level": "30-40",
+              "name": "Seaking",
+              "games": [
+                "Brilliant Diamond",
+                "Shining Pearl"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
           "slot": 2,
+          "rate": 15,
           "options": [
             {
               "level": "40-55",
               "name": "Gyarados",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 4,
           "slot": 3,
+          "rate": 4,
           "options": [
             {
               "level": "20-50",
-              "name": "Octillery",
+              "name": "Seaking",
               "games": [
-                "Diamond",
-                "Pearl"
-              ],
-              "conditions": []
-            },
-            {
-              "level": "40-55",
-              "name": "Octillery",
-              "games": [
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 1,
           "slot": 4,
+          "rate": 1,
           "options": [
             {
               "level": "20-50",
-              "name": "Octillery",
+              "name": "Seaking",
               "games": [
-                "Diamond",
-                "Pearl"
-              ],
-              "conditions": []
-            },
-            {
-              "level": "40-55",
-              "name": "Octillery",
-              "games": [
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
