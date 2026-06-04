@@ -18,7 +18,18 @@
  *   const STAT_TOGGLE_CONFIG = {
  *     defaultLevel:    50,    // level assumed for stat calculation
  *     showLevelWidget: false, // true = show level + IV-override inputs
+ *     formula:      'gen3',   // 'gen3' (default) or 'gen1' (Gen 1/2 Stat Exp formula)
  *   };
+ *
+ * FORMULA NOTES
+ *   'gen3' (default): Gen 3+ formula with EVs (0–252), IVs (0–31), and natures.
+ *   'gen1': Gen 1/2 formula. EVs are Stat Exp (0–65535); IVs are DVs (0–15).
+ *     Stat Exp bonus = ceil(sqrt(StatExp)) / 4  — kept as a decimal inside the
+ *     outer floor, capped at 63. Equivalent to Excel CEILING(SQRT(se),1)/4.
+ *     No nature modifier.
+ *     The 'spc' stat key is special: a single "Spc IV & EV" column provides the
+ *     DV/StatExp for both SpA and SpD. In calculated view it expands into two
+ *     columns (SpA and SpD) using the separate spa/spd base stats.
  *
  * TOGGLE UI PLACEMENT
  *   If the page contains <div id="stat-toggle-container"></div>, the controls
@@ -35,6 +46,7 @@
   var defaults = {
     defaultLevel:    50,
     showLevelWidget: false,
+    formula:         'gen3',
   };
   var config = Object.assign({}, defaults, window.STAT_TOGGLE_CONFIG || {});
 
@@ -73,12 +85,12 @@
   // Maps the first word of a stat header (lowercased) to an internal key.
   // "HP IV & EV" → "hp", "SpA IV & EV" → "spa", etc.
   var HEADER_TO_KEY = {
-    hp: 'hp', atk: 'atk', def: 'def', spa: 'spa', spd: 'spd', spe: 'spe',
+    hp: 'hp', atk: 'atk', def: 'def', spa: 'spa', spd: 'spd', spe: 'spe', spc: 'spc',
   };
 
   // Display labels for the calculated-stat column headers.
   var STAT_LABELS = {
-    hp: 'HP', atk: 'Atk', def: 'Def', spa: 'SpA', spd: 'SpD', spe: 'Spe',
+    hp: 'HP', atk: 'Atk', def: 'Def', spa: 'SpA', spd: 'SpD', spe: 'Spe', spc: 'Spc',
   };
 
   // ─── Species name normalization ───────────────────────────────────────────
@@ -135,7 +147,17 @@
    */
   function calculateStat(statKey, base, iv, ev, nature, level) {
     if (base == null || isNaN(base) || isNaN(iv) || isNaN(ev) || isNaN(level)) return null;
-    var inner = Math.floor(((2 * base + iv + Math.floor(ev / 4)) * level) / 100);
+    var inner;
+    if (config.formula === 'gen1') {
+      // Gen 1/2: ev is Stat Exp (0–65535), iv is DV (0–15), no nature modifier.
+      // Bonus = ceil(sqrt(StatExp)) / 4, kept as a decimal (not floored again),
+      // capped at 63. Matches Excel: MIN(63, CEILING(SQRT(ev), 1) / 4).
+      var statExpBonus = Math.min(63, Math.ceil(Math.sqrt(ev)) / 4);
+      inner = Math.floor((base * 2 + iv * 2 + statExpBonus) * level / 100);
+      return (statKey === 'hp') ? (inner + level + 10) : (inner + 5);
+    }
+    // Gen 3+: ev is EV (0–252), iv is IV (0–31), apply nature modifier.
+    inner = Math.floor(((2 * base + iv + Math.floor(ev / 4)) * level) / 100);
     if (statKey === 'hp') {
       return inner + level + 10;
     }
@@ -218,11 +240,24 @@
    */
   function switchToCalculated(tables, level, ivOverride) {
     tables.forEach(function (table) {
+      // Per-table level override (e.g. battle-tower uses data-level="10" … "100")
+      var effectiveLevel = parseInt(table.dataset.level, 10) || level;
 
-      // Collapse stat column headers from colspan=2 to a single labeled column
+      // Collapse (or split) stat column headers
       table.querySelectorAll('thead th[data-stat-key]').forEach(function (th) {
-        th.removeAttribute('colspan');
-        th.textContent = STAT_LABELS[th.dataset.statKey] || th.dataset.statKey.toUpperCase();
+        var key = th.dataset.statKey;
+        if (key === 'spc' && config.formula === 'gen1') {
+          // 'spc' expands into two columns: SpA and SpD
+          th.removeAttribute('colspan');
+          th.textContent = 'SpA';
+          var spdTh = document.createElement('th');
+          spdTh.textContent = 'SpD';
+          spdTh.dataset.statInserted = 'spc';
+          th.parentNode.insertBefore(spdTh, th.nextSibling);
+        } else {
+          th.removeAttribute('colspan');
+          th.textContent = STAT_LABELS[key] || key.toUpperCase();
+        }
       });
 
       // Process each IV cell
@@ -230,14 +265,24 @@
         var statKey = ivCell.dataset.statKey;
         var row     = ivCell.closest('tr');
 
-        // Locate the paired EV cell and hide it
+        // Locate the paired EV cell
         var evCell = row.querySelector('td[data-stat-role="ev"][data-stat-key="' + statKey + '"]');
-        if (evCell) evCell.style.display = 'none';
+
+        // In gen1 mode, the 'spc' EV cell stays visible and shows SpD
+        if (statKey === 'spc' && config.formula === 'gen1') {
+          // leave evCell visible — it will be populated with SpD below
+        } else {
+          if (evCell) evCell.style.display = 'none';
+        }
 
         // Locate species and nature from this row's annotated cells
         var nameCell   = row.querySelector('td[data-species]');
         var natureCell = row.querySelector('td[data-nature]');
-        if (!nameCell) { ivCell.textContent = '—'; return; }
+        if (!nameCell) {
+          ivCell.textContent = '—';
+          if (statKey === 'spc' && config.formula === 'gen1' && evCell) evCell.textContent = '—';
+          return;
+        }
 
         var speciesKey = nameCell.dataset.species
           || normalizeSpecies(nameCell.textContent.trim());
@@ -250,6 +295,7 @@
           // Base stats not found — check console for the key that failed
           console.warn('stat-toggle: no base stats found for key "' + speciesKey + '"');
           ivCell.textContent = '—';
+          if (statKey === 'spc' && config.formula === 'gen1' && evCell) evCell.textContent = '—';
           return;
         }
 
@@ -258,8 +304,16 @@
           : parseInt(ivCell.dataset.statOriginal, 10);
         var ev = evCell ? parseInt(evCell.dataset.statOriginal, 10) : 0;
 
-        var result = calculateStat(statKey, baseStats[statKey], iv, ev, nature, level);
-        ivCell.textContent = (result !== null) ? result : '—';
+        if (statKey === 'spc' && config.formula === 'gen1') {
+          // SpA and SpD share the same DV and Stat Exp but use separate base stats
+          var spaResult = calculateStat('spa', baseStats['spa'], iv, ev, null, effectiveLevel);
+          var spdResult = calculateStat('spd', baseStats['spd'], iv, ev, null, effectiveLevel);
+          ivCell.textContent = (spaResult !== null) ? spaResult : '—';
+          if (evCell) evCell.textContent = (spdResult !== null) ? spdResult : '—';
+        } else {
+          var result = calculateStat(statKey, baseStats[statKey], iv, ev, nature, effectiveLevel);
+          ivCell.textContent = (result !== null) ? result : '—';
+        }
       });
     });
   }
@@ -269,6 +323,11 @@
    */
   function switchToIvEv(tables) {
     tables.forEach(function (table) {
+
+      // Remove any inserted SpD header cells (gen1 spc split)
+      table.querySelectorAll('thead th[data-stat-inserted]').forEach(function (th) {
+        th.parentNode.removeChild(th);
+      });
 
       // Restore stat column headers
       table.querySelectorAll('thead th[data-stat-key]').forEach(function (th) {
@@ -283,8 +342,9 @@
         cell.textContent = cell.dataset.statOriginal || '';
       });
 
-      // Unhide EV cells
+      // Restore and unhide EV cells (text may have been overwritten in gen1 spc mode)
       table.querySelectorAll('td[data-stat-role="ev"]').forEach(function (cell) {
+        cell.textContent = cell.dataset.statOriginal || '';
         cell.style.display = '';
       });
     });

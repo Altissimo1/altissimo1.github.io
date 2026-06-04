@@ -1,98 +1,66 @@
-// generated
-window.DPPT_DATA = {
+window.BDSP_DATA = {
   "name": "sinnoh-route-222",
   "shellos": "east",
   "encounters": {
     "walking": [
       {
-        "rate": 20,
         "slot": 0,
+        "rate": 20,
         "options": [
-          {
-            "level": "40",
-            "name": "Skitty",
-            "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": [
-              "swarm"
-            ]
-          },
-          {
-            "level": "39",
-            "name": "Skitty",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": [
-              "swarm"
-            ]
-          },
           {
             "level": "40",
             "name": "Floatzel",
             "games": [
-              "Diamond",
-              "Pearl"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": [
               "no-swarm"
             ]
           },
           {
-            "level": "39",
-            "name": "Electabuzz",
+            "level": "40",
+            "name": "Skitty",
             "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": [
-              "no-swarm"
+              "swarm"
             ]
           }
         ]
       },
       {
-        "rate": 20,
         "slot": 1,
+        "rate": 20,
         "options": [
-          {
-            "level": "40",
-            "name": "Skitty",
-            "games": [
-              "Diamond",
-              "Pearl",
-              "Platinum"
-            ],
-            "conditions": [
-              "swarm"
-            ]
-          },
           {
             "level": "40",
             "name": "Gastrodon",
             "games": [
-              "Diamond"
+              "Brilliant Diamond"
             ],
             "conditions": [
               "no-swarm"
+            ]
+          },
+          {
+            "level": "40",
+            "name": "Skitty",
+            "games": [
+              "Brilliant Diamond",
+              "Shining Pearl"
+            ],
+            "conditions": [
+              "swarm"
             ]
           },
           {
             "level": "40",
             "name": "Glameow",
             "games": [
-              "Pearl"
-            ],
-            "conditions": [
-              "no-swarm"
-            ]
-          },
-          {
-            "level": "40",
-            "name": "Floatzel",
-            "games": [
-              "Platinum"
+              "Shining Pearl"
             ],
             "conditions": [
               "no-swarm"
@@ -101,26 +69,15 @@ window.DPPT_DATA = {
         ]
       },
       {
-        "rate": 10,
         "slot": 2,
+        "rate": 10,
         "options": [
           {
             "level": "41",
             "name": "Chatot",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": [
-              "morning",
-              "day"
-            ]
-          },
-          {
-            "level": "41",
-            "name": "Electabuzz",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": [
               "morning",
@@ -131,9 +88,8 @@ window.DPPT_DATA = {
             "level": "41",
             "name": "Floatzel",
             "games": [
-              "Diamond",
-              "Pearl",
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": [
               "night"
@@ -142,26 +98,15 @@ window.DPPT_DATA = {
         ]
       },
       {
-        "rate": 10,
         "slot": 3,
+        "rate": 10,
         "options": [
           {
             "level": "40",
             "name": "Chatot",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": [
-              "morning",
-              "day"
-            ]
-          },
-          {
-            "level": "38",
-            "name": "Chatot",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": [
               "morning",
@@ -172,18 +117,8 @@ window.DPPT_DATA = {
             "level": "40",
             "name": "Gastrodon",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": [
-              "night"
-            ]
-          },
-          {
-            "level": "38",
-            "name": "Floatzel",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": [
               "night"
@@ -192,55 +127,35 @@ window.DPPT_DATA = {
         ]
       },
       {
-        "rate": 10,
         "slot": 4,
+        "rate": 10,
         "options": [
-          {
-            "level": "41",
-            "name": "Flaaffy",
-            "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": [
-              "pokeradar"
-            ]
-          },
-          {
-            "level": "38",
-            "name": "Flaaffy",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": [
-              "pokeradar"
-            ]
-          },
           {
             "level": "41",
             "name": "Mr. Mime",
             "games": [
-              "Diamond"
+              "Brilliant Diamond"
             ],
             "conditions": [
               "no-pokeradar"
+            ]
+          },
+          {
+            "level": "41",
+            "name": "Flaaffy",
+            "games": [
+              "Brilliant Diamond",
+              "Shining Pearl"
+            ],
+            "conditions": [
+              "pokeradar"
             ]
           },
           {
             "level": "41",
             "name": "Purugly",
             "games": [
-              "Pearl"
-            ],
-            "conditions": [
-              "no-pokeradar"
-            ]
-          },
-          {
-            "level": "38",
-            "name": "Wingull",
-            "games": [
-              "Platinum"
+              "Shining Pearl"
             ],
             "conditions": [
               "no-pokeradar"
@@ -249,202 +164,130 @@ window.DPPT_DATA = {
         ]
       },
       {
-        "rate": 10,
         "slot": 5,
+        "rate": 10,
         "options": [
           {
             "level": "41",
-            "name": "Flaaffy",
+            "name": "Wingull",
             "games": [
-              "Diamond",
-              "Pearl"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": [
-              "pokeradar"
-            ]
-          },
-          {
-            "level": "39",
-            "name": "Flaaffy",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": [
-              "pokeradar"
+              "no-pokeradar"
             ]
           },
           {
             "level": "41",
-            "name": "Wingull",
+            "name": "Flaaffy",
             "games": [
-              "Diamond",
-              "Pearl"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": [
-              "no-pokeradar"
-            ]
-          },
-          {
-            "level": "39",
-            "name": "Magnemite",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": [
-              "no-pokeradar"
+              "pokeradar"
             ]
           }
         ]
       },
       {
-        "rate": 5,
         "slot": 6,
+        "rate": 5,
         "options": [
           {
             "level": "42",
             "name": "Floatzel",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "38",
-            "name": "Luxio",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 5,
         "slot": 7,
+        "rate": 5,
         "options": [
           {
             "level": "41",
             "name": "Gastrodon",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "40",
-            "name": "Luxio",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 4,
         "slot": 8,
-        "options": [
-          {
-            "level": "42",
-            "name": "Mr. Mime",
-            "games": [
-              "Diamond"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "42",
-            "name": "Purugly",
-            "games": [
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "40",
-            "name": "Pelipper",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": []
-          }
-        ]
-      },
-      {
         "rate": 4,
-        "slot": 9,
         "options": [
           {
             "level": "42",
-            "name": "Gastrodon",
+            "name": "Mr. Mime",
             "games": [
-              "Diamond",
-              "Pearl"
+              "Brilliant Diamond"
             ],
             "conditions": []
           },
           {
-            "level": "41",
-            "name": "Magneton",
+            "level": "42",
+            "name": "Purugly",
             "games": [
-              "Platinum"
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 1,
-        "slot": 10,
+        "slot": 9,
+        "rate": 4,
         "options": [
           {
             "level": "42",
-            "name": "Flaaffy",
+            "name": "Gastrodon",
             "games": [
-              "Diamond",
-              "Pearl"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
-            "conditions": [
-              "pokeradar"
-            ]
-          },
-          {
-            "level": "40",
-            "name": "Flaaffy",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": [
-              "pokeradar"
-            ]
-          },
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "slot": 10,
+        "rate": 1,
+        "options": [
           {
             "level": "42",
             "name": "Mr. Mime",
             "games": [
-              "Diamond"
+              "Brilliant Diamond"
             ],
             "conditions": [
               "no-pokeradar"
+            ]
+          },
+          {
+            "level": "42",
+            "name": "Flaaffy",
+            "games": [
+              "Brilliant Diamond",
+              "Shining Pearl"
+            ],
+            "conditions": [
+              "pokeradar"
             ]
           },
           {
             "level": "42",
             "name": "Purugly",
             "games": [
-              "Pearl"
-            ],
-            "conditions": [
-              "no-pokeradar"
-            ]
-          },
-          {
-            "level": "40",
-            "name": "Pelipper",
-            "games": [
-              "Platinum"
+              "Shining Pearl"
             ],
             "conditions": [
               "no-pokeradar"
@@ -453,49 +296,29 @@ window.DPPT_DATA = {
         ]
       },
       {
-        "rate": 1,
         "slot": 11,
+        "rate": 1,
         "options": [
-          {
-            "level": "42",
-            "name": "Flaaffy",
-            "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": [
-              "pokeradar"
-            ]
-          },
-          {
-            "level": "41",
-            "name": "Flaaffy",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": [
-              "pokeradar"
-            ]
-          },
           {
             "level": "42",
             "name": "Gastrodon",
             "games": [
-              "Diamond",
-              "Pearl"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": [
               "no-pokeradar"
             ]
           },
           {
-            "level": "41",
-            "name": "Magneton",
+            "level": "42",
+            "name": "Flaaffy",
             "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": [
-              "no-pokeradar"
+              "pokeradar"
             ]
           }
         ]
@@ -503,115 +326,75 @@ window.DPPT_DATA = {
     ],
     "surfing": [
       {
-        "rate": 60,
         "slot": 0,
+        "rate": 60,
         "options": [
           {
             "level": "20-30",
             "name": "Tentacool",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "30-40",
-            "name": "Tentacool",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 30,
         "slot": 1,
+        "rate": 30,
         "options": [
           {
             "level": "20-30",
             "name": "Wingull",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "30-40",
-            "name": "Wingull",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 5,
         "slot": 2,
+        "rate": 5,
         "options": [
           {
             "level": "20-40",
             "name": "Tentacruel",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "30-50",
-            "name": "Tentacruel",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 4,
         "slot": 3,
+        "rate": 4,
         "options": [
           {
             "level": "20-40",
             "name": "Pelipper",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "30-50",
-            "name": "Tentacruel",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 1,
         "slot": 4,
+        "rate": 1,
         "options": [
           {
             "level": "20-40",
             "name": "Pelipper",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "30-50",
-            "name": "Pelipper",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
@@ -621,87 +404,75 @@ window.DPPT_DATA = {
     "fishing": {
       "old": [
         {
-          "rate": 60,
           "slot": 0,
+          "rate": 60,
           "options": [
             {
               "level": "4-6",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 30,
           "slot": 1,
+          "rate": 30,
           "options": [
             {
               "level": "3-7",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 4,
-          "slot": 3,
-          "options": [
-            {
-              "level": "5-10",
-              "name": "Magikarp",
-              "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
-              ],
-              "conditions": []
-            }
-          ]
-        },
-        {
-          "rate": 1,
-          "slot": 4,
-          "options": [
-            {
-              "level": "5-10",
-              "name": "Magikarp",
-              "games": [
-                "Diamond",
-                "Pearl"
-              ],
-              "conditions": []
-            },
-            {
-              "level": "5-15",
-              "name": "Magikarp",
-              "games": [
-                "Platinum"
-              ],
-              "conditions": []
-            }
-          ]
-        },
-        {
-          "rate": 5,
           "slot": 2,
+          "rate": 5,
           "options": [
             {
               "level": "5-10",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "slot": 3,
+          "rate": 4,
+          "options": [
+            {
+              "level": "5-10",
+              "name": "Magikarp",
+              "games": [
+                "Brilliant Diamond",
+                "Shining Pearl"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "slot": 4,
+          "rate": 1,
+          "options": [
+            {
+              "level": "5-10",
+              "name": "Magikarp",
+              "games": [
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
@@ -710,80 +481,75 @@ window.DPPT_DATA = {
       ],
       "good": [
         {
-          "rate": 40,
-          "slot": 1,
-          "options": [
-            {
-              "level": "15-20",
-              "name": "Remoraid",
-              "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
-              ],
-              "conditions": []
-            }
-          ]
-        },
-        {
-          "rate": 4,
-          "slot": 3,
-          "options": [
-            {
-              "level": "10-25",
-              "name": "Remoraid",
-              "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
-              ],
-              "conditions": []
-            }
-          ]
-        },
-        {
-          "rate": 1,
-          "slot": 4,
-          "options": [
-            {
-              "level": "10-25",
-              "name": "Remoraid",
-              "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
-              ],
-              "conditions": []
-            }
-          ]
-        },
-        {
-          "rate": 40,
           "slot": 0,
+          "rate": 40,
           "options": [
             {
               "level": "15-20",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 15,
+          "slot": 1,
+          "rate": 40,
+          "options": [
+            {
+              "level": "15-20",
+              "name": "Remoraid",
+              "games": [
+                "Brilliant Diamond",
+                "Shining Pearl"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
           "slot": 2,
+          "rate": 15,
           "options": [
             {
               "level": "10-25",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "slot": 3,
+          "rate": 4,
+          "options": [
+            {
+              "level": "10-25",
+              "name": "Remoraid",
+              "games": [
+                "Brilliant Diamond",
+                "Shining Pearl"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "slot": 4,
+          "rate": 1,
+          "options": [
+            {
+              "level": "10-25",
+              "name": "Remoraid",
+              "games": [
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
@@ -792,101 +558,75 @@ window.DPPT_DATA = {
       ],
       "super": [
         {
-          "rate": 40,
           "slot": 0,
+          "rate": 40,
           "options": [
             {
               "level": "30-40",
               "name": "Gyarados",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 40,
           "slot": 1,
+          "rate": 40,
           "options": [
             {
               "level": "30-40",
               "name": "Octillery",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 15,
           "slot": 2,
+          "rate": 15,
           "options": [
             {
               "level": "40-55",
               "name": "Sharpedo",
               "games": [
-                "Diamond",
-                "Pearl"
-              ],
-              "conditions": []
-            },
-            {
-              "level": "40-55",
-              "name": "Gyarados",
-              "games": [
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 4,
           "slot": 3,
+          "rate": 4,
           "options": [
             {
               "level": "20-50",
               "name": "Octillery",
               "games": [
-                "Diamond",
-                "Pearl"
-              ],
-              "conditions": []
-            },
-            {
-              "level": "40-55",
-              "name": "Octillery",
-              "games": [
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 1,
           "slot": 4,
+          "rate": 1,
           "options": [
             {
               "level": "20-50",
               "name": "Octillery",
               "games": [
-                "Diamond",
-                "Pearl"
-              ],
-              "conditions": []
-            },
-            {
-              "level": "40-55",
-              "name": "Octillery",
-              "games": [
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
