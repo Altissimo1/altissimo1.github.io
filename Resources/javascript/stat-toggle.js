@@ -1,41 +1,41 @@
 /**
  * stat-toggle.js
  *
- * Adds a toggle to tables that have paired IV & EV stat columns, allowing
- * the user to switch between viewing raw IV/EV values and calculated stats.
+ * Adds a toggle to tables that have paired IV & EV stat columns (or EV-only
+ * columns), allowing the user to switch between viewing raw values and
+ * calculated stats.
  *
  * REQUIREMENTS
- *   - base-stats.js must be loaded before this script (provides BASE_STATS constant)
- *   - Tables are auto-detected: any table whose <thead> contains a <th> with "IV"
- *     in its text is treated as toggleable
- *   - In each Pokémon's data row, add:
- *       data-species="species-key"   on the name cell  (e.g. "wormadam-sandy")
- *       data-nature="nature-name"    on the nature cell (e.g. "impish")
- *     Species keys follow the same normalization as base-stats.js:
- *       lowercase, spaces→hyphens, dots/? removed, (Form)→-form
+ *   - base-stats.js must be loaded before this script (provides BASE_STATS)
+ *   - Tables are auto-detected: any table whose <thead> contains a <th> with
+ *     "IV" or "EV" in its text is treated as toggleable.
+ *   - For IV+EV tables: headers like "HP IV & EV" (colspan=2) with paired
+ *     data cells. Add data-species on name cell, data-nature on nature cell.
+ *   - For EV-only tables: headers like "HP EV" (single column). The IV comes
+ *     entirely from the global IV widget. Add data-species on name cell.
  *
- * PAGE-LEVEL CONFIGURATION (optional, define before loading this script)
- *   const STAT_TOGGLE_CONFIG = {
- *     defaultLevel:    50,    // level assumed for stat calculation
- *     showLevelWidget: false, // true = show level + IV-override inputs
- *     formula:      'gen3',   // 'gen3' (default) or 'gen1' (Gen 1/2 Stat Exp formula)
+ * PAGE-LEVEL CONFIGURATION (optional, define with var before loading this script)
+ *   var STAT_TOGGLE_CONFIG = {
+ *     defaultLevel:     50,    // level assumed for stat calculation
+ *     showLevelWidget:  false, // show level + IV-override inputs
+ *     showIvWidget:     false, // show a standalone IV input (no level input)
+ *     showNatureWidget: false, // show Boosted / Lowered stat dropdowns
+ *     ivMin:            0,     // minimum for IV input
+ *     ivMax:            31,    // maximum for IV input
+ *     ivDefault:        null,  // pre-fill IV input with this value
+ *     formula:          'gen3',// 'gen3' (default) or 'gen1'
  *   };
  *
  * FORMULA NOTES
- *   'gen3' (default): Gen 3+ formula with EVs (0–252), IVs (0–31), and natures.
- *   'gen1': Gen 1/2 formula. EVs are Stat Exp (0–65535); IVs are DVs (0–15).
- *     Stat Exp bonus = ceil(sqrt(StatExp)) / 4  — kept as a decimal inside the
- *     outer floor, capped at 63. Equivalent to Excel CEILING(SQRT(se),1)/4.
+ *   'gen3' (default): Gen 3+ formula — EVs 0–252, IVs 0–31, nature modifier.
+ *   'gen1': Gen 1/2 formula — EVs are Stat Exp 0–65535, IVs are DVs 0–15.
+ *     Bonus = ceil(sqrt(StatExp)) / 4 (kept as decimal, capped at 63).
+ *     The 'spc' stat key maps to both SpA and SpD with separate base stats.
  *     No nature modifier.
- *     The 'spc' stat key is special: a single "Spc IV & EV" column provides the
- *     DV/StatExp for both SpA and SpD. In calculated view it expands into two
- *     columns (SpA and SpD) using the separate spa/spd base stats.
  *
  * TOGGLE UI PLACEMENT
- *   If the page contains <div id="stat-toggle-container"></div>, the controls
- *   are injected there. Otherwise they are inserted before the first toggleable
- *   table. For stargazer-colosseum.html, place the container div in the
- *   existing checkbox section near the top of the page.
+ *   Uses <div id="stat-toggle-container"> if present; otherwise inserts
+ *   before the first toggleable table.
  */
 
 (function () {
@@ -44,15 +44,18 @@
   // ─── Page-level config ────────────────────────────────────────────────────
 
   var defaults = {
-    defaultLevel:    50,
-    showLevelWidget: false,
-    formula:         'gen3',
+    defaultLevel:     50,
+    showLevelWidget:  false,
+    showIvWidget:     false,   // standalone IV input (no level)
+    showNatureWidget: false,   // Boosted / Lowered dropdowns
+    ivMin:            0,
+    ivMax:            31,
+    ivDefault:        null,    // pre-fill IV input; null = empty placeholder
+    formula:          'gen3',
   };
   var config = Object.assign({}, defaults, window.STAT_TOGGLE_CONFIG || {});
 
-  // ─── Nature modifier table ────────────────────────────────────────────────
-  // boost/lower are stat keys ('atk','def','spa','spd','spe'), or null for neutral.
-  // HP is never affected by nature.
+  // ─── Nature modifier table ─────────────────────────────────────────────────
 
   var NATURES = {
     hardy:   { boost: null,   lower: null   },
@@ -82,25 +85,22 @@
     quirky:  { boost: null,   lower: null   },
   };
 
-  // Maps the first word of a stat header (lowercased) to an internal key.
-  // "HP IV & EV" → "hp", "SpA IV & EV" → "spa", etc.
+  // Maps first word of a stat header to an internal key.
   var HEADER_TO_KEY = {
     hp: 'hp', atk: 'atk', def: 'def', spa: 'spa', spd: 'spd', spe: 'spe', spc: 'spc',
   };
 
-  // Display labels for the calculated-stat column headers.
+  // Display labels for calculated-stat column headers.
   var STAT_LABELS = {
     hp: 'HP', atk: 'Atk', def: 'Def', spa: 'SpA', spd: 'SpD', spe: 'Spe', spc: 'Spc',
   };
 
+  // The 5 non-HP stat keys available for nature boost/lower selection.
+  var NATURE_STAT_KEYS  = ['atk', 'def', 'spa', 'spd', 'spe'];
+  var NATURE_STAT_LABELS = { atk: 'Atk', def: 'Def', spa: 'SpA', spd: 'SpD', spe: 'Spe' };
+
   // ─── Species name normalization ───────────────────────────────────────────
-  /**
-   * Converts a display name from the HTML cell to the key used in BASE_STATS.
-   * "Wormadam (Sandy) ♀" → "wormadam-sandy"
-   * "Mr. Mime ♂"         → "mr-mime"
-   * "Porygon-Z"          → "porygon-z"
-   * Must produce the same results as the normalization used when building base-stats.js.
-   */
+
   function normalizeSpecies(name) {
     return name
       .replace(/[♂♀]/g, '')
@@ -117,10 +117,7 @@
   }
 
   // ─── Nature modifier lookup ───────────────────────────────────────────────
-  /**
-   * Returns 1.1, 0.9, or 1.0 depending on whether the given nature
-   * boosts, lowers, or is neutral for the given stat.
-   */
+
   function getNatureModifier(statKey, natureName) {
     if (statKey === 'hp') return 1.0;
     var nature = NATURES[natureName ? natureName.toLowerCase() : ''];
@@ -131,32 +128,20 @@
   }
 
   // ─── Stat calculation ─────────────────────────────────────────────────────
-  /**
-   * Calculate a single stat value using the Gen 4 formulas.
-   *
-   * HP:    floor((2*base + iv + floor(ev/4)) * level / 100) + level + 10
-   * Other: floor((floor((2*base + iv + floor(ev/4)) * level / 100) + 5) * natureMod)
-   *
-   * @param {string} statKey  - 'hp' | 'atk' | 'def' | 'spa' | 'spd' | 'spe'
-   * @param {number} base     - base stat value from BASE_STATS
-   * @param {number} iv       - individual value (0–31)
-   * @param {number} ev       - effort value (0–252)
-   * @param {string} nature   - nature name (lowercase)
-   * @param {number} level    - Pokémon's level
-   * @returns {number|null}   - integer stat value, or null if inputs are invalid
-   */
+
   function calculateStat(statKey, base, iv, ev, nature, level) {
     if (base == null || isNaN(base) || isNaN(iv) || isNaN(ev) || isNaN(level)) return null;
+    // Shedinja always has exactly 1 HP regardless of level, IV, or EV.
+    // Base HP of 1 is unique to Shedinja across all generations covered here.
+    if (statKey === 'hp' && base === 1) return 1;
     var inner;
     if (config.formula === 'gen1') {
-      // Gen 1/2: ev is Stat Exp (0–65535), iv is DV (0–15), no nature modifier.
-      // Bonus = ceil(sqrt(StatExp)) / 4, kept as a decimal (not floored again),
-      // capped at 63. Matches Excel: MIN(63, CEILING(SQRT(ev), 1) / 4).
+      // Gen 1/2: ev is Stat Exp (0–65535), iv is DV (0–15). No nature.
       var statExpBonus = Math.min(63, Math.ceil(Math.sqrt(ev)) / 4);
       inner = Math.floor((base * 2 + iv * 2 + statExpBonus) * level / 100);
       return (statKey === 'hp') ? (inner + level + 10) : (inner + 5);
     }
-    // Gen 3+: ev is EV (0–252), iv is IV (0–31), apply nature modifier.
+    // Gen 3+: ev is EV (0–252), iv is IV (0–31), apply nature.
     inner = Math.floor(((2 * base + iv + Math.floor(ev / 4)) * level) / 100);
     if (statKey === 'hp') {
       return inner + level + 10;
@@ -165,23 +150,30 @@
   }
 
   // ─── Table detection and annotation ──────────────────────────────────────
+
   /**
-   * Finds all <th> cells in the table's <thead> that represent an IV&EV stat
-   * pair. Saves their original colspan and innerHTML for later restoration, and
-   * tags them with data-stat-key. Returns an array of stat keys in column order.
+   * Scans <thead> for stat headers. Detects both IV+EV paired headers
+   * ("HP IV & EV", colspan=2) and EV-only headers ("HP EV", single column).
+   * Tags each th with data-stat-key and data-stat-mode ('ivev' | 'evonly').
    */
   function parseStatHeaders(table) {
     var statKeys = [];
     var ths = table.querySelectorAll('thead th');
     ths.forEach(function (th) {
       var text = th.textContent.trim().toLowerCase();
-      if (!text.includes('iv')) return;
-      var match = text.match(/^(\w+)\s+iv/);
+      var hasIv = text.includes('iv');
+      var hasEv = text.includes('ev');
+      if (!hasIv && !hasEv) return;
+      // EV-only headers (no IV) are only treated as toggleable when showIvWidget
+      // is enabled — this prevents EV-only decoration columns (e.g. Stargazer
+      // Championship tables) from being picked up unintentionally.
+      if (!hasIv && !config.showIvWidget) return;
+      var match = text.match(/^(\w+)\s+(?:iv|ev)/);
       if (!match) return;
       var key = HEADER_TO_KEY[match[1]];
       if (!key) return;
-      // Save original state before any manipulation
       th.dataset.statKey      = key;
+      th.dataset.statMode     = hasIv ? 'ivev' : 'evonly';
       th.dataset.savedColspan = th.getAttribute('colspan') || '1';
       th.dataset.savedHtml    = th.innerHTML;
       statKeys.push(key);
@@ -190,34 +182,32 @@
   }
 
   /**
-   * Annotates each stat cell in the tbody with:
-   *   data-stat-key      : 'hp' | 'atk' | 'def' | 'spa' | 'spd' | 'spe'
-   *   data-stat-role     : 'iv' | 'ev'
-   *   data-stat-original : the cell's original text content
-   *
-   * Stat cells are the last (numStats × 2) cells with a rowspan attribute in
-   * each data row. This works regardless of how many non-stat columns precede
-   * them (Ability present or absent, etc.).
+   * Annotates stat cells in tbody rows.
+   * IV+EV mode: last (numStats×2) rowspan cells → alternating iv/ev roles.
+   * EV-only mode: last numStats rowspan cells → ev role only.
    */
   function annotateDataRows(table, statKeys) {
-    var numStatCells = statKeys.length * 2;
+    var evOnly = !table.querySelector('thead th[data-stat-mode="ivev"]');
+    var numStatCells = evOnly ? statKeys.length : statKeys.length * 2;
     var rows = table.querySelectorAll('tbody tr');
     rows.forEach(function (row) {
       var rowspanCells = Array.from(row.querySelectorAll('td[rowspan]'));
-      if (rowspanCells.length < numStatCells) return; // icon/move rows, skip
+      if (rowspanCells.length < numStatCells) return;
       var statCells = rowspanCells.slice(-numStatCells);
       statCells.forEach(function (cell, i) {
-        cell.dataset.statKey      = statKeys[Math.floor(i / 2)];
-        cell.dataset.statRole     = (i % 2 === 0) ? 'iv' : 'ev';
-        cell.dataset.statOriginal = cell.textContent.trim();
+        if (evOnly) {
+          cell.dataset.statKey      = statKeys[i];
+          cell.dataset.statRole     = 'ev';
+          cell.dataset.statOriginal = cell.textContent.trim();
+        } else {
+          cell.dataset.statKey      = statKeys[Math.floor(i / 2)];
+          cell.dataset.statRole     = (i % 2 === 0) ? 'iv' : 'ev';
+          cell.dataset.statOriginal = cell.textContent.trim();
+        }
       });
     });
   }
 
-  /**
-   * Runs detection and annotation on all tables in the document.
-   * Returns only the tables that had IV&EV columns.
-   */
   function findAndAnnotateTables() {
     var toggleable = [];
     document.querySelectorAll('table').forEach(function (table) {
@@ -229,25 +219,38 @@
     return toggleable;
   }
 
+  // ─── Helper: resolve nature for a row ─────────────────────────────────────
+
+  function resolveNature(row, natureOverride) {
+    if (natureOverride !== null && natureOverride !== undefined) return natureOverride;
+    var nc = row.querySelector('td[data-nature]');
+    return nc ? (nc.dataset.nature || nc.textContent.trim().toLowerCase()) : null;
+  }
+
   // ─── View switching ───────────────────────────────────────────────────────
+
   /**
-   * Transforms all toggleable tables to show a single calculated-stat column
-   * per stat instead of the IV/EV pair.
+   * Transforms all toggleable tables to show calculated stats.
    *
    * @param {Element[]} tables
-   * @param {number}    level      - level to use in the formula
-   * @param {number|null} ivOverride - if set, replaces all IV values in the formula
+   * @param {number}    level         — default level (overridden by table's data-level)
+   * @param {number|null} ivOverride  — replaces all IV cell values in the formula
+   * @param {string|null} natureOverride — nature name to use for all rows
    */
-  function switchToCalculated(tables, level, ivOverride) {
+  function switchToCalculated(tables, level, ivOverride, natureOverride) {
     tables.forEach(function (table) {
-      // Per-table level override (e.g. battle-tower uses data-level="10" … "100")
       var effectiveLevel = parseInt(table.dataset.level, 10) || level;
 
-      // Collapse (or split) stat column headers
+      // ── Collapse / relabel stat column headers ──────────────────────────
       table.querySelectorAll('thead th[data-stat-key]').forEach(function (th) {
-        var key = th.dataset.statKey;
-        if (key === 'spc' && config.formula === 'gen1') {
-          // 'spc' expands into two columns: SpA and SpD
+        var key  = th.dataset.statKey;
+        var mode = th.dataset.statMode;
+
+        if (mode === 'evonly') {
+          // Single EV column: just change the label, no colspan adjustment
+          th.textContent = STAT_LABELS[key] || key.toUpperCase();
+        } else if (key === 'spc' && config.formula === 'gen1') {
+          // gen1 spc: split one colspan=2 header into SpA + SpD
           th.removeAttribute('colspan');
           th.textContent = 'SpA';
           var spdTh = document.createElement('th');
@@ -260,40 +263,31 @@
         }
       });
 
-      // Process each IV cell
+      // ── Process IV+EV paired cells ──────────────────────────────────────
       table.querySelectorAll('td[data-stat-role="iv"]').forEach(function (ivCell) {
         var statKey = ivCell.dataset.statKey;
         var row     = ivCell.closest('tr');
+        var evCell  = row.querySelector('td[data-stat-role="ev"][data-stat-key="' + statKey + '"]');
 
-        // Locate the paired EV cell
-        var evCell = row.querySelector('td[data-stat-role="ev"][data-stat-key="' + statKey + '"]');
-
-        // In gen1 mode, the 'spc' EV cell stays visible and shows SpD
+        // In gen1 spc mode: EV cell becomes SpD; otherwise hide it
         if (statKey === 'spc' && config.formula === 'gen1') {
-          // leave evCell visible — it will be populated with SpD below
+          // leave evCell visible — populated below
         } else {
           if (evCell) evCell.style.display = 'none';
         }
 
-        // Locate species and nature from this row's annotated cells
-        var nameCell   = row.querySelector('td[data-species]');
-        var natureCell = row.querySelector('td[data-nature]');
+        var nameCell = row.querySelector('td[data-species]');
         if (!nameCell) {
           ivCell.textContent = '—';
           if (statKey === 'spc' && config.formula === 'gen1' && evCell) evCell.textContent = '—';
           return;
         }
 
-        var speciesKey = nameCell.dataset.species
-          || normalizeSpecies(nameCell.textContent.trim());
-        var nature = natureCell
-          ? (natureCell.dataset.nature || natureCell.textContent.trim().toLowerCase())
-          : null;
-
-        var baseStats = (typeof BASE_STATS !== 'undefined') ? BASE_STATS[speciesKey] : null;
+        var speciesKey = nameCell.dataset.species || normalizeSpecies(nameCell.textContent.trim());
+        var nature     = resolveNature(row, natureOverride);
+        var baseStats  = (typeof BASE_STATS !== 'undefined') ? BASE_STATS[speciesKey] : null;
         if (!baseStats) {
-          // Base stats not found — check console for the key that failed
-          console.warn('stat-toggle: no base stats found for key "' + speciesKey + '"');
+          console.warn('stat-toggle: no base stats for "' + speciesKey + '"');
           ivCell.textContent = '—';
           if (statKey === 'spc' && config.formula === 'gen1' && evCell) evCell.textContent = '—';
           return;
@@ -305,7 +299,6 @@
         var ev = evCell ? parseInt(evCell.dataset.statOriginal, 10) : 0;
 
         if (statKey === 'spc' && config.formula === 'gen1') {
-          // SpA and SpD share the same DV and Stat Exp but use separate base stats
           var spaResult = calculateStat('spa', baseStats['spa'], iv, ev, null, effectiveLevel);
           var spdResult = calculateStat('spd', baseStats['spd'], iv, ev, null, effectiveLevel);
           ivCell.textContent = (spaResult !== null) ? spaResult : '—';
@@ -315,11 +308,43 @@
           ivCell.textContent = (result !== null) ? result : '—';
         }
       });
+
+      // ── Process standalone EV cells (EV-only tables) ───────────────────
+      table.querySelectorAll('td[data-stat-role="ev"]').forEach(function (evCell) {
+        var statKey = evCell.dataset.statKey;
+        var row     = evCell.closest('tr');
+
+        // Skip if there is a paired IV cell — handled above
+        if (row.querySelector('td[data-stat-role="iv"][data-stat-key="' + statKey + '"]')) return;
+
+        // EV-only cell: IV must come from the global override
+        if (ivOverride === null || ivOverride === undefined) {
+          evCell.textContent = '—';
+          return;
+        }
+
+        var nameCell = row.querySelector('td[data-species]');
+        if (!nameCell) { evCell.textContent = '—'; return; }
+
+        var speciesKey = nameCell.dataset.species || normalizeSpecies(nameCell.textContent.trim());
+        var nature     = resolveNature(row, natureOverride);
+        var baseStats  = (typeof BASE_STATS !== 'undefined') ? BASE_STATS[speciesKey] : null;
+        if (!baseStats) {
+          console.warn('stat-toggle: no base stats for "' + speciesKey + '"');
+          evCell.textContent = '—';
+          return;
+        }
+
+        var iv = parseInt(ivOverride, 10);
+        var ev = parseInt(evCell.dataset.statOriginal, 10);
+        var result = calculateStat(statKey, baseStats[statKey], iv, ev, nature, effectiveLevel);
+        evCell.textContent = (result !== null) ? result : '—';
+      });
     });
   }
 
   /**
-   * Restores all toggleable tables to the original IV & EV two-column view.
+   * Restores all toggleable tables to the original IV/EV (or EV-only) view.
    */
   function switchToIvEv(tables) {
     tables.forEach(function (table) {
@@ -342,7 +367,7 @@
         cell.textContent = cell.dataset.statOriginal || '';
       });
 
-      // Restore and unhide EV cells (text may have been overwritten in gen1 spc mode)
+      // Restore and unhide EV cells (handles both paired and standalone)
       table.querySelectorAll('td[data-stat-role="ev"]').forEach(function (cell) {
         cell.textContent = cell.dataset.statOriginal || '';
         cell.style.display = '';
@@ -351,104 +376,211 @@
   }
 
   // ─── Toggle UI construction ───────────────────────────────────────────────
-  /**
-   * Builds and returns the toggle controls DOM node.
-   * Wires up event listeners that call switchToCalculated / switchToIvEv.
-   */
+
   function createToggleUI(tables) {
     var level = config.defaultLevel;
+    var hasWidgets = config.showLevelWidget || config.showIvWidget || config.showNatureWidget;
 
-    var wrapper = document.createElement('div');
-    wrapper.className = 'flex-row stat-toggle-controls';
-    wrapper.style.cssText = 'margin-bottom:1ex; gap:1em; align-items:center; flex-wrap:wrap;';
+    // ── Outer container ────────────────────────────────────────────────────
+    var container = document.createElement('div');
+    container.className = 'stat-toggle-controls';
+    container.style.cssText = 'margin-bottom:1ex;';
 
-    // ── Radio: IV & EV ──
-    var radioIvEv  = document.createElement('input');
+    // ── Line 1: Radio buttons ──────────────────────────────────────────────
+    var radioLine = document.createElement('div');
+    radioLine.className = 'flex-row';
+    radioLine.style.cssText = 'gap:1em; align-items:center; flex-wrap:wrap;';
+
+    var radioIvEv = document.createElement('input');
     radioIvEv.type    = 'radio';
     radioIvEv.name    = 'stat-view';
     radioIvEv.id      = 'stat-view-ivev';
     radioIvEv.value   = 'ivev';
     radioIvEv.checked = true;
-    var labelIvEv  = document.createElement('label');
+    var labelIvEv = document.createElement('label');
     labelIvEv.htmlFor     = 'stat-view-ivev';
     labelIvEv.textContent = ' Show IV & EV';
 
-    // ── Radio: Calculated ──
-    var radioCalc  = document.createElement('input');
+    var radioCalc = document.createElement('input');
     radioCalc.type  = 'radio';
     radioCalc.name  = 'stat-view';
     radioCalc.id    = 'stat-view-calc';
     radioCalc.value = 'calc';
-    var labelCalc  = document.createElement('label');
+    var labelCalc = document.createElement('label');
     labelCalc.htmlFor     = 'stat-view-calc';
     labelCalc.textContent = ' Show calculated stats';
 
-    wrapper.appendChild(radioIvEv);
-    wrapper.appendChild(labelIvEv);
-    wrapper.appendChild(radioCalc);
-    wrapper.appendChild(labelCalc);
+    radioLine.appendChild(radioIvEv);
+    radioLine.appendChild(labelIvEv);
+    radioLine.appendChild(radioCalc);
+    radioLine.appendChild(labelCalc);
+    container.appendChild(radioLine);
 
-    // ── Optional level / IV-override widget ──
-    var levelInput     = null;
+    // ── Line 2: IV / Nature widgets (disabled until Calc is selected) ──────
+    var widgetLine      = null;
+    var levelInput      = null;
     var ivOverrideInput = null;
+    var naturePlusSelect  = null;
+    var natureMinusSelect = null;
 
-    if (config.showLevelWidget) {
-      var widget = document.createElement('span');
-      widget.style.cssText = 'display:inline-flex; gap:0.75em; align-items:center;';
+    if (hasWidgets) {
+      widgetLine = document.createElement('div');
+      widgetLine.className = 'flex-row';
+      widgetLine.style.cssText = 'gap:1em; align-items:center; flex-wrap:wrap; margin-top:0.4ex;';
 
-      var lvlLabel  = document.createElement('label');
-      lvlLabel.textContent = 'Level:';
-      lvlLabel.style.marginLeft = '1em';
-      levelInput = document.createElement('input');
-      levelInput.type  = 'number';
-      levelInput.min   = 1;
-      levelInput.max   = 100;
-      levelInput.value = level;
-      levelInput.style.width = '4em';
+      // ── Level + IV-override (showLevelWidget) ──
+      if (config.showLevelWidget) {
+        var lvlSpan = document.createElement('span');
+        lvlSpan.style.cssText = 'display:inline-flex; gap:0.75em; align-items:center;';
 
-      var ivLabel = document.createElement('label');
-      ivLabel.textContent = 'Override all IVs:';
-      ivOverrideInput = document.createElement('input');
-      ivOverrideInput.type        = 'number';
-      ivOverrideInput.min         = 0;
-      ivOverrideInput.max         = 31;
-      ivOverrideInput.placeholder = '(use table values)';
-      ivOverrideInput.style.width = '6em';
+        var lvlLabel = document.createElement('label');
+        lvlLabel.textContent = 'Level:';
+        levelInput = document.createElement('input');
+        levelInput.type  = 'number';
+        levelInput.min   = 1;
+        levelInput.max   = 100;
+        levelInput.value = level;
+        levelInput.style.width = '4em';
 
-      widget.appendChild(lvlLabel);
-      widget.appendChild(levelInput);
-      widget.appendChild(ivLabel);
-      widget.appendChild(ivOverrideInput);
-      wrapper.appendChild(widget);
+        var ivLabel = document.createElement('label');
+        ivLabel.textContent = 'Override all IVs:';
+        ivOverrideInput = document.createElement('input');
+        ivOverrideInput.type  = 'number';
+        ivOverrideInput.min   = config.ivMin;
+        ivOverrideInput.max   = config.ivMax;
+        ivOverrideInput.style.width = '5em';
+        if (config.ivDefault !== null) {
+          ivOverrideInput.value = config.ivDefault;
+        } else {
+          ivOverrideInput.placeholder = '(use table values)';
+        }
+
+        lvlSpan.appendChild(lvlLabel);
+        lvlSpan.appendChild(levelInput);
+        lvlSpan.appendChild(ivLabel);
+        lvlSpan.appendChild(ivOverrideInput);
+        widgetLine.appendChild(lvlSpan);
+      }
+
+      // ── Standalone IV input (showIvWidget, without level) ──
+      if (config.showIvWidget && !config.showLevelWidget) {
+        var ivSpan = document.createElement('span');
+        ivSpan.style.cssText = 'display:inline-flex; gap:0.5em; align-items:center;';
+
+        var ivOnlyLabel = document.createElement('label');
+        ivOnlyLabel.textContent = 'IVs:';
+
+        ivOverrideInput = document.createElement('input');
+        ivOverrideInput.type  = 'number';
+        ivOverrideInput.min   = config.ivMin;
+        ivOverrideInput.max   = config.ivMax;
+        ivOverrideInput.style.width = '4em';
+        if (config.ivDefault !== null) {
+          ivOverrideInput.value = config.ivDefault;
+        } else {
+          ivOverrideInput.placeholder = '(use table values)';
+        }
+
+        ivSpan.appendChild(ivOnlyLabel);
+        ivSpan.appendChild(ivOverrideInput);
+        widgetLine.appendChild(ivSpan);
+      }
+
+      // ── Nature plus / minus dropdowns (showNatureWidget) ──
+      if (config.showNatureWidget) {
+        var natSpan = document.createElement('span');
+        natSpan.style.cssText = 'display:inline-flex; gap:0.4em; align-items:center;';
+
+        var natLabel = document.createElement('label');
+        natLabel.textContent = 'Nature:';
+
+        var plusLabel = document.createElement('span');
+        plusLabel.textContent = '+';
+
+        naturePlusSelect = document.createElement('select');
+        naturePlusSelect.id = 'stat-nature-plus';
+
+        var minusLabel = document.createElement('span');
+        minusLabel.textContent = '−';
+
+        natureMinusSelect = document.createElement('select');
+        natureMinusSelect.id = 'stat-nature-minus';
+
+        NATURE_STAT_KEYS.forEach(function (key) {
+          [naturePlusSelect, natureMinusSelect].forEach(function (sel) {
+            var opt = document.createElement('option');
+            opt.value       = key;
+            opt.textContent = NATURE_STAT_LABELS[key];
+            sel.appendChild(opt);
+          });
+        });
+        // Both default to 'atk' → neutral
+
+        natSpan.appendChild(natLabel);
+        natSpan.appendChild(plusLabel);
+        natSpan.appendChild(naturePlusSelect);
+        natSpan.appendChild(minusLabel);
+        natSpan.appendChild(natureMinusSelect);
+        widgetLine.appendChild(natSpan);
+      }
+
+      // Start disabled — enabled only when Calc radio is selected
+      setWidgetLineDisabled(true);
+      container.appendChild(widgetLine);
     }
 
-    // ── Helpers ──
-    function getLevel()      { return levelInput ? (parseInt(levelInput.value, 10) || level) : level; }
+    // ── Enable / disable all inputs and selects in the widget line ─────────
+    function setWidgetLineDisabled(disabled) {
+      if (!widgetLine) return;
+      widgetLine.querySelectorAll('input, select').forEach(function (el) {
+        el.disabled = disabled;
+      });
+    }
+
+    // ── Helper functions ───────────────────────────────────────────────────
+    function getLevel() {
+      return levelInput ? (parseInt(levelInput.value, 10) || level) : level;
+    }
     function getIvOverride() {
       if (!ivOverrideInput || ivOverrideInput.value === '') return null;
       return parseInt(ivOverrideInput.value, 10);
     }
+    function getNatureOverride() {
+      if (!naturePlusSelect || !natureMinusSelect) return null;
+      var boost = naturePlusSelect.value;
+      var lower = natureMinusSelect.value;
+      if (boost === lower) return null;
+      for (var name in NATURES) {
+        var n = NATURES[name];
+        if (n.boost === boost && n.lower === lower) return name;
+      }
+      return null;
+    }
     function refresh() {
       if (radioCalc.checked) {
-        switchToCalculated(tables, getLevel(), getIvOverride());
+        switchToCalculated(tables, getLevel(), getIvOverride(), getNatureOverride());
       } else {
         switchToIvEv(tables);
       }
     }
 
-    radioIvEv.addEventListener('change', refresh);
-    radioCalc.addEventListener('change', refresh);
-    if (levelInput)      levelInput.addEventListener('input', function () { if (radioCalc.checked) refresh(); });
-    if (ivOverrideInput) ivOverrideInput.addEventListener('input', function () { if (radioCalc.checked) refresh(); });
+    // ── Event listeners ────────────────────────────────────────────────────
+    radioIvEv.addEventListener('change', function () {
+      setWidgetLineDisabled(true);
+      switchToIvEv(tables);
+    });
+    radioCalc.addEventListener('change', function () {
+      setWidgetLineDisabled(false);
+      refresh();
+    });
+    if (levelInput)        levelInput.addEventListener('input',       function () { if (radioCalc.checked) refresh(); });
+    if (ivOverrideInput)   ivOverrideInput.addEventListener('input',  function () { if (radioCalc.checked) refresh(); });
+    if (naturePlusSelect)  naturePlusSelect.addEventListener('change', function () { if (radioCalc.checked) refresh(); });
+    if (natureMinusSelect) natureMinusSelect.addEventListener('change',function () { if (radioCalc.checked) refresh(); });
 
-    return wrapper;
+    return container;
   }
 
-  /**
-   * Inserts the toggle UI into the page.
-   * Uses <div id="stat-toggle-container"> if present; otherwise inserts
-   * immediately before the first toggleable table.
-   */
   function injectToggleUI(ui, tables) {
     var container = document.getElementById('stat-toggle-container');
     if (container) {
@@ -462,6 +594,7 @@
   }
 
   // ─── Entry point ──────────────────────────────────────────────────────────
+
   function init() {
     var tables = findAndAnnotateTables();
     if (tables.length === 0) return;
@@ -472,7 +605,7 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
-    init(); // already parsed (e.g. script at bottom of body)
+    init();
   }
 
 }());
