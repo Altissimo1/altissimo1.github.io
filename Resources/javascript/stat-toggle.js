@@ -51,6 +51,7 @@
     ivMin:            0,
     ivMax:            31,
     ivDefault:        null,    // pre-fill IV input; null = empty placeholder
+    ivTiers:          null,    // if set (array), IV widget renders a <select> with these values
     formula:          'gen3',
   };
   var config = Object.assign({}, defaults, window.STAT_TOGGLE_CONFIG || {});
@@ -428,7 +429,9 @@
       widgetLine.className = 'flex-row';
       widgetLine.style.cssText = 'gap:1em; align-items:center; flex-wrap:wrap; margin-top:0.4ex;';
 
-      // ── Level + IV-override (showLevelWidget) ──
+      // ── Level input (showLevelWidget) ──────────────────────────────────────
+      // When showIvWidget is also set, the IV control comes from that widget
+      // instead; showLevelWidget then only contributes the level input.
       if (config.showLevelWidget) {
         var lvlSpan = document.createElement('span');
         lvlSpan.style.cssText = 'display:inline-flex; gap:0.75em; align-items:center;';
@@ -442,43 +445,62 @@
         levelInput.value = level;
         levelInput.style.width = '4em';
 
-        var ivLabel = document.createElement('label');
-        ivLabel.textContent = 'Override all IVs:';
-        ivOverrideInput = document.createElement('input');
-        ivOverrideInput.type  = 'number';
-        ivOverrideInput.min   = config.ivMin;
-        ivOverrideInput.max   = config.ivMax;
-        ivOverrideInput.style.width = '5em';
-        if (config.ivDefault !== null) {
-          ivOverrideInput.value = config.ivDefault;
-        } else {
-          ivOverrideInput.placeholder = '(use table values)';
-        }
-
         lvlSpan.appendChild(lvlLabel);
         lvlSpan.appendChild(levelInput);
-        lvlSpan.appendChild(ivLabel);
-        lvlSpan.appendChild(ivOverrideInput);
+
+        // Only add IV override here when showIvWidget is not also present
+        if (!config.showIvWidget) {
+          var ivLabel = document.createElement('label');
+          ivLabel.textContent = 'Override all IVs:';
+          ivOverrideInput = document.createElement('input');
+          ivOverrideInput.type  = 'number';
+          ivOverrideInput.min   = config.ivMin;
+          ivOverrideInput.max   = config.ivMax;
+          ivOverrideInput.style.width = '5em';
+          if (config.ivDefault !== null) {
+            ivOverrideInput.value = config.ivDefault;
+          } else {
+            ivOverrideInput.placeholder = '(use table values)';
+          }
+          lvlSpan.appendChild(ivLabel);
+          lvlSpan.appendChild(ivOverrideInput);
+        }
+
         widgetLine.appendChild(lvlSpan);
       }
 
-      // ── Standalone IV input (showIvWidget, without level) ──
-      if (config.showIvWidget && !config.showLevelWidget) {
+      // ── IV widget (showIvWidget) — number input or tier dropdown ──────────
+      if (config.showIvWidget) {
         var ivSpan = document.createElement('span');
         ivSpan.style.cssText = 'display:inline-flex; gap:0.5em; align-items:center;';
 
         var ivOnlyLabel = document.createElement('label');
         ivOnlyLabel.textContent = 'IVs:';
 
-        ivOverrideInput = document.createElement('input');
-        ivOverrideInput.type  = 'number';
-        ivOverrideInput.min   = config.ivMin;
-        ivOverrideInput.max   = config.ivMax;
-        ivOverrideInput.style.width = '4em';
-        if (config.ivDefault !== null) {
-          ivOverrideInput.value = config.ivDefault;
+        if (config.ivTiers) {
+          // Render a <select> with discrete tier values
+          ivOverrideInput = document.createElement('select');
+          config.ivTiers.forEach(function (tier) {
+            var opt = document.createElement('option');
+            opt.value       = tier;
+            opt.textContent = tier;
+            ivOverrideInput.appendChild(opt);
+          });
+          if (config.ivDefault !== null) {
+            ivOverrideInput.value = String(config.ivDefault);
+          }
         } else {
-          ivOverrideInput.placeholder = '(use table values)';
+          // Render a free-form number input
+          ivOverrideInput = document.createElement('input');
+          ivOverrideInput.type  = 'number';
+          ivOverrideInput.min   = config.ivMin;
+          ivOverrideInput.max   = config.ivMax;
+          ivOverrideInput.style.width = '4em';
+          if (config.ivDefault !== null) {
+            ivOverrideInput.value = config.ivDefault;
+          } else {
+            ivOverrideInput.placeholder = '(use table values)';
+          }
         }
 
         ivSpan.appendChild(ivOnlyLabel);
@@ -573,8 +595,10 @@
       setWidgetLineDisabled(false);
       refresh();
     });
-    if (levelInput)        levelInput.addEventListener('input',       function () { if (radioCalc.checked) refresh(); });
-    if (ivOverrideInput)   ivOverrideInput.addEventListener('input',  function () { if (radioCalc.checked) refresh(); });
+    if (levelInput)      levelInput.addEventListener('input', function () { if (radioCalc.checked) refresh(); });
+    if (ivOverrideInput) ['input', 'change'].forEach(function (evt) {
+      ivOverrideInput.addEventListener(evt, function () { if (radioCalc.checked) refresh(); });
+    });
     if (naturePlusSelect)  naturePlusSelect.addEventListener('change', function () { if (radioCalc.checked) refresh(); });
     if (natureMinusSelect) natureMinusSelect.addEventListener('change',function () { if (radioCalc.checked) refresh(); });
 

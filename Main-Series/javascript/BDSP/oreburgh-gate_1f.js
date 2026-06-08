@@ -1,265 +1,182 @@
-// generated
-window.DPPT_DATA = {
+window.BDSP_DATA = {
   "name": "oreburgh-gate_1f",
   "encounters": {
     "walking": [
       {
-        "rate": 20,
         "slot": 0,
-        "options": [
-          {
-            "level": "5",
-            "name": "Geodude",
-            "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "5",
-            "name": "Zubat",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": []
-          }
-        ]
-      },
-      {
         "rate": 20,
+        "options": [
+          {
+            "level": "5",
+            "name": "Geodude",
+            "games": [
+              "Brilliant Diamond",
+              "Shining Pearl"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
         "slot": 1,
+        "rate": 20,
         "options": [
           {
             "level": "5",
             "name": "Geodude",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "5",
-            "name": "Psyduck",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 10,
         "slot": 2,
+        "rate": 10,
         "options": [
           {
             "level": "6",
             "name": "Zubat",
             "games": [
-              "Diamond",
-              "Pearl",
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 10,
         "slot": 3,
+        "rate": 10,
         "options": [
           {
             "level": "6",
             "name": "Zubat",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "6",
-            "name": "Psyduck",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 10,
         "slot": 4,
-        "options": [
-          {
-            "level": "6",
-            "name": "Geodude",
-            "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "5",
-            "name": "Geodude",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": []
-          }
-        ]
-      },
-      {
         "rate": 10,
-        "slot": 5,
         "options": [
           {
             "level": "6",
             "name": "Geodude",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "5",
-            "name": "Zubat",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 5,
+        "slot": 5,
+        "rate": 10,
+        "options": [
+          {
+            "level": "6",
+            "name": "Geodude",
+            "games": [
+              "Brilliant Diamond",
+              "Shining Pearl"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
         "slot": 6,
-        "options": [
-          {
-            "level": "7",
-            "name": "Geodude",
-            "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "7",
-            "name": "Psyduck",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": []
-          }
-        ]
-      },
-      {
         "rate": 5,
+        "options": [
+          {
+            "level": "7",
+            "name": "Geodude",
+            "games": [
+              "Brilliant Diamond",
+              "Shining Pearl"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
         "slot": 7,
+        "rate": 5,
         "options": [
           {
             "level": "7",
             "name": "Geodude",
             "games": [
-              "Diamond",
-              "Pearl",
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 4,
         "slot": 8,
-        "options": [
-          {
-            "level": "8",
-            "name": "Geodude",
-            "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "7",
-            "name": "Zubat",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": []
-          }
-        ]
-      },
-      {
         "rate": 4,
+        "options": [
+          {
+            "level": "8",
+            "name": "Geodude",
+            "games": [
+              "Brilliant Diamond",
+              "Shining Pearl"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
         "slot": 9,
+        "rate": 4,
         "options": [
           {
             "level": "8",
             "name": "Geodude",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "8",
-            "name": "Zubat",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 1,
         "slot": 10,
+        "rate": 1,
         "options": [
           {
             "level": "4",
             "name": "Geodude",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "7",
-            "name": "Zubat",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 1,
         "slot": 11,
+        "rate": 1,
         "options": [
           {
             "level": "4",
             "name": "Geodude",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "8",
-            "name": "Zubat",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }

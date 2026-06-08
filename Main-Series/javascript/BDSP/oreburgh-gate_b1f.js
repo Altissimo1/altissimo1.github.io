@@ -1,279 +1,182 @@
-// generated
-window.DPPT_DATA = {
+window.BDSP_DATA = {
   "name": "oreburgh-gate_b1f",
   "encounters": {
     "walking": [
       {
-        "rate": 20,
         "slot": 0,
-        "options": [
-          {
-            "level": "8",
-            "name": "Zubat",
-            "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "6",
-            "name": "Zubat",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": []
-          }
-        ]
-      },
-      {
         "rate": 20,
+        "options": [
+          {
+            "level": "8",
+            "name": "Zubat",
+            "games": [
+              "Brilliant Diamond",
+              "Shining Pearl"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
         "slot": 1,
+        "rate": 20,
         "options": [
           {
             "level": "8",
             "name": "Zubat",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "8",
-            "name": "Psyduck",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 10,
         "slot": 2,
+        "rate": 10,
         "options": [
           {
             "level": "8",
             "name": "Psyduck",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "7",
-            "name": "Zubat",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 10,
         "slot": 3,
+        "rate": 10,
         "options": [
           {
             "level": "9",
             "name": "Geodude",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "9",
-            "name": "Psyduck",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 10,
         "slot": 4,
-        "options": [
-          {
-            "level": "9",
-            "name": "Psyduck",
-            "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "6",
-            "name": "Geodude",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": []
-          }
-        ]
-      },
-      {
         "rate": 10,
+        "options": [
+          {
+            "level": "9",
+            "name": "Psyduck",
+            "games": [
+              "Brilliant Diamond",
+              "Shining Pearl"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
         "slot": 5,
+        "rate": 10,
         "options": [
           {
             "level": "9",
             "name": "Zubat",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "8",
-            "name": "Zubat",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 5,
         "slot": 6,
-        "options": [
-          {
-            "level": "8",
-            "name": "Psyduck",
-            "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "10",
-            "name": "Psyduck",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": []
-          }
-        ]
-      },
-      {
         "rate": 5,
+        "options": [
+          {
+            "level": "8",
+            "name": "Psyduck",
+            "games": [
+              "Brilliant Diamond",
+              "Shining Pearl"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
         "slot": 7,
+        "rate": 5,
         "options": [
           {
             "level": "10",
             "name": "Psyduck",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "8",
-            "name": "Geodude",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 4,
         "slot": 8,
-        "options": [
-          {
-            "level": "10",
-            "name": "Zubat",
-            "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "9",
-            "name": "Zubat",
-            "games": [
-              "Platinum"
-            ],
-            "conditions": []
-          }
-        ]
-      },
-      {
         "rate": 4,
+        "options": [
+          {
+            "level": "10",
+            "name": "Zubat",
+            "games": [
+              "Brilliant Diamond",
+              "Shining Pearl"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
         "slot": 9,
+        "rate": 4,
         "options": [
           {
             "level": "10",
             "name": "Zubat",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "10",
-            "name": "Golbat",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 1,
         "slot": 10,
+        "rate": 1,
         "options": [
           {
             "level": "10",
             "name": "Zubat",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "9",
-            "name": "Zubat",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 1,
         "slot": 11,
+        "rate": 1,
         "options": [
           {
             "level": "10",
             "name": "Zubat",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "10",
-            "name": "Golbat",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
@@ -282,115 +185,75 @@ window.DPPT_DATA = {
     ],
     "surfing": [
       {
-        "rate": 60,
         "slot": 0,
+        "rate": 60,
         "options": [
           {
             "level": "20-30",
             "name": "Zubat",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "20-30",
-            "name": "Psyduck",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 30,
         "slot": 1,
+        "rate": 30,
         "options": [
           {
             "level": "20-30",
             "name": "Psyduck",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "20-30",
-            "name": "Zubat",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 5,
         "slot": 2,
+        "rate": 5,
         "options": [
           {
             "level": "20-40",
             "name": "Golbat",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "20-40",
-            "name": "Golduck",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 4,
         "slot": 3,
+        "rate": 4,
         "options": [
           {
             "level": "20-40",
             "name": "Golduck",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "20-40",
-            "name": "Golbat",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
         ]
       },
       {
-        "rate": 1,
         "slot": 4,
+        "rate": 1,
         "options": [
           {
             "level": "20-40",
             "name": "Golduck",
             "games": [
-              "Diamond",
-              "Pearl"
-            ],
-            "conditions": []
-          },
-          {
-            "level": "20-40",
-            "name": "Golbat",
-            "games": [
-              "Platinum"
+              "Brilliant Diamond",
+              "Shining Pearl"
             ],
             "conditions": []
           }
@@ -400,87 +263,75 @@ window.DPPT_DATA = {
     "fishing": {
       "old": [
         {
-          "rate": 60,
           "slot": 0,
+          "rate": 60,
           "options": [
             {
               "level": "4-6",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 30,
           "slot": 1,
+          "rate": 30,
           "options": [
             {
               "level": "3-7",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 5,
           "slot": 2,
+          "rate": 5,
           "options": [
             {
               "level": "5-10",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 4,
           "slot": 3,
+          "rate": 4,
           "options": [
             {
               "level": "5-10",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 1,
           "slot": 4,
+          "rate": 1,
           "options": [
             {
               "level": "5-10",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl"
-              ],
-              "conditions": []
-            },
-            {
-              "level": "5-15",
-              "name": "Magikarp",
-              "games": [
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
@@ -489,80 +340,75 @@ window.DPPT_DATA = {
       ],
       "good": [
         {
-          "rate": 40,
           "slot": 0,
-          "options": [
-            {
-              "level": "15-20",
-              "name": "Magikarp",
-              "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
-              ],
-              "conditions": []
-            }
-          ]
-        },
-        {
           "rate": 40,
+          "options": [
+            {
+              "level": "15-20",
+              "name": "Magikarp",
+              "games": [
+                "Brilliant Diamond",
+                "Shining Pearl"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
           "slot": 1,
+          "rate": 40,
           "options": [
             {
               "level": "15-20",
               "name": "Barboach",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 15,
           "slot": 2,
+          "rate": 15,
           "options": [
             {
               "level": "10-25",
               "name": "Magikarp",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 4,
           "slot": 3,
+          "rate": 4,
           "options": [
             {
               "level": "10-25",
               "name": "Barboach",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
           ]
         },
         {
-          "rate": 1,
           "slot": 4,
+          "rate": 1,
           "options": [
             {
               "level": "10-25",
               "name": "Barboach",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
@@ -571,101 +417,75 @@ window.DPPT_DATA = {
       ],
       "super": [
         {
-          "rate": 40,
           "slot": 0,
-          "options": [
-            {
-              "level": "30-40",
-              "name": "Gyarados",
-              "games": [
-                "Diamond",
-                "Pearl"
-              ],
-              "conditions": []
-            },
-            {
-              "level": "30-55",
-              "name": "Gyarados",
-              "games": [
-                "Platinum"
-              ],
-              "conditions": []
-            }
-          ]
-        },
-        {
-          "rate": 15,
-          "slot": 2,
-          "options": [
-            {
-              "level": "40-55",
-              "name": "Gyarados",
-              "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
-              ],
-              "conditions": []
-            }
-          ]
-        },
-        {
-          "rate": 4,
-          "slot": 3,
-          "options": [
-            {
-              "level": "20-50",
-              "name": "Whiscash",
-              "games": [
-                "Diamond",
-                "Pearl"
-              ],
-              "conditions": []
-            },
-            {
-              "level": "40-55",
-              "name": "Whiscash",
-              "games": [
-                "Platinum"
-              ],
-              "conditions": []
-            }
-          ]
-        },
-        {
-          "rate": 1,
-          "slot": 4,
-          "options": [
-            {
-              "level": "20-50",
-              "name": "Whiscash",
-              "games": [
-                "Diamond",
-                "Pearl"
-              ],
-              "conditions": []
-            },
-            {
-              "level": "40-55",
-              "name": "Whiscash",
-              "games": [
-                "Platinum"
-              ],
-              "conditions": []
-            }
-          ]
-        },
-        {
           "rate": 40,
+          "options": [
+            {
+              "level": "30-40",
+              "name": "Gyarados",
+              "games": [
+                "Brilliant Diamond",
+                "Shining Pearl"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
           "slot": 1,
+          "rate": 40,
           "options": [
             {
               "level": "30-40",
               "name": "Whiscash",
               "games": [
-                "Diamond",
-                "Pearl",
-                "Platinum"
+                "Brilliant Diamond",
+                "Shining Pearl"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "slot": 2,
+          "rate": 15,
+          "options": [
+            {
+              "level": "40-55",
+              "name": "Gyarados",
+              "games": [
+                "Brilliant Diamond",
+                "Shining Pearl"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "slot": 3,
+          "rate": 4,
+          "options": [
+            {
+              "level": "20-50",
+              "name": "Whiscash",
+              "games": [
+                "Brilliant Diamond",
+                "Shining Pearl"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "slot": 4,
+          "rate": 1,
+          "options": [
+            {
+              "level": "20-50",
+              "name": "Whiscash",
+              "games": [
+                "Brilliant Diamond",
+                "Shining Pearl"
               ],
               "conditions": []
             }
