@@ -24,18 +24,18 @@
       <p>Every day at midnight, the game will reset all of the dig spots in the Underground. The dig spots, once generated, are always consistent regardless of where the player enters the Underground from. The player will be able to see spots nearby them as sparkles on the map.</p>
       <p>When dig spots are generated, the game follows the following process:</p>
       <ol>
-         <li>Take the result of (24 - (x / 10)) where x is the number of buried spheres the player has. The player can have up to 100 buried spheres, which means the result of this calculation will be between 14 (100 spheres) and 24 (0-9 spheres).</li>
+         <li>Take the result of (24 - (x / 10)) where x is the number of buried Spheres the player has. The player can have up to 100 buried Spheres, which means the result of this calculation will be between 14 (100 Spheres) and 24 (0-9 Spheres).</li>
          <li>Generate that many random dig clusters across the entire map.</li>
          <li>For each cluster generated this way, generate between 6 and 11 actual dig spots within 10 map tiles of the generated cluster's coordinates.</li>
          <li>If there are any buried Spheres, generate 1 spot near the buried Sphere (for a maximum of 100).</li>
       </ol>
       <h3><u>Choosing Treasures</u></h3>
       <p>When the game chooses which treasures to include in any one dig spot, it starts by choosing whether to place 2, 3, or 4 treasures. This is random, and the possible treasures that can be placed do not change depending on the number of total treasures in the dig spot.</p>
-      <p>When a random treasure is selected to add to the current session, the game follows the following process:</p>
+      <p>When a random treasure is selected to add to the current grid, the game follows the following process:</p>
       <ol>
          <li>The game picks a random X and Y coordinate inside the minigame grid, and attempts to place the top-left corner of the treasure on the selected coordinate.</li>
          <li>If the chosen coordinates result in the treasure being (fully or partially) outside of the minigame grid, or if there is an overlap with an existing treasure, the game will choose a brand-new treasure and start the process of placing it again. This means that practically speaking, smaller treasures are actually more likely to appear than their rates in the tables below would suggest.</li>
-         <li>If the chosen treasure is a Plate, and the player has already found that Plate by digging, or the Plate has already been placed on the current grid, the game will fail the attempt to place the Plate and pick a new item.</li>
+         <li>If the chosen treasure is a Plate, and the player has already found that Plate by digging, or the Plate has already been placed on the current grid, the game will fail the attempt to place the Plate and pick a new treasure.</li>
          <li>Once all chosen treasures are placed, the game will make 100 attempts to place undiggable rocks, using the same process by which treasures are placed. Once the 100 attempts are finished, or the game has placed 12 total items (treasures plus rocks), the game will cease trying to place rocks.</li>
       </ol>
       <p>The very first time the player attempts to Dig, a "tutorial mode" is entered, which will always contain 3 treasures and no undiggable rocks.</p>

@@ -52,6 +52,7 @@
     ivMax:            31,
     ivDefault:        null,    // pre-fill IV input; null = empty placeholder
     ivTiers:          null,    // if set (array), IV widget renders a <select> with these values
+    fixedIv:          null,    // if set (number), silently uses this IV with no widget shown
     formula:          'gen3',
   };
   var config = Object.assign({}, defaults, window.STAT_TOGGLE_CONFIG || {});
@@ -166,9 +167,10 @@
       var hasEv = text.includes('ev');
       if (!hasIv && !hasEv) return;
       // EV-only headers (no IV) are only treated as toggleable when showIvWidget
-      // is enabled — this prevents EV-only decoration columns (e.g. Stargazer
-      // Championship tables) from being picked up unintentionally.
-      if (!hasIv && !config.showIvWidget) return;
+      // is enabled OR a fixedIv value is set — this prevents EV-only decoration
+      // columns (e.g. Stargazer Championship tables) from being picked up
+      // unintentionally on pages that don't opt in.
+      if (!hasIv && !config.showIvWidget && config.fixedIv === null) return;
       var match = text.match(/^(\w+)\s+(?:iv|ev)/);
       if (!match) return;
       var key = HEADER_TO_KEY[match[1]];
@@ -448,8 +450,8 @@
         lvlSpan.appendChild(lvlLabel);
         lvlSpan.appendChild(levelInput);
 
-        // Only add IV override here when showIvWidget is not also present
-        if (!config.showIvWidget) {
+        // Only add IV override here when showIvWidget is not present and no fixedIv
+        if (!config.showIvWidget && config.fixedIv === null) {
           var ivLabel = document.createElement('label');
           ivLabel.textContent = 'Override all IVs:';
           ivOverrideInput = document.createElement('input');
@@ -564,7 +566,7 @@
       return levelInput ? (parseInt(levelInput.value, 10) || level) : level;
     }
     function getIvOverride() {
-      if (!ivOverrideInput || ivOverrideInput.value === '') return null;
+      if (!ivOverrideInput || ivOverrideInput.value === '') return config.fixedIv;
       return parseInt(ivOverrideInput.value, 10);
     }
     function getNatureOverride() {

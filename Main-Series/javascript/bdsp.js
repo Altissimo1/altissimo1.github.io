@@ -815,8 +815,9 @@
             return nonTime.length > 0;
         }
 
-        const hideConditionsColumn = noConditions ||
-            (sanitizedRows.length > 0 && sanitizedRows.every(r => !rowHasNonAnytimeConditions(r)));
+        const hideConditionsColumn = sanitizedRows.length > 0
+            ? sanitizedRows.every(r => !rowHasNonAnytimeConditions(r))
+            : true;
 
         // ── Full-view slot groups ─────────────────────────────
         let fullGroups = null;
