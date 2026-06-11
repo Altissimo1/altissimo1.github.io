@@ -1,2 +1,270 @@
 // generated
-window.DPPT_DATA = {"name": "iron-island_1f", "games": ["Diamond", "Pearl", "Platinum"], "pokemon": {"purchase": null, "trade": null, "statics": null, "encounters": [{"rate": 20, "slot": 0, "type": "walking", "encounters": [{"level": "30", "name": "Geodude", "games": ["Diamond", "Pearl"], "conditions": []}, {"level": "31", "name": "Geodude", "games": ["Platinum"], "conditions": []}]}, {"rate": 20, "slot": 1, "type": "walking", "encounters": [{"level": "31", "name": "Graveler", "games": ["Diamond", "Pearl"], "conditions": []}, {"level": "32", "name": "Graveler", "games": ["Platinum"], "conditions": []}]}, {"rate": 10, "slot": 2, "type": "walking", "encounters": [{"level": "30", "name": "Zubat", "games": ["Diamond", "Pearl", "Platinum"], "conditions": []}]}, {"rate": 10, "slot": 3, "type": "walking", "encounters": [{"level": "31", "name": "Golbat", "games": ["Diamond", "Pearl"], "conditions": []}, {"level": "32", "name": "Golbat", "games": ["Platinum"], "conditions": []}]}, {"rate": 10, "slot": 4, "type": "walking", "encounters": [{"level": "29", "name": "Geodude", "games": ["Diamond", "Pearl"], "conditions": []}, {"level": "32", "name": "Geodude", "games": ["Platinum"], "conditions": []}]}, {"rate": 10, "slot": 5, "type": "walking", "encounters": [{"level": "32", "name": "Graveler", "games": ["Diamond", "Pearl"], "conditions": []}, {"level": "33", "name": "Graveler", "games": ["Platinum"], "conditions": []}]}, {"rate": 5, "slot": 6, "type": "walking", "encounters": [{"level": "32", "name": "Onix", "games": ["Diamond", "Pearl"], "conditions": []}, {"level": "31", "name": "Onix", "games": ["Platinum"], "conditions": []}]}, {"rate": 5, "slot": 7, "type": "walking", "encounters": [{"level": "33", "name": "Onix", "games": ["Diamond", "Pearl", "Platinum"], "conditions": []}]}, {"rate": 4, "slot": 8, "type": "walking", "encounters": [{"level": "31", "name": "Geodude", "games": ["Diamond", "Pearl"], "conditions": []}, {"level": "30", "name": "Geodude", "games": ["Platinum"], "conditions": []}]}, {"rate": 4, "slot": 9, "type": "walking", "encounters": [{"level": "33", "name": "Graveler", "games": ["Diamond", "Pearl"], "conditions": []}, {"level": "31", "name": "Graveler", "games": ["Platinum"], "conditions": []}]}, {"rate": 1, "slot": 10, "type": "walking", "encounters": [{"level": "31", "name": "Geodude", "games": ["Diamond", "Pearl"], "conditions": []}, {"level": "30", "name": "Geodude", "games": ["Platinum"], "conditions": []}]}, {"rate": 1, "slot": 11, "type": "walking", "encounters": [{"level": "33", "name": "Graveler", "games": ["Diamond", "Pearl"], "conditions": []}, {"level": "31", "name": "Graveler", "games": ["Platinum"], "conditions": []}]}], "fishing": null}, "items": null, "trainers": null};
+window.DPPT_DATA = {
+  "name": "iron-island_1f",
+  "encounters": {
+    "walking": [
+      {
+        "rate": 20,
+        "slot": 0,
+        "options": [
+          {
+            "level": "30",
+            "name": "Geodude",
+            "games": [
+              "Diamond",
+              "Pearl"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "31",
+            "name": "Geodude",
+            "games": [
+              "Platinum"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 20,
+        "slot": 1,
+        "options": [
+          {
+            "level": "31",
+            "name": "Graveler",
+            "games": [
+              "Diamond",
+              "Pearl"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "32",
+            "name": "Graveler",
+            "games": [
+              "Platinum"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 2,
+        "options": [
+          {
+            "level": "30",
+            "name": "Zubat",
+            "games": [
+              "Diamond",
+              "Pearl",
+              "Platinum"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 3,
+        "options": [
+          {
+            "level": "31",
+            "name": "Golbat",
+            "games": [
+              "Diamond",
+              "Pearl"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "32",
+            "name": "Golbat",
+            "games": [
+              "Platinum"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 4,
+        "options": [
+          {
+            "level": "29",
+            "name": "Geodude",
+            "games": [
+              "Diamond",
+              "Pearl"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "32",
+            "name": "Geodude",
+            "games": [
+              "Platinum"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 5,
+        "options": [
+          {
+            "level": "32",
+            "name": "Graveler",
+            "games": [
+              "Diamond",
+              "Pearl"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "33",
+            "name": "Graveler",
+            "games": [
+              "Platinum"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 6,
+        "options": [
+          {
+            "level": "32",
+            "name": "Onix",
+            "games": [
+              "Diamond",
+              "Pearl"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "31",
+            "name": "Onix",
+            "games": [
+              "Platinum"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 7,
+        "options": [
+          {
+            "level": "33",
+            "name": "Onix",
+            "games": [
+              "Diamond",
+              "Pearl",
+              "Platinum"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 8,
+        "options": [
+          {
+            "level": "31",
+            "name": "Geodude",
+            "games": [
+              "Diamond",
+              "Pearl"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "30",
+            "name": "Geodude",
+            "games": [
+              "Platinum"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 9,
+        "options": [
+          {
+            "level": "33",
+            "name": "Graveler",
+            "games": [
+              "Diamond",
+              "Pearl"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "31",
+            "name": "Graveler",
+            "games": [
+              "Platinum"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 10,
+        "options": [
+          {
+            "level": "31",
+            "name": "Geodude",
+            "games": [
+              "Diamond",
+              "Pearl"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "30",
+            "name": "Geodude",
+            "games": [
+              "Platinum"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 11,
+        "options": [
+          {
+            "level": "33",
+            "name": "Graveler",
+            "games": [
+              "Diamond",
+              "Pearl"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "31",
+            "name": "Graveler",
+            "games": [
+              "Platinum"
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    ]
+  }
+};
