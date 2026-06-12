@@ -217,8 +217,9 @@
      */
     function spriteBaseDirs(mount) {
         const gensAttr = mount?.getAttribute('data-sprite-gens');
-        const gens = (gensAttr ? gensAttr.split(',').map(s => s.trim()).filter(Boolean)
-            : (window.POKEMON_SPRITE_GENS || DEFAULT_GEN_ORDER));
+        const normalizeGen = g => /^\d+$/.test(g) ? 'gen-' + g : g;
+        const gens = (gensAttr ? gensAttr.split(',').map(s => normalizeGen(s.trim())).filter(Boolean)
+            : (window.POKEMON_SPRITE_GENS || DEFAULT_GEN_ORDER).map(normalizeGen));
         const explicit = mount?.getAttribute('data-sprite-base') || window.POKEMON_SPRITE_BASE || "../../Resources/images/home-renders/";
         const endsWithGen = /\/gen-\d+\/?$/.test(explicit);
         const ensureSlash = s => (s.endsWith('/') ? s : s + '/');

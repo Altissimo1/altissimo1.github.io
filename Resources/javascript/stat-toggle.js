@@ -53,6 +53,7 @@
     ivDefault:        null,    // pre-fill IV input; null = empty placeholder
     ivTiers:          null,    // if set (array), IV widget renders a <select> with these values
     fixedIv:          null,    // if set (number), silently uses this IV with no widget shown
+    showIvOverride:   true,   // when false, suppresses the IV override input in the level widget
     formula:          'gen3',
   };
   var config = Object.assign({}, defaults, window.STAT_TOGGLE_CONFIG || {});
@@ -450,8 +451,8 @@
         lvlSpan.appendChild(lvlLabel);
         lvlSpan.appendChild(levelInput);
 
-        // Only add IV override here when showIvWidget is not present and no fixedIv
-        if (!config.showIvWidget && config.fixedIv === null) {
+        // Only add IV override here when showIvWidget is not present, no fixedIv, and not suppressed
+        if (!config.showIvWidget && config.fixedIv === null && config.showIvOverride) {
           var ivLabel = document.createElement('label');
           ivLabel.textContent = 'Override all IVs:';
           ivOverrideInput = document.createElement('input');
