@@ -25,6 +25,12 @@ var requests = [
 	{value: "Who Ate My Lunch?!", data: "quest-13"},
 	{value: "Oddish Research", data: "quest-14"},
 	{value: "Please Save Turtwig", data: "quest-15"},
+	{value: "Light the Leaves", data: "quest-16"},
+	{value: "Cherrim, Cherrim, Come to Us♪", data: "quest-17"},
+	{value: "Team Dim Sun's Appetite", data: "quest-18"},
+	{value: "That Smell of Muk...", data: "quest-19"},
+	{value: "Please Save Shieldon", data: "quest-20"},
+	{value: "What Reporter Hans Forgot", data: "quest-21"},
 ];
 
 
