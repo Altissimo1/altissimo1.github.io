@@ -40,6 +40,18 @@
     const GAME_KEYS = new Set(ALL_GAMES);
     const GAME_BIT  = { Ruby: 0, Sapphire: 1, Emerald: 2 };
 
+    // Priority for partial-game combinations (lower = higher in table).
+    // R=bit0, S=bit1, E=bit2  →  R+S=0b011, R+E=0b101, S+E=0b110
+    const COMBO_PRIORITY = {
+        0b111: 0,  // R+S+E
+        0b011: 1,  // Ruby + Sapphire
+        0b101: 2,  // Ruby + Emerald
+        0b110: 3,  // Sapphire + Emerald
+        0b001: 4,  // Ruby only
+        0b010: 5,  // Sapphire only
+        0b100: 6,  // Emerald only
+    };
+
     const gamePrefix = g => g.toLowerCase();
 
     // =========================================================
@@ -131,10 +143,15 @@
 
     function compressedSpeciesCompare(a, b, meta) {
         const total = meta.get('__total__') || 0;
-        const A = meta.get(a.name) || { count: 0, rank: total, maxRate: 0, totalPct: 0 };
-        const B = meta.get(b.name) || { count: 0, rank: total, maxRate: 0, totalPct: 0 };
+        const A = meta.get(a.name) || { count: 0, rank: total, maxRate: 0, totalPct: 0, mask: 0 };
+        const B = meta.get(b.name) || { count: 0, rank: total, maxRate: 0, totalPct: 0, mask: 0 };
         if (A.count !== B.count) return B.count - A.count;
         if (A.count < total && A.rank !== B.rank) return A.rank - B.rank;
+        if (A.count < total && A.mask !== B.mask) {
+            const ap = COMBO_PRIORITY[A.mask] ?? 99;
+            const bp = COMBO_PRIORITY[B.mask] ?? 99;
+            if (ap !== bp) return ap - bp;
+        }
         if (A.maxRate !== B.maxRate) return B.maxRate - A.maxRate;
         if (A.totalPct !== B.totalPct) return B.totalPct - A.totalPct;
         return a.name.localeCompare(b.name);

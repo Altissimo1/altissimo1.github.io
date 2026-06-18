@@ -54,6 +54,7 @@
     ivTiers:          null,    // if set (array), IV widget renders a <select> with these values
     fixedIv:          null,    // if set (number), silently uses this IV with no widget shown
     showIvOverride:   true,   // when false, suppresses the IV override input in the level widget
+    levelTiers:       null,   // if set (array), level widget renders a <select> with these values
     formula:          'gen3',
   };
   var config = Object.assign({}, defaults, window.STAT_TOGGLE_CONFIG || {});
@@ -441,12 +442,25 @@
 
         var lvlLabel = document.createElement('label');
         lvlLabel.textContent = 'Level:';
-        levelInput = document.createElement('input');
-        levelInput.type  = 'number';
-        levelInput.min   = 1;
-        levelInput.max   = 100;
-        levelInput.value = level;
-        levelInput.style.width = '4em';
+
+        if (config.levelTiers) {
+          // Render a <select> with discrete level values
+          levelInput = document.createElement('select');
+          config.levelTiers.forEach(function (tier) {
+            var opt = document.createElement('option');
+            opt.value       = tier;
+            opt.textContent = tier;
+            levelInput.appendChild(opt);
+          });
+          levelInput.value = String(config.defaultLevel);
+        } else {
+          levelInput = document.createElement('input');
+          levelInput.type  = 'number';
+          levelInput.min   = 1;
+          levelInput.max   = 100;
+          levelInput.value = level;
+          levelInput.style.width = '4em';
+        }
 
         lvlSpan.appendChild(lvlLabel);
         lvlSpan.appendChild(levelInput);
@@ -598,7 +612,9 @@
       setWidgetLineDisabled(false);
       refresh();
     });
-    if (levelInput)      levelInput.addEventListener('input', function () { if (radioCalc.checked) refresh(); });
+    if (levelInput) ['input', 'change'].forEach(function (evt) {
+      levelInput.addEventListener(evt, function () { if (radioCalc.checked) refresh(); });
+    });
     if (ivOverrideInput) ['input', 'change'].forEach(function (evt) {
       ivOverrideInput.addEventListener(evt, function () { if (radioCalc.checked) refresh(); });
     });
