@@ -31,6 +31,17 @@ var requests = [
 	{value: "That Smell of Muk...", data: "quest-19"},
 	{value: "Please Save Shieldon", data: "quest-20"},
 	{value: "What Reporter Hans Forgot", data: "quest-21"},
+	{value: "Dim... Sun... Come Back...", data: "quest-22"},
+	{value: "Apologies to Vespiquen", data: "quest-23"},
+	{value: "Please Save Chimchar", data: "quest-24"},
+	{value: "Lonely Chingling", data: "quest-25"},
+	{value: "Abomasnow Research", data: "quest-26"},
+	{value: "Melt the Ice!", data: "quest-27"},
+	{value: "Please Save Piplup", data: "quest-28"},
+	{value: "Drifblim's Moving Service", data: "quest-29"},
+	{value: "Secure the Hidden Harbor", data: "quest-30"},
+	{value: "Thaw the Frozen Door", data: "quest-31"},
+	{value: "Snover's Mysterious Presence", data: "quest-32"},
 ];
 
 
