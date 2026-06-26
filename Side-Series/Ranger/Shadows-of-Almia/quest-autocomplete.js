@@ -42,6 +42,14 @@ var requests = [
 	{value: "Secure the Hidden Harbor", data: "quest-30"},
 	{value: "Thaw the Frozen Door", data: "quest-31"},
 	{value: "Snover's Mysterious Presence", data: "quest-32"},
+	{value: "Unidentified Fleeing Omastar", data: "quest-33"},
+	{value: "Cacturne Research", data: "quest-34"},
+	{value: "Mischievous Sneasel", data: "quest-35"},
+	{value: "Misdreavus Mischief Mystery!", data: "quest-36"},
+	{value: "My Precious Fishing Rod", data: "quest-37"},
+	{value: "Smell of Skuntank and Weezing", data: "quest-38"},
+	{value: "Capture Gigaremo Units", data: "quest-39"},
+	{value: "Elaine's Favorite", data: "quest-40"},
 ];
 
 
