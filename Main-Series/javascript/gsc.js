@@ -66,8 +66,17 @@
         return humanizeWords(cond);
     }
 
+    // Canonical display order: time-of-day first, then swarm state, then anything else.
+    const COND_DISPLAY_ORDER = ['morning', 'day', 'night', 'swarm', 'no-swarm'];
+    function condOrderRank(c) {
+        const i = COND_DISPLAY_ORDER.indexOf(c);
+        return i < 0 ? COND_DISPLAY_ORDER.length : i;
+    }
     function labelConditions(conds) {
-        const list = (conds || []).map(formatCondition).filter(Boolean);
+        const list = (conds || []).slice()
+            .sort((a, b) => condOrderRank(a) - condOrderRank(b))
+            .map(formatCondition)
+            .filter(Boolean);
         return list.length ? list.join(', ') : 'Anytime';
     }
 
@@ -172,6 +181,62 @@
         return true;
     }
 
+    // Filter a slot list by a condition state (used by the slot/fishing views when
+    // "Show all conditions" is off — keeps only options matching the swarm toggle,
+    // dropping slots left with no options).
+    // In "Show all conditions" mode, collapse a slot's swarm + no-swarm options into a
+    // single "Anytime" option when they're otherwise identical (same species, level,
+    // games, other conditions) — the encounter is the same whether or not a swarm is
+    // active, so it shouldn't be split into two rows.
+    function collapseSwarmPairs(slots) {
+        const SW = new Set(['swarm', 'no-swarm']);
+        return (slots || []).map(slot => {
+            const groups = new Map();
+            const order = [];
+            for (const o of (slot.options || [])) {
+                const rest = (o.conditions || []).filter(c => !SW.has(c));
+                const key = `${o.name} ${o.level} ${(o.games || []).join(',')} ${rest.slice().sort().join(',')}`;
+                if (!groups.has(key)) { groups.set(key, { first: o, rest, flags: new Set(), opts: [] }); order.push(key); }
+                const gr = groups.get(key);
+                gr.opts.push(o);
+                for (const c of (o.conditions || [])) if (SW.has(c)) gr.flags.add(c);
+            }
+            const options = [];
+            for (const key of order) {
+                const gr = groups.get(key);
+                if (gr.flags.has('swarm') && gr.flags.has('no-swarm')) {
+                    options.push(Object.assign({}, gr.first, { conditions: gr.rest.slice() }));
+                } else {
+                    for (const o of gr.opts) options.push(o);
+                }
+            }
+            return Object.assign({}, slot, { options });
+        });
+    }
+
+    function filterSlotsByCond(slots, cond) {
+        // Show-all mode: collapse identical swarm/no-swarm pairs to a single "Anytime" row.
+        if (!cond || cond.showAllConditions) return collapseSwarmPairs(slots || []);
+        return (slots || [])
+            .map(sl => Object.assign({}, sl, {
+                options: (sl.options || [])
+                    .filter(o => encounterOptionMatches(o.conditions || [], cond))
+                    // The swarm state is now fixed by the toggle, so drop swarm/no-swarm
+                    // tags: the encounters read "Anytime" and rows that differed only by
+                    // swarm state (e.g. a "No swarm" row and an "Anytime" row) collapse into one.
+                    .map(o => Object.assign({}, o, {
+                        conditions: (o.conditions || []).filter(c => c !== 'swarm' && c !== 'no-swarm'),
+                    })),
+            }))
+            .filter(sl => (sl.options || []).length > 0);
+    }
+
+    // True if any option in a slot list carries a swarm / no-swarm condition.
+    function slotsHaveSwarm(slots) {
+        return (slots || []).some(sl => (sl.options || [])
+            .some(o => (o.conditions || []).some(c => c === 'swarm' || c === 'no-swarm')));
+    }
+
     // =========================================================
     // Species ordering (3-game bit-mask)
     // =========================================================
@@ -193,15 +258,18 @@
             info.count = (info.mask & 1) + ((info.mask >> 1) & 1) + ((info.mask >> 2) & 1);
             // rank within single-game entries: Gold=0, Silver=1, Crystal=2
             info.rank = info.mask === 0b010 ? 1 : info.mask === 0b100 ? 2 : 0;
+            // rank within two-game entries: Gold/Silver=0, Gold/Crystal=1, Silver/Crystal=2
+            info.pairRank = info.mask === 0b011 ? 0 : info.mask === 0b101 ? 1 : info.mask === 0b110 ? 2 : 0;
         }
         return meta;
     }
 
     function compressedSpeciesCompare(a, b, meta) {
-        const A = meta.get(a.name) || { count: 0, rank: 0, maxRate: 0, totalPct: 0 };
-        const B = meta.get(b.name) || { count: 0, rank: 0, maxRate: 0, totalPct: 0 };
+        const A = meta.get(a.name) || { count: 0, rank: 0, pairRank: 0, maxRate: 0, totalPct: 0 };
+        const B = meta.get(b.name) || { count: 0, rank: 0, pairRank: 0, maxRate: 0, totalPct: 0 };
         if (A.count !== B.count) return B.count - A.count;
         if (A.count === 1 && A.rank !== B.rank) return A.rank - B.rank;
+        if (A.count === 2 && A.pairRank !== B.pairRank) return A.pairRank - B.pairRank;
         if (A.maxRate !== B.maxRate) return B.maxRate - A.maxRate;
         if (A.totalPct !== B.totalPct) return B.totalPct - A.totalPct;
         return a.name.localeCompare(b.name);
@@ -251,6 +319,73 @@
         return [swarmW, conds.join('|')];
     }
 
+    // Normalize the swarm dimension of a slot list for the Full view (mirrors how
+    // dppt.js duplicates entries so every game spans the same condition space). GSC
+    // tags swarm per game: some games carry swarm/no-swarm variants while others
+    // (often Crystal) are only tagged for the default state, which would leave them
+    // blank in the swarm rows. Per slot we: (1) if any game distinguishes swarm, give
+    // every game an explicit swarm AND no-swarm set — duplicating a game's default set
+    // into the state it lacks; then (2) if swarm and no-swarm are identical for EVERY
+    // game, drop the swarm tags so the slot renders as plain time/anytime rows.
+    // Safe for the Full view only (it never sums rates); do not use for Compressed.
+    function normalizeSlotSwarm(slots) {
+        const SWARM = 'swarm', NOSWARM = 'no-swarm';
+        const stripSwarm = cs => (cs || []).filter(c => c !== SWARM && c !== NOSWARM);
+        return (slots || []).map(slot => {
+            const opts = slot.options || [];
+            const hasSwarmDim = opts.some(o => (o.conditions || []).some(c => c === SWARM || c === NOSWARM));
+            if (!hasSwarmDim) return slot;
+
+            const games = [];
+            const units = [];
+            for (const o of opts) {
+                const rest = stripSwarm(o.conditions);
+                const cs = o.conditions || [];
+                const flag = cs.includes(SWARM) ? SWARM : cs.includes(NOSWARM) ? NOSWARM : null;
+                for (const g of (o.games || [])) {
+                    if (!games.includes(g)) games.push(g);
+                    units.push({ name: o.name, level: o.level, game: g, rest, flag });
+                }
+            }
+
+            const sigOf = list => list
+                .map(u => `${u.name}|${u.level}|${u.rest.slice().sort().join(',')}`)
+                .sort().join(';');
+            const perGame = {};
+            let allEqual = true;
+            for (const g of games) {
+                const gUnits = units.filter(u => u.game === g);
+                let ns = gUnits.filter(u => u.flag !== SWARM);   // no-swarm + agnostic (default)
+                let sw = gUnits.filter(u => u.flag === SWARM);
+                if (!ns.length) ns = sw;
+                if (!sw.length) sw = ns;                          // no swarm variant → duplicate default
+                perGame[g] = { ns, sw };
+                if (sigOf(ns) !== sigOf(sw)) allEqual = false;
+            }
+
+            const merged = new Map();
+            const addUnit = (u, flag) => {
+                const conds = flag ? [...u.rest, flag] : u.rest.slice();
+                const key = `${u.name}|${u.level}|${conds.slice().sort().join(',')}`;
+                if (!merged.has(key)) merged.set(key, { name: u.name, level: u.level, conditions: conds, games: new Set() });
+                merged.get(key).games.add(u.game);
+            };
+            for (const g of games) {
+                const { ns, sw } = perGame[g];
+                if (allEqual) {
+                    for (const u of ns) addUnit(u, null);
+                } else {
+                    for (const u of ns) addUnit(u, NOSWARM);
+                    for (const u of sw) addUnit(u, SWARM);
+                }
+            }
+            const options = [...merged.values()].map(m => ({
+                name: m.name, level: m.level, games: [...m.games], conditions: m.conditions,
+            }));
+            return Object.assign({}, slot, { options });
+        });
+    }
+
     // =========================================================
     // Walking row builders
     // =========================================================
@@ -258,7 +393,7 @@
         const ag = activeGames || GAMES;
         const map = new Map();
 
-        for (const block of extractWalking(location)) {
+        for (const block of normalizeSlotSwarm(extractWalking(location))) {
             const { rate, slot, options: encounters } = block;
             for (const opt of (encounters || [])) {
                 if (!encounterOptionMatches(opt.conditions || [], s)) continue;
@@ -304,6 +439,90 @@
             }
             return 0;
         });
+    }
+
+    // Full-view time recombination (mirrors dppt.js). The raw rows key each game's
+    // encounter by that game's own merged time-condition, so when the games differ
+    // by time in the same slot the rows misalign and fill with dashes. Here we
+    // expand every option into the individual times it applies to (an option with
+    // no time tag = all three), then merge back the times whose per-game output is
+    // identical — yielding one row per genuinely-distinct time.
+    function recombineFullRowsByTime(rows, shownGames, allGames) {
+        const games = allGames || GAMES;
+        const shown = (shownGames && shownGames.length) ? shownGames : games;
+        const bySlotRate = new Map();
+        for (const r of rows) {
+            const gk = `${r.slot}|${r.rate}`;
+            if (!bySlotRate.has(gk)) bySlotRate.set(gk, []);
+            bySlotRate.get(gk).push(r);
+        }
+        const out = [];
+        for (const [, groupRows] of bySlotRate) {
+            const byBase = new Map();
+            for (const r of groupRows) {
+                const base = (r.rawConditions || []).filter(c => !TIME_FLAGS.has(c));
+                const bk = base.join('|');
+                if (!byBase.has(bk)) byBase.set(bk, { base, items: [] });
+                byBase.get(bk).items.push(r);
+            }
+            for (const [, { base, items }] of byBase) {
+                const perTime = {};
+                for (const t of TIME_ORDER) {
+                    perTime[t] = Object.fromEntries(games.map(g => [g, { names: new Set(), levels: new Set() }]));
+                }
+                for (const r of items) {
+                    const tks = toTimeOnly(r.rawConditions || []);
+                    const times = tks.length ? tks : TIME_ORDER;
+                    for (const t of times) {
+                        for (const g of games) {
+                            const cell = r.perGame?.[g];
+                            if (!cell || !cell.name) continue;
+                            String(cell.name).split('/').map(x => x.trim()).filter(Boolean)
+                                .forEach(p => perTime[t][g].names.add(p));
+                            (cell.levels || []).forEach(lv => perTime[t][g].levels.add(String(lv)));
+                        }
+                    }
+                }
+                const combined = {};
+                for (const t of TIME_ORDER) {
+                    combined[t] = Object.fromEntries(games.map(g => {
+                        const names = [...perTime[t][g].names].sort((a, b) => a.localeCompare(b));
+                        return [g, { name: names.length ? names.join(' / ') : null, levels: [...perTime[t][g].levels] }];
+                    }));
+                }
+                const sigOf = pg => shown.map(g =>
+                    `${g}:${pg[g]?.name || ''}|${(pg[g]?.levels || []).slice().sort().join(',')}`).join(';');
+                const sigToTimes = new Map();
+                for (const t of TIME_ORDER) {
+                    const sig = sigOf(combined[t]);
+                    if (!sigToTimes.has(sig)) sigToTimes.set(sig, []);
+                    sigToTimes.get(sig).push(t);
+                }
+                for (const [, times] of sigToTimes) {
+                    const anyData = times.some(t => games.some(g => combined[t][g]?.name || (combined[t][g]?.levels || []).length));
+                    if (!anyData) continue;
+                    const firstT = times[0];
+                    const perGame = Object.fromEntries(games.map(g => {
+                        const name = combined[firstT][g]?.name || null;
+                        const lvlUnion = new Set();
+                        for (const t of times) (combined[t][g]?.levels || []).forEach(lv => lvlUnion.add(String(lv)));
+                        return [g, { name, levels: [...lvlUnion] }];
+                    }));
+                    const timeTokens = (times.length === TIME_ORDER.length) ? [] :
+                        times.slice().sort((a, b) => TIME_ORDER.indexOf(a) - TIME_ORDER.indexOf(b));
+                    const ref = items[0];
+                    out.push({
+                        key: `${ref.slot}|${ref.rate}|${base.join('|')}|${timeTokens.join('+')}|recomb`,
+                        slot: ref.slot,
+                        rate: ref.rate,
+                        rawConditions: [...timeTokens, ...base],
+                        timeConds: timeTokens.slice(),
+                        perGame,
+                    });
+                }
+            }
+        }
+        return out;
     }
 
     function buildCompressedRows(location, s, activeGames) {
@@ -428,7 +647,9 @@
                     for (const t of times) mergePerGame(perTime[t], r.perGame);
                 }
 
-                const sigFor = pg => ag.map(g => String(pg[g]?.rate || 0)).join('|');
+                // Merge two times only when BOTH rate AND levels match per game,
+                // so a species whose level range differs by time isn't wrongly collapsed.
+                const sigFor = pg => ag.map(g => `${pg[g]?.rate || 0}#${(pg[g]?.levels || []).join(',')}`).join('|');
                 const sigMap = new Map();
                 for (const t of ['morning', 'day', 'night']) {
                     const sig = sigFor(perTime[t]);
@@ -536,7 +757,7 @@
                 for (const t of times) addInto(perTime[t], r.perGame);
             }
 
-            const sigFor = (pg, g) => String(pg[g]?.rate || 0);
+            const sigFor = (pg, g) => `${pg[g]?.rate || 0}#${(pg[g]?.levels || []).join(',')}`;
             const sig = pg => s.game && s.game !== 'All'
                 ? sigFor(pg, s.game)
                 : ag.map(g => sigFor(pg, g)).join('|');
@@ -591,10 +812,12 @@
         const nm = normalizedName(props.name);
 
         const hardcoded = [
-            { name: 'nidoran♀', path: '../../Resources/images/home-renders/gen-2/nidoran-f.png' },
-            { name: 'nidoran♂', path: '../../Resources/images/home-renders/gen-2/nidoran-m.png' },
-            { name: 'unown',    path: '../../Resources/images/home-renders/gen-2/unown-a.png' },
-            { name: 'ho-oh',    path: '../../Resources/images/home-renders/gen-2/ho-oh.png' },
+            { name: 'nidoran♀',  path: '../../Resources/images/home-renders/gen-1/nidoran-f.png' },
+            { name: 'nidoran♂',  path: '../../Resources/images/home-renders/gen-1/nidoran-m.png' },
+            { name: 'mr-mime',   path: '../../Resources/images/home-renders/gen-1/mr-mime.png' },
+            { name: 'farfetchd', path: '../../Resources/images/home-renders/gen-1/farfetchd.png' },
+            { name: 'unown',     path: '../../Resources/images/home-renders/gen-2/unown-a.png' },
+            { name: 'ho-oh',     path: '../../Resources/images/home-renders/gen-2/ho-oh.png' },
         ];
 
         const match = hardcoded.find(e => e.name === nm);
@@ -721,11 +944,17 @@
             })
             : rows;
 
-        const sanitizedRows = (renderRows || []).filter(r => {
+        let sanitizedRows = (renderRows || []).filter(r => {
             if (!r) return false;
             if (view === 'full') return showGames.some(g => r.perGame?.[g]?.name);
             return typeof r.name === 'string' && r.name.trim().length > 0;
         });
+
+        // Full view: realign per-time so games' time differences share unified rows.
+        if (view === 'full') {
+            sanitizedRows = recombineFullRowsByTime(sanitizedRows, showGames, activeGames)
+                .filter(r => showGames.some(g => r.perGame?.[g]?.name));
+        }
 
         // Compressed species order
         let renderList = sanitizedRows;
@@ -819,12 +1048,14 @@
             for (const [, arr] of fullGroups) {
                 arr.sort((a, b) => {
                     const ta = fullRowSortTuple(a), tb = fullRowSortTuple(b);
-                    for (let i = 0; i < Math.max(ta.length, tb.length); i++) {
-                        if (ta[i] === tb[i]) continue;
-                        if (typeof ta[i] === 'number') return ta[i] - tb[i];
-                        return String(ta[i]).localeCompare(String(tb[i]));
-                    }
-                    return 0;
+                    if (ta[0] !== tb[0]) return ta[0] - tb[0];   // swarm bucket
+                    // within the same bucket, order by time-of-day (Morning→Day→Night)
+                    const aT = toTimeOnly(a.rawConditions || []);
+                    const bT = toTimeOnly(b.rawConditions || []);
+                    const aRank = aT.length ? TIME_ORDER.indexOf(aT[0]) : -1;
+                    const bRank = bT.length ? TIME_ORDER.indexOf(bT[0]) : -1;
+                    if (aRank !== bRank) return aRank - bRank;
+                    return String(ta[1]).localeCompare(String(tb[1]));
                 });
             }
         }
@@ -1142,32 +1373,54 @@
         });
     }
 
-    function SlotViewControls({ state, setState, unified, activeGames }) {
+    function SlotViewControls({ state, setState, unified, activeGames, hasSwarm }) {
         const set = p => setState(prev => Object.assign({}, prev, p));
         const ag  = activeGames || GAMES;
-        return h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', margin: '8px 0 12px' } },
-            h(Select, {
-                label: 'View', value: state.view,
-                onChange: v => set({ view: v }),
-                options: [
-                    { value: 'full',       label: 'Full (slots)' },
-                    { value: 'compressed', label: 'Compressed' },
-                ],
-            }),
-            !unified && ag.length > 1 && h(Select, {
-                label: 'Game', value: state.game,
-                onChange: v => set({ game: v }),
-                options: [
-                    { value: 'All',      label: 'All' },
-                    { value: 'separate', label: 'Separate' },
-                    ...ag.map(g => ({ value: g, label: g })),
-                ],
-            }),
+        const showAll = state.showAllConditions !== false;
+        return h('div', { style: { margin: '8px 0 12px' } },
+            h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginBottom: hasSwarm ? 6 : 0 } },
+                h(Select, {
+                    label: 'View', value: state.view,
+                    onChange: v => set({ view: v }),
+                    options: [
+                        { value: 'full',       label: 'Full (slots)' },
+                        { value: 'compressed', label: 'Compressed' },
+                    ],
+                }),
+                !unified && ag.length > 1 && h(Select, {
+                    label: 'Game', value: state.game,
+                    onChange: v => set({ game: v }),
+                    options: [
+                        { value: 'All',      label: 'All' },
+                        { value: 'separate', label: 'Separate' },
+                        ...ag.map(g => ({ value: g, label: g })),
+                    ],
+                }),
+                hasSwarm && h(Toggle, {
+                    label: 'Show all conditions',
+                    checked: showAll,
+                    onChange: v => set({ showAllConditions: v }),
+                }),
+            ),
+            hasSwarm && h('div', {
+                style: {
+                    display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center',
+                    opacity: showAll ? 0.4 : 1,
+                    pointerEvents: showAll ? 'none' : 'auto',
+                },
+            },
+                h(Toggle, {
+                    label: 'Swarm active',
+                    checked: !!state.swarm,
+                    onChange: v => set({ swarm: v }),
+                }),
+            ),
         );
     }
 
     // SlotSection — surfing, headbutt, rock_smash, bug_contest
-    function SlotSection({ slots, games, gameFilter, view, mount, unified, label }) {
+    function SlotSection({ slots: slotsRaw, games, gameFilter, view, mount, unified, label, cond }) {
+        const slots = filterSlotsByCond(slotsRaw, cond);
         if (!slots || !slots.length) return null;
         const isSingle  = games.includes(gameFilter) && gameFilter !== 'All';
         const showGames = isSingle ? [gameFilter] : games;
@@ -1177,11 +1430,24 @@
             ? (unified ? label : `${label} — ${(gameFilter === 'All' ? 'Combined' : gameFilter)} (${viewLabel})`)
             : (unified ? viewLabel : `${(gameFilter === 'All' ? 'Combined' : gameFilter)} (${viewLabel})`);
 
-        const hasConditions = slots.some(s => (s.options || []).some(o => (o.conditions || []).length > 0));
+        // Show the conditions column whenever the raw data carries conditions; in
+        // "Set conditions" mode the swarm tag is stripped so every row reads "Anytime".
+        const hasConditions = (slotsRaw || []).some(s => (s.options || []).some(o => (o.conditions || []).length > 0));
 
         if (view === 'full') {
-            const fullRows = buildSlotFullRows(slots, games);
+            // Show-all: normalize the swarm dimension across games (duplicate a
+            // swarm-agnostic game into both states, collapse when identical for all
+            // games). Set mode already filtered/stripped via filterSlotsByCond.
+            const fullSlots = (cond && cond.showAllConditions === false) ? slots : normalizeSlotSwarm(slotsRaw);
+            const fullRows = buildSlotFullRows(fullSlots, games);
             const rows = isSingle ? fullRows.filter(r => r.perGame[gameFilter]) : fullRows;
+            // Group consecutive rows sharing a slot so Slot/Rate span their condition rows.
+            const slotGroups = [];
+            for (const row of rows) {
+                const last = slotGroups[slotGroups.length - 1];
+                if (last && last.slot === row.slot && last.rate === row.rate) last.rows.push(row);
+                else slotGroups.push({ slot: row.slot, rate: row.rate, rows: [row] });
+            }
             return h('div', { style: { overflowX: 'auto' } },
                 h('table', null,
                     h('caption', null, tableLabel),
@@ -1199,31 +1465,35 @@
                         )
                     ),
                     h('tbody', null,
-                        rows.map((row, i) =>
-                            h('tr', { key: i },
-                                h('td', { className: slotCls(base, row.slot) }, row.slot),
-                                h('td', { className: slotCls(base, row.slot) }, row.rate + '%'),
-                                hasConditions && h('td', { className: slotCls(base, row.slot) },
-                                    h(ConditionsCell, { conds: row.conditions })
-                                ),
-                                ...((isSingle || unified)
-                                    ? (() => {
-                                        const c = row.perGame[isSingle ? gameFilter : games[0]];
-                                        return [
-                                            h('td', { key: 's', className: slotCls(base, row.slot) }, c ? h(Sprite, { name: c.name, mount }) : '—'),
-                                            h('td', { key: 'n', className: slotCls(base, row.slot) }, c ? c.name : '—'),
-                                            h('td', { key: 'l', className: slotCls(base, row.slot) }, c ? `lv. ${formatLevelStr(c.level)}` : '—'),
-                                        ];
-                                      })()
-                                    : showGames.flatMap(g => {
-                                        const gp = gamePrefix(g);
-                                        const c  = row.perGame[g];
-                                        return [
-                                            h('td', { key: g + '-s', className: slotCls(gp, row.slot) }, c ? h(Sprite, { name: c.name, mount }) : '—'),
-                                            h('td', { key: g + '-n', className: slotCls(gp, row.slot) }, c ? c.name : '—'),
-                                            h('td', { key: g + '-l', className: slotCls(gp, row.slot) }, c ? `lv. ${formatLevelStr(c.level)}` : '—'),
-                                        ];
-                                      })
+                        slotGroups.flatMap(group =>
+                            group.rows.map((row, iInGroup) =>
+                                h('tr', { key: `${group.slot}-${iInGroup}` },
+                                    iInGroup === 0 ? h(React.Fragment, null,
+                                        h('td', { key: 'slot', rowSpan: group.rows.length, className: slotCls(base, group.slot) }, group.slot),
+                                        h('td', { key: 'rate', rowSpan: group.rows.length, className: slotCls(base, group.slot) }, group.rate + '%'),
+                                    ) : null,
+                                    hasConditions && h('td', { className: slotCls(base, row.slot) },
+                                        h(ConditionsCell, { conds: row.conditions })
+                                    ),
+                                    ...((isSingle || unified)
+                                        ? (() => {
+                                            const c = row.perGame[isSingle ? gameFilter : games[0]];
+                                            return [
+                                                h('td', { key: 's', className: slotCls(base, row.slot) }, c ? h(Sprite, { name: c.name, mount }) : '—'),
+                                                h('td', { key: 'n', className: slotCls(base, row.slot) }, c ? c.name : '—'),
+                                                h('td', { key: 'l', className: slotCls(base, row.slot) }, c ? `lv. ${formatLevelStr(c.level)}` : '—'),
+                                            ];
+                                          })()
+                                        : showGames.flatMap(g => {
+                                            const gp = gamePrefix(g);
+                                            const c  = row.perGame[g];
+                                            return [
+                                                h('td', { key: g + '-s', className: slotCls(gp, row.slot) }, c ? h(Sprite, { name: c.name, mount }) : '—'),
+                                                h('td', { key: g + '-n', className: slotCls(gp, row.slot) }, c ? c.name : '—'),
+                                                h('td', { key: g + '-l', className: slotCls(gp, row.slot) }, c ? `lv. ${formatLevelStr(c.level)}` : '—'),
+                                            ];
+                                          })
+                                    )
                                 )
                             )
                         )
@@ -1296,12 +1566,18 @@
     }
 
     // FishTable — fishing with old_rod / good_rod / super_rod
-    function FishTable({ fish, games, gameFilter, view, mount, unified }) {
+    function FishTable({ fish: fishRaw, games, gameFilter, view, mount, unified, cond }) {
         const ROD_KEYS = [
             { key: 'old_rod',   label: 'Old' },
             { key: 'good_rod',  label: 'Good' },
             { key: 'super_rod', label: 'Super' },
         ];
+        // Apply the swarm / show-conditions filter to each rod.
+        const fish = {
+            old_rod:   filterSlotsByCond(fishRaw.old_rod   || [], cond),
+            good_rod:  filterSlotsByCond(fishRaw.good_rod  || [], cond),
+            super_rod: filterSlotsByCond(fishRaw.super_rod || [], cond),
+        };
         const isSingle   = games.includes(gameFilter) && gameFilter !== 'All';
         const showGames  = isSingle ? [gameFilter] : games;
         const base       = baseOf(games, isSingle ? gameFilter : null);
@@ -1311,14 +1587,29 @@
             : ((gameFilter === 'All' ? 'Combined' : gameFilter) + ` (${viewLabel})`);
 
         const allSlots = ROD_KEYS.flatMap(({ key }) => fish[key] || []);
-        const hasConditions = allSlots.some(s => (s.options || []).some(o => (o.conditions || []).length > 0));
+        // Show the conditions column whenever the raw data carries conditions; in
+        // "Set conditions" mode the swarm tag is stripped so every row reads "Anytime".
+        const hasConditions = ROD_KEYS.some(({ key }) =>
+            (fishRaw[key] || []).some(s => (s.options || []).some(o => (o.conditions || []).length > 0)));
 
         if (view === 'full') {
+            // Show-all: normalize swarm across games per rod (duplicate agnostic games
+            // into both states, collapse when identical). Set mode already filtered.
+            const fullSlotsFor = key => (cond && cond.showAllConditions === false)
+                ? (fish[key] || [])
+                : normalizeSlotSwarm(fishRaw[key] || []);
             const allRows = [];
             for (const { key, label } of ROD_KEYS) {
-                const fullRows = buildSlotFullRows(fish[key] || [], games);
+                const fullRows = buildSlotFullRows(fullSlotsFor(key), games);
                 const filtered = isSingle ? fullRows.filter(r => r.perGame[gameFilter]) : fullRows;
                 for (const r of filtered) allRows.push({ rod: label, ...r });
+            }
+            // Group consecutive rows sharing (rod, slot) so Rod/Slot/Rate span condition rows.
+            const fishFullBlocks = [];
+            for (const row of allRows) {
+                const last = fishFullBlocks[fishFullBlocks.length - 1];
+                if (last && last.rod === row.rod && last.slot === row.slot && last.rate === row.rate) last.rows.push(row);
+                else fishFullBlocks.push({ rod: row.rod, slot: row.slot, rate: row.rate, rows: [row] });
             }
             return h('div', { style: { overflowX: 'auto' } },
                 h('table', null,
@@ -1338,32 +1629,36 @@
                         )
                     ),
                     h('tbody', null,
-                        allRows.map((row, i) =>
-                            h('tr', { key: i },
-                                h('td', { className: rowCls(base, i) }, row.rod),
-                                h('td', { className: rowCls(base, i) }, row.slot),
-                                h('td', { className: rowCls(base, i) }, row.rate + '%'),
-                                hasConditions && h('td', { className: rowCls(base, i) },
-                                    h(ConditionsCell, { conds: row.conditions })
-                                ),
-                                ...((isSingle || unified)
-                                    ? (() => {
-                                        const c = row.perGame[isSingle ? gameFilter : games[0]];
-                                        return [
-                                            h('td', { key: 's', className: rowCls(base, i) }, c ? h(Sprite, { name: c.name, mount }) : '—'),
-                                            h('td', { key: 'n', className: rowCls(base, i) }, c ? c.name : '—'),
-                                            h('td', { key: 'l', className: rowCls(base, i) }, c ? `lv. ${formatLevelStr(c.level)}` : '—'),
-                                        ];
-                                      })()
-                                    : showGames.flatMap(g => {
-                                        const gp = gamePrefix(g);
-                                        const c  = row.perGame[g];
-                                        return [
-                                            h('td', { key: g + '-s', className: rowCls(gp, i) }, c ? h(Sprite, { name: c.name, mount }) : '—'),
-                                            h('td', { key: g + '-n', className: rowCls(gp, i) }, c ? c.name : '—'),
-                                            h('td', { key: g + '-l', className: rowCls(gp, i) }, c ? `lv. ${formatLevelStr(c.level)}` : '—'),
-                                        ];
-                                      })
+                        fishFullBlocks.flatMap((group, blockIdx) =>
+                            group.rows.map((row, iInGroup) =>
+                                h('tr', { key: `${group.rod}-${group.slot}-${blockIdx}-${iInGroup}` },
+                                    iInGroup === 0 ? h(React.Fragment, null,
+                                        h('td', { key: 'rod',  rowSpan: group.rows.length, className: rowCls(base, blockIdx) }, group.rod),
+                                        h('td', { key: 'slot', rowSpan: group.rows.length, className: rowCls(base, blockIdx) }, group.slot),
+                                        h('td', { key: 'rate', rowSpan: group.rows.length, className: rowCls(base, blockIdx) }, group.rate + '%'),
+                                    ) : null,
+                                    hasConditions && h('td', { className: rowCls(base, blockIdx) },
+                                        h(ConditionsCell, { conds: row.conditions })
+                                    ),
+                                    ...((isSingle || unified)
+                                        ? (() => {
+                                            const c = row.perGame[isSingle ? gameFilter : games[0]];
+                                            return [
+                                                h('td', { key: 's', className: rowCls(base, blockIdx) }, c ? h(Sprite, { name: c.name, mount }) : '—'),
+                                                h('td', { key: 'n', className: rowCls(base, blockIdx) }, c ? c.name : '—'),
+                                                h('td', { key: 'l', className: rowCls(base, blockIdx) }, c ? `lv. ${formatLevelStr(c.level)}` : '—'),
+                                            ];
+                                          })()
+                                        : showGames.flatMap(g => {
+                                            const gp = gamePrefix(g);
+                                            const c  = row.perGame[g];
+                                            return [
+                                                h('td', { key: g + '-s', className: rowCls(gp, blockIdx) }, c ? h(Sprite, { name: c.name, mount }) : '—'),
+                                                h('td', { key: g + '-n', className: rowCls(gp, blockIdx) }, c ? c.name : '—'),
+                                                h('td', { key: g + '-l', className: rowCls(gp, blockIdx) }, c ? `lv. ${formatLevelStr(c.level)}` : '—'),
+                                            ];
+                                          })
+                                    )
                                 )
                             )
                         )
@@ -1404,7 +1699,7 @@
             fishBlocks[bi].rows.push(row);
         }
 
-        const hasConditionsComp = allRows.some(r => (r.conditions || []).length > 0);
+        const hasConditionsComp = hasConditions;
 
         return h('div', { style: { overflowX: 'auto' } },
             h('table', null,
@@ -1468,7 +1763,7 @@
         const [error,   setError]   = useState(null);
         const [loading, setLoading] = useState(true);
         const [data,    setData]    = useState(null);
-        const [state,   setState]   = useState({ view: 'compressed', game: 'All' });
+        const [state,   setState]   = useState({ view: 'compressed', game: 'All', showAllConditions: true, swarm: false });
 
         const locId = inferLocationId(mount);
 
@@ -1524,6 +1819,14 @@
         const enc = data.encounters || {};
         const isSeparate = state.game === 'separate';
 
+        // Detect swarm conditions for the current encounter type; drives the
+        // "Show all conditions" + "Swarm active" toggles and the option filter.
+        const encSlots = encounterType === 'fishing'
+            ? ['old_rod', 'good_rod', 'super_rod'].flatMap(k => (enc.fishing || {})[k] || [])
+            : (enc[encounterType] || []);
+        const hasSwarm = slotsHaveSwarm(encSlots);
+        const cond = { showAllConditions: state.showAllConditions !== false, swarm: !!state.swarm };
+
         let content;
 
         if (encounterType === 'surfing') {
@@ -1532,10 +1835,10 @@
             content = (isSeparate && !unified)
                 ? h('div', null, activeGames.map(g =>
                     h('div', { key: g, style: { marginBottom: 16 } },
-                        h(SlotSection, { slots, games: activeGames, gameFilter: g, view: state.view, mount })
+                        h(SlotSection, { slots, games: activeGames, gameFilter: g, view: state.view, mount, cond })
                     )
                   ))
-                : h(SlotSection, { slots, games: activeGames, gameFilter: unified ? 'All' : state.game, view: state.view, mount, unified });
+                : h(SlotSection, { slots, games: activeGames, gameFilter: unified ? 'All' : state.game, view: state.view, mount, unified, cond });
 
         } else if (encounterType === 'headbutt_common') {
             const slots = enc.headbutt_common || [];
@@ -1543,10 +1846,10 @@
             content = (isSeparate && !unified)
                 ? h('div', null, activeGames.map(g =>
                     h('div', { key: g, style: { marginBottom: 16 } },
-                        h(SlotSection, { slots, games: activeGames, gameFilter: g, view: state.view, mount })
+                        h(SlotSection, { slots, games: activeGames, gameFilter: g, view: state.view, mount, cond })
                     )
                   ))
-                : h(SlotSection, { slots, games: activeGames, gameFilter: unified ? 'All' : state.game, view: state.view, mount, unified });
+                : h(SlotSection, { slots, games: activeGames, gameFilter: unified ? 'All' : state.game, view: state.view, mount, unified, cond });
 
         } else if (encounterType === 'headbutt_rare') {
             const slots = enc.headbutt_rare || [];
@@ -1554,10 +1857,10 @@
             content = (isSeparate && !unified)
                 ? h('div', null, activeGames.map(g =>
                     h('div', { key: g, style: { marginBottom: 16 } },
-                        h(SlotSection, { slots, games: activeGames, gameFilter: g, view: state.view, mount })
+                        h(SlotSection, { slots, games: activeGames, gameFilter: g, view: state.view, mount, cond })
                     )
                   ))
-                : h(SlotSection, { slots, games: activeGames, gameFilter: unified ? 'All' : state.game, view: state.view, mount, unified });
+                : h(SlotSection, { slots, games: activeGames, gameFilter: unified ? 'All' : state.game, view: state.view, mount, unified, cond });
 
         } else if (encounterType === 'rock_smash') {
             const slots = enc.rock_smash || [];
@@ -1565,10 +1868,10 @@
             content = (isSeparate && !unified)
                 ? h('div', null, activeGames.map(g =>
                     h('div', { key: g, style: { marginBottom: 16 } },
-                        h(SlotSection, { slots, games: activeGames, gameFilter: g, view: state.view, mount })
+                        h(SlotSection, { slots, games: activeGames, gameFilter: g, view: state.view, mount, cond })
                     )
                   ))
-                : h(SlotSection, { slots, games: activeGames, gameFilter: unified ? 'All' : state.game, view: state.view, mount, unified });
+                : h(SlotSection, { slots, games: activeGames, gameFilter: unified ? 'All' : state.game, view: state.view, mount, unified, cond });
 
         } else if (encounterType === 'bug_contest') {
             const slots = enc.bug_contest || [];
@@ -1583,17 +1886,17 @@
             content = (isSeparate && !unified)
                 ? h('div', null, activeGames.map(g =>
                     h('div', { key: g, style: { marginBottom: 16 } },
-                        h(FishTable, { fish, games: activeGames, gameFilter: g, view: state.view, mount })
+                        h(FishTable, { fish, games: activeGames, gameFilter: g, view: state.view, mount, cond })
                     )
                   ))
-                : h(FishTable, { fish, games: activeGames, gameFilter: unified ? 'All' : state.game, view: state.view, mount, unified });
+                : h(FishTable, { fish, games: activeGames, gameFilter: unified ? 'All' : state.game, view: state.view, mount, unified, cond });
 
         } else {
             return h('p', null, 'Unknown encounter type: ', encounterType);
         }
 
         return h('div', null,
-            encounterType !== 'bug_contest' && h(SlotViewControls, { state, setState, unified, activeGames }),
+            encounterType !== 'bug_contest' && h(SlotViewControls, { state, setState, unified, activeGames, hasSwarm }),
             content
         );
     }
