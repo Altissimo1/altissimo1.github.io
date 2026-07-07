@@ -757,6 +757,7 @@
             { name: 'farfetchd', path: '../../Resources/images/home-renders/gen-1/farfetchd.png' },
             { name: 'unown',     path: '../../Resources/images/home-renders/gen-2/unown-a.png' },
             { name: 'ho-oh',     path: '../../Resources/images/home-renders/gen-2/ho-oh.png' },
+            { name: 'burmy',     path: '../../Resources/images/home-renders/gen-4/burmy-plant.png' },
         ];
 
         const match = hardcoded.find(e => e.name === nm);

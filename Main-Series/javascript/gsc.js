@@ -328,62 +328,60 @@
     // into the state it lacks; then (2) if swarm and no-swarm are identical for EVERY
     // game, drop the swarm tags so the slot renders as plain time/anytime rows.
     // Safe for the Full view only (it never sums rates); do not use for Compressed.
-    function normalizeSlotSwarm(slots) {
+    // Strip "phantom" swarm tags. When only some games have swarm variants for an
+    // encounter type (e.g. Gold/Silver have swarms on a route but Crystal doesn't),
+    // the games with NO swarm variant are still tagged 'no-swarm' in the source data,
+    // which makes them line up under the swarm-aware games' rows. Here we remove the
+    // swarm/no-swarm tag from options belonging only to games that never have a
+    // 'swarm' variant in this encounter type — so those games render on their own
+    // Anytime/time rows (matching how the fishing data is already structured) and the
+    // Swarm toggle no longer blanks them out. Multi-game options are split so the
+    // swarm-aware games keep their tags. Applied once at load, before any view.
+    function stripPhantomSwarm(slots) {
+        if (!Array.isArray(slots)) return slots;
         const SWARM = 'swarm', NOSWARM = 'no-swarm';
-        const stripSwarm = cs => (cs || []).filter(c => c !== SWARM && c !== NOSWARM);
-        return (slots || []).map(slot => {
-            const opts = slot.options || [];
-            const hasSwarmDim = opts.some(o => (o.conditions || []).some(c => c === SWARM || c === NOSWARM));
-            if (!hasSwarmDim) return slot;
-
-            const games = [];
-            const units = [];
-            for (const o of opts) {
-                const rest = stripSwarm(o.conditions);
-                const cs = o.conditions || [];
-                const flag = cs.includes(SWARM) ? SWARM : cs.includes(NOSWARM) ? NOSWARM : null;
-                for (const g of (o.games || [])) {
-                    if (!games.includes(g)) games.push(g);
-                    units.push({ name: o.name, level: o.level, game: g, rest, flag });
-                }
-            }
-
-            const sigOf = list => list
-                .map(u => `${u.name}|${u.level}|${u.rest.slice().sort().join(',')}`)
-                .sort().join(';');
-            const perGame = {};
-            let allEqual = true;
-            for (const g of games) {
-                const gUnits = units.filter(u => u.game === g);
-                let ns = gUnits.filter(u => u.flag !== SWARM);   // no-swarm + agnostic (default)
-                let sw = gUnits.filter(u => u.flag === SWARM);
-                if (!ns.length) ns = sw;
-                if (!sw.length) sw = ns;                          // no swarm variant → duplicate default
-                perGame[g] = { ns, sw };
-                if (sigOf(ns) !== sigOf(sw)) allEqual = false;
-            }
-
+        const swarmAware = new Set();
+        for (const slot of slots)
+            for (const o of (slot.options || []))
+                if ((o.conditions || []).includes(SWARM))
+                    for (const g of (o.games || [])) swarmAware.add(g);
+        if (!swarmAware.size) return slots;   // no swarm dimension at all — leave untouched
+        return slots.map(slot => {
             const merged = new Map();
-            const addUnit = (u, flag) => {
-                const conds = flag ? [...u.rest, flag] : u.rest.slice();
-                const key = `${u.name}|${u.level}|${conds.slice().sort().join(',')}`;
-                if (!merged.has(key)) merged.set(key, { name: u.name, level: u.level, conditions: conds, games: new Set() });
-                merged.get(key).games.add(u.game);
-            };
-            for (const g of games) {
-                const { ns, sw } = perGame[g];
-                if (allEqual) {
-                    for (const u of ns) addUnit(u, null);
-                } else {
-                    for (const u of ns) addUnit(u, NOSWARM);
-                    for (const u of sw) addUnit(u, SWARM);
+            const order = [];
+            for (const o of (slot.options || [])) {
+                const cs = o.conditions || [];
+                for (const g of (o.games || [])) {
+                    const conds = swarmAware.has(g) ? cs.slice() : cs.filter(c => c !== SWARM && c !== NOSWARM);
+                    const key = `${o.name}|${o.level}|${conds.slice().sort().join(',')}`;
+                    if (!merged.has(key)) { merged.set(key, { name: o.name, level: o.level, conditions: conds, games: [] }); order.push(key); }
+                    merged.get(key).games.push(g);
                 }
             }
-            const options = [...merged.values()].map(m => ({
-                name: m.name, level: m.level, games: [...m.games], conditions: m.conditions,
-            }));
-            return Object.assign({}, slot, { options });
+            return Object.assign({}, slot, { options: order.map(k => merged.get(k)) });
         });
+    }
+
+    // Normalize a freshly-loaded area: strip phantom swarm tags from every encounter
+    // slot list (walking / surfing / rock_smash / headbutt / bug_contest arrays, and
+    // each fishing rod), so all views and the swarm toggle see consistent data.
+    function normalizeLoadedData(d) {
+        const enc = d && d.encounters;
+        if (!enc) return d;
+        const out = {};
+        for (const key of Object.keys(enc)) {
+            const val = enc[key];
+            if (Array.isArray(val)) {
+                out[key] = stripPhantomSwarm(val);
+            } else if (val && typeof val === 'object') {   // fishing: { old_rod, good_rod, super_rod }
+                const rods = {};
+                for (const rk of Object.keys(val)) rods[rk] = Array.isArray(val[rk]) ? stripPhantomSwarm(val[rk]) : val[rk];
+                out[key] = rods;
+            } else {
+                out[key] = val;
+            }
+        }
+        return Object.assign({}, d, { encounters: out });
     }
 
     // =========================================================
@@ -393,7 +391,14 @@
         const ag = activeGames || GAMES;
         const map = new Map();
 
-        for (const block of normalizeSlotSwarm(extractWalking(location))) {
+        // In "Show all conditions" mode, collapse identical swarm/no-swarm pairs into a
+        // single Anytime encounter (mirrors the fishing Full view). In Set mode the swarm
+        // state is chosen via the toggle, so leave that to encounterOptionMatches below.
+        const walkBlocks = (s.showAllConditions !== false)
+            ? collapseSwarmPairs(extractWalking(location))
+            : extractWalking(location);
+
+        for (const block of walkBlocks) {
             const { rate, slot, options: encounters } = block;
             for (const opt of (encounters || [])) {
                 if (!encounterOptionMatches(opt.conditions || [], s)) continue;
@@ -1201,7 +1206,7 @@
             if (!window.GSC_DATA) throw new Error('GSC_DATA not found after script load');
             const d = window.GSC_DATA;
             delete window.GSC_DATA;
-            return d;
+            return normalizeLoadedData(d);
         });
         DATA_PROMISE_CACHE.set(locId, p);
         return p;
@@ -1435,11 +1440,7 @@
         const hasConditions = (slotsRaw || []).some(s => (s.options || []).some(o => (o.conditions || []).length > 0));
 
         if (view === 'full') {
-            // Show-all: normalize the swarm dimension across games (duplicate a
-            // swarm-agnostic game into both states, collapse when identical for all
-            // games). Set mode already filtered/stripped via filterSlotsByCond.
-            const fullSlots = (cond && cond.showAllConditions === false) ? slots : normalizeSlotSwarm(slotsRaw);
-            const fullRows = buildSlotFullRows(fullSlots, games);
+            const fullRows = buildSlotFullRows(slots, games);
             const rows = isSingle ? fullRows.filter(r => r.perGame[gameFilter]) : fullRows;
             // Group consecutive rows sharing a slot so Slot/Rate span their condition rows.
             const slotGroups = [];
@@ -1593,14 +1594,9 @@
             (fishRaw[key] || []).some(s => (s.options || []).some(o => (o.conditions || []).length > 0)));
 
         if (view === 'full') {
-            // Show-all: normalize swarm across games per rod (duplicate agnostic games
-            // into both states, collapse when identical). Set mode already filtered.
-            const fullSlotsFor = key => (cond && cond.showAllConditions === false)
-                ? (fish[key] || [])
-                : normalizeSlotSwarm(fishRaw[key] || []);
             const allRows = [];
             for (const { key, label } of ROD_KEYS) {
-                const fullRows = buildSlotFullRows(fullSlotsFor(key), games);
+                const fullRows = buildSlotFullRows(fish[key] || [], games);
                 const filtered = isSingle ? fullRows.filter(r => r.perGame[gameFilter]) : fullRows;
                 for (const r of filtered) allRows.push({ rod: label, ...r });
             }
