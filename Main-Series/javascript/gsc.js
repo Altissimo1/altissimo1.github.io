@@ -384,6 +384,71 @@
         return Object.assign({}, d, { encounters: out });
     }
 
+    // Full-view swarm normalization. The Compressed view keeps swarm-less games (Crystal)
+    // on their own Anytime/time rows (via the load-time stripPhantomSwarm), but in the
+    // Full view we want the Conditions column to describe the G/S swarm situation and let
+    // a swarm-less game fill in the Pokémon it has regardless of swarm. So, per slot: give
+    // every game an explicit swarm AND no-swarm set — duplicating a game's default set into
+    // the state it lacks — and, when swarm and no-swarm are identical for EVERY game, drop
+    // the swarm tags so the slot renders as a plain Anytime/time row. Full view only.
+    function normalizeSlotSwarm(slots) {
+        const SWARM = 'swarm', NOSWARM = 'no-swarm';
+        const stripSwarm = cs => (cs || []).filter(c => c !== SWARM && c !== NOSWARM);
+        return (slots || []).map(slot => {
+            const opts = slot.options || [];
+            const hasSwarmDim = opts.some(o => (o.conditions || []).some(c => c === SWARM || c === NOSWARM));
+            if (!hasSwarmDim) return slot;
+
+            const games = [];
+            const units = [];
+            for (const o of opts) {
+                const rest = stripSwarm(o.conditions);
+                const cs = o.conditions || [];
+                const flag = cs.includes(SWARM) ? SWARM : cs.includes(NOSWARM) ? NOSWARM : null;
+                for (const g of (o.games || [])) {
+                    if (!games.includes(g)) games.push(g);
+                    units.push({ name: o.name, level: o.level, game: g, rest, flag });
+                }
+            }
+
+            const sigOf = list => list
+                .map(u => `${u.name}|${u.level}|${u.rest.slice().sort().join(',')}`)
+                .sort().join(';');
+            const perGame = {};
+            let allEqual = true;
+            for (const g of games) {
+                const gUnits = units.filter(u => u.game === g);
+                let ns = gUnits.filter(u => u.flag !== SWARM);   // no-swarm + agnostic (default)
+                let sw = gUnits.filter(u => u.flag === SWARM);
+                if (!ns.length) ns = sw;
+                if (!sw.length) sw = ns;                          // no swarm variant → duplicate default
+                perGame[g] = { ns, sw };
+                if (sigOf(ns) !== sigOf(sw)) allEqual = false;
+            }
+
+            const merged = new Map();
+            const addUnit = (u, flag) => {
+                const conds = flag ? [...u.rest, flag] : u.rest.slice();
+                const key = `${u.name}|${u.level}|${conds.slice().sort().join(',')}`;
+                if (!merged.has(key)) merged.set(key, { name: u.name, level: u.level, conditions: conds, games: new Set() });
+                merged.get(key).games.add(u.game);
+            };
+            for (const g of games) {
+                const { ns, sw } = perGame[g];
+                if (allEqual) {
+                    for (const u of ns) addUnit(u, null);
+                } else {
+                    for (const u of ns) addUnit(u, NOSWARM);
+                    for (const u of sw) addUnit(u, SWARM);
+                }
+            }
+            const options = [...merged.values()].map(m => ({
+                name: m.name, level: m.level, games: [...m.games], conditions: m.conditions,
+            }));
+            return Object.assign({}, slot, { options });
+        });
+    }
+
     // =========================================================
     // Walking row builders
     // =========================================================
@@ -391,11 +456,11 @@
         const ag = activeGames || GAMES;
         const map = new Map();
 
-        // In "Show all conditions" mode, collapse identical swarm/no-swarm pairs into a
-        // single Anytime encounter (mirrors the fishing Full view). In Set mode the swarm
-        // state is chosen via the toggle, so leave that to encounterOptionMatches below.
+        // Full view: normalize the swarm dimension so Crystal fills the G/S swarm rows
+        // (Show all conditions). In Set mode the swarm state is chosen via the toggle,
+        // so leave that filtering to encounterOptionMatches below.
         const walkBlocks = (s.showAllConditions !== false)
-            ? collapseSwarmPairs(extractWalking(location))
+            ? normalizeSlotSwarm(extractWalking(location))
             : extractWalking(location);
 
         for (const block of walkBlocks) {
@@ -1440,7 +1505,10 @@
         const hasConditions = (slotsRaw || []).some(s => (s.options || []).some(o => (o.conditions || []).length > 0));
 
         if (view === 'full') {
-            const fullRows = buildSlotFullRows(slots, games);
+            // Show-all: normalize swarm across games so a swarm-less game fills the G/S
+            // swarm rows. Set mode already filtered/stripped via filterSlotsByCond.
+            const fullSlots = (cond && cond.showAllConditions === false) ? slots : normalizeSlotSwarm(slotsRaw);
+            const fullRows = buildSlotFullRows(fullSlots, games);
             const rows = isSingle ? fullRows.filter(r => r.perGame[gameFilter]) : fullRows;
             // Group consecutive rows sharing a slot so Slot/Rate span their condition rows.
             const slotGroups = [];
@@ -1518,6 +1586,20 @@
 
         const hasConditionsComp = rows.some(r => (r.conditions || []).length > 0);
 
+        // Group rows by species so a species with several condition rows shares one
+        // sprite/name cell (rowSpan), with a row per condition.
+        const speciesBlocks = [];
+        const blockIdxByName = new Map();
+        for (const row of rows) {
+            let bi = blockIdxByName.get(row.name);
+            if (bi === undefined) {
+                bi = speciesBlocks.length;
+                blockIdxByName.set(row.name, bi);
+                speciesBlocks.push({ name: row.name, rows: [] });
+            }
+            speciesBlocks[bi].rows.push(row);
+        }
+
         return h('div', { style: { overflowX: 'auto' } },
             h('table', null,
                 h('caption', null, tableLabel),
@@ -1534,31 +1616,35 @@
                     )
                 ),
                 h('tbody', null,
-                    rows.map((row, i) =>
-                        h('tr', { key: `${row.name}-${i}` },
-                            h('td', { className: rowCls(base, i) }, h(Sprite, { name: row.name, mount })),
-                            h('td', { className: rowCls(base, i) }, row.name),
-                            ...((isSingle || unified)
-                                ? (() => {
-                                    const c = row.perGame[isSingle ? gameFilter : games[0]];
-                                    return [
-                                        h('td', { key: 'r', className: rowCls(base, i) }, c ? c.rate + '%' : '—'),
-                                        h('td', { key: 'l', className: rowCls(base, i) }, c ? `lv. ${formatLevelStr(c.level)}` : '—'),
-                                    ];
-                                  })()
-                                : showGames.flatMap(g => {
-                                    const gp = gamePrefix(g);
-                                    const c  = row.perGame[g];
-                                    if (!c) return [h('td', { key: g + '-na', colSpan: 2, className: rowCls(null, i) }, 'N/A')];
-                                    return [
-                                        h('td', { key: g + '-r', className: rowCls(gp, i) }, c.rate + '%'),
-                                        h('td', { key: g + '-l', className: rowCls(gp, i) }, `lv. ${formatLevelStr(c.level)}`),
-                                    ];
-                                  })
-                            ),
-                            hasConditionsComp && h('td', { className: rowCls(base, i) },
-                                h(ConditionsCell, { conds: row.conditions })
-                            ),
+                    speciesBlocks.flatMap((block, blockIdx) =>
+                        block.rows.map((row, rowInBlock) =>
+                            h('tr', { key: `${block.name}-${blockIdx}-${rowInBlock}` },
+                                rowInBlock === 0 ? h(React.Fragment, null,
+                                    h('td', { key: 's', rowSpan: block.rows.length, className: rowCls(base, blockIdx) }, h(Sprite, { name: block.name, mount })),
+                                    h('td', { key: 'n', rowSpan: block.rows.length, className: rowCls(base, blockIdx) }, block.name),
+                                ) : null,
+                                ...((isSingle || unified)
+                                    ? (() => {
+                                        const c = row.perGame[isSingle ? gameFilter : games[0]];
+                                        return [
+                                            h('td', { key: 'r', className: rowCls(base, blockIdx) }, c ? c.rate + '%' : '—'),
+                                            h('td', { key: 'l', className: rowCls(base, blockIdx) }, c ? `lv. ${formatLevelStr(c.level)}` : '—'),
+                                        ];
+                                      })()
+                                    : showGames.flatMap(g => {
+                                        const gp = gamePrefix(g);
+                                        const c  = row.perGame[g];
+                                        if (!c) return [h('td', { key: g + '-na', colSpan: 2, className: rowCls(null, blockIdx) }, 'N/A')];
+                                        return [
+                                            h('td', { key: g + '-r', className: rowCls(gp, blockIdx) }, c.rate + '%'),
+                                            h('td', { key: g + '-l', className: rowCls(gp, blockIdx) }, `lv. ${formatLevelStr(c.level)}`),
+                                        ];
+                                      })
+                                ),
+                                hasConditionsComp && h('td', { className: rowCls(base, blockIdx) },
+                                    h(ConditionsCell, { conds: row.conditions })
+                                ),
+                            )
                         )
                     )
                 )
@@ -1594,9 +1680,14 @@
             (fishRaw[key] || []).some(s => (s.options || []).some(o => (o.conditions || []).length > 0)));
 
         if (view === 'full') {
+            // Show-all: normalize swarm across games per rod so a swarm-less game fills
+            // the G/S swarm rows. Set mode already filtered/stripped via filterSlotsByCond.
+            const fullSlotsFor = key => (cond && cond.showAllConditions === false)
+                ? (fish[key] || [])
+                : normalizeSlotSwarm(fishRaw[key] || []);
             const allRows = [];
             for (const { key, label } of ROD_KEYS) {
-                const fullRows = buildSlotFullRows(fish[key] || [], games);
+                const fullRows = buildSlotFullRows(fullSlotsFor(key), games);
                 const filtered = isSingle ? fullRows.filter(r => r.perGame[gameFilter]) : fullRows;
                 for (const r of filtered) allRows.push({ rod: label, ...r });
             }

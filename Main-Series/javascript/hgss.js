@@ -1466,6 +1466,20 @@
 
         const hasConditionsComp = rows.some(r => (r.conditions || []).length > 0);
 
+        // Group rows by species so a species with several condition rows shares one
+        // sprite/name cell (rowSpan), with a row per condition.
+        const speciesBlocks = [];
+        const blockIdxByName = new Map();
+        for (const row of rows) {
+            let bi = blockIdxByName.get(row.name);
+            if (bi === undefined) {
+                bi = speciesBlocks.length;
+                blockIdxByName.set(row.name, bi);
+                speciesBlocks.push({ name: row.name, rows: [] });
+            }
+            speciesBlocks[bi].rows.push(row);
+        }
+
         return h('div', { style: { overflowX: 'auto' } },
             h('table', null,
                 h('caption', null, tableLabel),
@@ -1482,31 +1496,35 @@
                     )
                 ),
                 h('tbody', null,
-                    rows.map((row, i) =>
-                        h('tr', { key: `${row.name}-${i}` },
-                            h('td', { className: rowCls(base, i) }, h(Sprite, { name: row.name, mount })),
-                            h('td', { className: rowCls(base, i) }, row.name),
-                            ...((isSingle || unified)
-                                ? (() => {
-                                    const c = row.perGame[isSingle ? gameFilter : games[0]];
-                                    return [
-                                        h('td', { key: 'r', className: rowCls(base, i) }, c ? c.rate + '%' : '—'),
-                                        h('td', { key: 'l', className: rowCls(base, i) }, c ? `lv. ${formatLevelStr(c.level)}` : '—'),
-                                    ];
-                                  })()
-                                : showGames.flatMap(g => {
-                                    const gp = gamePrefix(g);
-                                    const c  = row.perGame[g];
-                                    if (!c) return [h('td', { key: g + '-na', colSpan: 2, className: rowCls(null, i) }, 'N/A')];
-                                    return [
-                                        h('td', { key: g + '-r', className: rowCls(gp, i) }, c.rate + '%'),
-                                        h('td', { key: g + '-l', className: rowCls(gp, i) }, `lv. ${formatLevelStr(c.level)}`),
-                                    ];
-                                  })
-                            ),
-                            hasConditionsComp && h('td', { className: rowCls(base, i) },
-                                h(ConditionsCell, { conds: row.conditions })
-                            ),
+                    speciesBlocks.flatMap((block, blockIdx) =>
+                        block.rows.map((row, rowInBlock) =>
+                            h('tr', { key: `${block.name}-${blockIdx}-${rowInBlock}` },
+                                rowInBlock === 0 ? h(React.Fragment, null,
+                                    h('td', { key: 's', rowSpan: block.rows.length, className: rowCls(base, blockIdx) }, h(Sprite, { name: block.name, mount })),
+                                    h('td', { key: 'n', rowSpan: block.rows.length, className: rowCls(base, blockIdx) }, block.name),
+                                ) : null,
+                                ...((isSingle || unified)
+                                    ? (() => {
+                                        const c = row.perGame[isSingle ? gameFilter : games[0]];
+                                        return [
+                                            h('td', { key: 'r', className: rowCls(base, blockIdx) }, c ? c.rate + '%' : '—'),
+                                            h('td', { key: 'l', className: rowCls(base, blockIdx) }, c ? `lv. ${formatLevelStr(c.level)}` : '—'),
+                                        ];
+                                      })()
+                                    : showGames.flatMap(g => {
+                                        const gp = gamePrefix(g);
+                                        const c  = row.perGame[g];
+                                        if (!c) return [h('td', { key: g + '-na', colSpan: 2, className: rowCls(null, blockIdx) }, 'N/A')];
+                                        return [
+                                            h('td', { key: g + '-r', className: rowCls(gp, blockIdx) }, c.rate + '%'),
+                                            h('td', { key: g + '-l', className: rowCls(gp, blockIdx) }, `lv. ${formatLevelStr(c.level)}`),
+                                        ];
+                                      })
+                                ),
+                                hasConditionsComp && h('td', { className: rowCls(base, blockIdx) },
+                                    h(ConditionsCell, { conds: row.conditions })
+                                ),
+                            )
                         )
                     )
                 )
