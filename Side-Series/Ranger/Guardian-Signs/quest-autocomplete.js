@@ -11,6 +11,10 @@
 
 var requests = [
 	{value: "Pichu's Broken Ukulele", data: "quest-1"},
+	{value: "Recharge Pachirisu", data: "quest-2"},
+	{value: "A New Path in Teakwood Forest", data: "quest-3"},
+	{value: "The Elderly Couple's Argument", data: "quest-4"},
+	{value: "The Big One That Got Away", data: "quest-5"},
 ];
 
 
