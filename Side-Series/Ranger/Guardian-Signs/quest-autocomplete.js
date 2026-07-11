@@ -15,6 +15,9 @@ var requests = [
 	{value: "A New Path in Teakwood Forest", data: "quest-3"},
 	{value: "The Elderly Couple's Argument", data: "quest-4"},
 	{value: "The Big One That Got Away", data: "quest-5"},
+	{value: "The Son's Lunch", data: "quest-6"},
+	{value: "My Lunch", data: "quest-7"},
+	{value: "The Sleepless Granny", data: "quest-8"},
 ];
 
 
