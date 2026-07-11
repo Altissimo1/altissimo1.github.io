@@ -30,7 +30,7 @@
         formatLevels,
         byName, loadScript, inferLocationId, bucketRowsByName,
         Select,
-        SPRITE_URL_CACHE, normalizedName, spriteCandidates,
+        SPRITE_URL_CACHE, normalizedName, spriteCandidates, spriteBaseDirs,
     } = window.PokemonCore;
 
     // =========================================================
@@ -41,6 +41,51 @@
     const GAME_BIT  = { FireRed: 0, LeafGreen: 1 };
 
     const gamePrefix = g => g.toLowerCase();
+
+    // =========================================================
+    // Species display + sprite overrides
+    //   • Data stores gendered Nidoran as "Nidoran F" / "Nidoran M" and
+    //     Farfetch'd as "Farfetchd"; remap to their proper display forms.
+    //   • Force these to specific gen-1 sprite files.
+    // =========================================================
+    const NAME_DISPLAY_OVERRIDES = {
+        'Nidoran F': 'Nidoran♀',
+        'Nidoran M': 'Nidoran♂',
+        'Farfetchd': "Farfetch'd",
+    };
+
+    // Display name -> sprite path (relative to the sprite root, i.e. the
+    // directory containing the gen-* folders), without the .png extension.
+    const SPRITE_OVERRIDES = {
+        'Nidoran♀': 'gen-1/nidoran-f',
+        'Nidoran♂': 'gen-1/nidoran-m',
+        "Farfetch'd": 'gen-1/farfetchd',
+    };
+
+    // Rewrite species names in freshly-loaded location data to display forms.
+    function applyNameOverrides(data) {
+        const fix = opts => {
+            for (const o of (opts || [])) {
+                if (NAME_DISPLAY_OVERRIDES[o.name]) o.name = NAME_DISPLAY_OVERRIDES[o.name];
+            }
+        };
+        const enc = data?.encounters || {};
+        for (const key of ['walking', 'surfing', 'rock_smash']) {
+            for (const slot of (enc[key] || [])) fix(slot.options);
+        }
+        const fish = enc.fishing || {};
+        for (const rod of ['old', 'good', 'super']) {
+            for (const slot of (fish[rod] || [])) fix(slot.options);
+        }
+        return data;
+    }
+
+    // Sprite root = the directory that holds the gen-* folders (strip the
+    // trailing gen-N/ segment off the first resolved base dir).
+    function spriteRoot(mount) {
+        const bases = spriteBaseDirs(mount);
+        return (bases[0] || '').replace(/gen-\d+\/$/, '');
+    }
 
     // =========================================================
     // CSS class helpers (mirrored from bdsp.js)
@@ -206,13 +251,17 @@
     }
 
     // =========================================================
-    // Sprite (no form overrides needed for FRLG)
+    // Sprite (with Nidoran♀/♂ and Farfetch'd overrides)
     // =========================================================
     function Sprite(props) {
         const { useState, useMemo, useEffect } = React;
         const nm = normalizedName(props.name);
 
         const candidates = useMemo(() => {
+            // Forced gen-1 override for gendered Nidoran / Farfetch'd.
+            const override = SPRITE_OVERRIDES[props.name];
+            if (override) return [spriteRoot(props.mount) + override + '.png'];
+
             const list   = spriteCandidates(props.name, props.mount);
             const cached = SPRITE_URL_CACHE.get(nm);
             if (cached) {
@@ -507,7 +556,7 @@
             if (!window.FRLG_DATA) throw new Error('FRLG_DATA not found after script load');
             const d = window.FRLG_DATA;
             delete window.FRLG_DATA;
-            return d;
+            return applyNameOverrides(d);
         });
         DATA_PROMISE_CACHE.set(locId, p);
         return p;

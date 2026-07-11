@@ -1,0 +1,527 @@
+window.GSC_DATA = {
+  "name": "Route 3",
+  "encounters": {
+    "walking": [
+      {
+        "rate": 30,
+        "slot": 0,
+        "options": [
+          {
+            "level": "5",
+            "name": "Spearow",
+            "games": [
+              "Gold",
+              "Silver",
+              "Crystal"
+            ],
+            "conditions": [
+              "morning",
+              "day"
+            ]
+          },
+          {
+            "level": "5",
+            "name": "Rattata",
+            "games": [
+              "Gold",
+              "Silver",
+              "Crystal"
+            ],
+            "conditions": [
+              "night"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 30,
+        "slot": 1,
+        "options": [
+          {
+            "level": "5",
+            "name": "Rattata",
+            "games": [
+              "Gold",
+              "Silver",
+              "Crystal"
+            ],
+            "conditions": [
+              "morning",
+              "day"
+            ]
+          },
+          {
+            "level": "5",
+            "name": "Zubat",
+            "games": [
+              "Gold",
+              "Silver"
+            ],
+            "conditions": [
+              "night"
+            ]
+          },
+          {
+            "level": "10",
+            "name": "Rattata",
+            "games": [
+              "Crystal"
+            ],
+            "conditions": [
+              "night"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 20,
+        "slot": 2,
+        "options": [
+          {
+            "level": "8",
+            "name": "Spearow",
+            "games": [
+              "Gold"
+            ],
+            "conditions": [
+              "morning",
+              "day"
+            ]
+          },
+          {
+            "level": "8",
+            "name": "Ekans",
+            "games": [
+              "Silver"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "8",
+            "name": "Rattata",
+            "games": [
+              "Gold"
+            ],
+            "conditions": [
+              "night"
+            ]
+          },
+          {
+            "level": "8",
+            "name": "Ekans",
+            "games": [
+              "Crystal"
+            ],
+            "conditions": [
+              "morning",
+              "day"
+            ]
+          },
+          {
+            "level": "10",
+            "name": "Raticate",
+            "games": [
+              "Crystal"
+            ],
+            "conditions": [
+              "night"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 3,
+        "options": [
+          {
+            "level": "6",
+            "name": "Jigglypuff",
+            "games": [
+              "Gold",
+              "Silver"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "10",
+            "name": "Raticate",
+            "games": [
+              "Crystal"
+            ],
+            "conditions": [
+              "morning",
+              "day"
+            ]
+          },
+          {
+            "level": "6",
+            "name": "Zubat",
+            "games": [
+              "Crystal"
+            ],
+            "conditions": [
+              "night"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 4,
+        "options": [
+          {
+            "level": "10",
+            "name": "Rattata",
+            "games": [
+              "Gold"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "10",
+            "name": "Arbok",
+            "games": [
+              "Silver"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "10",
+            "name": "Arbok",
+            "games": [
+              "Crystal"
+            ],
+            "conditions": [
+              "morning",
+              "day"
+            ]
+          },
+          {
+            "level": "5",
+            "name": "Rattata",
+            "games": [
+              "Crystal"
+            ],
+            "conditions": [
+              "night"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 5,
+        "options": [
+          {
+            "level": "8",
+            "name": "Spearow",
+            "games": [
+              "Gold",
+              "Silver"
+            ],
+            "conditions": [
+              "morning",
+              "day"
+            ]
+          },
+          {
+            "level": "8",
+            "name": "Rattata",
+            "games": [
+              "Gold",
+              "Silver"
+            ],
+            "conditions": [
+              "night"
+            ]
+          },
+          {
+            "level": "10",
+            "name": "Sandshrew",
+            "games": [
+              "Crystal"
+            ],
+            "conditions": [
+              "morning",
+              "day"
+            ]
+          },
+          {
+            "level": "6",
+            "name": "Clefairy",
+            "games": [
+              "Crystal"
+            ],
+            "conditions": [
+              "night"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 6,
+        "options": [
+          {
+            "level": "8",
+            "name": "Spearow",
+            "games": [
+              "Gold",
+              "Silver"
+            ],
+            "conditions": [
+              "morning",
+              "day"
+            ]
+          },
+          {
+            "level": "8",
+            "name": "Rattata",
+            "games": [
+              "Gold",
+              "Silver"
+            ],
+            "conditions": [
+              "night"
+            ]
+          },
+          {
+            "level": "10",
+            "name": "Sandshrew",
+            "games": [
+              "Crystal"
+            ],
+            "conditions": [
+              "morning",
+              "day"
+            ]
+          },
+          {
+            "level": "6",
+            "name": "Clefairy",
+            "games": [
+              "Crystal"
+            ],
+            "conditions": [
+              "night"
+            ]
+          }
+        ]
+      }
+    ],
+    "fishing": {
+      "old_rod": [
+        {
+          "rate": 70,
+          "slot": 0,
+          "options": [
+            {
+              "level": "10",
+              "name": "Magikarp",
+              "games": [
+                "Gold",
+                "Silver",
+                "Crystal"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "rate": 15,
+          "slot": 1,
+          "options": [
+            {
+              "level": "10",
+              "name": "Magikarp",
+              "games": [
+                "Gold",
+                "Silver",
+                "Crystal"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "rate": 15,
+          "slot": 2,
+          "options": [
+            {
+              "level": "10",
+              "name": "Krabby",
+              "games": [
+                "Gold",
+                "Silver",
+                "Crystal"
+              ],
+              "conditions": []
+            }
+          ]
+        }
+      ],
+      "good_rod": [
+        {
+          "rate": 35,
+          "slot": 0,
+          "options": [
+            {
+              "level": "20",
+              "name": "Magikarp",
+              "games": [
+                "Gold",
+                "Silver",
+                "Crystal"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "rate": 35,
+          "slot": 1,
+          "options": [
+            {
+              "level": "20",
+              "name": "Krabby",
+              "games": [
+                "Gold",
+                "Silver",
+                "Crystal"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "rate": 20,
+          "slot": 2,
+          "options": [
+            {
+              "level": "20",
+              "name": "Krabby",
+              "games": [
+                "Gold",
+                "Silver",
+                "Crystal"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "rate": 10,
+          "slot": 3,
+          "options": [
+            {
+              "level": "20",
+              "name": "Corsola",
+              "games": [
+                "Gold",
+                "Silver",
+                "Crystal"
+              ],
+              "conditions": [
+                "morning",
+                "day"
+              ]
+            },
+            {
+              "level": "20",
+              "name": "Staryu",
+              "games": [
+                "Gold",
+                "Silver",
+                "Crystal"
+              ],
+              "conditions": [
+                "night"
+              ]
+            }
+          ]
+        }
+      ],
+      "super_rod": [
+        {
+          "rate": 40,
+          "slot": 0,
+          "options": [
+            {
+              "level": "40",
+              "name": "Krabby",
+              "games": [
+                "Gold",
+                "Silver",
+                "Crystal"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "rate": 30,
+          "slot": 1,
+          "options": [
+            {
+              "level": "40",
+              "name": "Corsola",
+              "games": [
+                "Gold",
+                "Silver",
+                "Crystal"
+              ],
+              "conditions": [
+                "morning",
+                "day"
+              ]
+            },
+            {
+              "level": "40",
+              "name": "Staryu",
+              "games": [
+                "Gold",
+                "Silver",
+                "Crystal"
+              ],
+              "conditions": [
+                "night"
+              ]
+            }
+          ]
+        },
+        {
+          "rate": 20,
+          "slot": 2,
+          "options": [
+            {
+              "level": "40",
+              "name": "Krabby",
+              "games": [
+                "Gold",
+                "Silver",
+                "Crystal"
+              ],
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "rate": 10,
+          "slot": 3,
+          "options": [
+            {
+              "level": "40",
+              "name": "Kingler",
+              "games": [
+                "Gold",
+                "Silver",
+                "Crystal"
+              ],
+              "conditions": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+};

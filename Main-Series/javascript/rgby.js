@@ -37,7 +37,7 @@
         formatLevels,
         byName, loadScript, inferLocationId, bucketRowsByName,
         Select,
-        SPRITE_URL_CACHE, normalizedName, spriteCandidates,
+        SPRITE_URL_CACHE, normalizedName, spriteCandidates, spriteBaseDirs,
     } = window.PokemonCore;
 
     // =========================================================
@@ -270,12 +270,41 @@
     // =========================================================
     // Sprite
     // =========================================================
+    // Sprite filename overrides. pokemon-core's normalizedName lowercases "Nidoran F/M"
+    // without replacing the space (yielding "nidoran f.png"), and gendered/punctuated
+    // names need explicit slugs. For an overridden name we hit the exact file directly.
+    const SPRITE_NAME_OVERRIDES = {
+        'Nidoran F': 'nidoran-f',
+        'Nidoran M': 'nidoran-m',
+        "Farfetch'd": 'farfetchd',
+    };
+    // Pretty display names for cells + alt text (data keeps plain ASCII names so
+    // sprite lookup, grouping and sort keys stay stable).
+    const DISPLAY_NAME_OVERRIDES = {
+        'Nidoran F': 'Nidoran\u2640', // Nidoran♀
+        'Nidoran M': 'Nidoran\u2642', // Nidoran♂
+    };
+    function displayName(name) {
+        if (name == null) return name;
+        if (DISPLAY_NAME_OVERRIDES[name]) return DISPLAY_NAME_OVERRIDES[name];
+        if (name.includes(' / ')) return name.split(' / ').map(pp => DISPLAY_NAME_OVERRIDES[pp] || pp).join(' / ');
+        return name;
+    }
+    function spriteName(name) {
+        return SPRITE_NAME_OVERRIDES[name] || normalizedName(name);
+    }
+    function rgbySpriteCandidates(name, mount) {
+        const override = SPRITE_NAME_OVERRIDES[name];
+        if (!override) return spriteCandidates(name, mount);
+        return spriteBaseDirs(mount).map(base => base + override + '.png');
+    }
+
     function Sprite(props) {
         const { useState, useMemo, useEffect } = React;
-        const nm = normalizedName(props.name);
+        const nm = spriteName(props.name);
 
         const candidates = useMemo(() => {
-            const list   = spriteCandidates(props.name, props.mount);
+            const list   = rgbySpriteCandidates(props.name, props.mount);
             const cached = SPRITE_URL_CACHE.get(nm);
             if (cached) {
                 const idx = list.indexOf(cached);
@@ -289,7 +318,7 @@
         useEffect(() => { setIdx(0); }, [props.name]);
 
         return h('img', {
-            src, alt: props.name, loading: 'lazy', className: 'flex-img',
+            src, alt: displayName(props.name), loading: 'lazy', className: 'flex-img',
             onLoad:  () => { if (src) SPRITE_URL_CACHE.set(nm, src); },
             onError: () => React.startTransition(() => setIdx(i => i + 1 < candidates.length ? i + 1 : i)),
         });
@@ -491,7 +520,7 @@
                                             const lv   = has ? formatLevels(cell.levels) : '';
                                             return [
                                                 h('td', { key: 'u:s', className: zebraBySlot(null, r.slot) }, has ? h(Sprite, { name: cell.name.split(' / ')[0], mount }) : '—'),
-                                                h('td', { key: 'u:n', className: zebraBySlot(null, r.slot) }, has ? cell.name : '—'),
+                                                h('td', { key: 'u:n', className: zebraBySlot(null, r.slot) }, has ? displayName(cell.name) : '—'),
                                                 h('td', { key: 'u:l', className: zebraBySlot(null, r.slot) }, has ? `lv. ${lv}` : '—'),
                                             ];
                                         })() : showGames.flatMap(g => {
@@ -501,7 +530,7 @@
                                             const lv   = has ? formatLevels(cell.levels) : '';
                                             return [
                                                 h('td', { key: g + ':s', className: zebraBySlot(has ? gp : null, r.slot) }, has ? h(Sprite, { name: cell.name.split(' / ')[0], mount }) : '—'),
-                                                h('td', { key: g + ':n', className: zebraBySlot(has ? gp : null, r.slot) }, has ? cell.name : '—'),
+                                                h('td', { key: g + ':n', className: zebraBySlot(has ? gp : null, r.slot) }, has ? displayName(cell.name) : '—'),
                                                 h('td', { key: g + ':l', className: zebraBySlot(has ? gp : null, r.slot) }, has ? `lv. ${lv}` : '—'),
                                             ];
                                         }))
@@ -515,7 +544,7 @@
                             return h('tr', { key: `${r.name}::${rowIndex}` },
                                 block ? h(React.Fragment, null,
                                     h('td', { rowSpan: block.count, className: zebraByBlock(null, rowIndex) }, h(Sprite, { name: r.name, mount })),
-                                    h('td', { rowSpan: block.count, className: zebraByBlock(null, rowIndex) }, r.name),
+                                    h('td', { rowSpan: block.count, className: zebraByBlock(null, rowIndex) }, displayName(r.name)),
                                 ) : null,
                                 ...(isSingleColumn ? (() => {
                                     const cell  = r.perGame?.[singleGame];
@@ -702,7 +731,7 @@
             if (c) {
                 const gp = gamePrefix(g);
                 cells.push(h('td', { key: g + '-s', className: clsFn(gp) }, h(Sprite, { name: c.name, mount })));
-                cells.push(h('td', { key: g + '-n', className: clsFn(gp) }, c.name));
+                cells.push(h('td', { key: g + '-n', className: clsFn(gp) }, displayName(c.name)));
                 cells.push(h('td', { key: g + '-l', className: clsFn(gp) }, `lv. ${c.level}`));
                 i++;
             } else {
@@ -784,7 +813,7 @@
                                     const c = row.perGame[singleGame];
                                     return [
                                         h('td', { key: 's', className: slotCls(base, row.slot) }, c ? h(Sprite, { name: c.name, mount }) : '—'),
-                                        h('td', { key: 'n', className: slotCls(base, row.slot) }, c ? c.name : '—'),
+                                        h('td', { key: 'n', className: slotCls(base, row.slot) }, c ? displayName(c.name) : '—'),
                                         h('td', { key: 'l', className: slotCls(base, row.slot) }, c ? `lv. ${c.level}` : '—'),
                                     ];
                                 })() : fullGameCells(row, showGames, mount, gp => slotCls(gp, row.slot)))
@@ -826,7 +855,7 @@
                     rows.map((row, i) =>
                         h('tr', { key: row.name },
                             h('td', { className: rowCls(base, i) }, h(Sprite, { name: row.name, mount })),
-                            h('td', { className: rowCls(base, i) }, row.name),
+                            h('td', { className: rowCls(base, i) }, displayName(row.name)),
                             ...(isSingleColumn ? (() => {
                                 const c = row.perGame[singleGame];
                                 return [
@@ -903,7 +932,7 @@
                                     const c = row.perGame[singleGame];
                                     return [
                                         h('td', { key: 's', className: rowCls(base, i) }, c ? h(Sprite, { name: c.name, mount }) : '—'),
-                                        h('td', { key: 'n', className: rowCls(base, i) }, c ? c.name : '—'),
+                                        h('td', { key: 'n', className: rowCls(base, i) }, c ? displayName(c.name) : '—'),
                                         h('td', { key: 'l', className: rowCls(base, i) }, c ? `lv. ${c.level}` : '—'),
                                     ];
                                 })() : fullGameCells(row, showGames, mount, gp => rowCls(gp, i)))
@@ -951,7 +980,7 @@
                         h('tr', { key: `${row.rod}-${row.name}-${row.idx}` },
                             h('td', { className: rowCls(base, row.idx) }, row.rod),
                             h('td', { className: rowCls(base, row.idx) }, h(Sprite, { name: row.name, mount })),
-                            h('td', { className: rowCls(base, row.idx) }, row.name),
+                            h('td', { className: rowCls(base, row.idx) }, displayName(row.name)),
                             ...(isSingleColumn ? (() => {
                                 const c = row.perGame[singleGame];
                                 return [
