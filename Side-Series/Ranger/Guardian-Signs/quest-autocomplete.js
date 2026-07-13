@@ -18,6 +18,13 @@ var requests = [
 	{value: "The Son's Lunch", data: "quest-6"},
 	{value: "My Lunch", data: "quest-7"},
 	{value: "The Sleepless Granny", data: "quest-8"},
+	{value: "Rolling Graveler", data: "quest-9"},
+	{value: "The Mild Mankey", data: "quest-10"},
+	{value: "Cute, Cute Jumpluff", data: "quest-11"},
+	{value: "Mitonga Island's Odd Stones", data: "quest-12"},
+	{value: "Luggage for Renbow Island", data: "quest-13"},
+	{value: "Fly, Starly!", data: "quest-14"},
+	{value: "Save Bidoof!", data: "quest-15"},
 ];
 
 
