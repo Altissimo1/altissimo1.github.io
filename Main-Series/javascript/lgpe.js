@@ -40,8 +40,27 @@
 
     const {
         loadScript, inferLocationId,
-        SPRITE_URL_CACHE, normalizedName, spriteCandidates,
+        SPRITE_URL_CACHE, normalizedName, spriteCandidates, spriteBaseDirs,
     } = window.PokemonCore;
+
+    // Species whose sprite doesn't follow the generic name → filename mapping
+    // (pokemon-core's normalizedName keeps the ♀/♂ glyph as-is for Nidoran,
+    // which doesn't match the actual "nidoran-f"/"nidoran-m" filenames) or
+    // that should always be pulled from a specific generation rather than
+    // falling back gen-4 → gen-1. Forced straight to gen-1/<file>.png.
+    const SPRITE_OVERRIDES = {
+        'Nidoran♀':    'nidoran-f',
+        'Nidoran♂':    'nidoran-m',
+        "Farfetch'd":  'farfetchd',
+    };
+
+    function overrideCandidates(name, mount) {
+        const file = SPRITE_OVERRIDES[name];
+        if (!file) return null;
+        const bases   = spriteBaseDirs(mount);
+        const gen1Base = bases.find(b => /\/gen-1\/$/.test(b)) || bases[bases.length - 1];
+        return [`${gen1Base}${file}.png`];
+    }
 
     // =========================================================
     // LGPE game constants
@@ -91,6 +110,8 @@
         const nm = normalizedName(props.name);
 
         const candidates = useMemo(() => {
+            const override = overrideCandidates(props.name, props.mount);
+            if (override) return override;
             const list   = spriteCandidates(props.name, props.mount);
             const cached = SPRITE_URL_CACHE.get(nm);
             if (cached) {
