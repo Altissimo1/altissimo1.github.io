@@ -1,0 +1,61 @@
+window.LGPE_DATA = {
+  "name": "Mt. Moon",
+  "encounters": {
+    "normal": [
+      {
+        "name": "Clefable",
+        "level": "5-10",
+        "rate": 1,
+        "games": [
+          "Pikachu",
+          "Eevee"
+        ]
+      },
+      {
+        "name": "Onix",
+        "level": "5-10",
+        "rate": 1,
+        "games": [
+          "Pikachu",
+          "Eevee"
+        ]
+      },
+      {
+        "name": "Clefairy",
+        "level": "5-10",
+        "rate": 9,
+        "games": [
+          "Pikachu",
+          "Eevee"
+        ]
+      },
+      {
+        "name": "Paras",
+        "level": "5-10",
+        "rate": 15,
+        "games": [
+          "Pikachu",
+          "Eevee"
+        ]
+      },
+      {
+        "name": "Geodude",
+        "level": "5-10",
+        "rate": 34,
+        "games": [
+          "Pikachu",
+          "Eevee"
+        ]
+      },
+      {
+        "name": "Zubat",
+        "level": "5-10",
+        "rate": 40,
+        "games": [
+          "Pikachu",
+          "Eevee"
+        ]
+      }
+    ]
+  }
+};
