@@ -1,0 +1,264 @@
+window.FRLG_DATA = {
+  "name": "Mt. Ember Ruby Path B3F",
+  "encounters": {
+    "walking": [
+      {
+        "rate": 20,
+        "slot": 0,
+        "options": [
+          {
+            "level": "26",
+            "name": "Slugma",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 20,
+        "slot": 1,
+        "options": [
+          {
+            "level": "28",
+            "name": "Slugma",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 2,
+        "options": [
+          {
+            "level": "30",
+            "name": "Slugma",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 3,
+        "options": [
+          {
+            "level": "32",
+            "name": "Slugma",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 4,
+        "options": [
+          {
+            "level": "24",
+            "name": "Slugma",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 5,
+        "options": [
+          {
+            "level": "22",
+            "name": "Slugma",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 6,
+        "options": [
+          {
+            "level": "20",
+            "name": "Slugma",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 7,
+        "options": [
+          {
+            "level": "34",
+            "name": "Slugma",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 8,
+        "options": [
+          {
+            "level": "36",
+            "name": "Slugma",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 9,
+        "options": [
+          {
+            "level": "18",
+            "name": "Slugma",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 10,
+        "options": [
+          {
+            "level": "36",
+            "name": "Slugma",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 11,
+        "options": [
+          {
+            "level": "18",
+            "name": "Slugma",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    ],
+    "rock_smash": [
+      {
+        "rate": 60,
+        "slot": 0,
+        "options": [
+          {
+            "level": "15-25",
+            "name": "Slugma",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 30,
+        "slot": 1,
+        "options": [
+          {
+            "level": "25-35",
+            "name": "Slugma",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 2,
+        "options": [
+          {
+            "level": "40-45",
+            "name": "Magcargo",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 3,
+        "options": [
+          {
+            "level": "35-45",
+            "name": "Magcargo",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 4,
+        "options": [
+          {
+            "level": "25-35",
+            "name": "Magcargo",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    ]
+  }
+};

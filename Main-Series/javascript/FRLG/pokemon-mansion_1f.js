@@ -1,0 +1,236 @@
+window.FRLG_DATA = {
+  "name": "Pokémon Mansion 1F",
+  "encounters": {
+    "walking": [
+      {
+        "rate": 20,
+        "slot": 0,
+        "options": [
+          {
+            "level": "28",
+            "name": "Koffing",
+            "games": [
+              "FireRed"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "28",
+            "name": "Grimer",
+            "games": [
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 20,
+        "slot": 1,
+        "options": [
+          {
+            "level": "32",
+            "name": "Raticate",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 2,
+        "options": [
+          {
+            "level": "30",
+            "name": "Koffing",
+            "games": [
+              "FireRed"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "30",
+            "name": "Grimer",
+            "games": [
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 3,
+        "options": [
+          {
+            "level": "36",
+            "name": "Raticate",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 4,
+        "options": [
+          {
+            "level": "30",
+            "name": "Growlithe",
+            "games": [
+              "FireRed"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "30",
+            "name": "Vulpix",
+            "games": [
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 5,
+        "options": [
+          {
+            "level": "28",
+            "name": "Rattata",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 6,
+        "options": [
+          {
+            "level": "28",
+            "name": "Grimer",
+            "games": [
+              "FireRed"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "28",
+            "name": "Koffing",
+            "games": [
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 7,
+        "options": [
+          {
+            "level": "32",
+            "name": "Weezing",
+            "games": [
+              "FireRed"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "32",
+            "name": "Muk",
+            "games": [
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 8,
+        "options": [
+          {
+            "level": "32",
+            "name": "Growlithe",
+            "games": [
+              "FireRed"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "32",
+            "name": "Vulpix",
+            "games": [
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 9,
+        "options": [
+          {
+            "level": "26",
+            "name": "Rattata",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 10,
+        "options": [
+          {
+            "level": "32",
+            "name": "Growlithe",
+            "games": [
+              "FireRed"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "32",
+            "name": "Vulpix",
+            "games": [
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 11,
+        "options": [
+          {
+            "level": "26",
+            "name": "Rattata",
+            "games": [
+              "FireRed",
+              "LeafGreen"
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    ]
+  }
+};

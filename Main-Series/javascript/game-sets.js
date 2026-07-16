@@ -1,1 +1,0 @@
-var gameSets = ["gsc", "dppt", "hgss", "bdsp"];

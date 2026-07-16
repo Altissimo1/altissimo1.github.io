@@ -62,6 +62,23 @@
         "Farfetch'd": 'gen-1/farfetchd',
     };
 
+    // Unown forms are all the same species ("Unown") but each slot/letter has
+    // its own sprite. Data adds an option-level "form" field (A-Z, "!", "?");
+    // display names below embed that form as "Unown (A)" etc. so every table
+    // grouping mechanism (which keys off the display name) naturally keeps
+    // forms separate. Map each of those display names to its own gen-2 sprite.
+    for (const L of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ') {
+        SPRITE_OVERRIDES[`Unown (${L})`] = `gen-2/unown-${L.toLowerCase()}`;
+    }
+    SPRITE_OVERRIDES['Unown (?)'] = 'gen-2/unown-question';
+    SPRITE_OVERRIDES['Unown (!)'] = 'gen-2/unown-exclamation';
+
+    // opt.name, folded together with opt.form when present (e.g. "Unown (A)").
+    // Used everywhere a row/cell needs a form-aware display + grouping key.
+    function displayName(opt) {
+        return opt && opt.form ? `${opt.name} (${opt.form})` : (opt ? opt.name : opt);
+    }
+
     // Rewrite species names in freshly-loaded location data to display forms.
     function applyNameOverrides(data) {
         const fix = opts => {
@@ -201,11 +218,12 @@
             }
             const rec = map.get(key);
             for (const opt of (encounters || [])) {
+                const dn = displayName(opt);
                 for (const g of (opt.games || [])) {
                     if (!rec.perGame[g]) continue;
                     const pg = rec.perGame[g];
-                    if (pg.name && pg.name !== opt.name) pg.name = `${pg.name} / ${opt.name}`;
-                    else if (!pg.name) pg.name = opt.name;
+                    if (pg.name && pg.name !== dn) pg.name = `${pg.name} / ${dn}`;
+                    else if (!pg.name) pg.name = dn;
                     pg.levels.add(String(opt.level));
                 }
             }
@@ -226,7 +244,7 @@
         for (const block of (location?.encounters?.walking || [])) {
             const { rate, options: encounters } = block;
             for (const opt of (encounters || [])) {
-                const { name } = opt;
+                const name = displayName(opt);
                 if (!accum.has(name)) { accum.set(name, {}); order.push(name); }
                 const pg = accum.get(name);
                 for (const g of (opt.games || [])) {
