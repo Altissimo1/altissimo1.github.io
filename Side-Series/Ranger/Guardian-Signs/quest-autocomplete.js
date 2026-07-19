@@ -25,6 +25,9 @@ var requests = [
 	{value: "Luggage for Renbow Island", data: "quest-13"},
 	{value: "Fly, Starly!", data: "quest-14"},
 	{value: "Save Bidoof!", data: "quest-15"},
+	{value: "Trash the Pokémon Traps", data: "quest-16"},
+	{value: "Search for the Runaway Boy", data: "quest-17"},
+	{value: "Maddeningly Spicy!", data: "quest-18"},
 ];
 
 
