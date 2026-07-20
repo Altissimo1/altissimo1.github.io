@@ -56,6 +56,7 @@
     showIvOverride:   true,   // when false, suppresses the IV override input in the level widget
     levelTiers:       null,   // if set (array), level widget renders a <select> with these values
     formula:          'gen3',
+    useDataIv:        false,  // if true, read IV from data-iv on each <tr> or <table> (EV-only tables)
   };
   var config = Object.assign({}, defaults, window.STAT_TOGGLE_CONFIG || {});
 
@@ -169,10 +170,10 @@
       var hasEv = text.includes('ev');
       if (!hasIv && !hasEv) return;
       // EV-only headers (no IV) are only treated as toggleable when showIvWidget
-      // is enabled OR a fixedIv value is set — this prevents EV-only decoration
-      // columns (e.g. Stargazer Championship tables) from being picked up
-      // unintentionally on pages that don't opt in.
-      if (!hasIv && !config.showIvWidget && config.fixedIv === null) return;
+      // is enabled, a fixedIv value is set, or useDataIv is true — this prevents
+      // EV-only decoration columns (e.g. Stargazer Championship tables) from being
+      // picked up unintentionally on pages that don't opt in.
+      if (!hasIv && !config.showIvWidget && config.fixedIv === null && !config.useDataIv) return;
       var match = text.match(/^(\w+)\s+(?:iv|ev)/);
       if (!match) return;
       var key = HEADER_TO_KEY[match[1]];
@@ -322,14 +323,27 @@
         // Skip if there is a paired IV cell — handled above
         if (row.querySelector('td[data-stat-role="iv"][data-stat-key="' + statKey + '"]')) return;
 
-        // EV-only cell: IV must come from the global override
-        if (ivOverride === null || ivOverride === undefined) {
+        var nameCell = row.querySelector('td[data-species]');
+        if (!nameCell) { evCell.textContent = '—'; return; }
+
+        // Resolve IV: global override → per-row data-iv → per-table data-iv
+        var iv;
+        if (ivOverride !== null && ivOverride !== undefined) {
+          iv = parseInt(ivOverride, 10);
+        } else if (config.useDataIv) {
+          var rowIvStr   = nameCell.dataset.iv;
+          var tableIvStr = evCell.closest('table').dataset.iv;
+          var resolvedIvStr = (rowIvStr !== undefined && rowIvStr !== '') ? rowIvStr : tableIvStr;
+          if (resolvedIvStr === undefined || resolvedIvStr === '') {
+            evCell.textContent = '—';
+            return;
+          }
+          iv = parseInt(resolvedIvStr, 10);
+        } else {
+          // EV-only cell: IV must come from the global override
           evCell.textContent = '—';
           return;
         }
-
-        var nameCell = row.querySelector('td[data-species]');
-        if (!nameCell) { evCell.textContent = '—'; return; }
 
         var speciesKey = nameCell.dataset.species || normalizeSpecies(nameCell.textContent.trim());
         var nature     = resolveNature(row, natureOverride);
@@ -339,8 +353,6 @@
           evCell.textContent = '—';
           return;
         }
-
-        var iv = parseInt(ivOverride, 10);
         var ev = parseInt(evCell.dataset.statOriginal, 10);
         var result = calculateStat(statKey, baseStats[statKey], iv, ev, nature, effectiveLevel);
         evCell.textContent = (result !== null) ? result : '—';

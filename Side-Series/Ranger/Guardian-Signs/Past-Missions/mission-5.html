@@ -7,6 +7,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../../../../colors.js"></script>
       <link rel="stylesheet" id="common" href="../../../../common.css">
+      <link rel="stylesheet" href="patterns.css">
       <link rel="stylesheet" id="style">
    </head>
    <body>
@@ -154,11 +155,22 @@
       <h3><u>Strategy and Map</u></h3>
       <p><em>Text of this section & map image are taken from WarriorGallade's <a href="https://www.smogon.com/forums/threads/guardian-signs-wireless-missions-done-solo.3746296/post-10183568" target="_blank">post</a> on the subject, supplemented with information from the official Prima guide book, and condensed/reorganized slightly. Used with permission.</em></p>
       <h4>Map</h4>
-      <p>This Mission contains two different patterns of wild Pokémon that can appear. The two possible Patterns are shown below.</p>
-	  <p>Pattern 1:</p>
-      <img src="../../../../Resources/images/ranger-maps/mission5-pattern-1.png" alt="Mission 5 Pattern 1" style="max-width:20%;"><br>
-	  <p>Pattern 2:</p>
-      <img src="../../../../Resources/images/ranger-maps/mission5-pattern-2.png" alt="Mission 5 Pattern 2" style="max-width:20%;">
+      <p>This Mission contains two different patterns of wild Pokémon that can appear. Click a thumbnail below to view that pattern's map.</p>
+      <div class="pattern-map-viewer">
+         <div class="pattern-thumbs">
+            <button type="button" class="pattern-thumb active" data-src="../../../../Resources/images/ranger-maps/mission5-pattern-1.png" data-alt="Mission 5 Pattern 1">
+               <img src="../../../../Resources/images/ranger-maps/mission5-pattern-1.png" alt="Mission 5 Pattern 1 thumbnail">
+               <span>Pattern 1</span>
+            </button>
+            <button type="button" class="pattern-thumb" data-src="../../../../Resources/images/ranger-maps/mission5-pattern-2.png" data-alt="Mission 5 Pattern 2">
+               <img src="../../../../Resources/images/ranger-maps/mission5-pattern-2.png" alt="Mission 5 Pattern 2 thumbnail">
+               <span>Pattern 2</span>
+            </button>
+         </div>
+         <div class="pattern-large">
+            <img id="pattern-map-large" src="../../../../Resources/images/ranger-maps/mission5-pattern-1.png" alt="Mission 5 Pattern 1">
+         </div>
+      </div>
       <p>Legend:</p>
       <ul>
 		 <li><strong>Gray section</strong>: This area can only be accessed with two or more players.</li>
@@ -196,5 +208,18 @@
 	  <p><em>Altissimo's Notes:</em> I was able to S-rank this first try at level 4, using Piplup. It was close and it relied a lot on good movement to avoid being hit by Torchic while trying to get the switches, as well as good looping into Sceptile. I also skipped most of the Styler energy treasure chests</p>
       <h4>Partner Choice</h4>
       <p>Both slowing and quick close-range Assists work well against Sceptile's speed and attack patterns. Piplup, despite the type disadvantage, is surprisingly effective at slowing Sceptile down for consecutive loops. Torchic, despite its good type matchup, is unusable here: Sceptile moves too fast and doesn't linger long enough for Torchic's close-range assist to stack damage. Pidgeot, obtainable in the next Mission, is a strong choice, but its Slate will likely take a while to obtain since that mission is notably harder.</p>
+	  <script>
+         document.querySelectorAll(".pattern-thumb").forEach(function (thumb) {
+            thumb.addEventListener("click", function () {
+               document.querySelectorAll(".pattern-thumb").forEach(function (t) {
+                  t.classList.remove("active");
+               });
+               thumb.classList.add("active");
+               var large = document.getElementById("pattern-map-large");
+               large.src = thumb.dataset.src;
+               large.alt = thumb.dataset.alt;
+            });
+         });
+      </script>
    </body>
 </html>

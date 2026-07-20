@@ -28,6 +28,8 @@ var requests = [
 	{value: "Trash the Pokémon Traps", data: "quest-16"},
 	{value: "Search for the Runaway Boy", data: "quest-17"},
 	{value: "Maddeningly Spicy!", data: "quest-18"},
+	{value: "Chase the Flying Tools", data: "quest-19"},
+	{value: "Happiny, Come Home!", data: "quest-20"},
 ];
 
 
