@@ -30,6 +30,8 @@ var requests = [
 	{value: "Maddeningly Spicy!", data: "quest-18"},
 	{value: "Chase the Flying Tools", data: "quest-19"},
 	{value: "Happiny, Come Home!", data: "quest-20"},
+	{value: "The Boy's Quiz", data: "quest-21"},
+	{value: "Spin, Hitmontop, Spin!", data: "quest-22"},
 ];
 
 
