@@ -7,6 +7,9 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../../../colors.js"></script>
       <link rel="stylesheet" id="common" href="../../../common.css">
+      <script>var STAT_TOGGLE_CONFIG = { formula: 'gen1', defaultLevel: 100 };</script>
+      <script src="../../../Resources/javascript/base-stats-gen1.js"></script>
+      <script src="../../../Resources/javascript/stat-toggle.js"></script>
       <link rel="stylesheet" id="style">
    </head>
    <body>
@@ -19,7 +22,8 @@
       <p>After completing Round 1 or Round 2 of all Stadium cups and the Gym Leader Castle, Mewtwo appears in the sky over the stadium. Selecting Mewtwo allows the player to engage in a battle with it. Defeating Mewtwo's Round 1 version is the trigger to unlock Round 2 for all tournaments and challenges, and defeating its Round 2 version unlocks hidden stickers in the Gallery.</p>
       <p>In the original release, the player can choose to use either a team selected from rental Pokémon, a team consisting of Pokémon from a connected copy of Red, Green, Blue, or Yellow, or a mix of both. In the Nintendo Switch rerelease, only rental Pokémon can be used. The rentals the player can select from are identical to those of the <a href="prime-cup.html">Prime Cup</a>.</p>
       <p>The player is allowed to use all six Pokémon in their team to take down Mewtwo.</p>
-	  <p>The player's final Pokémon cannot use Selfdestruct or Explosion to defeat Mewtwo.</p>
+      <p>The player's final Pokémon cannot use Selfdestruct or Explosion to defeat Mewtwo.</p>
+      <div id="stat-toggle-container"></div>
       <h4>Round 1</h4>
       <table>
          <caption>Mewtwo, Round 1</caption>
@@ -28,29 +32,34 @@
                <th colspan="2">Pokémon</th>
                <th>Level</th>
                <th colspan="12">Moves</th>
-               <th>HP</th>
-               <th>Atk</th>
-               <th>Def</th>
-               <th>Spe</th>
-               <th>Spc</th>
+               <th colspan="2">HP IV &amp; EV</th>
+               <th colspan="2">Atk IV &amp; EV</th>
+               <th colspan="2">Def IV &amp; EV</th>
+               <th colspan="2">Spe IV &amp; EV</th>
+               <th colspan="2">Spc IV &amp; EV</th>
             </tr>
          </thead>
          <tbody>
-            <tr>
+            <tr data-level="100">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/mewtwo.png" alt="Mewtwo"></div>
                </td>
-               <td class="light-false" rowspan="2">Mewtwo</td>
+               <td class="light-false" rowspan="2" data-species="mewtwo">Mewtwo</td>
                <td class="light-false" rowspan="2">100</td>
                <td class="psychic" colspan="3">Psychic</td>
                <td class="status" colspan="3">Rest</td>
                <td class="electric" colspan="3">Thunderbolt</td>
                <td class="ice" colspan="3">Blizzard</td>
-               <td class="light-false" rowspan="2">385</td>
-               <td class="light-false" rowspan="2">286</td>
-               <td class="light-false" rowspan="2">248</td>
-               <td class="light-false" rowspan="2">328</td>
-               <td class="light-false" rowspan="2">376</td>
+               <td class="light-false" rowspan="2">7</td>
+               <td class="light-false" rowspan="2">38400</td>
+               <td class="light-false" rowspan="2">6</td>
+               <td class="light-false" rowspan="2">38400</td>
+               <td class="light-false" rowspan="2">7</td>
+               <td class="light-false" rowspan="2">38400</td>
+               <td class="light-false" rowspan="2">7</td>
+               <td class="light-false" rowspan="2">38400</td>
+               <td class="light-false" rowspan="2">7</td>
+               <td class="light-false" rowspan="2">38400</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -93,29 +102,34 @@
                <th colspan="2">Pokémon</th>
                <th>Level</th>
                <th colspan="12">Moves</th>
-               <th>HP</th>
-               <th>Atk</th>
-               <th>Def</th>
-               <th>Spe</th>
-               <th>Spc</th>
+               <th colspan="2">HP IV &amp; EV</th>
+               <th colspan="2">Atk IV &amp; EV</th>
+               <th colspan="2">Def IV &amp; EV</th>
+               <th colspan="2">Spe IV &amp; EV</th>
+               <th colspan="2">Spc IV &amp; EV</th>
             </tr>
          </thead>
          <tbody>
-            <tr>
+            <tr data-level="100">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/mewtwo.png" alt="Mewtwo"></div>
                </td>
-               <td class="light-false" rowspan="2">Mewtwo</td>
+               <td class="light-false" rowspan="2" data-species="mewtwo">Mewtwo</td>
                <td class="light-false" rowspan="2">100</td>
                <td class="psychic" colspan="3">Psychic</td>
                <td class="electric" colspan="3">Thunderbolt</td>
                <td class="status" colspan="3">Rest</td>
                <td class="status" colspan="3">Amnesia</td>
-               <td class="light-false" rowspan="2">415</td>
-               <td class="light-false" rowspan="2">318</td>
-               <td class="light-false" rowspan="2">278</td>
-               <td class="light-false" rowspan="2">358</td>
-               <td class="light-false" rowspan="2">406</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
             </tr>
             <tr class="light-false">
                <td>

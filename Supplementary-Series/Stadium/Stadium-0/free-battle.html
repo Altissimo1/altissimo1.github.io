@@ -7,6 +7,9 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../../../colors.js"></script>
       <link rel="stylesheet" id="common" href="../../../common.css">
+      <script>var STAT_TOGGLE_CONFIG = { formula: 'gen1', defaultLevel: 30 };</script>
+      <script src="../../../Resources/javascript/base-stats-gen1.js"></script>
+      <script src="../../../Resources/javascript/stat-toggle.js"></script>
       <link rel="stylesheet" id="style">
    </head>
    <body>
@@ -37,6 +40,8 @@
          <input type="checkbox" id="status-checkbox" name="status" value="Show Status" checked="checked">
          <label for="status-checkbox"> Show status moves in a different color from damaging moves</label>
       </div>
+      <br>
+      <div id="stat-toggle-container"></div>
       <h3><u>Rental Teams</u></h3>
       <h4>ガールスカウト <em>(Jr. F)</em></h4>
       <p>The Trainer name is abbreviated as ガール during battles. This team can be used in the Level 1-30 Division and Free Battle rulesets.</p>
@@ -47,29 +52,34 @@
                <th colspan="2">Pokémon</th>
                <th>Level</th>
                <th colspan="8">Moves</th>
-               <th>HP</th>
-               <th>Atk</th>
-               <th>Def</th>
-               <th>Spe</th>
-               <th>Spc</th>
+               <th colspan="2">HP IV &amp; EV</th>
+               <th colspan="2">Atk IV &amp; EV</th>
+               <th colspan="2">Def IV &amp; EV</th>
+               <th colspan="2">Spe IV &amp; EV</th>
+               <th colspan="2">Spc IV &amp; EV</th>
             </tr>
          </thead>
          <tbody>
-            <tr>
+            <tr data-level="20">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/onix.png" alt="Onix"></div>
                </td>
-               <td class="light-false" rowspan="2">Onix</td>
+               <td class="light-false" rowspan="2" data-species="onix">Onix</td>
                <td class="light-false" rowspan="2">20</td>
                <td class="type-false ground" colspan="2">じしん<br><em>(Earthquake)</em></td>
                <td class="type-false normal" colspan="2">しめつける<br><em>(Bind)</em></td>
                <td class="type-false normal" colspan="2">のしかかり<br><em>(Body Slam)</em></td>
                <td class="type-false ground" colspan="2">あなをほる<br><em>(Dig)</em></td>
-               <td class="light-false hp-false" rowspan="2">49</td>
-               <td class="light-false hp-false" rowspan="2">29</td>
-               <td class="light-false hp-false" rowspan="2">73</td>
-               <td class="light-false hp-false" rowspan="2">33</td>
-               <td class="light-false hp-false" rowspan="2">20</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">10240</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">15360</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">7680</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">5120</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -97,21 +107,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="20">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/cloyster.png" alt="Cloyster"></div>
                </td>
-               <td class="light-true" rowspan="2">Cloyster</td>
+               <td class="light-true" rowspan="2" data-species="cloyster">Cloyster</td>
                <td class="light-true" rowspan="2">20</td>
                <td class="type-true ice" colspan="2">オーロラビーム<br><em>(Aurora Beam)</em></td>
                <td class="type-true water" colspan="2">からではさむ<br><em>(Clamp)</em></td>
                <td class="type-true normal" colspan="2">とっしん<br><em>(Take Down)</em></td>
                <td class="type-true normal status-move" colspan="2">ちょうおんぱ<br><em>(Supersonic)</em></td>
-               <td class="light-true hp-true" rowspan="2">50</td>
-               <td class="light-true hp-true" rowspan="2">45</td>
-               <td class="light-true hp-true" rowspan="2">77</td>
-               <td class="light-true hp-true" rowspan="2">33</td>
-               <td class="light-true hp-true" rowspan="2">39</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">2560</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -139,21 +154,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="20">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/beedrill.png" alt="Beedrill"></div>
                </td>
-               <td class="light-false" rowspan="2">Beedrill</td>
+               <td class="light-false" rowspan="2" data-species="beedrill">Beedrill</td>
                <td class="light-false" rowspan="2">20</td>
                <td class="type-false normal" colspan="2">みだれづき<br><em>(Fury Attack)</em></td>
                <td class="type-false normal status-move" colspan="2">きあいだめ<br><em>(Focus Energy)</em></td>
                <td class="type-false normal" colspan="2">とっしん<br><em>(Take Down)</em></td>
                <td class="type-false normal status-move" colspan="2">かたくなる<br><em>(Harden)</em></td>
-               <td class="light-false hp-false" rowspan="2">62</td>
-               <td class="light-false hp-false" rowspan="2">43</td>
-               <td class="light-false hp-false" rowspan="2">27</td>
-               <td class="light-false hp-false" rowspan="2">41</td>
-               <td class="light-false hp-false" rowspan="2">29</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">19000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">19000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">19000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">19000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">19000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -181,21 +201,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="20">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/nidoqueen.png" alt="Nidoqueen"></div>
                </td>
-               <td class="light-true" rowspan="2">Nidoqueen</td>
+               <td class="light-true" rowspan="2" data-species="nidoqueen">Nidoqueen</td>
                <td class="light-true" rowspan="2">20</td>
                <td class="type-true poison" colspan="2">どくばり<br><em>(Poison Sting)</em></td>
                <td class="type-true normal" colspan="2">たいあたり<br><em>(Tackle)</em></td>
                <td class="type-true normal status-move" colspan="2">しっぽをふる<br><em>(Tail Whip)</em></td>
                <td class="type-true normal" colspan="2">ひっかく<br><em>(Scratch)</em></td>
-               <td class="light-true hp-true" rowspan="2">69</td>
-               <td class="light-true hp-true" rowspan="2">43</td>
-               <td class="light-true hp-true" rowspan="2">43</td>
-               <td class="light-true hp-true" rowspan="2">35</td>
-               <td class="light-true hp-true" rowspan="2">35</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">5120</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">12800</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">5000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -223,21 +248,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="20">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/magneton.png" alt="Magneton"></div>
                </td>
-               <td class="light-false" rowspan="2">Magneton</td>
+               <td class="light-false" rowspan="2" data-species="magneton">Magneton</td>
                <td class="light-false" rowspan="2">20</td>
                <td class="type-false electric" colspan="2">でんきショック<br><em>(Thundershock)</em></td>
                <td class="type-false normal status-move" colspan="2">かげぶんしん<br><em>(Double Team)</em></td>
                <td class="type-false electric status-move" colspan="2">でんじは<br><em>(Thunder Wave)</em></td>
                <td class="type-false normal" colspan="2">ソニックブーム<br><em>(Sonicboom)</em></td>
-               <td class="light-false hp-false" rowspan="2">50</td>
-               <td class="light-false hp-false" rowspan="2">29</td>
-               <td class="light-false hp-false" rowspan="2">43</td>
-               <td class="light-false hp-false" rowspan="2">33</td>
-               <td class="light-false hp-false" rowspan="2">53</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -265,21 +295,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="20">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/alakazam-f.png" alt="Alakazam"></div>
                </td>
-               <td class="light-true" rowspan="2">Alakazam</td>
+               <td class="light-true" rowspan="2" data-species="alakazam">Alakazam</td>
                <td class="light-true" rowspan="2">20</td>
                <td class="type-true psychic" colspan="2">ねんりき<br><em>(Confusion)</em></td>
                <td class="type-true psychic" colspan="2">サイコウェーブ<br><em>(Psywave)</em></td>
                <td class="type-true normal status-move" colspan="2">かなしばり<br><em>(Disable)</em></td>
                <td class="type-true normal status-move" colspan="2">ゆびをふる<br><em>(Metronome)</em></td>
-               <td class="light-true hp-true" rowspan="2">57</td>
-               <td class="light-true hp-true" rowspan="2">30</td>
-               <td class="light-true hp-true" rowspan="2">28</td>
-               <td class="light-true hp-true" rowspan="2">58</td>
-               <td class="light-true hp-true" rowspan="2">64</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">14000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">14000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">14000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">14000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">14000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -318,29 +353,34 @@
                <th colspan="2">Pokémon</th>
                <th>Level</th>
                <th colspan="8">Moves</th>
-               <th>HP</th>
-               <th>Atk</th>
-               <th>Def</th>
-               <th>Spe</th>
-               <th>Spc</th>
+               <th colspan="2">HP IV &amp; EV</th>
+               <th colspan="2">Atk IV &amp; EV</th>
+               <th colspan="2">Def IV &amp; EV</th>
+               <th colspan="2">Spe IV &amp; EV</th>
+               <th colspan="2">Spc IV &amp; EV</th>
             </tr>
          </thead>
          <tbody>
-            <tr>
+            <tr data-level="25">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
                </td>
-               <td class="light-false" rowspan="2">Pikachu</td>
+               <td class="light-false" rowspan="2" data-species="pikachu">Pikachu</td>
                <td class="light-false" rowspan="2">25</td>
                <td class="type-false electric" colspan="2">でんきショック<br><em>(Thundershock)</em></td>
                <td class="type-false normal" colspan="2">いかり<br><em>(Rage)</em></td>
                <td class="type-false normal status-move" colspan="2">ものまね<br><em>(Mimic)</em></td>
                <td class="type-false electric status-move" colspan="2">でんじは<br><em>(Thunder Wave)</em></td>
-               <td class="light-false hp-false" rowspan="2">54</td>
-               <td class="light-false hp-false" rowspan="2">34</td>
-               <td class="light-false hp-false" rowspan="2">22</td>
-               <td class="light-false hp-false" rowspan="2">52</td>
-               <td class="light-false hp-false" rowspan="2">32</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -368,21 +408,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="25">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/pinsir.png" alt="Pinsir"></div>
                </td>
-               <td class="light-true" rowspan="2">Pinsir</td>
+               <td class="light-true" rowspan="2" data-species="pinsir">Pinsir</td>
                <td class="light-true" rowspan="2">25</td>
                <td class="type-true normal" colspan="2">はさむ<br><em>(Vicegrip)</em></td>
                <td class="type-true fighting" colspan="2">じごくぐるま<br><em>(Submission)</em></td>
                <td class="type-true normal status-move" colspan="2">かげぶんしん<br><em>(Double Team)</em></td>
                <td class="type-true normal" colspan="2">がまん<br><em>(Bide)</em></td>
-               <td class="light-true hp-true" rowspan="2">75</td>
-               <td class="light-true hp-true" rowspan="2">75</td>
-               <td class="light-true hp-true" rowspan="2">62</td>
-               <td class="light-true hp-true" rowspan="2">55</td>
-               <td class="light-true hp-true" rowspan="2">40</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">16000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">16000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">16000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">16000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">16000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -410,21 +455,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="25">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/ditto.png" alt="Ditto"></div>
                </td>
-               <td class="light-false" rowspan="2">Ditto</td>
+               <td class="light-false" rowspan="2" data-species="ditto">Ditto</td>
                <td class="light-false" rowspan="2">25</td>
                <td class="type-false normal status-move" colspan="2">へんしん<br><em>(Transform)</em></td>
                <td class="light-false" colspan="2" rowspan="2">N/A</td>
                <td class="light-false" colspan="2" rowspan="2">N/A</td>
                <td class="light-false" colspan="2" rowspan="2">N/A</td>
-               <td class="light-false hp-false" rowspan="2">61</td>
-               <td class="light-false hp-false" rowspan="2">31</td>
-               <td class="light-false hp-false" rowspan="2">31</td>
-               <td class="light-false hp-false" rowspan="2">31</td>
-               <td class="light-false hp-false" rowspan="2">31</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -434,21 +484,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="25">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/gengar.png" alt="Gengar"></div>
                </td>
-               <td class="light-true" rowspan="2">Gengar</td>
+               <td class="light-true" rowspan="2" data-species="gengar">Gengar</td>
                <td class="light-true" rowspan="2">25</td>
                <td class="type-true ghost" colspan="2">ナイトヘッド<br><em>(Night Shade)</em></td>
                <td class="type-true ghost" colspan="2">したでなめる<br><em>(Lick)</em></td>
                <td class="type-true ghost status-move" colspan="2">あやしいひかり<br><em>(Confuse Ray)</em></td>
                <td class="type-true normal status-move" colspan="2">ゆびをふる<br><em>(Metronome)</em></td>
-               <td class="light-true hp-true" rowspan="2">72</td>
-               <td class="light-true hp-true" rowspan="2">44</td>
-               <td class="light-true hp-true" rowspan="2">42</td>
-               <td class="light-true hp-true" rowspan="2">67</td>
-               <td class="light-true hp-true" rowspan="2">77</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">13000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">13000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">13000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">13000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">13000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -476,21 +531,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="25">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/nidoking.png" alt="Nidoking"></div>
                </td>
-               <td class="light-false" rowspan="2">Nidoking</td>
+               <td class="light-false" rowspan="2" data-species="nidoking">Nidoking</td>
                <td class="light-false" rowspan="2">25</td>
                <td class="type-false ground" colspan="2">じしん<br><em>(Earthquake)</em></td>
                <td class="type-false normal" colspan="2">あばれる<br><em>(Thrash)</em></td>
                <td class="type-false electric" colspan="2">１０まんボルト<br><em>(Thunderbolt)</em></td>
                <td class="type-false ice" colspan="2">ふぶき<br><em>(Blizzard)</em></td>
-               <td class="light-false hp-false" rowspan="2">79</td>
-               <td class="light-false hp-false" rowspan="2">55</td>
-               <td class="light-false hp-false" rowspan="2">47</td>
-               <td class="light-false hp-false" rowspan="2">51</td>
-               <td class="light-false hp-false" rowspan="2">46</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">5000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">5000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">5000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">5000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">5000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -518,21 +578,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/special.png" alt="Special"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="25">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/primeape.png" alt="Primeape"></div>
                </td>
-               <td class="light-true" rowspan="2">Primeape</td>
+               <td class="light-true" rowspan="2" data-species="primeape">Primeape</td>
                <td class="light-true" rowspan="2">25</td>
                <td class="type-true normal" colspan="2">メガトンパンチ<br><em>(Mega Punch)</em></td>
                <td class="type-true normal" colspan="2">メガトンキック<br><em>(Mega Kick)</em></td>
                <td class="type-true fighting" colspan="2">じごくぐるま<br><em>(Submission)</em></td>
                <td class="type-true ground" colspan="2">あなをほる<br><em>(Dig)</em></td>
-               <td class="light-true hp-true" rowspan="2">67</td>
-               <td class="light-true hp-true" rowspan="2">57</td>
-               <td class="light-true hp-true" rowspan="2">35</td>
-               <td class="light-true hp-true" rowspan="2">52</td>
-               <td class="light-true hp-true" rowspan="2">35</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -571,29 +636,34 @@
                <th colspan="2">Pokémon</th>
                <th>Level</th>
                <th colspan="8">Moves</th>
-               <th>HP</th>
-               <th>Atk</th>
-               <th>Def</th>
-               <th>Spe</th>
-               <th>Spc</th>
+               <th colspan="2">HP IV &amp; EV</th>
+               <th colspan="2">Atk IV &amp; EV</th>
+               <th colspan="2">Def IV &amp; EV</th>
+               <th colspan="2">Spe IV &amp; EV</th>
+               <th colspan="2">Spc IV &amp; EV</th>
             </tr>
          </thead>
          <tbody>
-            <tr>
+            <tr data-level="25">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
                </td>
-               <td class="light-false" rowspan="2">Gyarados</td>
+               <td class="light-false" rowspan="2" data-species="gyarados">Gyarados</td>
                <td class="light-false" rowspan="2">25</td>
                <td class="type-false electric" colspan="2">１０まんボルト<br><em>(Thunderbolt)</em></td>
                <td class="type-false water" colspan="2">バブルこうせん<br><em>(Bubblebeam)</em></td>
                <td class="type-false ice" colspan="2">ふぶき<br><em>(Blizzard)</em></td>
                <td class="type-false normal" colspan="2">のしかかり<br><em>(Body Slam)</em></td>
-               <td class="light-false hp-false" rowspan="2">84</td>
-               <td class="light-false hp-false" rowspan="2">69</td>
-               <td class="light-false hp-false" rowspan="2">46</td>
-               <td class="light-false hp-false" rowspan="2">47</td>
-               <td class="light-false hp-false" rowspan="2">57</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -621,21 +691,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="25">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/magneton.png" alt="Magneton"></div>
                </td>
-               <td class="light-true" rowspan="2">Magneton</td>
+               <td class="light-true" rowspan="2" data-species="magneton">Magneton</td>
                <td class="light-true" rowspan="2">25</td>
                <td class="type-true electric" colspan="2">１０まんボルト<br><em>(Thunderbolt)</em></td>
                <td class="type-true electric status-move" colspan="2">でんじは<br><em>(Thunder Wave)</em></td>
                <td class="type-true normal" colspan="2">とっしん<br><em>(Take Down)</em></td>
                <td class="type-true normal" colspan="2">スピードスター<br><em>(Swift)</em></td>
-               <td class="light-true hp-true" rowspan="2">65</td>
-               <td class="light-true hp-true" rowspan="2">40</td>
-               <td class="light-true hp-true" rowspan="2">57</td>
-               <td class="light-true hp-true" rowspan="2">45</td>
-               <td class="light-true hp-true" rowspan="2">70</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">7000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">7000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">7000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">7000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">7000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -663,21 +738,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="25">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/arcanine.png" alt="Arcanine"></div>
                </td>
-               <td class="light-false" rowspan="2">Arcanine</td>
+               <td class="light-false" rowspan="2" data-species="arcanine">Arcanine</td>
                <td class="light-false" rowspan="2">25</td>
                <td class="type-false fire" colspan="2">だいもんじ<br><em>(Fire Blast)</em></td>
                <td class="type-false normal" colspan="2">とっしん<br><em>(Take Down)</em></td>
                <td class="type-false normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-false poison status-move" colspan="2">どくどく<br><em>(Toxic)</em></td>
-               <td class="light-false hp-false" rowspan="2">87</td>
-               <td class="light-false hp-false" rowspan="2">67</td>
-               <td class="light-false hp-false" rowspan="2">52</td>
-               <td class="light-false hp-false" rowspan="2">60</td>
-               <td class="light-false hp-false" rowspan="2">52</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">16000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">16000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">16000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">16000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">16000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -705,21 +785,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="25">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/lapras.png" alt="Lapras"></div>
                </td>
-               <td class="light-true" rowspan="2">Lapras</td>
+               <td class="light-true" rowspan="2" data-species="lapras">Lapras</td>
                <td class="light-true" rowspan="2">25</td>
                <td class="type-true ice" colspan="2">れいとうビーム<br><em>(Ice Beam)</em></td>
                <td class="type-true water" colspan="2">なみのり<br><em>(Surf)</em></td>
                <td class="type-true normal" colspan="2">のしかかり<br><em>(Body Slam)</em></td>
                <td class="type-true normal status-move" colspan="2">うたう<br><em>(Sing)</em></td>
-               <td class="light-true hp-true" rowspan="2">102</td>
-               <td class="light-true hp-true" rowspan="2">49</td>
-               <td class="light-true hp-true" rowspan="2">47</td>
-               <td class="light-true hp-true" rowspan="2">37</td>
-               <td class="light-true hp-true" rowspan="2">54</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">1000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">1000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">1000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">1000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">1000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -747,21 +832,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="25">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/exeggutor.png" alt="Exeggutor"></div>
                </td>
-               <td class="light-false" rowspan="2">Exeggutor</td>
+               <td class="light-false" rowspan="2" data-species="exeggutor">Exeggutor</td>
                <td class="light-false" rowspan="2">25</td>
                <td class="type-false normal" colspan="2">とっしん<br><em>(Take Down)</em></td>
                <td class="type-false grass" colspan="2">メガドレイン<br><em>(Mega Drain)</em></td>
                <td class="type-false psychic" colspan="2">サイコキネシス<br><em>(Psychic)</em></td>
                <td class="type-false normal" colspan="2">だいばくはつ<br><em>(Explosion)</em></td>
-               <td class="light-false hp-false" rowspan="2">89</td>
-               <td class="light-false hp-false" rowspan="2">59</td>
-               <td class="light-false hp-false" rowspan="2">54</td>
-               <td class="light-false hp-false" rowspan="2">39</td>
-               <td class="light-false hp-false" rowspan="2">74</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">14000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">14000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">14000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">14000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">14000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -789,21 +879,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="25">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/jynx.png" alt="Jynx"></div>
                </td>
-               <td class="light-true" rowspan="2">Jynx</td>
+               <td class="light-true" rowspan="2" data-species="jynx">Jynx</td>
                <td class="light-true" rowspan="2">25</td>
                <td class="type-true normal status-move" colspan="2">あくまのキッス<br><em>(Lovely Kiss)</em></td>
                <td class="type-true psychic" colspan="2">サイコキネシス<br><em>(Psychic)</em></td>
                <td class="type-true ice" colspan="2">れいとうビーム<br><em>(Ice Beam)</em></td>
                <td class="type-true normal status-move" colspan="2">ゆびをふる<br><em>(Metronome)</em></td>
-               <td class="light-true hp-true" rowspan="2">73</td>
-               <td class="light-true hp-true" rowspan="2">36</td>
-               <td class="light-true hp-true" rowspan="2">28</td>
-               <td class="light-true hp-true" rowspan="2">58</td>
-               <td class="light-true hp-true" rowspan="2">58</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -842,29 +937,34 @@
                <th colspan="2">Pokémon</th>
                <th>Level</th>
                <th colspan="8">Moves</th>
-               <th>HP</th>
-               <th>Atk</th>
-               <th>Def</th>
-               <th>Spe</th>
-               <th>Spc</th>
+               <th colspan="2">HP IV &amp; EV</th>
+               <th colspan="2">Atk IV &amp; EV</th>
+               <th colspan="2">Def IV &amp; EV</th>
+               <th colspan="2">Spe IV &amp; EV</th>
+               <th colspan="2">Spc IV &amp; EV</th>
             </tr>
          </thead>
          <tbody>
-            <tr>
+            <tr data-level="30">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/vaporeon.png" alt="Vaporeon"></div>
                </td>
-               <td class="light-false" rowspan="2">Vaporeon</td>
+               <td class="light-false" rowspan="2" data-species="vaporeon">Vaporeon</td>
                <td class="light-false" rowspan="2">30</td>
                <td class="type-false ice" colspan="2">ふぶき<br><em>(Blizzard)</em></td>
                <td class="type-false water" colspan="2">なみのり<br><em>(Surf)</em></td>
                <td class="type-false normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-false normal status-move" colspan="2">すなかけ<br><em>(Sand-Attack)</em></td>
-               <td class="light-false hp-false" rowspan="2">121</td>
-               <td class="light-false hp-false" rowspan="2">47</td>
-               <td class="light-false hp-false" rowspan="2">44</td>
-               <td class="light-false hp-false" rowspan="2">47</td>
-               <td class="light-false hp-false" rowspan="2">74</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">3000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">3000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">3000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">3000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">3000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -892,21 +992,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="30">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/flareon.png" alt="Flareon"></div>
                </td>
-               <td class="light-true" rowspan="2">Flareon</td>
+               <td class="light-true" rowspan="2" data-species="flareon">Flareon</td>
                <td class="light-true" rowspan="2">30</td>
                <td class="type-true fire" colspan="2">だいもんじ<br><em>(Fire Blast)</em></td>
                <td class="type-true normal" colspan="2">スピードスター<br><em>(Swift)</em></td>
                <td class="type-true normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-true normal status-move" colspan="2">かげぶんしん<br><em>(Double Team)</em></td>
-               <td class="light-true hp-true" rowspan="2">88</td>
-               <td class="light-true hp-true" rowspan="2">92</td>
-               <td class="light-true hp-true" rowspan="2">50</td>
-               <td class="light-true hp-true" rowspan="2">53</td>
-               <td class="light-true hp-true" rowspan="2">80</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">18000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">18000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">18000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">18000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">18000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -934,21 +1039,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="30">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/jolteon.png" alt="Jolteon"></div>
                </td>
-               <td class="light-false" rowspan="2">Jolteon</td>
+               <td class="light-false" rowspan="2" data-species="jolteon">Jolteon</td>
                <td class="light-false" rowspan="2">30</td>
                <td class="type-false electric" colspan="2">１０まんボルト<br><em>(Thunderbolt)</em></td>
                <td class="type-false normal" colspan="2">のしかかり<br><em>(Body Slam)</em></td>
                <td class="type-false normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-false normal status-move" colspan="2">すなかけ<br><em>(Sand-Attack)</em></td>
-               <td class="light-false hp-false" rowspan="2">82</td>
-               <td class="light-false hp-false" rowspan="2">47</td>
-               <td class="light-false hp-false" rowspan="2">44</td>
-               <td class="light-false hp-false" rowspan="2">86</td>
-               <td class="light-false hp-false" rowspan="2">74</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">3000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">3000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">3000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">3000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">3000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -976,21 +1086,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="30">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/hypno-f.png" alt="Hypno"></div>
                </td>
-               <td class="light-true" rowspan="2">Hypno</td>
+               <td class="light-true" rowspan="2" data-species="hypno">Hypno</td>
                <td class="light-true" rowspan="2">30</td>
                <td class="type-true psychic status-move" colspan="2">さいみんじゅつ<br><em>(Hypnosis)</em></td>
                <td class="type-true psychic" colspan="2">ゆめくい<br><em>(Dream Eater)</em></td>
                <td class="type-true psychic" colspan="2">サイコキネシス<br><em>(Psychic)</em></td>
                <td class="type-true poison status-move" colspan="2">どくどく<br><em>(Toxic)</em></td>
-               <td class="light-true hp-true" rowspan="2">97</td>
-               <td class="light-true hp-true" rowspan="2">55</td>
-               <td class="light-true hp-true" rowspan="2">53</td>
-               <td class="light-true hp-true" rowspan="2">52</td>
-               <td class="light-true hp-true" rowspan="2">80</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">9000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">9000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">9000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">9000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">9000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -1018,21 +1133,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="30">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/machamp.png" alt="Machamp"></div>
                </td>
-               <td class="light-false" rowspan="2">Machamp</td>
+               <td class="light-false" rowspan="2" data-species="machamp">Machamp</td>
                <td class="light-false" rowspan="2">30</td>
                <td class="type-false fire" colspan="2">だいもんじ<br><em>(Fire Blast)</em></td>
                <td class="type-false fighting" colspan="2">ちきゅうなげ<br><em>(Seismic Toss)</em></td>
                <td class="type-false normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-false fighting" colspan="2">けたぐり<br><em>(Low Kick)</em></td>
-               <td class="light-false hp-false" rowspan="2">103</td>
-               <td class="light-false hp-false" rowspan="2">92</td>
-               <td class="light-false hp-false" rowspan="2">62</td>
-               <td class="light-false hp-false" rowspan="2">47</td>
-               <td class="light-false hp-false" rowspan="2">53</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">18000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">18000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">18000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">18000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">18000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -1060,21 +1180,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="30">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/golem.png" alt="Golem"></div>
                </td>
-               <td class="light-true" rowspan="2">Golem</td>
+               <td class="light-true" rowspan="2" data-species="golem">Golem</td>
                <td class="light-true" rowspan="2">30</td>
                <td class="type-true rock" colspan="2">いわなだれ<br><em>(Rock Slide)</em></td>
                <td class="type-true normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-true normal" colspan="2">メガトンキック<br><em>(Mega Kick)</em></td>
                <td class="type-true normal" colspan="2">だいばくはつ<br><em>(Explosion)</em></td>
-               <td class="light-true hp-true" rowspan="2">88</td>
-               <td class="light-true hp-true" rowspan="2">71</td>
-               <td class="light-true hp-true" rowspan="2">83</td>
-               <td class="light-true hp-true" rowspan="2">32</td>
-               <td class="light-true hp-true" rowspan="2">38</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -1113,29 +1238,34 @@
                <th colspan="2">Pokémon</th>
                <th>Level</th>
                <th colspan="8">Moves</th>
-               <th>HP</th>
-               <th>Atk</th>
-               <th>Def</th>
-               <th>Spe</th>
-               <th>Spc</th>
+               <th colspan="2">HP IV &amp; EV</th>
+               <th colspan="2">Atk IV &amp; EV</th>
+               <th colspan="2">Def IV &amp; EV</th>
+               <th colspan="2">Spe IV &amp; EV</th>
+               <th colspan="2">Spc IV &amp; EV</th>
             </tr>
          </thead>
          <tbody>
-            <tr>
+            <tr data-level="30">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/electrode.png" alt="Electrode"></div>
                </td>
-               <td class="light-false" rowspan="2">Electrode</td>
+               <td class="light-false" rowspan="2" data-species="electrode">Electrode</td>
                <td class="light-false" rowspan="2">30</td>
                <td class="type-false electric" colspan="2">１０まんボルト<br><em>(Thunderbolt)</em></td>
                <td class="type-false normal" colspan="2">だいばくはつ<br><em>(Explosion)</em></td>
                <td class="type-false normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-false normal status-move" colspan="2">かげぶんしん<br><em>(Double Team)</em></td>
-               <td class="light-false hp-false" rowspan="2">84</td>
-               <td class="light-false hp-false" rowspan="2">43</td>
-               <td class="light-false hp-false" rowspan="2">55</td>
-               <td class="light-false hp-false" rowspan="2">97</td>
-               <td class="light-false hp-false" rowspan="2">61</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">13000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">13000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">13000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">13000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">13000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -1163,21 +1293,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="30">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/scyther-f.png" alt="Scyther"></div>
                </td>
-               <td class="light-true" rowspan="2">Scyther</td>
+               <td class="light-true" rowspan="2" data-species="scyther">Scyther</td>
                <td class="light-true" rowspan="2">30</td>
                <td class="type-true normal" colspan="2">きりさく<br><em>(Slash)</em></td>
                <td class="type-true normal status-move" colspan="2">つるぎのまい<br><em>(Swords Dance)</em></td>
                <td class="type-true normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-true normal status-move" colspan="2">かげぶんしん<br><em>(Double Team)</em></td>
-               <td class="light-true hp-true" rowspan="2">85</td>
-               <td class="light-true hp-true" rowspan="2">74</td>
-               <td class="light-true hp-true" rowspan="2">56</td>
-               <td class="light-true hp-true" rowspan="2">71</td>
-               <td class="light-true hp-true" rowspan="2">41</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">3000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">3000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">3000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">3000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">3000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -1205,21 +1340,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="30">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/fearow.png" alt="Fearow"></div>
                </td>
-               <td class="light-false" rowspan="2">Fearow</td>
+               <td class="light-false" rowspan="2" data-species="fearow">Fearow</td>
                <td class="light-false" rowspan="2">30</td>
                <td class="type-false flying" colspan="2">ドリルくちばし<br><em>(Drill Peck)</em></td>
                <td class="type-false flying" colspan="2">そらをとぶ<br><em>(Fly)</em></td>
                <td class="type-false normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-false normal status-move" colspan="2">かげぶんしん<br><em>(Double Team)</em></td>
-               <td class="light-false hp-false" rowspan="2">85</td>
-               <td class="light-false hp-false" rowspan="2">65</td>
-               <td class="light-false hp-false" rowspan="2">50</td>
-               <td class="light-false hp-false" rowspan="2">71</td>
-               <td class="light-false hp-false" rowspan="2">48</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">9000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">9000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">9000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">9000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">9000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -1247,21 +1387,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="30">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/kangaskhan.png" alt="Kangaskhan"></div>
                </td>
-               <td class="light-true" rowspan="2">Kangaskhan</td>
+               <td class="light-true" rowspan="2" data-species="kangaskhan">Kangaskhan</td>
                <td class="light-true" rowspan="2">30</td>
                <td class="type-true ground" colspan="2">じしん<br><em>(Earthquake)</em></td>
                <td class="type-true ice" colspan="2">ふぶき<br><em>(Blizzard)</em></td>
                <td class="type-true water" colspan="2">なみのり<br><em>(Surf)</em></td>
                <td class="type-true fighting" colspan="2">ちきゅうなげ<br><em>(Seismic Toss)</em></td>
-               <td class="light-true hp-true" rowspan="2">105</td>
-               <td class="light-true hp-true" rowspan="2">64</td>
-               <td class="light-true hp-true" rowspan="2">55</td>
-               <td class="light-true hp-true" rowspan="2">61</td>
-               <td class="light-true hp-true" rowspan="2">31</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">1000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">1000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">1000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">1000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">1000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -1289,21 +1434,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="30">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/tauros.png" alt="Tauros"></div>
                </td>
-               <td class="light-false" rowspan="2">Tauros</td>
+               <td class="light-false" rowspan="2" data-species="tauros">Tauros</td>
                <td class="light-false" rowspan="2">30</td>
                <td class="type-false electric" colspan="2">かみなり<br><em>(Thunder)</em></td>
                <td class="type-false normal" colspan="2">とっしん<br><em>(Take Down)</em></td>
                <td class="type-false normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-false ground" colspan="2">じしん<br><em>(Earthquake)</em></td>
-               <td class="light-false hp-false" rowspan="2">87</td>
-               <td class="light-false hp-false" rowspan="2">67</td>
-               <td class="light-false hp-false" rowspan="2">64</td>
-               <td class="light-false hp-false" rowspan="2">73</td>
-               <td class="light-false hp-false" rowspan="2">49</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">1000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -1331,21 +1481,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="30">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/dugtrio.png" alt="Dugtrio"></div>
                </td>
-               <td class="light-true" rowspan="2">Dugtrio</td>
+               <td class="light-true" rowspan="2" data-species="dugtrio">Dugtrio</td>
                <td class="light-true" rowspan="2">30</td>
                <td class="type-true ground" colspan="2">じしん<br><em>(Earthquake)</em></td>
                <td class="type-true ground" colspan="2">あなをほる<br><em>(Dig)</em></td>
                <td class="type-true normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-true normal status-move" colspan="2">すなかけ<br><em>(Sand-Attack)</em></td>
-               <td class="light-true hp-true" rowspan="2">64</td>
-               <td class="light-true hp-true" rowspan="2">56</td>
-               <td class="light-true hp-true" rowspan="2">38</td>
-               <td class="light-true hp-true" rowspan="2">80</td>
-               <td class="light-true hp-true" rowspan="2">50</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">3000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">3000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">3000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">3000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">3000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -1384,29 +1539,34 @@
                <th colspan="2">Pokémon</th>
                <th>Level</th>
                <th colspan="8">Moves</th>
-               <th>HP</th>
-               <th>Atk</th>
-               <th>Def</th>
-               <th>Spe</th>
-               <th>Spc</th>
+               <th colspan="2">HP IV &amp; EV</th>
+               <th colspan="2">Atk IV &amp; EV</th>
+               <th colspan="2">Def IV &amp; EV</th>
+               <th colspan="2">Spe IV &amp; EV</th>
+               <th colspan="2">Spc IV &amp; EV</th>
             </tr>
          </thead>
          <tbody>
-            <tr>
+            <tr data-level="51">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/venusaur-f.png" alt="Venusaur"></div>
                </td>
-               <td class="light-false" rowspan="2">Venusaur</td>
+               <td class="light-false" rowspan="2" data-species="venusaur">Venusaur</td>
                <td class="light-false" rowspan="2">51</td>
                <td class="type-false grass" colspan="2">メガドレイン<br><em>(Mega Drain)</em></td>
                <td class="type-false grass" colspan="2">ソーラービーム<br><em>(Solarbeam)</em></td>
                <td class="type-false grass status-move" colspan="2">やどりぎのタネ<br><em>(Leech Seed)</em></td>
                <td class="type-false grass status-move" colspan="2">ねむりごな<br><em>(Sleep Powder)</em></td>
-               <td class="light-false hp-false" rowspan="2">144</td>
-               <td class="light-false hp-false" rowspan="2">90</td>
-               <td class="light-false hp-false" rowspan="2">91</td>
-               <td class="light-false hp-false" rowspan="2">88</td>
-               <td class="light-false hp-false" rowspan="2">109</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">300</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">300</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">300</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">300</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">300</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -1434,21 +1594,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="51">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/charizard.png" alt="Charizard"></div>
                </td>
-               <td class="light-true" rowspan="2">Charizard</td>
+               <td class="light-true" rowspan="2" data-species="charizard">Charizard</td>
                <td class="light-true" rowspan="2">51</td>
                <td class="type-true fire" colspan="2">ほのおのうず<br><em>(Fire Spin)</em></td>
                <td class="type-true fire" colspan="2">だいもんじ<br><em>(Fire Blast)</em></td>
                <td class="type-true ground" colspan="2">あなをほる<br><em>(Dig)</em></td>
                <td class="type-true ground" colspan="2">じしん<br><em>(Earthquake)</em></td>
-               <td class="light-true hp-true" rowspan="2">148</td>
-               <td class="light-true hp-true" rowspan="2">98</td>
-               <td class="light-true hp-true" rowspan="2">92</td>
-               <td class="light-true hp-true" rowspan="2">115</td>
-               <td class="light-true hp-true" rowspan="2">99</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">4300</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">4300</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">4300</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">4300</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">4300</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -1476,21 +1641,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="51">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/blastoise.png" alt="Blastoise"></div>
                </td>
-               <td class="light-false" rowspan="2">Blastoise</td>
+               <td class="light-false" rowspan="2" data-species="blastoise">Blastoise</td>
                <td class="light-false" rowspan="2">51</td>
                <td class="type-false water" colspan="2">バブルこうせん<br><em>(Bubblebeam)</em></td>
                <td class="type-false ice" colspan="2">ふぶき<br><em>(Blizzard)</em></td>
                <td class="type-false ground" colspan="2">じしん<br><em>(Earthquake)</em></td>
                <td class="type-false fighting" colspan="2">ちきゅうなげ<br><em>(Seismic Toss)</em></td>
-               <td class="light-false hp-false" rowspan="2">152</td>
-               <td class="light-false hp-false" rowspan="2">100</td>
-               <td class="light-false hp-false" rowspan="2">118</td>
-               <td class="light-false hp-false" rowspan="2">95</td>
-               <td class="light-false hp-false" rowspan="2">102</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">8000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">8000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">8000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">8000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">8000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -1518,21 +1688,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="51">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/pikachu-f.png" alt="Pikachu"></div>
                </td>
-               <td class="light-true" rowspan="2">Pikachu</td>
+               <td class="light-true" rowspan="2" data-species="pikachu">Pikachu</td>
                <td class="light-true" rowspan="2">51</td>
                <td class="type-true electric" colspan="2">１０まんボルト<br><em>(Thunderbolt)</em></td>
                <td class="type-true normal status-move" colspan="2">かげぶんしん<br><em>(Double Team)</em></td>
                <td class="type-true normal" colspan="2">でんこうせっか<br><em>(Quick Attack)</em></td>
                <td class="type-true psychic status-move" colspan="2">ねむる<br><em>(Rest)</em></td>
-               <td class="light-true hp-true" rowspan="2">98</td>
-               <td class="light-true hp-true" rowspan="2">63</td>
-               <td class="light-true hp-true" rowspan="2">37</td>
-               <td class="light-true hp-true" rowspan="2">98</td>
-               <td class="light-true hp-true" rowspan="2">58</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">300</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">300</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">300</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">300</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">300</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -1560,21 +1735,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="51">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/lapras.png" alt="Lapras"></div>
                </td>
-               <td class="light-false" rowspan="2">Lapras</td>
+               <td class="light-false" rowspan="2" data-species="lapras">Lapras</td>
                <td class="light-false" rowspan="2">51</td>
                <td class="type-false water" colspan="2">ハイドロポンプ<br><em>(Hydro Pump)</em></td>
                <td class="type-false psychic" colspan="2">サイコキネシス<br><em>(Psychic)</em></td>
                <td class="type-false ice" colspan="2">ふぶき<br><em>(Blizzard)</em></td>
                <td class="type-false normal status-move" colspan="2">うたう<br><em>(Sing)</em></td>
-               <td class="light-false hp-false" rowspan="2">207</td>
-               <td class="light-false hp-false" rowspan="2">105</td>
-               <td class="light-false hp-false" rowspan="2">100</td>
-               <td class="light-false hp-false" rowspan="2">80</td>
-               <td class="light-false hp-false" rowspan="2">116</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">13000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">13000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">13000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">13000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">13000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -1602,21 +1782,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="51">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/snorlax.png" alt="Snorlax"></div>
                </td>
-               <td class="light-true" rowspan="2">Snorlax</td>
+               <td class="light-true" rowspan="2" data-species="snorlax">Snorlax</td>
                <td class="light-true" rowspan="2">51</td>
                <td class="type-true normal" colspan="2">のしかかり<br><em>(Body Slam)</em></td>
                <td class="type-true normal status-move" colspan="2">ゆびをふる<br><em>(Metronome)</em></td>
                <td class="type-true normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-true normal" colspan="2">じばく<br><em>(Selfdestruct)</em></td>
-               <td class="light-true hp-true" rowspan="2">235</td>
-               <td class="light-true hp-true" rowspan="2">128</td>
-               <td class="light-true hp-true" rowspan="2">83</td>
-               <td class="light-true hp-true" rowspan="2">47</td>
-               <td class="light-true hp-true" rowspan="2">83</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">9000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">9000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">9000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">9000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">9000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -1655,29 +1840,34 @@
                <th colspan="2">Pokémon</th>
                <th>Level</th>
                <th colspan="8">Moves</th>
-               <th>HP</th>
-               <th>Atk</th>
-               <th>Def</th>
-               <th>Spe</th>
-               <th>Spc</th>
+               <th colspan="2">HP IV &amp; EV</th>
+               <th colspan="2">Atk IV &amp; EV</th>
+               <th colspan="2">Def IV &amp; EV</th>
+               <th colspan="2">Spe IV &amp; EV</th>
+               <th colspan="2">Spc IV &amp; EV</th>
             </tr>
          </thead>
          <tbody>
-            <tr>
+            <tr data-level="51">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/gengar.png" alt="Gengar"></div>
                </td>
-               <td class="light-false" rowspan="2">Gengar</td>
+               <td class="light-false" rowspan="2" data-species="gengar">Gengar</td>
                <td class="light-false" rowspan="2">51</td>
                <td class="type-false psychic status-move" colspan="2">さいみんじゅつ<br><em>(Hypnosis)</em></td>
                <td class="type-false psychic" colspan="2">ゆめくい<br><em>(Dream Eater)</em></td>
                <td class="type-false normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-false normal" colspan="2">だいばくはつ<br><em>(Explosion)</em></td>
-               <td class="light-false hp-false" rowspan="2">135</td>
-               <td class="light-false hp-false" rowspan="2">84</td>
-               <td class="light-false hp-false" rowspan="2">79</td>
-               <td class="light-false hp-false" rowspan="2">130</td>
-               <td class="light-false hp-false" rowspan="2">150</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">11000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">11000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">11000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">11000</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">11000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -1705,21 +1895,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="51">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/electrode.png" alt="Electrode"></div>
                </td>
-               <td class="light-true" rowspan="2">Electrode</td>
+               <td class="light-true" rowspan="2" data-species="electrode">Electrode</td>
                <td class="light-true" rowspan="2">51</td>
                <td class="type-true electric" colspan="2">１０まんボルト<br><em>(Thunderbolt)</em></td>
                <td class="type-true normal status-move" colspan="2">かげぶんしん<br><em>(Double Team)</em></td>
                <td class="type-true normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-true normal" colspan="2">だいばくはつ<br><em>(Explosion)</em></td>
-               <td class="light-true hp-true" rowspan="2">134</td>
-               <td class="light-true hp-true" rowspan="2">68</td>
-               <td class="light-true hp-true" rowspan="2">89</td>
-               <td class="light-true hp-true" rowspan="2">160</td>
-               <td class="light-true hp-true" rowspan="2">99</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -1747,21 +1942,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="51">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/starmie.png" alt="Starmie"></div>
                </td>
-               <td class="light-false" rowspan="2">Starmie</td>
+               <td class="light-false" rowspan="2" data-species="starmie">Starmie</td>
                <td class="light-false" rowspan="2">51</td>
                <td class="type-false electric" colspan="2">１０まんボルト<br><em>(Thunderbolt)</em></td>
                <td class="type-false ice" colspan="2">ふぶき<br><em>(Blizzard)</em></td>
                <td class="type-false psychic" colspan="2">サイコキネシス<br><em>(Psychic)</em></td>
                <td class="type-false normal status-move" colspan="2">じこさいせい<br><em>(Recover)</em></td>
-               <td class="light-false hp-false" rowspan="2">124</td>
-               <td class="light-false hp-false" rowspan="2">84</td>
-               <td class="light-false hp-false" rowspan="2">94</td>
-               <td class="light-false hp-false" rowspan="2">124</td>
-               <td class="light-false hp-false" rowspan="2">109</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">400</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">400</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">400</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">400</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">400</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -1789,21 +1989,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="51">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/chansey.png" alt="Chansey"></div>
                </td>
-               <td class="light-true" rowspan="2">Chansey</td>
+               <td class="light-true" rowspan="2" data-species="chansey">Chansey</td>
                <td class="light-true" rowspan="2">51</td>
                <td class="type-true normal status-move" colspan="2">ちいさくなる<br><em>(Minimize)</em></td>
                <td class="type-true poison status-move" colspan="2">どくどく<br><em>(Toxic)</em></td>
                <td class="type-true psychic" colspan="2">サイコキネシス<br><em>(Psychic)</em></td>
                <td class="type-true normal status-move" colspan="2">タマゴうみ<br><em>(Softboiled)</em></td>
-               <td class="light-true hp-true" rowspan="2">328</td>
-               <td class="light-true hp-true" rowspan="2">22</td>
-               <td class="light-true hp-true" rowspan="2">22</td>
-               <td class="light-true hp-true" rowspan="2">68</td>
-               <td class="light-true hp-true" rowspan="2">124</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">10000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -1831,21 +2036,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="51">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/alakazam-f.png" alt="Alakazam"></div>
                </td>
-               <td class="light-false" rowspan="2">Alakazam</td>
+               <td class="light-false" rowspan="2" data-species="alakazam">Alakazam</td>
                <td class="light-false" rowspan="2">51</td>
                <td class="type-false psychic status-move" colspan="2">リフレクター<br><em>(Reflect)</em></td>
                <td class="type-false fighting" colspan="2">ちきゅうなげ<br><em>(Seismic Toss)</em></td>
                <td class="type-false psychic" colspan="2">サイコキネシス<br><em>(Psychic)</em></td>
                <td class="type-false normal status-move" colspan="2">じこさいせい<br><em>(Recover)</em></td>
-               <td class="light-false hp-false" rowspan="2">117</td>
-               <td class="light-false hp-false" rowspan="2">56</td>
-               <td class="light-false hp-false" rowspan="2">50</td>
-               <td class="light-false hp-false" rowspan="2">127</td>
-               <td class="light-false hp-false" rowspan="2">142</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
+               <td class="light-false" rowspan="2">0</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -1873,21 +2083,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="53">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/tauros.png" alt="Tauros"></div>
                </td>
-               <td class="light-true" rowspan="2">Tauros</td>
+               <td class="light-true" rowspan="2" data-species="tauros">Tauros</td>
                <td class="light-true" rowspan="2">53</td>
                <td class="type-true electric" colspan="2">１０まんボルト<br><em>(Thunderbolt)</em></td>
                <td class="type-true ice" colspan="2">ふぶき<br><em>(Blizzard)</em></td>
                <td class="type-true normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-true ground" colspan="2">じしん<br><em>(Earthquake)</em></td>
-               <td class="light-true hp-true" rowspan="2">153</td>
-               <td class="light-true hp-true" rowspan="2">122</td>
-               <td class="light-true hp-true" rowspan="2">116</td>
-               <td class="light-true hp-true" rowspan="2">132</td>
-               <td class="light-true hp-true" rowspan="2">90</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">7000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">7000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">7000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">7000</td>
+               <td class="light-true hp-true" rowspan="2">0</td>
+               <td class="light-true hp-true" rowspan="2">7000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -1926,29 +2141,34 @@
                <th colspan="2">Pokémon</th>
                <th>Level</th>
                <th colspan="8">Moves</th>
-               <th>HP</th>
-               <th>Atk</th>
-               <th>Def</th>
-               <th>Spe</th>
-               <th>Spc</th>
+               <th colspan="2">HP IV &amp; EV</th>
+               <th colspan="2">Atk IV &amp; EV</th>
+               <th colspan="2">Def IV &amp; EV</th>
+               <th colspan="2">Spe IV &amp; EV</th>
+               <th colspan="2">Spc IV &amp; EV</th>
             </tr>
          </thead>
          <tbody>
-            <tr>
+            <tr data-level="100">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/articuno.png" alt="Articuno"></div>
                </td>
-               <td class="light-false" rowspan="2">Articuno</td>
+               <td class="light-false" rowspan="2" data-species="articuno">Articuno</td>
                <td class="light-false" rowspan="2">100</td>
                <td class="type-false ice" colspan="2">ふぶき<br><em>(Blizzard)</em></td>
                <td class="type-false flying" colspan="2">そらをとぶ<br><em>(Fly)</em></td>
                <td class="type-false normal" colspan="2">かまいたち<br><em>(Razor Wind)</em></td>
                <td class="type-false ice status-move" colspan="2">しろいきり<br><em>(Mist)</em></td>
-               <td class="light-false hp-false" rowspan="2">346</td>
-               <td class="light-false hp-false" rowspan="2">231</td>
-               <td class="light-false hp-false" rowspan="2">261</td>
-               <td class="light-false hp-false" rowspan="2">231</td>
-               <td class="light-false hp-false" rowspan="2">311</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">11000</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">11000</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">11000</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">11000</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">11000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -1976,21 +2196,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="100">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/zapdos.png" alt="Zapdos"></div>
                </td>
-               <td class="light-true" rowspan="2">Zapdos</td>
+               <td class="light-true" rowspan="2" data-species="zapdos">Zapdos</td>
                <td class="light-true" rowspan="2">100</td>
                <td class="type-true electric" colspan="2">１０まんボルト<br><em>(Thunderbolt)</em></td>
                <td class="type-true flying" colspan="2">そらをとぶ<br><em>(Fly)</em></td>
                <td class="type-true psychic status-move" colspan="2">こうそくいどう<br><em>(Agility)</em></td>
                <td class="type-true flying" colspan="2">ドリルくちばし<br><em>(Drill Peck)</em></td>
-               <td class="light-true hp-true" rowspan="2">354</td>
-               <td class="light-true hp-true" rowspan="2">249</td>
-               <td class="light-true hp-true" rowspan="2">239</td>
-               <td class="light-true hp-true" rowspan="2">269</td>
-               <td class="light-true hp-true" rowspan="2">319</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">19000</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">19000</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">19000</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">19000</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">19000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -2018,21 +2243,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="100">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/moltres.png" alt="Moltres"></div>
                </td>
-               <td class="light-false" rowspan="2">Moltres</td>
+               <td class="light-false" rowspan="2" data-species="moltres">Moltres</td>
                <td class="light-false" rowspan="2">100</td>
                <td class="type-false fire" colspan="2">だいもんじ<br><em>(Fire Blast)</em></td>
                <td class="type-false flying" colspan="2">そらをとぶ<br><em>(Fly)</em></td>
                <td class="type-false fire" colspan="2">ほのおのうず<br><em>(Fire Spin)</em></td>
                <td class="type-false flying" colspan="2">ゴッドバード<br><em>(Sky Attack)</em></td>
-               <td class="light-false hp-false" rowspan="2">336</td>
-               <td class="light-false hp-false" rowspan="2">251</td>
-               <td class="light-false hp-false" rowspan="2">231</td>
-               <td class="light-false hp-false" rowspan="2">231</td>
-               <td class="light-false hp-false" rowspan="2">301</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">4300</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">4300</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">4300</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">4300</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">4300</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -2060,21 +2290,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="100">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/dragonite.png" alt="Dragonite"></div>
                </td>
-               <td class="light-true" rowspan="2">Dragonite</td>
+               <td class="light-true" rowspan="2" data-species="dragonite">Dragonite</td>
                <td class="light-true" rowspan="2">100</td>
                <td class="type-true ice" colspan="2">ふぶき<br><em>(Blizzard)</em></td>
                <td class="type-true water" colspan="2">なみのり<br><em>(Surf)</em></td>
                <td class="type-true normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-true normal" colspan="2">のしかかり<br><em>(Body Slam)</em></td>
-               <td class="light-true hp-true" rowspan="2">350</td>
-               <td class="light-true hp-true" rowspan="2">331</td>
-               <td class="light-true hp-true" rowspan="2">253</td>
-               <td class="light-true hp-true" rowspan="2">223</td>
-               <td class="light-true hp-true" rowspan="2">263</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">13000</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">13000</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">13000</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">13000</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">13000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -2102,21 +2337,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/physical.png" alt="Physical"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="100">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/aerodactyl.png" alt="Aerodactyl"></div>
                </td>
-               <td class="light-false" rowspan="2">Aerodactyl</td>
+               <td class="light-false" rowspan="2" data-species="aerodactyl">Aerodactyl</td>
                <td class="light-false" rowspan="2">100</td>
                <td class="type-false fire" colspan="2">だいもんじ<br><em>(Fire Blast)</em></td>
                <td class="type-false flying" colspan="2">そらをとぶ<br><em>(Fly)</em></td>
                <td class="type-false normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-false normal status-move" colspan="2">ちょうおんぱ<br><em>(Supersonic)</em></td>
-               <td class="light-false hp-false" rowspan="2">316</td>
-               <td class="light-false hp-false" rowspan="2">261</td>
-               <td class="light-false hp-false" rowspan="2">181</td>
-               <td class="light-false hp-false" rowspan="2">311</td>
-               <td class="light-false hp-false" rowspan="2">171</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">4300</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">4300</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">4300</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">4300</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">4300</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -2144,21 +2384,26 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="100">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/gyarados-f.png" alt="Gyarados"></div>
                </td>
-               <td class="light-true" rowspan="2">Gyarados</td>
+               <td class="light-true" rowspan="2" data-species="gyarados">Gyarados</td>
                <td class="light-true" rowspan="2">100</td>
                <td class="type-true dragon" colspan="2">りゅうのいかり<br><em>(Dragon Rage)</em></td>
                <td class="type-true water" colspan="2">ハイドロポンプ<br><em>(Hydro Pump)</em></td>
                <td class="type-true normal" colspan="2">はかいこうせん<br><em>(Hyper Beam)</em></td>
                <td class="type-true normal" colspan="2">すてみタックル<br><em>(Double-Edge)</em></td>
-               <td class="light-true hp-true" rowspan="2">364</td>
-               <td class="light-true hp-true" rowspan="2">319</td>
-               <td class="light-true hp-true" rowspan="2">227</td>
-               <td class="light-true hp-true" rowspan="2">231</td>
-               <td class="light-true hp-true" rowspan="2">269</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">19000</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">19000</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">19000</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">19000</td>
+               <td class="light-true hp-true" rowspan="2">15</td>
+               <td class="light-true hp-true" rowspan="2">19000</td>
             </tr>
             <tr class="light-true">
                <td>

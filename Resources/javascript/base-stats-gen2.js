@@ -31,9 +31,10 @@ const BASE_STATS = {
   "raichu": { hp:  60, atk:  90, def:  55, spa:  90, spd:  80, spe: 100 },  // #26 Raichu
   "sandshrew": { hp:  50, atk:  75, def:  85, spa:  20, spd:  30, spe:  40 },  // #27 Sandshrew
   "sandslash": { hp:  75, atk: 100, def: 110, spa:  45, spd:  55, spe:  65 },  // #28 Sandslash
-  "nidoran": { hp:  55, atk:  47, def:  52, spa:  40, spd:  40, spe:  41 },  // #29 Nidoran?
+  "nidoran-f": { hp:  55, atk:  47, def:  52, spa:  40, spd:  40, spe:  41 },  // #29 NidoranF
   "nidorina": { hp:  70, atk:  62, def:  67, spa:  55, spd:  55, spe:  56 },  // #30 Nidorina
   "nidoqueen": { hp:  90, atk:  82, def:  87, spa:  75, spd:  85, spe:  76 },  // #31 Nidoqueen
+  "nidoran-m": { hp:  46, atk:  57, def:  40, spa:  40, spd:  40, spe:  50 },  // #29 NidoranF
   "nidorino": { hp:  61, atk:  72, def:  57, spa:  55, spd:  55, spe:  65 },  // #33 Nidorino
   "nidoking": { hp:  81, atk:  92, def:  77, spa:  85, spd:  75, spe:  85 },  // #34 Nidoking
   "clefairy": { hp:  70, atk:  45, def:  48, spa:  60, spd:  65, spe:  35 },  // #35 Clefairy

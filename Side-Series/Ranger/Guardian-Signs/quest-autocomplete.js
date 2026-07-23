@@ -32,6 +32,9 @@ var requests = [
 	{value: "Happiny, Come Home!", data: "quest-20"},
 	{value: "The Boy's Quiz", data: "quest-21"},
 	{value: "Spin, Hitmontop, Spin!", data: "quest-22"},
+	{value: "Vulpix's Ruins Exploration", data: "quest-23"},
+	{value: "A Fisherman's Litter", data: "quest-24"},
+	{value: "The Photographer's Request", data: "quest-25"},
 ];
 
 

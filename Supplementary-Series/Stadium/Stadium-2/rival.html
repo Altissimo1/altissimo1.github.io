@@ -7,6 +7,9 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="../../../colors.js"></script>
       <link rel="stylesheet" id="common" href="../../../common.css">
+      <script>var STAT_TOGGLE_CONFIG = { formula: 'gen1', defaultLevel: 100 };</script>
+      <script src="../../../Resources/javascript/base-stats-gen2.js"></script>
+      <script src="../../../Resources/javascript/stat-toggle.js"></script>
       <link rel="stylesheet" id="style">
    </head>
    <body>
@@ -19,6 +22,8 @@
       <p>After completing Round 1 or Round 2 of all Stadium cups and Gym Leader Castle, the Rival's lair appears. Selecting his lair allows the player to engage in a battle with him. Defeating his Round 1 team awards the player a Farfetch'd with Baton Pass and is the trigger to unlock Round 2, and defeating his Round 2 team awards the player a Gligar with Earthquake. In the original release, these Pokémon can be transferred to a connected copy of Gold, Silver, or Crystal. In the Nintendo Switch rerelease, these Pokémon cannot be used for anything.</p>
       <p>In the original release, the player can choose to use either a team selected from rental Pokémon, a team consisting of Pokémon from a connected copy of Red, Green, Blue, Yellow, Gold, Silver, or Crystal, or a mix of both. In the Nintendo Switch rerelease, only rental Pokémon can be used. The rentals the player can select from are identical to those of the <a href="prime-cup.html">Prime Cup</a>, but Mew and Celebi can never be rented, and Pikachu and Psyduck always have their Round 1 moves.</p>
       <p>The player is allowed to use all six Pokémon in their team during the battle.</p>
+      <br>
+      <div id="stat-toggle-container"></div>
       <h4>Round 1</h4>
       <table>
          <caption>Rival</caption>
@@ -28,32 +33,38 @@
                <th>Level</th>
                <th>Item</th>
                <th colspan="8">Moves</th>
-               <th>HP</th>
-               <th>Atk</th>
-               <th>Def</th>
-               <th>Spe</th>
-               <th>SpA</th>
-               <th>SpD</th>
+               <th colspan="2">HP IV &amp; EV</th>
+               <th colspan="2">Atk IV &amp; EV</th>
+               <th colspan="2">Def IV &amp; EV</th>
+               <th colspan="2">Spe IV &amp; EV</th>
+               <th colspan="2">SpA IV &amp; EV</th>
+               <th colspan="2">SpD IV &amp; EV</th>
             </tr>
          </thead>
          <tbody>
-            <tr>
+            <tr data-level="100">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/mewtwo.png" alt="Mewtwo"></div>
                </td>
-               <td class="light-false" rowspan="2">Mewtwo</td>
+               <td class="light-false" rowspan="2" data-species="mewtwo">Mewtwo</td>
                <td class="light-false" rowspan="2">100</td>
                <td class="light-false" rowspan="2">Twistedspoon</td>
                <td class="psychic" colspan="2">Psychic</td>
                <td class="electric" colspan="2">Thunderpunch</td>
                <td class="fighting" colspan="2">Hidden Power<br>(70 power)</td>
                <td class="status" colspan="2">Safeguard</td>
-               <td class="light-false" rowspan="2">391</td>
-               <td class="light-false" rowspan="2">293</td>
-               <td class="light-false" rowspan="2">255</td>
-               <td class="light-false" rowspan="2">342</td>
-               <td class="light-false" rowspan="2">383</td>
-               <td class="light-false" rowspan="2">255</td>
+               <td class="light-false" rowspan="2">3</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">8</td>
+               <td class="light-false" rowspan="2">44521</td>
+               <td class="light-false" rowspan="2">8</td>
+               <td class="light-false" rowspan="2">47961</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">36481</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">26569</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">26569</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -81,23 +92,29 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="100">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/ho-oh.png" alt="Ho-Oh"></div>
                </td>
-               <td class="light-true" rowspan="2">Ho-Oh</td>
+               <td class="light-true" rowspan="2" data-species="ho-oh">Ho-Oh</td>
                <td class="light-true" rowspan="2">100</td>
                <td class="light-true" rowspan="2">Charcoal</td>
                <td class="fire" colspan="2">Sacred Fire</td>
                <td class="steel" colspan="2">Steel Wing</td>
                <td class="ground" colspan="2">Earthquake</td>
                <td class="status" colspan="2">Safeguard</td>
-               <td class="light-true" rowspan="2">392</td>
-               <td class="light-true" rowspan="2">333</td>
-               <td class="light-true" rowspan="2">255</td>
-               <td class="light-true" rowspan="2">262</td>
-               <td class="light-true" rowspan="2">295</td>
-               <td class="light-true" rowspan="2">383</td>
+               <td class="light-true" rowspan="2">7</td>
+               <td class="light-true" rowspan="2">50000</td>
+               <td class="light-true" rowspan="2">6</td>
+               <td class="light-true" rowspan="2">50000</td>
+               <td class="light-true" rowspan="2">7</td>
+               <td class="light-true" rowspan="2">50000</td>
+               <td class="light-true" rowspan="2">7</td>
+               <td class="light-true" rowspan="2">65535</td>
+               <td class="light-true" rowspan="2">7</td>
+               <td class="light-true" rowspan="2">50000</td>
+               <td class="light-true" rowspan="2">7</td>
+               <td class="light-true" rowspan="2">50000</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -125,23 +142,29 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="100">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/lugia.png" alt="Lugia"></div>
                </td>
-               <td class="light-false" rowspan="2">Lugia</td>
+               <td class="light-false" rowspan="2" data-species="lugia">Lugia</td>
                <td class="light-false" rowspan="2">100</td>
                <td class="light-false" rowspan="2">Sharp Beak</td>
                <td class="flying" colspan="2">Aeroblast</td>
                <td class="psychic" colspan="2">Psychic</td>
                <td class="water" colspan="2">Surf</td>
                <td class="status" colspan="2">Safeguard</td>
-               <td class="light-false" rowspan="2">392</td>
-               <td class="light-false" rowspan="2">253</td>
-               <td class="light-false" rowspan="2">335</td>
-               <td class="light-false" rowspan="2">302</td>
-               <td class="light-false" rowspan="2">255</td>
-               <td class="light-false" rowspan="2">383</td>
+               <td class="light-false" rowspan="2">7</td>
+               <td class="light-false" rowspan="2">50000</td>
+               <td class="light-false" rowspan="2">6</td>
+               <td class="light-false" rowspan="2">50000</td>
+               <td class="light-false" rowspan="2">7</td>
+               <td class="light-false" rowspan="2">50000</td>
+               <td class="light-false" rowspan="2">7</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">7</td>
+               <td class="light-false" rowspan="2">50000</td>
+               <td class="light-false" rowspan="2">7</td>
+               <td class="light-false" rowspan="2">50000</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -182,32 +205,38 @@
                <th>Level</th>
                <th>Item</th>
                <th colspan="8">Moves</th>
-               <th>HP</th>
-               <th>Atk</th>
-               <th>Def</th>
-               <th>Spe</th>
-               <th>SpA</th>
-               <th>SpD</th>
+               <th colspan="2">HP IV &amp; EV</th>
+               <th colspan="2">Atk IV &amp; EV</th>
+               <th colspan="2">Def IV &amp; EV</th>
+               <th colspan="2">Spe IV &amp; EV</th>
+               <th colspan="2">SpA IV &amp; EV</th>
+               <th colspan="2">SpD IV &amp; EV</th>
             </tr>
          </thead>
          <tbody>
-            <tr>
+            <tr data-level="100">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/lugia.png" alt="Lugia"></div>
                </td>
-               <td class="light-false" rowspan="2">Lugia</td>
+               <td class="light-false" rowspan="2" data-species="lugia">Lugia</td>
                <td class="light-false" rowspan="2">100</td>
                <td class="light-false" rowspan="2">Leftovers</td>
                <td class="flying" colspan="2">Aeroblast</td>
                <td class="ground" colspan="2">Earthquake</td>
                <td class="psychic" colspan="2">Psychic</td>
                <td class="status" colspan="2">Safeguard</td>
-               <td class="light-false" rowspan="2">415</td>
-               <td class="light-false" rowspan="2">278</td>
-               <td class="light-false" rowspan="2">358</td>
-               <td class="light-false" rowspan="2">318</td>
-               <td class="light-false" rowspan="2">278</td>
-               <td class="light-false" rowspan="2">406</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
             </tr>
             <tr class="light-false">
                <td>
@@ -235,23 +264,29 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/status.png" alt="Status"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="100">
                <td class="light-true" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-2/ho-oh.png" alt="Ho-Oh"></div>
                </td>
-               <td class="light-true" rowspan="2">Ho-Oh</td>
+               <td class="light-true" rowspan="2" data-species="ho-oh">Ho-Oh</td>
                <td class="light-true" rowspan="2">100</td>
                <td class="light-true" rowspan="2">Quick Claw</td>
                <td class="fire" colspan="2">Sacred Fire</td>
                <td class="electric" colspan="2">Thunder</td>
                <td class="ground" colspan="2">Earthquake</td>
                <td class="grass" colspan="2">Giga Drain</td>
-               <td class="light-true" rowspan="2">415</td>
-               <td class="light-true" rowspan="2">358</td>
-               <td class="light-true" rowspan="2">278</td>
-               <td class="light-true" rowspan="2">278</td>
-               <td class="light-true" rowspan="2">318</td>
-               <td class="light-true" rowspan="2">406</td>
+               <td class="light-true" rowspan="2">15</td>
+               <td class="light-true" rowspan="2">65535</td>
+               <td class="light-true" rowspan="2">15</td>
+               <td class="light-true" rowspan="2">65535</td>
+               <td class="light-true" rowspan="2">15</td>
+               <td class="light-true" rowspan="2">65535</td>
+               <td class="light-true" rowspan="2">15</td>
+               <td class="light-true" rowspan="2">65535</td>
+               <td class="light-true" rowspan="2">15</td>
+               <td class="light-true" rowspan="2">65535</td>
+               <td class="light-true" rowspan="2">15</td>
+               <td class="light-true" rowspan="2">65535</td>
             </tr>
             <tr class="light-true">
                <td>
@@ -279,23 +314,29 @@
                   <div class="flex-img"><img src="../../../Resources/images/icons/types/special.png" alt="Special"></div>
                </td>
             </tr>
-            <tr>
+            <tr data-level="100">
                <td class="light-false" rowspan="2">
                   <div class="flex-img"><img src="../../../Resources/images/home-renders/gen-1/mewtwo.png" alt="Mewtwo"></div>
                </td>
-               <td class="light-false" rowspan="2">Mewtwo</td>
+               <td class="light-false" rowspan="2" data-species="mewtwo">Mewtwo</td>
                <td class="light-false" rowspan="2">100</td>
                <td class="light-false" rowspan="2">King's Rock</td>
                <td class="psychic" colspan="2">Psychic</td>
                <td class="fighting" colspan="2">Submission</td>
                <td class="electric" colspan="2">Thunderbolt</td>
                <td class="status" colspan="2">Recover</td>
-               <td class="light-false" rowspan="2">415</td>
-               <td class="light-false" rowspan="2">318</td>
-               <td class="light-false" rowspan="2">278</td>
-               <td class="light-false" rowspan="2">358</td>
-               <td class="light-false" rowspan="2">406</td>
-               <td class="light-false" rowspan="2">278</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
+               <td class="light-false" rowspan="2">15</td>
+               <td class="light-false" rowspan="2">65535</td>
             </tr>
             <tr class="light-false">
                <td>

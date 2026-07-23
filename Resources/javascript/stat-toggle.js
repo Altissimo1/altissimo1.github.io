@@ -29,8 +29,8 @@
  * FORMULA NOTES
  *   'gen3' (default): Gen 3+ formula — EVs 0–252, IVs 0–31, nature modifier.
  *   'gen1': Gen 1/2 formula — EVs are Stat Exp 0–65535, IVs are DVs 0–15.
- *     Bonus = ceil(sqrt(StatExp)) / 4 (kept as decimal, capped at 63).
- *     The 'spc' stat key maps to both SpA and SpD with separate base stats.
+ *     Bonus = floor(ceil(sqrt(StatExp)) / 4), capped at 63.
+ *     The 'spc' stat key maps to the single Gen 1 Special stat (uses 'spa' base stat).
  *     No nature modifier.
  *
  * TOGGLE UI PLACEMENT
@@ -54,11 +54,18 @@
     ivTiers:          null,    // if set (array), IV widget renders a <select> with these values
     fixedIv:          null,    // if set (number), silently uses this IV with no widget shown
     showIvOverride:   true,   // when false, suppresses the IV override input in the level widget
+    levelMin:         1,      // minimum for the level number input
+    levelMax:         100,    // maximum for the level number input
     levelTiers:       null,   // if set (array), level widget renders a <select> with these values
     formula:          'gen3',
     useDataIv:        false,  // if true, read IV from data-iv on each <tr> or <table> (EV-only tables)
   };
-  var config = Object.assign({}, defaults, window.STAT_TOGGLE_CONFIG || {});
+  var userConfig = window.STAT_TOGGLE_CONFIG || {};
+  var config = Object.assign({}, defaults, userConfig);
+  // Auto-clamp IV max to 15 for Gen 1/2 (DVs) unless the page overrides it.
+  if (config.formula === 'gen1' && !('ivMax' in userConfig)) {
+    config.ivMax = 15;
+  }
 
   // ─── Nature modifier table ─────────────────────────────────────────────────
 
@@ -108,7 +115,9 @@
 
   function normalizeSpecies(name) {
     return name
-      .replace(/[♂♀]/g, '')
+      .replace(/\s+[♀♂]$/g, '')   // strip trailing display-gender " ♀"/" ♂" (non-species)
+      .replace(/♀/g, '-f')         // Nidoran♀ → nidoran-f
+      .replace(/♂/g, '-m')         // Nidoran♂ → nidoran-m
       .replace(/\./g, '')
       .replace(/\?/g, '')
       .toLowerCase()
@@ -142,7 +151,7 @@
     var inner;
     if (config.formula === 'gen1') {
       // Gen 1/2: ev is Stat Exp (0–65535), iv is DV (0–15). No nature.
-      var statExpBonus = Math.min(63, Math.ceil(Math.sqrt(ev)) / 4);
+      var statExpBonus = Math.min(63, Math.floor(Math.ceil(Math.sqrt(ev)) / 4));
       inner = Math.floor((base * 2 + iv * 2 + statExpBonus) * level / 100);
       return (statKey === 'hp') ? (inner + level + 10) : (inner + 5);
     }
@@ -197,7 +206,7 @@
     var numStatCells = evOnly ? statKeys.length : statKeys.length * 2;
     var rows = table.querySelectorAll('tbody tr');
     rows.forEach(function (row) {
-      var rowspanCells = Array.from(row.querySelectorAll('td[rowspan]'));
+      var rowspanCells = Array.from(row.querySelectorAll('td[rowspan]')).filter(function(c){return !c.hasAttribute('data-species');});
       if (rowspanCells.length < numStatCells) return;
       var statCells = rowspanCells.slice(-numStatCells);
       statCells.forEach(function (cell, i) {
@@ -245,7 +254,7 @@
    */
   function switchToCalculated(tables, level, ivOverride, natureOverride) {
     tables.forEach(function (table) {
-      var effectiveLevel = parseInt(table.dataset.level, 10) || level;
+      var tableLevel = parseInt(table.dataset.level, 10) || level;
 
       // ── Collapse / relabel stat column headers ──────────────────────────
       table.querySelectorAll('thead th[data-stat-key]').forEach(function (th) {
@@ -255,15 +264,8 @@
         if (mode === 'evonly') {
           // Single EV column: just change the label, no colspan adjustment
           th.textContent = STAT_LABELS[key] || key.toUpperCase();
-        } else if (key === 'spc' && config.formula === 'gen1') {
-          // gen1 spc: split one colspan=2 header into SpA + SpD
-          th.removeAttribute('colspan');
-          th.textContent = 'SpA';
-          var spdTh = document.createElement('th');
-          spdTh.textContent = 'SpD';
-          spdTh.dataset.statInserted = 'spc';
-          th.parentNode.insertBefore(spdTh, th.nextSibling);
         } else {
+          // IV+EV paired header: collapse colspan, relabel (gen1 spc stays as one "Spc" column)
           th.removeAttribute('colspan');
           th.textContent = STAT_LABELS[key] || key.toUpperCase();
         }
@@ -271,23 +273,16 @@
 
       // ── Process IV+EV paired cells ──────────────────────────────────────
       table.querySelectorAll('td[data-stat-role="iv"]').forEach(function (ivCell) {
-        var statKey = ivCell.dataset.statKey;
-        var row     = ivCell.closest('tr');
+        var statKey      = ivCell.dataset.statKey;
+        var row          = ivCell.closest('tr');
+        var effectiveLevel = parseInt(row.dataset.level, 10) || tableLevel;
         var evCell  = row.querySelector('td[data-stat-role="ev"][data-stat-key="' + statKey + '"]');
 
-        // In gen1 spc mode: EV cell becomes SpD; otherwise hide it
-        if (statKey === 'spc' && config.formula === 'gen1') {
-          // leave evCell visible — populated below
-        } else {
-          if (evCell) evCell.style.display = 'none';
-        }
+        // Hide the EV cell — only the IV cell shows the calculated result
+        if (evCell) evCell.style.display = 'none';
 
         var nameCell = row.querySelector('td[data-species]');
-        if (!nameCell) {
-          ivCell.textContent = '—';
-          if (statKey === 'spc' && config.formula === 'gen1' && evCell) evCell.textContent = '—';
-          return;
-        }
+        if (!nameCell) { ivCell.textContent = '—'; return; }
 
         var speciesKey = nameCell.dataset.species || normalizeSpecies(nameCell.textContent.trim());
         var nature     = resolveNature(row, natureOverride);
@@ -295,7 +290,6 @@
         if (!baseStats) {
           console.warn('stat-toggle: no base stats for "' + speciesKey + '"');
           ivCell.textContent = '—';
-          if (statKey === 'spc' && config.formula === 'gen1' && evCell) evCell.textContent = '—';
           return;
         }
 
@@ -304,21 +298,17 @@
           : parseInt(ivCell.dataset.statOriginal, 10);
         var ev = evCell ? parseInt(evCell.dataset.statOriginal, 10) : 0;
 
-        if (statKey === 'spc' && config.formula === 'gen1') {
-          var spaResult = calculateStat('spa', baseStats['spa'], iv, ev, null, effectiveLevel);
-          var spdResult = calculateStat('spd', baseStats['spd'], iv, ev, null, effectiveLevel);
-          ivCell.textContent = (spaResult !== null) ? spaResult : '—';
-          if (evCell) evCell.textContent = (spdResult !== null) ? spdResult : '—';
-        } else {
-          var result = calculateStat(statKey, baseStats[statKey], iv, ev, nature, effectiveLevel);
-          ivCell.textContent = (result !== null) ? result : '—';
-        }
+        // gen1 spc: use 'spa' base stat (spa === spd in Gen 1, single Special stat)
+        var calcKey = (statKey === 'spc' && config.formula === 'gen1') ? 'spa' : statKey;
+        var result  = calculateStat(calcKey, baseStats[calcKey], iv, ev, nature, effectiveLevel);
+        ivCell.textContent = (result !== null) ? result : '—';
       });
 
       // ── Process standalone EV cells (EV-only tables) ───────────────────
       table.querySelectorAll('td[data-stat-role="ev"]').forEach(function (evCell) {
-        var statKey = evCell.dataset.statKey;
-        var row     = evCell.closest('tr');
+        var statKey      = evCell.dataset.statKey;
+        var row          = evCell.closest('tr');
+        var effectiveLevel = parseInt(row.dataset.level, 10) || tableLevel;
 
         // Skip if there is a paired IV cell — handled above
         if (row.querySelector('td[data-stat-role="iv"][data-stat-key="' + statKey + '"]')) return;
@@ -365,11 +355,6 @@
    */
   function switchToIvEv(tables) {
     tables.forEach(function (table) {
-
-      // Remove any inserted SpD header cells (gen1 spc split)
-      table.querySelectorAll('thead th[data-stat-inserted]').forEach(function (th) {
-        th.parentNode.removeChild(th);
-      });
 
       // Restore stat column headers
       table.querySelectorAll('thead th[data-stat-key]').forEach(function (th) {
@@ -468,9 +453,9 @@
         } else {
           levelInput = document.createElement('input');
           levelInput.type  = 'number';
-          levelInput.min   = 1;
-          levelInput.max   = 100;
-          levelInput.value = level;
+          levelInput.min   = config.levelMin;
+          levelInput.max   = config.levelMax;
+          levelInput.value = Math.min(Math.max(level, config.levelMin), config.levelMax);
           levelInput.style.width = '4em';
         }
 
