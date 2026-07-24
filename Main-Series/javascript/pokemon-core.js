@@ -198,7 +198,7 @@
     // =========================================================
 
     /** Default generation search order for sprite fallback. */
-    const DEFAULT_GEN_ORDER = ["gen-4", "gen-3", "gen-2", "gen-1"];
+    const DEFAULT_GEN_ORDER = ["gen-9", "gen-8", "gen-7", "gen-6", "gen-5", "gen-4", "gen-3", "gen-2", "gen-1"];
 
     /** Cache the first working URL per normalized name to avoid repeated 404s. */
     const SPRITE_URL_CACHE = new Map();

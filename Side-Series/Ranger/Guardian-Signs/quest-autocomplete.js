@@ -35,6 +35,14 @@ var requests = [
 	{value: "Vulpix's Ruins Exploration", data: "quest-23"},
 	{value: "A Fisherman's Litter", data: "quest-24"},
 	{value: "The Photographer's Request", data: "quest-25"},
+	{value: "Purugly, Come Home!", data: "quest-26"},
+	{value: "The Fisherman's Rage", data: "quest-27"},
+	{value: "A Hot Meal for Buneary", data: "quest-28"},
+	{value: "Brother on the Dangerous Cliff", data: "quest-29"},
+	{value: "The Piplup in Faldera Volcano", data: "quest-30"},
+	{value: "The Friendly Guide", data: "quest-31"},
+	{value: "The Famous Ranger Detective", data: "quest-32"},
+	{value: "The Forest Vespiquen", data: "quest-33"},
 ];
 
 
