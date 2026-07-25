@@ -43,6 +43,10 @@ var requests = [
 	{value: "The Friendly Guide", data: "quest-31"},
 	{value: "The Famous Ranger Detective", data: "quest-32"},
 	{value: "The Forest Vespiquen", data: "quest-33"},
+	{value: "The Coral Charm", data: "quest-34"},
+	{value: "Something Money Can't Buy", data: "quest-35"},
+	{value: "The Ninetales in Mt. Sorbet", data: "quest-36"},
+	{value: "Electivire Visions", data: "quest-37"},
 ];
 
 
