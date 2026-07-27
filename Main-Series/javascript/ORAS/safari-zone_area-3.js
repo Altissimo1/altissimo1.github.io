@@ -128,7 +128,7 @@ window.ORAS_DATA = {
         "options": [
           {
             "level": "28",
-            "name": "Xatu",
+            "name": "Rhyhorn",
             "games": [
               "Omega Ruby",
               "Alpha Sapphire"
@@ -143,7 +143,7 @@ window.ORAS_DATA = {
         "options": [
           {
             "level": "30",
-            "name": "Xatu",
+            "name": "Rhyhorn",
             "games": [
               "Omega Ruby",
               "Alpha Sapphire"
@@ -158,7 +158,7 @@ window.ORAS_DATA = {
         "options": [
           {
             "level": "30",
-            "name": "Xatu",
+            "name": "Rhyhorn",
             "games": [
               "Omega Ruby",
               "Alpha Sapphire"
@@ -173,7 +173,7 @@ window.ORAS_DATA = {
         "options": [
           {
             "level": "30",
-            "name": "Xatu",
+            "name": "Rhyhorn",
             "games": [
               "Omega Ruby",
               "Alpha Sapphire"
@@ -310,7 +310,7 @@ window.ORAS_DATA = {
         "options": [
           {
             "level": "28",
-            "name": "Wobbuffet",
+            "name": "Heracross",
             "games": [
               "Omega Ruby",
               "Alpha Sapphire"
@@ -325,7 +325,7 @@ window.ORAS_DATA = {
         "options": [
           {
             "level": "30",
-            "name": "Wobbuffet",
+            "name": "Heracross",
             "games": [
               "Omega Ruby",
               "Alpha Sapphire"
@@ -340,7 +340,7 @@ window.ORAS_DATA = {
         "options": [
           {
             "level": "30",
-            "name": "Wobbuffet",
+            "name": "Heracross",
             "games": [
               "Omega Ruby",
               "Alpha Sapphire"
@@ -355,7 +355,7 @@ window.ORAS_DATA = {
         "options": [
           {
             "level": "30",
-            "name": "Wobbuffet",
+            "name": "Heracross",
             "games": [
               "Omega Ruby",
               "Alpha Sapphire"
