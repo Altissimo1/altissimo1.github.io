@@ -47,6 +47,21 @@ var requests = [
 	{value: "Something Money Can't Buy", data: "quest-35"},
 	{value: "The Ninetales in Mt. Sorbet", data: "quest-36"},
 	{value: "Electivire Visions", data: "quest-37"},
+	{value: "Herb's Research", data: "quest-38"},
+	{value: "A Cry from the Sky", data: "quest-39"},
+	{value: "A Fun Ride in the Sky", data: "quest-40"},
+	{value: "Gather the Drifloon!", data: "quest-41"},
+	{value: "Mitonga Island's Odd Stones 2", data: "quest-42"},
+	{value: "The Explorer's Report", data: "quest-43"},
+	{value: "The Explorer's Letter", data: "quest-44"},
+	{value: "The Precious Red Berry", data: "quest-45"},
+	{value: "Ralph's Bright Idea", data: "quest-46"},
+	{value: "Dolce Island's Pichu", data: "quest-47"},
+	{value: "The Forbidden Song", data: "quest-48"},
+	{value: "Power for Nema", data: "quest-49"},
+	{value: "Ranger Contest!", data: "quest-50"},
+	{value: "The Sad Suicune", data: "quest-51"},
+	{value: "Go-Rock Oblivia!", data: "quest-52"},
 ];
 
 
