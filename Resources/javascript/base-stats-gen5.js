@@ -2,7 +2,8 @@
 // Base stats for all Pokémon through Gen 5 (Unova).
 // Keys are normalized: lowercase, spaces → hyphens, punctuation removed.
 // Special forms included: deoxys-attack, deoxys-defense, deoxys-speed,
-//   wormadam-plant, wormadam-sandy, wormadam-trash, etc.
+//   wormadam-plant, wormadam-sandy, wormadam-trash,
+//   rotom-heat, rotom-wash, rotom-frost, rotom-fan, rotom-mow, etc.
 
 const BASE_STATS = {
   "bulbasaur": { hp:  45, atk:  49, def:  49, spa:  65, spd:  65, spe:  45 },  // #1 Bulbasaur
@@ -489,6 +490,11 @@ const BASE_STATS = {
   "dusknoir": { hp:  45, atk: 100, def: 135, spa:  65, spd: 135, spe:  45 },  // #477 Dusknoir
   "froslass": { hp:  70, atk:  80, def:  70, spa:  80, spd:  70, spe: 110 },  // #478 Froslass
   "rotom": { hp:  50, atk:  50, def:  77, spa:  95, spd:  77, spe:  91 },  // #479 Rotom
+  "rotom-heat": { hp:  50, atk:  65, def: 107, spa: 105, spd: 107, spe:  86 },  // #479 Rotom-Heat (Gen 5 values)
+  "rotom-wash": { hp:  50, atk:  65, def: 107, spa: 105, spd: 107, spe:  86 },  // #479 Rotom-Wash (Gen 5 values)
+  "rotom-frost": { hp:  50, atk:  65, def: 107, spa: 105, spd: 107, spe:  86 },  // #479 Rotom-Frost (Gen 5 values)
+  "rotom-fan": { hp:  50, atk:  65, def: 107, spa: 105, spd: 107, spe:  86 },  // #479 Rotom-Fan (Gen 5 values)
+  "rotom-mow": { hp:  50, atk:  65, def: 107, spa: 105, spd: 107, spe:  86 },  // #479 Rotom-Mow (Gen 5 values)
   "uxie": { hp:  75, atk:  75, def: 130, spa:  75, spd: 130, spe:  95 },  // #480 Uxie
   "mesprit": { hp:  80, atk: 105, def: 105, spa: 105, spd: 105, spe:  80 },  // #481 Mesprit
   "azelf": { hp:  75, atk: 125, def:  70, spa: 125, spd:  70, spe: 115 },  // #482 Azelf

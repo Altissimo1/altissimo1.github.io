@@ -33,6 +33,15 @@
  *     The 'spc' stat key maps to the single Gen 1 Special stat (uses 'spa' base stat).
  *     No nature modifier.
  *
+ * FIXED-EV TABLES (no stat columns)
+ *   A table with a data-ev attribute (e.g. <table data-iv="20" data-ev="0">)
+ *   but no IV/EV header columns is still toggleable. Every Pokémon in it is
+ *   treated as having that EV value in all six stats. In calculated view, six
+ *   stat columns (HP, Atk, Def, SpA, SpD, Spe) are appended to the table and
+ *   removed again when switching back. IVs come from data-iv on the name cell
+ *   or table (or the global IV override), and level from data-level on the
+ *   row or table (or the level widget).
+ *
  * TOGGLE UI PLACEMENT
  *   Uses <div id="stat-toggle-container"> if present; otherwise inserts
  *   before the first toggleable table.
@@ -227,7 +236,14 @@
     var toggleable = [];
     document.querySelectorAll('table').forEach(function (table) {
       var statKeys = parseStatHeaders(table);
-      if (statKeys.length === 0) return;
+      if (statKeys.length === 0) {
+        // Fixed-EV table: no stat columns, EVs given by data-ev on the table.
+        if (table.dataset.ev !== undefined && table.querySelector('td[data-species]')) {
+          table.dataset.statFixedEv = '1';
+          toggleable.push(table);
+        }
+        return;
+      }
       annotateDataRows(table, statKeys);
       toggleable.push(table);
     });
@@ -252,8 +268,67 @@
    * @param {number|null} ivOverride  — replaces all IV cell values in the formula
    * @param {string|null} natureOverride — nature name to use for all rows
    */
+  // ─── Fixed-EV tables ──────────────────────────────────────────────────────
+
+  var FIXED_EV_STATS = ['hp', 'atk', 'def', 'spa', 'spd', 'spe'];
+
+  function removeFixedEvColumns(table) {
+    table.querySelectorAll('.stat-fixed-ev-added').forEach(function (el) { el.remove(); });
+  }
+
+  function addFixedEvColumns(table, level, ivOverride, natureOverride) {
+    removeFixedEvColumns(table);
+    var tableLevel = parseInt(table.dataset.level, 10) || level;
+    var ev = parseInt(table.dataset.ev, 10) || 0;
+
+    var headRow = table.querySelector('thead tr');
+    if (headRow) {
+      FIXED_EV_STATS.forEach(function (key) {
+        var th = document.createElement('th');
+        th.className = 'stat-fixed-ev-added';
+        th.textContent = STAT_LABELS[key];
+        headRow.appendChild(th);
+      });
+    }
+
+    table.querySelectorAll('tbody tr').forEach(function (row) {
+      var nameCell = row.querySelector('td[data-species]');
+      if (!nameCell) return;
+      var effectiveLevel = parseInt(row.dataset.level, 10) || tableLevel;
+      var speciesKey = nameCell.dataset.species || normalizeSpecies(nameCell.textContent.trim());
+      var nature     = resolveNature(row, natureOverride);
+      var baseStats  = (typeof BASE_STATS !== 'undefined') ? BASE_STATS[speciesKey] : null;
+      if (!baseStats) console.warn('stat-toggle: no base stats for "' + speciesKey + '"');
+
+      var iv;
+      if (ivOverride !== null && ivOverride !== undefined) {
+        iv = parseInt(ivOverride, 10);
+      } else {
+        var ivStr = (nameCell.dataset.iv !== undefined && nameCell.dataset.iv !== '') ? nameCell.dataset.iv : table.dataset.iv;
+        iv = parseInt(ivStr, 10);
+      }
+
+      // Match the row's cell styling (e.g. light-true / light-false)
+      var lightClass = Array.from(nameCell.classList).filter(function (c) { return /^light-/.test(c); })[0] || '';
+      var span = nameCell.getAttribute('rowspan');
+
+      FIXED_EV_STATS.forEach(function (key) {
+        var td = document.createElement('td');
+        td.className = ('stat-fixed-ev-added ' + lightClass).trim();
+        if (span) td.setAttribute('rowspan', span);
+        var result = baseStats ? calculateStat(key, baseStats[key], iv, ev, nature, effectiveLevel) : null;
+        td.textContent = (result !== null) ? result : '—';
+        row.appendChild(td);
+      });
+    });
+  }
+
   function switchToCalculated(tables, level, ivOverride, natureOverride) {
     tables.forEach(function (table) {
+      if (table.dataset.statFixedEv) {
+        addFixedEvColumns(table, level, ivOverride, natureOverride);
+        return;
+      }
       var tableLevel = parseInt(table.dataset.level, 10) || level;
 
       // ── Collapse / relabel stat column headers ──────────────────────────
@@ -355,6 +430,10 @@
    */
   function switchToIvEv(tables) {
     tables.forEach(function (table) {
+      if (table.dataset.statFixedEv) {
+        removeFixedEvColumns(table);
+        return;
+      }
 
       // Restore stat column headers
       table.querySelectorAll('thead th[data-stat-key]').forEach(function (th) {
