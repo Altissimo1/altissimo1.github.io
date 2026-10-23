@@ -52,7 +52,9 @@ $(function() {
 	});
 	
 	// Set listener on checkbox object.
-	$("#cookie-check").click(function() {
+	$(".cookie-check").click(function() {
+		// Keep the English and Japanese checkboxes in sync.
+		$(".cookie-check").prop("checked", $(this).is(":checked"));
 		// If cookies are checked, add a cookie to state that it is checked, and add existing checks to cookies
 		if ($(this).is(":checked")) {
 			setCookie(cookiePrefix + "cookie", true);
@@ -74,13 +76,13 @@ $(function() {
 		}
 	});
 	
-	$("#reset-button").click(function() {
+	$(".reset-button").click(function() {
 		$.each($(".click-img"), function() {
 			changeIcon(false, this);
 		});
 	});
 	
-	$("#check-all-button").click(function() {
+	$(".check-all-button").click(function() {
 		$.each($(".click-img"), function() {
 			changeIcon(true, this);
 		});
@@ -242,7 +244,7 @@ $(function() {
 		let cookie = getCookie(cookiePrefix + "cookie");
 		if (cookie != "" && cookie != null) {
 			useCookies = true;
-			$("#cookie-check").prop('checked', true);
+			$(".cookie-check").prop('checked', true);
 		}
 	};
 	
