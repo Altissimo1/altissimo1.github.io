@@ -23,7 +23,7 @@
  *     ivMin:            0,     // minimum for IV input
  *     ivMax:            31,    // maximum for IV input
  *     ivDefault:        null,  // pre-fill IV input with this value
- *     formula:          'gen3',// 'gen3' (default) or 'gen1'
+ *     formula:          'gen3',// 'gen3' (default), 'gen2', or 'gen1'
  *   };
  *
  * FORMULA NOTES
@@ -32,6 +32,10 @@
  *     Bonus = floor(ceil(sqrt(StatExp)) / 4), capped at 63.
  *     The 'spc' stat key maps to the single Gen 1 Special stat (uses 'spa' base stat).
  *     No nature modifier.
+ *   'gen2': Same formula as 'gen1', but a shared 'spc' column (one Special DV
+ *     and one Special Stat Exp, e.g. "Spc IV & EV") is split into two
+ *     calculated columns, SpA and SpD, using the separate Gen 2 base stats.
+ *     Tables that already have separate SpA/SpD columns work the same as 'gen1'.
  *
  * FIXED-EV TABLES (no stat columns)
  *   A table with a data-ev attribute (e.g. <table data-iv="20" data-ev="0">)
@@ -71,8 +75,12 @@
   };
   var userConfig = window.STAT_TOGGLE_CONFIG || {};
   var config = Object.assign({}, defaults, userConfig);
+  // Gen 1 and Gen 2 share the DV / Stat Exp formula.
+  var DV_FORMULA = (config.formula === 'gen1' || config.formula === 'gen2');
+  // Gen 2: a shared Special column is split into SpA and SpD when calculated.
+  var SPLIT_SPC = (config.formula === 'gen2');
   // Auto-clamp IV max to 15 for Gen 1/2 (DVs) unless the page overrides it.
-  if (config.formula === 'gen1' && !('ivMax' in userConfig)) {
+  if (DV_FORMULA && !('ivMax' in userConfig)) {
     config.ivMax = 15;
   }
 
@@ -158,7 +166,7 @@
     // Base HP of 1 is unique to Shedinja across all generations covered here.
     if (statKey === 'hp' && base === 1) return 1;
     var inner;
-    if (config.formula === 'gen1') {
+    if (DV_FORMULA) {
       // Gen 1/2: ev is Stat Exp (0–65535), iv is DV (0–15). No nature.
       var statExpBonus = Math.min(63, Math.floor(Math.ceil(Math.sqrt(ev)) / 4));
       inner = Math.floor((base * 2 + iv * 2 + statExpBonus) * level / 100);
@@ -332,6 +340,7 @@
       var tableLevel = parseInt(table.dataset.level, 10) || level;
 
       // ── Collapse / relabel stat column headers ──────────────────────────
+      removeSplitSpcHeaders(table);
       table.querySelectorAll('thead th[data-stat-key]').forEach(function (th) {
         var key  = th.dataset.statKey;
         var mode = th.dataset.statMode;
@@ -339,6 +348,19 @@
         if (mode === 'evonly') {
           // Single EV column: just change the label, no colspan adjustment
           th.textContent = STAT_LABELS[key] || key.toUpperCase();
+        } else if (key === 'spc' && SPLIT_SPC) {
+          // gen2 spc: the IV & EV pair becomes two calculated columns, SpA and SpD
+          th.removeAttribute('colspan');
+          th.textContent = STAT_LABELS.spa;
+          var spdTh = th.cloneNode(false);
+          spdTh.removeAttribute('data-stat-key');
+          spdTh.removeAttribute('data-stat-mode');
+          spdTh.removeAttribute('data-saved-colspan');
+          spdTh.removeAttribute('data-saved-html');
+          spdTh.removeAttribute('id');
+          spdTh.classList.add('stat-split-spc-added');
+          spdTh.textContent = STAT_LABELS.spd;
+          th.parentNode.insertBefore(spdTh, th.nextSibling);
         } else {
           // IV+EV paired header: collapse colspan, relabel (gen1 spc stays as one "Spc" column)
           th.removeAttribute('colspan');
@@ -352,12 +374,18 @@
         var row          = ivCell.closest('tr');
         var effectiveLevel = parseInt(row.dataset.level, 10) || tableLevel;
         var evCell  = row.querySelector('td[data-stat-role="ev"][data-stat-key="' + statKey + '"]');
+        // gen2 spc: the IV cell shows SpA and the EV cell stays visible to show SpD
+        var split = (statKey === 'spc' && SPLIT_SPC && evCell);
 
         // Hide the EV cell — only the IV cell shows the calculated result
-        if (evCell) evCell.style.display = 'none';
+        if (evCell && !split) evCell.style.display = 'none';
 
         var nameCell = row.querySelector('td[data-species]');
-        if (!nameCell) { ivCell.textContent = '—'; return; }
+        if (!nameCell) {
+          ivCell.textContent = '—';
+          if (split) evCell.textContent = '—';
+          return;
+        }
 
         var speciesKey = nameCell.dataset.species || normalizeSpecies(nameCell.textContent.trim());
         var nature     = resolveNature(row, natureOverride);
@@ -365,6 +393,7 @@
         if (!baseStats) {
           console.warn('stat-toggle: no base stats for "' + speciesKey + '"');
           ivCell.textContent = '—';
+          if (split) evCell.textContent = '—';
           return;
         }
 
@@ -373,8 +402,17 @@
           : parseInt(ivCell.dataset.statOriginal, 10);
         var ev = evCell ? parseInt(evCell.dataset.statOriginal, 10) : 0;
 
+        if (split) {
+          // Gen 2: one Special DV and Stat Exp feed both Special stats
+          var spa = calculateStat('spa', baseStats.spa, iv, ev, nature, effectiveLevel);
+          var spd = calculateStat('spd', baseStats.spd, iv, ev, nature, effectiveLevel);
+          ivCell.textContent = (spa !== null) ? spa : '—';
+          evCell.textContent = (spd !== null) ? spd : '—';
+          return;
+        }
+
         // gen1 spc: use 'spa' base stat (spa === spd in Gen 1, single Special stat)
-        var calcKey = (statKey === 'spc' && config.formula === 'gen1') ? 'spa' : statKey;
+        var calcKey = (statKey === 'spc' && DV_FORMULA) ? 'spa' : statKey;
         var result  = calculateStat(calcKey, baseStats[calcKey], iv, ev, nature, effectiveLevel);
         ivCell.textContent = (result !== null) ? result : '—';
       });
@@ -419,10 +457,23 @@
           return;
         }
         var ev = parseInt(evCell.dataset.statOriginal, 10);
-        var result = calculateStat(statKey, baseStats[statKey], iv, ev, nature, effectiveLevel);
+        if (statKey === 'spc' && SPLIT_SPC) {
+          // Gen 2 single Special EV column: show both Special stats in the one cell
+          var spa = calculateStat('spa', baseStats.spa, iv, ev, nature, effectiveLevel);
+          var spd = calculateStat('spd', baseStats.spd, iv, ev, nature, effectiveLevel);
+          evCell.textContent = ((spa !== null) ? spa : '—') + ' / ' + ((spd !== null) ? spd : '—');
+          return;
+        }
+        var evKey  = (statKey === 'spc' && DV_FORMULA) ? 'spa' : statKey;
+        var result = calculateStat(evKey, baseStats[evKey], iv, ev, nature, effectiveLevel);
         evCell.textContent = (result !== null) ? result : '—';
       });
     });
+  }
+
+  // Removes the SpD headers added when a gen2 'spc' column is split.
+  function removeSplitSpcHeaders(table) {
+    table.querySelectorAll('.stat-split-spc-added').forEach(function (el) { el.remove(); });
   }
 
   /**
@@ -436,6 +487,7 @@
       }
 
       // Restore stat column headers
+      removeSplitSpcHeaders(table);
       table.querySelectorAll('thead th[data-stat-key]').forEach(function (th) {
         if (th.dataset.savedColspan && th.dataset.savedColspan !== '1') {
           th.setAttribute('colspan', th.dataset.savedColspan);
