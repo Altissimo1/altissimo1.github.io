@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Black City</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Black City</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-14.html">Route 14</a><br>
+            West: <a class="location-link" href="route-15.html">Route 15</a><br><br>
+			<strong>Places of interest:</strong><br>
+			Poké Mart<br><br>
+            This area is only accessible in Black. In White, this space is instead occupied by <a class="location-link" href="white-forest.html">White Forest</a>.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-14.html">Route 14</a><br>
+            West: <a class="location-link" href="route-15.html">Route 15</a><br><br>
+			<strong>Places of interest:</strong><br>
+			<a class="location-link" href="black-tower.html">Black Tower</a><br>
+			Poké Mart<br><br>
+            This area is only accessible in Black 2. In White 2, this space is instead occupied by <a class="location-link" href="white-forest.html">White Forest</a>. However, if a Black 2 player obtains the Tower Key for defeating five areas in Black Tower, it can be transferred to a copy of White 2 with the Key System, allowing that player to access Black City. The currently active area can be changed with Unova Link.
+         </p>
+      </div>
+	  <h3><u>Overview</u></h3>
+	  <p class="bw">This area has between 12 and 45 inhabitants, with the size of the city reflecting the number of inhabitants. When the area is first visited, the number of inhabitants is determined by the number of days (according to the DS clock) that it took the player to reach Black City since starting the save file, with a longer time resulting in fewer inhabitants.</p>
+	  <p class="bw">The player can use the Entralink feature to visit the White Forest location in another player's copy of White, and while there, can invite people to come to Black City to increase the population. A higher population in Black City means more Trainers for the player to battle and a greater number of merchants.</p>
+	  <p class="b2w2">The market in this area expands its offerings based on how much progress the player has made in Black Tower. The details about which vendors and items require what amount of progress are shown below.</p>
+	  <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+			<h4>Population Changes</h4>
+			<p class="bw">Every Trainer resident has a set number of points associated with them. The number of points associated with a Trainer can change if certain actions are performed. If the number of points reaches 0, the Trainer will leave Black City permanently, unless invited back using the aforementioned Entralink feature. The actions that can change a Trainer's point values are as follows:</p>
+			<table>
+				<caption>Population changes</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Action</th>
+						<th>Point change</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>1 day passes</td>
+						<td>-5 (all Trainers)</td>
+					</tr>
+					<tr class="light-true">
+						<td>Player visits the area</td>
+						<td>+3 (all Trainers)</td>
+					</tr>
+					<tr class="light-false">
+						<td>Player battles Trainer</td>
+						<td>+10 (just that Trainer)</td>
+					</tr>
+				</tbody>
+			</table>
+			<h3><u>Items</u></h3>
+			<h4>Market</h4>
+			<p class="bw">The market is only available if there are four or more Trainers in the city. The items that are sold are dependent on which Trainers are currently in Black City.</p>
+			<p class="bw">A man at the back of the market building will give the player 10000 each time ten Trainers have been defeated (not counting Roughneck Johnny and Backpacker Kiyo).</p>
+			<table>
+				<caption>Black Items (Market)</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Item</th>
+						<th>Price</th>
+						<th>Seller</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>Fresh Water</td>
+						<td>1000</td>
+						<td>Youngster Robbie</td>
+					</tr>
+					<tr class="light-true">
+						<td>Berry Juice</td>
+						<td>1500</td>
+						<td>School Kid Shane</td>
+					</tr>
+					<tr class="light-false">
+						<td>Yellow Shard</td>
+						<td>3000</td>
+						<td>Clerk♂ Collin</td>
+					</tr>
+					<tr class="light-true">
+						<td>Green Shard</td>
+						<td>3000</td>
+						<td>Scientist Marie</td>
+					</tr>
+					<tr class="light-false">
+						<td>Blue Shard</td>
+						<td>3000</td>
+						<td>Pokémon Ranger Eliza</td>
+					</tr>
+					<tr class="light-true">
+						<td>Red Shard</td>
+						<td>3000</td>
+						<td>Clerk♂ Doug</td>
+					</tr>
+					<tr class="light-false">
+						<td>TinyMushroom</td>
+						<td>3000</td>
+						<td>Roughneck Dave</td>
+					</tr>
+					<tr class="light-true">
+						<td>Max Repel</td>
+						<td>5000</td>
+						<td>Lass Miki</td>
+					</tr>
+					<tr class="light-false">
+						<td>Pearl</td>
+						<td>6000</td>
+						<td>School Kid Silvia</td>
+					</tr>
+					<tr class="light-true">
+						<td>Dawn Stone</td>
+						<td>10000</td>
+						<td>Socialite Grace</td>
+					</tr>
+					<tr class="light-false">
+						<td>Sun Stone</td>
+						<td>10000</td>
+						<td>Ace Trainer Lena</td>
+					</tr>
+					<tr class="light-true">
+						<td>Shiny Stone</td>
+						<td>10000</td>
+						<td>Backpacker Molly</td>
+					</tr>
+					<tr class="light-false">
+						<td>Leaf Stone</td>
+						<td>10000</td>
+						<td>Battle Girl Karenna</td>
+					</tr>
+					<tr class="light-true">
+						<td>Water Stone</td>
+						<td>10000</td>
+						<td>Pokémon Ranger Ralph</td>
+					</tr>
+					<tr class="light-false">
+						<td>Fire Stone</td>
+						<td>10000</td>
+						<td>Ace Trainer Vincent</td>
+					</tr>
+					<tr class="light-true">
+						<td>Oval Stone</td>
+						<td>10000</td>
+						<td>Backpacker Carlos</td>
+					</tr>
+					<tr class="light-false">
+						<td>Thunderstone</td>
+						<td>10000</td>
+						<td>Veteran Ken</td>
+					</tr>
+					<tr class="light-true">
+						<td>Dusk Stone</td>
+						<td>10000</td>
+						<td>Backpacker Herman</td>
+					</tr>
+					<tr class="light-false">
+						<td>Moon Stone</td>
+						<td>10000</td>
+						<td>Veteran Rosa</td>
+					</tr>
+					<tr class="light-true">
+						<td>Poké Ball</td>
+						<td>10000</td>
+						<td>Rich Boy Pierce</td>
+					</tr>
+					<tr class="light-false">
+						<td>Stardust</td>
+						<td>10000</td>
+						<td>School Kid Leo</td>
+					</tr>
+					<tr class="light-true">
+						<td>Heart Scale</td>
+						<td>10000</td>
+						<td>Lady Lynette</td>
+					</tr>
+					<tr class="light-false">
+						<td>Fluffy Tail</td>
+						<td>15000</td>
+						<td>Backpacker Emi</td>
+					</tr>
+					<tr class="light-true">
+						<td>Poké Doll</td>
+						<td>18000</td>
+						<td>Scientist Jacques</td>
+					</tr>
+					<tr class="light-false">
+						<td>Big Mushroom</td>
+						<td>20000</td>
+						<td>Hiker Gene</td>
+					</tr>
+					<tr class="light-true">
+						<td>Rare Bone</td>
+						<td>30000</td>
+						<td>Clerk♀ Britney</td>
+					</tr>
+					<tr class="light-false">
+						<td>Big Pearl</td>
+						<td>38000</td>
+						<td>Nursery Aide Miho</td>
+					</tr>
+					<tr class="light-true">
+						<td>Star Piece</td>
+						<td>48000</td>
+						<td>Clerk♀ Piper</td>
+					</tr>
+					<tr class="light-false">
+						<td>Nugget</td>
+						<td>50000</td>
+						<td>Black Belt Ryder</td>
+					</tr>
+					<tr class="light-true">
+						<td>Luxury Ball</td>
+						<td>50000</td>
+						<td>Gentleman Frederic</td>
+					</tr>
+				</tbody>
+		    </table>
+			<h4>Poké Mart - Upper vendor</h4>
+			<table class="left-align">
+               <caption>Black Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Poké Ball</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Potion</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>700</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>2500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>3000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>1500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Antidote</td>
+                     <td>100</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Awakening</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burn Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ice Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Escape Rope</td>
+                     <td>550</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repel</td>
+                     <td>350</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Repel</td>
+                     <td>500</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>700</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="left-align">
+               <caption>Black Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>BridgeMail M</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Greet Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Favored Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>RSVP Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Thanks Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Inquiry Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Like Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Reply Mail</td>
+                     <td>50</td>
+                  </tr>
+               </tbody>
+            </table>
+		 </div>
+	     <div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+			<h3><u>Items</u></h3>
+			<h4>Market</h4>
+			<table>
+				<caption>Black 2 and White 2 Items (Market)</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Item</th>
+						<th>Price</th>
+						<th>Sold on</th>
+						<th>Black Tower<br>progress required</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>Thunderstone</td>
+						<td>10000</td>
+						<td>Weekdays</td>
+						<td>Area 2</td>
+					</tr>
+					<tr class="light-true">
+						<td>Protector</td>
+						<td>10000</td>
+						<td>Weekends</td>
+						<td>Area 2</td>
+					</tr>
+					<tr class="light-false">
+						<td>Fire Stone</td>
+						<td>20000</td>
+						<td>Weekdays</td>
+						<td>Area 5</td>
+					</tr>
+					<tr class="light-true">
+						<td>Metal Coat</td>
+						<td>20000</td>
+						<td>Weekends</td>
+						<td>Area 5</td>
+					</tr>
+					<tr class="light-false">
+						<td>Dusk Stone</td>
+						<td>40000</td>
+						<td>Weekdays</td>
+						<td>Area 8</td>
+					</tr>
+					<tr class="light-true">
+						<td>Up-Grade</td>
+						<td>40000</td>
+						<td>Weekends</td>
+						<td>Area 8</td>
+					</tr>
+					<tr class="light-false">
+						<td>Dawn Stone</td>
+						<td>60000</td>
+						<td>Weekdays</td>
+						<td>Area 10</td>
+					</tr>
+					<tr class="light-true">
+						<td>Dubious Disc</td>
+						<td>60000</td>
+						<td>Weekends</td>
+						<td>Area 10</td>
+					</tr>
+				</tbody>
+		    </table>
+			<h4>Poké Mart - Upper vendor</h4>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Poké Ball</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Potion</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>700</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>2500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>3000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>1500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Antidote</td>
+                     <td>100</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Awakening</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burn Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ice Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Escape Rope</td>
+                     <td>550</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repel</td>
+                     <td>350</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Repel</td>
+                     <td>500</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>700</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>BridgeMail M</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Greet Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Favored Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>RSVP Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Thanks Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Inquiry Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Like Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Reply Mail</td>
+                     <td>50</td>
+                  </tr>
+               </tbody>
+            </table>
+		 </div>
+	  </div>
+	  <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+			<h3><u>Trainers</u></h3>
+			<p class="bw">Of the Trainers with point values, only ten will be in one Black City at any given time.</p>
+            <table class="left-align">
+               <caption>Black Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+					 <th>Initial<br>Points</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Roughneck Johnny</td>
+					 <td>N/A</td>
+                     <td>Gothitelle lv.65<br>Krookodile lv.65<br>Galvantula lv.65</td>
+					 <td>He is always present, but can only be battled once.<br>This is a Rotation Battle.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Backpacker Kiyo</td>
+					 <td>N/A</td>
+                     <td>Beartic lv.65<br>Excadrill lv.65<br>Heatmor lv.65</td>
+					 <td>He is always present, but can only be battled once.<br>This is a Rotation Battle.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ace Trainer Lena</td>
+					 <td>20</td>
+                     <td>Gardevoir lv.61<br>Gallade lv.61</td>
+					 <td>She sells Sun Stones for 10000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Backpacker Molly</td>
+					 <td>20</td>
+                     <td>Azumarill lv.30</td>
+					 <td>She sells Shiny Stones for 10000.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Socialite Grace</td>
+					 <td>20</td>
+                     <td>Salamence lv.40</td>
+					 <td>She sells Dawn Stones for 10000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Clerk♂ Collin</td>
+					 <td>30</td>
+                     <td>Alakazam lv.40</td>
+					 <td>He sells Yellow Shards for 3000.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Backpacker Emi</td>
+					 <td>30</td>
+                     <td>Blissey lv.30</td>
+					 <td>She sells Fluffy Tails for 15000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Clerk♀ Britney</td>
+					 <td>30</td>
+                     <td>Jumpluff lv.40</td>
+					 <td>She sells Rare Bones for 30000.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Gentleman Frederic</td>
+					 <td>30</td>
+                     <td>Roserade lv.40</td>
+					 <td>He sells Luxury Balls for 50000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Scientist Jacques</td>
+					 <td>30</td>
+                     <td>Nidoqueen lv.50</td>
+					 <td>He sells Poké Dolls for 18000.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Hiker Gene</td>
+					 <td>30</td>
+                     <td>Aggron lv.40</td>
+					 <td>He sells Big Mushrooms for 20000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Battle Girl Karenna</td>
+					 <td>30</td>
+                     <td>Slaking lv.56</td>
+					 <td>She sells Leaf Stones for 10000.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Lass Miki</td>
+					 <td>30</td>
+                     <td>Togekiss lv.30</td>
+					 <td>She sells Max Repels for 5000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rich Boy Pierce</td>
+					 <td>30</td>
+                     <td>Ampharos lv.35</td>
+					 <td>He sells Poké Balls for 10000.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Pokémon Ranger Ralph</td>
+					 <td>30</td>
+                     <td>Ludicolo lv.61</td>
+					 <td>He sells Water Stones for 10000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ace Trainer Vincent</td>
+					 <td>30</td>
+                     <td>Magmortar lv.62</td>
+					 <td>He sells Fire Stones for 10000.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>School Kid Silvia</td>
+					 <td>30</td>
+                     <td>Beautifly lv.44<br>Dustox lv.44</td>
+					 <td>She sells Pearls for 6000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>School Kid Shane</td>
+					 <td>30</td>
+                     <td>Rhyperior lv.45</td>
+					 <td>He sells Berry Juice for 1500.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Roughneck Dave</td>
+					 <td>70</td>
+                     <td>Gengar lv.30</td>
+					 <td>He sells TinyMushrooms for 3000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Clerk♂ Doug</td>
+					 <td>70</td>
+                     <td>Luxray lv.40</td>
+					 <td>He sells Red Shards for 3000.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Backpacker Carlos</td>
+					 <td>70</td>
+                     <td>Staraptor lv.30</td>
+					 <td>He sells Oval Stones for 10000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>School Kid Leo</td>
+					 <td>70</td>
+                     <td>Pidgeot lv.45</td>
+					 <td>He sells Stardust for 10000.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Pokémon Ranger Eliza</td>
+					 <td>70</td>
+                     <td>Flygon lv.61</td>
+					 <td>She sells Blue Shards for 3000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Veteran Ken</td>
+					 <td>70</td>
+                     <td>Nidoking lv.67</td>
+					 <td>He sells Thunderstones for 10000.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Scientist Marie</td>
+					 <td>70</td>
+                     <td>Magnezone lv.50</td>
+					 <td>She sells Green Shards for 3000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Nursery Aide Miho</td>
+					 <td>70</td>
+                     <td>Shiftry lv.40</td>
+					 <td>She sells Big Pearls for 38000.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Lady Lynette</td>
+					 <td>70</td>
+                     <td>Vileplume lv.34<br>Bellossom lv.34</td>
+					 <td>She sells Heart Scales for 10000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Youngster Robbie</td>
+					 <td>70</td>
+                     <td>Electivire lv.30</td>
+					 <td>She sells Fresh Waters for 1000.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Black Belt Ryder</td>
+					 <td>70</td>
+                     <td>Machamp lv.56</td>
+					 <td>He sells Nuggets for 50000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Clerk♀ Piper</td>
+					 <td>70</td>
+                     <td>Victreebel lv.40</td>
+					 <td>She sells Star Pieces for 48000.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Veteran Rosa</td>
+					 <td>80</td>
+                     <td>Exploud lv.67</td>
+					 <td>She sells Moon Stones for 10000.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Backpacker Herman</td>
+					 <td>80</td>
+                     <td>Porygon-Z lv.30</td>
+					 <td>He sells Dusk Stones for 10000.</td>
+                  </tr>
+               </tbody>
+            </table>
+	     </div>
+	  </div>
+	</body>
+</html>

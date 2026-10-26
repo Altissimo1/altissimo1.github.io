@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Dreamyard</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Dreamyard</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            West: <a class="location-link" href="striaton-city.html">Striaton City</a><br><br>
+			<strong>Utility:</strong><br>
+			Cut is required to access a Poké Ball, a Parlyz Heal, a Repel, a Potion, and the tall grass.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            West: <a class="location-link" href="striaton-city.html">Striaton City</a><br><br>
+			<strong>Utility:</strong><br>
+			Cut is required to access a Rare Candy, TM85 Dream Eater, an Ultra Ball, and the Soul Dew.
+         </p>
+      </div>
+	  <div id="pokemon-container">
+         <div id="pokemon-bw" class="game-container bw">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Kricketune have a 5% chance of holding a Metronome.</li>
+				<li>Wild Raticate have a 5% chance of holding a Chilan Berry.</li>
+				<li>Wild Venomoth have a 5% chance of holding a Shed Shell.</li>
+				<li>Wild Audino have a 50% chance of holding an Oran Berry and a 5% chance of holding a Sitrus Berry.</li>
+			</ul>
+			<h4>Gift</h4>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/pansage.png" alt="Pansage"></div>
+                     </td>
+                     <td>Pansage</td>
+                     <td>10</td>
+                     <td>Obtained from a girl if the player started with Tepig.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/pansear.png" alt="Pansear"></div>
+                     </td>
+                     <td>Pansear</td>
+                     <td>10</td>
+                     <td>Obtained from a girl if the player started with Oshawott.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/panpour.png" alt="Panpour"></div>
+                     </td>
+                     <td>Panpour</td>
+                     <td>10</td>
+                     <td>Obtained from a girl if the player started with Snivy.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Walking (Ruins)</h4>
+            <div data-location-id="dreamyard" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (Ruins, dark grass)</h4>
+            <div data-location-id="dreamyard" class="pokemon-bw-darkgrass-replace-me"></div>
+			<h4>Walking (Ruins, rustling grass)</h4>
+            <div data-location-id="dreamyard" class="pokemon-bw-shaking-replace-me"></div>
+			<h4>Walking (Basement, dark grass)</h4>
+            <div data-location-id="dreamyard_b1f" class="pokemon-bw-darkgrass-replace-me"></div>
+			<h4>Static</h4>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/musharna.png" alt="Musharna"></div>
+                     </td>
+                     <td>Musharna</td>
+                     <td>50</td>
+                     <td>Appears in the basement every Friday after defeating the Elite Four. It has its Hidden Ability Telepathy.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2" class="game-container b2w2">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Audino have a 50% chance of holding an Oran Berry and a 5% chance of holding a Sitrus Berry.</li>				
+			</ul>
+            <h4>Walking (Ruins)</h4>
+            <div data-location-id="dreamyard" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (Ruins, dark grass)</h4>
+            <div data-location-id="dreamyard" class="pokemon-b2w2-darkgrass-replace-me"></div>
+			<h4>Walking (Ruins, rustling grass)</h4>
+            <div data-location-id="dreamyard" class="pokemon-b2w2-shaking-replace-me"></div>
+			<h4>Walking (Basement, dark grass)</h4>
+            <div data-location-id="dreamyard_b1f" class="pokemon-b2w2-darkgrass-replace-me"></div>
+			<h4>Swarm</h4>
+            <p class="b2w2">During a swarm, the player has a 40% chance of encountering the swarming Pokémon, and a 60% chance that their encounter is taken from the normal encounter table.</p>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/hypno-f.png" alt="Hypno"></div>
+                     </td>
+                     <td>Hypno</td>
+                     <td>lv. 40-55</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Static</h4>
+            <table class="bold-contents">
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+					 <th colspan="2">Games</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latios.png" alt="Latios"></div>
+                     </td>
+                     <td class="light-false">Latios</td>
+                     <td class="light-false">50</td>
+					 <td class="black2-false">B2</td>
+					 <td class="light-false">W2</td>
+                     <td class="light-false">If defeated or run from, he reappears after defeating the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/latias.png" alt="Latias"></div>
+                     </td>
+                     <td class="light-true">Latias</td>
+                     <td class="light-true">50</td>
+					 <td class="light-true">B2</td>
+					 <td class="white2-true">W2</td>
+                     <td class="light-true">If defeated or run from, she reappears after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+			<h4>Ruins</h4>
+            <table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>X Defend</td>
+                     <td>In the northern area, beyond the gap in the eastern wall</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Poké Ball</td>
+                     <td>In the northern area, in the western tall grass patch</td>
+                     <td>Requires Cut.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>In the northern area, south of the stairs to the second floor</td>
+                     <td>Requires Cut.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Repel</td>
+                     <td>In the northern area, on the eastern part of the second floor</td>
+                     <td>Requires Cut.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Potion</td>
+                     <td>In the northern area, on the southern part of the second floor</td>
+                     <td>Requires Cut.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ultra Ball</td>
+                     <td>In the northern area, north of the lone barrel near the eastern grass patch</td>
+                     <td>Hidden. Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>In the southern area, northwest of the eastern stairs</td>
+                     <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM75 Swords Dance</td>
+                     <td>Obtained from Gorm in the southern area</td>
+                     <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>In the southern area, in a barrel south of the western stairs</td>
+                     <td>Hidden. Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>In the southern area, west of the western stairs</td>
+                     <td>Only after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Basement</h4>
+			<table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Awakening</td>
+                     <td>In a crate south of the northern stairs</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Awakening</td>
+                     <td>In a lone crate to the west</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Awakening</td>
+                     <td>In a lone crate in the southwest</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TwistedSpoon</td>
+                     <td>In the southwestern corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM85 Dream Eater</td>
+                     <td>In the northwestern corner, accessible from the western stairs</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+			<h4>Ruins</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Rare Candy</td>
+                     <td>In the northern area, in the western tall grass patch</td>
+                     <td>Requires Cut.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM85 Dream Eater</td>
+                     <td>In the northern area, south of the stairs to the second floor</td>
+                     <td>Requires Cut.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>In the northern area, on the southern part of the second floor</td>
+                     <td>Requires Cut.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Soul Dew</td>
+                     <td>In the northern area, on the eastern part of the second floor</td>
+                     <td>Requires Cut. Only after engaging Latios/Latias.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Moon Stone</td>
+                     <td>In the northern area, northwest of the eastern grass patch</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>PP Up</td>
+                     <td>In the southern area, northwest of the eastern stairs</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Reaper Cloth</td>
+                     <td>In the southern area, west of the western stairs</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Basement</h4>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>HP Up</td>
+                     <td>South of the northern stairs</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Dawn Stone</td>
+                     <td>In the southwestern corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Iron</td>
+                     <td>In the northwestern corner, accessible from the western stairs</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Psychic Gem</td>
+                     <td>In the eastern dark grass patch in the northwest, accessible from the western stairs</td>
+                     <td>Hidden.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+	  <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+			<h4>Ruins</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Lass Eri</td>
+                     <td>Purrloin lv.8<br>Purrloin lv.8</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Youngster Joey</td>
+                     <td>Patrat lv.7<br>Patrat lv.7<br>Lillipup lv.7</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Team Plasma Grunt</td>
+                     <td>Patrat lv.10</td>
+                     <td>Requires Cut.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Team Plasma Grunt</td>
+                     <td>Purrloin lv.10</td>
+                     <td>Requires Cut.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Basement</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Scientist Markus</td>
+                     <td>Drowzee lv.63<br>Musharna lv.63<br>Hypno lv.63</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Scientist Chan</td>
+                     <td>Poliwhirl lv.63<br>Parasect lv.63<br>Musharna lv.63</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Psychic Tommy</td>
+                     <td>Beldum lv.63<br>Reuniclus lv.63<br>Beheeyem lv.63<br>Metang lv.63</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Scientist Kathrine</td>
+                     <td>Jigglypuff lv.64<br>Musharna lv.64</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Psychic Future</td>
+                     <td>Natu lv.64<br>Banette lv.64<br>Xatu lv.64</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Scientist Luke</td>
+                     <td>Musharna lv.64<br>Stantler lv.64</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Psychic Rudolf</td>
+                     <td>Starmie lv.65<br>Wobbuffet lv.65</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+			<h4>Basement</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Psychic Nandor</td>
+                     <td>Hypno lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)<br>
+						Dusclops lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)
+					 </td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Scientist Athena</td>
+                     <td>Gastly lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)<br>
+						Skuntank lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)
+					 </td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Psychic Olesia</td>
+                     <td>Chingling lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)<br>
+						Mr. Mime lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)
+					 </td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Scientist Franklin</td>
+                     <td>Klang lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)<br>
+						Porygon lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)
+					 </td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Ruins</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>School Kid William</td>
+                     <td>Shroomish lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)<br>
+						Tangrowth lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)
+					 </td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Youngster Keita</td>
+                     <td>Slakoth lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)<br>
+						Slaking lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)
+					 </td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>School Kid Rita</td>
+                     <td>Igglybuff lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)<br>
+						Lickilicky lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)
+					 </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

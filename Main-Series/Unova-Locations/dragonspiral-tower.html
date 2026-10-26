@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Dragonspiral Tower</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Dragonspiral Tower</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+			South: <a class="location-link" href="icirrus-city.html">Icirrus City</a><br><br>
+			<strong>Utility:</strong><br>
+			Surf is required to access a Heart Scale, TM63 Embargo, and two Trainers. Wild Pokémon can also be encountered here with Surf.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+			South: <a class="location-link" href="icirrus-city.html">Icirrus City</a><br><br>
+			<strong>Utility:</strong><br>
+			Surf is required to access a Carbos. Wild Pokémon can also be encountered here with Surf.
+         </p>
+      </div>
+	  <div id="pokemon-container">
+         <div id="pokemon-bw" class="game-container bw">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Cubchoo and Beartic have a 50% chance of holding an Aspear Berry.</li>
+				<li>Wild Druddigon have a 5% chance of holding a Dragon Fang.</li>
+				<li>Wild Audino have a 50% chance of holding an Oran Berry and a 5% chance of holding an Sitrus Berry.</li>
+				<li>Wild Emolga always hold a Cheri Berry.</li>
+               <li>Wild Red-Striped Basculin have a 5% chance of holding a DeepSeaTooth.</li>
+               <li>Wild Blue-Striped Basculin have a 5% chance of holding a DeepSeaScale.</li>
+			   <li>Wild Dratini, Dragonair, and Dragonite have a 5% chance of holding a Dragon Scale.</li>
+			   <li>Wild Golett have a 5% chance of holding a Light Clay.</li>
+			</ul>
+			<h4>Walking (Entrance)</h4>
+            <div data-location-id="dragonspiral-tower_entrance" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (Entrance, dark grass)</h4>
+			<p class="bw">The dark grass is only accessible in the winter.</p>
+            <div data-location-id="dragonspiral-tower_entrance" class="pokemon-bw-darkgrass-replace-me"></div>
+			<h4>Walking (Entrance & outside, shaking grass)</h4>
+            <div data-location-id="dragonspiral-tower_entrance" class="pokemon-bw-shaking-replace-me"></div>
+			<h4>Walking (Outside)</h4>
+            <div data-location-id="dragonspiral-tower_outside" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (Outside, dark grass)</h4>
+            <div data-location-id="dragonspiral-tower_outside" class="pokemon-bw-darkgrass-replace-me"></div>
+			<h4>Surfing (Outside)</h4>
+            <div data-location-id="dragonspiral-tower_outside" class="pokemon-bw-surfing-replace-me"></div>
+			<h4>Surfing (Outside, rippling water)</h4>
+            <div data-location-id="dragonspiral-tower_outside" class="pokemon-bw-shakingsurf-replace-me"></div>
+			<h4>Fishing (Outside)</h4>
+            <div data-location-id="dragonspiral-tower_outside" class="pokemon-bw-fishing-replace-me"></div>
+			<h4>Fishing (Outside, rippling water)</h4>
+            <div data-location-id="dragonspiral-tower_outside" class="pokemon-bw-shakingfish-replace-me"></div>
+			<h4>Walking (1F)</h4>
+            <div data-location-id="dragonspiral-tower_1f" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (2F)</h4>
+            <div data-location-id="dragonspiral-tower_2f" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Static</h4>
+            <table class="bold-contents">
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+					 <th colspan="2">Games</th>
+                     <th>Level</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/reshiram.png" alt="Reshiram"></div>
+                     </td>
+                     <td class="light-false">Reshiram</td>
+					 <td class="black-false">B</td>
+					 <td class="light-false">W</td>
+                     <td class="light-false">50</td>
+                     <td class="light-false">Only one, and only if it was not caught at <a class="location-link" href="ns-castle.html">N's Castle</a>. If defeated or run from, it reappears after defeating the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/zekrom.png" alt="Zekrom"></div>
+                     </td>
+                     <td class="light-true">Zekrom</td>
+					 <td class="light-true">B</td>
+					 <td class="white-true">W</td>
+                     <td class="light-true">50</td>
+                     <td class="light-true">Only one, and only if it was not caught at <a class="location-link" href="ns-castle.html">N's Castle</a>. If defeated or run from, it reappears after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>	
+		</div>
+         <div id="pokemon-b2w2" class="game-container b2w2" style="display:none;">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Beartic have a 50% chance of holding an Aspear Berry.</li>
+				<li>Wild Druddigon have a 5% chance of holding a Dragon Fang.</li>
+				<li>Wild Audino have a 50% chance of holding an Oran Berry and a 5% chance of holding an Sitrus Berry.</li>
+				<li>Wild Emolga always hold a Cheri Berry.</li>
+               <li>Wild Red-Striped Basculin have a 5% chance of holding a DeepSeaTooth.</li>
+               <li>Wild Blue-Striped Basculin have a 5% chance of holding a DeepSeaScale.</li>
+			   <li>Wild Dratini, Dragonair, and Dragonite have a 5% chance of holding a Dragon Scale.</li>
+			   <li>Wild Golurk have a 5% chance of holding a Light Clay.</li>
+			</ul>
+			<h4>Walking (Entrance)</h4>
+            <div data-location-id="dragonspiral-tower_entrance" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (Entrance, dark grass)</h4>
+			<p class="b2w2">The dark grass is only accessible in the winter.</p>
+            <div data-location-id="dragonspiral-tower_entrance" class="pokemon-b2w2-darkgrass-replace-me"></div>
+			<h4>Walking (Entrance, shaking grass)</h4>
+            <div data-location-id="dragonspiral-tower_entrance" class="pokemon-b2w2-shaking-replace-me"></div>
+			<h4>Walking (Outside)</h4>
+            <div data-location-id="dragonspiral-tower_outside" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (Outside, dark grass)</h4>
+            <div data-location-id="dragonspiral-tower_outside" class="pokemon-b2w2-darkgrass-replace-me"></div>
+			<h4>Walking (Outside, shaking grass)</h4>
+            <div data-location-id="dragonspiral-tower_outside" class="pokemon-b2w2-shaking-replace-me"></div>
+			<h4>Surfing (Outside)</h4>
+            <div data-location-id="dragonspiral-tower_outside" class="pokemon-b2w2-surfing-replace-me"></div>
+			<h4>Surfing (Outside, rippling water)</h4>
+            <div data-location-id="dragonspiral-tower_outside" class="pokemon-b2w2-shakingsurf-replace-me"></div>
+			<h4>Fishing (Outside)</h4>
+            <div data-location-id="dragonspiral-tower_outside" class="pokemon-b2w2-fishing-replace-me"></div>
+			<h4>Fishing (Outside, rippling water)</h4>
+            <div data-location-id="dragonspiral-tower_outside" class="pokemon-b2w2-shakingfish-replace-me"></div>
+			<h4>Walking (1F)</h4>
+            <div data-location-id="dragonspiral-tower_1f" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (2F)</h4>
+            <div data-location-id="dragonspiral-tower_2f" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Static</h4>
+            <table class="bold-contents">
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+					 <th colspan="2">Games</th>
+                     <th>Level</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/zekrom.png" alt="Zekrom"></div>
+                     </td>
+                     <td class="light-false">Zekrom</td>
+					 <td class="black2-false">B2</td>
+					 <td class="light-false">W2</td>
+                     <td class="light-false">70</td>
+                     <td class="light-false">Only one, and only if the Dark Stone is in the player's bag. It belonged to N.<br>If defeated or run from, it reappears after defeating the Elite Four.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/reshiram.png" alt="Reshiram"></div>
+                     </td>
+                     <td class="light-true">Reshiram</td>
+					 <td class="light-true">B2</td>
+					 <td class="white2-true">W2</td>
+                     <td class="light-true">70</td>
+                     <td class="light-true">Only one, and only if the Light Stone is in the player's bag. It belonged to N.<br>If defeated or run from, it reappears after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>			
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+			<table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Nugget</td>
+                     <td>At the entrance, on the slopes in the south</td>
+                     <td>Only accessible in the winter.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Old Gateau</td>
+                     <td>At the entrance, obtained from Cedric Juniper</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Heart Scale</td>
+                     <td>On the outer wall of the tower, on the eastern side</td>
+                     <td>Hidden. Requires Surf.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM63 Embargo</td>
+                     <td>On the eastern edge of the outer area</td>
+                     <td>Requires Surf.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Hyper Potion</td>
+                     <td>On 2F, in the northeastern corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Stardust</td>
+                     <td>On 2F, on a pillar</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Shiny Stone</td>
+                     <td>On 3F, in the northeastern corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Dragon Fang</td>
+                     <td>On 4F, on the northeastern platform</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Stardust</td>
+                     <td>On 5F, in the first ring</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Revive</td>
+                     <td>On 5F, in the second ring</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Star Piece</td>
+                     <td>On 5F, in the third ring</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Elixir</td>
+                     <td>On 6F, in the northeastern corner</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>		
+		</div>
+		<div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>NeverMeltIce</td>
+                     <td>At the entrance, on the slopes in the south</td>
+                     <td>Only accessible in the winter.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Old Gateau</td>
+                     <td>At the entrance, obtained from Cedric Juniper while holding the Dark/Light Stone</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Carbos</td>
+                     <td>On the eastern edge of the outer area</td>
+                     <td>Requires Surf.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Red Shard</td>
+                     <td>On 2F, on a rock in the north</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Elixir</td>
+                     <td>On 2F, in the east</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ultra Ball</td>
+                     <td>On 2F, on a pillar</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Shiny Stone</td>
+                     <td>On 3F, on a platform in the middle</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Protein</td>
+                     <td>On 3F, in the northeastern corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Adamant Orb</td>
+                     <td>On 4F, on the northeastern platform</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Lustrous Orb</td>
+                     <td>On 4F, on the northeastern platform</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Griseous Orb</td>
+                     <td>On 4F, on the northeastern platform</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>PP Max</td>
+                     <td>On 5F, in the first ring</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Revive</td>
+                     <td>On 5F, in the second ring</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM02 Dragon Claw</td>
+                     <td>On 5F, in the third ring</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Comet Shard</td>
+                     <td>On 6F, in the northeastern corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Comet Shard</td>
+                     <td>On 7F, in the northeastern corner</td>
+                     <td>Hidden.</td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+      </div>
+	  <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Ace Trainer Jesse</td>
+                     <td>Vanillish lv.36<br>Galvantula lv.36</td>
+					 <td>On the outside. Requires Surf.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ace Trainer Jamie</td>
+                     <td>Cubchoo lv.35<br>Darmanitan lv.35<br>Leavanny lv.35</td>
+					 <td>On the outside. Requires Surf.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Team Plasma Grunt</td>
+                     <td>Watchog lv.34</td>
+					 <td>On 4F.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Team Plasma Grunt</td>
+                     <td>Liepard lv.34</td>
+					 <td>On 4F.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Team Plasma Grunt</td>
+                     <td>Scraggy lv.34</td>
+					 <td>On 4F.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Team Plasma Grunt</td>
+                     <td>Liepard lv.33<br>Liepard lv.33</td>
+					 <td>On 4F.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Team Plasma Grunt</td>
+                     <td>Watchog lv.32<br>Krokorok lv.32<br>Scraggy lv.32</td>
+					 <td>On 4F.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Team Plasma Grunt</td>
+                     <td>Watchog lv.33<br>Krokorok lv.33</td>
+					 <td>On 6F.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Team Plasma Grunt</td>
+                     <td>Krokorok lv.34</td>
+					 <td>On 6F.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Team Plasma Grunt</td>
+                     <td>Trubbish lv.33<br>Liepard lv.33</td>
+					 <td>On 6F.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Team Plasma Grunt</td>
+                     <td>Watchog lv.34</td>
+					 <td>On 6F.</td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+	</div>
+   </body>
+</html>

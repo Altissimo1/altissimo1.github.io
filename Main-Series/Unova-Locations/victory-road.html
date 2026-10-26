@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Victory Road</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Victory Road</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+			North: <a class="location-link" href="pokemon-league.html">Pokémon League</a><br>
+            South: <a class="location-link" href="route-10.html">Route 10</a><br><br>
+			<strong>Utility:</strong><br>
+			Surf is required to access a Max Revive and a Rare Candy. Wild Pokémon can also be encountered here with Surf.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+			West: <a class="location-link" href="pokemon-league.html">Pokémon League</a><br>
+            South: <a class="location-link" href="route-23.html">Route 23</a><br>
+			Accessible in the area: <a class="location-link" href="ns-castle.html">N's Castle</a><br><br>
+			<strong>Utility:</strong><br>
+			Strength is required to traverse the area.<br>
+			Cut is required to access a Full Restore.<br>
+			Surf is required to access an Escape Rope, TM93 Wild Charge, a Max Elixir, a Rare Candy, and some Trainers. Wild Pokémon can also be encountered here with Surf.<br>
+			Waterfall is required to access TM93 Wild Charge and some Trainers.<br>
+			Flash is recommended.
+         </p>
+      </div>
+	  <div id="pokemon-container">
+         <div id="pokemon-bw" class="game-container bw">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Boldore have a 50% chance of holding an Everstone and a 5% chance of holding a Hard Stone.</li>
+				<li>Wild Red-Striped Basculin have a 5% chance of holding a DeepSeaTooth.</li>
+				<li>Wild Blue-Striped Basculin have a 5% chance of holding a DeepSeaScale.</li>
+				<li>Wild Poliwhirl and Poliwrath have a 5% chance of holding a King's Rock.</li>
+			</ul>
+			<h4>Walking (Outside)</h4>
+            <div data-location-id="victory-road_outside" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (1F, middle and rightmost rooms)</h4>
+            <div data-location-id="victory-road_1f-middle" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (1F, 2F, and 3F, dust clouds)</h4>
+            <div data-location-id="victory-road_1f-middle" class="pokemon-bw-shaking-replace-me"></div>
+			<h4>Surfing (1F, middle and rightmost rooms)</h4>
+            <div data-location-id="victory-road_1f-middle" class="pokemon-bw-surfing-replace-me"></div>
+			<h4>Surfing (1F, middle and rightmost rooms, rippling water)</h4>
+            <div data-location-id="victory-road_1f-middle" class="pokemon-bw-shakingsurf-replace-me"></div>
+			<h4>Fishing (1F, middle and rightmost rooms)</h4>
+            <div data-location-id="victory-road_1f-middle" class="pokemon-bw-fishing-replace-me"></div>
+			<h4>Fishing (1F, middle and rightmost rooms, rippling water)</h4>
+            <div data-location-id="victory-road_1f-middle" class="pokemon-bw-shakingfish-replace-me"></div>
+			<h4>Walking (1F (leftmost room), 2F, and 3F)</h4>
+            <div data-location-id="victory-road_2f" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (4F, middle room)</h4>
+            <div data-location-id="victory-road_4f-middle" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (4F 5F, 6F, 7F, and Trial Chamber, dust clouds)</h4>
+            <div data-location-id="victory-road_5f" class="pokemon-bw-shaking-replace-me"></div>
+			<h4>Walking (4F (leftmost and rightmost rooms), 5F, 6F, 7F, and Trial Chamber)</h4>
+            <div data-location-id="victory-road_5f" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Static (Trial Chamber)</h4>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/terrakion.png" alt="Terrakion"></div>
+                     </td>
+                     <td>Terrakion</td>
+                     <td>42</td>
+                     <td>Appears after engaging Cobalion in <a class="location-link" href="mistralton-cave.html">Mistralton Cave</a>. If defeated or run from, it reappears after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+         <div id="pokemon-b2w2" class="game-container b2w2" style="display:none;">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Banette have a 5% chance of holding a Spell Tag.</li>
+				<li>Wild Golurk have a 5% chance of holding Light Clay.</li>
+				<li>Wild Blue-Striped Basculin have a 5% chance of holding a DeepSeaScale.</li>
+				<li>Wild Poliwhirl, Poliwrath, and Politoed have a 5% chance of holding a King's Rock.</li>
+               <li>Wild Roselia and Roserade have a 5% chance of holding a Poison Barb and a 1% chance of holding an Absorb Bulb (in dark grass only).</li>
+			   <li>Wild Audino have a 50% chance of holding an Oran Berry and a 5% chance of holding a Sitrus Berry.</li>
+			   <li>Wild Boldore have a 50% chance of holding an Everstone and a 5% chance of holding a Hard Stone.</li>
+			   <li>Wild Druddigon have a 5% chance of holding a Dragon Fang.</li>
+			   <li>Wild Throh and Sawk have a 5% chance of holding a Black Belt and a 1% chance of holding an Expert Belt (in dark grass only).</li>
+			</ul>
+			<h4>Walking (1F)</h4>
+            <div data-location-id="victory-road_1f" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Surfing (1F and 2F back)</h4>
+            <div data-location-id="victory-road_1f" class="pokemon-b2w2-surfing-replace-me"></div>
+			<h4>Surfing (1F, rippling water)</h4>
+            <div data-location-id="victory-road_1f" class="pokemon-b2w2-shakingsurf-replace-me"></div>
+			<h4>Fishing (1F)</h4>
+            <div data-location-id="victory-road_1f" class="pokemon-b2w2-fishing-replace-me"></div>
+			<h4>Fishing (1F, rippling water)</h4>
+            <div data-location-id="victory-road_1f" class="pokemon-b2w2-shakingfish-replace-me"></div>
+			<h4>Walking (Grove)</h4>
+            <div data-location-id="victory-road_grove" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (Grove, dark grass)</h4>
+            <div data-location-id="victory-road_grove" class="pokemon-b2w2-darkgrass-replace-me"></div>
+			<h4>Walking (Grove, shaking grass)</h4>
+            <div data-location-id="victory-road_grove" class="pokemon-b2w2-shaking-replace-me"></div>
+			<h4>Walking (Outside area 1)</h4>
+            <div data-location-id="victory-road_outside-1" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (Outside area 1, dark grass)</h4>
+            <div data-location-id="victory-road_outside-1" class="pokemon-b2w2-darkgrass-replace-me"></div>
+			<h4>Walking (Outside area 1, shaking grass)</h4>
+            <div data-location-id="victory-road_outside-1" class="pokemon-b2w2-shaking-replace-me"></div>
+			<h4>Surfing (Outside area 1)</h4>
+            <div data-location-id="victory-road_outside-1" class="pokemon-b2w2-surfing-replace-me"></div>
+			<h4>Surfing (Outside area 1, rippling water)</h4>
+            <div data-location-id="victory-road_outside-1" class="pokemon-b2w2-shakingsurf-replace-me"></div>
+			<h4>Fishing (Outside area 1 and 2F back)</h4>
+            <div data-location-id="victory-road_outside-1" class="pokemon-b2w2-fishing-replace-me"></div>
+			<h4>Fishing (Outside area 1, rippling water)</h4>
+            <div data-location-id="victory-road_outside-1" class="pokemon-b2w2-shakingfish-replace-me"></div>
+			<h4>Walking (2F)</h4>
+            <div data-location-id="victory-road_2f" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (2F, dust clouds)</h4>
+            <div data-location-id="victory-road_2f" class="pokemon-b2w2-shaking-replace-me"></div>
+			<h4>Walking (2F back and 4F)</h4>
+            <div data-location-id="victory-road_2f-back" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (2F back, 3F, and 4F, dust clouds)</h4>
+            <div data-location-id="victory-road_2f-back" class="pokemon-b2w2-shaking-replace-me"></div>
+			<h4>Surfing (2F back, rippling water)</h4>
+            <div data-location-id="victory-road_2f-back" class="pokemon-b2w2-shakingsurf-replace-me"></div>
+			<h4>Fishing (2F back, rippling water)</h4>
+            <div data-location-id="victory-road_2f-back" class="pokemon-b2w2-shakingfish-replace-me"></div>
+			<h4>Walking (3F)</h4>
+            <div data-location-id="victory-road_3f" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (Outside area 2)</h4>
+            <div data-location-id="victory-road_outside-2" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (Outside area 2, dark grass)</h4>
+            <div data-location-id="victory-road_outside-2" class="pokemon-b2w2-darkgrass-replace-me"></div>
+			<h4>Walking (Outside area 2, shaking grass)</h4>
+            <div data-location-id="victory-road_outside-2" class="pokemon-b2w2-shaking-replace-me"></div>
+		</div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+			<table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Max Revive</td>
+                     <td>On 1F, in the northern corner of the central cavern</td>
+                     <td>Requires Surf.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Revive</td>
+                     <td>On 1F, in the middle of the western cavern</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Rare Candy</td>
+                     <td>On 1F, past the northern pond in the eastern cavern</td>
+                     <td>Requires Surf.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ultra Ball</td>
+                     <td>On 1F, on the westernmost edge of the outside area</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Nugget</td>
+                     <td>On 1F, at the bottom of one of the slopes from the top</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Potion</td>
+                     <td>On 1F, on the eastern edge of the large empty cavern</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>On 2F, on the elevated platform in the eastern cavern</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM12 Taunt</td>
+                     <td>On 2F, on the easternmost edge of the outside area</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Hyper Potion</td>
+                     <td>On 3F, on a rock in the middle of the middle cavern</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM02 Dragon Claw</td>
+                     <td>On 3F, in the western chamber, accessible from 2F</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Restore</td>
+                     <td>On 4F, outside of the eastern cavern</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Revive</td>
+                     <td>On 4F, on a rock northwest of the Strength boulder in the western cavern</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Calcium</td>
+                     <td>On 4F, in the western cavern, accessible from the outside area</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Heal</td>
+                     <td>On 4F, on the wall in the middle of the row of rocks in the eastern cavern</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Carbos</td>
+                     <td>On 4F, in the wall between two rocks in the north part of the eastern cavern</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM93 Wild Charge</td>
+                     <td>On 5F, on the western side of the outside area</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>On 6F, outside the western cavern</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Dust clouds</h4>
+			<p class="bw">The following items can be found by stepping in a dust cloud.</p>
+			<table>
+				<tbody>
+					<tr class="light-true">
+						<td>Fire Gem</td>
+						<td>Water Gem</td>
+						<td>Electric Gem</td>
+						<td>Grass Gem</td>
+						<td>Ice Gem</td>
+						<td>Fighting Gem</td>
+					</tr>
+					<tr class="light-false">
+						<td>Poison Gem</td>
+						<td>Ground Gem</td>
+						<td>Flying Gem</td>
+						<td>Psychic Gem</td>
+						<td>Bug Gem</td>
+						<td>Rock Gem</td>
+					</tr>
+					<tr class="light-true">
+						<td>Ghost Gem</td>
+						<td>Dragon Gem</td>
+						<td>Dark Gem</td>
+						<td>Steel Gem</td>
+						<td>Normal Gem</td>
+						<td>Fire Stone</td>
+					</tr>
+					<tr class="light-false">
+						<td>Water Stone</td>
+						<td>Thunderstone</td>
+						<td>Leaf Stone</td>
+						<td>Moon Stone</td>
+						<td>Sun Stone</td>
+						<td>Shiny Stone</td>
+					</tr>
+					<tr class="light-true">
+						<td>Dusk Stone</td>
+						<td>Dawn Stone</td>
+						<td>Oval Stone</td>
+						<td>Everstone</td>
+						<td>Hard Stone</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+			<h4>Entrance</h4>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Items (Entrance)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>HM05 Waterfall</td>
+                     <td>Obtained from N upon entering the area</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>PP Up</td>
+                     <td>In the maze south of the Pokémon Center</td>
+                     <td>Requires Strength.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Star Piece</td>
+                     <td>On a ledge in the maze south of the Pokémon Center</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Iron</td>
+                     <td>In a dead end in the maze south of the Pokémon Center</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Dusk Stone</td>
+                     <td>On a rock in a dead end in the maze south of the Pokémon Center</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM01 Hone Claws</td>
+                     <td>In a dead end east of the Pokémon Center</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Inside Victory Road</h4>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Items (Victory Road)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>In the grove, in the northeastern corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>In the grove, in the southwestern corner</td>
+                     <td>Requires Cut.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>In the first outdoor area, south of Veteran Cathy (Black 2) or west of Ace Trainer Pierce (White 2)</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Repel</td>
+                     <td>In the first outdoor area, east of Doctor Logan</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>In the first outdoor area, near Ace Trainer Pierce</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>In the first outdoor area, in the southeastern corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM93 Wild Charge</td>
+                     <td>On 1F, southwest of Veterans Cecile and Claude</td>
+                     <td>Requires Surf and Waterfall.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>On 2F, in a rock east of Veteran Abraham</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Escape Rope</td>
+                     <td>On 2F, east of Backpacker Mae</td>
+                     <td>Requires Surf.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Revive</td>
+                     <td>On 2F, near the southeastern entrance</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Elixir</td>
+                     <td>On 2F (back), in the eastern area</td>
+                     <td>Hidden. Requires Surf.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rare Candy</td>
+                     <td>On 2F (back), in the southeastern area</td>
+                     <td>Requires Surf.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Revive</td>
+                     <td>In the second outdoor area, north of Ace Trainer Elmer</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Elixir</td>
+                     <td>In the second outdoor area, west of Black Belt Martell</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Rare Candy</td>
+                     <td>In the second outdoor area, on a rock east of Battle Girl Chalina</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Normal Gem</td>
+                     <td>In the second outdoor area, on a rock west of Ace Trainer Carroll</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Dragon Fang</td>
+                     <td>In the second outdoor area, south of Veteran Portia</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Red Shard</td>
+                     <td>In the northern cave, in a rock</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>PP Max</td>
+                     <td>In the northern cave, near a rock</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Dragon Scale</td>
+                     <td>On 3F, west of Veteran Hugo</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM24 Thunderbolt</td>
+                     <td>On 4F, obtained from Hugh</td>
+                     <td>Only after defeating him.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Dust clouds</h4>
+			<p class="b2w2">The following items can be found by stepping in a dust cloud.</p>
+			<table>
+				<tbody>
+					<tr class="light-true">
+						<td>Fire Gem</td>
+						<td>Water Gem</td>
+						<td>Electric Gem</td>
+						<td>Grass Gem</td>
+						<td>Ice Gem</td>
+						<td>Fighting Gem</td>
+					</tr>
+					<tr class="light-false">
+						<td>Poison Gem</td>
+						<td>Ground Gem</td>
+						<td>Flying Gem</td>
+						<td>Psychic Gem</td>
+						<td>Bug Gem</td>
+						<td>Rock Gem</td>
+					</tr>
+					<tr class="light-true">
+						<td>Ghost Gem</td>
+						<td>Dragon Gem</td>
+						<td>Dark Gem</td>
+						<td>Steel Gem</td>
+						<td>Normal Gem</td>
+						<td>Fire Stone</td>
+					</tr>
+					<tr class="light-false">
+						<td>Water Stone</td>
+						<td>Thunderstone</td>
+						<td>Leaf Stone</td>
+						<td>Moon Stone</td>
+						<td>Sun Stone</td>
+						<td>Shiny Stone</td>
+					</tr>
+					<tr class="light-true">
+						<td>Dusk Stone</td>
+						<td>Dawn Stone</td>
+						<td>Oval Stone</td>
+						<td>Everstone</td>
+						<td colspan="2"></td>
+					</tr>
+				</tbody>
+			</table>
+		    <h4>Poké Mart - Upper vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Poké Ball</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Potion</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>700</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>2500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>3000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>1500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Antidote</td>
+                     <td>100</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Awakening</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burn Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ice Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Escape Rope</td>
+                     <td>550</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repel</td>
+                     <td>350</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Repel</td>
+                     <td>500</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>700</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Heal Ball</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Net Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Nest Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Quick Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Dusk Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Timer Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repeat Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Luxury Ball</td>
+                     <td>1000</td>
+                  </tr>
+               </tbody>
+            </table>
+        </div>
+      </div>
+	  <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Ace Trainer Shanta</td>
+                     <td>Whimsicott lv.45<br>Zebstrika lv.45</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ace Trainer Dwayne</td>
+                     <td>Stoutland lv.45<br>Scolipede lv.45</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Veteran Tiffany</td>
+                     <td>Beheeyem lv.44<br>Heatmor lv.44<br>Lilligant lv.45</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Black Belt Tyrone</td>
+                     <td>Scrafty lv.43<br>Mienfoo lv.43<br>Conkeldurr lv.43</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Ace Trainer Cathy</td>
+                     <td>Simisage lv.44<br>Simisear lv.44<br>Simipour lv.44</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Doctor Logan</td>
+                     <td>Gothorita lv.43<br>Leavanny lv.43</td>
+					 <td>After defeating him, he will heal the player's Pokémon when spoken to.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Ace Trainer David</td>
+                     <td>Klang lv.44<br>Darmanitan lv.44<br>Seismitoad lv.44</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Veteran Martell</td>
+                     <td>Gigalith lv.45<br>Eelektross lv.46</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Cheren</td>
+                     <td>Liepard lv.65 @ Sitrus Berry<br>Elemental lv.65 @ type-boosting item<br>Unfezant lv.65 @ Scope Lens<br>Gigalith lv.65 @ Leftovers<br>Haxorus lv.65 @ Dragon Gem<br>Starter (3rd stage) lv.67 @ Focus Sash</td>
+					 <td>Only after defeating the Elite Four.<br>
+					 Elemental is one of Simisage, Simisear, or Simipour, whichever has the same type as the player's starter.<br>
+					 His starter is the one whose type is strong against the player's starter.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+	     <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+			<h4>1F</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Ace Trainer Billy</td>
+                     <td>Golurk lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Sigilyph lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ace Trainer Jamie</td>
+                     <td>Drifblim lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Claydol lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Psychic Alia</td>
+                     <td>Lampent lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)<br>
+                     Musharna lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Psychic Al</td>
+                     <td>Metang lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)<br>
+                     Cofagrigus lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Veteran Claude</td>
+                     <td>Braviary lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Carracosta lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+					 <td>Requires Surf and Waterfall. This is a Double Battle with Veteran Cecile.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Veteran Cecile</td>
+                     <td>Mandibuzz lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Archeops lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+					 <td>Requires Surf and Waterfall. This is a Double Battle with Veteran Claude.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Grove</h4>
+            <table class="left-align bold-contents">
+               <caption>Black 2 and White 2 Trainers (Grove)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+					 <th colspan="2">Games</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+					 <td class="light-false">Ace Trainer Chandra</td>
+					 <td class="black2-false">B2</td>
+					 <td class="light-false">W2</td>
+                     <td class="light-false">Darmanitan lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Tangrowth lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+				 </tr>
+                  <tr>
+					 <td class="light-true">Ace Trainer Beckett</td>
+					 <td class="light-true">B2</td>
+					 <td class="white2-true">W2</td>
+                     <td class="light-true">Whimsicott lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Unfezant lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+                  </tr>
+                  <tr>
+					 <td class="light-false">Ace Trainer Shelly</td>
+					 <td class="light-false">B2</td>
+					 <td class="white2-false">W2</td>
+                     <td class="light-false">Swoobat lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Lilligant lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Outside area 1</h4>
+            <table class="left-align bold-contents">
+               <caption>Black 2 and White 2 Trainers (Outside area 1)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+					 <th colspan="2">Games</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+					 <td class="light-false">Veteran Cathy</td>
+					 <td class="black2-false">B2</td>
+					 <td class="white2-false">W2</td>
+                     <td class="light-false">Sigilyph lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Crobat lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+					 <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Doctor Logan</td>
+					 <td class="black2-true">B2</td>
+					 <td class="white2-true">W2</td>
+                     <td class="light-true">Clefable lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)</td>
+					 <td class="light-true">After defeating him, he will heal the player's Pokémon when spoken to.</td>
+                  </tr>
+                  <tr>
+					 <td class="light-false">Backpacker Mae</td>
+					 <td class="black2-false">B2</td>
+					 <td class="white2-false">W2</td>
+                     <td class="light-false">Sawsbuck lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)</td>
+					 <td class="light-false"></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td class="light-true">Ace Trainer Pierce</td>
+					 <td class="black2-true">B2</td>
+					 <td class="white2-true">W2</td>
+                     <td class="light-true">Swanna lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Ampharos lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+					 <td class="light-true"></td>
+                  </tr>
+                  <tr>
+					 <td class="light-false">Ace Trainer Beckett</td>
+					 <td class="black2-false">B2</td>
+					 <td class="light-false">W2</td>
+                     <td class="light-false">Whimsicott lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Unfezant lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+					 <td class="light-false"></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td class="light-true">Ace Trainer Shelly</td>
+					 <td class="black2-true">B2</td>
+					 <td class="light-true">W2</td>
+                     <td class="light-true">Swoobat lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Lilligant lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+					 <td class="light-true"></td>
+                  </tr>
+                  <tr>
+					 <td class="light-false">Ace Trainer Chandra</td>
+					 <td class="light-false">B2</td>
+					 <td class="white2-false">W2</td>
+                     <td class="light-false">Darmanitan lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Tangrowth lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+					 <td class="light-false"></td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>2F</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (2F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Veteran Abraham</td>
+                     <td>Gigalith lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Skarmory lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ace Trainer Shanta</td>
+                     <td>Heatmor lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Galvantula lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+					 <td>She can potentially be battled in a Double Battle with Ace Trainer Webster.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Ace Trainer Webster</td>
+                     <td>Durant lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Ferrothorn lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+					 <td>He can potentially be battled in a Double Battle with Ace Trainer Shanta.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Pokémon Ranger Eddie</td>
+                     <td>Electabuzz lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)<br>
+                     Probopass lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)</td>
+					 <td>He will give the player a Cheri Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Pokémon Ranger Elle</td>
+                     <td>Magmar lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)<br>
+                     Camerupt lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)</td>
+					 <td>She will give the player a Rawst Berry after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>3F</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (3F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Veteran Hugo</td>
+                     <td>Fraxure lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)<br>
+                     Zweilous lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)<br>
+                     Flygon lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Outside area 2</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (Outside area 2)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Black Belt Martell</td>
+                     <td>Pinsir lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)<br>
+                     Heracross lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Battle Girl Chalina</td>
+                     <td>Throh lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)<br>
+                     Sawk lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Ace Trainer Elmer</td>
+                     <td>Zweilous lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Eelektross lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Ace Trainer Caroll</td>
+                     <td>Fraxure lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+                     Vanilluxe lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Veteran Portia</td>
+                     <td>Zebstrika lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)<br>
+                     Sawk lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)<br>
+                     Starmie lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Veteran Sterling</td>
+                     <td>Beartic lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)<br>
+                     Throh lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)<br>
+                     Golurk lv. 50 (Easy Mode) / 54 (Normal Mode) / 58 (Challenge Mode)</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>4F</h4>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Trainers (4F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Hugh</td>
+                     <td>Unfezant lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode) @ Scope Lens<br>
+                     Elemental lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode) @ type-boosting item<br>
+					 Bouffalant lv. 51 (Easy Mode) / 55 (Normal Mode) / 59 (Challenge Mode)<br>
+					 Starter (3rd stage) lv. 53 (Easy Mode) / 57 (Normal Mode) / 61 (Challenge Mode) @ type-boosting item</td>
+					 <td>Elemental is one of Simisage, Simisear, or Simipour, whichever is the same type as the player's starter.<br>
+					 His starter is the one whose type is strong against the player's starter.</td>
+                  </tr>
+               </tbody>
+            </table>
+		 </div>
+	</div>
+   </body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Royal Unova</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Royal Unova</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+			Departs from: <a class="location-link" href="castelia-city.html">Castelia City</a><br><br>
+			Riding the ship costs 1000. It can be boarded at the following times:<br>
+			<strong>Spring:</strong> 5:00-8:00 PM (17:00-20:00)<br>
+			<strong>Summer:</strong> 7:00-9:00 PM (19:00-21:00)<br>
+			<strong>Autumn:</strong> 6:00-8:00 PM (18:00-20:00)<br>
+			<strong>Winter:</strong> 5:00-7:00 PM (17:00-19:00)
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+			Departs from: <a class="location-link" href="castelia-city.html">Castelia City</a><br><br>
+			Riding the ship costs 1000. It can be boarded at the following times:<br>
+			<strong>Spring:</strong> 5:00-8:00 PM (17:00-20:00)<br>
+			<strong>Summer:</strong> 7:00-9:00 PM (19:00-21:00)<br>
+			<strong>Autumn:</strong> 6:00-8:00 PM (18:00-20:00)<br>
+			<strong>Winter:</strong> 5:00-7:00 PM (17:00-19:00)
+         </p>
+      </div>
+	  <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+			<table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Lava Cookie</td>
+                     <td>Reward for defeating all Trainers on Mondays, Wednesdays, and Fridays</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Berry Juice</td>
+                     <td>Reward for defeating all Trainers on Tuesdays</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Old Gateau</td>
+                     <td>Reward for defeating all Trainers on Thursdays</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>RageCandyBar</td>
+                     <td>Reward for defeating all Trainers on Saturdays</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Rare Candy</td>
+                     <td>Reward for defeating all Trainers on Sundays</td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+		<div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Lava Cookie</td>
+                     <td>Reward for defeating all Trainers on Mondays, Wednesdays, and Fridays</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Berry Juice</td>
+                     <td>Reward for defeating all Trainers on Tuesdays</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Old Gateau</td>
+                     <td>Reward for defeating all Trainers on Thursdays</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>RageCandyBar</td>
+                     <td>Reward for defeating all Trainers on Saturdays</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Rare Candy</td>
+                     <td>Reward for defeating all Trainers on Sundays</td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+      </div>
+	  <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+			<p class="bw">The number of Trainers on board depends on the day of the week. A crew member will alert the player to this number and will remind the player how many Trainers they have already battled when spoken to. Two crew members, one on the left and one on the right, will provide hints as to the location of Trainers.<br>
+			The player has only 3 minutes to find all the Trainers.</p>
+			<table>
+				<caption>Trainers per day</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Day</th>
+						<th># of<br>Trainers</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>Monday</td>
+						<td>4</td>
+					</tr>
+					<tr class="light-true">
+						<td>Tuesday</td>
+						<td>3</td>
+					</tr>
+					<tr class="light-false">
+						<td>Wednesday</td>
+						<td>4</td>
+					</tr>
+					<tr class="light-true">
+						<td>Thursday</td>
+						<td>5</td>
+					</tr>
+					<tr class="light-false">
+						<td>Friday</td>
+						<td>4</td>
+					</tr>
+					<tr class="light-true">
+						<td>Saturday</td>
+						<td>6</td>
+					</tr>
+					<tr class="light-false">
+						<td>Sunday</td>
+						<td>7</td>
+					</tr>
+				</tbody>
+			</table>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Ace Trainer Mariana</td>
+                     <td>Rotom lv.65<br>Butterfree lv.65<br>Alomomola lv.65</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Ace Trainer Henry</td>
+                     <td>Tauros lv.66<br>Wailord lv.66</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Lass Sibyl</td>
+                     <td>Chingling lv.64<br>Wormadam (Plant) lv.64</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Rich Boy Brad</td>
+                     <td>Aipom lv.64<br>Murkrow lv.64</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Lady Elizandra</td>
+                     <td>Meowth lv.63<br>Vulpix lv.63<br>Eevee lv.63</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Socialite Cassandra</td>
+                     <td>Liepard lv.64<br>Arbok lv.64</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Gentleman Robert</td>
+                     <td>Houndour lv.63<br>Noctowl lv.63<br>Houndoom lv.63</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Maid Tanya</td>
+                     <td>Emolga lv.65</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Clerk♂ Chaz</td>
+                     <td>Ariados lv.64<br>Floatzel lv.64</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Youngster Abe</td>
+                     <td>Spearow lv.63<br>Linoone lv.63<br>Fearow lv.63</td>
+                  </tr>
+               </tbody>
+            </table>
+		 </div>
+		 <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+			<p class="b2w2">The number of Trainers on board depends on the day of the week. A crew member will alert the player to this number and will remind the player how many Trainers they have already battled when spoken to. Two crew members, one on the left and one on the right, will provide hints as to the location of Trainers.<br>
+			The player has only 3 minutes to find all the Trainers.</p>
+			<table>
+				<caption>Trainers per day</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Day</th>
+						<th># of<br>Trainers</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>Monday</td>
+						<td>4</td>
+					</tr>
+					<tr class="light-true">
+						<td>Tuesday</td>
+						<td>3</td>
+					</tr>
+					<tr class="light-false">
+						<td>Wednesday</td>
+						<td>4</td>
+					</tr>
+					<tr class="light-true">
+						<td>Thursday</td>
+						<td>5</td>
+					</tr>
+					<tr class="light-false">
+						<td>Friday</td>
+						<td>4</td>
+					</tr>
+					<tr class="light-true">
+						<td>Saturday</td>
+						<td>6</td>
+					</tr>
+					<tr class="light-false">
+						<td>Sunday</td>
+						<td>7</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Ace Trainer Mariana</td>
+                     <td>Magnemite lv. 16 (Easy Mode) / 18 (Normal Mode) / 20 (Challenge Mode)<br>
+                     Basculin (Red) lv. 16 (Easy Mode) / 18 (Normal Mode) / 20 (Challenge Mode)
+					 </td>
+					 <td>Only before defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Ace Trainer Henry</td>
+                     <td>Herdier lv. 16 (Easy Mode) / 18 (Normal Mode) / 20 (Challenge Mode)<br>
+                     Marill (Red) lv. 16 (Easy Mode) / 18 (Normal Mode) / 20 (Challenge Mode)
+					 </td>
+					 <td>Only before defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Lass Sibyl</td>
+                     <td>Budew lv. 14 (Easy Mode) / 16 (Normal Mode) / 18 (Challenge Mode)<br>
+                     Sewaddle lv. 14 (Easy Mode) / 16 (Normal Mode) / 18 (Challenge Mode)
+					 </td>
+					 <td>Only before defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Rich Boy Brad</td>
+                     <td>Patrat lv. 14 (Easy Mode) / 16 (Normal Mode) / 18 (Challenge Mode)<br>
+                     Zubat lv. 14 (Easy Mode) / 16 (Normal Mode) / 18 (Challenge Mode)
+					 </td>
+					 <td>Only before defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Lady Elizandra</td>
+                     <td>Purrloin lv. 14 (Easy Mode) / 16 (Normal Mode) / 18 (Challenge Mode)<br>
+                     Eevee lv. 14 (Easy Mode) / 16 (Normal Mode) / 18 (Challenge Mode)
+					 </td>
+					 <td>Only before defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Socialite Cassandra</td>
+                     <td>Purrloin lv. 15 (Easy Mode) / 17 (Normal Mode) / 19 (Challenge Mode)</td>
+					 <td>Only before defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Gentleman Robert</td>
+                     <td>Lillipup lv. 15 (Easy Mode) / 17 (Normal Mode) / 19 (Challenge Mode)</td>
+					 <td>Only before defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Maid Tanya</td>
+                     <td>Elekid lv. 15 (Easy Mode) / 17 (Normal Mode) / 19 (Challenge Mode)</td>
+					 <td>Only before defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Clerk♂ Chaz</td>
+                     <td>Venipede lv. 14 (Easy Mode) / 16 (Normal Mode) / 18 (Challenge Mode)<br>
+                     Psyduck lv. 14 (Easy Mode) / 16 (Normal Mode) / 18 (Challenge Mode)
+					 </td>
+					 <td>Only before defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Youngster Abe</td>
+                     <td>Pidove lv. 14 (Easy Mode) / 16 (Normal Mode) / 18 (Challenge Mode)<br>
+                     Patrat lv. 14 (Easy Mode) / 16 (Normal Mode) / 18 (Challenge Mode)
+					 </td>
+					 <td>Only before defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Ace Trainer Mariana</td>
+                     <td>Rotom lv. 60 (Easy Mode) / 62 (Normal Mode) / 64 (Challenge Mode)<br>
+                     Butterfree lv. 60 (Easy Mode) / 62 (Normal Mode) / 64 (Challenge Mode)<br>
+                     Alomomola lv. 60 (Easy Mode) / 62 (Normal Mode) / 64 (Challenge Mode)
+					 </td>
+					 <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Ace Trainer Henry</td>
+                     <td>Tauros lv. 61 (Easy Mode) / 63 (Normal Mode) / 65 (Challenge Mode)<br>
+                     Wailord lv. 61 (Easy Mode) / 63 (Normal Mode) / 65 (Challenge Mode)
+					 </td>
+					 <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Lass Sibyl</td>
+                     <td>Chingling lv. 59 (Easy Mode) / 61 (Normal Mode) / 63 (Challenge Mode)<br>
+                     Wormadam (Plant) lv. 59 (Easy Mode) / 61 (Normal Mode) / 63 (Challenge Mode)
+					 </td>
+					 <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Rich Boy Brad</td>
+                     <td>Aipom lv. 59 (Easy Mode) / 61 (Normal Mode) / 63 (Challenge Mode)<br>
+                     Murkrow lv. 59 (Easy Mode) / 61 (Normal Mode) / 63 (Challenge Mode)
+					 </td>
+					 <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Lady Elizandra</td>
+                     <td>Meowth lv. 58 (Easy Mode) / 60 (Normal Mode) / 62 (Challenge Mode)<br>
+                     Vulpix lv. 58 (Easy Mode) / 60 (Normal Mode) / 62 (Challenge Mode)<br>
+                     Eevee lv. 58 (Easy Mode) / 60 (Normal Mode) / 62 (Challenge Mode)
+					 </td>
+					 <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Socialite Cassandra</td>
+                     <td>Liepard lv. 59 (Easy Mode) / 61 (Normal Mode) / 63 (Challenge Mode)<br>
+                     Arbok lv. 59 (Easy Mode) / 61 (Normal Mode) / 63 (Challenge Mode)
+					 </td>
+					 <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Gentleman Robert</td>
+                     <td>Houndour lv. 58 (Easy Mode) / 60 (Normal Mode) / 62 (Challenge Mode)<br>
+                     Noctowl lv. 58 (Easy Mode) / 60 (Normal Mode) / 62 (Challenge Mode)<br>
+                     Houndoom lv. 58 (Easy Mode) / 60 (Normal Mode) / 62 (Challenge Mode)
+					 </td>
+					 <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Maid Tanya</td>
+                     <td>Emolga lv. 59 (Easy Mode) / 61 (Normal Mode) / 63 (Challenge Mode)<br>
+                     Raichu lv. 59 (Easy Mode) / 61 (Normal Mode) / 63 (Challenge Mode)
+					 </td>
+					 <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Clerk♂ Chaz</td>
+                     <td>Ariados lv. 59 (Easy Mode) / 61 (Normal Mode) / 63 (Challenge Mode)<br>
+                     Floatzel lv. 59 (Easy Mode) / 61 (Normal Mode) / 63 (Challenge Mode)
+					 </td>
+					 <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Youngster Abe</td>
+                     <td>Spearow lv. 58 (Easy Mode) / 60 (Normal Mode) / 62 (Challenge Mode)<br>
+                     Linoone lv. 58 (Easy Mode) / 60 (Normal Mode) / 62 (Challenge Mode)<br>
+                     Fearow lv. 58 (Easy Mode) / 60 (Normal Mode) / 62 (Challenge Mode)
+					 </td>
+					 <td>Only after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

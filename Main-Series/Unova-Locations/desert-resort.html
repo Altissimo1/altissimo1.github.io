@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Desert Resort</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Desert Resort</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            South: <a class="location-link" href="route-4.html">Route 4</a><br>
+			Accessible in the area: <a class="location-link" href="relic-castle.html">Relic Castle</a>
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a class="location-link" href="route-4.html">Route 4</a><br>
+			Accessible in the area: <a class="location-link" href="relic-castle.html">Relic Castle</a>
+		</p>
+      </div>
+	  <div id="pokemon-container">
+		<div id="pokemon-bw" class="game-container bw">
+			<h3>Pokémon</h3>
+			<ul>
+				<li>Wild Darumaka and Darmanitan have a 50% chance of holding a Rawst Berry.</li>
+				<li>Wild Dwebble have a 5% chance of holding a Hard Stone.</li>
+				<li>Wild Maractus have a 5% chance of holding a Miracle Seed.</li>
+				<li>Wild Scraggy have a 5% chance of holding a Shed Shell.</li>
+			</ul>
+			<h4>Walking (Entrance)</h4>
+            <div data-location-id="desert-resort_entrance" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (Desert)</h4>
+            <div data-location-id="desert-resort" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Static</h4>
+			<p class="bw">There are five Darmanitan around the area. A RageCandyBar must be used on them to battle them.</p>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/darmanitan.png" alt="Darmanitan"></div>
+                     </td>
+                     <td>Darmanitan</td>
+                     <td>35</td>
+                     <td>If defeated or run from, they will reappear after defeating the Elite Four. They have their Hidden Ability Zen Mode.</td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+		<div id="pokemon-b2w2" class="game-container b2w2" style="display:none;">
+			<h3>Pokémon</h3>
+			<ul>
+				<li>Wild Darumaka have a 50% chance of holding a Rawst Berry.</li>
+				<li>Wild Dwebble have a 5% chance of holding a Hard Stone.</li>
+				<li>Wild Maractus have a 5% chance of holding a Miracle Seed.</li>
+				<li>Wild Sandshrew have a 5% chance of holding a Quick Claw.</li>
+				<li>Wild Scraggy have a 5% chance of holding a Shed Shell.</li>
+				<li>Wild Trapinch have a 5% chance of holding Soft Sand.</li>
+			</ul>
+			<h4>Walking (Entrance)</h4>
+            <div data-location-id="desert-resort_entrance" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (Desert)</h4>
+            <div data-location-id="desert-resort" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Memory Link encounters</h4>
+			<p class="b2w2">After viewing the Memory Link flashback "Meeting Friends, Saying Good-Bye", the player may encounter N's Sandile, Darumaka, Darmanitan, Scraggy, and Sigilyph here. Their appearance rates depend on how many of N's Pokémon the player has already captured, as shown below.</p>
+			<ul>
+				<li>0 captured: 40%</li>
+				<li>1-5 captured: 20%</li>
+				<li>6-11 captured: 10%</li>
+				<li>12+ captured: 5%</li>
+			</ul>
+			<table>
+				<caption>Memory Link encounters</caption>
+				<thead>
+					<tr class="light-true">
+						<th colspan="2">Pokémon</th>
+						<th>Nature</th>
+						<th>Level</th>
+						<th colspan="8">Moves</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td rowspan="2">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/sandile.png" alt="Sandile"></div>
+						</td>
+						<td rowspan="2">Sandile ♂</td>
+						<td rowspan="2">Docile</td>
+						<td rowspan="2">22</td>
+						<td class="ground" colspan="2">Sand Tomb</td>
+						<td class="dark" colspan="2">Assurance</td>
+						<td class="ground" colspan="2">Mud-Slap</td>
+						<td class="status" colspan="2">Embargo</td>
+					</tr>
+					<tr class="light-false">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/dark.png" alt="Dark"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/dark.png" alt="Dark"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+						</td>
+					</tr>
+					<tr class="light-true">
+						<td rowspan="2">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/darumaka.png" alt="Darumaka"></div>
+						</td>
+						<td rowspan="2">Darumaka ♂</td>
+						<td rowspan="2">Naive</td>
+						<td rowspan="2">22</td>
+						<td class="normal" colspan="2">Headbutt</td>
+						<td class="normal" colspan="2">Uproar</td>
+						<td class="normal" colspan="2">Facade</td>
+						<td class="fire" colspan="2">Fire Punch</td>
+					</tr>
+					<tr class="light-true">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/fire.png" alt="Fire"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+					</tr>
+					<tr class="light-false">
+						<td rowspan="2">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/darmanitan.png" alt="Darmanitan"></div>
+						</td>
+						<td rowspan="2">Darmanitan ♂</td>
+						<td rowspan="2">Calm</td>
+						<td rowspan="2">35</td>
+						<td class="normal" colspan="2">Thrash</td>
+						<td class="status" colspan="2">Belly Drum</td>
+						<td class="fire" colspan="2">Flare Blitz</td>
+						<td class="fighting" colspan="2">Hammer Arm</td>
+					</tr>
+					<tr class="light-false">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/fire.png" alt="Fire"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+					</tr>
+					<tr class="light-true">
+						<td rowspan="2">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/scraggy.png" alt="Scraggy"></div>
+						</td>
+						<td rowspan="2">Scraggy ♂</td>
+						<td rowspan="2">Lax</td>
+						<td rowspan="2">22</td>
+						<td class="dark" colspan="2">Faint Attack</td>
+						<td class="normal" colspan="2">Headbutt</td>
+						<td class="status" colspan="2">Swagger</td>
+						<td class="fighting" colspan="2">Brick Break</td>
+					</tr>
+					<tr class="light-true">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/dark.png" alt="Dark"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+					</tr>
+					<tr class="light-false">
+						<td rowspan="2">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/sigilyph.png" alt="Sigilyph"></div>
+						</td>
+						<td rowspan="2">Sigilyph ♂</td>
+						<td rowspan="2">Gentle</td>
+						<td rowspan="2">22</td>
+						<td class="status" colspan="2">Tailwind</td>
+						<td class="status" colspan="2">Whirlwind</td>
+						<td class="psychic" colspan="2">Psybeam</td>
+						<td class="flying" colspan="2">Air Cutter</td>
+					</tr>
+					<tr class="light-false">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+						</td>
+					</tr>
+				 </tbody>
+			</table>
+			<h4>Swarm</h4>
+            <p class="b2w2">During a swarm, the player has a 40% chance of encountering the swarming Pokémon, and a 60% chance that their encounter is taken from the normal encounter table.</p>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/hippowdon-f.png" alt="Hippowdon"></div>
+                     </td>
+                     <td>Hippowdon</td>
+                     <td>lv. 40-55</td>
+                  </tr>
+               </tbody>
+            </table>			
+		</div>
+	  </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>BlackGlasses</td>
+                     <td>West of Backpacker Liz</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Soft Sand</td>
+                     <td>Obtained from the man in black</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Hyper Potion</td>
+                     <td>In the northeastern corner</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Fresh Water</td>
+                     <td>North of Psychic Cybil</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>Northwest of Backpacker Elaine</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ether</td>
+                     <td>Northwest of the Super Potion</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Heart Scale</td>
+                     <td>In the northwestern corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Stardust</td>
+                     <td>Southeast of Psychic Low</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Stardust</td>
+                     <td>Northwest of Pokémon Ranger Mylene</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM39 Rock Tomb</td>
+                     <td>South of Pokémon Ranger Jaden</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Fire Stone</td>
+                     <td>Northwest of Psychic Gaven</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rare Candy</td>
+                     <td>South of Psychic Gaven</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>RageCandyBar</td>
+                     <td>Obtained from Professor Juniper</td>
+                     <td>Only after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+		 <div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Soft Sand</td>
+                     <td>Obtained from the man in black</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Star Piece</td>
+                     <td>In the deep sand north of Pokémon Ranger Jaden</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Blue Shard</td>
+                     <td>In the deep sand near Backpacker Clara</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Blue Shard</td>
+                     <td>East of Backpacker Sam</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ground Gem</td>
+                     <td>Near Psychic Tommy</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Red Shard</td>
+                     <td>In the deep sand near Backpacker Walt</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Red Shard</td>
+                     <td>West of Backpacker Sam</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Yellow Shard</td>
+                     <td>East of the man in black</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Repel</td>
+                     <td>In the deep sand near the cliff in the northeast</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Nugget</td>
+                     <td>Near the cliff in the northwest</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Heart Scale</td>
+                     <td>Near the cliff in the northeast</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Stardust</td>
+                     <td>West of Pokémon Ranger Jaden</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Green Shard</td>
+                     <td>South of Backpacker Sam</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Ether</td>
+                     <td>In the southwestern corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Fire Stone</td>
+                     <td>South of Backpacker Tami</td>
+                     <td>Hidden.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+	  <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Doctor Jerry</td>
+                     <td>Solosis lv.23</td>
+                     <td>After defeating him, he will heal the player's Pokémon when spoken to.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Backpacker Kelsey</td>
+                     <td>Tranquill lv.23</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Backpacker Liz</td>
+                     <td>Watchog lv.23</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Backpacker Nate</td>
+                     <td>Dwebble lv.23</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Psychic Cybil</td>
+                     <td>Gothita lv.24</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Backpacker Elaine</td>
+                     <td>Maractus lv.23</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Psychic Low</td>
+                     <td>Yamask lv.22<br>Munna lv.22</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Pokémon Ranger Mylene</td>
+                     <td>Ducklett lv.24</td>
+                     <td>She will give the player a Rawst Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Pokémon Ranger Jaden</td>
+                     <td>Darumaka lv.23<br>Blitzle lv.23</td>
+                     <td>He will give the player a Rawst Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Psychic Gaven</td>
+                     <td>Solosis lv.23<br>Woobat lv.23</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+		 <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Nurse Mariah</td>
+                     <td>Cleffa lv. 20 (Easy Mode) / 22 (Normal Mode) / 24 (Challenge Mode)</td>
+                     <td>After defeating her, she will heal the player's Pokémon when spoken to.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Pokémon Ranger Jaden</td>
+                     <td>Darumaka lv. 21 (Easy Mode) / 23 (Normal Mode) / 25 (Challenge Mode)</td>
+                     <td>He will give the player a Rawst Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Backpacker Sam</td>
+                     <td>Dwebble lv. 20 (Easy Mode) / 22 (Normal Mode) / 24 (Challenge Mode)</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Backpacker Tami</td>
+                     <td>Drilbur lv. 20 (Easy Mode) / 22 (Normal Mode) / 24 (Challenge Mode)</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Backpacker Walt</td>
+                     <td>Sandile lv. 20 (Easy Mode) / 22 (Normal Mode) / 24 (Challenge Mode)</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Psychic Future</td>
+                     <td>Munna lv. 21 (Easy Mode) / 23 (Normal Mode) / 25 (Challenge Mode)</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Psychic Tommy</td>
+                     <td>Woobat lv. 20 (Easy Mode) / 22 (Normal Mode) / 24 (Challenge Mode)<br>
+                     Yamask lv. 20 (Easy Mode) / 22 (Normal Mode) / 24 (Challenge Mode)
+					 </td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Pokémon Ranger Anja</td>
+                     <td>Magby lv. 21 (Easy Mode) / 23 (Normal Mode) / 25 (Challenge Mode)</td>
+                     <td>She will give the player a Rawst Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Backpacker Clara</td>
+                     <td>Sandshrew lv. 20 (Easy Mode) / 22 (Normal Mode) / 24 (Challenge Mode)</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

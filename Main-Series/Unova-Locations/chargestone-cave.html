@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Chargestone Cave</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Chargestone Cave</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+			Northern exit: <a class="location-link" href="mistralton-city.html">Mistralton City</a><br>
+            Southern exit: <a class="location-link" href="route-6.html">Route 6</a><br><br>
+			<strong>Places of interest:</strong><br>
+			Magneton will evolve into Magnezone and Nosepass will evolve into Probopass here due to the magnetic field.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+			Northern exit: <a class="location-link" href="mistralton-city.html">Mistralton City</a><br>
+            Southern exit: <a class="location-link" href="route-6.html">Route 6</a><br><br>
+			<strong>Places of interest:</strong><br>
+			Magneton will evolve into Magnezone and Nosepass will evolve into Probopass here due to the magnetic field.
+         </p>
+      </div>
+	  <div id="pokemon-container">
+         <div id="pokemon-bw" class="game-container bw">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Ferroseed have a 5% chance of holding a Sticky Barb.</li>
+				<li>Wild Boldore have a 50% chance of holding an Everstone and a 5% chance of holding a Hard Stone.</li>
+			</ul>
+			<h4>Walking (1F)</h4>
+            <div data-location-id="chargestone-cave_1f" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (B1F)</h4>
+            <div data-location-id="chargestone-cave_b1f" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (B2F)</h4>
+            <div data-location-id="chargestone-cave_b2f" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (all floors, dust clouds)</h4>
+            <div data-location-id="chargestone-cave_1f" class="pokemon-bw-shaking-replace-me"></div>
+		</div>
+         <div id="pokemon-b2w2" class="game-container b2w2" style="display:none;">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Ferroseed have a 5% chance of holding a Sticky Barb.</li>
+				<li>Wild Boldore have a 50% chance of holding an Everstone and a 5% chance of holding a Hard Stone.</li>
+				<li>Wild Nosepass have a 5% chance of holding a Hard Stone.</li>
+			</ul>
+			<h4>Walking (1F)</h4>
+            <div data-location-id="chargestone-cave_1f" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (1F, dust clouds)</h4>
+            <div data-location-id="chargestone-cave_1f" class="pokemon-b2w2-shaking-replace-me"></div>
+			<h4>Walking (B1F)</h4>
+            <div data-location-id="chargestone-cave_b1f" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (B1F and B2F, dust clouds)</h4>
+            <div data-location-id="chargestone-cave_b1f" class="pokemon-b2w2-shaking-replace-me"></div>
+			<h4>Walking (B2F)</h4>
+            <div data-location-id="chargestone-cave_b2f" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Memory Link encounters</h4>
+			<p class="b2w2">After viewing the Memory Link flashback "Meeting Friends, Saying Good-Bye", the player may encounter N's Boldore, Joltik, Ferroseed, and Klink here. Their appearance rates depend on how many of N's Pokémon the player has already captured, as shown below.</p>
+			<ul>
+				<li>0 captured: 40%</li>
+				<li>1-5 captured: 20%</li>
+				<li>6-11 captured: 10%</li>
+				<li>12+ captured: 5%</li>
+			</ul>
+			<table>
+				<caption>Memory Link encounters</caption>
+				<thead>
+					<tr class="light-true">
+						<th colspan="2">Pokémon</th>
+						<th>Nature</th>
+						<th>Level</th>
+						<th colspan="8">Moves</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td rowspan="2">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/boldore.png" alt="Boldore"></div>
+						</td>
+						<td rowspan="2">Boldore ♂</td>
+						<td rowspan="2">Naive</td>
+						<td rowspan="2">28</td>
+						<td class="ground" colspan="2">Mud-Slap</td>
+						<td class="status" colspan="2">Iron Defense</td>
+						<td class="rock" colspan="2">Smack Down</td>
+						<td class="rock" colspan="2">Power Gem</td>
+					</tr>
+					<tr class="light-false">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+						</td>
+					</tr>
+					<tr class="light-true">
+						<td rowspan="2">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/joltik.png" alt="Joltik"></div>
+						</td>
+						<td rowspan="2">Joltik ♂</td>
+						<td rowspan="2">Docile</td>
+						<td rowspan="2">28</td>
+						<td class="electric" colspan="2">Electroweb</td>
+						<td class="bug" colspan="2">Bug Bite</td>
+						<td class="status" colspan="2">Gastro Acid</td>
+						<td class="normal" colspan="2">Slash</td>
+					</tr>
+					<tr class="light-true">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/bug.png" alt="Bug"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+					</tr>
+					<tr class="light-false">
+						<td rowspan="2">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/ferroseed.png" alt="Ferroseed"></div>
+						</td>
+						<td rowspan="2">Ferroseed ♂</td>
+						<td rowspan="2">Bashful</td>
+						<td rowspan="2">28</td>
+						<td class="steel" colspan="2">Metal Claw</td>
+						<td class="bug" colspan="2">Pin Missile</td>
+						<td class="steel" colspan="2">Gyro Ball</td>
+						<td class="status" colspan="2">Iron Defense</td>
+					</tr>
+					<tr class="light-false">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/bug.png" alt="Bug"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+						</td>
+					</tr>
+					<tr class="light-true">
+						<td rowspan="2">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/klink.png" alt="Klink"></div>
+						</td>
+						<td rowspan="2">Klink ♂</td>
+						<td rowspan="2">Rash</td>
+						<td rowspan="2">28</td>
+						<td class="electric" colspan="2">ThunderShock</td>
+						<td class="steel" colspan="2">Gear Grind</td>
+						<td class="normal" colspan="2">Bind</td>
+						<td class="electric" colspan="2">Charge Beam</td>
+					</tr>
+					<tr class="light-true">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+						</td>
+					</tr>
+				 </tbody>
+			</table>			
+			
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+			<h4>1F</h4>
+			<table class="left-align">
+               <caption>Black and White Items (1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Lucky Egg</td>
+                     <td>Obtained from Professor Juniper</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Parlyz Heal</td>
+                     <td>In the area north of the second magnetic stone</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>South of two magnetic stones</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Heal Ball</td>
+                     <td>On the northernmost ledge</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Elixir</td>
+                     <td>In the alcove north of Ace Trainer Jared</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>East of the bridge</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Iron</td>
+                     <td>South of the bridge, to the east</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>HP Up</td>
+                     <td>Accessible from the stairs west of the Nugget Brothers on B1F</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>North of Hiker Hardy</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Magnet</td>
+                     <td>East of Ace Trainer Corky</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>B1F</h4>
+			<table class="left-align">
+               <caption>Black and White Items (B1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Nugget (2x)</td>
+                     <td>Obtained from the Nugget Brothers</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Parlyz Heal</td>
+                     <td>In the alcove west of the Nugget Brothers</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>On the wall west of Doctor Wayne</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Timer Ball</td>
+                     <td>North of the Nugget Brothers</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Thunderstone</td>
+                     <td>West of Team Plasma</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>B2F</h4>
+			<table class="left-align">
+               <caption>Black and White Items (B2F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>In the east</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>BrightPowder</td>
+                     <td>In the northeast</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Star Piece</td>
+                     <td>In the west, down the stairs</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>In the west, down the stairs</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Rare Candy</td>
+                     <td>In the east, down the stairs</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM69 Rock Polish</td>
+                     <td>Obtained from Bronius</td>
+                     <td>Only after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Dust clouds</h4>
+			<p class="bw">The following items can be found by stepping in a dust cloud.</p>
+			<table>
+				<tbody>
+					<tr class="light-true">
+						<td>Fire Gem</td>
+						<td>Water Gem</td>
+						<td>Electric Gem</td>
+						<td>Grass Gem</td>
+						<td>Ice Gem</td>
+						<td>Fighting Gem</td>
+					</tr>
+					<tr class="light-false">
+						<td>Poison Gem</td>
+						<td>Ground Gem</td>
+						<td>Flying Gem</td>
+						<td>Psychic Gem</td>
+						<td>Bug Gem</td>
+						<td>Rock Gem</td>
+					</tr>
+					<tr class="light-true">
+						<td>Ghost Gem</td>
+						<td>Dragon Gem</td>
+						<td>Dark Gem</td>
+						<td>Steel Gem</td>
+						<td>Normal Gem</td>
+						<td>Fire Stone</td>
+					</tr>
+					<tr class="light-false">
+						<td>Water Stone</td>
+						<td>Thunderstone</td>
+						<td>Leaf Stone</td>
+						<td>Moon Stone</td>
+						<td>Sun Stone</td>
+						<td>Shiny Stone</td>
+					</tr>
+					<tr class="light-true">
+						<td>Dusk Stone</td>
+						<td>Dawn Stone</td>
+						<td>Oval Stone</td>
+						<td>Everstone</td>
+						<td>Hard Stone</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+			<h4>1F</h4>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Items (1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Magnet</td>
+                     <td>East of Ace Trainer Corky</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Heal</td>
+                     <td>Near the exit to Route 6</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Yellow Shard</td>
+                     <td>Under the crystal north of Guitarist Anna</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Repel</td>
+                     <td>South of Scientist Ronald</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Hyper Potion</td>
+                     <td>East of Guitarist Anna</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>North of the bridge</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Carbos</td>
+                     <td>Near Hiker Otto</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Carbos</td>
+                     <td>In the southwest, accessible from B1F</td>
+                     <td>Hidden.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>B1F</h4>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Items (B1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Nugget</td>
+                     <td>Obtained from the Nugget Brothers</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Big Nugget</td>
+                     <td>Obtained from the Nugget Brothers</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>North of the Nugget Brothers</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Revive</td>
+                     <td>West of Scientist Lumi</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Iron</td>
+                     <td>Near Pokémon Ranger Briana</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>B2F</h4>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Items (B2F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Escape Rope</td>
+                     <td>South of Guitarist Beverly</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Thunderstone</td>
+                     <td>North of Ace Trainer Shaye</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Metal Coat</td>
+                     <td>South of Ace Trainer Vicki</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Electric Gem</td>
+                     <td>In the dead end northeast of Ace Trainer Vicky</td>
+                     <td>Hidden.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Dust clouds</h4>
+			<p class="b2w2">The following items can be found by stepping in a dust cloud.</p>
+			<table>
+				<tbody>
+					<tr class="light-true">
+						<td>Fire Gem</td>
+						<td>Water Gem</td>
+						<td>Electric Gem</td>
+						<td>Grass Gem</td>
+						<td>Ice Gem</td>
+						<td>Fighting Gem</td>
+					</tr>
+					<tr class="light-false">
+						<td>Poison Gem</td>
+						<td>Ground Gem</td>
+						<td>Flying Gem</td>
+						<td>Psychic Gem</td>
+						<td>Bug Gem</td>
+						<td>Rock Gem</td>
+					</tr>
+					<tr class="light-true">
+						<td>Ghost Gem</td>
+						<td>Dragon Gem</td>
+						<td>Dark Gem</td>
+						<td>Steel Gem</td>
+						<td>Normal Gem</td>
+						<td>Fire Stone</td>
+					</tr>
+					<tr class="light-false">
+						<td>Water Stone</td>
+						<td>Thunderstone</td>
+						<td>Leaf Stone</td>
+						<td>Moon Stone</td>
+						<td>Sun Stone</td>
+						<td>Shiny Stone</td>
+					</tr>
+					<tr class="light-true">
+						<td>Dusk Stone</td>
+						<td>Dawn Stone</td>
+						<td>Oval Stone</td>
+						<td>Everstone</td>
+						<td colspan="2"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+      </div>
+	  <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+			<h4>1F</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers (1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Scientist Ronald</td>
+                     <td>Klink lv.29</td>
+					 <td>In the western area.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ace Trainer Jared</td>
+                     <td>Archen lv.31</td>
+					 <td>In the western area.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Hiker Hardy</td>
+                     <td>Boldore lv.26<br>Gurdurr lv.26</td>
+					 <td>In the western area.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Scientist Naoko</td>
+                     <td>Klink lv.29</td>
+					 <td>In the western area.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Scientist Orville</td>
+                     <td>Klink lv.29</td>
+					 <td>In the eastern area.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ace Trainer Corky</td>
+                     <td>Whimsicott lv.30<br>Tirtouga lv.30</td>
+					 <td>In the eastern area.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>N</td>
+                     <td>Boldore lv.28<br>Ferroseed lv.28<br>Joltik lv.28<br>Klink lv.28</td>
+					 <td>In the eastern area.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>B1F</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers (B1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Doctor Wayne</td>
+                     <td>Swadloon lv.29</td>
+					 <td>After defeating him, he will heal the player's Pokémon when spoken to.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Team Plasma Grunt</td>
+                     <td>Sandile lv.26<br>Scraggy lv.26<br>Watchog lv.26</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Team Plasma Grunt</td>
+                     <td>Scraggy lv.28</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Team Plasma Grunt</td>
+                     <td>Trubbish lv.27<br>Liepard lv.27</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Team Plasma Grunt</td>
+                     <td>Trubbish lv.26<br>Trubbish lv.26<br>Trubbish lv.26</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Team Plasma Grunt</td>
+                     <td>Watchog lv.27<br>Sandile lv.27</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Team Plasma Grunt</td>
+                     <td>Liepard lv.28</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Team Plasma Grunt</td>
+                     <td>Sandile lv.27<br>Watchog lv.27</td>
+					 <td></td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>B2F</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers (B2F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Ace Trainer Allison</td>
+                     <td>Drilbur lv.30<br>Zebstrika lv.30</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ace Trainer Stella</td>
+                     <td>Gothita lv.29<br>Lilligant lv.29<br>Ducklett lv.29</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Team Plasma Grunt</td>
+                     <td>Watchog lv.63<br>Scrafty lv.63</td>
+					 <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Team Plasma Grunt</td>
+                     <td>Liepard lv.62<br>Garbodor lv.62<br>Liepard lv.62</td>
+					 <td>Only after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+		 <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+			<h4>1F</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Guitarist Anna</td>
+                     <td>Emolga lv. 27 (Easy Mode) / 30 (Normal Mode) / 33 (Challenge Mode)</td>
+					 <td>In the western area.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Scientist Ronald</td>
+                     <td>Magneton lv. 27 (Easy Mode) / 30 (Normal Mode) / 33 (Challenge Mode)</td>
+					 <td>In the western area.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Ace Trainer Corky</td>
+                     <td>Klink lv. 30 (Easy Mode) / 33 (Normal Mode) / 36 (Challenge Mode)<br>
+                     Unfezant lv. 30 (Easy Mode) / 33 (Normal Mode) / 36 (Challenge Mode)<br>
+                     Sandslash lv. 30 (Easy Mode) / 33 (Normal Mode) / 36 (Challenge Mode)
+					 </td>
+					 <td>In the western area. This is a Triple Battle.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Pokémon Ranger Louis</td>
+                     <td>Ampharos lv. 31 (Easy Mode) / 34 (Normal Mode) / 37 (Challenge Mode)</td>
+					 <td>In the western area. He will give the player a Chesto Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Ace Trainer Mary</td>
+                     <td>Tirtouga lv. 31 (Easy Mode) / 34 (Normal Mode) / 37 (Challenge Mode)<br>
+                     Magmar lv. 31 (Easy Mode) / 34 (Normal Mode) / 37 (Challenge Mode)
+					 </td>
+					 <td>In the eastern area.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Hiker Otto</td>
+                     <td>Aron lv. 29 (Easy Mode) / 32 (Normal Mode) / 35 (Challenge Mode)<br>
+                     Nosepass lv. 29 (Easy Mode) / 32 (Normal Mode) / 35 (Challenge Mode)</td>
+					 <td>In the eastern area.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>B1F</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (B1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Pokémon Ranger Briana</td>
+                     <td>Minccino lv. 30 (Easy Mode) / 33 (Normal Mode) / 36 (Challenge Mode)<br>
+                     Excadrill lv. 30 (Easy Mode) / 33 (Normal Mode) / 36 (Challenge Mode)</td>
+					 <td>She will give the player a Chesto Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Doctor Kit</td>
+                     <td>Solosis lv. 29 (Easy Mode) / 32 (Normal Mode) / 35 (Challenge Mode)<br>
+                     Gothita lv. 29 (Easy Mode) / 32 (Normal Mode) / 35 (Challenge Mode)</td>
+					 <td>After defeating him, he will heal the player's Pokémon when spoken to.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Scientist Lumi</td>
+                     <td>Joltik lv. 29 (Easy Mode) / 32 (Normal Mode) / 35 (Challenge Mode)<br>
+                     Golbat lv. 29 (Easy Mode) / 32 (Normal Mode) / 35 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>B2F</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (B2F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Guitarist Beverly</td>
+                     <td>Zebstrika lv. 30 (Easy Mode) / 33 (Normal Mode) / 36 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ace Trainer Shaye</td>
+                     <td>Archen lv. 31 (Easy Mode) / 34 (Normal Mode) / 37 (Challenge Mode)<br>
+                     Electabuzz lv. 31 (Easy Mode) / 34 (Normal Mode) / 37 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Hiker Jeremy</td>
+                     <td>Onix lv. 29 (Easy Mode) / 32 (Normal Mode) / 35 (Challenge Mode)<br>
+                     Boldore lv. 29 (Easy Mode) / 32 (Normal Mode) / 35 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ace Trainer Vicki</td>
+                     <td>Stoutland lv. 30 (Easy Mode) / 33 (Normal Mode) / 36 (Challenge Mode)<br>
+                     Krokorok lv. 30 (Easy Mode) / 33 (Normal Mode) / 36 (Challenge Mode)<br>
+                     Ferroseed lv. 30 (Easy Mode) / 33 (Normal Mode) / 36 (Challenge Mode)</td>
+					 <td>This is a Rotation Battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

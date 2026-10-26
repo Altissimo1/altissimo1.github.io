@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Castelia City</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Castelia City</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-4.html">Route 4</a><br>
+            East: <a class="location-link" href="skyarrow-bridge.html">Skyarrow Bridge</a><br>
+            Accessible from the pier: <a class="location-link" href="royal-unova.html">Royal Unova</a><br>
+            Accessible from the city (via the ferries): <a class="location-link" href="unity-tower.html">Unity Tower</a>, <a class="location-link" href="liberty-garden.html">Liberty Garden</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Passerby Analytics HQ<br>
+            Battle Company<br>
+            Game Freak HQ: A Game Director on the 22nd floor of the HQ will give the player diplomas if they have completed the Unova and National Pokédexes.<br>
+            Café Sonata<br>
+            Poké Mart<br>
+            Name Rater<br>
+            Castelia Gym: The third Gym. It specializes in Bug-types.<br>
+            Move Tutor: A Musician in Café Sonata will teach Relic Song to Meloetta.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-4.html">Route 4</a><br>
+            East: <a class="location-link" href="skyarrow-bridge.html">Skyarrow Bridge</a><br>
+            Accessible in the city: <a class="location-link" href="castelia-sewers.html">Castelia Sewers</a><br>
+            Accessible from the pier: <a class="location-link" href="royal-unova.html">Royal Unova</a><br>
+            Accessible via the ship at the harbor: <a class="location-link" href="virbank-city.html">Virbank City</a><br>
+            Occasionally accessible from the pier: <a class="location-link" href="plasma-frigate.html">Plasma Frigate</a><br>
+            Accessible from the city (via the ferries): <a class="location-link" href="unity-tower.html">Unity Tower</a>, <a class="location-link" href="liberty-garden.html">Liberty Garden</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Passerby Analytics HQ<br>
+            Battle Company<br>
+            Game Freak HQ: A Game Director on the 22nd floor of the HQ will give the player diplomas if they have completed the Unova and National Pokédexes.<br>
+            Café Sonata<br>
+            Medal Office<br>
+            Poké Mart<br>
+            Name Rater<br>
+            Castelia Park<br>
+            Castelia Gym: The third Gym. It specializes in Bug-types.<br>
+            Move Tutor: A Musician in Café Sonata will teach Relic Song to Meloetta.<br><br>
+            <strong>Utility:</strong><br>
+            Surf is required to access a Repel, a pair of BlackGlasses, Roughneck Scraggy, Dancer Jean-Paul, and Guitarist Tina in the back alley during spring and summer.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-bw" class="game-container bw">
+            <h3><u>Pokémon</u></h3>
+            <h4>Gift</h4>
+            <p class="bw">To obtain this Zorua, the player must have received Celebi in an event for HeartGold or SoulSilver between 2010 and 2011 and transferred it to Black or White using the Relocator menu option, rather than Poké Transfer. The player has to unlock the Relocator by speaking to the Scientist on 11F of the building to the west of Central Plaza and providing one of the following phrases:</p>
+            <table>
+               <caption>Relocator phrases</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Language</th>
+                     <th>Phrase</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Japanese</td>
+                     <td>みんな ハッピー かんたん つうしん</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>English</td>
+                     <td>EVERYONE HAPPY SIMPLE CONNECTION</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>German</td>
+                     <td>ALLE GLÜCKLICH EINFACH CONNECTION</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>French</td>
+                     <td>TOUS HEUREUX SIMPLE CONNEXION</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Italian</td>
+                     <td>CHIUNQUE FELICE SEMPLICE CONNECTION</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Spanish</td>
+                     <td>TODOS FELICES SIMPLE CONEXIÓN</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Korean</td>
+                     <td>모두 해피 간단 통신</td>
+                  </tr>
+               </tbody>
+            </table>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/zorua.png" alt="Zorua"></div>
+                     </td>
+                     <td>Zorua</td>
+                     <td>10</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2" class="game-container b2w2" style="display:none;">
+            <h3><u>Pokémon</u></h3>
+            <ul>
+               <li>Wild Buneary, Lopunny, Skitty, and Delcatty have a 50% chance of holding a Pecha Berry.</li>
+               <li>Wild Audino have a 50% chance of holding an Oran Berry and a 5% chance of holding a Sitrus Berry.</li>
+            </ul>
+            <h4>Gift</h4>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/eevee-m.png" alt="Eevee"></div>
+                     </td>
+                     <td>Eevee ♂</td>
+                     <td>10</td>
+                     <td>Eevee has its hidden ability Anticipation.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Walking</h4>
+            <div data-location-id="castelia-city" class="pokemon-b2w2-walking-replace-me"></div>
+            <h4>Walking (dark grass)</h4>
+            <div data-location-id="castelia-city" class="pokemon-b2w2-darkgrass-replace-me"></div>
+            <h4>Walking (rustling grass)</h4>
+            <div data-location-id="castelia-city" class="pokemon-b2w2-shaking-replace-me"></div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>TM44 Rest</td>
+                     <td>Obtained from a Hiker on 11F of the western building on Castelia Street</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM70 Flash</td>
+                     <td>Obtained from the man behind the dumpster on Narrow Street</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Lemonade</td>
+                     <td>Obtained from the manager in Café Sonata</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Yache Berry</td>
+                     <td>Obtained from Iris in Team Plasma's hideout on Gym Street</td>
+                     <td>Only after rescuing Munna.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Smoke Ball</td>
+                     <td>In Team Plasma's hideout on Gym Street</td>
+                     <td>Only after rescuing Munna.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Amulet Coin</td>
+                     <td>Obtained from the Dancers in Central Plaza</td>
+                     <td>Only after defeating them.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM45 Attract</td>
+                     <td>Obtained from a School Kid on 47F of the southeastern building in the northernmost street</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Eviolite</td>
+                     <td>Obtained from a Scientist on 1F of the northeastern building in the northernmost street</td>
+                     <td>Only if the player has registered at least 25 species of Pokémon as 'seen' in the Pokédex.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM95 Snarl</td>
+                     <td>Obtained from Mr. Lock on 11F of the western building on the northernmost street</td>
+                     <td>This requires the Lock Capsule, an event-exclusive item that was never made legitimately obtainable.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Pier area</h4>
+            <table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Leaf Stone</td>
+                     <td>Obtained from a Scientist on Thumb Pier</td>
+                     <td>Mutually exclusive with the Fire and Water Stones.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Fire Stone</td>
+                     <td>Obtained from a Scientist on Thumb Pier</td>
+                     <td>Mutually exclusive with the Leaf and Water Stones.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Water Stone</td>
+                     <td>Obtained from a Scientist on Thumb Pier</td>
+                     <td>Mutually exclusive with the Leaf and Fire Stones.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Pokémon Center</h4>
+            <table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Wide Lens</td>
+                     <td>Obtained from a man in black</td>
+                     <td>Only if the player has Pokémon with 5 different Trainer IDs.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Everstone</td>
+                     <td>Obtained from a man in black</td>
+                     <td>Only if the player has Pokémon with 10 different Trainer IDs.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Zoom Lens</td>
+                     <td>Obtained from a man in black</td>
+                     <td>Only if the player has Pokémon with 20 different Trainer IDs.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Choice Scarf</td>
+                     <td>Obtained from a man in black</td>
+                     <td>Only if the player has Pokémon with 30 different Trainer IDs.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>PP Max</td>
+                     <td>Obtained from a man in black</td>
+                     <td>Only if the player has Pokémon with 40 different Trainer IDs.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Master Ball</td>
+                     <td>Obtained from a man in black</td>
+                     <td>Only if the player has Pokémon with 50 different Trainer IDs.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Battle Company</h4>
+            <table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Quick Ball (3x)</td>
+                     <td>Obtained from a Clerk on 47F</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Timer Ball (3x)</td>
+                     <td>Obtained from a Clerk on 47F</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Scope Lens</td>
+                     <td>Obtained from a Scientist on 47F</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Revive</td>
+                     <td>In the southwestern part of 47F</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Hyper Potion</td>
+                     <td>On 55F</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Exp. Share</td>
+                     <td>Obtained from the Janitor (President Geoff) on 55F</td>
+                     <td>Only after defeating him.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Studio Castelia</h4>
+            <p class="bw">A Harlequin here will request to see a Pokémon of a specific type once per day. If he is shown a Pokémon of that type, he will give the player a Berry. The possible Berries are shown below.</p>
+            <table>
+               <tbody>
+                  <tr class="light-true">
+                     <td>Cheri Berry</td>
+                     <td>Chesto Berry</td>
+                     <td>Pecha Berry</td>
+                     <td>Rawst Berry</td>
+                     <td>Aspear Berry</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Casteliacone stand</h4>
+            <p class="bw">The Casteliacone stand on Mode Street will sell one Casteliacone every Tuesday for 100, except during the winter (April, August, and December).</p>
+            <h4>Vending machines</h4>
+            <p class="bw">The vending machines are in Central Plaza.</p>
+            <table>
+               <caption>Vending machines</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Fresh Water</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Soda Pop</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Lemonade</td>
+                     <td>350</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Castelia Gym</h4>
+            <table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Fresh Water</td>
+                     <td>Obtained from Clyde at the entrance</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM76 Struggle Bug</td>
+                     <td>Obtained from Burgh</td>
+                     <td>Only after defeating him.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Upper vendor</h4>
+            <table class="left-align">
+               <caption>Black and White Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Poké Ball</td>
+                     <td>200</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>600</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
+                     <td>Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Potion</td>
+                     <td>300</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>700</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>1200</td>
+                     <td>Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>2500</td>
+                     <td>Only after obtaining 7 Badges.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>3000</td>
+                     <td>Only after obtaining 8 Badges.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>1500</td>
+                     <td>Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Antidote</td>
+                     <td>100</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>200</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Awakening</td>
+                     <td>250</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burn Heal</td>
+                     <td>250</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ice Heal</td>
+                     <td>250</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>600</td>
+                     <td>Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Escape Rope</td>
+                     <td>550</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repel</td>
+                     <td>350</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Repel</td>
+                     <td>500</td>
+                     <td>Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>700</td>
+                     <td>Only after obtaining 5 Badges.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="left-align">
+               <caption>Black and White Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Heal Ball</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Net Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Nest Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>BridgeMail S</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Greet Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Favored Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>RSVP Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Thanks Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Inquiry Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Like Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Reply Mail</td>
+                     <td>50</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>TM44 Rest</td>
+                     <td>Obtained from a Guitarist on 11F of the western building on Castelia Street</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM70 Flash</td>
+                     <td>Obtained from the man behind the dumpster on Narrow Street</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Moomoo Milk</td>
+                     <td>Obtained from the manager in Café Sonata</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM45 Attract</td>
+                     <td>Obtained from a School Kid on 47F of the southeastern building in the northernmost street</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Eviolite</td>
+                     <td>Obtained from a Scientist on 1F of the northeastern building in the northernmost street</td>
+                     <td>Only if the player has registered at least 40 species of Pokémon as 'seen' in the Pokédex.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Charcoal</td>
+                     <td>Obtained from a man on 47F of the northeastern building in the northernmost street</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Amulet Coin</td>
+                     <td>Obtained from a man on 1F of the western building in the northernmost street</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Dowsing MCHN</td>
+                     <td>Obtained from Bianca in the northernmost gate</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Miracle Seed</td>
+                     <td>In Castelia Park</td>
+                     <td>This area is only accessible from the Castelia Sewers.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Repel</td>
+                     <td>In the back alley, accessible from Castelia Sewers</td>
+                     <td>This can only be accessed in the spring and summer (January, February, May, June, September, and October). Requires Surf.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>BlackGlasses</td>
+                     <td>In the back alley, accessible from Castelia Sewers</td>
+                     <td>This can only be accessed in the spring and summer (January, February, May, June, September, and October). Requires Surf.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Pier area</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Bicycle</td>
+                     <td>Obtained from a Harlequin near Prime Pier</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rare Candy</td>
+                     <td>Reward for finding all three Harlequins</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Heart Scale</td>
+                     <td>On the southern part of Prime Pier</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Destiny Knot</td>
+                     <td>Obtained from a woman on Unity Pier</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Battle Company</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Exp. Share</td>
+                     <td>Obtained from the President on 1F</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Miracle Seed</td>
+                     <td>Obtained from an Ace Trainer on 1F</td>
+                     <td>Only if the first option is chosen.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Mystic Water</td>
+                     <td>Obtained from an Ace Trainer on 1F</td>
+                     <td>Only if the second option is chosen.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Charcoal</td>
+                     <td>Obtained from an Ace Trainer on 1F</td>
+                     <td>Only if the third option is chosen.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Quick Ball (2x)</td>
+                     <td>Obtained from Clerk Clemens on 47F</td>
+                     <td>Only after defeating him.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Timer Ball (5x)</td>
+                     <td>Obtained from Clerk Warren on 47F</td>
+                     <td>Only after defeating him.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Scope Lens</td>
+                     <td>Obtained from a Scientist on 47F</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Guard Spec.</td>
+                     <td>On the southwestern part of 47F</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ether</td>
+                     <td>On the northeastern part of 55F</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Game Freak HQ</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>On 22F, near Morimoto</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Studio Castelia</h4>
+            <p class="b2w2">A Clerk here will request to see a Pokémon of a specific type once per day. If he is shown a Pokémon of that type, he will give the player a Berry. The possible Berries are shown below.</p>
+            <table>
+               <tbody>
+                  <tr class="light-true">
+                     <td>Cheri Berry</td>
+                     <td>Chesto Berry</td>
+                     <td>Pecha Berry</td>
+                     <td>Rawst Berry</td>
+                     <td>Aspear Berry</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Casteliacone stand</h4>
+            <p class="b2w2">The Casteliacone stand on Mode Street will sell one Casteliacone for 100 or 12 for 1200. The player can only make one purchase per day.</p>
+            <h4>Vending machines</h4>
+            <p class="b2w2">The vending machines are in Central Plaza.</p>
+            <table>
+               <caption>Vending machines</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Fresh Water</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Soda Pop</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Lemonade</td>
+                     <td>350</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Castelia Gym</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Fresh Water</td>
+                     <td>Obtained from Clyde at the entrance</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM76 Struggle Bug</td>
+                     <td>Obtained from Burgh</td>
+                     <td>Only after defeating him.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Upper vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Poké Ball</td>
+                     <td>200</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>600</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
+                     <td>Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Potion</td>
+                     <td>300</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>700</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>1200</td>
+                     <td>Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>2500</td>
+                     <td>Only after obtaining 7 Badges.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>3000</td>
+                     <td>Only after obtaining 8 Badges.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>1500</td>
+                     <td>Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Antidote</td>
+                     <td>100</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>200</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Awakening</td>
+                     <td>250</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burn Heal</td>
+                     <td>250</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ice Heal</td>
+                     <td>250</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>600</td>
+                     <td>Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Escape Rope</td>
+                     <td>550</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repel</td>
+                     <td>350</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Repel</td>
+                     <td>500</td>
+                     <td>Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>700</td>
+                     <td>Only after obtaining 5 Badges.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Heal Ball</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Net Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Nest Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Greet Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Favored Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>RSVP Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Thanks Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Inquiry Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Like Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Reply Mail</td>
+                     <td>50</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Dancer Mickey</td>
+                     <td>Pansage lv.21</td>
+                     <td>In Central Plaza.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Dancer Edmond</td>
+                     <td>Panpour lv.21</td>
+                     <td>On Narrow Street. Only after defeating Dancer Mickey.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Dancer Raymond</td>
+                     <td>Pansear lv.21</td>
+                     <td>On Unity Pier. Only after defeating Dancer Mickey.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Team Plasma Grunt</td>
+                     <td>Sandile lv.17<br>Sandile lv.17</td>
+                     <td>On Gym Street. Only after first meeting Bianca, Burgh, and Iris on Prime Pier.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Bianca</td>
+                     <td>Herdier lv.18<br>Elemental lv.18<br>Munna lv.18<br>Starter (2nd stage) lv.20</td>
+                     <td>In the northernmost gate. Only after defeating Burgh.<br>
+                        Elemental is one of Pansage, Pansear, or Panpour, whichever has the type that is strong against the player's starter.<br>
+						Her starter is the one whose type is weak against the player's starter.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Battle Company</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Clerk♀ Ingrid</td>
+                     <td>Herdier lv.19</td>
+                     <td>On 47F.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Clerk♂ Clemens</td>
+                     <td>Timburr lv.19</td>
+                     <td>On 47F.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Scientist Randall</td>
+                     <td>Roggenrola lv.19</td>
+                     <td>On 47F.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Clerk♂ Warren</td>
+                     <td>Basculin (Red) lv.17<br>Basculin (Blue) lv.17<br>Basculin (Red) lv.17</td>
+                     <td>On 47F.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Clerk♀ Alberta</td>
+                     <td>Petilil lv.18<br>Cottonee lv.18</td>
+                     <td>On 47F.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Clerk♂ Ivan</td>
+                     <td>Woobat lv.20</td>
+                     <td>On 55F.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Scientist Samantha</td>
+                     <td>Munna lv.20</td>
+                     <td>On 55F.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Scientist Steve</td>
+                     <td>Sewaddle lv.20</td>
+                     <td>On 55F.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Clerk♂ Wade</td>
+                     <td>Pansear lv.19<br>Pansage lv.19<br>Panpour lv.19</td>
+                     <td>On 55F.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Janitor Geoff</td>
+                     <td>Trubbish lv.20<br>Minccino lv.20</td>
+                     <td>On 55F. He will give the player the Exp. Share after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Game Freak HQ</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Game Freak Morimoto</td>
+                     <td>Liepard lv.75<br>Simipour lv.75 @ Petaya Berry<br>Simisear lv.75 @ Petaya Berry<br>Simisage lv.75 @ Petaya Berry<br>Swoobat lv.75<br>Zebstrika lv.77</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Castelia Gym</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Harlequin Jack</td>
+                     <td>Sewaddle lv.20<br>Venipede lv.20</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Harlequin Kerry</td>
+                     <td>Sewaddle lv.20<br>Dwebble lv.20</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Harlequin Rick</td>
+                     <td>Sewaddle lv.21</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Harlequin Louis</td>
+                     <td>Venipede lv.20<br>Sewaddle lv.20</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burgh</td>
+                     <td>Whirlipede lv.21<br>Dwebble lv.21<br>Leavanny lv.23</td>
+                     <td>He will give the player TM76 Struggle Bug after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>Battle Company</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Clerk♂ Clemens</td>
+                     <td>Growlithe lv. 14 (Easy Mode) / 16 (Normal Mode) / 18 (Challenge Mode)</td>
+                     <td>On 47F.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Clerk♂ Warren</td>
+                     <td>Marill lv. 14 (Easy Mode) / 16 (Normal Mode) / 18 (Challenge Mode)</td>
+                     <td>On 47F.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Clerk♀ Britney</td>
+                     <td>Budew lv. 14 (Easy Mode) / 16 (Normal Mode) / 18 (Challenge Mode)</td>
+                     <td>On 47F.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Clerk♂ Gilligan</td>
+                     <td>Pidove lv. 15 (Easy Mode) / 17 (Normal Mode) / 19 (Challenge Mode)</td>
+                     <td>On 47F.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>School Kid Neil</td>
+                     <td>Eevee lv. 15 (Easy Mode) / 17 (Normal Mode) / 19 (Challenge Mode)<br>
+                        Herdier lv. 15 (Easy Mode) / 17 (Normal Mode) / 19 (Challenge Mode)
+                     </td>
+                     <td>On 55F.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Game Freak HQ</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Game Freak Morimoto</td>
+                     <td>Pansage lv. 12 (Easy Mode) / 14 (Normal Mode) / 16 (Challenge Mode) @ Oran Berry<br>
+                        Pansear lv. 12 (Easy Mode) / 14 (Normal Mode) / 16 (Challenge Mode) @ Oran Berry<br>
+                        Panpour lv. 12 (Easy Mode) / 14 (Normal Mode) / 16 (Challenge Mode) @ Oran Berry
+                     </td>
+                     <td>Only before defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Game Freak Nishino</td>
+                     <td>Clefairy lv.14 (Easy Mode) / 16 (Normal Mode) / 18 (Challenge Mode) @ Leftovers</td>
+                     <td>Only before defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Game Freak Morimoto</td>
+                     <td>Liepard lv. 74 (Easy Mode) / 76 (Normal Mode) / 78 (Challenge Mode)<br>
+                        Simipour lv. 74 (Easy Mode) / 76 (Normal Mode) / 78 (Challenge Mode) @ Petaya Berry<br>
+                        Simisear lv. 74 (Easy Mode) / 76 (Normal Mode) / 78 (Challenge Mode) @ Petaya Berry<br>
+                        Simisage lv. 74 (Easy Mode) / 76 (Normal Mode) / 78 (Challenge Mode) @ Petaya Berry<br>
+                        Swoobat lv. 74 (Easy Mode) / 76 (Normal Mode) / 78 (Challenge Mode)<br>
+                        Zebstrika lv. 76 (Easy Mode) / 78 (Normal Mode) / 80 (Challenge Mode)
+                     </td>
+                     <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Game Freak Nishino</td>
+                     <td>Clefable lv. 74 (Easy Mode) / 76 (Normal Mode) / 78 (Challenge Mode) @ Leftovers<br>
+                        Azumarill lv. 74 (Easy Mode) / 76 (Normal Mode) / 78 (Challenge Mode) @ Leftovers<br>
+                        Lickilicky lv. 74 (Easy Mode) / 76 (Normal Mode) / 78 (Challenge Mode) @ Leftovers<br>
+                        Wigglytuff lv. 74 (Easy Mode) / 76 (Normal Mode) / 78 (Challenge Mode) @ Leftovers<br>
+                        Alomomola lv. 74 (Easy Mode) / 76 (Normal Mode) / 78 (Challenge Mode) @ Leftovers<br>
+                        Snorlax lv. 76 (Easy Mode) / 78 (Normal Mode) / 80 (Challenge Mode) @ Leftovers
+                     </td>
+                     <td>Only after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Back alley</h4>
+            <p class="b2w2">The player will earn the Castelia Boss Medal for defeating these Trainers.</p>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Roughneck Ricky</td>
+                     <td>Scraggy lv. 30 (Easy Mode) / 32 (Normal Mode) / 34 (Challenge Mode)</td>
+                     <td>Accessible from the Castelia Sewers. Requires Surf.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Dancer Jean-Paul</td>
+                     <td>Darumaka lv. 30 (Easy Mode) / 32 (Normal Mode) / 34 (Challenge Mode)</td>
+                     <td>Accessible from the Castelia Sewers. Requires Surf.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Guitarist Tina</td>
+                     <td>Krokorok lv. 31 (Easy Mode) / 33 (Normal Mode) / 35 (Challenge Mode)<br>
+                        Liepard lv. 31 (Easy Mode) / 33 (Normal Mode) / 35 (Challenge Mode)
+                     </td>
+                     <td>Accessible from the Castelia Sewers. Requires Surf.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Castelia Gym</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Harlequin Clarence</td>
+                     <td>Sewaddle lv. 18 (Easy Mode) / 20 (Normal Mode) / 22 (Challenge Mode)<br>
+                        Sewaddle lv. 18 (Easy Mode) / 20 (Normal Mode) / 22 (Challenge Mode)
+                     </td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Harlequin Jack</td>
+                     <td>Combee lv. 18 (Easy Mode) / 20 (Normal Mode) / 22 (Challenge Mode)<br>
+                        Swadloon lv. 18 (Easy Mode) / 20 (Normal Mode) / 22 (Challenge Mode)
+                     </td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Harlequin Gary</td>
+                     <td>Sewaddle lv. 17 (Easy Mode) / 19 (Normal Mode) / 21 (Challenge Mode)<br>
+                        Combee lv. 17 (Easy Mode) / 19 (Normal Mode) / 21 (Challenge Mode)<br>
+                        Dwebble lv. 17 (Easy Mode) / 19 (Normal Mode) / 21 (Challenge Mode)
+                     </td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Harlequin Anders</td>
+                     <td>Dwebble lv. 18 (Easy Mode) / 20 (Normal Mode) / 22 (Challenge Mode)<br>
+                        Swadloon lv. 18 (Easy Mode) / 20 (Normal Mode) / 22 (Challenge Mode)
+                     </td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burgh (Easy Mode / Normal Mode)</td>
+                     <td>Swadloon lv. 20 (Easy Mode) / 22 (Normal Mode)<br>
+                        Dwebble lv. 20 (Easy Mode) / 22 (Normal Mode)<br>
+                        Leavanny lv. 22 (Easy Mode) / 24 (Normal Mode) @ Sitrus Berry
+                     </td>
+                     <td>He will give the player TM76 Struggle Bug after the battle.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Burgh (Challenge Mode)</td>
+                     <td>Dwebble lv.24 @ Sitrus Berry<br>Shelmet lv.24<br>Karrablast lv.24<br>Leavanny lv.26 @ Sitrus Berry</td>
+                     <td>He will give the player TM76 Struggle Bug after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

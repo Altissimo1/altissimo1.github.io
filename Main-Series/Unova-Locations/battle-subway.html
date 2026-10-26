@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Battle Subway</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="../Unova-Locations/index.html">Unova Locations Home</a> | <a href="../BW/index.html">Black and White Home</a> | <a href="../B2W2/index.html">Black 2 and White 2 Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Battle Subway</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            Exit: <a class="location-link" href="nimbasa-city.html">Nimbasa City</a><br>
+			Accessible via the Anville Train: <a class="location-link" href="anville-town.html">Anville Town</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Exchange Service Corner
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            Exit: <a class="location-link" href="nimbasa-city.html">Nimbasa City</a><br>
+			Accessible via the Anville Train: <a class="location-link" href="anville-town.html">Anville Town</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Exchange Service Corner
+         </p>
+      </div>
+      <p class="permanent">The Battle Subway is a facility, accessible in Black, White, Black 2, and White 2, where the goal is to defeat Trainers without losing in one of three different modes. Each mode has a leader, known as the Subway Boss, who can be battled after a given number of Trainers have been defeated, without the player losing to any one. Each Subway Boss has two encounters in their mode. Rewards can be obtained from people on the platforms for achieving specific win milestones as well; information about these items is given below.</p>
+      <p class="permanent">The subway station that contains the Battle Subway also contains the Anville Train to take the player to Anville Town.</p>
+	  <p class="permanent">Battles conducted in the Subway are subject to restrictions.</p>
+      <ul>
+         <li>The player will not receive money, and their Pokémon will not receive experience. Instead, the player will receive BP, which is used as a currency for purchasable items in the Battle Maison.</li>
+         <li>Enemy Pokémon, and Pokémon used by allied Trainers in Multi Battles, are always level 50. The player's Pokémon above or below level 50 will be set to level 50.</li>
+         <li>Set Mode is enforced.</li>
+         <li>Items cannot be used in battle.</li>
+         <li>The moves Return and Frustration, when used by the opponent, will always have their maximum power.</li>
+         <li>Losing a battle will reset the player's streak to 0. Turning off the game mid-battle will count as a loss and reset the streak.</li>
+         <li>Pokémon encountered in battles will not be added to the Pokédex.</li>
+         <li>Enemy Pokémon will always take their Nature, Item, moves, and EVs from predetermined 'sets'.</li>
+         <li>Enemy Pokémon that can have multiple Abilities will always have a random Ability, although they cannot have their Hidden Ability. Enemy Pokémon that can be male or female will have their gender randomly determined.</li>
+         <li>The player cannot enter two Pokémon of the same species or holding the same held item, unless they are playing Multis.</li>
+         <li>Any Pokémon holding a Soul Dew cannot enter.</li>
+         <li>Some Pokémon cannot be entered altogether, and will never be encountered on an opponent's team:</li>
+      </ul>
+      <table>
+         <tbody>
+            <tr class="light-true">
+               <td>Mewtwo</td>
+               <td>Mew</td>
+               <td>Lugia</td>
+               <td>Ho-Oh</td>
+               <td>Celebi</td>
+               <td>Kyogre</td>
+            </tr>
+            <tr class="light-false">
+               <td>Groudon</td>
+               <td>Rayquaza</td>
+               <td>Jirachi</td>
+               <td>Deoxys</td>
+               <td>Dialga</td>
+               <td>Palkia</td>
+            </tr>
+            <tr class="light-true">
+               <td>Giratina</td>
+               <td>Phione</td>
+               <td>Manaphy</td>
+               <td>Darkrai</td>
+               <td>Shaymin</td>
+               <td>Arceus</td>
+            </tr>
+            <tr class="light-false">
+               <td>Victini</td>
+               <td>Reshiram</td>
+               <td>Zekrom</td>
+               <td>Kyurem</td>
+               <td>Keldeo</td>
+               <td>Meloetta</td>
+            </tr>
+            <tr class="light-true">
+               <td>Genesect</td>
+               <td>Eggs</td>
+			   <td colspan="4"></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3><u>Resources</u></h3>
+      <ul>
+         <li><a href="../BW/battle-subway-pokemon.html">Pokémon that can appear in the Battle Subway</a></li>
+         <li><a href="../BW/battle-subway-trainers.html">Trainers, and associated Pokémon rosters, that can appear in the Battle Subway</a></li>
+         <li><a href="https://www.smogon.com/forums/threads/black-white-battle-subway-records.102593/">Smogon's Battle Maison records & discussion topic</a></li>
+         <li><a href="http://turskain.github.io/">turskain's damage calculator</a>, with the possible opposing movesets built in</li>
+         <li><a href="https://www.smogon.com/ingame/bc/battle_subway_part1">Battle Subway Guide</a></li>
+      </ul>
+      <p class="permanent">The teams of the Subway Bosses and the amount of BP the player can receive from Subway battles is given <a href="#subway-info">below</a>. The Items and Trainers sections that follow are about the items that can be found in the Battle Subway building, but not as part of the Subway challenge.</p>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>PP Up</td>
+                     <td>Obtained from a Janitor on any Normal Train platform</td>
+                     <td>Only after achieving a 21 battle win streak in any Normal mode.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>PP Up</td>
+                     <td>Obtained from an Artist on any Super Train platform</td>
+                     <td>Only after achieving a 21 battle win streak in any Super mode.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Rare Candy</td>
+                     <td>Obtained from an Ace Trainer♀ on any Super Train platform</td>
+                     <td>Only after achieving a 28 battle win streak in any Super mode.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Lansat Berry</td>
+                     <td>Obtained from a Clerk♂ on any Super Train platform</td>
+                     <td>Only after achieving a 105 battle win streak in any Super mode.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Starf Berry</td>
+                     <td>Obtained from an Ace Trainer♀ on any Super Train platform</td>
+                     <td>Only after achieving a 203 battle win streak in any Super mode.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Exchange Service Corner</h4>
+            <p class="bw">Items here are purchased using BP won through the Battle Subway.</p>
+            <h4>Left vendor</h4>
+            <table class="left-align">
+               <caption>Black and White Items (Left vendor)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>TM23 Smack Down</td>
+                     <td>36 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM48 Round</td>
+                     <td>36 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM87 Swagger</td>
+                     <td>36 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM88 Pluck</td>
+                     <td>36 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM34 Sludge Wave</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM51 Ally Switch</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM59 Incinerate</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM60 Quash</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM64 Explosion</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM77 Psych Up</td>
+                     <td>48 BP</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Right vendor</h4>
+            <table class="left-align">
+               <caption>Black and White Items (Right vendor)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Protein</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Calcium</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Iron</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Zinc</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Carbos</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>HP Up</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Power Bracer</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Power Belt</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Power Lens</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Power Band</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Power Anklet</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Power Weight</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Toxic Orb</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Flame Orb</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>White Herb</td>
+                     <td>32 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Power Herb</td>
+                     <td>32 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Absorb Bulb</td>
+                     <td>32 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cell Battery</td>
+                     <td>32 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Red Card</td>
+                     <td>32 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Eject Button</td>
+                     <td>32 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Wise Glasses</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Choice Specs</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Scope Lens</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Zoom Lens</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Wide Lens</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Muscle Band</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Focus Band</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Choice Band</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Choice Scarf</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Focus Sash</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Razor Claw</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Razor Fang</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>BrightPowder</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Life Orb</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Iron Ball</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Air Balloon</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Binding Band</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rare Candy</td>
+                     <td>48 BP</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>PP Up</td>
+                     <td>Obtained from a Janitor on any Normal Train platform</td>
+                     <td>Only after achieving a 21 battle win streak in any Normal mode.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>PP Up</td>
+                     <td>Obtained from an Artist on any Super Train platform</td>
+                     <td>Only after achieving a 21 battle win streak in any Super mode.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Rare Candy</td>
+                     <td>Obtained from an Ace Trainer♀ on any Super Train platform</td>
+                     <td>Only after achieving a 28 battle win streak in any Super mode.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Lansat Berry</td>
+                     <td>Obtained from a Clerk♂ on any Super Train platform</td>
+                     <td>Only after achieving a 105 battle win streak in any Super mode.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Starf Berry</td>
+                     <td>Obtained from an Ace Trainer♀ on any Super Train platform</td>
+                     <td>Only after achieving a 203 battle win streak in any Super mode.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Exchange Service Corner</h4>
+            <p class="b2w2">Items here are purchased using BP won through the Battle Subway.</p>
+            <h4>Left vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Left vendor)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>TM17 Protect</td>
+                     <td>6 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM20 Safeguard</td>
+                     <td>6 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM32 Double Team</td>
+                     <td>6 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM59 Incinerate</td>
+                     <td>6 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM31 Brick Break</td>
+                     <td>12 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM79 Frost Breath</td>
+                     <td>12 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM89 U-turn</td>
+                     <td>12 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM10 Hidden Power</td>
+                     <td>18 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM23 Smack Down</td>
+                     <td>18 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM48 Round</td>
+                     <td>18 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM75 Swords Dance</td>
+                     <td>18 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM87 Swagger</td>
+                     <td>18 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM88 Pluck</td>
+                     <td>18 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM34 Sludge Wave</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM51 Ally Switch</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM60 Quash</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM64 Explosion</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM77 Psych Up</td>
+                     <td>24 BP</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Right vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Right vendor)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Protein</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Calcium</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Iron</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Zinc</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Carbos</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>HP Up</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Fire Stone</td>
+                     <td>3 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Thunderstone</td>
+                     <td>3 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Water Stone</td>
+                     <td>3 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Leaf Stone</td>
+                     <td>3 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Scope Lens</td>
+                     <td>8 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Wide Lens</td>
+                     <td>8 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Muscle Band</td>
+                     <td>8 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Wise Glasses</td>
+                     <td>8 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Razor Claw</td>
+                     <td>8 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Razor Fang</td>
+                     <td>8 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Binding Band</td>
+                     <td>8 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>BrightPowder</td>
+                     <td>12 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Focus Band</td>
+                     <td>12 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Zoom Lens</td>
+                     <td>12 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Iron Ball</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Air Balloon</td>
+                     <td>48 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Power Bracer</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Power Belt</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Power Lens</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Power Band</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Power Anklet</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Power Weight</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Toxic Orb</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Flame Orb</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>White Herb</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Power Herb</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Absorb Bulb</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Cell Battery</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Red Card</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Eject Button</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Choice Band</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Choice Specs</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Choice Scarf</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Focus Sash</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Life Orb</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-fa;se">
+                     <td>Rare Candy</td>
+                     <td>24 BP</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div>
+         <h3 id="subway-info"><u>Subway Challenge Information</u></h3>
+         <h4>Battle Points</h4>
+         <p class="permanent">The player will receive the following amounts of Battle Points for every round of 7 battles completed.</p>
+		 <p class="permanent">In the Wi-Fi Train, the player is always awarded 10 points per 7 battles, unless the player chooses to re-battle Trainers from the previous train, in which case the player is awarded 5 points.</p>
+         <table>
+            <caption>Normal Train</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Battles</th>
+                  <th>Points</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td>7</td>
+                  <td>3</td>
+               </tr>
+               <tr class="light-true">
+                  <td>14</td>
+                  <td>3</td>
+               </tr>
+               <tr class="light-false">
+                  <td>21</td>
+                  <td>10</td>
+               </tr>
+            </tbody>
+         </table>
+         <table>
+            <caption>Super Train</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Battle(s)</th>
+                  <th>Points</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td>7</td>
+                  <td>5</td>
+               </tr>
+               <tr class="light-true">
+                  <td>14</td>
+                  <td>6</td>
+               </tr>
+               <tr class="light-false">
+                  <td>21</td>
+                  <td>7</td>
+               </tr>
+               <tr class="light-true">
+                  <td>28</td>
+                  <td>8</td>
+               </tr>
+               <tr class="light-false">
+                  <td>35</td>
+                  <td>9</td>
+               </tr>
+               <tr class="light-true">
+                  <td>42</td>
+                  <td>10</td>
+               </tr>
+               <tr class="light-false">
+                  <td>49</td>
+                  <td>30</td>
+               </tr>
+               <tr class="light-true">
+                  <td>56+</td>
+                  <td>10</td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Subway Bosses</h4>
+         <p class="permanent">Each of the two regular modes (Singles and Doubles) has a single Subway Boss that serves as the leader of that mode. The player will battle them first as the 21th battle on the Normal Train and again as the 49th battle on the Super Train, and a commemorative monument will be placed in the player's room for each Subway Boss the player defeats on the Super Train. In Black 2 and White 2, obtained monuments from Black and White can be seen in the player's room if they use Memory Link with that game. The Subway Bosses' teams are always the same, but the order of Pokémon within their party varies.</p>
+         <p class="permanent">When battling a Subway Boss in Multis, the player will engage both Subway Bosses in a Multi Battle.</p>
+         <p class="permanent">Their Pokémon always have 15 IVs on the Normal Train and 31 on the Super Train.</p>
+         <h4>Singles</h4>
+         <table>
+            <caption>Subway Boss Ingo - Normal Train</caption>
+            <thead>
+               <tr class="light-true">
+                  <th colspan="2">Pokémon</th>
+                  <th>Nature</th>
+                  <th>Item</th>
+                  <th colspan="8">Moves</th>
+                  <th>HP</th>
+                  <th>Atk</th>
+                  <th>Def</th>
+                  <th>SpA</th>
+                  <th>SpD</th>
+                  <th>Spe</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/crustle.png" alt="Crustle"></div>
+                  </td>
+                  <td rowspan="2">Crustle</td>
+                  <td rowspan="2">Adamant</td>
+                  <td rowspan="2">Rocky Helmet</td>
+                  <td class="rock" colspan="2">Stone Edge</td>
+                  <td class="bug" colspan="2">X-Scissor</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td class="normal" colspan="2">Flail</td>
+                  <td rowspan="2">137</td>
+                  <td rowspan="2">152</td>
+                  <td rowspan="2">169</td>
+                  <td rowspan="2">69</td>
+                  <td rowspan="2">87</td>
+                  <td rowspan="2">57</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/bug.png" alt="Bug"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/garbodor.png" alt="Garbodor"></div>
+                  </td>
+                  <td rowspan="2">Garbodor</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">Black Sludge</td>
+                  <td class="poison" colspan="2">Venoshock</td>
+                  <td class="psychic" colspan="2">Psychic</td>
+                  <td class="fighting" colspan="2">Focus Blast</td>
+                  <td class="status" colspan="2">Toxic</td>
+                  <td rowspan="2">179</td>
+                  <td rowspan="2">96</td>
+                  <td rowspan="2">94</td>
+                  <td rowspan="2">114</td>
+                  <td rowspan="2">94</td>
+                  <td rowspan="2">87</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/klinklang.png" alt="Klinklang"></div>
+                  </td>
+                  <td rowspan="2">Klinklang</td>
+                  <td rowspan="2">Adamant</td>
+                  <td rowspan="2">Occa Berry</td>
+                  <td class="status" colspan="2">Shift Gear</td>
+                  <td class="steel" colspan="2">Gear Grind</td>
+                  <td class="electric" colspan="2">Volt Switch</td>
+                  <td class="normal" colspan="2">Giga Impact</td>
+                  <td rowspan="2">127</td>
+                  <td rowspan="2">158</td>
+                  <td rowspan="2">127</td>
+                  <td rowspan="2">73</td>
+                  <td rowspan="2">97</td>
+                  <td rowspan="2">134</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <table>
+            <caption>Subway Boss Ingo - Super Train</caption>
+            <thead>
+               <tr class="light-true">
+                  <th colspan="2">Pokémon</th>
+                  <th>Nature</th>
+                  <th>Item</th>
+                  <th colspan="8">Moves</th>
+                  <th>HP</th>
+                  <th>Atk</th>
+                  <th>Def</th>
+                  <th>SpA</th>
+                  <th>SpD</th>
+                  <th>Spe</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/chandelure.png" alt="Chandelure"></div>
+                  </td>
+                  <td rowspan="2">Chandelure</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">White Herb</td>
+                  <td class="fire" colspan="2">Overheat</td>
+                  <td class="ghost" colspan="2">Shadow Ball</td>
+                  <td class="status" colspan="2">Protect</td>
+                  <td class="status" colspan="2">Will-O-Wisp</td>
+                  <td rowspan="2">167</td>
+                  <td rowspan="2">67</td>
+                  <td rowspan="2">110</td>
+                  <td rowspan="2">216</td>
+                  <td rowspan="2">110</td>
+                  <td rowspan="2">100</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fire.png" alt="Fire"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ghost.png" alt="Ghost"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fire.png" alt="Fire"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/excadrill.png" alt="Excadrill"></div>
+                  </td>
+                  <td rowspan="2">Excadrill</td>
+                  <td rowspan="2">Adamant</td>
+                  <td rowspan="2">Life Orb</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td class="flying" colspan="2">Aerial Ace</td>
+                  <td class="poison" colspan="2">Poison Jab</td>
+                  <td class="rock" colspan="2">Rock Slide</td>
+                  <td rowspan="2">185</td>
+                  <td rowspan="2">193</td>
+                  <td rowspan="2">101</td>
+                  <td rowspan="2">63</td>
+                  <td rowspan="2">106</td>
+                  <td rowspan="2">108</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/haxorus.png" alt="Haxorus"></div>
+                  </td>
+                  <td rowspan="2">Haxorus</td>
+                  <td rowspan="2">Jolly</td>
+                  <td rowspan="2">Yache Berry</td>
+                  <td class="status" colspan="2">Dragon Dance</td>
+                  <td class="dragon" colspan="2">Dragon Claw</td>
+                  <td class="dragon" colspan="2">Dragon Tail</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td rowspan="2">151</td>
+                  <td rowspan="2">199</td>
+                  <td rowspan="2">110</td>
+                  <td rowspan="2">72</td>
+                  <td rowspan="2">90</td>
+                  <td rowspan="2">163</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/dragon.png" alt="Dragon"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/dragon.png" alt="Dragon"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/dragon.png" alt="Dragon"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Doubles</h4>
+         <table>
+            <caption>Subway Boss Emmet - Normal Train</caption>
+            <thead>
+               <tr class="light-true">
+                  <th colspan="2">Pokémon</th>
+                  <th>Nature</th>
+                  <th>Item</th>
+                  <th colspan="8">Moves</th>
+                  <th>HP</th>
+                  <th>Atk</th>
+                  <th>Def</th>
+                  <th>SpA</th>
+                  <th>SpD</th>
+                  <th>Spe</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/crustle.png" alt="Crustle"></div>
+                  </td>
+                  <td rowspan="2">Crustle</td>
+                  <td rowspan="2">Adamant</td>
+				  <td rowspan="2">Rocky Helmet</td>
+                  <td class="rock" colspan="2">Stone Edge</td>
+                  <td class="bug" colspan="2">X-Scissor</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td class="normal" colspan="2">Flail</td>
+                  <td rowspan="2">137</td>
+                  <td rowspan="2">152</td>
+                  <td rowspan="2">169</td>
+                  <td rowspan="2">69</td>
+                  <td rowspan="2">87</td>
+                  <td rowspan="2">57</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/bug.png" alt="Bug"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/garbodor.png" alt="Garbodor"></div>
+                  </td>
+                  <td rowspan="2">Garbodor</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">Black Sludge</td>
+                  <td class="poison" colspan="2">Venoshock</td>
+                  <td class="psychic" colspan="2">Psychic</td>
+                  <td class="fighting" colspan="2">Focus Blast</td>
+                  <td class="status" colspan="2">Toxic</td>
+                  <td rowspan="2">179</td>
+                  <td rowspan="2">96</td>
+                  <td rowspan="2">94</td>
+                  <td rowspan="2">114</td>
+                  <td rowspan="2">94</td>
+                  <td rowspan="2">87</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/durant.png" alt="Durant"></div>
+                  </td>
+                  <td rowspan="2">Durant</td>
+                  <td rowspan="2">Jolly</td>
+                  <td rowspan="2">Occa Berry</td>
+                  <td class="bug" colspan="2">X-Scissor</td>
+                  <td class="steel" colspan="2">Iron Head</td>
+                  <td class="rock" colspan="2">Rock Slide</td>
+                  <td class="ghost" colspan="2">Shadow Claw</td>
+                  <td rowspan="2">125</td>
+                  <td rowspan="2">153</td>
+                  <td rowspan="2">124</td>
+                  <td rowspan="2">54</td>
+                  <td rowspan="2">60</td>
+                  <td rowspan="2">168</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/bug.png" alt="Bug"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ghost.png" alt="Ghost"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/klinklang.png" alt="Klinklang"></div>
+                  </td>
+                  <td rowspan="2">Klinklang</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">Steel Gem</td>
+                  <td class="steel" colspan="2">Flash Cannon</td>
+                  <td class="electric" colspan="2">Thunderbolt</td>
+                  <td class="status" colspan="2">Protect</td>
+                  <td class="normal" colspan="2">Toxic</td>
+                  <td rowspan="2">127</td>
+                  <td rowspan="2">100</td>
+                  <td rowspan="2">127</td>
+                  <td rowspan="2">125</td>
+                  <td rowspan="2">97</td>
+                  <td rowspan="2">134</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <table>
+            <caption>Subway Boss Emmet - Super Train</caption>
+            <thead>
+               <tr class="light-true">
+                  <th colspan="2">Pokémon</th>
+                  <th>Nature</th>
+                  <th>Item</th>
+                  <th colspan="8">Moves</th>
+                  <th>HP</th>
+                  <th>Atk</th>
+                  <th>Def</th>
+                  <th>SpA</th>
+                  <th>SpD</th>
+                  <th>Spe</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/eelektross.png" alt="Eelektross"></div>
+                  </td>
+                  <td rowspan="2">Eelektross</td>
+                  <td rowspan="2">Quiet</td>
+                  <td rowspan="2">Magnet</td>
+                  <td class="electric" colspan="2">Discharge</td>
+                  <td class="status" colspan="2">Gastro Acid</td>
+                  <td class="electric" colspan="2">Thunderbolt</td>
+                  <td class="status" colspan="2">Thunder Wave</td>
+                  <td rowspan="2">192</td>
+                  <td rowspan="2">135</td>
+                  <td rowspan="2">100</td>
+                  <td rowspan="2">172</td>
+                  <td rowspan="2">100</td>
+                  <td rowspan="2">63</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/chandelure.png" alt="Chandelure"></div>
+                  </td>
+                  <td rowspan="2">Chandelure</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">White Herb</td>
+                  <td class="fire" colspan="2">Overheat</td>
+                  <td class="ghost" colspan="2">Shadow Ball</td>
+                  <td class="status" colspan="2">Protect</td>
+                  <td class="status" colspan="2">Will-O-Wisp</td>
+                  <td rowspan="2">167</td>
+                  <td rowspan="2">67</td>
+                  <td rowspan="2">110</td>
+                  <td rowspan="2">216</td>
+                  <td rowspan="2">110</td>
+                  <td rowspan="2">100</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fire.png" alt="Fire"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ghost.png" alt="Ghost"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fire.png" alt="Fire"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/excadrill.png" alt="Excadrill"></div>
+                  </td>
+                  <td rowspan="2">Excadrill</td>
+                  <td rowspan="2">Adamant</td>
+                  <td rowspan="2">Life Orb</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td class="flying" colspan="2">Aerial Ace</td>
+                  <td class="poison" colspan="2">Poison Jab</td>
+                  <td class="rock" colspan="2">Rock Slide</td>
+                  <td rowspan="2">185</td>
+                  <td rowspan="2">193</td>
+                  <td rowspan="2">101</td>
+                  <td rowspan="2">63</td>
+                  <td rowspan="2">106</td>
+                  <td rowspan="2">108</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/haxorus.png" alt="Haxorus"></div>
+                  </td>
+                  <td rowspan="2">Haxorus</td>
+                  <td rowspan="2">Jolly</td>
+                  <td rowspan="2">Yache Berry</td>
+                  <td class="status" colspan="2">Dragon Dance</td>
+                  <td class="dragon" colspan="2">Dragon Claw</td>
+                  <td class="dragon" colspan="2">Dragon Tail</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td rowspan="2">151</td>
+                  <td rowspan="2">199</td>
+                  <td rowspan="2">110</td>
+                  <td rowspan="2">72</td>
+                  <td rowspan="2">90</td>
+                  <td rowspan="2">163</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/dragon.png" alt="Dragon"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/dragon.png" alt="Dragon"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/dragon.png" alt="Dragon"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <h4>Multis</h4>
+         <table>
+            <caption>Subway Bosses Ingo & Emmet - Normal Train</caption>
+            <thead>
+               <tr class="light-true">
+                  <th colspan="2">Pokémon</th>
+                  <th>Nature</th>
+                  <th>Item</th>
+                  <th colspan="8">Moves</th>
+                  <th>HP</th>
+                  <th>Atk</th>
+                  <th>Def</th>
+                  <th>SpA</th>
+                  <th>SpD</th>
+                  <th>Spe</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/garbodor.png" alt="Garbodor"></div>
+                  </td>
+                  <td rowspan="2">Garbodor</td>
+                  <td rowspan="2">Modest</td>
+                  <td rowspan="2">Black Sludge</td>
+                  <td class="poison" colspan="2">Venoshock</td>
+                  <td class="psychic" colspan="2">Psychic</td>
+                  <td class="fighting" colspan="2">Focus Blast</td>
+                  <td class="status" colspan="2">Toxic</td>
+                  <td rowspan="2">179</td>
+                  <td rowspan="2">96</td>
+                  <td rowspan="2">94</td>
+                  <td rowspan="2">114</td>
+                  <td rowspan="2">94</td>
+                  <td rowspan="2">87</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/psychic.png" alt="Psychic"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/klinklang.png" alt="Klinklang"></div>
+                  </td>
+                  <td rowspan="2">Klinklang</td>
+                  <td rowspan="2">Adamant</td>
+                  <td rowspan="2">Occa Berry</td>
+                  <td class="status" colspan="2">Shift Gear</td>
+                  <td class="steel" colspan="2">Gear Grind</td>
+                  <td class="electric" colspan="2">Volt Switch</td>
+                  <td class="normal" colspan="2">Giga Impact</td>
+                  <td rowspan="2">127</td>
+                  <td rowspan="2">158</td>
+                  <td rowspan="2">127</td>
+                  <td rowspan="2">73</td>
+                  <td rowspan="2">97</td>
+                  <td rowspan="2">134</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+			   <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/durant.png" alt="Durant"></div>
+                  </td>
+                  <td rowspan="2">Durant</td>
+                  <td rowspan="2">Jolly</td>
+                  <td rowspan="2">Occa Berry</td>
+                  <td class="bug" colspan="2">X-Scissor</td>
+                  <td class="steel" colspan="2">Iron Head</td>
+                  <td class="rock" colspan="2">Rock Slide</td>
+                  <td class="ghost" colspan="2">Shadow Claw</td>
+                  <td rowspan="2">125</td>
+                  <td rowspan="2">153</td>
+                  <td rowspan="2">124</td>
+                  <td rowspan="2">54</td>
+                  <td rowspan="2">60</td>
+                  <td rowspan="2">168</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/bug.png" alt="Bug"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/steel.png" alt="Steel"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ghost.png" alt="Ghost"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+			   <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/galvantula.png" alt="Galvantula"></div>
+                  </td>
+                  <td rowspan="2">Galvantula</td>
+                  <td rowspan="2">Adamant</td>
+                  <td rowspan="2">Scope Lens</td>
+                  <td class="bug" colspan="2">X-Scissor</td>
+                  <td class="electric" colspan="2">Wild Charge</td>
+                  <td class="poison" colspan="2">Cross Poison</td>
+                  <td class="status" colspan="2">Thunder Wave</td>
+                  <td rowspan="2">137</td>
+                  <td rowspan="2">133</td>
+                  <td rowspan="2">72</td>
+                  <td rowspan="2">98</td>
+                  <td rowspan="2">72</td>
+                  <td rowspan="2">152</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/bug.png" alt="Bug"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+		    </tbody>
+         </table>
+		 <table>
+            <caption>Subway Bosses Ingo & Emmet - Super Train</caption>
+            <thead>
+               <tr class="light-true">
+                  <th colspan="2">Pokémon</th>
+                  <th>Nature</th>
+                  <th>Item</th>
+                  <th colspan="8">Moves</th>
+                  <th>HP</th>
+                  <th>Atk</th>
+                  <th>Def</th>
+                  <th>SpA</th>
+                  <th>SpD</th>
+                  <th>Spe</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/excadrill.png" alt="Excadrill"></div>
+                  </td>
+                  <td rowspan="2">Excadrill</td>
+                  <td rowspan="2">Adamant</td>
+                  <td rowspan="2">Life Orb</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td class="flying" colspan="2">Aerial Ace</td>
+                  <td class="poison" colspan="2">Poison Jab</td>
+                  <td class="rock" colspan="2">Rock Slide</td>
+                  <td rowspan="2">185</td>
+                  <td rowspan="2">193</td>
+                  <td rowspan="2">101</td>
+                  <td rowspan="2">63</td>
+                  <td rowspan="2">106</td>
+                  <td rowspan="2">108</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+               <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/haxorus.png" alt="Haxorus"></div>
+                  </td>
+                  <td rowspan="2">Haxorus</td>
+                  <td rowspan="2">Jolly</td>
+                  <td rowspan="2">Yache Berry</td>
+                  <td class="status" colspan="2">Dragon Dance</td>
+                  <td class="dragon" colspan="2">Dragon Claw</td>
+                  <td class="dragon" colspan="2">Dragon Tail</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td rowspan="2">151</td>
+                  <td rowspan="2">199</td>
+                  <td rowspan="2">110</td>
+                  <td rowspan="2">72</td>
+                  <td rowspan="2">90</td>
+                  <td rowspan="2">163</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/dragon.png" alt="Dragon"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/dragon.png" alt="Dragon"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/dragon.png" alt="Dragon"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+               </tr>
+			   <tr class="light-false">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/eelektross.png" alt="Eelektross"></div>
+                  </td>
+                  <td rowspan="2">Eelektross</td>
+                  <td rowspan="2">Quiet</td>
+                  <td rowspan="2">Magnet</td>
+                  <td class="electric" colspan="2">Discharge</td>
+                  <td class="status" colspan="2">Gastro Acid</td>
+                  <td class="electric" colspan="2">Thunderbolt</td>
+                  <td class="status" colspan="2">Thunder Wave</td>
+                  <td rowspan="2">192</td>
+                  <td rowspan="2">135</td>
+                  <td rowspan="2">100</td>
+                  <td rowspan="2">172</td>
+                  <td rowspan="2">100</td>
+                  <td rowspan="2">63</td>
+               </tr>
+               <tr class="light-false">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/poison.png" alt="Poison"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/electric.png" alt="Electric"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+			   <tr class="light-true">
+                  <td rowspan="2">
+                     <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/archeops.png" alt="Archeops"></div>
+                  </td>
+                  <td rowspan="2">Archeops</td>
+                  <td rowspan="2">Jolly</td>
+                  <td rowspan="2">Sitrus Berry</td>
+                  <td class="rock" colspan="2">Rock Slide</td>
+                  <td class="ground" colspan="2">Earthquake</td>
+                  <td class="flying" colspan="2">Aerial Ace</td>
+                  <td class="status" colspan="2">Protect</td>
+                  <td rowspan="2">150</td>
+                  <td rowspan="2">192</td>
+                  <td rowspan="2">85</td>
+                  <td rowspan="2">118</td>
+                  <td rowspan="2">85</td>
+                  <td rowspan="2">178</td>
+               </tr>
+               <tr class="light-true">
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/rock.png" alt="Rock"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/ground.png" alt="Ground"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+                  </td>
+                  <td>
+                     <div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <h3><u>Credits & sources</u></h3>
+      <ul>
+         <li><a href="https://www.smogon.com/forums/threads/black-white-battle-subway-records.102593/">The Battle Subway records topic on Smogon</a>, for the collected resources of many players, including Pokémon movesets, Trainer information, and all the collective team-building knowledge.</li>
+         <li><a href="https://docs.google.com/spreadsheets/d/1afu8l1-NAAoaqPLQj5pRCisGkiAhI3gYs-aDZJ_Dj8Q/edit">The Inundata Sheets Index</a>, for the Pokémon and Trainers that can be found in both Trains.</li>
+         <li><a href="https://bulbapedia.bulbagarden.net/wiki/Battle_Subway">Bulbapedia</a>, for the items that can be found in the Battle Subway building.</li>
+      </ul>
+   </body>
+</html>

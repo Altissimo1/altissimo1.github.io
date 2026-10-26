@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Pokémon World Tournament</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script>var STAT_TOGGLE_CONFIG = { formula: 'gen3', defaultLevel: 25, useDataIv: true };</script>
+      <script src="../../Resources/javascript/base-stats-gen5.js"></script>
+      <script src="../../Resources/javascript/stat-toggle.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="../Unova-Locations/index.html">Unova Locations Home</a> | <a href="../B2W2/index.html">Black 2 and White 2 Home</a></h4>
+      <h2>Pokémon World Tournament</h2>
+      <div id="notes" class="bottom">
+         <p id="b2w2-notes" class="b2w2">
+            <strong>Access to:</strong><br>
+            Exit: <a class="location-link" href="../Unova-Locations/driftveil-city.html?b2w2">Driftveil City</a><br>
+            Accessible in the area: <a class="location-link" href="../Unova-Locations/relic-passage.html?b2w2">Relic Passage</a><br>
+            Occasionally accessible from the area: <a class="location-link" href="../Unova-Locations/plasma-frigate.html?b2w2">Plasma Frigate</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Exchange Service Corner<br>
+            Move Reminder: In exchange for a Heart Scale, the Move Reminder can teach a Pokémon a move that it was capable of learning at a lower level than its current level, but which is not currently in its moveset.<br>
+            Move Deleter<br>
+            Move Tutors: Two Move Tutors will teach moves to any fully-evolved starter Pokémon with maximum friendship. One teaches Frenzy Plant, Blast Burn, and Hydro Cannon, and the other teaches Grass Pledge, Fire Pledge, and Water Pledge.
+         </p>
+      </div>
+      <h3><u>Overview</u></h3>
+      <p class="permanent">The Pokémon World Tournament is a battle facility in Black 2 and White 2. Here, the player can participate in several different types of tournaments in different battle modes.</p>
+      <p class="permanent">Battles conducted in the PWT are subject to certain restrictions, shown below:</p>
+      <ul>
+         <li>All Pokémon are set to level 25 in the Driftveil Tournament and to level 50 in the Rental and Mix Tournaments.</li>
+         <li>Opponents' Pokémon always have a fixed IV value in every stat, determined by the Trainer. The IVs of each Trainer are listed on the tournament pages.</li>
+         <li>Each opponent leads with a specific Pokémon, which is listed first on the tournament pages.</li>
+         <li>Any Pokémon holding a Soul Dew cannot enter.</li>
+         <li>Some Pokémon cannot be entered in any tournament (except some Download tournaments) and will never be encountered on an opponent's team:</li>
+      </ul>
+      <table>
+         <tbody>
+            <tr class="light-true">
+               <td>Mewtwo</td>
+               <td>Mew</td>
+               <td>Lugia</td>
+               <td>Ho-Oh</td>
+               <td>Celebi</td>
+               <td>Kyogre</td>
+            </tr>
+            <tr class="light-false">
+               <td>Groudon</td>
+               <td>Rayquaza</td>
+               <td>Jirachi</td>
+               <td>Deoxys</td>
+               <td>Dialga</td>
+               <td>Palkia</td>
+            </tr>
+            <tr class="light-true">
+               <td>Giratina</td>
+               <td>Phione</td>
+               <td>Manaphy</td>
+               <td>Darkrai</td>
+               <td>Shaymin</td>
+               <td>Arceus</td>
+            </tr>
+            <tr class="light-false">
+               <td>Victini</td>
+               <td>Reshiram</td>
+               <td>Zekrom</td>
+               <td>Kyurem</td>
+               <td>Keldeo</td>
+               <td>Meloetta</td>
+            </tr>
+            <tr class="light-true">
+               <td>Genesect</td>
+               <td>Eggs</td>
+               <td colspan="4"></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3><u>Tournaments</u></h3>
+      <p class="permanent">Tournaments are chosen from two attendants at the front desk. The left attendant handles the Driftveil, Rental, Mix, and Download Tournaments, and the right attendant handles the remaining specialty tournaments. The linked tournaments have pages listing every Trainer and the Pokémon they can use.</p>
+      <table class="left-align">
+         <caption>Tournaments</caption>
+         <thead>
+            <tr class="light-true">
+               <th>Tournament</th>
+               <th>Unlocked by</th>
+               <th>Notes</th>
+            </tr>
+         </thead>
+         <tbody>
+			  <tr class="light-false">
+				 <td><a href="../B2W2/driftveil-tournament.html">Driftveil</a></td>
+				 <td>Available from the start</td>
+				 <td>All Pokémon are set to level 25. Details about the first time the player enters this Tournament are shown below.</td>
+			  </tr>
+			  <tr class="light-true">
+				 <td><a href="../B2W2/rental-tournament.html">Rental</a></td>
+				 <td>Win the Driftveil Tournament</td>
+				 <td>The player and opponents both use rental Pokémon at level 50.</td>
+			  </tr>
+			  <tr class="light-false">
+				 <td><a href="../B2W2/driftveil-tournament.html">Mix</a></td>
+				 <td>Win the Driftveil Tournament</td>
+				 <td>Uses the same Trainers and teams as the Driftveil Tournament, but at level 50. Before each battle, both Trainers can swap one Pokémon with each other.</td>
+			  </tr>
+			  <tr class="light-true">
+				 <td><a href="../B2W2/unova-leaders-tournament.html">Unova Leaders</a></td>
+				 <td>Defeat the Elite Four</td>
+				 <td>Features Unova Gym Leaders from Black, White, Black 2, and White 2.</td>
+			  </tr>
+			  <tr class="light-false">
+				 <td><a href="../B2W2/kanto-leaders-tournament.html">Kanto Leaders</a></td>
+				 <td>Win the Unova Leaders Tournament</td>
+				 <td>Features Kanto Gym Leaders.</td>
+			  </tr>
+			  <tr class="light-true">
+				 <td><a href="../B2W2/johto-leaders-tournament.html">Johto Leaders</a></td>
+				 <td>Win the Unova Leaders Tournament</td>
+				 <td>Features Johto Gym Leaders.</td>
+			  </tr>
+			  <tr class="light-false">
+				 <td><a href="../B2W2/hoenn-leaders-tournament.html">Hoenn Leaders</a></td>
+				 <td>Win the Unova Leaders Tournament</td>
+				 <td>Features Hoenn Gym Leaders.</td>
+			  </tr>
+			  <tr class="light-true">
+				 <td><a href="../B2W2/sinnoh-leaders-tournament.html">Sinnoh Leaders</a></td>
+				 <td>Win the Unova Leaders Tournament</td>
+				 <td>Features Sinnoh Gym Leaders.</td>
+			  </tr>
+			  <tr class="light-false">
+				 <td><a href="../B2W2/world-leaders-tournament.html">World Leaders</a></td>
+				 <td>Win all five regional Leaders Tournaments</td>
+				 <td>Features Gym Leaders from all five regions.</td>
+			  </tr>
+			  <tr class="light-true">
+				 <td><a href="../B2W2/champions-tournament.html">Champions</a></td>
+				 <td>Win the World Leaders Tournament 10 times</td>
+				 <td>Features the Champions of all five regions as well as Red.</td>
+			  </tr>
+			  <tr class="light-false">
+				 <td><a href="../B2W2/rental-master-tournament.html">Rental Master</a></td>
+				 <td>Win the Driftveil, Rental, and all five regional Leaders Tournaments</td>
+				 <td>Uses the same rules as the Rental Tournament, but almost all rental Pokémon are fully evolved. The opposing Trainers are different, but all still use rentals.</td>
+			  </tr>
+			  <tr class="light-true">
+				 <td><a href="../B2W2/mix-master-tournament.html">Mix Master</a></td>
+				 <td>Win the Driftveil, Mix, and all five regional Leaders Tournaments.</td>
+				 <td>Uses the same rules as the Mix Tournament, though with stricter restrictions on the player's Pokémon, and only the eight Black 2 and White 2 Gym Leaders are faced.</td>
+			  </tr>
+			  <tr class="light-false">
+				 <td><a href="../B2W2/type-expert-tournament.html">Type Expert</a></td>
+				 <td>Win the Driftveil, and five regional Leaders Tournaments.</td>
+				 <td>There are seventeen tournaments, one per type, and the player and all opponents may only use Pokémon of that type.</td>
+			  </tr>
+			  <tr class="light-true">
+				 <td>Download</td>
+				 <td>Downloaded via Nintendo Wi-Fi Connection (discontinued May 20, 2014).</td>
+				 <td>Special downloadable tournaments with their own rules.<br>Details about the entrants in these tournaments can be found <a href="https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_World_Tournament#Download" target="_blank">on Bulbapedia</a>.</td>
+			  </tr>
+         </tbody>
+      </table>
+      <h4>Battle Points</h4>
+	   <p class="permanent">The player receives the following amounts of BP for winning a tournament. In the World Leaders and Champions Tournaments, the player instead receives 1 BP for every Pokémon that did not faint during the entire tournament.</p>
+	   <p class="permanent">The player will receive a Red, Yellow, Green, or Blue Shard for losing a tournament.</p>
+         <table>
+            <caption>Battle Points</caption>
+            <thead>
+               <tr class="light-true">
+                  <th>Tournament</th>
+                  <th>Single</th>
+                  <th>Double</th>
+                  <th>Triple</th>
+                  <th>Rotation</th>
+               </tr>
+            </thead>
+            <tbody>
+                  <tr class="light-false">
+                     <td>Driftveil</td>
+                     <td>1</td>
+                     <td>1</td>
+                     <td>2</td>
+                     <td>2</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rental</td>
+                     <td>1</td>
+                     <td>1</td>
+                     <td>2</td>
+                     <td>2</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Mix</td>
+                     <td>1</td>
+                     <td>1</td>
+                     <td>2</td>
+                     <td>2</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Unova Leaders</td>
+                     <td>1</td>
+                     <td>1</td>
+                     <td>2</td>
+                     <td>2</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Kanto Leaders</td>
+                     <td>2</td>
+                     <td>2</td>
+                     <td>3</td>
+                     <td>3</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Johto Leaders</td>
+                     <td>2</td>
+                     <td>2</td>
+                     <td>3</td>
+                     <td>3</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Hoenn Leaders</td>
+                     <td>2</td>
+                     <td>2</td>
+                     <td>3</td>
+                     <td>3</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Sinnoh Leaders</td>
+                     <td>2</td>
+                     <td>2</td>
+                     <td>3</td>
+                     <td>3</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Rental Master</td>
+                     <td>2</td>
+                     <td>2</td>
+                     <td>3</td>
+                     <td>3</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>World Leaders</td>
+                     <td>1-9</td>
+                     <td>1-12</td>
+                     <td>1-18</td>
+                     <td>1-12</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Champions</td>
+                     <td>1-9</td>
+                     <td>1-12</td>
+                     <td>1-18</td>
+                     <td>1-12</td>
+                  </tr>
+            </tbody>
+         </table>
+      <div id="items-container">
+         <div id="pokemon-b2w2-items" class="game-container b2w2">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Ether</td>
+                     <td>Southeast of the Relic Passage entrance</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rocky Helmet</td>
+                     <td>Obtained from a Worker southeast of the fountain</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Zinc</td>
+                     <td>In the trash can north of the fountain</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>PP Up</td>
+                     <td>At the end of the western pier</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Exchange Service Corner</h4>
+            <p class="permanent">Items here are purchased using BP.</p>
+            <h4>Left vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Left vendor)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>TM17 Protect</td>
+                     <td>6 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM20 Safeguard</td>
+                     <td>6 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM32 Double Team</td>
+                     <td>6 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM59 Incinerate</td>
+                     <td>6 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM31 Brick Break</td>
+                     <td>12 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM79 Frost Breath</td>
+                     <td>12 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM89 U-turn</td>
+                     <td>12 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM10 Hidden Power</td>
+                     <td>18 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM23 Smack Down</td>
+                     <td>18 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM48 Round</td>
+                     <td>18 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM75 Swords Dance</td>
+                     <td>18 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM87 Swagger</td>
+                     <td>18 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM88 Pluck</td>
+                     <td>18 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM34 Sludge Wave</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM51 Ally Switch</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM60 Quash</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM64 Explosion</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM77 Psych Up</td>
+                     <td>24 BP</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Right vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Right vendor)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Protein</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Calcium</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Iron</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Zinc</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Carbos</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>HP Up</td>
+                     <td>1 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Fire Stone</td>
+                     <td>3 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Thunderstone</td>
+                     <td>3 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Water Stone</td>
+                     <td>3 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Leaf Stone</td>
+                     <td>3 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Scope Lens</td>
+                     <td>8 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Wide Lens</td>
+                     <td>8 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Muscle Band</td>
+                     <td>8 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Wise Glasses</td>
+                     <td>8 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Razor Claw</td>
+                     <td>8 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Razor Fang</td>
+                     <td>8 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Binding Band</td>
+                     <td>8 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Focus Band</td>
+                     <td>12 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Zoom Lens</td>
+                     <td>12 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Iron Ball</td>
+                     <td>12 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Air Balloon</td>
+                     <td>12 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Power Bracer</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Power Belt</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Power Lens</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Power Band</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Power Anklet</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Power Weight</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Toxic Orb</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Flame Orb</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>White Herb</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Power Herb</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Absorb Bulb</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Cell Battery</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Red Card</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Eject Button</td>
+                     <td>16 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Choice Band</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Choice Specs</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Choice Scarf</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Focus Sash</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Life Orb</td>
+                     <td>24 BP</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Rare Candy</td>
+                     <td>24 BP</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-b2w2-trainers" class="game-container b2w2">
+            <h3><u>Trainers</u></h3>
+			<p class="permanent">The first time the player approaches this area, they will be forced to enter the Driftveil Tournament. During this tournament, the player will always battle Hugh, Cheren, and Colress, and though their Pokémon are set to level 25, the player's Pokémon will not have their level changed. After first beating this tournament, all future attempts at the tournament will use the Pokémon and Trainers specified on the <a href="../B2W2/driftveil-tournament.html">Driftveil and Mix Tournament page</a>.</p>
+            <table class="left-align">
+				<caption>Trainers</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Trainer</th>
+						<th>Party</th>
+						<th>Notes</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>Hugh</td>
+						<td>Starter (2nd stage) lv.25<br>Elemental lv.25<br>Tranquill lv.25</td>
+						<td>Elemental will be one of Simisage, Simisear, or Simipour, whichever has the type that is weak against the player's starter.<br>His starter is the one whose type is strong against the player's starter.</td>
+					</tr>
+					<tr class="light-true">
+						<td>Cheren</td>
+						<td>Stoutland lv.25<br>Cinccino lv.25<br>Watchog lv.25</td>
+						<td></td>
+					</tr>
+					<tr class="light-false">
+						<td>Colress</td>
+						<td>Magneton lv.25<br>Klink lv.25<br>Elgyem lv.25</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+         </div>
+      </div>
+      <h3><u>Credits & sources</u></h3>
+      <ul>
+         <li><a href="https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_World_Tournament">Bulbapedia</a>, for the tournament list and unlock conditions, items, Exchange Service Corner prices, and Battle Point information.</li>
+         <li><a href="https://pokemow.com/">Mow</a> and SadisticMystic, for helping obtain and clarify the game data for how the information is stored, which I used Claude to help convert to these pages.</li>
+      </ul>
+   </body>
+</html>

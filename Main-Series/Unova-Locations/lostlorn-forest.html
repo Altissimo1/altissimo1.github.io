@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Lostlorn Forest</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Lostlorn Forest</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            South: <a class="location-link" href="route-16.html">Route 16</a><br><br>
+			<strong>Utility:</strong><br>
+			Surf is required to access a Rare Candy and a Protein. Wild Pokémon can also be encountered here with Surf.<br>
+			Waterfall is required to access a Rare Candy and a Protein.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a class="location-link" href="route-16.html">Route 16</a><br><br>
+			<strong>Utility:</strong><br>
+			Surf is required to access a Rare Candy, a Grass Gem, and Veteran Murphy. Wild Pokémon can also be encountered here with Surf.<br>
+			Waterfall is required to access a Rare Candy, a Grass Gem, and Veteran Murphy.
+		</p>
+      </div>
+	  <div id="pokemon-container">
+		<div id="pokemon-bw" class="game-container bw">
+			<h3>Pokémon</h3>
+			<ul>
+				<li>Wild Swadloon and Leavanny have a 5% chance of holding a Mental Herb.</li>
+				<li>Wild Venipede have a 50% chance of holding a Pecha Berry and a 5% chance of holding a Poison Barb.</li>
+				<li>Wild Audino have a 50% chance of holding an Oran Berry and a 5% chance of holding a Sitrus Berry.</li>
+				<li>Wild Emolga always hold a Cheri Berry.</li>
+				<li>Wild Panpour have a 50% chance of holding an Oran Berry and a 5% chance of holding a Rindo Berry.</li>
+				<li>Wild Pansage have a 50% chance of holding an Oran Berry and a 5% chance of holding an Occa Berry.</li>
+				<li>Wild Pansear have a 50% chance of holding an Oran Berry and a 5% chance of holding a Passho Berry.</li>
+               <li>Wild Red-Striped Basculin have a 5% chance of holding a DeepSeaTooth.</li>
+               <li>Wild Blue-Striped Basculin have a 5% chance of holding a DeepSeaScale.</li>
+			</ul>
+			<h4>Walking</h4>
+            <div data-location-id="lostlorn-forest" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (dark grass)</h4>
+            <div data-location-id="lostlorn-forest" class="pokemon-bw-darkgrass-replace-me"></div>
+			<h4>Walking (shaking grass)</h4>
+            <div data-location-id="lostlorn-forest" class="pokemon-bw-shaking-replace-me"></div>
+			<h4>Static</h4>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/zoroark.png" alt="Zoroark"></div>
+                     </td>
+                     <td>Zoroark ♀</td>
+                     <td>25</td>
+                     <td>Only if the player has one of the three Johto Legendary Beasts that was distributed in 2010 and 2011 for Diamond, Pearl, Platinum, HeartGold, and SoulSilver.<br>This Zoroark takes the form of whichever of the Legendary Beasts is closest to the front of the player's party.<br>If defeated or run from, it will reappear after leaving the area. It cannot be Shiny.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Surfing</h4>
+            <div data-location-id="lostlorn-forest" class="pokemon-bw-surfing-replace-me"></div>
+			<h4>Surfing (rippling water)</h4>
+            <div data-location-id="lostlorn-forest" class="pokemon-bw-shakingsurf-replace-me"></div>
+			<h4>Fishing</h4>
+            <div data-location-id="lostlorn-forest" class="pokemon-bw-fishing-replace-me"></div>
+			<h4>Fishing (rippling water)</h4>
+            <div data-location-id="lostlorn-forest" class="pokemon-bw-shakingfish-replace-me"></div>
+		</div>
+		<div id="pokemon-b2w2" class="game-container b2w2" style="display:none;">
+			<h3>Pokémon</h3>
+			<ul>
+				<li>Wild Swadloon and Leavanny have a 5% chance of holding a Mental Herb.</li>
+				<li>Wild Venipede and Vespiquen have a 5% chance of holding a Poison Barb.</li>
+				<li>Wild Roselia and Roserade have a 5% chance of holding a Poison Barb and a 1% chance of holding an Absorb Bulb (in dark grass only).</li>
+				<li>Wild Combee have a 5% chance of holding Honey.</li>
+				<li>Wild Audino have a 50% chance of holding an Oran Berry and a 5% chance of holding a Sitrus Berry.</li>
+				<li>Wild Emolga always hold a Cheri Berry.</li>
+				<li>Wild Panpour have a 50% chance of holding an Oran Berry and a 5% chance of holding a Rindo Berry.</li>
+				<li>Wild Pansage have a 50% chance of holding an Oran Berry and a 5% chance of holding an Occa Berry.</li>
+				<li>Wild Pansear have a 50% chance of holding an Oran Berry and a 5% chance of holding a Passho Berry.</li>
+               <li>Wild Red-Striped Basculin have a 5% chance of holding a DeepSeaTooth.</li>
+               <li>Wild Blue-Striped Basculin have a 5% chance of holding a DeepSeaScale.</li>
+			   <li>Wild Poliwhirl and Politoed have a 5% chance of holding a King's Rock.</li>
+			</ul>
+			<h4>Walking</h4>
+            <div data-location-id="lostlorn-forest" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (dark grass)</h4>
+            <div data-location-id="lostlorn-forest" class="pokemon-b2w2-darkgrass-replace-me"></div>
+			<h4>Walking (shaking grass)</h4>
+            <div data-location-id="lostlorn-forest" class="pokemon-b2w2-shaking-replace-me"></div>
+			<h4>Hidden Grotto</h4>
+			<p class="b2w2">When a Hidden Grotto's contents regenerate, there is a 20% chance that it will contain a Pokémon. The following Pokémon may be encountered. All of them have their Hidden Ability.</p>
+			<table>
+				<caption>Hidden Grotto Pokémon</caption>
+				<thead>
+					<tr>
+						<th colspan="2" class="light-true">Pokémon</th>
+						<th colspan="2" class="black2-true">Black 2</th>
+						<th colspan="2" class="white2-true">White 2</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="light-false">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/combee-f.png" alt="Combee"></div>
+						</td>
+						<td class="light-false">Combee</td>
+						<td class="black2-false">15%</td>
+						<td class="black2-false">lv. 20-25</td>
+						<td class="white2-false">15%</td>
+						<td class="white2-false">lv. 20-25</td>
+					</tr>
+					<tr>
+						<td class="light-true">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/leavanny.png" alt="Leavanny"></div>
+						</td>
+						<td class="light-true">Leavanny</td>
+						<td class="black2-true">4%</td>
+						<td class="black2-true">lv. 20-25</td>
+						<td class="white2-true">4%</td>
+						<td class="white2-true">lv. 20-25</td>
+					</tr>
+					<tr>
+						<td class="light-false">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pinsir.png" alt="Pinsir"></div>
+						</td>
+						<td class="light-false">Pinsir</td>
+						<td class="black2-false">0.75%</td>
+						<td class="black2-false">lv. 20-25</td>
+						<td class="white2-false">0.25%</td>
+						<td class="white2-false">lv. 20-25</td>
+					</tr>
+					<tr>
+						<td class="light-true">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/heracross-f.png" alt="Heracross"></div>
+						</td>
+						<td class="light-true">Heracross</td>
+						<td class="black2-true">0.25%</td>
+						<td class="black2-true">lv. 20-25</td>
+						<td class="white2-true">0.75%</td>
+						<td class="white2-true">lv. 20-25</td>
+					</tr>
+				</tbody>
+			</table>
+			<h4>Surfing</h4>
+            <div data-location-id="lostlorn-forest" class="pokemon-b2w2-surfing-replace-me"></div>
+			<h4>Surfing (rippling water)</h4>
+            <div data-location-id="lostlorn-forest" class="pokemon-b2w2-shakingsurf-replace-me"></div>
+			<h4>Fishing</h4>
+            <div data-location-id="lostlorn-forest" class="pokemon-b2w2-fishing-replace-me"></div>
+			<h4>Fishing (rippling water)</h4>
+            <div data-location-id="lostlorn-forest" class="pokemon-b2w2-shakingfish-replace-me"></div>
+		</div>
+	  </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Big Mushroom</td>
+                     <td>In a tree stump in the lower area</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rare Candy</td>
+                     <td>In the higher area</td>
+                     <td>Requires Surf and Waterfall.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Protein</td>
+                     <td>In the clear area in the northwest part of the higher area</td>
+                     <td>Hidden. Requires Surf and Waterfall.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+		 <div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>In a tree stump in the lower area</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rare Candy</td>
+                     <td>In the higher area</td>
+                     <td>Requires Surf and Waterfall.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Leaf Stone</td>
+                     <td>In the western part of the dead end</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM95 Snarl</td>
+                     <td>Obtained from the Backpacker in the northern area</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Net Ball</td>
+                     <td>In the northeastern area</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Grass Gem</td>
+                     <td>In the northwest part of the higher area</td>
+                     <td>Hidden. Requires Surf and Waterfall.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Hidden Grotto</h4>
+			<p class="b2w2">When a Hidden Grotto's contents regenerate, there is an 80% chance for an item to be spawned: 40% for visible items and 40% for hidden items. The following items may be generated.</p>
+			<table class="left-align">
+				<caption>Hidden Grotto items (visible)</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Item</th>
+						<th>Rate</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>Poké Ball</td>
+						<td>12.5%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Potion</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Repel</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Great Ball</td>
+						<td>5%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Super Potion</td>
+						<td>2.5%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Super Repel</td>
+						<td>2.5%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Ultra Ball</td>
+						<td>2%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Hyper Potion</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Max Repel</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Fire Stone</td>
+						<td>0.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Water Stone</td>
+						<td>0.25%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Thunderstone</td>
+						<td>0.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Leaf Stone</td>
+						<td>0.25%</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="left-align">
+				<caption>Hidden Grotto items (hidden)</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Item</th>
+						<th>Rate</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>TinyMushroom</td>
+						<td>7.5%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Damp Mulch</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Growth Mulch</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Stable Mulch</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Gooey Mulch</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Big Mushroom</td>
+						<td>2.5%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Red Shard</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Green Shard</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Yellow Shard</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Blue Shard</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-false">
+						<td>PP Up</td>
+						<td>0.5%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Rare Candy</td>
+						<td>0.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>PP Max</td>
+						<td>0.25%</td>
+					</tr>
+				</tbody>
+			</table>
+         </div>
+      </div>
+	  <div id="trainers-container">
+         <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Pokémon Breeder Galen</td>
+                     <td>Tranquill lv. 22 (Easy Mode) / 24 (Normal Mode) / 26 (Challenge Mode)<br>
+                     Liepard lv. 22 (Easy Mode) / 24 (Normal Mode) / 26 (Challenge Mode)
+					 </td>
+                     <td>He will battle the player every time he is interacted with.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Pokémon Ranger Serenity</td>
+                     <td>Trubbish lv. 24 (Easy Mode) / 26 (Normal Mode) / 28 (Challenge Mode)</td>
+                     <td>She will give the player a Pecha Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Pokémon Ranger Forrest</td>
+                     <td>Emolga lv. 24 (Easy Mode) / 26 (Normal Mode) / 28 (Challenge Mode)</td>
+                     <td>He will give the player a Cheri Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Veteran Murphy</td>
+                     <td>Larvesta lv. 49 (Easy Mode) / 51 (Normal Mode) / 53 (Challenge Mode)<br>
+                     Pinsir lv. 49 (Easy Mode) / 51 (Normal Mode) / 53 (Challenge Mode)<br>
+                     Heracross lv. 49 (Easy Mode) / 51 (Normal Mode) / 53 (Challenge Mode)<br>
+                     Leavanny lv. 49 (Easy Mode) / 51 (Normal Mode) / 53 (Challenge Mode)<br>
+                     Scolipede lv. 49 (Easy Mode) / 51 (Normal Mode) / 53 (Challenge Mode)
+					 </td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

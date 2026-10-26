@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Abundant Shrine</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Abundant Shrine</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            South: <a class="location-link" href="route-14.html">Route 14</a><br><br>
+			<strong>Utility:</strong><br>
+			Surf is required to access this area, and to access a BalmMushroom, a Big Mushroom, and TM92 Trick Room. Wild Pokémon can also be encountered here with Surf.<br>
+			Waterfall is required to access this area.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a class="location-link" href="route-14.html">Route 14</a><br><br>
+			<strong>Utility:</strong><br>
+			Surf is required to access this area, and to access a Heal Ball. Wild Pokémon can also be encountered here with Surf.<br>
+			Waterfall is required to access this area.
+         </p>
+      </div>
+	  <div id="pokemon-container">
+         <div id="pokemon-bw" class="game-container bw">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Chimecho have a 5% chance of holding a Colbur Berry.</li>
+				<li>Wild Vulpix and Ninetales always hold a Rawst Berry.</li>
+				<li>Wild Bronzong have a 5% chance of holding a Metal Coat.</li>
+				<li>Wild Audino have a 50% chance of holding an Oran Berry and a 5% chance of holding a Sitrus Berry.</li>
+				<li>Wild Emolga always hold a Cheri Berry.</li>
+				<li>Wild Slowpoke have a 5% chance of holding a Lagging Tail.</li>
+				<li>Wild Slowbro and Slowking have a 5% chance of holding a King's Rock.</li>
+               <li>Wild Red-Striped Basculin have a 5% chance of holding a DeepSeaTooth.</li>
+               <li>Wild Blue-Striped Basculin have a 5% chance of holding a DeepSeaScale.</li>
+			</ul>
+			<h4>Walking</h4>
+            <div data-location-id="abundant-shrine" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (dark grass)</h4>
+            <div data-location-id="abundant-shrine" class="pokemon-bw-darkgrass-replace-me"></div>
+			<h4>Walking (rustling grass)</h4>
+            <div data-location-id="abundant-shrine" class="pokemon-bw-shaking-replace-me"></div>
+			<h4>Surfing</h4>
+            <div data-location-id="abundant-shrine" class="pokemon-bw-surfing-replace-me"></div>
+			<h4>Surfing (rippling water)</h4>
+            <div data-location-id="abundant-shrine" class="pokemon-bw-shakingsurf-replace-me"></div>
+			<h4>Fishing</h4>
+            <div data-location-id="abundant-shrine" class="pokemon-bw-fishing-replace-me"></div>
+			<h4>Fishing (rippling water)</h4>
+            <div data-location-id="abundant-shrine" class="pokemon-bw-shakingfish-replace-me"></div>
+			<h4>Static</h4>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/landorus.png" alt="Landorus"></div>
+                     </td>
+                     <td>Landorus</td>
+                     <td>70</td>
+                     <td>Only if the player has both Tornadus and Thundurus in the party, and only if Tornadus (Black) or Thundurus (White) was caught by the current player.<br>
+					 Only one. If defeated or run from, it reappears after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2" class="game-container b2w2">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Bronzor and Bronzong have a 5% chance of holding a Metal Coat.</li>
+				<li>Wild Vulpix always hold a Rawst Berry.</li>
+				<li>Wild Audino have a 50% chance of holding an Oran Berry and a 5% chance of holding a Sitrus Berry.</li>
+				<li>Wild Emolga always hold a Cheri Berry.</li>
+				<li>Wild Amoonguss have a 50% chance of holding a TinyMushroom and a 5% chance of holding a Big Mushroom.</li>
+               <li>Wild Red-Striped Basculin have a 5% chance of holding a DeepSeaTooth.</li>
+               <li>Wild Blue-Striped Basculin have a 5% chance of holding a DeepSeaScale.</li>
+				<li>Wild Slowpoke have a 5% chance of holding a Lagging Tail.</li>
+			</ul>
+			<h4>Walking</h4>
+            <div data-location-id="abundant-shrine" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (dark grass)</h4>
+            <div data-location-id="abundant-shrine" class="pokemon-b2w2-darkgrass-replace-me"></div>
+			<h4>Walking (rustling grass)</h4>
+            <div data-location-id="abundant-shrine" class="pokemon-b2w2-shaking-replace-me"></div>
+			<h4>Hidden Grotto (near Youngster Wes)</h4>
+			<p class="b2w2">When a Hidden Grotto's contents regenerate, there is a 20% chance that it will contain a Pokémon. The following Pokémon may be encountered. All of them have their Hidden Ability.</p>
+			<table>
+				<caption>Hidden Grotto Pokémon (near Youngster Wes)</caption>
+				<thead>
+					<tr class="light-true">
+						<th colspan="2">Pokémon</th>
+						<th>Rate</th>
+						<th>Levels</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/amoonguss.png" alt="Amoonguss"></div>
+						</td>
+						<td>Amoonguss</td>
+						<td>15%</td>
+						<td>lv. 35-40</td>
+					</tr>
+					<tr class="light-true">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/bronzor.png" alt="Bronzor"></div>
+						</td>
+						<td>Bronzor</td>
+						<td>4%</td>
+						<td>lv. 35-40</td>
+					</tr>
+					<tr class="light-false">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/vulpix.png" alt="Vulpix"></div>
+						</td>
+						<td>Vulpix</td>
+						<td>1%</td>
+						<td>lv. 35-40</td>
+					</tr>
+				</tbody>
+			</table>
+			<h4>Hidden Grotto (near Landorus' shrine)</h4>
+			<p class="b2w2">When a Hidden Grotto's contents regenerate, there is a 20% chance that it will contain a Pokémon. The following Pokémon may be encountered. All of them have their Hidden Ability.</p>
+			<table>
+				<caption>Hidden Grotto Pokémon (near Landorus' shrine)</caption>
+				<thead>
+					<tr class="light-true">
+						<th colspan="2">Pokémon</th>
+						<th>Rate</th>
+						<th>Levels</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/amoonguss.png" alt="Amoonguss"></div>
+						</td>
+						<td>Amoonguss</td>
+						<td>15%</td>
+						<td>lv. 35-40</td>
+					</tr>
+					<tr class="light-true">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/golduck.png" alt="Golduck"></div>
+						</td>
+						<td>Golduck</td>
+						<td>4%</td>
+						<td>lv. 35-40</td>
+					</tr>
+					<tr class="light-false">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/swablu.png" alt="Swablu"></div>
+						</td>
+						<td>Swablu</td>
+						<td>1%</td>
+						<td>lv. 35-40</td>
+					</tr>
+				</tbody>
+			</table>
+			<h4>Surfing</h4>
+            <div data-location-id="abundant-shrine" class="pokemon-b2w2-surfing-replace-me"></div>
+			<h4>Surfing (rippling water)</h4>
+            <div data-location-id="abundant-shrine" class="pokemon-b2w2-shakingsurf-replace-me"></div>
+			<h4>Fishing</h4>
+            <div data-location-id="abundant-shrine" class="pokemon-b2w2-fishing-replace-me"></div>
+			<h4>Fishing (rippling water)</h4>
+            <div data-location-id="abundant-shrine" class="pokemon-b2w2-shakingfish-replace-me"></div>
+			<h4>Swarm</h4>
+            <p class="b2w2">During a swarm, the player has a 40% chance of encountering the swarming Pokémon, and a 60% chance that their encounter is taken from the normal encounter table.</p>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/slowpoke.png" alt="Slowpoke"></div>
+                     </td>
+                     <td>Slowpoke</td>
+                     <td>lv. 40-55</td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>TM35 Flamethrower</td>
+                     <td>Near the entrance, west of the house</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>BalmMushroom</td>
+                     <td>On the northern shore of the pond, west of the house</td>
+                     <td>Hidden. Requires Surf.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Hyper Potion</td>
+                     <td>Northeast of Youngster Wes</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TinyMushroom</td>
+                     <td>North of Youngster Wes</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TinyMushroom</td>
+                     <td>Southwest of Lass Lurleen</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TinyMushroom</td>
+                     <td>West of Landorus' shrine</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Razor Fang</td>
+                     <td>Southwest of Lass Maki</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rare Candy</td>
+                     <td>Southeast of Youngster Lester</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Big Mushroom</td>
+                     <td>East of Landorus' shrine</td>
+                     <td>Hidden. Requires Surf.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM92 Trick Room</td>
+                     <td>Southeast of Landorus' shrine</td>
+                     <td>Requires Surf.</td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+         <div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Calcium</td>
+                     <td>On the eastern part of the ledge near the pond</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TinyMushroom</td>
+                     <td>Southeast of Youngster Wes</td>
+                     <td>Hidden. This item has a chance to regenerate.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Shiny Stone</td>
+                     <td>North of Youngster Wes</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Revive</td>
+                     <td>East of Lass Lurleen</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM92 Trick Room</td>
+                     <td>East of Youngster Jaye</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Big Mushroom</td>
+                     <td>West of Youngster Jaye</td>
+                     <td>Hidden. This item has a chance to regenerate.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Heal Ball</td>
+                     <td>East of Landorus' shrine</td>
+                     <td>Requires Surf.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>PP Max</td>
+                     <td>On the eastern part of the fence north of the Shiny Stone</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Rare Candy</td>
+                     <td>Near the western part of the fence north of the Shiny Stone</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Reveal Glass</td>
+                     <td>Obtained from the man near Landorus' shrine</td>
+                     <td>Only if the player brings a Landorus in its Therian Forme.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Hidden Grottoes</h4>
+			<p class="b2w2">When a Hidden Grotto's contents regenerate, there is an 80% chance for an item to be spawned: 40% for visible items and 40% for hidden items. The following items may be generated.</p>
+			<table class="left-align">
+				<caption>Hidden Grotto items (visible)</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Item</th>
+						<th>Rate</th>
+						<th>Notes</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>Poké Ball</td>
+						<td>12.5%</td>
+						<td></td>
+					</tr>
+					<tr class="light-true">
+						<td>Potion</td>
+						<td>6.25%</td>
+						<td></td>
+					</tr>
+					<tr class="light-false">
+						<td>Repel</td>
+						<td>6.25%</td>
+						<td></td>
+					</tr>
+					<tr class="light-true">
+						<td>Great Ball</td>
+						<td>5%</td>
+						<td></td>
+					</tr>
+					<tr class="light-false">
+						<td>Super Potion</td>
+						<td>2.5%</td>
+						<td></td>
+					</tr>
+					<tr class="light-true">
+						<td>Super Repel</td>
+						<td>2.5%</td>
+						<td></td>
+					</tr>
+					<tr class="light-false">
+						<td>Ultra Ball</td>
+						<td>2%</td>
+						<td></td>
+					</tr>
+					<tr class="light-true">
+						<td>Hyper Potion</td>
+						<td>1%</td>
+						<td></td>
+					</tr>
+					<tr class="light-false">
+						<td>Max Repel</td>
+						<td>1%</td>
+						<td></td>
+					</tr>
+					<tr class="light-true">
+						<td>Fire Stone</td>
+						<td>0.25%</td>
+						<td>Only in the grotto near Youngster Wes.</td>
+					</tr>
+					<tr class="light-false">
+						<td>Water Stone</td>
+						<td>0.25%</td>
+						<td>Only in the grotto near Youngster Wes.</td>
+					</tr>
+					<tr class="light-true">
+						<td>Thunderstone</td>
+						<td>0.25%</td>
+						<td>Only in the grotto near Youngster Wes.</td>
+					</tr>
+					<tr class="light-false">
+						<td>Leaf Stone</td>
+						<td>0.25%</td>
+						<td>Only in the grotto near Youngster Wes.</td>
+					</tr>
+					<tr class="light-true">
+						<td>Moon Stone</td>
+						<td>0.25%</td>
+						<td>Only in the grotto near Landorus' shrine.</td>
+					</tr>
+					<tr class="light-false">
+						<td>Sun Stone</td>
+						<td>0.25%</td>
+						<td>Only in the grotto near Landorus' shrine.</td>
+					</tr>
+					<tr class="light-true">
+						<td>Shiny Stone</td>
+						<td>0.25%</td>
+						<td>Only in the grotto near Landorus' shrine.</td>
+					</tr>
+					<tr class="light-false">
+						<td>Dusk Stone</td>
+						<td>0.25%</td>
+						<td>Only in the grotto near Landorus' shrine.</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="left-align">
+				<caption>Hidden Grotto items (hidden)</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Item</th>
+						<th>Rate</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>TinyMushroom</td>
+						<td>7.5%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Damp Mulch</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Growth Mulch</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Stable Mulch</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Gooey Mulch</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Big Mushroom</td>
+						<td>2.5%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Red Shard</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Green Shard</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Yellow Shard</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Blue Shard</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-false">
+						<td>PP Up</td>
+						<td>0.5%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Rare Candy</td>
+						<td>0.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>PP Max</td>
+						<td>0.25%</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+      </div>
+	  <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Youngster Wes</td>
+                     <td>Caterpie lv.61<br>Spinarak lv.61<br>Pineco lv.61<br>Masquerain lv.61<br>Scolipede lv.61</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Lass Lurleen</td>
+                     <td>Horsea lv.63<br>Sunkern lv.63<br>Ponyta lv.63</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Lass Maki</td>
+                     <td>Burmy lv.63<br>Tangela lv.63<br>Sawsbuck lv.63</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Youngster Lester</td>
+                     <td>Yanma lv.63<br>Ledyba lv.63<br>>Ninjask lv.63</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Youngster Wes</td>
+                     <td>Skorupi lv. 35 (Easy Mode) / 39 (Normal Mode) / 43 (Challenge Mode)<br>
+						Seviper lv. 35 (Easy Mode) / 39 (Normal Mode) / 43 (Challenge Mode)
+					 </td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Twins Rae & Ula</td>
+                     <td>Swablu lv. 34 (Easy Mode) / 38 (Normal Mode) / 42 (Challenge Mode)<br>
+						Swablu lv. 34 (Easy Mode) / 38 (Normal Mode) / 42 (Challenge Mode)
+					 </td>
+					 <td>This is a Double Battle.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Lass Lurleen</td>
+                     <td>Deerling lv. 35 (Easy Mode) / 39 (Normal Mode) / 43 (Challenge Mode)<br>
+						Zangoose lv. 35 (Easy Mode) / 39 (Normal Mode) / 43 (Challenge Mode)
+					 </td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Youngster Jaye</td>
+                     <td>Karrablast lv. 33 (Easy Mode) / 37 (Normal Mode) / 41 (Challenge Mode)<br>
+                     Shelmet lv. 33 (Easy Mode) / 37 (Normal Mode) / 41 (Challenge Mode)<br>
+                     Joltik lv. 33 (Easy Mode) / 37 (Normal Mode) / 41 (Challenge Mode)<br>
+                     Scolipede lv. 33 (Easy Mode) / 37 (Normal Mode) / 41 (Challenge Mode)
+					 </td>
+					 <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

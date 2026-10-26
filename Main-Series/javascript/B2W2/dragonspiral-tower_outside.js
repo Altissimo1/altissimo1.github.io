@@ -1,0 +1,1123 @@
+window.B2W2_DATA = {
+  "name": "b2w2-dragonspiral-tower_outside",
+  "encounters": {
+    "darkgrass": [
+      {
+        "rate": 20,
+        "slot": 0,
+        "options": [
+          {
+            "level": "63",
+            "name": "Tranquill",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "spring",
+              "summer",
+              "autumn"
+            ]
+          },
+          {
+            "level": "63",
+            "name": "Vanillish",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "winter"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 20,
+        "slot": 1,
+        "options": [
+          {
+            "level": "63",
+            "name": "Sawsbuck",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 2,
+        "options": [
+          {
+            "level": "64",
+            "name": "Mienshao",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 3,
+        "options": [
+          {
+            "level": "65",
+            "name": "Sawsbuck",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 4,
+        "options": [
+          {
+            "level": "65",
+            "name": "Mienshao",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 5,
+        "options": [
+          {
+            "level": "65",
+            "name": "Tranquill",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "spring",
+              "summer",
+              "autumn"
+            ]
+          },
+          {
+            "level": "65",
+            "name": "Beartic",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "winter"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 6,
+        "options": [
+          {
+            "level": "66",
+            "name": "Mienshao",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 7,
+        "options": [
+          {
+            "level": "66",
+            "name": "Tranquill",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "spring",
+              "summer",
+              "autumn"
+            ]
+          },
+          {
+            "level": "65",
+            "name": "Vanillish",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "winter"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 8,
+        "options": [
+          {
+            "level": "66",
+            "name": "Sawsbuck",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "spring",
+              "summer",
+              "autumn"
+            ]
+          },
+          {
+            "level": "66",
+            "name": "Beartic",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "winter"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 9,
+        "options": [
+          {
+            "level": "66",
+            "name": "Druddigon",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 10,
+        "options": [
+          {
+            "level": "66",
+            "name": "Sawsbuck",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "spring",
+              "summer",
+              "autumn"
+            ]
+          },
+          {
+            "level": "66",
+            "name": "Beartic",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "winter"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 11,
+        "options": [
+          {
+            "level": "66",
+            "name": "Druddigon",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    ],
+    "shaking": [
+      {
+        "rate": 20,
+        "slot": 0,
+        "options": [
+          {
+            "level": "55",
+            "name": "Audino",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 20,
+        "slot": 1,
+        "options": [
+          {
+            "level": "55",
+            "name": "Audino",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 2,
+        "options": [
+          {
+            "level": "56",
+            "name": "Emolga",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 3,
+        "options": [
+          {
+            "level": "56",
+            "name": "Audino",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 4,
+        "options": [
+          {
+            "level": "57",
+            "name": "Audino",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 5,
+        "options": [
+          {
+            "level": "57",
+            "name": "Audino",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 6,
+        "options": [
+          {
+            "level": "57",
+            "name": "Audino",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 7,
+        "options": [
+          {
+            "level": "57",
+            "name": "Audino",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 8,
+        "options": [
+          {
+            "level": "57",
+            "name": "Audino",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 9,
+        "options": [
+          {
+            "level": "57",
+            "name": "Unfezant",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "spring",
+              "summer",
+              "autumn"
+            ]
+          },
+          {
+            "level": "57",
+            "name": "Vanilluxe",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "winter"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 10,
+        "options": [
+          {
+            "level": "57",
+            "name": "Audino",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 11,
+        "options": [
+          {
+            "level": "57",
+            "name": "Unfezant",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "spring",
+              "summer",
+              "autumn"
+            ]
+          },
+          {
+            "level": "57",
+            "name": "Vanilluxe",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "winter"
+            ]
+          }
+        ]
+      }
+    ],
+    "shakingfish": [
+      {
+        "rate": 40,
+        "slot": 0,
+        "options": [
+          {
+            "level": "40-60",
+            "name": "Dratini",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 40,
+        "slot": 1,
+        "options": [
+          {
+            "level": "40-60",
+            "name": "Basculin (Blue)",
+            "games": [
+              "Black 2"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "40-60",
+            "name": "Basculin (Red)",
+            "games": [
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 15,
+        "slot": 2,
+        "options": [
+          {
+            "level": "50-70",
+            "name": "Dragonair",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 3,
+        "options": [
+          {
+            "level": "50-70",
+            "name": "Dragonair",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 4,
+        "options": [
+          {
+            "level": "50-70",
+            "name": "Dragonite",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    ],
+    "surfing": [
+      {
+        "rate": 60,
+        "slot": 0,
+        "options": [
+          {
+            "level": "45-60",
+            "name": "Basculin (Red)",
+            "games": [
+              "Black 2"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "45-60",
+            "name": "Basculin (Blue)",
+            "games": [
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 30,
+        "slot": 1,
+        "options": [
+          {
+            "level": "45-60",
+            "name": "Basculin (Red)",
+            "games": [
+              "Black 2"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "45-60",
+            "name": "Basculin (Blue)",
+            "games": [
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 2,
+        "options": [
+          {
+            "level": "50-60",
+            "name": "Basculin (Red)",
+            "games": [
+              "Black 2"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "50-60",
+            "name": "Basculin (Blue)",
+            "games": [
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 3,
+        "options": [
+          {
+            "level": "50-60",
+            "name": "Basculin (Red)",
+            "games": [
+              "Black 2"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "50-60",
+            "name": "Basculin (Blue)",
+            "games": [
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 4,
+        "options": [
+          {
+            "level": "50-60",
+            "name": "Basculin (Red)",
+            "games": [
+              "Black 2"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "50-60",
+            "name": "Basculin (Blue)",
+            "games": [
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    ],
+    "shakingsurf": [
+      {
+        "rate": 60,
+        "slot": 0,
+        "options": [
+          {
+            "level": "45-60",
+            "name": "Basculin (Blue)",
+            "games": [
+              "Black 2"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "45-60",
+            "name": "Basculin (Red)",
+            "games": [
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 30,
+        "slot": 1,
+        "options": [
+          {
+            "level": "45-60",
+            "name": "Basculin (Blue)",
+            "games": [
+              "Black 2"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "45-60",
+            "name": "Basculin (Red)",
+            "games": [
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 2,
+        "options": [
+          {
+            "level": "50-60",
+            "name": "Basculin (Blue)",
+            "games": [
+              "Black 2"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "50-60",
+            "name": "Basculin (Red)",
+            "games": [
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 3,
+        "options": [
+          {
+            "level": "50-60",
+            "name": "Basculin (Blue)",
+            "games": [
+              "Black 2"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "50-60",
+            "name": "Basculin (Red)",
+            "games": [
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 4,
+        "options": [
+          {
+            "level": "50-60",
+            "name": "Basculin (Blue)",
+            "games": [
+              "Black 2"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "50-60",
+            "name": "Basculin (Red)",
+            "games": [
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    ],
+    "walking": [
+      {
+        "rate": 20,
+        "slot": 0,
+        "options": [
+          {
+            "level": "55",
+            "name": "Tranquill",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "spring",
+              "summer",
+              "autumn"
+            ]
+          },
+          {
+            "level": "55",
+            "name": "Vanillish",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "winter"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 20,
+        "slot": 1,
+        "options": [
+          {
+            "level": "55",
+            "name": "Sawsbuck",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 2,
+        "options": [
+          {
+            "level": "56",
+            "name": "Mienshao",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 3,
+        "options": [
+          {
+            "level": "57",
+            "name": "Sawsbuck",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 4,
+        "options": [
+          {
+            "level": "57",
+            "name": "Mienshao",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 10,
+        "slot": 5,
+        "options": [
+          {
+            "level": "57",
+            "name": "Tranquill",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "spring",
+              "summer",
+              "autumn"
+            ]
+          },
+          {
+            "level": "57",
+            "name": "Beartic",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "winter"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 6,
+        "options": [
+          {
+            "level": "58",
+            "name": "Mienshao",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 5,
+        "slot": 7,
+        "options": [
+          {
+            "level": "58",
+            "name": "Tranquill",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "spring",
+              "summer",
+              "autumn"
+            ]
+          },
+          {
+            "level": "57",
+            "name": "Vanillish",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "winter"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 8,
+        "options": [
+          {
+            "level": "58",
+            "name": "Sawsbuck",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "spring",
+              "summer",
+              "autumn"
+            ]
+          },
+          {
+            "level": "58",
+            "name": "Beartic",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "winter"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 9,
+        "options": [
+          {
+            "level": "58",
+            "name": "Druddigon",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 10,
+        "options": [
+          {
+            "level": "58",
+            "name": "Sawsbuck",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "spring",
+              "summer",
+              "autumn"
+            ]
+          },
+          {
+            "level": "58",
+            "name": "Beartic",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": [
+              "winter"
+            ]
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 11,
+        "options": [
+          {
+            "level": "58",
+            "name": "Druddigon",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    ],
+    "fishing": [
+      {
+        "rate": 40,
+        "slot": 0,
+        "options": [
+          {
+            "level": "40-60",
+            "name": "Dratini",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 40,
+        "slot": 1,
+        "options": [
+          {
+            "level": "40-60",
+            "name": "Basculin (Red)",
+            "games": [
+              "Black 2"
+            ],
+            "conditions": []
+          },
+          {
+            "level": "40-60",
+            "name": "Basculin (Blue)",
+            "games": [
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 15,
+        "slot": 2,
+        "options": [
+          {
+            "level": "50-70",
+            "name": "Dratini",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 4,
+        "slot": 3,
+        "options": [
+          {
+            "level": "50-70",
+            "name": "Dratini",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      },
+      {
+        "rate": 1,
+        "slot": 4,
+        "options": [
+          {
+            "level": "50-70",
+            "name": "Dratini",
+            "games": [
+              "Black 2",
+              "White 2"
+            ],
+            "conditions": []
+          }
+        ]
+      }
+    ]
+  }
+};

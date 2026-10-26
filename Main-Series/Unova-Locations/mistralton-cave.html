@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Mistralton Cave</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Mistralton Cave</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            Exit: <a class="location-link" href="route-6.html">Route 6</a><br><br>
+			<strong>Utility:</strong><br>
+			Surf is required to access Mistralton Cave.<br>
+			Strength is required to access an Elixir, two Hyper Potions, and a Max Repel.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            Exit: <a class="location-link" href="route-6.html">Route 6</a><br>
+			Accessible from the area: <a class="location-link" href="clay-tunnel.html">Clay Tunnel</a><br><br>
+			<strong>Utility:</strong><br>
+			Surf is required to access Mistralton Cave from Route 6.<br>
+			Strength is required to access a Dusk Ball, a Yellow Shard, and a Super Repel.
+         </p>
+      </div>
+	  <div id="pokemon-container">
+         <div id="pokemon-bw" class="game-container bw">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Boldore have a 50% chance of holding an Everstone and a 5% chance of holding a Hard Stone.</li>
+			</ul>
+			<h4>Walking</h4>
+            <div data-location-id="mistralton-cave" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (dust clouds)</h4>
+            <div data-location-id="mistralton-cave" class="pokemon-bw-shaking-replace-me"></div>
+			<h4>Static (Guidance Chamber)</h4>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/cobalion.png" alt="Cobalion"></div>
+                     </td>
+                     <td>Cobalion</td>
+                     <td>42</td>
+                     <td>Only one. If defeated or run from, it reappears after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2" class="game-container b2w2" style="display:none;">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Boldore have a 50% chance of holding an Everstone and a 5% chance of holding a Hard Stone.</li>
+				<li>Wild Aron have a 5% chance of holding a Hard Stone.</li>
+			</ul>
+			<h4>Walking</h4>
+            <div data-location-id="mistralton-cave" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (dust clouds)</h4>
+            <div data-location-id="mistralton-cave" class="pokemon-b2w2-shaking-replace-me"></div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+			<table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Elixir</td>
+                     <td>On 1F, south of the entrance</td>
+                     <td>Hidden. Requires Strength.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>On 1F, north of Hiker Clarke</td>
+                     <td>Hidden. Requires Strength.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Hyper Potion</td>
+                     <td>On 1F, east of the entrance</td>
+                     <td>Requires Strength.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Repel</td>
+                     <td>On 1F, east of Hiker Clarke</td>
+                     <td>Requires Strength.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>On 2F, south of the entrance</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hard Stone</td>
+                     <td>On 2F, in the south</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Hyper Potion</td>
+                     <td>On 2F, in the southeast corner</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM80 Rock Slide</td>
+                     <td>On 2F, in the northwest corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Iron</td>
+                     <td>On 2F, northeast of the entrance</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>PP Up</td>
+                     <td>On 2F, north of the entrance</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>On 3F, west of the entrance</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ultra Ball</td>
+                     <td>On 3F, in the northeast corner</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Dusk Stone</td>
+                     <td>On 3F, in the northeast corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rare Candy</td>
+                     <td>On 3F, north of the Strength boulders</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Carbos</td>
+                     <td>On 3F, behind the Rare Candy</td>
+                     <td>Hidden.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Dust clouds</h4>
+			<p class="bw">The following items can be found by stepping in a dust cloud.</p>
+			<table>
+				<tbody>
+					<tr class="light-true">
+						<td>Fire Gem</td>
+						<td>Water Gem</td>
+						<td>Electric Gem</td>
+						<td>Grass Gem</td>
+						<td>Ice Gem</td>
+						<td>Fighting Gem</td>
+					</tr>
+					<tr class="light-false">
+						<td>Poison Gem</td>
+						<td>Ground Gem</td>
+						<td>Flying Gem</td>
+						<td>Psychic Gem</td>
+						<td>Bug Gem</td>
+						<td>Rock Gem</td>
+					</tr>
+					<tr class="light-true">
+						<td>Ghost Gem</td>
+						<td>Dragon Gem</td>
+						<td>Dark Gem</td>
+						<td>Steel Gem</td>
+						<td>Normal Gem</td>
+						<td>Fire Stone</td>
+					</tr>
+					<tr class="light-false">
+						<td>Water Stone</td>
+						<td>Thunderstone</td>
+						<td>Leaf Stone</td>
+						<td>Moon Stone</td>
+						<td>Sun Stone</td>
+						<td>Shiny Stone</td>
+					</tr>
+					<tr class="light-true">
+						<td>Dusk Stone</td>
+						<td>Dawn Stone</td>
+						<td>Oval Stone</td>
+						<td>Everstone</td>
+						<td>Hard Stone</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Dusk Ball</td>
+                     <td>On 1F, east of Hiker Jebediah</td>
+                     <td>Requires Strength.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Yellow Shard</td>
+                     <td>On 1F, west of Hiker Jebediah</td>
+                     <td>Requires Strength.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Repel</td>
+                     <td>On 1F, east of the entrance</td>
+                     <td>Hidden. Requires Strength.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>On 2F, in the south</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Green Shard</td>
+                     <td>On 2F, south of the entrance</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ultra Ball</td>
+                     <td>On 2F, north of the entrance</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Blue Shard</td>
+                     <td>On 2F, northeast of the entrance</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Escape Rope</td>
+                     <td>On 3F, north of the entrance</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>On 3F, west of the entrance</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM80 Rock Slide</td>
+                     <td>On 3F, in the northeast corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Dragon Gem</td>
+                     <td>On 3F, in the dead end north of the old man</td>
+                     <td>Hidden.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Dust clouds</h4>
+			<p class="b2w2">The following items can be found by stepping in a dust cloud.</p>
+			<table>
+				<tbody>
+					<tr class="light-true">
+						<td>Fire Gem</td>
+						<td>Water Gem</td>
+						<td>Electric Gem</td>
+						<td>Grass Gem</td>
+						<td>Ice Gem</td>
+						<td>Fighting Gem</td>
+					</tr>
+					<tr class="light-false">
+						<td>Poison Gem</td>
+						<td>Ground Gem</td>
+						<td>Flying Gem</td>
+						<td>Psychic Gem</td>
+						<td>Bug Gem</td>
+						<td>Rock Gem</td>
+					</tr>
+					<tr class="light-true">
+						<td>Ghost Gem</td>
+						<td>Dragon Gem</td>
+						<td>Dark Gem</td>
+						<td>Steel Gem</td>
+						<td>Normal Gem</td>
+						<td>Fire Stone</td>
+					</tr>
+					<tr class="light-false">
+						<td>Water Stone</td>
+						<td>Thunderstone</td>
+						<td>Leaf Stone</td>
+						<td>Moon Stone</td>
+						<td>Sun Stone</td>
+						<td>Shiny Stone</td>
+					</tr>
+					<tr class="light-true">
+						<td>Dusk Stone</td>
+						<td>Dawn Stone</td>
+						<td>Oval Stone</td>
+						<td>Everstone</td>
+						<td colspan="2"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+      </div>
+	  <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+			<h4>1F</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Hiker Hugh</td>
+                     <td>Drilbur lv.33<br>Gurdurr lv.33</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hiker Clarke</td>
+                     <td>Boldore lv.34</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+		 <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Hiker Shelby</td>
+                     <td>Boldore lv. 29 (Easy Mode) / 32 (Normal Mode) / 35 (Challenge Mode)</td>
+					 <td>On 1F.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hiker Jebediah</td>
+                     <td>Onix lv. 29 (Easy Mode) / 32 (Normal Mode) / 35 (Challenge Mode)</td>
+					 <td>On 1F.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Ace Trainer Geoff</td>
+                     <td>Tirtouga lv. 30 (Easy Mode) / 33 (Normal Mode) / 36 (Challenge Mode)<br>
+                     Axew lv. 30 (Easy Mode) / 33 (Normal Mode) / 36 (Challenge Mode)
+					 </td>
+					 <td>On 2F.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Ace Trainer Belle</td>
+                     <td>Archen lv. 30 (Easy Mode) / 33 (Normal Mode) / 36 (Challenge Mode)<br>
+                     Axew lv. 30 (Easy Mode) / 33 (Normal Mode) / 36 (Challenge Mode)
+					 </td>
+					 <td>On 2F.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

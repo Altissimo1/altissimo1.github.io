@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Striaton City</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Striaton City</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-3.html">Route 3</a><br>
+            South: <a class="location-link" href="route-2.html">Route 2</a><br>
+			East: <a class="location-link" href="dreamyard.html">Dreamyard</a><br><br>
+            <strong>Places of interest:</strong><br>
+			Trainers' School<br>
+			Fennel's House<br>
+            Poké Mart<br>
+            Striaton Gym: The first Gym. It specializes in Normal-types and in the type of Grass, Fire, or Water that the player's starter is weak to.<br><br>
+			<strong>Utility</strong>:<br>
+			Surf is required to access a Zinc and a Big Pearl. Wild Pokémon can also be encountered here with Surf.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-3.html">Route 3</a><br>
+            South: <a class="location-link" href="route-2.html">Route 2</a><br>
+			East: <a class="location-link" href="dreamyard.html">Dreamyard</a><br><br>
+            <strong>Places of interest:</strong><br>
+			Trainers' School<br>
+            Poké Mart<br>
+			Striaton Restaurant<br><br>
+			<strong>Utility</strong>:<br>
+			Surf is required to access a Big Pearl and a PP Up. Wild Pokémon can also be encountered here with Surf.
+         </p>
+      </div>
+      <div id="pokemon-container">
+		 <div id="pokemon-bw" class="game-container bw">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Red-Striped Basculin have a 5% chance of holding a DeepSeaTooth.</li>
+				<li>Wild Blue-Striped Basculin have a 5% chance of holding a DeepSeaScale.</li>
+			</ul>
+            <h4>Surfing</h4>
+            <div data-location-id="striaton-city" class="pokemon-bw-surfing-replace-me"></div>
+            <h4>Surfing (rippling water)</h4>
+            <div data-location-id="striaton-city" class="pokemon-bw-shakingsurf-replace-me"></div>
+            <h4>Fishing</h4>
+            <div data-location-id="striaton-city" class="pokemon-bw-fishing-replace-me"></div>
+            <h4>Fishing (rippling water)</h4>
+            <div data-location-id="striaton-city" class="pokemon-bw-shakingfish-replace-me"></div>
+		 </div>
+		 <div id="pokemon-b2w2" class="game-container b2w2">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Red-Striped Basculin have a 5% chance of holding a DeepSeaTooth.</li>
+				<li>Wild Blue-Striped Basculin have a 5% chance of holding a DeepSeaScale.</li>
+			</ul>
+            <h4>Surfing</h4>
+            <div data-location-id="striaton-city" class="pokemon-b2w2-surfing-replace-me"></div>
+            <h4>Surfing (rippling water)</h4>
+            <div data-location-id="striaton-city" class="pokemon-b2w2-shakingsurf-replace-me"></div>
+            <h4>Fishing</h4>
+            <div data-location-id="striaton-city" class="pokemon-b2w2-fishing-replace-me"></div>
+            <h4>Fishing (rippling water)</h4>
+            <div data-location-id="striaton-city" class="pokemon-b2w2-shakingfish-replace-me"></div>
+		 </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>X Speed</td>
+                     <td>Behind the southern fence</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>Obtained from a man in the southeastern building</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Great Ball</td>
+                     <td>In the southwest part of the garden</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Dusk Ball</td>
+                     <td>Obtained from a Roughneck in the easternmost alley</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Oran Berry (3x)</td>
+                     <td>Obtained from Cheren in the Trainers' School</td>
+					 <td>Only after defeating him.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Heal</td>
+                     <td>Obtained from a boy in the Trainers' School</td>
+					 <td>Only after passing the quiz.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>HM01 Cut</td>
+                     <td>Obtained from Fennel</td>
+					 <td>Only after defeating the Striaton Gym.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>C-Gear</td>
+                     <td>Obtained from Fennel</td>
+					 <td>Only after saving Munna in the Dreamyard.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Pal Pad</td>
+                     <td>Obtained from Amanita</td>
+					 <td>Only after saving Munna in the Dreamyard.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>BalmMushroom</td>
+                     <td>In a tree near the water, west of the gate leading to Route 3</td>
+					 <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Zinc</td>
+                     <td>East of the gate leading to Route 3</td>
+					 <td>Hidden. Requires Surf.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Big Pearl</td>
+                     <td>Obtained from a Fisherman west of the gate leading to Route 3</td>
+					 <td>Requires Surf.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Striaton Gym</h4>
+			<table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Fresh Water</td>
+                     <td>Obtained from Clyde at the entrance</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM83 Work Up</td>
+                     <td>Obtained from Cilan, Chili, or Cress</td>
+					 <td>Only after defeating him.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Upper vendor</h4>
+            <table class="left-align">
+               <caption>Black and White Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Poké Ball</td>
+                     <td>200</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>600</td>
+                     <td>Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
+                     <td>Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Potion</td>
+                     <td>300</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>700</td>
+                     <td>Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>1200</td>
+                     <td>Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>2500</td>
+                     <td>Only after obtaining 7 Badges.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>3000</td>
+                     <td>Only after obtaining 8 Badges.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>1500</td>
+                     <td>Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Antidote</td>
+                     <td>100</td>
+                     <td>Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>200</td>
+                     <td>Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Awakening</td>
+                     <td>250</td>
+                     <td>Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burn Heal</td>
+                     <td>250</td>
+                     <td>Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ice Heal</td>
+                     <td>250</td>
+                     <td>Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>600</td>
+                     <td>Only after obtaining 5 Badges.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Escape Rope</td>
+                     <td>550</td>
+                     <td>Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repel</td>
+                     <td>350</td>
+                     <td>Only after obtaining 1 Badge.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Repel</td>
+                     <td>500</td>
+                     <td>Only after obtaining 3 Badges.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>700</td>
+                     <td>Only after obtaining 5 Badges.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="left-align">
+               <caption>Black and White Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Heal Ball</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Greet Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Favored Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>RSVP Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Thanks Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Inquiry Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Like Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Reply Mail</td>
+                     <td>50</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Big Pearl</td>
+                     <td>Obtained from a Fisherman west of the gate leading to Route 3</td>
+                     <td>Requires Surf.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Dusk Ball (5x)</td>
+                     <td>Obtained from a Roughneck in the easternmost alley</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Timer Ball</td>
+                     <td>Behind the southern fence</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>Obtained from a man on the first floor of the lower apartment in the east</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Up-Grade</td>
+                     <td>On the top floor of the upper apartment in the east</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Gracidea</td>
+                     <td>Obtained from the girl in the Pokémon Center</td>
+                     <td>Only if the player has a Shaymin obtained in a fateful encounter in their party.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>PP Up</td>
+                     <td>East of the entrance to Route 3</td>
+                     <td>Hidden. Requires Surf.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>West of the running girl near the fountain</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Elixir</td>
+                     <td>West of the fountain</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Yellow Shard</td>
+                     <td>East of the running girl near the fountain</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Persim Berry (3x)</td>
+                     <td>Obtained from a boy in the Trainers' School</td>
+                     <td>Only after passing the quiz.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Big Mushroom</td>
+                     <td>Reward for completing the Pansage, Pansear, or Panpour game in Striaton Restaurant</td>
+                     <td>It can be obtained daily.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Upper vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Poké Ball</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Potion</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>700</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>2500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>3000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>1500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Antidote</td>
+                     <td>100</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Awakening</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burn Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ice Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Escape Rope</td>
+                     <td>550</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repel</td>
+                     <td>350</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Repel</td>
+                     <td>500</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>700</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>TM04 Calm Mind</td>
+                     <td>80000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM08 Bulk Up</td>
+                     <td>80000</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+			<h4>Trainers' School</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Cheren</td>
+                     <td>Starter (1st stage) lv. 8 @ Oran Berry<br>Purrloin lv.8</td>
+					 <td>His starter is the one whose type is strong against the player's starter.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Striaton Gym</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Waiter Maxwell</td>
+                     <td>Lillipup lv.11</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Waitress Tia</td>
+                     <td>Patrat lv.10<br>Purrloin lv.10</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Cilan/Chili/Cress</td>
+                     <td>Lillipup lv.12<br>Elemental lv.14</td>
+					 <td>The player will face whichever one uses a Pokémon whose type is strong against the player's starter.<br>
+					 The Elemental Pokémon is Pansage, Pansear, or Panpour; whichever has the type that is strong against the player's starter.<br>
+					 He will give the player TM83 Work Up after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+			<h4>Trainers' School</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Ace Trainer Dusty</td>
+                     <td>Rotom lv. 59 (Easy Mode) / 64 (Normal Mode) / 69 (Challenge Mode)<br>
+					 Weezing lv. 59 (Easy Mode) / 64 (Normal Mode) / 69 (Challenge Mode)<br>
+					 Gengar lv. 59 (Easy Mode) / 64 (Normal Mode) / 69 (Challenge Mode)<br>
+					 Eelektross lv. 59 (Easy Mode) / 64 (Normal Mode) / 69 (Challenge Mode)</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Striaton Restaurant</h4>
+			<p class="b2w2-only">Cilan, Chili, or Cress can all be either the player's Multi Battle partner, or an opposing Trainer in the battle.<br>
+			If they are the player's partner Trainer, their Pokémon are always level 65.</p>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Pokémon Trainer Cilan</td>
+                     <td>Maractus lv. 60 (Easy Mode) / 65 (Normal Mode) / 70 (Challenge Mode) @ Muscle Band<br>
+					 Ferrothorn lv. 60 (Easy Mode) / 65 (Normal Mode) / 70 (Challenge Mode) @ Leftovers<br>
+					 Simisage lv. 62 (Easy Mode) / 67 (Normal Mode) / 72 (Challenge Mode) @ Life Orb</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Pokémon Trainer Chili</td>
+                     <td>Heatmor lv. 60 (Easy Mode) / 65 (Normal Mode) / 70 (Challenge Mode) @ Leftovers<br>
+					 Darmanitan lv. 60 (Easy Mode) / 65 (Normal Mode) / 70 (Challenge Mode) @ Muscle Band<br>
+					 Simisear lv. 62 (Easy Mode) / 67 (Normal Mode) / 72 (Challenge Mode) @ Life Orb</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Pokémon Trainer Cress</td>
+                     <td>Basculin lv. 60 (Easy Mode) / 65 (Normal Mode) / 70 (Challenge Mode) @ Muscle Band<br>
+					 Slowking lv. 60 (Easy Mode) / 65 (Normal Mode) / 70 (Challenge Mode) @ Leftovers<br>
+					 Simipour lv. 62 (Easy Mode) / 67 (Normal Mode) / 72 (Challenge Mode) @ Life Orb</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

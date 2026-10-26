@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>White Forest</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>White Forest</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-14.html">Route 14</a><br>
+            West: <a class="location-link" href="route-15.html">Route 15</a><br><br>
+			<strong>Places of interest:</strong><br>
+			Poké Mart<br><br>
+            This area is only accessible in White. In Black, this space is instead occupied by <a class="location-link" href="black-city.html">Black City</a>.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-14.html">Route 14</a><br>
+            West: <a class="location-link" href="route-15.html">Route 15</a><br><br>
+			<strong>Places of interest:</strong><br>
+			<a class="location-link" href="white-treehollow.html">White Treehollow</a><br>
+			Poké Mart<br><br>
+            This area is only accessible in White 2. In Black 2, this space is instead occupied by <a class="location-link" href="black-city.html">Black City</a>. However, if a White 2 player obtains the Treehollow Key for defeating five areas in White Treehollow, it can be transferred to a copy of Black 2 with the Key System, allowing that player to access White Forest. The currently active area can be changed with Unova Link.
+         </p>
+      </div>
+	  <h3><u>Overview</u></h3>
+	  <p class="bw">This area has between 0 and 10 inhabitants, with the amount of tall grass and water reflecting the number of inhabitants. When the area is first visited, the number of inhabitants is determined by the number of days (according to the DS clock) that it took the player to reach White Forest since starting the save file, with a longer time resulting in fewer inhabitants.</p>
+	  <p class="bw">The player can use the Entralink feature to visit the Black City location in another player's copy of Black, and while there, can invite people to come to White Forest to increase the population. A higher population in White Forest means more wild Pokémon variety.</p>
+	  <p class="b2w2">The market in this area expands its offerings based on how much progress the player has made in White Treehollow. The details about which vendors and items require what amount of progress are shown below.</p>
+	  <div id="pokemon-container">
+         <div id="pokemon-bw" class="game-container bw">
+			<h4>Population Changes</h4>
+			<p class="bw">Every resident has a set number of points associated with them. The number of points associated with a resident can change if certain actions are performed. If the number of points reaches 0, the resident will leave White Forest permanently, unless invited back using the aforementioned Entralink feature. The actions that can change a resident's point values are as follows:</p>
+			<table>
+				<caption>Population changes</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Action</th>
+						<th>Point change</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>1 day passes</td>
+						<td>-5 (all residents)</td>
+					</tr>
+					<tr class="light-true">
+						<td>Player visits the area</td>
+						<td>+3 (all residents)</td>
+					</tr>
+					<tr class="light-false">
+						<td>Player talks to resident</td>
+						<td>+10 (just that resident)</td>
+					</tr>
+				</tbody>
+			</table>
+			<h3><u>Pokémon</u></h3>
+			<p class="bw">The Pokémon that can appear here are tied to specific residents of the city; if that resident leaves, the Pokémon can no longer be found. All Pokémon are level 5.</p>
+			<p class="bw">Of the residents with point values, only ten will be in one White Forest at any given time.</p>
+			<p class="bw">The encounter rates of each Pokémon are determined based on a weight system. When an encounter is generated, the game will do the following:</p>
+			<ol>
+				<li>Add up the "weight" values of all the present Pokémon (based on the residents that are present). The total will be referred to as <em>T</em>.</li>
+				<li>Generate a random number between 0 and <em>T</em> (inclusive), referred to as <em>N</em>.</li>
+				<li>Begin adding up the "weight" values of the same Pokémon, in the order indicated in the table below. The running total of this will be referred to as <em>R</em>.</li>
+				<li>When adding a weight would cause the value of <em>R</em> to match or exceed the random number <em>N</em>, the Pokémon associated with that weight will be selected for an encounter.</li>
+			</ol>
+            <table class="left-align">
+               <caption>White Pokémon</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Resident</th>
+					 <th>Initial<br>Points</th>
+					 <th colspan="2">Associated Pokémon<br>(Walking)</th>
+					 <th>Weight</th>
+					 <th colspan="2">Associated Pokémon<br>(Surfing)</th>
+					 <th>Weight</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>School Kid Leo</td>
+					 <td>30</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/pidgey.png" alt="Pidgey"></div>
+                     </td>
+                     <td>Pidgey</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+                     </td>
+                     <td>Surskit</td>
+					 <td>20</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>School Kid Silvia</td>
+					 <td>70</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/wurmple.png" alt="Wurmple"></div>
+                     </td>
+                     <td>Wurmple</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+                     </td>
+                     <td>Surskit</td>
+					 <td>20</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Roughneck Dave</td>
+					 <td>30</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/gastly.png" alt="Gastly"></div>
+                     </td>
+                     <td>Gastly</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+                     </td>
+                     <td>Surskit</td>
+					 <td>20</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Clerk♀ Britney</td>
+					 <td>70</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/hoppip.png" alt="Hoppip"></div>
+                     </td>
+                     <td>Hoppip</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+                     </td>
+                     <td>Surskit</td>
+					 <td>20</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Youngster Robbie</td>
+					 <td>30</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/elekid.png" alt="Elekid"></div>
+                     </td>
+                     <td>Elekid</td>
+					 <td>10</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+                     </td>
+                     <td>Surskit</td>
+					 <td>20</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Lass Miki</td>
+					 <td>70</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/togepi.png" alt="Togepi"></div>
+                     </td>
+                     <td>Togepi</td>
+					 <td>10</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+                     </td>
+                     <td>Surskit</td>
+					 <td>20</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Black Belt Ryder</td>
+					 <td>30</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/machop.png" alt="Machop"></div>
+                     </td>
+                     <td>Machop</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lotad.png" alt="Lotad"></div>
+                     </td>
+                     <td>Lotad</td>
+					 <td>10</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Battle Girl Karenna</td>
+					 <td>70</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/slakoth.png" alt="Slakoth"></div>
+                     </td>
+                     <td>Slakoth</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lotad.png" alt="Lotad"></div>
+                     </td>
+                     <td>Lotad</td>
+					 <td>10</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Clerk♂ Doug</td>
+					 <td>30</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/shinx-f.png" alt="Shinx"></div>
+                     </td>
+                     <td>Shinx</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lotad.png" alt="Lotad"></div>
+                     </td>
+                     <td>Lotad</td>
+					 <td>10</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ace Trainer Vincent</td>
+					 <td>70</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/magby.png" alt="Magby"></div>
+                     </td>
+                     <td>Magby</td>
+					 <td>10</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/corphish.png" alt="Corphish"></div>
+                     </td>
+                     <td>Corphish</td>
+					 <td>6</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Scientist Marie</td>
+					 <td>30</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/magnemite.png" alt="Magnemite"></div>
+                     </td>
+                     <td>Magnemite</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lotad.png" alt="Lotad"></div>
+                     </td>
+                     <td>Lotad</td>
+					 <td>10</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ace Trainer Lena</td>
+					 <td>80</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/ralts.png" alt="Ralts"></div>
+                     </td>
+                     <td>Ralts</td>
+					 <td>6</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/wooper-f.png" alt="Wooper"></div>
+                     </td>
+                     <td>Wooper</td>
+					 <td>6</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Backpacker Carlos</td>
+					 <td>30</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/starly-f.png" alt="Starly"></div>
+                     </td>
+                     <td>Starly</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/corphish.png" alt="Corphish"></div>
+                     </td>
+                     <td>Corphish</td>
+					 <td>6</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Backpacker Molly</td>
+					 <td>80</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/azurill.png" alt="Azurill"></div>
+                     </td>
+                     <td>Azurill</td>
+					 <td>4</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lotad.png" alt="Lotad"></div>
+                     </td>
+                     <td>Lotad</td>
+					 <td>10</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Gentleman Frederic</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/budew.png" alt="Budew"></div>
+                     </td>
+                     <td>Budew</td>
+					 <td>6</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/wooper-f.png" alt="Wooper"></div>
+                     </td>
+                     <td>Wooper</td>
+					 <td>6</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Lady Lynette</td>
+					 <td>30</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/oddish.png" alt="Oddish"></div>
+                     </td>
+                     <td>Oddish</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+                     </td>
+                     <td>Surskit</td>
+					 <td>20</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Rich Boy Pierce</td>
+					 <td>70</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/mareep.png" alt="Mareep"></div>
+                     </td>
+                     <td>Mareep</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+                     </td>
+                     <td>Surskit</td>
+					 <td>20</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hiker Gene</td>
+					 <td>70</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/aron.png" alt="Aron"></div>
+                     </td>
+                     <td>Aron</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+                     </td>
+                     <td>Surskit</td>
+					 <td>20</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Clerk♀ Piper</td>
+					 <td>30</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/bellsprout.png" alt="Bellsprout"></div>
+                     </td>
+                     <td>Bellsprout</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+                     </td>
+                     <td>Surskit</td>
+					 <td>20</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Nursery Aide Miho</td>
+					 <td>30</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/seedot.png" alt="Seedot"></div>
+                     </td>
+                     <td>Seedot</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+                     </td>
+                     <td>Surskit</td>
+					 <td>20</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>School Kid Shane</td>
+					 <td>70</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/rhyhorn-f.png" alt="Rhyhorn"></div>
+                     </td>
+                     <td>Rhyhorn</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+                     </td>
+                     <td>Surskit</td>
+					 <td>20</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Pokémon Ranger Ralph</td>
+					 <td>70</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lotad.png" alt="Lotad"></div>
+                     </td>
+                     <td>Lotad</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/surskit.png" alt="Surskit"></div>
+                     </td>
+                     <td>Surskit</td>
+					 <td>20</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Pokémon Ranger Eliza</td>
+					 <td>30</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/trapinch.png" alt="Trapinch"></div>
+                     </td>
+                     <td>Trapinch</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lotad.png" alt="Lotad"></div>
+                     </td>
+                     <td>Lotad</td>
+					 <td>10</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Clerk♂ Collin</td>
+					 <td>70</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/abra.png" alt="Abra"></div>
+                     </td>
+                     <td>Abra</td>
+					 <td>10</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lotad.png" alt="Lotad"></div>
+                     </td>
+                     <td>Lotad</td>
+					 <td>10</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Veteran Ken</td>
+					 <td>30</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/nidoran-m.png" alt="Nidoran♂"></div>
+                     </td>
+                     <td>Nidoran♂</td>
+					 <td>10</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/corphish.png" alt="Corphish"></div>
+                     </td>
+                     <td>Corphish</td>
+					 <td>6</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Scientist Jacques</td>
+					 <td>70</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/nidoran-f.png" alt="Nidoran♀"></div>
+                     </td>
+                     <td>Nidoran♀</td>
+					 <td>10</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lotad.png" alt="Lotad"></div>
+                     </td>
+                     <td>Lotad</td>
+					 <td>10</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Veteran Rosa</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/whismur.png" alt="Whismur"></div>
+                     </td>
+                     <td>Whismur</td>
+					 <td>10</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/lotad.png" alt="Lotad"></div>
+                     </td>
+                     <td>Lotad</td>
+					 <td>10</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Backpacker Herman</td>
+					 <td>20</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/porygon.png" alt="Porygon"></div>
+                     </td>
+                     <td>Porygon</td>
+					 <td>4</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/wooper-f.png" alt="Wooper"></div>
+                     </td>
+                     <td>Wooper</td>
+					 <td>6</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Backpacker Emi</td>
+					 <td>70</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/happiny.png" alt="Happiny"></div>
+                     </td>
+                     <td>Happiny</td>
+					 <td>10</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/corphish.png" alt="Corphish"></div>
+                     </td>
+                     <td>Corphish</td>
+					 <td>6</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Socialite Grace</td>
+					 <td>30</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/bagon.png" alt="Bagon"></div>
+                     </td>
+                     <td>Bagon</td>
+					 <td>4</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/wooper-f.png" alt="Wooper"></div>
+                     </td>
+                     <td>Wooper</td>
+					 <td>6</td>
+                  </tr>
+               </tbody>
+            </table>
+		 </div>
+	  </div>
+	  <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+			<h3><u>Items</u></h3>
+			<h4>Dropped Items</h4>
+			<p class="bw">Each day, each resident may drop an item at one of ten areas to be picked up by the player. Different items are dropped by different residents.</p>
+			<table>
+				<caption>White Items (Dropped)</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Item</th>
+						<th>Resident</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>Great Ball</td>
+						<td>Youngster Robbie</td>
+					</tr>
+					<tr class="light-true">
+						<td>Net Ball</td>
+						<td>School Kid Shane</td>
+					</tr>
+					<tr class="light-false">
+						<td>Yellow Shard</td>
+						<td>Clerk♂ Collin</td>
+					</tr>
+					<tr class="light-true">
+						<td>Green Shard</td>
+						<td>Scientist Marie</td>
+					</tr>
+					<tr class="light-false">
+						<td>Blue Shard</td>
+						<td>Pokémon Ranger Eliza</td>
+					</tr>
+					<tr class="light-true">
+						<td>Red Shard</td>
+						<td>Clerk♂ Doug</td>
+					</tr>
+					<tr class="light-false">
+						<td>TinyMushroom</td>
+						<td>Roughneck Dave</td>
+					</tr>
+					<tr class="light-true">
+						<td>Repeat Ball</td>
+						<td>Lass Miki</td>
+					</tr>
+					<tr class="light-false">
+						<td>Poké Ball</td>
+						<td>School Kid Silvia</td>
+					</tr>
+					<tr class="light-true">
+						<td>Dawn Stone</td>
+						<td>Socialite Grace</td>
+					</tr>
+					<tr class="light-false">
+						<td>Sun Stone</td>
+						<td>Ace Trainer Lena</td>
+					</tr>
+					<tr class="light-true">
+						<td>Shiny Stone</td>
+						<td>Backpacker Molly</td>
+					</tr>
+					<tr class="light-false">
+						<td>Leaf Stone</td>
+						<td>Battle Girl Karenna</td>
+					</tr>
+					<tr class="light-true">
+						<td>Water Stone</td>
+						<td>Pokémon Ranger Ralph</td>
+					</tr>
+					<tr class="light-false">
+						<td>Fire Stone</td>
+						<td>Ace Trainer Vincent</td>
+					</tr>
+					<tr class="light-true">
+						<td>Oval Stone</td>
+						<td>Backpacker Carlos</td>
+					</tr>
+					<tr class="light-false">
+						<td>Thunderstone</td>
+						<td>Veteran Ken</td>
+					</tr>
+					<tr class="light-true">
+						<td>Dusk Stone</td>
+						<td>Backpacker Herman</td>
+					</tr>
+					<tr class="light-false">
+						<td>Moon Stone</td>
+						<td>Veteran Rosa</td>
+					</tr>
+					<tr class="light-true">
+						<td>Poké Ball</td>
+						<td>Rich Boy Pierce</td>
+					</tr>
+					<tr class="light-false">
+						<td>Stardust</td>
+						<td>School Kid Leo</td>
+					</tr>
+					<tr class="light-true">
+						<td>Heart Scale</td>
+						<td>Lady Lynette</td>
+					</tr>
+					<tr class="light-false">
+						<td>Timer Ball</td>
+						<td>Backpacker Emi</td>
+					</tr>
+					<tr class="light-true">
+						<td>Dive Ball</td>
+						<td>Scientist Jacques</td>
+					</tr>
+					<tr class="light-false">
+						<td>Big Mushroom</td>
+						<td>Hiker Gene</td>
+					</tr>
+					<tr class="light-true">
+						<td>Rare Bone</td>
+						<td>Clerk♀ Britney</td>
+					</tr>
+					<tr class="light-false">
+						<td>Ultra Ball</td>
+						<td>Nursery Aide Miho</td>
+					</tr>
+					<tr class="light-true">
+						<td>Nest Ball</td>
+						<td>Clerk♀ Piper</td>
+					</tr>
+					<tr class="light-false">
+						<td>Quick Ball</td>
+						<td>Black Belt Ryder</td>
+					</tr>
+					<tr class="light-true">
+						<td>Honey</td>
+						<td>Gentleman Frederic</td>
+					</tr>
+				</tbody>
+		    </table>
+			<h4>Mayor's Berries</h4>
+			<p class="bw">Each day, the Mayor will request to see a Pokémon that can be found in White Forest. If the player catches the specified Pokémon and shows it to the Mayor, he will give them a Berry. The player must have caught the Pokémon on the same day he asks to see the Pokémon. The Berries he can provide are shown below.</p>
+			<table>
+				<tbody>
+					<tr class="light-true">
+						<td>Chesto Berry</td>
+						<td>Pecha Berry</td>
+						<td>Leppa Berry</td>
+						<td>Lum Berry</td>
+						<td>Bluk Berry</td>
+					</tr>
+				</tbody>
+			</table>
+			<h4>Poké Mart - Upper vendor</h4>
+			<table class="left-align">
+               <caption>White Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Poké Ball</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Potion</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>700</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>2500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>3000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>1500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Antidote</td>
+                     <td>100</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Awakening</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burn Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ice Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Escape Rope</td>
+                     <td>550</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repel</td>
+                     <td>350</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Repel</td>
+                     <td>500</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>700</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="left-align">
+               <caption>White Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>BridgeMail M</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Greet Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Favored Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>RSVP Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Thanks Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Inquiry Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Like Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Reply Mail</td>
+                     <td>50</td>
+                  </tr>
+               </tbody>
+            </table>
+		 </div>
+	     <div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+			<h3><u>Items</u></h3>
+			<h4>Market</h4>
+			<table>
+				<caption>Black 2 and White 2 Items (Market)</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Item</th>
+						<th>Price</th>
+						<th>Sold on</th>
+						<th>White Treehollow <br>progress required</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>Leaf Stone</td>
+						<td>1000</td>
+						<td>Weekdays</td>
+						<td>Area 2</td>
+					</tr>
+					<tr class="light-true">
+						<td>DeepSeaTooth</td>
+						<td>1000</td>
+						<td>Weekends</td>
+						<td>Area 2</td>
+					</tr>
+					<tr class="light-false">
+						<td>Water Stone</td>
+						<td>2000</td>
+						<td>Weekdays</td>
+						<td>Area 5</td>
+					</tr>
+					<tr class="light-true">
+						<td>DeepSeaScale</td>
+						<td>2000</td>
+						<td>Weekends</td>
+						<td>Area 5</td>
+					</tr>
+					<tr class="light-false">
+						<td>Shiny Stone</td>
+						<td>4000</td>
+						<td>Weekdays</td>
+						<td>Area 8</td>
+					</tr>
+					<tr class="light-true">
+						<td>Dragon Scale</td>
+						<td>4000</td>
+						<td>Weekends</td>
+						<td>Area 8</td>
+					</tr>
+					<tr class="light-false">
+						<td>Oval Stone</td>
+						<td>6000</td>
+						<td>Weekdays</td>
+						<td>Area 10</td>
+					</tr>
+					<tr class="light-true">
+						<td>King's Rock</td>
+						<td>6000</td>
+						<td>Weekends</td>
+						<td>Area 10</td>
+					</tr>
+				</tbody>
+		    </table>
+			<h4>Poké Mart - Upper vendor</h4>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Poké Ball</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Potion</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>700</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>2500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>3000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>1500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Antidote</td>
+                     <td>100</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Awakening</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burn Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ice Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Escape Rope</td>
+                     <td>550</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repel</td>
+                     <td>350</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Repel</td>
+                     <td>500</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>700</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>BridgeMail M</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Greet Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Favored Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>RSVP Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Thanks Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Inquiry Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Like Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Reply Mail</td>
+                     <td>50</td>
+                  </tr>
+               </tbody>
+            </table>
+		 </div>
+	  </div>
+	  <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+			<h3><u>Trainers</u></h3>
+			<table class="left-align">
+               <caption>White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>School Kid Shaye</td>
+                     <td>Scrafty lv.65<br>Cofagrigus lv.65<br>Reuniclus lv.65</td>
+					 <td>He is always present, but can only be battled once.<br>This is a Triple Battle.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Nursery Aide Briana</td>
+                     <td>Chandelure lv.65<br>Cinccino lv.65<br>Vanilluxe lv.65</td>
+					 <td>She is always present, but can only be battled once.<br>This is a Triple Battle.</td>
+                  </tr>
+			   </tbody>
+		    </table>
+		 </div>
+	  </div>
+	</body>
+</html>

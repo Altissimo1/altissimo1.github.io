@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Relic Castle</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Relic Castle</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            Exit on 1F: <a class="location-link" href="desert-resort.html">Desert Resort</a><br><br>
+			Only the first two floors are accessible before N awakens a dragon at Dragonspiral Tower. Part of the lowest floor is only accessible after defeating the Elite Four.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            Exit on 1F: <a class="location-link" href="desert-resort.html">Desert Resort</a><br>
+			Accessible in the area: <a class="location-link" href="relic-passage.html">Relic Passage</a>
+		</p>
+      </div>
+	  <div id="pokemon-container">
+		<div id="pokemon-bw" class="game-container bw">
+			<h3>Pokémon</h3>
+			<ul>
+				<li>Wild Yamask and Cofagrigus have a 5% chance of holding a Spell Tag.</li>
+				<li>Wild Sandslash have a 5% chance of holding a Quick Claw.</li>
+			</ul>
+			<h4>Walking (1F and B1F)</h4>
+            <div data-location-id="relic-castle_1f" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (B2F, B3F, B4F, B5F, and B6F)</h4>
+            <div data-location-id="relic-castle_b2f" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (Lowest floor)</h4>
+            <div data-location-id="relic-castle_lowest" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (Volcarona's room and the room outside it)</h4>
+            <div data-location-id="relic-castle_volcarona" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Static</h4>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/volcarona.png" alt="Volcarona"></div>
+                     </td>
+                     <td>Volcarona</td>
+                     <td>70</td>
+                     <td>In its room on the lowest floor. If defeated or run from, it will reappear after defeating the Elite Four.<br>It holds SilverPowder.</td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+		<div id="pokemon-b2w2" class="game-container b2w2" style="display:none;">
+			<h3>Pokémon</h3>
+			<ul>
+				<li>Wild Yamask have a 5% chance of holding a Spell Tag.</li>
+				<li>Wild Sandshrew and Sandslash have a 5% chance of holding a Quick Claw.</li>
+			</ul>
+			<h4>Walking (1F and B1F)</h4>
+            <div data-location-id="relic-castle_1f" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (Lowest floor)</h4>
+            <div data-location-id="relic-castle_lowest" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (Volcarona's room and the room outside it)</h4>
+            <div data-location-id="relic-castle_volcarona" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Static</h4>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/volcarona.png" alt="Volcarona"></div>
+                     </td>
+                     <td>Volcarona</td>
+                     <td>35</td>
+                     <td>In its room on the lowest floor. If defeated or run from, it will reappear at level 65 after defeating the Elite Four.<br>It holds SilverPowder.</td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+	  </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Cover Fossil</td>
+                     <td>On 1F, obtained from the Backpacker</td>
+                     <td>Mutually exclusive with the Plume Fossil.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Plume Fossil</td>
+                     <td>On 1F, obtained from the backpacker</td>
+                     <td>Mutually exclusive with the Cover Fossil.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM26 Earthquake</td>
+                     <td>On 1F, in the northwestern tower</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Revive</td>
+                     <td>On B1F</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Elixir</td>
+                     <td>On B1F, in the western sand pile</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Potion</td>
+                     <td>On B2F, in the southeastern corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM30 Shadow Ball</td>
+                     <td>On B2F, southeast of the female Team Plasma Grunt</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Revive</td>
+                     <td>On B3F, in the alcove south of the central quicksand</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>PP Max</td>
+                     <td>On B3F, in the northwest tower, south of the stairs</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>PP Up</td>
+                     <td>On B3F, in the southwestern corner</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>On B4F, in the southeastern sand pile</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Sun Stone</td>
+                     <td>On B4F, east of the northern sand pile</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM04 Calm Mind</td>
+                     <td>On the lowest floor, obtained from Ryoku outside Volcarona's room</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+		 <div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Heart Scale</td>
+                     <td>On B1F, in the sand pile west of Psychic Low</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM39 Rock Tomb</td>
+                     <td>On B1F, near Psychic Dua</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Sun Stone</td>
+                     <td>On the lowest floor, in the room outside Volcarona's room</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ultra Ball</td>
+                     <td>On the lowest floor, in the eastern room</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+	  <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Psychic Perry</td>
+                     <td>Sigilyph lv.24</td>
+                     <td>On 1F.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Psychic Dua</td>
+                     <td>Woobat lv.23<br>Munna lv.23</td>
+                     <td>On 1F.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Team Plasma Grunt</td>
+                     <td>Watchog lv.34<br>Krokorok lv.34<br>Krokorok lv.34</td>
+                     <td>On B1F.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Team Plasma Grunt</td>
+                     <td>Scraggy lv.35<br>Watchog lv.35</td>
+                     <td>On B2F.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Team Plasma Grunt</td>
+                     <td>Garbodor lv.36</td>
+                     <td>On B2F.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Team Plasma Grunt</td>
+                     <td>Krokorok lv.36</td>
+                     <td>On B3F.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Team Plasma Grunt</td>
+                     <td>Liepard lv.34<br>Trubbish lv.34<br>Trubbish lv.34</td>
+                     <td>On B3F.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Team Plasma Grunt</td>
+                     <td>Watchog lv.35<br>Scraggy lv.35</td>
+                     <td>On B4F.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Team Plasma Grunt</td>
+                     <td>Trubbish lv.35<br>Liepard lv.35</td>
+                     <td>On B4F.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Team Plasma Grunt</td>
+                     <td>Krookodile lv.64</td>
+                     <td>On the lowest floor.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+		 <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Psychic Perry</td>
+                     <td>Sigilyph lv. 21 (Easy Mode) / 23 (Normal Mode) / 25 (Challenge Mode)</td>
+                     <td>On 1F.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Psychic Dua</td>
+                     <td>Gothita lv. 21 (Easy Mode) / 23 (Normal Mode) / 25 (Challenge Mode)</td>
+                     <td>On B1F.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Psychic Low</td>
+                     <td>Solosis lv. 21 (Easy Mode) / 23 (Normal Mode) / 25 (Challenge Mode)</td>
+                     <td>On B1F.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

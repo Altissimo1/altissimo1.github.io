@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Undella Town</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Undella Town</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-13.html">Route 13</a><br>
+            South: <a class="location-link" href="route-14.html">Route 14</a><br>
+            East: <a class="location-link" href="undella-bay.html">Undella Bay</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br><br>
+			<strong>Utility</strong>:<br>
+			Surf is required to access Undella Bay to the east. Wild Pokémon can also be encountered here with Surf.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="route-13.html">Route 13</a><br>
+            West: <a class="location-link" href="reversal-mountain.html">Reversal Mountain</a>
+            South: <a class="location-link" href="route-14.html">Route 14</a><br>
+            East: <a class="location-link" href="undella-bay.html">Undella Bay</a><br>
+            Accessible from the town: <a class="location-link" href="marine-tube.html">Marine Tube</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Poké Mart<br><br>
+			<strong>Utility</strong>:<br>
+			Surf is required to access Undella Bay to the east. Wild Pokémon can also be encountered here with Surf.
+         </p>
+      </div>
+      <div id="pokemon-container">
+         <div id="pokemon-bw" class="game-container bw">
+            <h3><u>Pokémon</u></h3>
+            <ul>
+               <li>Wild Corsola have a 5% chance of holding a Hard Stone.</li>
+               <li>Wild Shellder and Cloyster have a 50% chance of holding a Pearl and a 5% chance of holding a Big Pearl.</li>
+               <li>Wild Luvdisc have a 50% chance of holding a Heart Scale.</li>
+            </ul>
+            <h4>In-Game Trade</h4>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Player's Pokémon</th>
+                     <th colspan="2">Received Pokémon</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/cinccino.png" alt="Cinccino"></div>
+                     </td>
+                     <td>Cinccino</td>
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/munchlax.png" alt="Munchlax"></div>
+                     </td>
+                     <td>Munchlax</td>
+                     <td>This trade can only be completed in the Summer (February, June, and October). Munchlax holds Leftovers.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Surfing</h4>
+            <div data-location-id="undella-town" class="pokemon-bw-surfing-replace-me"></div>
+            <h4>Surfing (rippling water)</h4>
+            <div data-location-id="undella-town" class="pokemon-bw-shakingsurf-replace-me"></div>
+            <h4>Fishing</h4>
+            <div data-location-id="undella-town" class="pokemon-bw-fishing-replace-me"></div>
+            <h4>Fishing (rippling water)</h4>
+            <div data-location-id="undella-town" class="pokemon-bw-shakingfish-replace-me"></div>
+         </div>
+         <div id="pokemon-b2w2" class="game-container b2w2">
+            <h3><u>Pokémon</u></h3>
+            <ul>
+               <li>Wild Staryu and Starmie have a 50% chance of holding Stardust and a 5% chance of holding a Star Piece.</li>
+               <li>Wild Red-Striped Basculin have a 5% chance of holding a DeepSeaTooth.</li>
+               <li>Wild Blue-Striped Basculin have a 5% chance of holding a DeepSeaScale.</li>
+               <li>Wild Luvdisc have a 50% chance of holding a Heart Scale.</li>
+               <li>Wild Shellder and Cloyster have a 50% chance of holding a Pearl and a 5% chance of holding a Big Pearl.</li>
+            </ul>
+            <h4>Surfing</h4>
+            <div data-location-id="undella-town" class="pokemon-b2w2-surfing-replace-me"></div>
+            <h4>Surfing (rippling water)</h4>
+            <div data-location-id="undella-town" class="pokemon-b2w2-shakingsurf-replace-me"></div>
+            <h4>Fishing</h4>
+            <div data-location-id="undella-town" class="pokemon-b2w2-fishing-replace-me"></div>
+            <h4>Fishing (rippling water)</h4>
+            <div data-location-id="undella-town" class="pokemon-b2w2-shakingfish-replace-me"></div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>HM06 Dive</td>
+                     <td>Obtained from a girl in front of Caitlin's Villa</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Big Nugget</td>
+                     <td>On the eastern side of the Riches' mansion, behind the hedges</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Prism Scale</td>
+                     <td>Obtained from a man in the Pokémon Center</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Upper vendor</h4>
+            <table class="left-align">
+               <caption>Black and White Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Poké Ball</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Potion</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>700</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>2500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>3000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>1500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Antidote</td>
+                     <td>100</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Awakening</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burn Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ice Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Escape Rope</td>
+                     <td>550</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repel</td>
+                     <td>350</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Repel</td>
+                     <td>500</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>700</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="left-align">
+               <caption>Black and White Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Luxury Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Dive Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Greet Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Favored Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>RSVP Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Thanks Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Inquiry Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Like Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Reply Mail</td>
+                     <td>50</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Relic maniac</h4>
+			<p class="bw">A Black Belt in the Riches' house will give the player money for Relic items and flutes in the player's Bag. The amounts the player will receive are listed below.</p>
+			<table class="left-align">
+				<caption>Relic maniac rewards</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Item</th>
+						<th>Reward</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>Relic Copper</td>
+						<td>1000</td>
+					</tr>
+					<tr class="light-true">
+						<td>Relic Silver</td>
+						<td>5000</td>
+					</tr>
+					<tr class="light-false">
+						<td>Blue Flute</td>
+						<td>7000</td>
+					</tr>
+					<tr class="light-true">
+						<td>Red Flute</td>
+						<td>7500</td>
+					</tr>
+					<tr class="light-false">
+						<td>Yellow Flute</td>
+						<td>7500</td>
+					</tr>
+					<tr class="light-true">
+						<td>Black Flute</td>
+						<td>8000</td>
+					</tr>
+					<tr class="light-false">
+						<td>White Flute</td>
+						<td>8000</td>
+					</tr>
+					<tr class="light-true">
+						<td>Relic Gold</td>
+						<td>10000</td>
+					</tr>
+					<tr class="light-false">
+						<td>Relic Vase</td>
+						<td>50000</td>
+					</tr>
+					<tr class="light-true">
+						<td>Relic Band</td>
+						<td>100000</td>
+					</tr>
+					<tr class="light-false">
+						<td>Relic Statue</td>
+						<td>200000</td>
+					</tr>
+					<tr class="light-true">
+						<td>Relic Crown</td>
+						<td>300000</td>
+					</tr>
+				</tbody>
+			</table>
+		 </div>
+         <div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Prism Scale</td>
+                     <td>Obtained from a man in the Pokémon Center</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>HM06 Dive</td>
+                     <td>Obtained from Hugh next to the gate</td>
+                     <td>Only after defeating the Elite Four.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Shiny Stone</td>
+                     <td>In front of the bulldozer</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Berry Juice</td>
+                     <td>South of the Reversal Mountain entrance</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Heart Scale</td>
+                     <td>Southwest of the Pokémon Center</td>
+                     <td>Hidden. This item has a chance to regenerate.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Pearl</td>
+                     <td>South of the gate</td>
+                     <td>Hidden. This item has a chance to regenerate.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Pearl</td>
+                     <td>Southeast of the Berry Juice</td>
+                     <td>Hidden. This item has a chance to regenerate.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Big Pearl</td>
+                     <td>Obtained from Zinzolin</td>
+                     <td>Only after obtaining the Relic Crown in the <a class="location-link" href="abyssal-ruins.html">Abyssal Ruins</a>.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Upper vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Poké Ball</td>
+                     <td>200</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>600</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Potion</td>
+                     <td>300</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>700</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>1200</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>2500</td>
+                     <td>Only after obtaining 7 Badges.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>3000</td>
+                     <td>Only after obtaining 8 Badges.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>1500</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Antidote</td>
+                     <td>100</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>200</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Awakening</td>
+                     <td>250</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burn Heal</td>
+                     <td>250</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ice Heal</td>
+                     <td>250</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>600</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Escape Rope</td>
+                     <td>550</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repel</td>
+                     <td>350</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Repel</td>
+                     <td>500</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>700</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Luxury Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Dive Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Greet Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Favored Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>RSVP Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Thanks Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Inquiry Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Like Mail</td>
+                     <td>50</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Reply Mail</td>
+                     <td>50</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Relic maniac</h4>
+			<p class="b2w2">A Black Belt in the Riches' house will give the player money for Relic items and flutes in the player's Bag. The amounts the player will receive are listed below.</p>
+			<table class="left-align">
+				<caption>Relic maniac rewards</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Item</th>
+						<th>Reward</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>Relic Copper</td>
+						<td>1000</td>
+					</tr>
+					<tr class="light-true">
+						<td>Relic Silver</td>
+						<td>5000</td>
+					</tr>
+					<tr class="light-false">
+						<td>Blue Flute</td>
+						<td>7000</td>
+					</tr>
+					<tr class="light-true">
+						<td>Red Flute</td>
+						<td>7500</td>
+					</tr>
+					<tr class="light-false">
+						<td>Yellow Flute</td>
+						<td>7500</td>
+					</tr>
+					<tr class="light-true">
+						<td>Black Flute</td>
+						<td>8000</td>
+					</tr>
+					<tr class="light-false">
+						<td>White Flute</td>
+						<td>8000</td>
+					</tr>
+					<tr class="light-true">
+						<td>Relic Gold</td>
+						<td>10000</td>
+					</tr>
+					<tr class="light-false">
+						<td>Relic Vase</td>
+						<td>50000</td>
+					</tr>
+					<tr class="light-true">
+						<td>Relic Band</td>
+						<td>100000</td>
+					</tr>
+					<tr class="light-false">
+						<td>Relic Statue</td>
+						<td>200000</td>
+					</tr>
+					<tr class="light-true">
+						<td>Relic Crown</td>
+						<td>300000</td>
+					</tr>
+				</tbody>
+			</table>
+		 </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Cynthia</td>
+                     <td>Spiritomb lv.75<br>Eelektross lv.75<br>Milotic lv.75<br>Braviary lv.75<br>Lucario lv.75<br>Garchomp lv.77</td>
+                     <td>In Caitlin's Villa, only after defeating the Elite Four.<br>
+                        After being defeated, she can be rematched once per day during the Spring (January, May, and September).
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>The Riches</h4>
+            <p class="bw">The player can only fight the Riches once per day. The first day, speaking to Draco will trigger a battle with Draco. The next day, speaking to Draco will trigger a battle with Draco, followed by a battle with Susan. This pattern continues until the player defeats Miles, at which point the player cannot battle the Riches any longer.</p>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>The Riches Draco</td>
+                     <td>Buizel lv.60</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>The Riches Susan</td>
+                     <td>Teddiursa lv.61<br>Lopunny lv.61</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>The Riches Clairdonna</td>
+                     <td>Bronzor lv.62<br>Kangaskhan lv.62<br>Golurk lv.62</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>The Riches Zillion</td>
+                     <td>Shuckle lv.63<br>Lickilicky lv.63<br>Krookodile lv.63<br>Politoed lv.63</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>The Riches Trish</td>
+                     <td>Weavile lv.64<br>Excadrill lv.64<br>Heatmor lv.64<br>Vespiquen lv.64<br>Kingdra lv.64</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>The Riches Miles</td>
+                     <td>Donphan lv.65<br>Bisharp lv.65<br>Lanturn lv.65<br>Tangrowth lv.65<br>Braviary lv.65<br>Haxorus lv.65</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Hugh</td>
+                     <td>Unfezant lv. 35 (Easy Mode) / 39 (Normal Mode) / 43 (Challenge Mode) @ Scope Lens<br>
+                        Elemental lv. 35 (Easy Mode) / 39 (Normal Mode) / 43 (Challenge Mode) @ type-boosting item<br>
+                        Starter (3rd stage) lv. 37 (Easy Mode) / 41 (Normal Mode) / 45 (Challenge Mode) @ type-boosting item
+                     </td>
+                     <td>Only before defeating the Elite Four.<br>
+                        Elemental is one of Simisage, Simisear, or Simipour, whichever has the type weak against the player's starter.<br>
+                        He uses the starter whose type is strong against the player's starter.
+                     </td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hugh</td>
+                     <td>Unfezant lv. 58 (Easy Mode) / 62 (Normal Mode) / 66 (Challenge Mode) @ Scope Lens<br>
+                        Elemental lv. 58 (Easy Mode) / 62 (Normal Mode) / 66 (Challenge Mode) @ type-boosting item<br>
+                        Bouffalant lv. 58 (Easy Mode) / 62 (Normal Mode) / 66 (Challenge Mode) @ Muscle Band<br>
+                        Flygon lv. 58 (Easy Mode) / 62 (Normal Mode) / 66 (Challenge Mode) @ Dragon Fang<br>
+                        Eelektross lv. 58 (Easy Mode) / 62 (Normal Mode) / 66 (Challenge Mode) @ Leftovers<br>
+                        Starter (3rd stage) lv. 60 (Easy Mode) / 64 (Normal Mode) / 68 (Challenge Mode) @ type-boosting item
+                     </td>
+                     <td>Only after defeating the Elite Four.<br>
+                        Elemental is one of Simisage, Simisear, or Simipour, whichever has the type weak against the player's starter.<br>
+                        He uses the starter whose type is strong against the player's starter.
+                     </td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Cynthia</td>
+                     <td>Spiritomb lv. 72 (Easy Mode) / 76 (Normal Mode) / 80 (Challenge Mode)<br>
+                        Milotic lv. 72 (Easy Mode) / 76 (Normal Mode) / 80 (Challenge Mode)<br>
+                        Togekiss lv. 72 (Easy Mode) / 76 (Normal Mode) / 80 (Challenge Mode)<br>
+                        Lucario lv. 72 (Easy Mode) / 76 (Normal Mode) / 80 (Challenge Mode)<br>
+                        Glaceon lv. 72 (Easy Mode) / 76 (Normal Mode) / 80 (Challenge Mode)<br>
+                        Garchomp lv. 74 (Easy Mode) / 78 (Normal Mode) / 82 (Challenge Mode)<br>
+                     </td>
+                     <td>In Caitlin's Villa, only after defeating the Elite Four.<br>
+                        After being defeated, she can be rematched once per day during the Spring (January, May, and September).
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

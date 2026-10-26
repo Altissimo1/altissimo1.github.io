@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>P2 Laboratory</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>P2 Laboratory</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            West and south: <a class="location-link" href="route-17.html">Route 17</a><br><br>
+			<strong>Utility:</strong><br>
+			Surf is required to access this area. Wild Pokémon can also be encountered here with Surf.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            West and south: <a class="location-link" href="route-17.html">Route 17</a><br>
+			Accessible from the area: <a class="location-link" href="plasma-frigate.html">Plasma Frigate</a><br><br>
+			<strong>Utility:</strong><br>
+			Surf is required to access this area. Wild Pokémon can also be encountered here with Surf.
+         </p>
+      </div>
+       <div id="pokemon-container">
+         <div id="pokemon-bw" class="game-container bw">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Scraggy have a 5% chance of holding a Shed Shell.</li>
+				<li>Wild Audino have a 50% chance of holding an Oran Berry and a 5% chance of holding a Sitrus Berry.</li>
+				<li>Wild Horsea, Seadra, and Kingdra have a 5% chance of holding a Dragon Scale.</li>
+				<li>Wild Finneon and Lumineon have a 5% chance of holding a Rindo Berry.</li>
+				<li>Wild Qwilfish have a 5% chance of holding a Poison Barb.</li>
+			</ul>
+			<h4>Walking</h4>
+            <div data-location-id="p2-laboratory" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (rustling grass)</h4>
+            <div data-location-id="p2-laboratory" class="pokemon-bw-shaking-replace-me"></div>
+			<h4>Surfing</h4>
+            <div data-location-id="p2-laboratory" class="pokemon-bw-surfing-replace-me"></div>
+			<h4>Surfing (rippling water)</h4>
+            <div data-location-id="p2-laboratory" class="pokemon-bw-shakingsurf-replace-me"></div>
+			<h4>Fishing</h4>
+            <div data-location-id="p2-laboratory" class="pokemon-bw-fishing-replace-me"></div>
+			<h4>Fishing (rippling water)</h4>
+            <div data-location-id="p2-laboratory" class="pokemon-bw-shakingfish-replace-me"></div>
+		</div>
+         <div id="pokemon-b2w2" class="game-container b2w2" style="display:none;">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Magneton and Magnezone have a 5% chance of holding a Metal Coat.</li>
+				<li>Wild Scrafty have a 5% chance of holding a Shed Shell.</li>
+				<li>Wild Weezing have a 5% chance of holding a Smoke Ball.</li>
+				<li>Wild Audino have a 50% chance of holding an Oran Berry and a 5% chance of holding a Sitrus Berry.</li>
+				<li>Wild Horsea, Seadra, and Kingdra have a 5% chance of holding a Dragon Scale.</li>
+				<li>Wild Finneon and Lumineon have a 5% chance of holding a Rindo Berry.</li>
+				<li>Wild Qwilfish have a 5% chance of holding a Poison Barb.</li>
+			</ul>
+			<h4>Walking</h4>
+            <div data-location-id="p2-laboratory" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (rustling grass)</h4>
+            <div data-location-id="p2-laboratory" class="pokemon-b2w2-shaking-replace-me"></div>
+			<h4>Surfing</h4>
+            <div data-location-id="p2-laboratory" class="pokemon-b2w2-surfing-replace-me"></div>
+			<h4>Surfing (rippling water)</h4>
+            <div data-location-id="p2-laboratory" class="pokemon-b2w2-shakingsurf-replace-me"></div>
+			<h4>Fishing</h4>
+            <div data-location-id="p2-laboratory" class="pokemon-b2w2-fishing-replace-me"></div>
+			<h4>Fishing (rippling water)</h4>
+            <div data-location-id="p2-laboratory" class="pokemon-b2w2-shakingfish-replace-me"></div>
+		</div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+            <table class="left-align bold-contents">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+					 <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Dubious Disc</td>
+					 <td class="black-false">B</td>
+					 <td class="white-false">W</td>
+                     <td class="light-false">Inside the laboratory</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">TM24 Thunderbolt</td>
+					 <td class="black-true">B</td>
+					 <td class="white-true">W</td>
+                     <td class="light-true">On the southwest corner of the island</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Shock Drive</td>
+					 <td class="black-false">B</td>
+					 <td class="light-false">W</td>
+                     <td class="light-false">Obtained from Scientist Dudley</td>
+                     <td class="light-false">Only if the player shows him a Genesect and then defeats him in a battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Douse Drive</td>
+					 <td class="light-true">B</td>
+					 <td class="white-true">W</td>
+                     <td class="light-true">Obtained from Scientist Dudley</td>
+                     <td class="light-true">Only if the player shows him a Genesect and then defeats him in a battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Burn Drive</td>
+					 <td class="black-false">B</td>
+					 <td class="light-false">W</td>
+                     <td class="light-false">Obtained from Scientist Dudley</td>
+                     <td class="light-false">Only if the player shows him a Genesect and then defeats him in a battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Chill Drive</td>
+					 <td class="light-true">B</td>
+					 <td class="white-true">W</td>
+                     <td class="light-true">Obtained from Scientist Dudley</td>
+                     <td class="light-true">Only if the player shows him a Genesect and then defeats him in a battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+            <table class="left-align bold-contents">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+					 <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Dubious Disc</td>
+					 <td class="black2-false">B2</td>
+					 <td class="white2-false">W2</td>
+                     <td class="light-false">Inside the laboratory</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Shock Drive</td>
+					 <td class="black2-true">B2</td>
+					 <td class="light-true">W2</td>
+                     <td class="light-true">Obtained from Scientist Dudley</td>
+                     <td class="light-true">Only if the player shows him a Genesect and then defeats him in a battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Douse Drive</td>
+					 <td class="light-false">B2</td>
+					 <td class="white2-false">W2</td>
+                     <td class="light-false">Obtained from Scientist Dudley</td>
+                     <td class="light-false">Only if the player shows him a Genesect and then defeats him in a battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Burn Drive</td>
+					 <td class="black2-true">B2</td>
+					 <td class="light-true">W2</td>
+                     <td class="light-true">Obtained from Scientist Dudley</td>
+                     <td class="light-true">Only if the player shows him a Genesect and then defeats him in a battle.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Chill Drive</td>
+					 <td class="light-false">B2</td>
+					 <td class="white2-false">W2</td>
+                     <td class="light-false">Obtained from Scientist Dudley</td>
+                     <td class="light-false">Only if the player shows him a Genesect and then defeats him in a battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Scientist Nathan</td>
+                     <td>Garbodor lv.35</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Scientist Dudley</td>
+                     <td>Klink lv.34<br>Klang lv.34</td>
+					 <td>Only if the player shows him Genesect. He will give the player two of Genesect's Drives after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+		 <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Scientist Dudley</td>
+                     <td>Klink lv. 29 (Easy Mode) / 34 (Normal Mode) / 39 (Challenge Mode)<br>
+					 Klang lv. 29 (Easy Mode) / 34 (Normal Mode) / 39 (Challenge Mode)</td>
+					 <td>Only if the player shows him Genesect. He will give the player two of Genesect's Drives after the battle.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

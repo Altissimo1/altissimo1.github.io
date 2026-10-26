@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Moor of Icirrus</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Moor of Icirrus</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+			South: <a class="location-link" href="route-8.html">Route 8</a><br><br>
+			<strong>Places of interest:</strong><br>
+			If a Keldeo obtained in a fateful encounter, Cobalion, Terrakion, and Virizion are brought here, Keldeo can learn Secret Sword.<br><br>
+			<strong>Utility:</strong><br>
+			Strength is required to access an Ultra Ball, a Max Ether, a Carbos, and Parasol Lady Mariah.<br>
+			Surf can be used here to encounter wild Pokémon.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+			South: <a class="location-link" href="route-8.html">Route 8</a><br><br>
+			<strong>Utility:</strong><br>
+			Strength is required to access TM84 Poison Jab.<br>
+			Surf is required to access a Green Shard. Wild Pokémon can also be encountered here with Surf.
+         </p>
+      </div>
+	  <div id="pokemon-container">
+         <div id="pokemon-bw" class="game-container bw">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Palpitoad and Seismitoad have a 5% chance of holding a Persim Berry.</li>
+				<li>Wild Stunfisk have a 5% chance of holding Soft Sand.</li>
+			</ul>
+			<h4>Walking</h4>
+            <div data-location-id="moor-of-icirrus" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Surfing</h4>
+            <div data-location-id="moor-of-icirrus" class="pokemon-bw-surfing-replace-me"></div>
+			<h4>Surfing (rippling water)</h4>
+            <div data-location-id="moor-of-icirrus" class="pokemon-bw-shakingsurf-replace-me"></div>
+			<h4>Fishing</h4>
+            <div data-location-id="moor-of-icirrus" class="pokemon-bw-fishing-replace-me"></div>
+			<h4>Fishing (rippling water)</h4>
+            <div data-location-id="moor-of-icirrus" class="pokemon-bw-shakingfish-replace-me"></div>
+		</div>
+         <div id="pokemon-b2w2" class="game-container b2w2" style="display:none;">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Palpitoad and Seismitoad have a 5% chance of holding a Pecha Berry.</li>
+				<li>Wild Stunfisk have a 5% chance of holding Soft Sand.</li>
+				<li>Wild Croagunk have a 5% chance of holding Black Sludge.</li>
+			</ul>
+			<h4>Walking</h4>
+            <div data-location-id="moor-of-icirrus" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Surfing</h4>
+            <div data-location-id="moor-of-icirrus" class="pokemon-b2w2-surfing-replace-me"></div>
+			<h4>Surfing (rippling water)</h4>
+            <div data-location-id="moor-of-icirrus" class="pokemon-b2w2-shakingsurf-replace-me"></div>
+			<h4>Fishing</h4>
+            <div data-location-id="moor-of-icirrus" class="pokemon-b2w2-fishing-replace-me"></div>
+			<h4>Fishing (rippling water)</h4>
+            <div data-location-id="moor-of-icirrus" class="pokemon-b2w2-shakingfish-replace-me"></div>
+         </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+			<table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Nugget</td>
+                     <td>On the western side of the trees north of Fisherman Damon</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Revive</td>
+                     <td>In the trees north of Fisherman Damon</td>
+                     <td>Only accessible in the spring, summer, and autumn.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Big Mushroom</td>
+                     <td>On the ledge southeast of Pokémon Ranger Harry</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Revive</td>
+                     <td>In the northern area</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>In the northern area</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Elixir</td>
+                     <td>Northeast of Pokémon Ranger Harry</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>In the western area</td>
+                     <td>Requires Strength.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Ether</td>
+                     <td>Northwest of Parasol Lady Mariah</td>
+                     <td>Hidden. Requires Strength. Only accessible in the spring, summer, and autumn.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Carbos</td>
+                     <td>In the tree stumps west of Parasol Lady Mariah</td>
+                     <td>Requires Strength.</td>
+                  </tr>
+               </tbody>
+            </table>		
+		</div>
+		<div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>TM84 Poison Jab</td>
+                     <td>South of Pokémon Ranger Elaine</td>
+                     <td>Requires Strength.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TinyMushroom</td>
+                     <td>In the gap between the trees in the west</td>
+                     <td>Hidden. This item has a chance to regenerate.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Dawn Stone</td>
+                     <td>In front of the trees southwest of Fisherman Eustace</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Heal</td>
+                     <td>Northeast of Pokémon Ranger Parker</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Big Mushroom</td>
+                     <td>In the gap between trees west of Fisherman Arnold</td>
+                     <td>Hidden. This item has a chance to regenerate.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rare Candy</td>
+                     <td>In the gap between trees north of Pokémon Ranger Parker</td>
+                     <td>Only accessible in the spring, summer, and autumn.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Green Shard</td>
+                     <td>East of Fisherman Arnold</td>
+                     <td>Requires Surf in the winter.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Heart Scale</td>
+                     <td>In the northeastern area</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+      </div>
+	  <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black and White Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Fisherman Damon</td>
+                     <td>Basculin (Blue) lv.34<br>Stunfisk lv.34</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Pokémon Ranger Chloris</td>
+                     <td>Emolga lv.34<br>Maractus lv.34<br>Alomomola lv.34</td>
+					 <td>She will give the player a Sitrus Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Pokémon Ranger Harry</td>
+                     <td>Vanillish lv.35<br>Fraxure lv.35</td>
+					 <td>He will give the player a Sitrus Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Parasol Lady Mariah</td>
+                     <td>Frillish lv.34<br>Frillish lv.34</td>
+					 <td>Requires Strength. Only accessible in the spring, summer, and autumn.</td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+		<div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Pokémon Ranger Elaine</td>
+                     <td>Accelgor lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)<br>
+                     Swalot lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)<br>
+                     Kecleon lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)</td>
+					 <td>Requires Strength. She will give the player a Lum Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Pokémon Ranger Parker</td>
+                     <td>Escavalier lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)<br>
+                     Skuntank lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)<br>
+                     Carnivine lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)</td>
+					 <td>He will give the player a Lum Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Fisherman Eustace</td>
+                     <td>Corphish lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+                     Poliwag lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+                     Stunfisk lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Fisherman Arnold</td>
+                     <td>Poliwhirl lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+                     Whiscash lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+                     Politoed lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+	</div>
+   </body>
+</html>

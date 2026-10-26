@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Celestial Tower</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Celestial Tower</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+			Exit on 1F: <a class="location-link" href="route-7.html">Route 7</a>
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+			Exit on 1F: <a class="location-link" href="route-7.html">Route 7</a>
+         </p>
+      </div>
+	  <div id="pokemon-container">
+         <div id="pokemon-bw" class="game-container bw">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Ferroseed have a 5% chance of holding a Sticky Barb.</li>
+				<li>Wild Boldore have a 50% chance of holding an Everstone and a 5% chance of holding a Hard Stone.</li>
+			</ul>
+			<h4>Walking (2F)</h4>
+            <div data-location-id="celestial-tower_2f" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (3F)</h4>
+            <div data-location-id="celestial-tower_3f" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (4F)</h4>
+            <div data-location-id="celestial-tower_4f" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (5F)</h4>
+            <div data-location-id="celestial-tower_5f" class="pokemon-bw-walking-replace-me"></div>
+		</div>
+         <div id="pokemon-b2w2" class="game-container b2w2" style="display:none;">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Ferroseed have a 5% chance of holding a Sticky Barb.</li>
+				<li>Wild Boldore have a 50% chance of holding an Everstone and a 5% chance of holding a Hard Stone.</li>
+				<li>Wild Nosepass have a 5% chance of holding a Hard Stone.</li>
+			</ul>
+			<h4>Walking (2F)</h4>
+            <div data-location-id="celestial-tower_2f" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (3F)</h4>
+            <div data-location-id="celestial-tower_3f" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (4F)</h4>
+            <div data-location-id="celestial-tower_4f" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (5F)</h4>
+            <div data-location-id="celestial-tower_5f" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Static</h4>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-4/mesprit.png" alt="Mesprit"></div>
+                     </td>
+                     <td>Mesprit</td>
+                     <td>65</td>
+                     <td>Only one, and only after speaking with Professor Juniper in the <a class="location-link" href="cave-of-being">Cave of Being</a>.<br>If defeated or run from, it reappears after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+			<table class="left-align">
+               <caption>Black and White Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Hyper Potion</td>
+                     <td>On 2F, northeast of Lass Kara</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM61 Will-O-Wisp</td>
+                     <td>On 2F, west of Pokéfan Georgia</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Spell Tag</td>
+                     <td>On 3F, south of Psychic Belle</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Revive</td>
+                     <td>On 4F, northeast of Ace Trainer Beckett</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM65 Shadow Claw</td>
+                     <td>On 4F, west of Ace Trainer Kassandra</td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+		<div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+			<table class="left-align">
+               <caption>Black 2 and White 2 Items</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Lucky Egg</td>
+                     <td>On 1F, obtained from Professor Juniper</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>On 2F, west of Psychic Joyce</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM61 Will-O-Wisp</td>
+                     <td>On 2F, east of School Kid Alberta</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Revive</td>
+                     <td>On 3F, southwest of Pokéfan Georgia</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>PP Up</td>
+                     <td>On 4F, north of Socialite Grace</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM65 Shadow Claw</td>
+                     <td>On 4F, east of Psychic Sarah</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ghost Gem</td>
+                     <td>On 5F, west of the bell platform</td>
+                     <td>Hidden.</td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+      </div>
+	  <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+			<h4>2F</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers (2F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Psychic Doreen</td>
+                     <td>Elgyem lv.30<br>Solosis lv.30<br>Sigilyph lv.30</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Lass Kara</td>
+                     <td>Deerling lv.30<br>Gothita lv.30</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Pokéfan Jude</td>
+                     <td>Emolga lv.30<br>Herdier lv.30</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Pokémon Georgia</td>
+                     <td>Swadloon lv.31</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>3F</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers (3F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Psychic Belle</td>
+                     <td>Musharna lv.32</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Psychic Micki</td>
+                     <td>Yamask lv.31<br>Golett lv.31</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Psychic Lin</td>
+                     <td>Litwick lv.31<br>Swoobat lv.31</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Psychic Bryce</td>
+                     <td>Duosion lv.32</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Nurse Sachiko</td>
+                     <td>Gothita lv.31<br>Alomomola lv.31</td>
+					 <td>After defeating her, she will heal the player's Pokémon when spoken to.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>4F</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers (4F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Ace Trainer Beckett</td>
+                     <td>Stoutland lv.33</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ace Trainer Kassandra</td>
+                     <td>Swoobat lv.32<br>Gothorita lv.32</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+		 <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+			<h4>1F</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (1F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Waitress Jan</td>
+                     <td>Magmortar lv. 57 (Easy Mode) / 60 (Normal Mode) / 63 (Challenge Mode)<br>
+                     Arcanine lv. 57 (Easy Mode) / 60 (Normal Mode) / 63 (Challenge Mode)<br>
+                     Chandelure lv. 57 (Easy Mode) / 60 (Normal Mode) / 63 (Challenge Mode)</td>
+					 <td>Only after speaking with the newlywed couple in <a class="location-link" href="humilau-city.html">Humilau City</a> after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>2F</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (2F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Psychic Joyce</td>
+                     <td>Musharna lv. 33 (Easy Mode) / 36 (Normal Mode) / 39 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>School Kid Alberta</td>
+                     <td>Litwick lv. 32 (Easy Mode) / 35 (Normal Mode) / 38 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Pokéfan Jude</td>
+                     <td>Clefairy lv. 32 (Easy Mode) / 35 (Normal Mode) / 38 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Nursery Aide Ilse</td>
+                     <td>Lopunny lv. 59 (Easy Mode) / 62 (Normal Mode) / 65 (Challenge Mode)<br>
+                     Bouffalant lv. 59 (Easy Mode) / 62 (Normal Mode) / 65 (Challenge Mode)<br>
+                     Kangaskhan lv. 59 (Easy Mode) / 62 (Normal Mode) / 65 (Challenge Mode)<br>
+                     Miltank lv. 59 (Easy Mode) / 62 (Normal Mode) / 65 (Challenge Mode)</td>
+					 <td>Only after speaking with the newlywed couple in <a class="location-link" href="humilau-city.html">Humilau City</a> after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>3F</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (3F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Pokéfan Georgia</td>
+                     <td>Cubchoo lv. 32 (Easy Mode) / 35 (Normal Mode) / 38 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Psychic Micki</td>
+                     <td>Espeon lv. 33 (Easy Mode) / 36 (Normal Mode) / 39 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Psychic Bryce</td>
+                     <td>Elgyem lv. 32 (Easy Mode) / 35 (Normal Mode) / 38 (Challenge Mode)<br>
+                     Duosion lv. 32 (Easy Mode) / 35 (Normal Mode) / 38 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Nurse Dixie</td>
+                     <td>Leavanny lv. 32 (Easy Mode) / 35 (Normal Mode) / 38 (Challenge Mode)</td>
+					 <td>After defeating her, she will heal the player's Pokémon when spoken to.</td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Clerk♀ Lana</td>
+                     <td>Weavile lv. 61 (Easy Mode) / 64 (Normal Mode) / 67 (Challenge Mode)<br>
+                     Mamoswine lv. 61 (Easy Mode) / 64 (Normal Mode) / 67 (Challenge Mode)<br>
+                     Vanilluxe lv. 61 (Easy Mode) / 64 (Normal Mode) / 67 (Challenge Mode)<br>
+                     Lapras lv. 61 (Easy Mode) / 64 (Normal Mode) / 67 (Challenge Mode)<br>
+                     Cryogonal lv. 61 (Easy Mode) / 64 (Normal Mode) / 67 (Challenge Mode)</td>
+					 <td>Only after speaking with the newlywed couple in <a class="location-link" href="humilau-city.html">Humilau City</a> after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>4F</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (4F)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Socialite Grace</td>
+                     <td>Roselia lv. 32 (Easy Mode) / 35 (Normal Mode) / 38 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Gentleman Daniel</td>
+                     <td>Umbreon lv. 32 (Easy Mode) / 35 (Normal Mode) / 38 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+					 <td>Psychic Sarah</td>
+                     <td>Yamask lv. 32 (Easy Mode) / 35 (Normal Mode) / 38 (Challenge Mode)<br>
+                     Gothorita lv. 32 (Easy Mode) / 35 (Normal Mode) / 38 (Challenge Mode)</td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+					 <td>Maid Tammy</td>
+                     <td>Skarmory lv. 63 (Easy Mode) / 66 (Normal Mode) / 69 (Challenge Mode)<br>
+                     Steelix lv. 63 (Easy Mode) / 66 (Normal Mode) / 69 (Challenge Mode)<br>
+                     Ferrothorn lv. 63 (Easy Mode) / 66 (Normal Mode) / 69 (Challenge Mode)<br>
+                     Metagross lv. 63 (Easy Mode) / 66 (Normal Mode) / 69 (Challenge Mode)<br>
+                     Escavalier lv. 63 (Easy Mode) / 66 (Normal Mode) / 69 (Challenge Mode)<br>
+                     Bisharp lv. 63 (Easy Mode) / 66 (Normal Mode) / 69 (Challenge Mode)</td>
+					 <td>Only after speaking with the newlywed couple in <a class="location-link" href="humilau-city.html">Humilau City</a> after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>

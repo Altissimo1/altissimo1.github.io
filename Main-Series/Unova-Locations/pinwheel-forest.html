@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Pinwheel Forest</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+      <script src="../javascript/pokemon-core.js"></script>
+      <script src="../javascript/bw.js"></script>
+      <script src="../javascript/b2w2.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Pinwheel Forest</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="skyarrow-bridge.html">Skyarrow Bridge</a><br>
+			East: <a class="location-link" href="nacrene-city.html">Nacrene City</a><br><br>
+			<strong>Utility:</strong><br>
+			Surf is required to access SilverPowder. Wild Pokémon can also be encountered here with Surf.
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            North: <a class="location-link" href="skyarrow-bridge.html">Skyarrow Bridge</a><br>
+			East: <a class="location-link" href="nacrene-city.html">Nacrene City</a><br><br>
+			<strong>Places of interest:</strong><br>
+			The first time the player explores the southwestern area, Cheren will request to accompany them. Every wild and Trainer battle that the player engages in while he is present will be a Double Battle. He has a level 67 Stoutland, a level 65 Watchog, and a level 65 Cinccino.<br><br>
+			<strong>Utility:</strong><br>
+			Surf is required to access most of 1F and all of B1F. Wild Pokémon can also be encountered here with Surf.<br>
+			Flash is recommended on B1F.
+         </p>
+      </div>
+	  <div id="pokemon-container">
+         <div id="pokemon-bw" class="game-container bw">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Tympole have a 50% chance of holding a Persim Berry.</li>
+               <li>Wild Sawk and Throh have a 5% chance of holding a Black Belt and a 1% chance of holding an Expert Belt (in dark grass only).</li>
+               <li>Wild Audino have a 50% chance of holding an Oran Berry and a 5% chance of holding a Sitrus Berry.</li>
+				<li>Wild Sewaddle and Swadloon have a 5% chance of holding a Mental Herb.</li>
+				<li>Wild Venipede and Whirlipede have a 50% chance of holding a Pecha Berry and a 5% chance of holding a Poison Barb.</li>
+				<li>Wild Panpour have a 50% chance of holding an Oran Berry and a 5% chance of holding a Rindo Berry.</li>
+				<li>Wild Pansage have a 50% chance of holding an Oran Berry and a 5% chance of holding an Occa Berry.</li>
+				<li>Wild Pansear have a 50% chance of holding an Oran Berry and a 5% chance of holding a Passho Berry.</li>
+               <li>Wild Red-Striped Basculin have a 5% chance of holding a DeepSeaTooth.</li>
+               <li>Wild Blue-Striped Basculin have a 5% chance of holding a DeepSeaScale.</li>
+			</ul>
+			<h4>Walking (outer area)</h4>
+            <div data-location-id="pinwheel-forest_outside" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (outer area, dark grass)</h4>
+            <div data-location-id="pinwheel-forest_outside" class="pokemon-bw-darkgrass-replace-me"></div>
+			<h4>Walking (outer area, rustling grass)</h4>
+            <div data-location-id="pinwheel-forest_outside" class="pokemon-bw-shaking-replace-me"></div>
+			<h4>Walking (inner area)</h4>
+            <div data-location-id="pinwheel-forest_inside" class="pokemon-bw-walking-replace-me"></div>
+			<h4>Walking (inner area, dark grass)</h4>
+            <div data-location-id="pinwheel-forest_inside" class="pokemon-bw-darkgrass-replace-me"></div>
+			<h4>Walking (inner area, rustling grass)</h4>
+            <div data-location-id="pinwheel-forest_inside" class="pokemon-bw-shaking-replace-me"></div>
+			<h4>Static (inner area, Rumination Field)</h4>
+            <table>
+               <caption>All Versions</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th colspan="2">Pokémon</th>
+                     <th>Level</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>
+                        <div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/virizion.png" alt="Virizion"></div>
+                     </td>
+                     <td>Virizion</td>
+                     <td>42</td>
+                     <td>Appears after engaging Cobalion in <a class="location-link" href="mistralton-cave.html">Mistralton Cave</a>. If defeated or run from, it reappears after defeating the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Surfing (inner area)</h4>
+            <div data-location-id="pinwheel-forest_inside" class="pokemon-bw-surfing-replace-me"></div>
+			<h4>Surfing (inner area, rippling water)</h4>
+            <div data-location-id="pinwheel-forest_inside" class="pokemon-bw-shakingsurf-replace-me"></div>
+			<h4>Fishing (inner area)</h4>
+            <div data-location-id="pinwheel-forest_inside" class="pokemon-bw-fishing-replace-me"></div>
+			<h4>Fishing (inner area, rippling water)</h4>
+            <div data-location-id="pinwheel-forest_inside" class="pokemon-bw-shakingfish-replace-me"></div>
+		</div>
+         <div id="pokemon-b2w2" class="game-container b2w2">
+            <h3><u>Pokémon</u></h3>
+			<ul>
+				<li>Wild Palpitoad and Seismitoad have a 50% chance of holding a Pecha Berry.</li>
+               <li>Wild Toxicroak have a 5% chance of holding Black Sludge.</li>
+               <li>Wild Yanma and Yanmega have a 5% chance of holding a Wide Lens.</li>
+               <li>Wild Sawk and Throh have a 5% chance of holding a Black Belt and a 1% chance of holding an Expert Belt (in dark grass only).</li>
+               <li>Wild Audino have a 50% chance of holding an Oran Berry and a 5% chance of holding a Sitrus Berry.</li>
+			   <li>Wild Hariyama and Poliwhirl have a 5% chance of holding a King's Rock.</li>
+			   <li>Wild Bagon have a 5% chance of holding a Dragon Fang.</li>
+				<li>Wild Swadloon have a 5% chance of holding a Mental Herb.</li>
+				<li>Wild Whirlipede and Scolipede have a 5% chance of holding a Poison Barb.</li>
+				<li>Wild Panpour have a 50% chance of holding an Oran Berry and a 5% chance of holding a Rindo Berry.</li>
+				<li>Wild Pansage have a 50% chance of holding an Oran Berry and a 5% chance of holding an Occa Berry.</li>
+				<li>Wild Pansear have a 50% chance of holding an Oran Berry and a 5% chance of holding a Passho Berry.</li>
+				<li>Wild Amoonguss have a 50% chance of holding a TinyMushroom, a 5% chance of holding a Big Mushroom, and a 1% chance of holding a BalmMushroom (in dark grass only).</li>
+				<li>Wild Beedrill have a 5% chance of holding a Poison Barb.</li>
+				<li>Wild Butterfree have a 5% chance of holding SilverPowder.</li>
+				<li>Wild Breloom have a 5% chance of holding a Kebia Berry.</li>
+               <li>Wild Red-Striped Basculin have a 5% chance of holding a DeepSeaTooth.</li>
+               <li>Wild Blue-Striped Basculin have a 5% chance of holding a DeepSeaScale.</li>
+			</ul>
+			<h4>Walking (outer area)</h4>
+            <div data-location-id="pinwheel-forest_outside" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (outer area, dark grass)</h4>
+            <div data-location-id="pinwheel-forest_outside" class="pokemon-b2w2-darkgrass-replace-me"></div>
+			<h4>Walking (outer area, rustling grass)</h4>
+            <div data-location-id="pinwheel-forest_outside" class="pokemon-b2w2-shaking-replace-me"></div>
+			<h4>Memory Link encounters</h4>
+			<p class="b2w2">After viewing the Memory Link flashback "Meeting Friends, Saying Good-Bye", the player may encounter N's Pidove, Timburr, and Tympole here. Their appearance rates depend on how many of N's Pokémon the player has already captured, as shown below.</p>
+			<ul>
+				<li>0 captured: 40%</li>
+				<li>1-5 captured: 20%</li>
+				<li>6-11 captured: 10%</li>
+				<li>12+ captured: 5%</li>
+			</ul>
+			<table>
+				<caption>Memory Link encounters</caption>
+				<thead>
+					<tr class="light-true">
+						<th colspan="2">Pokémon</th>
+						<th>Nature</th>
+						<th>Level</th>
+						<th colspan="8">Moves</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td rowspan="2">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/pidove.png" alt="Pidove"></div>
+						</td>
+						<td rowspan="2">Pidove ♂</td>
+						<td rowspan="2">Sassy</td>
+						<td rowspan="2">13</td>
+						<td class="flying" colspan="2">Gust</td>
+						<td class="status" colspan="2">Growl</td>
+						<td class="status" colspan="2">Leer</td>
+						<td class="normal" colspan="2">Quick Attack</td>
+					</tr>
+					<tr class="light-false">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/flying.png" alt="Flying"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+					</tr>
+					<tr class="light-true">
+						<td rowspan="2">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/timburr.png" alt="Timburr"></div>
+						</td>
+						<td rowspan="2">Timburr ♂</td>
+						<td rowspan="2">Rash</td>
+						<td rowspan="2">13</td>
+						<td class="status" colspan="2">Leer</td>
+						<td class="status" colspan="2">Focus Energy</td>
+						<td class="normal" colspan="2">Bide</td>
+						<td class="fighting" colspan="2">Low Kick</td>
+					</tr>
+					<tr class="light-true">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/fighting.png" alt="Fighting"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/physical.png" alt="Physical"></div>
+						</td>
+					</tr>
+					<tr class="light-false">
+						<td rowspan="2">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/tympole.png" alt="Tympole"></div>
+						</td>
+						<td rowspan="2">Tympole ♂</td>
+						<td rowspan="2">Modest</td>
+						<td rowspan="2">13</td>
+						<td class="status" colspan="2">Growl</td>
+						<td class="status" colspan="2">Supersonic</td>
+						<td class="normal" colspan="2">Round</td>
+						<td class="water" colspan="2">BubbleBeam</td>
+					</tr>
+					<tr class="light-false">
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/status.png" alt="Status"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/normal.png" alt="Normal"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/water.png" alt="Water"></div>
+						</td>
+						<td>
+							<div class="flex-img"><img src="../../Resources/images/icons/types/special.png" alt="Special"></div>
+						</td>
+					</tr>
+				 </tbody>
+			</table>
+			<h4>Hidden Grotto (outer area)</h4>
+			<p class="b2w2">When a Hidden Grotto's contents regenerate, there is a 20% chance that it will contain a Pokémon. The following Pokémon may be encountered. All of them have their Hidden Ability.</p>
+			<table>
+				<caption>Hidden Grotto Pokémon (outer area)</caption>
+				<thead>
+					<tr>
+						<th colspan="2" class="light-true">Pokémon</th>
+						<th colspan="2" class="black2-true">Black 2</th>
+						<th colspan="2" class="white2-true">White 2</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="light-false">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/hariyama.png" alt="Hariyama"></div>
+						</td>
+						<td class="light-false">Hariyama</td>
+						<td class="black2-false">15%</td>
+						<td class="black2-false">lv. 55-60</td>
+						<td class="white2-false">1%</td>
+						<td class="white2-false">lv. 55-60</td>
+					</tr>
+					<tr>
+						<td class="light-true">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/medicham-f.png" alt="Medicham"></div>
+						</td>
+						<td class="light-true">Medicham</td>
+						<td class="black2-true">1%</td>
+						<td class="black2-true">lv. 55-60</td>
+						<td class="white2-true">15%</td>
+						<td class="white2-true">lv. 55-60</td>
+					</tr>
+					<tr>
+						<td class="light-false">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/bagon.png" alt="Bagon"></div>
+						</td>
+						<td class="light-false">Bagon</td>
+						<td class="black2-false">3%</td>
+						<td class="black2-false">lv. 55-60</td>
+						<td class="white2-false">3%</td>
+						<td class="white2-false">lv. 55-60</td>
+					</tr>
+					<tr>
+						<td class="light-true">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/poliwhirl.png" alt="Poliwhirl"></div>
+						</td>
+						<td class="light-true">Poliwhirl</td>
+						<td class="black2-true">1%</td>
+						<td class="black2-true">lv. 55-60</td>
+						<td class="white2-true">1%</td>
+						<td class="white2-true">lv. 55-60</td>
+					</tr>
+				</tbody>
+			</table>
+			<h4>Walking (inner area)</h4>
+            <div data-location-id="pinwheel-forest_inside" class="pokemon-b2w2-walking-replace-me"></div>
+			<h4>Walking (inner area, dark grass)</h4>
+            <div data-location-id="pinwheel-forest_inside" class="pokemon-b2w2-darkgrass-replace-me"></div>
+			<h4>Walking (inner area, rustling grass)</h4>
+            <div data-location-id="pinwheel-forest_inside" class="pokemon-b2w2-shaking-replace-me"></div>
+			<h4>Hidden Grotto (inner area)</h4>
+			<p class="b2w2">When a Hidden Grotto's contents regenerate, there is a 20% chance that it will contain a Pokémon. The following Pokémon may be encountered. All of them have their Hidden Ability.</p>
+			<table>
+				<caption>Hidden Grotto Pokémon (inner area)</caption>
+				<thead>
+					<tr>
+						<th colspan="2" class="light-true">Pokémon</th>
+						<th colspan="2" class="black2-true">Black 2</th>
+						<th colspan="2" class="white2-true">White 2</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="light-false">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-5/amoonguss.png" alt="Amoonguss"></div>
+						</td>
+						<td class="light-false">Amoonguss</td>
+						<td class="black2-false">11.25%</td>
+						<td class="black2-false">lv. 55-60</td>
+						<td class="white2-false">11.25%</td>
+						<td class="white2-false">lv. 55-60</td>
+					</tr>
+					<tr>
+						<td class="light-true">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/beedrill.png" alt="Beedrill"></div>
+						</td>
+						<td class="light-true">Beedrill</td>
+						<td class="black2-true">4%</td>
+						<td class="black2-true">lv. 55-60</td>
+						<td class="light-true" colspan="2">N/A</td>
+					</tr>
+					<tr>
+						<td class="light-false">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-1/butterfree-f.png" alt="Butterfree"></div>
+						</td>
+						<td class="light-false">Butterfree</td>
+						<td class="light-false" colspan="2">N/A</td>
+						<td class="white2-false">4%</td>
+						<td class="white2-false">lv. 55-60</td>
+					</tr>
+					<tr>
+						<td class="light-true">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-3/breloom.png" alt="Breloom"></div>
+						</td>
+						<td class="light-true">Breloom</td>
+						<td class="black2-true">3.75%</td>
+						<td class="black2-true">lv. 55-60</td>
+						<td class="white2-true">3.75%</td>
+						<td class="white2-true">lv. 55-60</td>
+					</tr>
+					<tr>
+						<td class="light-false">
+							<div class="flex-img"><img src="../../Resources/images/home-renders/gen-2/murkrow-f.png" alt="Murkrow"></div>
+						</td>
+						<td class="light-false">Murkrow</td>
+						<td class="black2-false">1%</td>
+						<td class="black2-false">lv. 55-60</td>
+						<td class="white2-false">1%</td>
+						<td class="white2-false">lv. 55-60</td>
+					</tr>
+				</tbody>
+			</table>
+			<h4>Surfing (inner area)</h4>
+            <div data-location-id="pinwheel-forest_inside" class="pokemon-b2w2-surfing-replace-me"></div>
+			<h4>Surfing (inner area, rippling water)</h4>
+            <div data-location-id="pinwheel-forest_inside" class="pokemon-b2w2-shakingsurf-replace-me"></div>
+			<h4>Fishing (inner area)</h4>
+            <div data-location-id="pinwheel-forest_inside" class="pokemon-b2w2-fishing-replace-me"></div>
+			<h4>Fishing (inner area, rippling water)</h4>
+            <div data-location-id="pinwheel-forest_inside" class="pokemon-b2w2-shakingfish-replace-me"></div>
+		 </div>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+			<h4>Outer area</h4>
+            <table class="left-align">
+               <caption>Black and White Items (Outer area)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>In the northeast corner, along a fence near Nacrene City</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Potion</td>
+                     <td>In the south, near the dark grass</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ether</td>
+                     <td>Behind a fence near Nacrene City</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ether</td>
+                     <td>In the southeast corner, on some flowers</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Great Ball</td>
+                     <td>Near the broken railway tracks</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Antidote</td>
+                     <td>Along the watery path</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Antidote</td>
+                     <td>In the pool to the south</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TinyMushroom</td>
+                     <td>In the south, on a pool of water near the dark grass</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Star Piece</td>
+                     <td>Obtained by having a Fighting-type Pokémon smash the Challenge Rock</td>
+                     <td>It can be obtained daily.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Net Ball</td>
+                     <td>Near Black Belt Kentaro</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Inner area</h4>
+			<table class="left-align">
+               <caption>Black and White Items (Inner area)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Big Root</td>
+                     <td>Southwest of the second Team Plasma Grunt</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Potion</td>
+                     <td>West of Pokémon Ranger Forrest</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TinyMushroom</td>
+                     <td>South of the Super Potion near Pokémon Ranger Forrest</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TinyMushroom</td>
+                     <td>In a tree stump south of Pokémon Ranger Irene</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Antidote</td>
+                     <td>In a tree stump near Pokémon Ranger Audra</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Parlyz Heal</td>
+                     <td>In a tree stump west of Pokémon Ranger Miguel</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM86 Grass Knot</td>
+                     <td>East of Pokémon Ranger Miguel</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Dragon Skull</td>
+                     <td>Obtained from the last Team Plasma Grunt after defeating him</td>
+                     <td>It is immediately given to Lenora.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Moon Stone</td>
+                     <td>Obtained from Lenora</td>
+                     <td>Only after defeating Team Plasma.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Miracle Seed</td>
+                     <td>In the east</td>
+                     <td>Only after defeating Team Plasma.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>TM22 SolarBeam</td>
+                     <td>In the east</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rare Candy</td>
+                     <td>On the edge of the river east of the bridge</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Hyper Potion</td>
+                     <td>Northeast of the bridge, in a tree stump</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>SilverPowder</td>
+                     <td>West of the bridge</td>
+                     <td>Requires Surf.</td>
+                  </tr>
+               </tbody>
+            </table>		
+		</div>
+         <div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+			<h4>Outer area</h4>
+            <table class="bold-contents left-align">
+               <caption>Black 2 and White 2 Items (Outer area)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+					 <th colspan="2">Games</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td class="light-false">Ultra Ball</td>
+					 <td class="black2-false">B2</td>
+					 <td class="white2-false">W2</td>
+                     <td class="light-false">East of School Kid Keston, behind the fence</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Full Heal</td>
+					 <td class="black2-true">B2</td>
+					 <td class="white2-true">W2</td>
+                     <td class="light-true">Behind the southern fence near School Kid Keston</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Iron</td>
+					 <td class="black2-false">B2</td>
+					 <td class="light-false">W2</td>
+                     <td class="light-false">Near the railroad tracks</td>
+                     <td class="light-false"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Protein</td>
+					 <td class="light-true">B2</td>
+					 <td class="white2-true">W2</td>
+                     <td class="light-true">Near the railroad tracks</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Max Elixir</td>
+					 <td class="black2-false">B2</td>
+					 <td class="white2-false">W2</td>
+                     <td class="light-false">In a puddle near Ace Trainer Kelsey</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">PP Max</td>
+					 <td class="black2-true">B2</td>
+					 <td class="white2-true">W2</td>
+                     <td class="light-true">Near Battle Girl Lee</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Fighting Gem</td>
+					 <td class="black2-false">B2</td>
+					 <td class="white2-false">W2</td>
+                     <td class="light-false">On the eastern ledge northwest of Battle Girl Lee</td>
+                     <td class="light-false">Hidden.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">Nugget</td>
+					 <td class="black2-true">B2</td>
+					 <td class="white2-true">W2</td>
+                     <td class="light-true">North of Ace Trainer Kelsey</td>
+                     <td class="light-true"></td>
+                  </tr>
+                  <tr>
+                     <td class="light-false">Stardust</td>
+					 <td class="black2-false">B2</td>
+					 <td class="white2-false">W2</td>
+                     <td class="light-false">Obtained by having a Fighting-type Pokémon smash the Challenge Rock</td>
+                     <td class="light-false">It can be obtained daily.</td>
+                  </tr>
+                  <tr>
+                     <td class="light-true">HP Up</td>
+					 <td class="black2-true">B2</td>
+					 <td class="white2-true">W2</td>
+                     <td class="light-true">West of the Max Elixir, near the dark grass</td>
+                     <td class="light-true"></td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Inner area</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Inner area)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Location</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>TM22 SolarBeam</td>
+                     <td>In the eastern area</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Rare Candy</td>
+                     <td>East of the bridge, on the edge of the river</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>West of Pokémon Ranger Hillary</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ultra Ball</td>
+                     <td>In the grass near Youngster Keita</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>East of Pokémon Ranger Hillary</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Max Revive</td>
+                     <td>Northwest of Youngster Keita</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Net Ball</td>
+                     <td>Northeast of Veterans Rosaline and Sinan</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>BalmMushroom</td>
+                     <td>West of Lass Helia and Youngster Henley</td>
+                     <td>Hidden. This item has a chance to regenerate.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Up-Grade</td>
+                     <td>Obtained from Cheren</td>
+                     <td>Only after meeting Gorm.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>TM86 Grass Knot</td>
+                     <td>Near Pokémon Ranger Melita</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Green Shard</td>
+                     <td>East of the bridge, near the dark grass by the river</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Bug Gem</td>
+                     <td>Northeast of Youngster Nicholas</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Sun Stone</td>
+                     <td>South of the entrance to Rumination Field</td>
+                     <td>Hidden.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>PP Max</td>
+                     <td>South of Lass Helia and Youngster Henley</td>
+                     <td>Requires Surf.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Nest Ball (5x)</td>
+                     <td>Obtained from a Scientist in the south</td>
+                     <td>Only after completing the area's Habitat List.</td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Hidden Grottoes</h4>
+			<p class="b2w2">When a Hidden Grotto's contents regenerate, there is an 80% chance for an item to be spawned: 40% for visible items and 40% for hidden items. The following items may be generated.</p>
+			<table class="left-align">
+				<caption>Hidden Grotto items (visible)</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Item</th>
+						<th>Rate</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>Poké Ball</td>
+						<td>12.5%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Potion</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Repel</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Great Ball</td>
+						<td>5%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Super Potion</td>
+						<td>2.5%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Super Repel</td>
+						<td>2.5%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Ultra Ball</td>
+						<td>2%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Hyper Potion</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Max Repel</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Fire Stone</td>
+						<td>0.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Water Stone</td>
+						<td>0.25%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Thunderstone</td>
+						<td>0.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Leaf Stone</td>
+						<td>0.25%</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="left-align">
+				<caption>Hidden Grotto items (hidden)</caption>
+				<thead>
+					<tr class="light-true">
+						<th>Item</th>
+						<th>Rate</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="light-false">
+						<td>TinyMushroom</td>
+						<td>7.5%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Damp Mulch</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Growth Mulch</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Stable Mulch</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Gooey Mulch</td>
+						<td>6.25%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Big Mushroom</td>
+						<td>2.5%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Red Shard</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Green Shard</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-false">
+						<td>Yellow Shard</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Blue Shard</td>
+						<td>1%</td>
+					</tr>
+					<tr class="light-false">
+						<td>PP Up</td>
+						<td>0.5%</td>
+					</tr>
+					<tr class="light-true">
+						<td>Rare Candy</td>
+						<td>0.25%</td>
+					</tr>
+					<tr class="light-false">
+						<td>PP Max</td>
+						<td>0.25%</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+      </div>
+	  <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+			<h4>Outer area</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers (Outer area)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Nurse Shery</td>
+                     <td>Munna lv.15</td>
+                     <td>After defeating her, she will heal the player's Pokémon when spoken to.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Preschooler Juliet</td>
+                     <td>Cottonee lv.13<br>Petilil lv.13</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Preschooler Homer</td>
+                     <td>Roggenrola lv.14</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Youngster Keita</td>
+                     <td>Tympole lv.13<br>Tympole lv.13<br>Tympole lv.13</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Youngster Zachary</td>
+                     <td>Venipede lv.14<br>Lillipup lv.14</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Black Belt Kentaro</td>
+                     <td>Timburr lv.16</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Battle Girl Lee</td>
+                     <td>Timburr lv.16</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+			<h4>Inner area</h4>
+			<table class="left-align">
+               <caption>Black and White Trainers (Inner area)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+					 <td>Twins Mayo & May</td>
+                     <td>Sewaddle lv.16<br>Sewaddle lv.16</td>
+                     <td>This is a Double Battle.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>School Kid Sammy</td>
+                     <td>Munna lv.17</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Lass Eva</td>
+                     <td>Woobat lv.15<br>Woobat lv.15<br>Woobat lv.15</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>School Kid Millie</td>
+                     <td>Pidove lv.16<br>Purrloin lv.16</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Team Plasma Grunt</td>
+                     <td>Sandile lv.16</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Team Plasma Grunt</td>
+                     <td>Purrloin lv.16</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Pokémon Ranger Forrest</td>
+                     <td>Herdier lv.18</td>
+                     <td>He will give the player a Chesto Berry after the battle.</td>
+                  </tr>
+				  <tr class="light-true">
+                     <td>Youngster Nicholas</td>
+                     <td>Venipede lv.16<br>Timburr lv.16</td>
+                     <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Pokémon Ranger Audra</td>
+                     <td>Pansage lv.18</td>
+                     <td>She will give the player a Chesto Berry after the battle.</td>
+                  </tr>
+				  <tr class="light-true">
+                     <td>Pokémon Ranger Irene</td>
+                     <td>Panpour lv.18</td>
+                     <td>She will give the player a Pecha Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Team Plasma Grunt</td>
+                     <td>Patrat lv.16</td>
+                     <td></td>
+                  </tr>
+				  <tr class="light-true">
+                     <td>Pokémon Ranger Miguel</td>
+                     <td>Pansear lv.18</td>
+                     <td>He will give the player a Pecha Berry after the battle.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Team Plasma Grunt</td>
+                     <td>Patrat lv.14<br>Patrat lv.14<br>Sandile lv.14</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+			lum berry from ralph and melita after fight
+			<h4>Inner area</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (Inner area)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+					 <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Preschooler Jojo</td>
+                     <td>Wooper lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Tympole lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)
+					 </td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Nursery Aide Ethel</td>
+                     <td>Exeggcute lv. 56 (Easy Mode) / 61 (Normal Mode) / 66 (Challenge Mode)<br>
+						Miltank lv. 56 (Easy Mode) / 61 (Normal Mode) / 66 (Challenge Mode)
+					 </td>
+					 <td></td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Preschooler Samantha</td>
+                     <td>Dratini lv. 54 (Easy Mode) / 59 (Normal Mode) / 64 (Challenge Mode)<br>
+						Gible lv. 54 (Easy Mode) / 59 (Normal Mode) / 64 (Challenge Mode)<br>
+						Bagon lv. 54 (Easy Mode) / 59 (Normal Mode) / 64 (Challenge Mode)
+					 </td>
+					 <td></td>					 
+                  </tr>
+                  <tr class="light-true">
+                     <td>Preschooler José</td>
+                     <td>Burmy lv. 54 (Easy Mode) / 59 (Normal Mode) / 64 (Challenge Mode)<br>
+						Scyther lv. 54 (Easy Mode) / 59 (Normal Mode) / 64 (Challenge Mode)<br>
+						Paras lv. 54 (Easy Mode) / 59 (Normal Mode) / 64 (Challenge Mode)
+					 </td>
+					 <td></td>
+                  </tr>
+				  <tr class="light-false">
+					<td>Twins Ally & Amy</td>
+                     <td>Plusle lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Minun lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)
+					 </td>
+					 <td>This is a Double Battle.</td>	
+				 </tr>
+				 <tr class="light-true">
+					<td>Nursery Aide Rosalyn</td>
+                     <td>Chansey lv. 56 (Easy Mode) / 61 (Normal Mode) / 66 (Challenge Mode)<br>
+						Leavanny lv. 56 (Easy Mode) / 61 (Normal Mode) / 66 (Challenge Mode)
+					 </td>
+					 <td>She can potentially be battled in a Double Battle with Preschooler Ike.</td>
+				 </tr>
+				  <tr class="light-false">
+					<td>Preschooler Ike</td>
+                     <td>Pineco lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Ferrothorn lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)
+					 </td>
+					 <td>He can potentially be battled in a Double Battle with Nursery Aide Rosalyn.</td>	
+				 </tr>
+				 <tr class="light-true">
+					<td>Pokémon Ranger Hillary</td>
+                     <td>Sudowoodo lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)<br>
+						Gloom lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)<br>
+						Beartic lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)
+					 </td>
+					 <td>She will give the player a Sitrus Berry after the battle.</td>
+				 </tr>
+				 <tr class="light-false">
+					<td>Pokémon Ranger Dwayne</td>
+                     <td>Weepinbell lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)<br>
+						Luxray lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)<br>
+						Ursaring lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)
+					 </td>
+					 <td>He will give the player a Sitrus Berry after the battle.</td>
+				 </tr>
+				 <tr class="light-true">
+					<td>Youngster Keita</td>
+                     <td>Mankey lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Snubbull lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Crawdaunt lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)
+					 </td>
+					 <td></td>
+				 </tr>
+				 <tr class="light-false">
+					<td>Pokémon Ranger Ralph</td>
+                     <td>Electrike lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)<br>
+						Rapidash lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)<br>
+						Farfetch'd lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)
+					 </td>
+					 <td>He will give the player a Lum Berry after the battle.</td>
+				 </tr>
+				 <tr class="light-true">
+					<td>Veteran Rosaline</td>
+                     <td>Crobat lv. 59 (Easy Mode) / 64 (Normal Mode) / 69 (Challenge Mode)<br>
+						Magmortar lv. 59 (Easy Mode) / 64 (Normal Mode) / 69 (Challenge Mode)<br>
+						Leafeon lv. 59 (Easy Mode) / 64 (Normal Mode) / 69 (Challenge Mode)
+					 </td>
+					 <td>This is a Double Battle with Veteran Sinan.</td>
+				 </tr>
+				 <tr class="light-false">
+					<td>Veteran Sinan</td>
+                     <td>Ludicolo lv. 59 (Easy Mode) / 64 (Normal Mode) / 69 (Challenge Mode)<br>
+						Electivire lv. 59 (Easy Mode) / 64 (Normal Mode) / 69 (Challenge Mode)<br>
+						Forretress lv. 59 (Easy Mode) / 64 (Normal Mode) / 69 (Challenge Mode)
+					 </td>
+					 <td>This is a Double Battle with Veteran Rosaline.</td>
+				 </tr>
+				 <tr class="light-true">
+					<td>Less Helia</td>
+                     <td>Nidoran♀ lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Nidoran♂ lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Nidoqueen lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)
+					 </td>
+					 <td>She can potentially be battled in a Double Battle with Youngster Henley.</td>
+				 </tr>
+				 <tr class="light-false">
+					<td>Youngster Henley</td>
+                     <td>Cascoon lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Silcoon lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Scolipede lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)
+					 </td>
+					 <td>He can potentially be battled in a Double Battle with Lass Helia.</td>
+				 </tr>
+				 <tr class="light-true">
+					<td>Pokémon Ranger Melita</td>
+                     <td>Munchlax lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)<br>
+						Zebstrika lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)<br>
+						Kricketune lv. 57 (Easy Mode) / 62 (Normal Mode) / 67 (Challenge Mode)
+					 </td>
+					 <td>She will give the player a Lum Berry after the battle.</td>
+				 </tr>
+				 <tr class="light-false">
+					<td>Youngster Nicholas</td>
+                     <td>Phanpy lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Doduo lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Fearow lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)
+					 </td>
+					 <td></td>
+				 </tr>
+               </tbody>
+            </table>
+			<h4>Outer area</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (Outer area)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>School Kid Millie</td>
+                     <td>Oddish lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Tangela lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Bellossom lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)
+					 </td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ace Trainer Kelsey</td>
+                     <td>Furret lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)<br>
+						Braviary lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)<br>
+						Seismitoad lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)
+					 </td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ace Trainer Kathrine</td>
+                     <td>Linoone lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)<br>
+						Mandibuzz lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)<br>
+						Toxicroak lv. 58 (Easy Mode) / 63 (Normal Mode) / 68 (Challenge Mode)
+					 </td>				 
+                  </tr>
+                  <tr class="light-true">
+                     <td>Black Belt Kentaro</td>
+                     <td>Tyrogue lv. 56 (Easy Mode) / 61 (Normal Mode) / 66 (Challenge Mode)<br>
+						Scrafty lv. 56 (Easy Mode) / 61 (Normal Mode) / 66 (Challenge Mode)<br>
+						Makuhita lv. 56 (Easy Mode) / 61 (Normal Mode) / 66 (Challenge Mode)
+					 </td>
+                  </tr>
+				  <tr class="light-false">
+					<td>Battle Girl Lee</td>
+                     <td>Tyrogue lv. 56 (Easy Mode) / 61 (Normal Mode) / 66 (Challenge Mode)<br>
+						Machop lv. 56 (Easy Mode) / 61 (Normal Mode) / 66 (Challenge Mode)<br>
+						Poliwrath lv. 56 (Easy Mode) / 61 (Normal Mode) / 66 (Challenge Mode)
+					 </td>
+				 </tr>
+				 <tr class="light-true">
+					<td>School Kid Keston</td>
+                     <td>Venonat lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Yanma lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)<br>
+						Venomoth lv. 55 (Easy Mode) / 60 (Normal Mode) / 65 (Challenge Mode)
+					 </td>
+				 </tr>
+               </tbody>
+            </table>
+		 </div>
+      </div>
+   </body>
+</html>

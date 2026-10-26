@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Pokémon League</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../colors.js"></script>
+      <script src="../javascript/buttons.js"></script>
+      <link rel="stylesheet" id="common" href="../../common.css">
+      <link rel="stylesheet" id="style">
+   </head>
+   <body>
+      <div class="flex-row" style="align-items:center;margin-top:2ex;">
+         <h4 style="margin:0px;"><a href="../../index.html">Home</a> | <a href="https://github.com/Altissimo1/altissimo1.github.io">GitHub Source</a> | <a href="../../Maintenance/contact.html">Contact Me</a> | <a href="../../Maintenance/support.html">Support the Site</a> |</h4>
+         <input type="checkbox" id="dark-mode" name="dark-mode" value="Dark Mode"> <label for="dark-mode"> Dark mode <em>(uses cookies)</em></label>
+      </div>
+      <h4><a href="../index.html">Main Series Home</a> | <a href="index.html">Unova Locations Home</a></h4>
+      <div id="topButtons" class="flex-buttons">
+         <input id="bw" type="radio" onclick="topButton.call(this)" name="games" value="BW" checked="checked">
+         <label for="bw" class="right">BW</label>
+         <input id="b2w2" type="radio" onclick="topButton.call(this)" name="games" value="B2W2">
+         <label for="b2w2" class="right">B2W2</label>
+      </div>
+      <h2>Pokémon League</h2>
+      <div id="notes" class="bottom">
+         <p id="bw-notes" class="bw">
+            <strong>Access to:</strong><br>
+            South: <a class="location-link" href="victory-road.html">Victory Road</a><br>
+            The player will automatically move to <a class="location-link" href="ns-castle.html">N's Castle</a> as part of the story here.<br><br>
+            <strong>Places of interest:</strong><br>
+            Pokémon League: The four members of the Elite Four and the Champion can be fought here. The first time the player faces them, the battle with the Champion does not occur.<br>			
+            Poké Mart
+         </p>
+         <p id="b2w2-notes" class="b2w2" style="display:none;">
+            <strong>Access to:</strong><br>
+            South: <a class="location-link" href="victory-road.html">Victory Road</a><br><br>
+            <strong>Places of interest:</strong><br>
+            Pokémon League: The four members of the Elite Four and the Champion can be fought here.<br>			
+            Poké Mart
+         </p>
+      </div>
+      <div id="items-container">
+         <div id="pokemon-bw-items" class="game-container bw">
+            <h3><u>Items</u></h3>
+            <h4>Poké Mart - Upper vendor</h4>
+            <table class="left-align">
+               <caption>Black and White Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Poké Ball</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Potion</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>700</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>2500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>3000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>1500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Antidote</td>
+                     <td>100</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Awakening</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burn Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ice Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Escape Rope</td>
+                     <td>550</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repel</td>
+                     <td>350</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Repel</td>
+                     <td>500</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>700</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="left-align">
+               <caption>Black and White Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Heal Ball</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Net Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Nest Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Quick Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Dusk Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Timer Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repeat Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Luxury Ball</td>
+                     <td>1000</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2-items" class="game-container b2w2" style="display:none;">
+            <h3><u>Items</u></h3>
+            <h4>Poké Mart - Upper vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Poké Ball</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Great Ball</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Ultra Ball</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Potion</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Super Potion</td>
+                     <td>700</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Hyper Potion</td>
+                     <td>1200</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Potion</td>
+                     <td>2500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Full Restore</td>
+                     <td>3000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Revive</td>
+                     <td>1500</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Antidote</td>
+                     <td>100</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Parlyz Heal</td>
+                     <td>200</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Awakening</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Burn Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Ice Heal</td>
+                     <td>250</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Full Heal</td>
+                     <td>600</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Escape Rope</td>
+                     <td>550</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repel</td>
+                     <td>350</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Super Repel</td>
+                     <td>500</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Max Repel</td>
+                     <td>700</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Poké Mart - Lower vendor</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Items (Poké Mart)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Item</th>
+                     <th>Price</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Heal Ball</td>
+                     <td>300</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Net Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Nest Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Quick Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Dusk Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Timer Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Repeat Ball</td>
+                     <td>1000</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Luxury Ball</td>
+                     <td>1000</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="trainers-container">
+         <div id="pokemon-bw-trainers" class="game-container bw">
+            <h3><u>Trainers</u></h3>
+            <h4>Elite Four</h4>
+            <table class="left-align">
+               <caption>Black and White Trainers (Elite Four)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Shauntal</td>
+                     <td>Cofagrigus lv.48<br>Jellicent lv.48<br>Golurk lv.48<br>Chandelure lv.50</td>
+                     <td>The first member of the Elite Four. In the southwest room.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Marshal</td>
+                     <td>Throh lv.48<br>Sawk lv.48<br>Conkeldurr lv.48<br>Mienshao lv.50</td>
+                     <td>The second member of the Elite Four. In the southeast room.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Grimsley</td>
+                     <td>Scrafty lv.48<br>Krookodile lv.48<br>Liepard lv.48<br>Bisharp lv.50</td>
+                     <td>The third member of the Elite Four. In the northwest room.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Caitlin</td>
+                     <td>Reuniclus lv.48<br>Musharna lv.48<br>Sigilyph lv.48<br>Gothitelle lv.50</td>
+                     <td>The fourth member of the Elite Four. In the northeast room.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rematches</h4>
+            <p class="bw">The Elite Four will begin using these teams after the player obtains the National Pokédex.</p>
+            <table class="left-align">
+               <caption>Black and White Trainers (Elite Four Rematches)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Shauntal</td>
+                     <td>Cofagrigus lv.71<br>Jellicent lv.71<br>Golurk lv.71<br>Froslass lv.71<br>Drifblim lv.71<br>Chandelure lv.73</td>
+                     <td>The first member of the Elite Four. In the southwest room.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Marshal</td>
+                     <td>Breloom lv.71<br>Throh lv.71<br>Sawk lv.71<br>Mienshao lv.71<br>Toxicroak lv.71<br>Conkeldurr lv.73</td>
+                     <td>The second member of the Elite Four. In the southeast room.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Grimsley</td>
+                     <td>Sharpedo lv.71<br>Scrafty lv.71<br>Krookodile lv.71<br>Liepard lv.71<br>Drapion lv.71<br>Bisharp lv.73</td>
+                     <td>The third member of the Elite Four. In the northwest room.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Caitlin</td>
+                     <td>Musharna lv.71<br>Sigilyph lv.71<br>Reuniclus lv.71<br>Gothitelle lv.71<br>Bronzong lv.71<br>Metagross lv.73</td>
+                     <td>The fourth member of the Elite Four. In the northeast room.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Alder</td>
+                     <td>Accelgor lv.75<br>Bouffalant lv.75<br>Druddigon lv.75<br>Vanilluxe lv.75<br>Escavalier lv.75<br>Volcarona lv.77</td>
+                     <td>The Champion of the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="pokemon-b2w2-trainers" class="game-container b2w2" style="display:none;">
+            <h3><u>Trainers</u></h3>
+            <h4>Elite Four</h4>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (Elite Four)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Shauntal (Easy Mode / Normal Mode)</td>
+                     <td>Cofagrigus lv. 52 (Easy Mode) / 56 (Normal Mode)<br>
+                        Drifblim lv. 52 (Easy Mode) / 56 (Normal Mode)<br>
+                        Golurk lv. 52 (Easy Mode) / 56 (Normal Mode)<br>
+                        Chandelure lv. 54 (Easy Mode) / 58 (Normal Mode) @ Sitrus Berry
+                     </td>
+                     <td>The first member of the Elite Four. In the southwest room.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Shauntal (Challenge Mode)</td>
+                     <td>Cofagrigus lv.60 @ Leftovers<br>Drifblim lv.60 @ Flying Gem<br>Golurk lv.60 @ Expert Belt<br>Banette lv.60 @ Muscle Band<br>Chandelure lv.62 @ Choice Scarf</td>
+                     <td>The first member of the Elite Four. In the southwest room.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Marshal (Easy Mode / Normal Mode)</td>
+                     <td>Throh lv. 52 (Easy Mode) / 56 (Normal Mode)<br>
+                        Sawk lv. 52 (Easy Mode) / 56 (Normal Mode)<br>
+                        Mienshao lv. 52 (Easy Mode) / 56 (Normal Mode)<br>
+                        Conkeldurr lv. 54 (Easy Mode) / 58 (Normal Mode) @ Sitrus Berry
+                     </td>
+                     <td>The second member of the Elite Four. In the southeast room.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Marshal (Challenge Mode)</td>
+                     <td>Throh lv.60 @ Leftovers<br>Sawk lv.60 @ Muscle Band<br>Mienshao lv.60 @ Expert Belt<br>Lucario lv.60 @ Wise Glasses<br>Conkeldurr lv.62 @ Flame Orb</td>
+                     <td>The second member of the Elite Four. In the southeast room.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Grimsley (Easy Mode / Normal Mode)</td>
+                     <td>Liepard lv. 52 (Easy Mode) / 56 (Normal Mode)<br>
+                        Scrafty lv. 52 (Easy Mode) / 56 (Normal Mode)<br>
+                        Krookodile lv. 52 (Easy Mode) / 56 (Normal Mode)<br>
+                        Bisharp lv. 54 (Easy Mode) / 58 (Normal Mode) @ Sitrus Berry
+                     </td>
+                     <td>The third member of the Elite Four. In the northwest room.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Grimsley (Challenge Mode)</td>
+                     <td>Liepard lv.60 @ Normal Gem<br>Scrafty lv.60 @ Leftovers<br>Krookodile lv.60 @ Expert Belt<br>Absol lv.60 @ Muscle Band<br>Bisharp lv.62 @ Quick Claw</td>
+                     <td>The third member of the Elite Four. In the northwest room.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Caitlin (Easy Mode / Normal Mode)</td>
+                     <td>Musharna lv. 52 (Easy Mode) / 56 (Normal Mode)<br>
+                        Sigilyph lv. 52 (Easy Mode) / 56 (Normal Mode)<br>
+                        Reuniclus lv. 52 (Easy Mode) / 56 (Normal Mode)<br>
+                        Gothitelle lv. 54 (Easy Mode) / 58 (Normal Mode) @ Sitrus Berry
+                     </td>
+                     <td>The fourth member of the Elite Four. In the northeast room.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Caitlin (Challenge Mode)</td>
+                     <td>Musharna lv.60 @ Zoom Lens<br>Sigilyph lv.60 @ Expert Belt<br>Reuniclus lv.60 @ Leftovers<br>Gothitelle lv.60 @ Wise Glasses<br>Metagross lv.62 @ Life Orb</td>
+                     <td>The fourth member of the Elite Four. In the northeast room.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Iris (Easy Mode / Normal Mode)</td>
+                     <td>Hydreigon lv. 53 (Easy Mode) / 57 (Normal Mode)<br>
+                        Druddigon lv. 53 (Easy Mode) / 57 (Normal Mode) @ Life Orb<br>
+                        Aggron lv. 53 (Easy Mode) / 57 (Normal Mode)<br>
+                        Archeops lv. 53 (Easy Mode) / 57 (Normal Mode)<br>
+                        Lapras lv. 53 (Easy Mode) / 57 (Normal Mode)<br>
+                        Haxorus lv. 55 (Easy Mode) / 59 (Normal Mode) @ Focus Sash
+                     </td>
+                     <td>The Champion of the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Iris (Challenge Mode)</td>
+                     <td>Hydreigon lv.61 @ Wise Glasses<br>Druddigon lv.61 @ Life Orb<br>Aggron lv.61 @ Muscle Band<br>Archeops lv.61 @ Flying Gem<br>Lapras lv.61 @ Wide Lens<br>Haxorus lv.63 @ Focus Sash</td>
+                     <td>The Champion of the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h4>Rematches</h4>
+            <p class="b2w2">The Elite Four will begin using these teams after the player obtains the National Pokédex.</p>
+            <table class="left-align">
+               <caption>Black 2 and White 2 Trainers (Elite Four Rematches)</caption>
+               <thead>
+                  <tr class="light-true">
+                     <th>Trainer</th>
+                     <th>Party</th>
+                     <th>Notes</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr class="light-false">
+                     <td>Shauntal (Easy Mode / Normal Mode)</td>
+                     <td>Cofagrigus lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Mismagius lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Froslass lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Drifblim lv. 68 (Easy Mode) / 72 (Normal Mode) @ Flying Gem<br>
+                        Golurk lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Chandelure lv. 70 (Easy Mode) / 74 (Normal Mode) @ Sitrus Berry
+                     </td>
+                     <td>The first member of the Elite Four. In the southwest room.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Shauntal (Challenge Mode)</td>
+                     <td>Cofagrigus lv.77 @ Leftovers<br>Gengar lv.77 @ Expert Belt<br>Froslass lv.77 @ Wise Glasses<br>Drifblim lv.77 @ Flying Gem<br>Golurk lv.77 @ Muscle Band<br>Chandelure lv.79 @ Choice Scarf</td>
+                     <td>The first member of the Elite Four. In the southwest room.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Marshal (Easy Mode / Normal Mode)</td>
+                     <td>Throh lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Sawk lv. 68 (Easy Mode) / 72 (Normal Mode) @ Muscle Band<br>
+                        Lucario lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Mienshao lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Medicham lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Conkeldurr lv. 70 (Easy Mode) / 74 (Normal Mode) @ Sitrus Berry
+                     </td>
+                     <td>The second member of the Elite Four. In the southeast room.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Marshal (Challenge Mode)</td>
+                     <td>Throh lv.77 @ Focus Band<br>Sawk lv.77 @ Muscle Band<br>Lucario lv.77 @ Wise Glasses<br>Mienshao lv.77 @ Eject Button<br>Machamp lv.77 @ Expert Belt<br>Conkeldurr lv.79 @ Flame Orb</td>
+                     <td>The second member of the Elite Four. In the southeast room.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Grimsley (Easy Mode / Normal Mode)</td>
+                     <td>Liepard lv. 68 (Easy Mode) / 72 (Normal Mode) @ Normal Gem<br>
+                        Honchkrow lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Scrafty lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Krookodile lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Houndoom lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Bisharp lv. 70 (Easy Mode) / 74 (Normal Mode) @ Sitrus Berry
+                     </td>
+                     <td>The third member of the Elite Four. In the northwest room.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Grimsley (Challenge Mode)</td>
+                     <td>Honchkrow lv.77 @ Scope Lens<br>Scrafty lv.77 @ Leftovers<br>Krookodile lv.77 @ Muscle Band<br>Houndoom lv.77 @ Wise Glasses<br>Tyranitar lv.77 @ Focus Band<br>Bisharp lv.79 @ Quick Claw</td>
+                     <td>The third member of the Elite Four. In the northwest room.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Caitlin (Easy Mode / Normal Mode)</td>
+                     <td>Musharna lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Sigilyph lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Gothitelle lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Gallade lv. 68 (Easy Mode) / 72 (Normal Mode)<br>
+                        Reuniclus lv. 68 (Easy Mode) / 72 (Normal Mode) @ Leftovers<br>
+                        Metagross lv. 70 (Easy Mode) / 74 (Normal Mode) @ Sitrus Berry
+                     </td>
+                     <td>The fourth member of the Elite Four. In the northeast room.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Caitlin (Challenge Mode)</td>
+                     <td>Musharna lv.77 @ Zoom Lens<br>Alakazam lv.77 @ Expert Belt<br>Gothitelle lv.77 @ Wise Glasses<br>Gallade lv.77 @ Muscle Band<br>Reuniclus lv.77 @ Leftovers<br>Metagross lv.79 @ Life Orb</td>
+                     <td>The fourth member of the Elite Four. In the northeast room.</td>
+                  </tr>
+                  <tr class="light-false">
+                     <td>Iris (Easy Mode / Normal Mode)</td>
+                     <td>Hydreigon lv. 72 (Easy Mode) / 76 (Normal Mode)<br>
+                        Druddigon lv. 72 (Easy Mode) / 76 (Normal Mode) @ Life Orb<br>
+                        Aggron lv. 72 (Easy Mode) / 76 (Normal Mode)<br>
+                        Archeops lv. 72 (Easy Mode) / 76 (Normal Mode)<br>
+                        Lapras lv. 72 (Easy Mode) / 76 (Normal Mode)<br>
+                        Haxorus lv. 74 (Easy Mode) / 78 (Normal Mode) @ Focus Sash
+                     </td>
+                     <td>The Champion of the Elite Four.</td>
+                  </tr>
+                  <tr class="light-true">
+                     <td>Iris (Challenge Mode)</td>
+                     <td>Hydreigon lv.81 @ Wise Glasses<br>Salamence lv.81 @ Life Orb<br>Aggron lv.81 @ Muscle Band<br>Archeops lv.81 @ Flying Gem<br>Lapras lv.81 @ Zoom Lens<br>Haxorus lv.83 @ Focus Sash</td>
+                     <td>The Champion of the Elite Four.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>
