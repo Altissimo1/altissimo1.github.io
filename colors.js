@@ -1,3 +1,52 @@
+var DARK_MODE_KEY = "altissimo1-darkmode";
+
+// Folder that holds colors.js, light.css and dark.css (the site root).
+var STYLE_BASE = (document.currentScript ? document.currentScript.src : "").replace(/colors\.js(\?.*)?$/, "");
+
+// Apply the saved theme as soon as the <link id="style"> tag is parsed.
+// For dark mode visitors, the page stays hidden on a dark background until dark.css
+// has loaded, so they never see a flash of the light theme.
+(function() {
+	var dark = loadDarkMode();
+	var root = document.documentElement;
+	var revealed = false;
+	
+	function reveal() {
+		if (revealed) return;
+		revealed = true;
+		root.style.colorScheme = "";
+		root.style.visibility = "";
+	}
+	
+	function apply() {
+		var style = document.getElementById("style");
+		if (!style) return false;
+		style.addEventListener("load", reveal);
+		style.addEventListener("error", reveal);
+		updateURL(dark);
+		return true;
+	}
+	
+	if (dark) {
+		root.style.colorScheme = "dark";
+		root.style.visibility = "hidden";
+		setTimeout(reveal, 2000); // Safety net: never leave the page hidden.
+	}
+	
+	if (apply() || !window.MutationObserver) {
+		if (!document.getElementById("style")) reveal();
+		return;
+	}
+	var observer = new MutationObserver(function() {
+		if (apply()) observer.disconnect();
+	});
+	observer.observe(root, { childList: true, subtree: true });
+	document.addEventListener("DOMContentLoaded", function() {
+		observer.disconnect();
+		if (!document.getElementById("style")) reveal();
+	});
+})();
+
 $(function() {
 	var typeCheckbox = $("#type-checkbox");
 	var hasTypeCheckbox = typeCheckbox.length > 0;
@@ -23,25 +72,16 @@ $(function() {
 	setCheckbox();
 	
 	$("#dark-mode").click(function() {
-		if ($(this).is(":checked")) {
-			setCookie("altissimo1-darkmode", true);
-			updateURL(true);
-		}
-		else {
-			setCookie("altissimo1-darkmode", false);
-			updateURL(false);
-		}
+		var dark = $(this).is(":checked");
+		saveDarkMode(dark);
+		updateURL(dark);
 	});
 	
 });
 
 // Set the dark mode checkbox
 function setCheckbox() {
-	var hasCookie = checkCookie("altissimo1-darkmode");
-	if (hasCookie)
-		var darkModeSet = getCookie("altissimo1-darkmode") == "set";
-	
-	var dark = hasCookie && darkModeSet;
+	var dark = loadDarkMode();
 	
 	updateURL(dark);
 	
@@ -50,14 +90,18 @@ function setCheckbox() {
 
 // Update the stylesheet reference
 function updateURL(dark) {
-	var path = $("#common").attr("href");
+	var style = document.getElementById("style");
+	if (!style) return;
 	
-	var path = path.replace("common.css", "");
+	var base = STYLE_BASE;
+	if (!base) {
+		var common = document.getElementById("common");
+		base = common ? common.getAttribute("href").replace("common.css", "") : "";
+	}
 	
-	if (dark)
-		$("#style").attr("href", path + "dark.css");
-	else
-		$("#style").attr("href", path + "light.css");
+	var href = base + (dark ? "dark.css" : "light.css");
+	if (style.getAttribute("href") != href)
+		style.setAttribute("href", href);
 }
 
 // Update colors w/ the status checkbox
@@ -103,35 +147,40 @@ function updateTypes() {
 }
 
 
-// Get and set cookies.
-function setCookie(name, active) {
-	if (active) {
-		document.cookie = name + "=set; path=/; SameSite=None; Secure;";
-	} else {
-		document.cookie = name + "=unset; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=None; Secure;"
-	}
-}		
-
-function getCookie(cname) {
-	let name = cname + "=";
-	let ca = document.cookie.split(";");
-	for (let i = 0; i < ca.length; i++) {
-		let c = ca[i];
-		while (c.charAt(0) == ' ') {
-			c = c.substring(1);
-		}
-		if (c.indexOf(name) == 0) {
-			return c.substring(name.length, c.length);
-		}
-	}
-	return "";
+// Save and load the dark mode preference (localStorage).
+// Older versions of the site used a cookie, which is read once and then removed.
+function loadDarkMode() {
+	var saved = null;
+	try {
+		saved = localStorage.getItem(DARK_MODE_KEY);
+	} catch (e) {}
+	
+	if (saved !== null)
+		return saved == "on";
+	
+	var legacyDark = getLegacyCookie(DARK_MODE_KEY) == "set";
+	if (legacyDark)
+		saveDarkMode(true);
+	return legacyDark;
 }
 
-function checkCookie(cname) {
-	let cookie = getCookie(cname);
-	if (cookie == "" || cookie == null) {
-		return false;
-	} else {
-		return true;
+function saveDarkMode(dark) {
+	try {
+		localStorage.setItem(DARK_MODE_KEY, dark ? "on" : "off");
+	} catch (e) {
+		return; // Storage blocked: keep any old cookie rather than lose the setting.
 	}
+	if (getLegacyCookie(DARK_MODE_KEY) != "")
+		document.cookie = DARK_MODE_KEY + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; Secure";
+}
+
+function getLegacyCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(";");
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i].replace(/^\s+/, "");
+		if (c.indexOf(name) == 0)
+			return c.substring(name.length);
+	}
+	return "";
 }
