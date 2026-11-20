@@ -30,13 +30,16 @@ $(function() {
 	// Set a variable to hold the JSON data.
 	var jsonData = [];
 	
-	var useCookies = false;
-	
-	var cookiePrefix = "altissimo1-collectible-" + land + "-";
+	// Saved progress for this map (localStorage), only used if the visitor ticks the save box.
+	// Format: { checked: ["wisp-0", "unown-20", ...], hidden: ["dig", ...] }
+	var storageKey = "altissimo1-collectibles-" + land;
+	var saved = loadSaved();
+	var useStorage = saved !== null;
+	var iconsLoaded = false;
 	
 	// Setup.
 	
-	checkCookies();
+	$(".save-check").prop("checked", useStorage);
 	
 	prepareImage();
 	
@@ -51,53 +54,34 @@ $(function() {
 		}
 	});
 	
-	// Check if cookies are present
-	if (useCookies) {
-		// Set up filters based on cookies.
-		$.each($(".filter"), function() {
-			var type = this.id.replace("-filter", "");
-			if (getCookie(cookiePrefix + type) == "set")
-				$(this).prop("checked", false);
+	// Restore hidden filters.
+	if (useStorage) {
+		$.each(saved.hidden, function(i, type) {
+			$("#filter-" + type).prop("checked", false);
 		});
 	}
 	
-	// Set listener on checkbox object.
-	$(".cookie-check").click(function() {
+	// Save box: turning it on saves the current progress; turning it off deletes this map's saved progress.
+	$(".save-check").click(function() {
+		useStorage = $(this).is(":checked");
 		// Keep the English and Japanese checkboxes in sync.
-		$(".cookie-check").prop("checked", $(this).is(":checked"));
-		// If cookies are checked, add a cookie to state that it is checked, and add existing checks to cookies
-		if ($(this).is(":checked")) {
-			setCookie(cookiePrefix + "cookie", true);
-			useCookies = true;
-			$.each($(".click-img"), function() {
-				var type = getType(this);
-				var point = this.id.replace(type + "-", "");
-				if ($(this).attr("src") == checkURL)
-					setCookie(cookiePrefix + type + point, true);
-			});
-		}
-		// Otherwise, remove the cookie (if present) and remove any existing cookies.
+		$(".save-check").prop("checked", useStorage);
+		if (useStorage)
+			writeSaved();
 		else {
-			setCookie(cookiePrefix + "cookie", false);
-			var cookies = document.cookie.split(";");
-			for (var i = 0; i < cookies.length; i++)
-				setCookie(cookies[i].split("=")[0], false);	
-			useCookies = false;
+			try {
+				localStorage.removeItem(storageKey);
+			} catch (e) {}
 		}
 	});
 	
 	$(".filter").click(function() {
 		var type = this.id.replace("filter-", "");
-		if ($(this).is(":checked")) {
+		if ($(this).is(":checked"))
 			$(".click-img." + type).show();
-			// Set a cookie only if it should be DEselected
-			if (useCookies)
-				setCookie(cookiePrefix + type, false);
-		} else {
+		else
 			$(".click-img." + type).hide();
-			if (useCookies)
-				setCookie(cookiePrefix + type, true);
-		}
+		writeSaved();
 	});
 	
 	$(".reset-button").click(function() {
@@ -134,12 +118,9 @@ $(function() {
 				var point = this.tag;
 				var src = this.icon;
 				var alt = type;
-				if (useCookies) {
-					var cookieName = cookiePrefix + type + point;
-					if (getCookie(cookieName) == "set") {
-						src = checkURL;
-						alt = "check";
-					}
+				if (useStorage && saved.checked.indexOf(type + "-" + point) != -1) {
+					src = checkURL;
+					alt = "check";
 				}
 				var icon = document.createElement("img");
 				icon.src = src;
@@ -209,6 +190,7 @@ $(function() {
 			});
 			
 			iconDisplayContainer.show();
+			iconsLoaded = true;
 		}		
 	}
 	
@@ -224,47 +206,86 @@ $(function() {
 			return "verse";
 	}	
 	
-	// Get and set cookies.
-	function setCookie(name, active) {
-		if (active) {
-			document.cookie = name + "=set; path=/; SameSite=None; Secure;";
-		} else {
-			document.cookie = name + "=unset; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=None; Secure;"
-		}
-	}		
-
-	function getCookie(cname) {
-		let name = cname + "=";
-		let ca = document.cookie.split(";");
-		for (let i = 0; i < ca.length; i++) {
-			let c = ca[i];
-			while (c.charAt(0) == ' ') {
-				c = c.substring(1);
-			}
-			if (c.indexOf(name) == 0) {
-				return c.substring(name.length, c.length);
-			}
-		}
-		return "";
-	}
-
-	function checkCookie(cname) {
-		let cookie = getCookie(cname);
-		if (cookie == "" || cookie == null) {
-			return false;
-		} else {
-			return true;
-		}
+	// Load this map's saved progress, or null if saving isn't turned on.
+	function loadSaved() {
+		var data = null;
+		try {
+			data = JSON.parse(localStorage.getItem(storageKey));
+		} catch (e) {}
+		
+		if (data && typeof data == "object")
+			return { checked: data.checked || [], hidden: data.hidden || [] };
+		
+		return migrateCookies();
 	}
 	
-	// Check if user has cookies set.
-	function checkCookies() {
-		let cookie = getCookie(cookiePrefix + "cookie");
-		if (cookie != "" && cookie != null) {
-			useCookies = true;
-			$(".cookie-check").prop('checked', true);
+	// Save the current checkmarks and hidden filters, if saving is turned on.
+	function writeSaved() {
+		if (!useStorage)
+			return;
+		
+		var data = { checked: [], hidden: [] };
+		
+		// If the icons haven't loaded yet, keep the checkmarks that were already saved.
+		if (iconsLoaded) {
+			$.each($(".click-img"), function() {
+				if ($(this).attr("src") == checkURL)
+					data.checked.push(this.id);
+			});
+		} else if (saved)
+			data.checked = saved.checked;
+		
+		$.each($(".filter"), function() {
+			if (!$(this).is(":checked"))
+				data.hidden.push(this.id.replace("filter-", ""));
+		});
+		
+		try {
+			localStorage.setItem(storageKey, JSON.stringify(data));
+		} catch (e) {}
+	}
+	
+	// Older versions of this page saved progress in cookies. Move it to localStorage once,
+	// then delete those cookies. Returns the migrated progress, or null if there was none.
+	function migrateCookies() {
+		var prefix = "altissimo1-collectible-" + land + "-";
+		var data = { checked: [], hidden: [] };
+		var enabled = false;
+		var names = [];
+		
+		var cookies = document.cookie.split(";");
+		for (var i = 0; i < cookies.length; i++) {
+			var pair = cookies[i].replace(/^\s+/, "").split("=");
+			if (pair[0].indexOf(prefix) != 0)
+				continue;
+			
+			names.push(pair[0]);
+			if (pair[1] != "set")
+				continue;
+			
+			var rest = pair[0].substring(prefix.length);
+			var match = rest.match(/^([a-z]+)(\d*)$/);
+			if (rest == "cookie")
+				enabled = true;
+			else if (match && match[2] != "")
+				data.checked.push(match[1] + "-" + match[2]);
+			else if (match)
+				data.hidden.push(match[1]);
 		}
-	};
+		
+		if (!enabled)
+			return null;
+		
+		try {
+			localStorage.setItem(storageKey, JSON.stringify(data));
+		} catch (e) {
+			return data; // Storage blocked: use the cookies for this visit and leave them in place.
+		}
+		for (var j = 0; j < names.length; j++)
+			document.cookie = names[j] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; Secure";
+		
+		return data;
+	}
 	
 	function changeIcon(makeCheck, entity) {
 		var type = getType(entity);
@@ -272,15 +293,12 @@ $(function() {
 		if (makeCheck) {
 			$(entity).attr("src", checkURL);
 			$(entity).attr("alt", "check");
-			if (useCookies)
-				setCookie(cookiePrefix + type + point, true);
 		}
 		else {
 			$(entity).attr("src", jsonData[parseInt(point)].icon);
 			$(entity).attr("alt", type);
-			if (useCookies)
-				setCookie(cookiePrefix + type + point, false);
-		}					
+		}
+		writeSaved();
 	}
 	
 	function setLanguageButton() {

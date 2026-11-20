@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0037)https://syphist.com/pmd/wms/?advanced -->
-<html data-theme="light" lang="en">
+<html lang="en">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <title>Wonder Mail S Generator</title>
@@ -8,89 +7,24 @@
          name="description"
          content="Generates Wonder Mail S codes for the game Pokemon Mystery Dungeon: Explorers of Sky."
          >
-      <meta name="application-name" content="Wonder Mail S Generator">
-      <meta name="application-url" content="http://apointlessplace.net/wms/wmgenerate.html">
       <link rel="stylesheet" type="text/css" href="./style/simple.css">
       <link rel="stylesheet" type="text/css" href="./style/wmtools.css">
       <meta name="color-scheme" content="light">
-      <script async="" src="./script/analytics.js"></script>
       <script src="./script/wmutils.js"></script>
       <script src="./script/wm.js"></script>
       <script src="./script/wmgenerate.js"></script>
       <script src="./script/sky_dungeon.js"></script>
       <script src="./script/sky_item.js"></script>
       <script src="./script/sky_poke.js"></script>
-      <script async="" src="./script/ga.js"></script>
-      <script>
-         function rtcScript() {
-           document.oncontextmenu = null;
-           document.onselectstart = null;
-           document.onmousedown = null;
-           document.onclick = null;
-           document.oncopy = null;
-           document.oncut = null;
-           var elements = document.getElementsByTagName("*");
-           for (var i = 0; i < elements.length; i++) {
-             elements[i].oncontextmenu = null;
-             elements[i].onselectstart = null;
-             elements[i].onmousedown = null;
-             elements[i].oncopy = null;
-             elements[i].oncut = null;
-           }
-           function preventShareThis() {
-             document.getSelection = window.getSelection = function () {
-               return { isCollapsed: true };
-             };
-           }
-           var scripts = document.getElementsByTagName("script");
-           for (var i = 0; i < scripts.length; i++) {
-             if (scripts[i].src.indexOf("w.sharethis.com") > -1) {
-               preventShareThis();
-             }
-           }
-           if (typeof Tynt != "undefined") {
-             Tynt = null;
-           }
-         }
-         rtcScript();
-         setInterval(rtcScript, 2000);
-      </script>
-      <style>
-         * {
-         -webkit-user-select: auto !important; /* injected by RightToCopy */
-         }
-      </style>
-      <script async="" src="./script/ga.js"></script>
    </head>
-   <body onload="runOnLoad()">
+   <body onload="runInitialize()">
       <script>
-         /**
-          * The purpose of this function is to properly initialize the generator.
-          * It will run on load by default unless the user is using IE6.
-          */
+         // Set up the generator once the page has loaded.
          function runInitialize() {
            WMSGen.advanced = document.location.search.indexOf("advanced") != -1;
            WMSGen.setup($("genForm"));
          }
          
-         // Run initialize by default.
-         runOnLoad = runInitialize;
-         
-         // This is used in wm.js.
-         function getOption(name) {
-           switch (name) {
-             default:
-               return false;
-               break;
-           }
-         }
-         
-         // Don't allow option setting on this page.
-         function setOption(name, value) {
-           return false;
-         }
-         
-         var generatedThisSession = false;
          var iFlavorText = 0;
          function doGenerate() {
            if (
@@ -223,18 +157,7 @@
              code += " <span class='yellow'>" + segments[4] + "</span> ";
              code += segments[5];
              $("outputbox").innerHTML = code;
-         
-             // See how many people are actually using this thing...
-             if (
-               typeof _gaq != "undefined" &&
-               !generatedThisSession &&
-               (navigator.onLine || typeof navigator.onLine != "boolean")
-             ) {
-               if (typeof _gaq.push != "undefined") {
-                 _gaq.push(["_trackPageview", "/wms/generator/generated"]);
-                 generatedThisSession = true;
-               }
-             }
+
            } else {
              var errorStr = "";
              for (var i = 0; i < errors.length; ++i) {
@@ -391,20 +314,5 @@
          <div id="outputbox"></div>
          <p>Check your console for more codes! (ctrl+shift+i usually)</p>
       </fieldset>
-      <!-- analytics -->
-      <script>
-         var _gaq = _gaq || [];
-         _gaq.push(["_setAccount", "UA-5727513-1"]);
-         _gaq.push(["_trackPageview"]);
-         
-         (function () {
-           var ga = document.createElement("script");
-           ga.type = "text/javascript";
-           ga.async = true;
-           ga.src =
-             ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
-           (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(ga);
-         })();
-      </script>
    </body>
 </html>
